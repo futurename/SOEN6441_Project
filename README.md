@@ -8,7 +8,7 @@
 
   update local repository:	**git pull**
 
-+ add all changes to index:	**git add * **
++ add all changes to index:	**git add \***
 
   commit changes:	**git commit -m "Commit message"**
 
