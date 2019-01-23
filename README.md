@@ -16,23 +16,23 @@
 
 
 
-###JavaFX 2.x or Java Scene Builder:
+#### JavaFX 2.x or Java Scene Builder:
 
-#####https://www.oracle.com/technetwork/java/javase/archive-139210.html
+##### https://www.oracle.com/technetwork/java/javase/archive-139210.html
 
 
-###Clone and create project in IntelliJ
-![](./docs/pics/clone_in_Idea1.jpg)
+### Clone and create project in IntelliJ
+![](docs/pics/clone_in_Idea1.jpg)
 
-![](./docs/pics/clone_in_Idea2.jpg)
+![](docs/pics/clone_in_Idea2.jpg)
 
 ### **Then: Next -> Next -> Next -> Finish**
 
 
 
 ### Commit in IntelliJ:
-![](./docs/pics/commit_in_Idea.jpg)
+![](docs/pics/commit_in_Idea.jpg)
 
 ### Version control log:
-![](./docs/pics/idea_version_control_log.jpg)
+![](docs/pics/idea_version_control_log.jpg)
 
