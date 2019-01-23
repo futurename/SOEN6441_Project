@@ -30,10 +30,16 @@
 
 
 
-**Then: Next -> Next -> Next -> Finish**
+### **Then: Next -> Next -> Next -> Finish**
+
+
 
 ### Commit in IntelliJ:
 
 <img src = "./docs/pics/commit_in_Idea.jpg" alt = "commit"/>
 
 
+
+### Version control log:
+
+<img src = "./docs/pics/idea_version_control_log.jpg" alt = "version control"/>
