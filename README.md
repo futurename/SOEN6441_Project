@@ -21,25 +21,18 @@
 #####https://www.oracle.com/technetwork/java/javase/archive-139210.html
 
 
-###Clone and create project in IntelliJ:
-<img src = "./docs/pics/clone_in_Idea1.jpg" alt = "clone_pic1"/>
+###Clone and create project in IntelliJ
+![](./docs/pics/clone_in_Idea1.jpg)
 
-
-
-<img src = "./docs/pics/clone_in_Idea2.jpg" alt = "clone_pic2"/>
-
-
+![](./docs/pics/clone_in_Idea2.jpg)
 
 ### **Then: Next -> Next -> Next -> Finish**
 
 
 
 ### Commit in IntelliJ:
-
-<img src = "./docs/pics/commit_in_Idea.jpg" alt = "commit"/>
-
-
+![](./docs/pics/commit_in_Idea.jpg)
 
 ### Version control log:
+![](./docs/pics/idea_version_control_log.jpg)
 
-<img src = "./docs/pics/idea_version_control_log.jpg" alt = "version control"/>
