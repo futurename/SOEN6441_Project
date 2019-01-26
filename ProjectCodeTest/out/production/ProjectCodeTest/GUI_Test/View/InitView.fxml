@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI_Test.Controller.InitViewController">
    <children>
-      <TextField id="tf_FilePathInput" layoutX="179.0" layoutY="27.0" promptText="file path here" />
+      <TextField id="tf_FilePathInput" fx:id="tf_PathInput" layoutX="179.0" layoutY="27.0" promptText="file path here" />
       <Label id="lb_FilePath" layoutX="70.0" layoutY="31.0" text="Input map path:" />
       <TextArea id="tf_MapInfoDisplay" fx:id="ta_GameInfo" layoutX="46.0" layoutY="64.0" prefHeight="246.0" prefWidth="493.0" />
       <Label id="lb_NumOfPlayers" layoutX="70.0" layoutY="348.0" text="Num of players:" />

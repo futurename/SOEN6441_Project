@@ -31,10 +31,10 @@ public class FortificationViewController {
                 + "Rounds left: " + Main.rounds + "\n"
                 + "Occupied countries:" + "\n";
 
-        ArrayList<Country> countryList = thisPlayer.getCountries();
+        ArrayList<String> countryList = thisPlayer.getCountries();
         for(int i = 0; i < countryList.size(); i++){
-            System.out.println("get country name: " + countryList.get(i).getCountryname() + ", armies: " + countryList.get(i).getArmies());
-            outputText += countryList.get(i).getCountryname() + " (" + countryList.get(i).getArmies() + ")  ";
+            System.out.println("get country name: " + countryList.get(i) + ", armies: " + Main.worldMap. get(countryList.get(i)).getArmies());
+            outputText += Main.worldMap.get(countryList.get(i)).getCountryname() + " (" + Main.worldMap.get(countryList.get(i)).getArmies() + ")  ";
         }
 
         System.out.println(outputText);

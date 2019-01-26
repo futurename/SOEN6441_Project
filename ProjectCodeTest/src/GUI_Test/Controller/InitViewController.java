@@ -4,6 +4,7 @@ package GUI_Test.Controller;//package Controller;
 import java.io.IOException;
 
 import GUI_Test.Main;
+import GUI_Test.Model.InitMap;
 import GUI_Test.Model.InitPlayers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,41 +17,45 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
-
 public class InitViewController {
 
-	@FXML
-	public TextField tf_NumOfPlayersInput;
-	public TextArea ta_GameInfo;
+    @FXML
+    public TextField tf_NumOfPlayersInput;
+    public TextArea ta_GameInfo;
+    public TextField tf_PathInput;
 
-	public void initialize(){
-		String gameInfoString = "Defalut round: 3" + "\nInput number of players below, no input check!" + "\nGaming functions not implemented";
-		ta_GameInfo.setText(gameInfoString);
-	}
-
-
-	// Event Listener on Button.onMouseClicked
-	@FXML
-	public void ClickSwitchScene(ActionEvent event) throws IOException {
-
-		Main.totalNumOfPlayers = Integer.parseInt(tf_NumOfPlayersInput.getText());
-
-		Main.playerList = InitPlayers.GenPlayers(Main.totalNumOfPlayers);
-
-		Parent attackViewParent = FXMLLoader.load(getClass().getResource("/GUI_Test/View/AttackView.fxml"));
-		Scene attackScene = new Scene(attackViewParent,800,400);
-		
-		Stage windowStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+    public void initialize() {
+        String gameInfoString = "Defalut round: 3" + "\nInput number of players below, no input check!" + "\nGaming functions not implemented";
+        ta_GameInfo.setText(gameInfoString);
+    }
 
 
-		windowStage.setTitle("Player: " + Main.playerSeqCounter);
+    // Event Listener on Button.onMouseClicked
+    @FXML
+    public void ClickSwitchScene(ActionEvent event) throws IOException {
+        String mapPath = (tf_PathInput.getText().equals("") ? "./World.map" : tf_PathInput.getText());
+        InitMap.buildMap(mapPath);
+
+        Main.totalNumOfPlayers = (tf_NumOfPlayersInput.getText().equals("") ? 3 : Integer.parseInt(tf_NumOfPlayersInput.getText()));
+        Main.playerList = InitPlayers.GenPlayers(Main.totalNumOfPlayers);
 
 
-		windowStage.setScene(attackScene);
-		//lb_PlayerNum.setText(String.valueOf(Main.playerSeqCounter));
-		windowStage.show();
-		
-	}
+
+
+        Parent attackViewParent = FXMLLoader.load(getClass().getResource("/GUI_Test/View/AttackView.fxml"));
+        Scene attackScene = new Scene(attackViewParent, 800, 400);
+
+        Stage windowStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+
+        windowStage.setTitle("Player: " + Main.playerSeqCounter);
+
+
+        windowStage.setScene(attackScene);
+        //lb_PlayerNum.setText(String.valueOf(Main.playerSeqCounter));
+        windowStage.show();
+
+    }
 
 
 }

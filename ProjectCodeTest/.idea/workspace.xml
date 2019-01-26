@@ -2,11 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fcc1728f-163c-4de7-a792-261166d823dc" name="Default Changelist" comment="Test GUI and simple display functions.&#10;Programming with IntelliJ not Eclipse">
-      <change beforePath="$PROJECT_DIR$/../.idea/SOEN6441_Project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Class/Continent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Class/Continent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Class/Country.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Class/Country.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Class/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Class/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Controller/AttackViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Controller/AttackViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Controller/FortificationViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Controller/FortificationViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Controller/InitViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Controller/InitViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Model/InitPlayers.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Model/InitPlayers.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/View/InitView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/View/InitView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI_Test/Class/Continent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Test/Class/Continent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI_Test/Class/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Test/Class/Country.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI_Test/Class/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Test/Class/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI_Test/Controller/AttackViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Test/Controller/AttackViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI_Test/Controller/FortificationViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Test/Controller/FortificationViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI_Test/Controller/InitViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Test/Controller/InitViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI_Test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Test/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI_Test/Model/InitPlayers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Test/Model/InitPlayers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI_Test/View/InitView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Test/View/InitView.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,12 +30,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI_Test/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="-88">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -29,26 +43,49 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/GUI_Test/View/InitView.fxml">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI_Test/Class/Continent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="592">
+              <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
+              <folding>
+                <element signature="e#329#330#0" expanded="true" />
+                <element signature="e#381#382#0" expanded="true" />
+                <element signature="e#430#431#0" expanded="true" />
+                <element signature="e#474#475#0" expanded="true" />
+                <element signature="e#540#541#0" expanded="true" />
+                <element signature="e#586#587#0" expanded="true" />
+                <element signature="e#726#727#0" expanded="true" />
+                <element signature="e#762#763#0" expanded="true" />
+                <element signature="e#800#801#0" expanded="true" />
+                <element signature="e#837#838#0" expanded="true" />
+                <element signature="e#904#905#0" expanded="true" />
+                <element signature="e#954#955#0" expanded="true" />
+                <element signature="e#988#989#0" expanded="true" />
+              </folding>
             </state>
           </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI_Test/Class/Country.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
+            <state relative-caret-position="208">
+              <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
               <folding>
-                <element signature="e#241#242#0" expanded="true" />
-                <element signature="e#275#276#0" expanded="true" />
-                <element signature="e#381#382#0" expanded="true" />
-                <element signature="e#410#411#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#491#492#0" expanded="true" />
+                <element signature="e#527#528#0" expanded="true" />
+                <element signature="e#705#706#0" expanded="true" />
+                <element signature="e#745#746#0" expanded="true" />
+                <element signature="e#823#824#0" expanded="true" />
+                <element signature="e#881#882#0" expanded="true" />
+                <element signature="e#502#503#0" expanded="true" />
+                <element signature="e#548#549#0" expanded="true" />
+                <element signature="e#609#610#0" expanded="true" />
+                <element signature="e#659#660#0" expanded="true" />
+                <element signature="e#700#701#0" expanded="true" />
+                <element signature="e#736#737#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -57,8 +94,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI_Test/Controller/InitViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="26" column="102" selection-start-line="26" selection-start-column="102" selection-end-line="26" selection-end-column="102" />
+            <state relative-caret-position="152">
+              <caret line="39" column="37" selection-start-line="39" selection-start-column="26" selection-end-line="39" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -67,40 +104,42 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI_Test/View/GameOverView.fxml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <entry file="file://$PROJECT_DIR$/src/GUI_Test/Class/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+              <folding>
+                <element signature="e#650#651#0" expanded="true" />
+                <element signature="e#679#680#0" expanded="true" />
+                <element signature="e#731#732#0" expanded="true" />
+                <element signature="e#775#776#0" expanded="true" />
+                <element signature="e#816#817#0" expanded="true" />
+                <element signature="e#852#853#0" expanded="true" />
+                <element signature="e#914#915#0" expanded="true" />
+                <element signature="e#956#957#0" expanded="true" />
+              </folding>
             </state>
           </provider>
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI_Test/View/FortificationView.fxml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="8" column="135" selection-start-line="8" selection-start-column="135" selection-end-line="8" selection-end-column="135" />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI_Test/View/AttackView.fxml">
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="440">
+            <state relative-caret-position="464">
               <caret line="29" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI_Test/Controller/GameOverViewController.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/GUI_Test/Model/InitPlayers.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="272">
+              <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -108,8 +147,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI_Test/Controller/AttackViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+            <state relative-caret-position="264">
+              <caret line="33" column="71" selection-start-line="33" selection-start-column="71" selection-end-line="33" selection-end-column="71" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -120,8 +159,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI_Test/Controller/FortificationViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="62" column="25" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
+            <state relative-caret-position="-248">
+              <caret line="36" column="127" selection-start-line="36" selection-start-column="127" selection-end-line="36" selection-end-column="127" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI_Test/Model/InitMap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-216">
+              <caret line="53" column="50" selection-start-line="53" selection-start-column="50" selection-end-line="53" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -163,20 +214,21 @@
         <option value="$PROJECT_DIR$/src/InitViewController.java" />
         <option value="$PROJECT_DIR$/src/GUI_Test/InitViewController.java" />
         <option value="$PROJECT_DIR$/src/GUI_Test/Model/Main.java" />
-        <option value="$PROJECT_DIR$/src/GUI_Test/Class/Continent.java" />
-        <option value="$PROJECT_DIR$/src/GUI_Test/Class/Player.java" />
-        <option value="$PROJECT_DIR$/src/GUI_Test/Model/InitPlayers.java" />
-        <option value="$PROJECT_DIR$/src/GUI_Test/Class/Country.java" />
-        <option value="$PROJECT_DIR$/src/GUI_Test/Controller/AttackViewController.java" />
-        <option value="$PROJECT_DIR$/src/GUI_Test/View/InitView.fxml" />
-        <option value="$PROJECT_DIR$/src/GUI_Test/Main.java" />
         <option value="$PROJECT_DIR$/src/GUI_Test/View/GameOverView.java" />
         <option value="$PROJECT_DIR$/src/GUI_Test/Controller/GameOverViewController.java" />
-        <option value="$PROJECT_DIR$/src/GUI_Test/Controller/FortificationViewController.java" />
         <option value="$PROJECT_DIR$/src/GUI_Test/View/AttackView.fxml" />
         <option value="$PROJECT_DIR$/src/GUI_Test/View/FortificationView.fxml" />
         <option value="$PROJECT_DIR$/src/GUI_Test/View/GameOverView.fxml" />
+        <option value="$PROJECT_DIR$/src/GUI_Test/View/InitView.fxml" />
         <option value="$PROJECT_DIR$/src/GUI_Test/Controller/InitViewController.java" />
+        <option value="$PROJECT_DIR$/src/GUI_Test/Class/Country.java" />
+        <option value="$PROJECT_DIR$/src/GUI_Test/Class/Player.java" />
+        <option value="$PROJECT_DIR$/src/GUI_Test/Class/Continent.java" />
+        <option value="$PROJECT_DIR$/src/GUI_Test/Main.java" />
+        <option value="$PROJECT_DIR$/src/GUI_Test/Model/InitMap.java" />
+        <option value="$PROJECT_DIR$/src/GUI_Test/Controller/FortificationViewController.java" />
+        <option value="$PROJECT_DIR$/src/GUI_Test/Controller/AttackViewController.java" />
+        <option value="$PROJECT_DIR$/src/GUI_Test/Model/InitPlayers.java" />
       </list>
     </option>
   </component>
@@ -194,6 +246,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -201,22 +255,59 @@
               <item name="ProjectCodeTestIntelliJ" type="b2602c69:ProjectViewProjectNode" />
               <item name="ProjectCodeTest" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ProjectCodeTestIntelliJ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProjectCodeTest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ProjectCodeTestIntelliJ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProjectCodeTest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI_Test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ProjectCodeTestIntelliJ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProjectCodeTest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI_Test" type="462c0819:PsiDirectoryNode" />
+              <item name="Class" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ProjectCodeTestIntelliJ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProjectCodeTest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI_Test" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ProjectCodeTestIntelliJ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProjectCodeTest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI_Test" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ProjectCodeTestIntelliJ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProjectCodeTest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI_Test" type="462c0819:PsiDirectoryNode" />
+              <item name="View" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548488739078" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548545263538" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -308,7 +399,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1548478347386</updated>
-      <workItem from="1548478350401" duration="9622000" />
+      <workItem from="1548478350401" duration="10335000" />
+      <workItem from="1548489780181" duration="65000" />
+      <workItem from="1548527476197" duration="15847000" />
     </task>
     <task id="LOCAL-00001" summary="Test GUI and simple display functions.&#10;Programming with IntelliJ not Eclipse">
       <created>1548488631906</created>
@@ -321,46 +414,85 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9622000" />
+    <option name="totallyTimeSpent" value="26247000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Designer" />
-      <window_info id="Image Layers" />
-      <window_info id="Capture Tool" />
-      <window_info id="UI Designer" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15831557" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="PlantUML" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="10" />
+      <window_info anchor="bottom" id="Database Changes" order="11" />
+      <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="PlantUML" order="4" />
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Database" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
@@ -368,60 +500,39 @@
     <option name="LAST_COMMIT_MESSAGE" value="Test GUI and simple display functions.&#10;Programming with IntelliJ not Eclipse" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/GUI_Test/Class/Continent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+    <entry file="file://$PROJECT_DIR$/src/GUI_Test/View/GameOverViewController.java" />
+    <entry file="file://$PROJECT_DIR$/src/GUI_Test/View/GameOverView.java" />
+    <entry file="file://$PROJECT_DIR$/src/GUI_Test/View/FortificationView.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" column="135" selection-start-line="8" selection-start-column="135" selection-end-line="8" selection-end-column="135" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI_Test/Class/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="13" column="45" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="45" />
-          <folding>
-            <element signature="e#531#532#0" expanded="true" />
-            <element signature="e#564#565#0" expanded="true" />
-            <element signature="e#612#613#0" expanded="true" />
-            <element signature="e#644#645#0" expanded="true" />
-          </folding>
+    <entry file="uml://JAVA/GUI_Test.Controller.GameOverViewController">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>GUI_Test.Controller.GameOverViewController</OriginalElement>
+          <nodes>
+            <node x="" y="">GUI_Test.Controller.GameOverViewController</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="91.0" y="15.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI_Test/Model/InitPlayers.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI_Test/View/GameOverView.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI_Test/Class/Country.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
-          <folding>
-            <element signature="e#241#242#0" expanded="true" />
-            <element signature="e#275#276#0" expanded="true" />
-            <element signature="e#381#382#0" expanded="true" />
-            <element signature="e#410#411#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI_Test/View/GameOverViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="2" column="35" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI_Test/View/GameOverView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="96">
+          <caret line="6" column="178" selection-start-line="6" selection-start-column="164" selection-end-line="6" selection-end-column="186" />
         </state>
       </provider>
     </entry>
@@ -432,10 +543,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI_Test/Controller/AttackViewController.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI_Test/View/InitView.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI_Test/Class/Country.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        <state relative-caret-position="208">
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#491#492#0" expanded="true" />
+            <element signature="e#527#528#0" expanded="true" />
+            <element signature="e#705#706#0" expanded="true" />
+            <element signature="e#745#746#0" expanded="true" />
+            <element signature="e#823#824#0" expanded="true" />
+            <element signature="e#881#882#0" expanded="true" />
+            <element signature="e#502#503#0" expanded="true" />
+            <element signature="e#548#549#0" expanded="true" />
+            <element signature="e#609#610#0" expanded="true" />
+            <element signature="e#659#660#0" expanded="true" />
+            <element signature="e#700#701#0" expanded="true" />
+            <element signature="e#736#737#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI_Test/View/AttackView.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI_Test/Class/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+          <folding>
+            <element signature="e#650#651#0" expanded="true" />
+            <element signature="e#679#680#0" expanded="true" />
+            <element signature="e#731#732#0" expanded="true" />
+            <element signature="e#775#776#0" expanded="true" />
+            <element signature="e#816#817#0" expanded="true" />
+            <element signature="e#852#853#0" expanded="true" />
+            <element signature="e#914#915#0" expanded="true" />
+            <element signature="e#956#957#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI_Test/Class/Continent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="592">
+          <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
+          <folding>
+            <element signature="e#329#330#0" expanded="true" />
+            <element signature="e#381#382#0" expanded="true" />
+            <element signature="e#430#431#0" expanded="true" />
+            <element signature="e#474#475#0" expanded="true" />
+            <element signature="e#540#541#0" expanded="true" />
+            <element signature="e#586#587#0" expanded="true" />
+            <element signature="e#726#727#0" expanded="true" />
+            <element signature="e#762#763#0" expanded="true" />
+            <element signature="e#800#801#0" expanded="true" />
+            <element signature="e#837#838#0" expanded="true" />
+            <element signature="e#904#905#0" expanded="true" />
+            <element signature="e#954#955#0" expanded="true" />
+            <element signature="e#988#989#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI_Test/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-88">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -444,42 +632,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI_Test/Controller/FortificationViewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="62" column="25" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI_Test/View/AttackView.fxml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI_Test/View/FortificationView.fxml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" column="135" selection-start-line="8" selection-start-column="135" selection-end-line="8" selection-end-column="135" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI_Test/View/GameOverView.fxml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI_Test/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        <state relative-caret-position="-248">
+          <caret line="36" column="127" selection-start-line="36" selection-start-column="127" selection-end-line="36" selection-end-column="127" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -488,21 +642,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI_Test/Controller/InitViewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="26" column="102" selection-start-line="26" selection-start-column="102" selection-end-line="26" selection-end-column="102" />
+        <state relative-caret-position="152">
+          <caret line="39" column="37" selection-start-line="39" selection-start-column="26" selection-end-line="39" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI_Test/View/InitView.fxml">
+    <entry file="file://$PROJECT_DIR$/src/GUI_Test/Model/InitMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="-216">
+          <caret line="53" column="50" selection-start-line="53" selection-start-column="50" selection-end-line="53" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI_Test/Controller/AttackViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="33" column="71" selection-start-line="33" selection-start-column="71" selection-end-line="33" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI_Test/Model/InitPlayers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">

@@ -17,51 +17,50 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 
-
 public class AttackViewController {
 
-	@FXML
-	public Label lb_PlayerNum;
-	public TextArea ta_PlayerInfo;
+    @FXML
+    public Label lb_PlayerNum;
+    public TextArea ta_PlayerInfo;
 
-	public AttackViewController(){
-		System.out.println("player seq: " + Main.playerSeqCounter);
+    public AttackViewController() {
+        System.out.println("player seq: " + Main.playerSeqCounter);
 
-	}
+    }
 
-	public void initialize(){
-		lb_PlayerNum.setText("Player: " + Main.playerSeqCounter);
+    public void initialize() {
+        lb_PlayerNum.setText("Player: " + Main.playerSeqCounter);
 
-		Player thisPlayer = Main.playerList.get(Main.playerSeqCounter);
-		String outputText = thisPlayer.getPlayername() + "\n"
-				+ "Rounds left: " + Main.rounds + "\n"
-				+ "Occupied countries:" + "\n";
+        Player thisPlayer = Main.playerList.get(Main.playerSeqCounter);
+        String outputText = thisPlayer.getPlayername() + "\n"
+                + "Rounds left: " + Main.rounds + "\n"
+                + "Occupied countries:" + "\n";
 
-		ArrayList<Country> countryList = thisPlayer.getCountries();
-		for(int i = 0; i < countryList.size(); i++){
-			System.out.println("get country name: " + countryList.get(i).getCountryname() + ", armies: " + countryList.get(i).getArmies());
-			outputText += countryList.get(i).getCountryname() + " (" + countryList.get(i).getArmies() + ")  ";
-		}
+        ArrayList<String> countryList = thisPlayer.getCountries();
+        for (int i = 0; i < countryList.size(); i++) {
+            System.out.println("get country name: " + Main.worldMap.get(countryList.get(i)).getCountryname() + ", armies: " + Main.worldMap.get(countryList.get(i)).getArmies());
+            outputText += Main.worldMap.get(countryList.get(i)).getCountryname() + " (" + Main.worldMap.get(countryList.get(i)).getArmies() + ")  ";
+        }
 
-		System.out.println(outputText);
+        System.out.println(outputText);
 
-		ta_PlayerInfo.setText(outputText);
+        ta_PlayerInfo.setText(outputText);
 
-	}
+    }
 
-	// Event Listener on Button.onMouseClicked
-	@FXML
-	public void ClickConfirmAtttack(ActionEvent event) throws IOException {
-		
-			Parent fortificationViewParent = FXMLLoader.load(getClass().getResource("/GUI_Test/View/FortificationView.fxml"));
-			Scene fortificationScene = new Scene(fortificationViewParent,800,400);
-			
-			Stage windowStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-			windowStage.setScene(fortificationScene);
-			windowStage.setTitle("Player: " + Main.playerSeqCounter);
-			//lb_PlayerNum.setText("Player: " + String.valueOf(Main.playerSeqCounter));
-			windowStage.show();
-			
-		}
-	
+    // Event Listener on Button.onMouseClicked
+    @FXML
+    public void ClickConfirmAtttack(ActionEvent event) throws IOException {
+
+        Parent fortificationViewParent = FXMLLoader.load(getClass().getResource("/GUI_Test/View/FortificationView.fxml"));
+        Scene fortificationScene = new Scene(fortificationViewParent, 800, 400);
+
+        Stage windowStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        windowStage.setScene(fortificationScene);
+        windowStage.setTitle("Player: " + Main.playerSeqCounter);
+        //lb_PlayerNum.setText("Player: " + String.valueOf(Main.playerSeqCounter));
+        windowStage.show();
+
+    }
+
 }
