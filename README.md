@@ -2,7 +2,7 @@
 
 ### **Common github commands**:
 
-+ clone project:   **<font color = #ff4500 size = 4>git clone https://github.com/futurename/SOEN6441_Project.git </font>**
++ clone project:   **<font color = #ff4500 size = 4>git clone https://github.com/futurename/SOEN6441_Project.git </font>**
 
 + display differences:  **<font color = #ff4500 size = 4>git status</font>**
 
@@ -35,4 +35,3 @@
 
 ### Version control log:
 ![idea_version_control_log](docs/pics/idea_version_control_log.jpg)
-
