@@ -49,5 +49,7 @@ public class Country {
         this.armies = armies;
     }
 
+    public void addArmies(int armies) { this.armies += armies;}
+
 }
 

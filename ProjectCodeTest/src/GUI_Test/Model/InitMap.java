@@ -56,14 +56,18 @@ public class InitMap {
                     if (curLine.length() != 0) {
                         String[] countriesSplitArray = curLine.split(",");
                         Country oneCountry = new Country(countriesSplitArray[0]);
-                        oneCountry.setContinentname(Main.continentList.get(continentCounter).getContinentname());
-                        Main.worldMap.put(oneCountry.getCountryname(), oneCountry);
+                        oneCountry.setContinentname(countriesSplitArray[3]);
+
+
                         Main.continentList.get(continentCounter).getCountryList().add(oneCountry.getCountryname());
                         continentCountriesCounter++;
-                        for (int i = 3; i < countriesSplitArray.length; i++) {
+                        for (int i = 4; i < countriesSplitArray.length; i++) {
                             oneCountry.getAdjacentCountries().add(countriesSplitArray[i]);
+                            continentCountriesCounter++;
                         }
-                        continentCountriesCounter++;
+
+                        Main.worldMap.put(oneCountry.getCountryname(), oneCountry);
+
                         continue;
                     } else {
                         if(continentCounter < Main.continentList.size()) {
@@ -104,7 +108,7 @@ public class InitMap {
 
             System.out.println(curContinent.getContinentname() + ": " + curContinent.getBonusValue());
 
-            System.out.println(curContinent.getCountryList());
+            System.out.println(countries);
 
             System.out.println("\n");
         }

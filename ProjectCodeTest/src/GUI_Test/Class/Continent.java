@@ -7,12 +7,14 @@ public class Continent {
     int numOfCountries;
     int bonusValue;
     ArrayList<String> countryList;
+    int ownedByPlayerNum;
 
     public Continent(String name){
         this.continentname = name;
         this.numOfCountries = 0;
         this.bonusValue = 0;
         this.countryList = new ArrayList<>();
+        this.ownedByPlayerNum = -1;
     }
 
     public void setNumOfCountries(int numOfCountries) {
