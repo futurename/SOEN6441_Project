@@ -19,6 +19,7 @@ public class Main extends Application {
     public static int rounds = 3;
     public static ArrayList<Player> playerList;
 
+
     public static HashMap<String, Country> worldMap = new HashMap<>();
     public static ArrayList<Continent> continentList = new ArrayList<>();
 
