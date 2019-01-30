@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fcc1728f-163c-4de7-a792-261166d823dc" name="Default Changelist" comment="Add some UML diagrams">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Class/Continent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Class/Continent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Class/Country.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Class/Country.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Controller/AttackViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/Controller/AttackViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/View/AttackView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ProjectCodeTest/GUI_Test/View/AttackView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI_Test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI_Test/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UML/png/SOEN6441_Class_Country.png" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,8 +32,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UML/SOEN6441_Diag2_InitMap.puml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="32" column="61" selection-start-line="32" selection-start-column="61" selection-end-line="32" selection-end-column="61" />
+            <state relative-caret-position="416">
+              <caret line="26" column="47" lean-forward="true" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -51,7 +47,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UML/SOEN6441_Diag4_GameBegin.puml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="128">
@@ -60,7 +56,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/UML/SOEN6441_Class_Country.puml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="344">
@@ -245,6 +241,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="UML" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ProjectCodeTestIntelliJ" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProjectCodeTest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="UML" type="462c0819:PsiDirectoryNode" />
+              <item name="png" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -254,7 +257,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548820942228" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548821434539" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/UML/png" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -363,7 +366,7 @@
       <workItem from="1548790450014" duration="687000" />
       <workItem from="1548791169833" duration="1640000" />
       <workItem from="1548803910748" duration="2226000" />
-      <workItem from="1548808754113" duration="11953000" />
+      <workItem from="1548808754113" duration="13010000" />
     </task>
     <task id="LOCAL-00001" summary="Test GUI and simple display functions.&#10;Programming with IntelliJ not Eclipse">
       <created>1548488631906</created>
@@ -397,10 +400,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52952000" />
+    <option name="totallyTimeSpent" value="54009000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16533333" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -647,10 +651,17 @@
     <entry file="file://$PROJECT_DIR$/src/UML/SOEN6441_Class_Country.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UML/SOEN6441_Class_Country.puml">
+    <entry file="file://$PROJECT_DIR$/src/UML/SOEN6441_Diag3_InitPlayers.puml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="46" column="21" lean-forward="true" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
+        <state relative-caret-position="208">
+          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UML/SOEN6441_Diag4_GameBegin.puml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
@@ -663,22 +674,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UML/SOEN6441_Diag2_InitMap.puml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="32" column="61" selection-start-line="32" selection-start-column="61" selection-end-line="32" selection-end-column="61" />
+        <state relative-caret-position="416">
+          <caret line="26" column="47" lean-forward="true" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UML/SOEN6441_Diag3_InitPlayers.puml">
+    <entry file="file://$PROJECT_DIR$/src/UML/SOEN6441_Class_Country.puml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UML/SOEN6441_Diag4_GameBegin.puml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="344">
+          <caret line="46" column="21" lean-forward="true" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
         </state>
       </provider>
     </entry>
