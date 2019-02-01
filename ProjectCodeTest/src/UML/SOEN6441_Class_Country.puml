@@ -30,7 +30,8 @@ class Country{
     -continentName: String
 
     -armyCount: int
-    -adjacentCountries: ArrayList<String>
+    ??
+    -adjacentCountries: LinkedList<Country>
     ----
     +Country(String countryName, String continentName)
 

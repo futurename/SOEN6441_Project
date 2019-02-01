@@ -1,6 +1,6 @@
 ## SOEN6441_Project
 
-### **Common github commands**:
+#### **Common github commands**:
 
 + clone project:   **<font color = #ff4500 size = 4>git clone https://github.com/futurename/SOEN6441_Project.git </font>**
 
@@ -16,22 +16,34 @@
 
 
 
-### JavaFX 2.x or Java Scene Builder:
++ **<font color = #ff4500 size =5>Please use JDK8</font>**
 
-##### https://www.oracle.com/technetwork/java/javase/archive-139210.html
+  
 
++ #### **IntelliJ tips and tricks: https://www.youtube.com/watch?v=eq3KiAH4IBI **
 
-### Clone and create project in IntelliJ
+  
+
++ #### **Java Scene Builder:   ./soft/**
+
++ #### **plantUML plugin: Intellij -> File -> settings ->plugins -> marketplace -> search "plantUML" -> install -> restart IntelliJ**
+
++ #### **graphviz:   ./soft/**
+
+  ![graphviz setting](docs/pics/graphviz plugin setting.png)
+
+  
+
++ #### **Clone and create project in IntelliJ**
+
 ![clone_in_Idea1](docs/pics/clone_in_Idea1.jpg)
 
 ![clone_in_Idea2](docs/pics/clone_in_Idea2.jpg)
 
-### **Then: Next -> Next -> Next -> Finish**
 
 
-
-### Commit in IntelliJ:
+#### Commit in IntelliJ:
 ![commit_in_Idea](docs/pics/commit_in_Idea.jpg)
 
-### Version control log:
+#### Version control log:
 ![idea_version_control_log](docs/pics/idea_version_control_log.jpg)
