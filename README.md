@@ -30,7 +30,7 @@
 
 + #### **graphviz:   ./soft/**
 
-  ![graphviz setting](docs/pics/graphviz plugin setting.png)
+  ![graphviz setting](docs/pics/graphviz_plugin_setting.png)
 
   
 
