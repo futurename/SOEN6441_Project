@@ -1,0 +1,14 @@
+@startuml
+start
+partition InitMap{
+}
+partition InitPlayers{
+    :Acquire total number of countries \nfrom the __"World Map"__;
+    :Create __Player__ instances;
+    :Call method to assign countries\ncountry names(__String NOT intances__)\nto all players;
+}
+
+partition GameBegin{
+}
+stop
+@enduml

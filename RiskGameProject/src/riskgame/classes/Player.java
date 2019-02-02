@@ -1,5 +1,7 @@
 package riskgame.classes;
 
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 
 
