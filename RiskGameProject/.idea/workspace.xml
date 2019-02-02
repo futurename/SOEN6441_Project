@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProjectCodeTest/src/GUI_Test/Controller/AttackViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProjectCodeTest/src/GUI_Test/Controller/AttackViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/classes/Continent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/classes/Continent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/riskgame/classes/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/classes/Country.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/classes/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/classes/Player.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,30 +62,81 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/riskgame/classes/Country.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="340">
+              <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+              <folding>
+                <element signature="e#492#493#0" expanded="true" />
+                <element signature="e#526#527#0" expanded="true" />
+                <element signature="e#667#668#0" expanded="true" />
+                <element signature="e#707#708#0" expanded="true" />
+                <element signature="e#770#771#0" expanded="true" />
+                <element signature="e#828#829#0" expanded="true" />
+                <element signature="e#869#870#0" expanded="true" />
+                <element signature="e#909#910#0" expanded="true" />
+                <element signature="e#1451#1452#0" expanded="true" />
+                <element signature="e#1596#1597#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/riskgame/classes/Continent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+              <folding>
+                <element signature="e#558#559#0" expanded="true" />
+                <element signature="e#594#595#0" expanded="true" />
+                <element signature="e#745#746#0" expanded="true" />
+                <element signature="e#787#788#0" expanded="true" />
+                <element signature="e#854#855#0" expanded="true" />
+                <element signature="e#916#917#0" expanded="true" />
+                <element signature="e#959#960#0" expanded="true" />
+                <element signature="e#1001#1002#0" expanded="true" />
+                <element signature="e#1192#1193#0" expanded="true" />
+                <element signature="e#1239#1240#0" expanded="true" />
+                <element signature="e#1060#1061#0" expanded="true" />
+                <element signature="e#1132#1133#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapEditor/classes/MEContinent.java">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mapEditor/classes/MECountry.java">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/riskgame/classes/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+            <state relative-caret-position="288">
+              <caret line="21" column="27" lean-forward="true" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+              <folding>
+                <element signature="e#555#556#0" expanded="true" />
+                <element signature="e#589#590#0" expanded="true" />
+                <element signature="e#566#567#0" expanded="true" />
+                <element signature="e#611#612#0" expanded="true" />
+                <element signature="e#684#685#0" expanded="true" />
+                <element signature="e#752#753#0" expanded="true" />
+                <element signature="e#797#798#0" expanded="true" />
+                <element signature="e#829#830#0" expanded="true" />
+                <element signature="e#888#889#0" expanded="true" />
+                <element signature="e#930#931#0" expanded="true" />
+                <element signature="e#988#989#0" expanded="true" />
+                <element signature="e#1031#1032#0" expanded="true" />
+                <element signature="e#1114#1115#0" expanded="true" />
+                <element signature="e#1178#1179#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/riskgame/views/startview.fxml">
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
         </entry>
@@ -98,45 +151,36 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../ProjectCodeTest/src/GUI_Test/Class/Country.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/maps/World.map">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../ProjectCodeTest/src/GUI_Test/Class/Continent.java">
+        <entry file="file://$PROJECT_DIR$/../ProjectCodeTest/src/GUI_Test/Model/InitPlayers.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/views/startview.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
+        <entry file="file://$PROJECT_DIR$/../ProjectCodeTest/src/GUI_Test/Controller/InitViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="102">
+              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/startviewController.java">
+        <entry file="file://$PROJECT_DIR$/../ProjectCodeTest/src/GUI_Test/Controller/AttackViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            <state relative-caret-position="493">
+              <caret line="114" column="9" selection-start-line="114" selection-start-column="9" selection-end-line="114" selection-end-column="9" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../ProjectCodeTest/src/GUI_Test/View/AttackView.fxml">
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+          <provider editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -145,6 +189,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -168,7 +213,11 @@
         <option value="$PROJECT_DIR$/../ProjectCodeTest/src/GUI_Test/Main.java" />
         <option value="$PROJECT_DIR$/src/riskgame/view/startview.fxml" />
         <option value="$PROJECT_DIR$/src/riskgame/Main.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/classes/Card.java" />
+        <option value="$PROJECT_DIR$/../ProjectCodeTest/src/GUI_Test/Controller/AttackViewController.java" />
         <option value="$PROJECT_DIR$/src/riskgame/classes/Country.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/classes/Player.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/classes/Continent.java" />
       </list>
     </option>
   </component>
@@ -196,18 +245,16 @@
           <expand>
             <path>
               <item name="RiskGameProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProjectCodeTest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RiskGameProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="RiskGameProject" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RiskGameProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="RiskGameProject" type="462c0819:PsiDirectoryNode" />
               <item name="mapEditor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="RiskGameProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="RiskGameProject" type="462c0819:PsiDirectoryNode" />
-              <item name="mapEditor" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RiskGameProject" type="b2602c69:ProjectViewProjectNode" />
@@ -226,6 +273,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="riskgame" type="462c0819:PsiDirectoryNode" />
               <item name="classes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RiskGameProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RiskGameProject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="riskgame" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -244,24 +298,25 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549070147100" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549081719426" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ProjectCodeTest" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\WW\Google Drive\!!Winter 2019\SOEN6441 Advanced Programming\SOEN6441_Project\RiskGameProject\src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\WW\Google Drive\!!Winter 2019\SOEN6441 Advanced Programming\SOEN6441_Project\RiskGameProject\src\riskgame" />
       <recent name="C:\Users\WW\Google Drive\!!Winter 2019\SOEN6441 Advanced Programming\SOEN6441_Project\RiskGameProject\maps" />
       <recent name="C:\Users\WW\Google Drive\!!Winter 2019\SOEN6441 Advanced Programming\SOEN6441_Project\RiskGameProject" />
       <recent name="C:\Users\WW\Google Drive\!!Winter 2019\SOEN6441 Advanced Programming\SOEN6441_Project\RiskGameProject\src\riskgame\view" />
       <recent name="C:\Users\WW\Google Drive\!!Winter 2019\SOEN6441 Advanced Programming\SOEN6441_Project\RiskGameProject\src\com\project\riskgame" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\WW\Google Drive\!!Winter 2019\SOEN6441 Advanced Programming\SOEN6441_Project\RiskGameProject" />
       <recent name="C:\Users\WW\Google Drive\!!Winter 2019\SOEN6441 Advanced Programming\SOEN6441_Project\RiskGameProject\src" />
     </key>
   </component>
@@ -364,12 +419,12 @@
       <workItem from="1548991406177" duration="307000" />
       <workItem from="1548991744382" duration="1328000" />
       <workItem from="1548993112973" duration="2092000" />
-      <workItem from="1549066559627" duration="1561000" />
+      <workItem from="1549066559627" duration="8443000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7883000" />
+    <option name="totallyTimeSpent" value="14765000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
@@ -390,7 +445,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Application Servers" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" visible="true" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Problems" order="9" />
       <window_info anchor="bottom" id="Changes" order="10" />
       <window_info anchor="bottom" id="Profiler" order="11" />
@@ -502,23 +557,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/classes/Continent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ProjectCodeTest/src/GUI_Test/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="35" column="44" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../ProjectCodeTest/src/GUI_Test/Class/Country.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
+        <state>
           <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
         </state>
       </provider>
@@ -528,16 +569,79 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../ProjectCodeTest/src/GUI_Test/Class/Continent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
+        <state>
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/views/startview.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
+    <entry file="file://$PROJECT_DIR$/src/UML/SOEN6441_Class_Country.puml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="443">
+          <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/riskgame.classes.Country">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>riskgame.classes.Country</OriginalElement>
+          <nodes>
+            <node x="" y="">riskgame.classes.Country</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="45.5" y="15.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Fields</Category>
+            <Category>Constructors</Category>
+            <Category>Methods</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/riskgame.classes.Player">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>riskgame.classes.Player</OriginalElement>
+          <nodes>
+            <node x="" y="">riskgame.classes.Player</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="149.5" y="93.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Properties</Category>
+            <Category>Constructors</Category>
+            <Category>Methods</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ProjectCodeTest/src/UML/SOEN6441_Class_Country.puml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="702">
+          <caret line="72" column="13" selection-start-line="70" selection-start-column="4" selection-end-line="72" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mapEditor/classes/MEContinent.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mapEditor/classes/MECountry.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/classes/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -548,23 +652,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/classes/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+    <entry file="file://$PROJECT_DIR$/src/riskgame/views/startview.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mapEditor/classes/MEContinent.java">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/../ProjectCodeTest/src/GUI_Test/Model/InitPlayers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mapEditor/classes/MECountry.java">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/../ProjectCodeTest/src/GUI_Test/Controller/InitViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ProjectCodeTest/src/GUI_Test/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="35" column="44" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ProjectCodeTest/src/GUI_Test/View/AttackView.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../ProjectCodeTest/src/GUI_Test/Controller/AttackViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="114" column="9" selection-start-line="114" selection-start-column="9" selection-end-line="114" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/classes/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="21" column="27" lean-forward="true" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
+          <folding>
+            <element signature="e#555#556#0" expanded="true" />
+            <element signature="e#589#590#0" expanded="true" />
+            <element signature="e#566#567#0" expanded="true" />
+            <element signature="e#611#612#0" expanded="true" />
+            <element signature="e#684#685#0" expanded="true" />
+            <element signature="e#752#753#0" expanded="true" />
+            <element signature="e#797#798#0" expanded="true" />
+            <element signature="e#829#830#0" expanded="true" />
+            <element signature="e#888#889#0" expanded="true" />
+            <element signature="e#930#931#0" expanded="true" />
+            <element signature="e#988#989#0" expanded="true" />
+            <element signature="e#1031#1032#0" expanded="true" />
+            <element signature="e#1114#1115#0" expanded="true" />
+            <element signature="e#1178#1179#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/riskgame/classes/Country.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="340">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+          <folding>
+            <element signature="e#492#493#0" expanded="true" />
+            <element signature="e#526#527#0" expanded="true" />
+            <element signature="e#667#668#0" expanded="true" />
+            <element signature="e#707#708#0" expanded="true" />
+            <element signature="e#770#771#0" expanded="true" />
+            <element signature="e#828#829#0" expanded="true" />
+            <element signature="e#869#870#0" expanded="true" />
+            <element signature="e#909#910#0" expanded="true" />
+            <element signature="e#1451#1452#0" expanded="true" />
+            <element signature="e#1596#1597#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/classes/Continent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+          <folding>
+            <element signature="e#558#559#0" expanded="true" />
+            <element signature="e#594#595#0" expanded="true" />
+            <element signature="e#745#746#0" expanded="true" />
+            <element signature="e#787#788#0" expanded="true" />
+            <element signature="e#854#855#0" expanded="true" />
+            <element signature="e#916#917#0" expanded="true" />
+            <element signature="e#959#960#0" expanded="true" />
+            <element signature="e#1001#1002#0" expanded="true" />
+            <element signature="e#1192#1193#0" expanded="true" />
+            <element signature="e#1239#1240#0" expanded="true" />
+            <element signature="e#1060#1061#0" expanded="true" />
+            <element signature="e#1132#1133#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

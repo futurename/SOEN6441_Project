@@ -114,6 +114,7 @@ public class AttackViewController {
             adjacentCountryList.add(oneAdjacentCountryInfo);
         }
 
+
         lv_AdjacentCountry.setItems(adjacentCountryList);
         adjacentCountryList = FXCollections.observableArrayList();
     }
