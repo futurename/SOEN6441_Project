@@ -42,6 +42,7 @@ public class AttackViewController {
     public void initialize() {
         lb_PlayerNum.setText("Player: " + Main.playerSeqCounter);
 
+
         Player thisPlayer = Main.playerList.get(Main.playerSeqCounter);
         String outputText = thisPlayer.getPlayername() + "\n"
                 + "Rounds left: " + Main.rounds + "\n"
