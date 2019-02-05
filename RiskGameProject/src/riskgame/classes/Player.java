@@ -1,6 +1,7 @@
 package riskgame.classes;
 
 import javafx.collections.ObservableList;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
@@ -12,12 +13,18 @@ public class Player {
     private int reinforcementArmyCount;
     private ArrayList<Card> cardsList;
     private ArrayList<String> ownedCountryNameList;
+    private Color playerColor;
+
+    public Color getPlayerColor() {
+        return playerColor;
+    }
 
     public Player(int playerIndex) {
         this.playerIndex = playerIndex;
         this.reinforcementArmyCount = 0;
         this.cardsList = new ArrayList<>();
         this.ownedCountryNameList = new ArrayList<>();
+        this.playerColor = PlayerColor.values()[playerIndex].colorValue;
     }
 
     public int getPlayerIndex() {
@@ -44,7 +51,7 @@ public class Player {
         return ownedCountryNameList;
     }
 
-    public void AddToOwnedCountryNameList(String countryName) {
+    public void addToOwnedCountryNameList(String countryName) {
         this.ownedCountryNameList.add(countryName);
     }
 }

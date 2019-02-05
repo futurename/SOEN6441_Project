@@ -5,14 +5,20 @@ import java.util.ArrayList;
 
 public class Country {
     private final String countryName;
+    private final String continentName;
     private int countryOwnerIndex;
     private int countryArmyNumber;
     private ArrayList<String> adjacentCountryNameList;
 
-    public Country(String countryName) {
+    public String getContinentName() {
+        return continentName;
+    }
+
+    public Country(String countryName, String continentName) {
         this.countryName = countryName;
+        this.continentName = continentName;
         this.countryOwnerIndex = -1;
-        this.countryArmyNumber = 1;
+        this.countryArmyNumber = 0;
         this.adjacentCountryNameList = new ArrayList<>();
     }
 

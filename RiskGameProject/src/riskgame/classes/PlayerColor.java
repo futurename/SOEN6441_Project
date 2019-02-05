@@ -16,9 +16,11 @@ public enum PlayerColor {
     GREY(Color.GREY),
     BROWN(Color.BROWN);
 
-    private final Color colorValue;
+    public final Color colorValue;
+
 
     PlayerColor(Color colorValue) {
         this.colorValue = colorValue;
     }
+
 }
