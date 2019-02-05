@@ -82,7 +82,6 @@ public class StartviewController implements Initializable {
         if (numOfPlayersProperty.get() >= MAX_NUM_OF_PLAYERS) {
             btn_plusPlayerNumber.setVisible(false);
         }
-
     }
 
     public void clickReducePlayerNumber(ActionEvent actionEvent) {
