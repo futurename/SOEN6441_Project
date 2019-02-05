@@ -42,9 +42,11 @@ public class AttackviewController implements Initializable {
 
     public void selectOneCountry(MouseEvent mouseEvent) {
         int countryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
+
+        System.out.println("#############selected country index: " + countryIndex);
+
         ObservableList datalist = PlayerInfoRetriver.getAdjacentCountryObservablelist(countryIndex);
         lsv_adjacentCountries.setItems(datalist);
-
 
         lsv_adjacentCountries.setCellFactory(cell -> {
             return new ListCell<String>() {
@@ -60,19 +62,17 @@ public class AttackviewController implements Initializable {
                         int playerIndex;
                         if(curString.toLowerCase().contains("player")) {
                             playerIndex = Integer.parseInt(curStringSplitArray[1]);
+
                         }else{
                             playerIndex = Main.curRoundPlayerIndex;
                         }
-
-                        System.out.println("rendering, player index: " + playerIndex);
+                        System.out.println("--->>>>> will render player index: " + playerIndex);
 
                         Color curPlayerColor = Main.playersList.get(playerIndex).getPlayerColor();
-                        System.out.println(curPlayerColor.toString());
 
                         text = new Text(item);
                         text.setFill(curPlayerColor);
                         setGraphic(text);
-
                     }
                 }
             };

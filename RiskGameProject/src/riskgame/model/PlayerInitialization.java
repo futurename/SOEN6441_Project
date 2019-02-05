@@ -34,10 +34,13 @@ public class PlayerInitialization {
     private static void getInitCountryNameList(Player curPlayer, ArrayList<String> coutryNameList) {
 
         int avgCountryCount = Main.worldCountriesMap.size() / Main.totalNumOfPlayers;
-        int allocatsCountryNum = avgCountryCount < coutryNameList.size() ? avgCountryCount : coutryNameList.size();
+        int allocatsCountryNum = (curPlayer.getPlayerIndex() != (Main.totalNumOfPlayers - 1)) ? avgCountryCount : coutryNameList.size();
 
         for (int count = 0; count < allocatsCountryNum; count++) {
             int randomIndex = new Random().nextInt(coutryNameList.size());
+
+            System.out.println("random index: " + randomIndex + ", list size: " + coutryNameList.size() + ", player index: " + curPlayer.getPlayerIndex());
+
             String oneCountryName = coutryNameList.remove(randomIndex);
 
             Main.worldCountriesMap.get(oneCountryName).setCountryOwnerIndex(curPlayer.getPlayerIndex());

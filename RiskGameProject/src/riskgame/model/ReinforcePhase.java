@@ -15,9 +15,11 @@ import java.util.Map;
 
 public class ReinforcePhase {
     private static final int DEFAULT_DIVISION_FACTOR = 3;
+    private static final int DEFAULT_MIN_REINFORCE_ARMY_NBR = 3;
 
     public static int getStandardReinforceArmyNum(int countryNum) {
-        return countryNum / DEFAULT_DIVISION_FACTOR;
+        int calResult = countryNum / DEFAULT_DIVISION_FACTOR;
+        return calResult > DEFAULT_MIN_REINFORCE_ARMY_NBR ? calResult : DEFAULT_MIN_REINFORCE_ARMY_NBR;
     }
 
     public static ObservableList<PieChart.Data> getPieChartData(Player player) {
