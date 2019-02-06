@@ -9,20 +9,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.classes.Continent;
 import riskgame.classes.Player;
+import riskgame.model.InfoRetriver;
 import riskgame.model.MapInitialization;
 import riskgame.model.PlayerInitialization;
 
@@ -148,7 +144,7 @@ public class StartviewController implements Initializable {
             datalist.add("");
             datalist.addAll(curContinent.getContinentCountryNameList());
 
-            ListView<String> curListView = getRenderedListview(datalist, avgListviewWidth);
+            ListView<String> curListView = InfoRetriver.getRenderedStartview(Main.totalNumOfPlayers,datalist, avgListviewWidth);
             mapListviews.add(curListView);
         }
 
@@ -210,44 +206,14 @@ public class StartviewController implements Initializable {
 
             datalist.addAll(curPlayerCountryNameList);
 
-            ListView<String> curListView = getRenderedListview(datalist,avgListviewWidth);
+            ListView<String> curListView = InfoRetriver.getRenderedStartview(playerIndex,datalist,avgListviewWidth);
 
             playerListViews.add(curListView);
         }
         hbx_infoDisplayHbox.getChildren().addAll(playerListViews);
     }
 
-    private ListView<String> getRenderedListview(ObservableList<String> datalist, double avgListviewWidth) {
-        ListView<String> result = new ListView<>();
 
-        result.setItems(datalist);
-        result.setPrefWidth(avgListviewWidth);
-
-        result.setCellFactory(cell -> {
-            return new ListCell<String>() {
-                private Text text;
-
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-
-                    if (item != null) {
-                        text = new Text(item);
-                        text.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
-                        text.setWrappingWidth(avgListviewWidth - 10);
-                        text.setTextAlignment(TextAlignment.CENTER);
-                        if (getIndex() == 0) {
-                            text.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
-                            setStyle("-fx-background-color: yellow");
-                            text.setUnderline(true);
-                        }
-                        setGraphic(text);
-                    }
-                }
-            };
-        });
-        return  result;
-    }
 
     public void clickInfoDisplaySwitcher(ActionEvent actionEvent) throws IOException {
         if (isMapInfoOn) {

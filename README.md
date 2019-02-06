@@ -16,7 +16,7 @@
 
 
 
-+ **<font color = #ff4500 size =5>Please use JDK8</font>**
++ **<font color = #ff4500 size =5>Please use JDK8 u151 or above</font>** 
 
   
 

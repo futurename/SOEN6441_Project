@@ -19,7 +19,7 @@ public class Main extends Application {
     public static ArrayList<Player> playersList = new ArrayList<>();
     public static ArrayList<Continent> worldContinentsList = new ArrayList<>();
     public static int curRoundPlayerIndex  =0;
-    public static int totalNumOfPlayers;
+    public static int totalNumOfPlayers = -1;
 
 
     @Override
@@ -30,7 +30,6 @@ public class Main extends Application {
 
         primaryStage.setResizable(false);
         primaryStage.show();
-
 
     }
 

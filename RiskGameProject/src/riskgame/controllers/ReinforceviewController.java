@@ -124,7 +124,7 @@ public class ReinforceviewController implements Initializable {
     public void selectOneCountry(MouseEvent mouseEvent) {
         int countryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
         ObservableList datalist = InfoRetriver.getAdjacentCountryObservablelist(countryIndex);
-        lsv_adjacentCountries.setItems(FXCollections.observableArrayList());
+
         lsv_adjacentCountries.setItems(datalist);
         InfoRetriver.getRenderedCountryItems(lsv_adjacentCountries);
 

@@ -18,7 +18,7 @@
         </Button>
         <ListView fx:id="lsv_ownedCountries" focusTraversable="false" layoutX="535.0" layoutY="103.0" onMouseClicked="#selectOneCountry" prefHeight="697.0" prefWidth="283.0" stylesheets="@css/playercountries.css" />
         <ListView fx:id="lsv_adjacentCountries" layoutX="862.0" layoutY="107.0" prefHeight="313.0" prefWidth="283.0" stylesheets="@css/playercountries.css" />
-        <Label alignment="CENTER" layoutX="591.0" layoutY="57.0" prefHeight="25.0" prefWidth="172.0" text="Countries">
+        <Label fx:id="lbl_countriesInfo" alignment="CENTER" layoutX="591.0" layoutY="57.0" prefHeight="25.0" prefWidth="172.0" text="Countries">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
@@ -28,7 +28,7 @@
                 <Font name="System Bold" size="22.0" />
             </font>
         </Label>
-        <Label alignment="CENTER" layoutX="918.0" layoutY="57.0" prefHeight="25.0" prefWidth="172.0" text="Adjacent Countries">
+        <Label fx:id="lbl_adjacentCountriesInfo" alignment="CENTER" layoutX="918.0" layoutY="57.0" prefHeight="25.0" prefWidth="172.0" text="Adjacent Countries">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
@@ -44,9 +44,9 @@
             </font>
         </Label>
         <PieChart fx:id="pct_countryDistributionChart" layoutX="39.0" layoutY="107.0" mouseTransparent="true" prefHeight="350.0" prefWidth="410.0" stylesheets="@css/piechart.css" title="Country Distribution" AnchorPane.leftAnchor="39.0" AnchorPane.topAnchor="107.0" />
-        <Label fx:id="lbl_playerInfo" alignment="CENTER" focusTraversable="false" layoutX="167.0" layoutY="72.0" mouseTransparent="true" prefHeight="23.0" prefWidth="126.0">
+        <Label fx:id="lbl_playerInfo" alignment="CENTER" focusTraversable="false" layoutX="336.0" layoutY="28.0" mouseTransparent="true" prefHeight="40.0" prefWidth="138.0">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="System Bold" size="20.0" />
             </font>
         </Label>
         <StackedBarChart fx:id="sbc_occupationRatio" layoutX="25.0" layoutY="497.0" prefHeight="350.0" prefWidth="410.0" title="Occupation Ratio" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="25.0">

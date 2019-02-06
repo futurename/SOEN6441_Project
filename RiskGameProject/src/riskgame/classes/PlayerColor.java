@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 
 public enum PlayerColor {
     GREEN(Color.GREEN),
-    YELLOW(Color.GOLDENROD),
+    YELLOW(Color.TURQUOISE),
     RED(Color.BLUE),
     BLUE(Color.RED),
     PINK(Color.TURQUOISE),

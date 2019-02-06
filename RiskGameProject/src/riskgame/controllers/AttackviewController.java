@@ -35,6 +35,7 @@ public class AttackviewController implements Initializable {
 
     private void initCountryListviewDisplay(Player curPlayer) {
         lsv_ownedCountries.setItems(InfoRetriver.getPlayerCountryObservablelist(curPlayer));
+        InfoRetriver.getRenderedCountryItems(lsv_ownedCountries);
     }
 
     public void selectOneCountry(MouseEvent mouseEvent) {
