@@ -3,7 +3,6 @@ package riskgame.model;
 import riskgame.Main;
 import riskgame.classes.Country;
 import riskgame.classes.Player;
-import riskgame.controllers.StartviewController;
 
 import java.util.ArrayList;
 import java.util.Map;

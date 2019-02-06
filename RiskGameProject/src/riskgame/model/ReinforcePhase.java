@@ -3,14 +3,15 @@ package riskgame.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
-
 import riskgame.Main;
 import riskgame.classes.Continent;
 import riskgame.classes.Player;
-;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+;
 
 
 public class ReinforcePhase {
