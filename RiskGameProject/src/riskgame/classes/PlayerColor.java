@@ -8,13 +8,13 @@ import javafx.scene.paint.Color;
 
 public enum PlayerColor {
     GREEN(Color.GREEN),
-    YELLOW(Color.TURQUOISE),
+    YELLOW(Color.RED),
     RED(Color.BLUE),
-    BLUE(Color.RED),
+    BLUE(Color.BROWN),
     PINK(Color.TURQUOISE),
     ORANGE(Color.ORANGE),
     GREY(Color.SLATEBLUE),
-    BROWN(Color.BROWN);
+    BROWN(Color.CRIMSON);
 
     public final Color colorValue;
 

@@ -85,7 +85,7 @@ public class InfoRetriver {
         return oneCountryName + " : " + armyNum;
     }
 
-    public static void getRenderedCountryItems(ListView lsv_countries) {
+    public static void getRenderedCountryItems(int curPlayerIndex, ListView lsv_countries) {
         lsv_countries.setCellFactory(cell -> {
             return new ListCell<String>() {
                 private Text text;
@@ -100,12 +100,9 @@ public class InfoRetriver {
                         int playerIndex;
                         if (curString.toLowerCase().contains("player")) {
                             playerIndex = Integer.parseInt(curStringSplitArray[1]);
-
-                        } else {
-                            playerIndex = Main.curRoundPlayerIndex;
+                        }else{
+                            playerIndex = curPlayerIndex;
                         }
-                        System.out.println("--->>>>> will render player index: " + playerIndex);
-
                         Color curPlayerColor = Main.playersList.get(playerIndex).getPlayerColor();
 
                         text = new Text(item);

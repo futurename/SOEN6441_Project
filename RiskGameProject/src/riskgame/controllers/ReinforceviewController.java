@@ -60,16 +60,18 @@ public class ReinforceviewController implements Initializable {
     @FXML
     private Label lbl_countriesInfo;
 
+    private static int curPlayerIndex = Main.curRoundPlayerIndex;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        reinforceViewInit();
+        reinforceViewInit(curPlayerIndex);
 
     }
 
-    private void reinforceViewInit() {
-        lbl_playerInfo.setText("Player : " + Main.curRoundPlayerIndex);
+    private void reinforceViewInit(int playerIndex) {
+        lbl_playerInfo.setText("Player : " +playerIndex);
 
-        Player curPlayer = Main.playersList.get(Main.curRoundPlayerIndex);
+        Player curPlayer = Main.playersList.get(playerIndex);
         Color curPlayerColor = curPlayer.getPlayerColor();
         int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
         int curUndeployedArmy = ReinforcePhase.getStandardReinforceArmyNum(ownedCountryNum);
@@ -79,7 +81,10 @@ public class ReinforceviewController implements Initializable {
         lbl_adjacentCountriesInfo.setTextFill(curPlayerColor);
         lbl_undeployedArmy.setText(Integer.toString(curUndeployedArmy));
         lsv_ownedCountries.setItems(InfoRetriver.getPlayerCountryObservablelist(curPlayer));
-        InfoRetriver.getRenderedCountryItems(lsv_ownedCountries);
+
+        System.out.println("country display index: " + curPlayer.getPlayerIndex());
+
+        InfoRetriver.getRenderedCountryItems(playerIndex, lsv_ownedCountries);
 
         pct_countryDistributionChart.setData(ReinforcePhase.getPieChartData(curPlayer));
 
@@ -110,14 +115,23 @@ public class ReinforceviewController implements Initializable {
 
     }
 
-    public void clickNextToAttackPhase(ActionEvent actionEvent) throws IOException {
+    public void clickNextStep(ActionEvent actionEvent) throws IOException {
+        curPlayerIndex++;
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-        Pane attackPane = new FXMLLoader(getClass().getResource("../views/attackview.fxml")).load();
-        Scene attackScene = new Scene(attackPane, 1200, 900);
+        if (curPlayerIndex < Main.totalNumOfPlayers) {
+            Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/reinforceview.fxml")).load();
+            Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
+            reinforceViewInit(curPlayerIndex);
+            curStage.setScene(reinforceScene);
+            curStage.show();
+        } else {
+            Pane attackPane = new FXMLLoader(getClass().getResource("../views/attackview.fxml")).load();
+            Scene attackScene = new Scene(attackPane, 1200, 900);
 
-        curStage.setScene(attackScene);
-        curStage.show();
+            curStage.setScene(attackScene);
+            curStage.show();
+        }
     }
 
 
@@ -126,10 +140,9 @@ public class ReinforceviewController implements Initializable {
         ObservableList datalist = InfoRetriver.getAdjacentCountryObservablelist(countryIndex);
 
         lsv_adjacentCountries.setItems(datalist);
-        InfoRetriver.getRenderedCountryItems(lsv_adjacentCountries);
+        InfoRetriver.getRenderedCountryItems(curPlayerIndex, lsv_adjacentCountries);
 
     }
-
 
 
     public void clickConfirmDeployment(ActionEvent actionEvent) {
@@ -176,7 +189,7 @@ public class ReinforceviewController implements Initializable {
 
     private void updateCountryListview(Player player) {
         lsv_ownedCountries.setItems(InfoRetriver.getPlayerCountryObservablelist(player));
-        InfoRetriver.getRenderedCountryItems(lsv_ownedCountries);
+        InfoRetriver.getRenderedCountryItems(curPlayerIndex, lsv_ownedCountries);
 
     }
 }
