@@ -21,7 +21,7 @@ public class Player {
 
     public Player(int playerIndex) {
         this.playerIndex = playerIndex;
-        this.reinforcementArmyCount = 1;
+        this.reinforcementArmyCount = 0;
         this.cardsList = new ArrayList<>();
         this.ownedCountryNameList = new ArrayList<>();
         this.playerColor = PlayerColor.values()[playerIndex].colorValue;

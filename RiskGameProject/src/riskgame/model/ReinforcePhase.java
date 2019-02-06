@@ -27,7 +27,7 @@ public class ReinforcePhase {
 
         ArrayList<String> countryList = player.getOwnedCountryNameList();
 
-        HashMap<String, Integer> countryDistributionMap = PlayerInfoRetriver.getCountryDistributionMap(countryList);
+        HashMap<String, Integer> countryDistributionMap = InfoRetriver.getCountryDistributionMap(countryList);
 
         for (Map.Entry<String, Integer> entry : countryDistributionMap.entrySet()) {
             String oneCountryName = entry.getKey();

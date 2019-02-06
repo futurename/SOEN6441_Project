@@ -2,6 +2,10 @@ package riskgame.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import riskgame.Main;
 import riskgame.classes.Country;
 import riskgame.classes.Player;
@@ -9,7 +13,7 @@ import riskgame.classes.Player;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PlayerInfoRetriver {
+public class InfoRetriver {
 
     public static HashMap<String, Integer> getCountryDistributionMap(ArrayList<String> countryList) {
         HashMap<String, Integer> countryDistributionMap = new HashMap<>();
@@ -76,6 +80,41 @@ public class PlayerInfoRetriver {
 
     private static String getPrintOneCountryInfo(String oneCountryName, int armyNum) {
         return oneCountryName + " : " + armyNum;
+    }
+
+    public static void getRenderedCountryItems(ListView lsv_countries) {
+        lsv_countries.setCellFactory(cell -> {
+            return new ListCell<String>() {
+                private Text text;
+
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    if (item != null && !empty) {
+                        String curString = item.toString();
+                        String[] curStringSplitArray = curString.split(" ");
+                        int playerIndex;
+                        if(curString.toLowerCase().contains("player")) {
+                            playerIndex = Integer.parseInt(curStringSplitArray[1]);
+
+                        }else{
+                            playerIndex = Main.curRoundPlayerIndex;
+                        }
+                        System.out.println("--->>>>> will render player index: " + playerIndex);
+
+                        Color curPlayerColor = Main.playersList.get(playerIndex).getPlayerColor();
+
+                        text = new Text(item);
+                        text.setFill(curPlayerColor);
+                        setGraphic(text);
+                    }else if(empty){
+                        setText(null);
+                        setGraphic(null);
+                    }
+                }
+            };
+        });
     }
 }
 

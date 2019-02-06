@@ -7,13 +7,10 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import riskgame.Main;
 import riskgame.classes.Player;
-import riskgame.model.PlayerInfoRetriver;
+import riskgame.model.InfoRetriver;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,7 +34,7 @@ public class AttackviewController implements Initializable {
     }
 
     private void initCountryListviewDisplay(Player curPlayer) {
-        lsv_ownedCountries.setItems(PlayerInfoRetriver.getPlayerCountryObservablelist(curPlayer));
+        lsv_ownedCountries.setItems(InfoRetriver.getPlayerCountryObservablelist(curPlayer));
     }
 
     public void selectOneCountry(MouseEvent mouseEvent) {
@@ -45,39 +42,13 @@ public class AttackviewController implements Initializable {
 
         System.out.println("#############selected country index: " + countryIndex);
 
-        ObservableList datalist = PlayerInfoRetriver.getAdjacentCountryObservablelist(countryIndex);
+        ObservableList datalist = InfoRetriver.getAdjacentCountryObservablelist(countryIndex);
         lsv_adjacentCountries.setItems(datalist);
 
-        lsv_adjacentCountries.setCellFactory(cell -> {
-            return new ListCell<String>() {
-                private Text text;
-
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-
-                    if (item != null) {
-                        String curString = item.toString();
-                        String[] curStringSplitArray = curString.split(" ");
-                        int playerIndex;
-                        if(curString.toLowerCase().contains("player")) {
-                            playerIndex = Integer.parseInt(curStringSplitArray[1]);
-
-                        }else{
-                            playerIndex = Main.curRoundPlayerIndex;
-                        }
-                        System.out.println("--->>>>> will render player index: " + playerIndex);
-
-                        Color curPlayerColor = Main.playersList.get(playerIndex).getPlayerColor();
-
-                        text = new Text(item);
-                        text.setFill(curPlayerColor);
-                        setGraphic(text);
-                    }
-                }
-            };
-        });
+        InfoRetriver.getRenderedCountryItems(lsv_adjacentCountries);
 
 
     }
+
+
 }

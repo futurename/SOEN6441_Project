@@ -17,11 +17,12 @@ import javafx.scene.chart.StackedBarChart;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.classes.Country;
 import riskgame.classes.Player;
-import riskgame.model.PlayerInfoRetriver;
+import riskgame.model.InfoRetriver;
 import riskgame.model.ReinforcePhase;
 
 import java.io.IOException;
@@ -54,17 +55,31 @@ public class ReinforceviewController implements Initializable {
     private Label lbl_undeployArmyPrompt;
     @FXML
     private Label lbl_deployCountPrompt;
+    @FXML
+    private Label lbl_adjacentCountriesInfo;
+    @FXML
+    private Label lbl_countriesInfo;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        reinforceViewInit();
+
+    }
+
+    private void reinforceViewInit() {
         lbl_playerInfo.setText("Player : " + Main.curRoundPlayerIndex);
 
         Player curPlayer = Main.playersList.get(Main.curRoundPlayerIndex);
+        Color curPlayerColor = curPlayer.getPlayerColor();
         int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
         int curUndeployedArmy = ReinforcePhase.getStandardReinforceArmyNum(ownedCountryNum);
 
+        lbl_playerInfo.setTextFill(curPlayerColor);
+        lbl_countriesInfo.setTextFill(curPlayerColor);
+        lbl_adjacentCountriesInfo.setTextFill(curPlayerColor);
         lbl_undeployedArmy.setText(Integer.toString(curUndeployedArmy));
-        lsv_ownedCountries.setItems(PlayerInfoRetriver.getPlayerCountryObservablelist(curPlayer));
+        lsv_ownedCountries.setItems(InfoRetriver.getPlayerCountryObservablelist(curPlayer));
+        InfoRetriver.getRenderedCountryItems(lsv_ownedCountries);
 
         pct_countryDistributionChart.setData(ReinforcePhase.getPieChartData(curPlayer));
 
@@ -82,7 +97,6 @@ public class ReinforceviewController implements Initializable {
                 lbl_deployArmyCount.setText(Integer.toString(newValue.intValue()));
             }
         });
-
     }
 
     private void displayStackedBarChart(StackedBarChart sbc_occupationRatio) {
@@ -97,21 +111,25 @@ public class ReinforceviewController implements Initializable {
     }
 
     public void clickNextToAttackPhase(ActionEvent actionEvent) throws IOException {
-            Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-            Pane attackPane = new FXMLLoader(getClass().getResource("../views/attackview.fxml")).load();
-            Scene attackScene = new Scene(attackPane, 1200, 900);
+        Pane attackPane = new FXMLLoader(getClass().getResource("../views/attackview.fxml")).load();
+        Scene attackScene = new Scene(attackPane, 1200, 900);
 
-            curStage.setScene(attackScene);
-            curStage.show();
+        curStage.setScene(attackScene);
+        curStage.show();
     }
 
 
     public void selectOneCountry(MouseEvent mouseEvent) {
         int countryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
-        ObservableList datalist = PlayerInfoRetriver.getAdjacentCountryObservablelist(countryIndex);
+        ObservableList datalist = InfoRetriver.getAdjacentCountryObservablelist(countryIndex);
+        lsv_adjacentCountries.setItems(FXCollections.observableArrayList());
         lsv_adjacentCountries.setItems(datalist);
+        InfoRetriver.getRenderedCountryItems(lsv_adjacentCountries);
+
     }
+
 
 
     public void clickConfirmDeployment(ActionEvent actionEvent) {
@@ -127,42 +145,38 @@ public class ReinforceviewController implements Initializable {
         } else {
             int deployArmyCount = Integer.parseInt(lbl_deployArmyCount.getText());
 
-            if (undeloyedArmyCount < deployArmyCount) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setHeaderText(null);
-                alert.setContentText("No enough army for deployment!");
-                alert.showAndWait();
+
+            ArrayList<String> countryList = Main.playersList.get(Main.curRoundPlayerIndex).getOwnedCountryNameList();
+            String selectedCountryName = countryList.get(selectedCountryIndex);
+            Country curCountry = Main.worldCountriesMap.get(selectedCountryName);
+            curCountry.addToCountryArmyNumber(deployArmyCount);
+
+            int remainUndeployedArmyCount = undeloyedArmyCount - deployArmyCount;
+            lbl_undeployedArmy.setText(Integer.toString(remainUndeployedArmyCount));
+
+            updateCountryListview(curPlayer);
+
+            if (remainUndeployedArmyCount == 0) {
+                btn_confirmDeployment.setVisible(false);
+                lbl_undeployedArmy.setVisible(false);
+                lbl_deployArmyCount.setVisible(false);
+                lbl_deployCountPrompt.setVisible(false);
+                scb_armyNbrAdjustment.setVisible(false);
+                lbl_undeployArmyPrompt.setVisible(false);
+
+                btn_nextStep.setVisible(true);
             } else {
-
-                ArrayList<String> countryList = Main.playersList.get(Main.curRoundPlayerIndex).getOwnedCountryNameList();
-                String selectedCountryName = countryList.get(selectedCountryIndex);
-                Country curCountry = Main.worldCountriesMap.get(selectedCountryName);
-                curCountry.addToCountryArmyNumber(deployArmyCount);
-
-                int remainUndeployedArmyCount = undeloyedArmyCount - deployArmyCount;
-                lbl_undeployedArmy.setText(Integer.toString(remainUndeployedArmyCount));
-
-                updateCountryListview(curPlayer);
-
-                if (remainUndeployedArmyCount == 0) {
-                    btn_confirmDeployment.setVisible(false);
-                    lbl_undeployedArmy.setVisible(false);
-                    lbl_deployArmyCount.setVisible(false);
-                    lbl_deployCountPrompt.setVisible(false);
-                    scb_armyNbrAdjustment.setVisible(false);
-                    lbl_undeployArmyPrompt.setVisible(false);
-
-                    btn_nextStep.setVisible(true);
-                } else {
-                    scb_armyNbrAdjustment.setMax(remainUndeployedArmyCount);
-                    scb_armyNbrAdjustment.adjustValue(remainUndeployedArmyCount);
-                    lbl_deployArmyCount.setText(Integer.toString(remainUndeployedArmyCount));
-                }
+                scb_armyNbrAdjustment.setMax(remainUndeployedArmyCount);
+                scb_armyNbrAdjustment.adjustValue(remainUndeployedArmyCount);
+                lbl_deployArmyCount.setText(Integer.toString(remainUndeployedArmyCount));
             }
         }
     }
 
+
     private void updateCountryListview(Player player) {
-        lsv_ownedCountries.setItems(PlayerInfoRetriver.getPlayerCountryObservablelist(player));
+        lsv_ownedCountries.setItems(InfoRetriver.getPlayerCountryObservablelist(player));
+        InfoRetriver.getRenderedCountryItems(lsv_ownedCountries);
+
     }
 }

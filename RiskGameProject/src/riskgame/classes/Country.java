@@ -18,7 +18,7 @@ public class Country {
         this.countryName = countryName;
         this.continentName = continentName;
         this.countryOwnerIndex = -1;
-        this.countryArmyNumber = 0;
+        this.countryArmyNumber = 1;
         this.adjacentCountryNameList = new ArrayList<>();
     }
 
