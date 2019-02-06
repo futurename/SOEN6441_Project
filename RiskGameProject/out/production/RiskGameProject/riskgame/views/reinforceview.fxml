@@ -4,13 +4,9 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.chart.StackedBarChart?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollBar?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="riskgame.controllers.ReinforceviewController">
     <children>
         <Button fx:id="btn_nextStep" layoutX="1008.0" layoutY="727.0" mnemonicParsing="false" onAction="#clickNextStep" prefHeight="35.0" prefWidth="127.0" text="NEXT" textFill="#fc0303" underline="true" visible="false" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="57.0">
