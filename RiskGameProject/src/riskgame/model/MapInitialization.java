@@ -10,18 +10,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * This class reads map file and initialzie countries, continents, players etc.
+ * model class that includes methods for world map initialization
  *
- * @author : Wei Wang
+ * @author WW
  */
-
 public class MapInitialization {
     private static final String CONTINENT_ID_LOWER_CASE_STRING = "continents";
     private static final String COUNTRY_ID_LOWER_CASE_STRING = "territories";
     private static final int FIRST_POS_OF_ADJACENT_LIST = 4;
 
-    public static void buildWorldMap(String mapPah) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(mapPah));
+    /**
+     * @param mapPath path of the map file
+     * @throws IOException map file not found
+     */
+    public static void buildWorldMap(String mapPath) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(mapPath));
 
         String curLine;
 
@@ -62,22 +65,19 @@ public class MapInitialization {
                         for (int i = FIRST_POS_OF_ADJACENT_LIST; i < curLineSplitArray.length; i++) {
                             String nextAdjacentCountryName = curLineSplitArray[i];
                             oneCountry.addToAdjacentCountryNameList(nextAdjacentCountryName);
-                           /* if (!isFirstLetterNumber(nextAdjacentCountryName.charAt(0))) {
-                                oneCountry.addToAdjacentCountryNameList(nextAdjacentCountryName);
-                            }*/
-
                         }
-
                     } else {
                         continentSeqIndx++;
                     }
                 }
             }
         }
-
         printMapInformation();
     }
 
+    /**
+     * print formatted world map
+     */
     private static void printMapInformation() {
         for(int i = 0; i < Main.worldContinentsList.size(); i++){
             Continent curContinent = Main.worldContinentsList.get(i);
@@ -85,9 +85,5 @@ public class MapInitialization {
             ArrayList<String> countryNamesInContinent = curContinent.getContinentCountryNameList();
             System.out.println(countryNamesInContinent + "\n");
         }
-    }
-
-    private static boolean isFirstLetterNumber(char ch) {
-        return (ch >= '0' && ch <= '9') ? true : false;
     }
 }

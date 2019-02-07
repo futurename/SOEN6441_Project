@@ -13,8 +13,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
-
+/**
+ * @author WW
+ */
 public class Main extends Application {
     public static HashMap<String, Country> worldCountriesMap = new HashMap<>();
     public static ArrayList<Player> playersList = new ArrayList<>();
@@ -23,6 +24,10 @@ public class Main extends Application {
     public static int totalNumOfPlayers = -1;
 
 
+    /**
+     * @param primaryStage default start page
+     * @throws Exception startview.fxml not found
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         Pane root = FXMLLoader.load(getClass().getResource("views/startview.fxml"));
@@ -34,7 +39,10 @@ public class Main extends Application {
 
     }
 
-
+    /**
+     * @param args args
+     * @throws IOException launch fails
+     */
     public static void main(String[] args) throws IOException {
         launch(args);
     }

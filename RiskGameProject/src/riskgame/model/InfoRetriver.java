@@ -9,8 +9,17 @@ import riskgame.classes.Player;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * model class for generating different types of required data
+ *
+ * @author WW
+ */
 public class InfoRetriver {
 
+    /**
+     * @param countryList country name arraylist of a player
+     * @return hashmap(continent name, number of coutries) of this player
+     */
     public static HashMap<String, Integer> getCountryDistributionMap(ArrayList<String> countryList) {
         HashMap<String, Integer> countryDistributionMap = new HashMap<>();
         for (int i = 0; i < countryList.size(); i++) {
@@ -28,6 +37,10 @@ public class InfoRetriver {
         return countryDistributionMap;
     }
 
+    /**
+     * @param player a player instance
+     * @return an ObservableList of the player's country names
+     */
     public static ObservableList getPlayerCountryObservablelist(Player player) {
 
         ObservableList result = FXCollections.observableArrayList();
@@ -41,10 +54,14 @@ public class InfoRetriver {
             String printString = getPrintOneCountryInfo(curCountryName, armyNum);
             result.add(printString);
         }
-
         return result;
     }
 
+    /**
+     * @param curPlayerIndex player index number
+     * @param countryIndex the index of a selected country name from the listview
+     * @return a formatted ObservableList of adjacent country names and their army numbers
+     */
     public static ObservableList getAdjacentCountryObservablelist(int curPlayerIndex, int countryIndex) {
         ObservableList result = FXCollections.observableArrayList();
 
@@ -66,6 +83,12 @@ public class InfoRetriver {
         return result;
     }
 
+    /**
+     * @param oneCountryName a country name
+     * @param countryOwnerIndex its owner index number
+     * @param armyNum army number of the country
+     * @return a formatted combination string of above information
+     */
     private static String getPrintOneCountryInfo(String oneCountryName, int countryOwnerIndex, int armyNum) {
         if (countryOwnerIndex == Main.curRoundPlayerIndex) {
             return getPrintOneCountryInfo(oneCountryName, armyNum);
@@ -74,6 +97,11 @@ public class InfoRetriver {
         }
     }
 
+    /**
+     * @param oneCountryName one country name
+     * @param armyNum its army number
+     * @return a formatted string of above information
+     */
     private static String getPrintOneCountryInfo(String oneCountryName, int armyNum) {
         return oneCountryName + " : " + armyNum;
     }

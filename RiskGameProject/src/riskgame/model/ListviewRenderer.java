@@ -12,12 +12,16 @@ import riskgame.Main;
 import riskgame.classes.Country;
 import riskgame.classes.Player;
 
+/**
+ * model class that includes all renderer methods for generating required effects for listviews
+ *
+ * @author WW
+ */
 public class ListviewRenderer {
 
-
     /**
-     * @param curPlayerIndex
-     * @param lsv_countries
+     * @param curPlayerIndex index of current player
+     * @param lsv_countries to be rendered ListView
      */
     public static void getRenderedCountryItems(int curPlayerIndex, ListView lsv_countries) {
         lsv_countries.setCellFactory(cell -> {
@@ -51,6 +55,12 @@ public class ListviewRenderer {
         });
     }
 
+    /**
+     * @param playerIndex player's index number
+     * @param datalist an ObservableList from a ListView UI control
+     * @param avgListviewWidth allowed width of this ListView UI control
+     * @return a new rendered ListView for display in worldmap or player's information HBox pane
+     */
     public static ListView<String> getRenderedStartview(int playerIndex, ObservableList<String> datalist, double avgListviewWidth) {
         ListView<String> result = new ListView<>();
 

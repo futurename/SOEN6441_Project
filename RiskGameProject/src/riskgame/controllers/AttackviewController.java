@@ -13,6 +13,11 @@ import riskgame.model.ListviewRenderer;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * controller class for attackview.fxml
+ *
+ * @author WW
+ */
 public class AttackviewController implements Initializable {
 
     @FXML
@@ -22,6 +27,10 @@ public class AttackviewController implements Initializable {
 
     private int curPlayerIndex = Main.curRoundPlayerIndex;
 
+    /**
+     * @param location default value
+     * @param resources default value
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Player curPlayer = Main.playersList.get(Main.curRoundPlayerIndex);
@@ -29,15 +38,17 @@ public class AttackviewController implements Initializable {
 
     }
 
-    private void initAdjacentCountryListviewDisplay(int selectedCountryIndex) {
-
-    }
-
+    /**
+     * @param curPlayer display all country names of the current player
+     */
     private void initCountryListviewDisplay(Player curPlayer) {
         lsv_ownedCountries.setItems(InfoRetriver.getPlayerCountryObservablelist(curPlayer));
         ListviewRenderer.getRenderedCountryItems(Main.curRoundPlayerIndex,lsv_ownedCountries);
     }
 
+    /**
+     * @param mouseEvent display its adjacent countries of the selected country
+     */
     public void selectOneCountry(MouseEvent mouseEvent) {
         int countryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
 
@@ -50,6 +61,4 @@ public class AttackviewController implements Initializable {
 
 
     }
-
-
 }

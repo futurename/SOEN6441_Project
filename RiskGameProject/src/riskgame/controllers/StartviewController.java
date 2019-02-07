@@ -29,7 +29,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-
+/**
+ * controller class for startview.fxml
+ *
+ * @author WW
+ */
 public class StartviewController {
 
     @FXML

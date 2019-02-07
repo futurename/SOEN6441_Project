@@ -2,6 +2,9 @@ package riskgame.classes;
 
 import java.util.ArrayList;
 
+/**
+ *
+ */
 public class Continent {
     private final String continentName;
     private int continentOwnerIndex;
