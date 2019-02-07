@@ -10,15 +10,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.classes.Continent;
 import riskgame.classes.Player;
-import riskgame.model.InfoRetriver;
+import riskgame.model.ListviewRenderer;
 import riskgame.model.MapInitialization;
 import riskgame.model.PlayerInitialization;
 
@@ -28,7 +29,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class StartviewController implements Initializable {
+/**
+ * controller class for startview.fxml
+ *
+ * @author WW
+ */
+public class StartviewController {
 
     @FXML
     private TextField txf_mapPath;
@@ -64,9 +70,11 @@ public class StartviewController implements Initializable {
     private String mapPath;
     private boolean isMapInfoOn = false;
 
-    //Initialize default values for display
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    /**
+     * set default map path, default number of players and its range
+     * constrain the range of number of player with UI controls
+     */
+    public void initialize() {
         txf_playerNumbers.setText(Integer.toString(DEFAULT_NUM_OF_PLAYERS));
         mapPath = "./maps/World.map";
 
@@ -80,6 +88,9 @@ public class StartviewController implements Initializable {
         }
     }
 
+    /**
+     * @param actionEvent reduce number of players by one
+     */
     public void clickReducePlayerNumber(ActionEvent actionEvent) {
         if (numOfPlayersProperty.get() > MIN_NUM_OF_PLAYERS) {
             numOfPlayersProperty.set(numOfPlayersProperty.get() - 1);
@@ -94,6 +105,9 @@ public class StartviewController implements Initializable {
 
     }
 
+    /**
+     * @param actionEvent increase number of players by one
+     */
     public void clickIncreasePlayerNumber(ActionEvent actionEvent) {
         if (numOfPlayersProperty.get() < MAX_NUM_OF_PLAYERS) {
             numOfPlayersProperty.set(numOfPlayersProperty.get() + 1);
@@ -107,6 +121,10 @@ public class StartviewController implements Initializable {
         }
     }
 
+    /**
+     * @param actionEvent load map to memeory
+     * @throws IOException map file not found
+     */
     public void clickLoadMap(ActionEvent actionEvent) throws IOException {
         btn_loadMap.setVisible(false);
 
@@ -123,6 +141,9 @@ public class StartviewController implements Initializable {
         }
     }
 
+    /**
+     * @throws IOException map file not found
+     */
     private void displayWorldMap() throws IOException {
         if (Main.worldCountriesMap.isEmpty()) {
             MapInitialization.buildWorldMap(DEFAULT_MAP_PATH);
@@ -144,7 +165,7 @@ public class StartviewController implements Initializable {
             datalist.add("");
             datalist.addAll(curContinent.getContinentCountryNameList());
 
-            ListView<String> curListView = InfoRetriver.getRenderedStartview(Main.totalNumOfPlayers,datalist, avgListviewWidth);
+            ListView<String> curListView = ListviewRenderer.getRenderedStartview(Main.totalNumOfPlayers,datalist, avgListviewWidth);
             mapListviews.add(curListView);
         }
 
@@ -152,6 +173,10 @@ public class StartviewController implements Initializable {
         isMapInfoOn = true;
     }
 
+    /**
+     * @param actionEvent proceed to reinforcement phase
+     * @throws IOException reinforcview.fxml not found
+     */
     public void clickNextToReinforcePhase(ActionEvent actionEvent) throws IOException {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
@@ -164,6 +189,9 @@ public class StartviewController implements Initializable {
 
     }
 
+    /**
+     * @param actionEvent confirm the number of players
+     */
     public void clickConfirmPlayerNum(ActionEvent actionEvent) {
         Main.totalNumOfPlayers = Integer.parseInt(txf_playerNumbers.getText());
 
@@ -180,6 +208,9 @@ public class StartviewController implements Initializable {
 
     }
 
+    /**
+     * display information of all players and their countries
+     */
     private void displayPlayerInfo() {
         isMapInfoOn = false;
         if (Main.playersList.isEmpty()) {
@@ -196,25 +227,29 @@ public class StartviewController implements Initializable {
 
         for (int playerIndex = 0; playerIndex < Main.totalNumOfPlayers; playerIndex++) {
             Player curPlayer = Main.playersList.get(playerIndex);
-            String displayedPlayerName = "Player : " + playerIndex;
+            String playerString = "Player : " + playerIndex;
 
             ObservableList<String> datalist = FXCollections.observableArrayList();
-            datalist.add(displayedPlayerName);
+            datalist.add(playerString);
+
+            //split player string and following country names
             datalist.add("");
 
             ArrayList<String> curPlayerCountryNameList = curPlayer.getOwnedCountryNameList();
 
             datalist.addAll(curPlayerCountryNameList);
 
-            ListView<String> curListView = InfoRetriver.getRenderedStartview(playerIndex,datalist,avgListviewWidth);
+            ListView<String> curListView = ListviewRenderer.getRenderedStartview(playerIndex,datalist,avgListviewWidth);
 
             playerListViews.add(curListView);
         }
         hbx_infoDisplayHbox.getChildren().addAll(playerListViews);
     }
 
-
-
+    /**
+     * @param actionEvent switch information display between world map(country distribution in continents) and players(with their allocated coutries)
+     * @throws IOException map file not found
+     */
     public void clickInfoDisplaySwitcher(ActionEvent actionEvent) throws IOException {
         if (isMapInfoOn) {
             btn_infoSwitcher.setText("Map Info");
@@ -225,6 +260,10 @@ public class StartviewController implements Initializable {
         }
     }
 
+    /**
+     * @param actionEvent reset player settings to initlized state
+     * @throws IOException map file not found
+     */
     public void clickReset(ActionEvent actionEvent) throws IOException {
         resetStaticVariables();
 
@@ -238,6 +277,9 @@ public class StartviewController implements Initializable {
         startviewStage.show();
     }
 
+    /**
+     * reset all variables to original values
+     */
     private void resetStaticVariables() {
         Main.totalNumOfPlayers = DEFAULT_NUM_OF_PLAYERS;
         Main.playersList = new ArrayList<>();

@@ -3,14 +3,21 @@ package riskgame.model;
 import riskgame.Main;
 import riskgame.classes.Country;
 import riskgame.classes.Player;
-import riskgame.controllers.StartviewController;
 
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
+/**
+ * model class that includes methods for player initialization
+ *
+ * @author WW
+ */
 public class PlayerInitialization {
 
+    /**
+     * create and initialize all the player instances
+     */
     public static void initPlayers() {
         ArrayList<String> forAllocatesCountryNameList = buildAllocatesCountryNameList();
 
@@ -22,6 +29,9 @@ public class PlayerInitialization {
         }
     }
 
+    /**
+     * @return an arraylist of all country names
+     */
     private static ArrayList<String> buildAllocatesCountryNameList() {
         ArrayList<String> result = new ArrayList<>();
         for (Map.Entry<String, Country> entry : Main.worldCountriesMap.entrySet()) {
@@ -31,6 +41,11 @@ public class PlayerInitialization {
         return result;
     }
 
+    /**
+     * @method randomly allocates all countries to all players
+     * @param curPlayer a player instance
+     * @param coutryNameList the arraylist of its country names
+     */
     private static void getInitCountryNameList(Player curPlayer, ArrayList<String> coutryNameList) {
 
         int avgCountryCount = Main.worldCountriesMap.size() / Main.totalNumOfPlayers;

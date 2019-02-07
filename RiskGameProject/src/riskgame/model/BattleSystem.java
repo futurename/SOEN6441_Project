@@ -1,9 +1,10 @@
 package riskgame.model;
 
-import riskgame.classes.Card;
-
-import java.util.ArrayList;
-
+/**
+ * model class for battle related functions
+ *
+ *
+ */
 public class BattleSystem {
 
 

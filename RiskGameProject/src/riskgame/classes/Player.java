@@ -1,6 +1,5 @@
 package riskgame.classes;
 
-import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;

@@ -23,6 +23,7 @@ import riskgame.Main;
 import riskgame.classes.Country;
 import riskgame.classes.Player;
 import riskgame.model.InfoRetriver;
+import riskgame.model.ListviewRenderer;
 import riskgame.model.ReinforcePhase;
 
 import java.io.IOException;
@@ -30,6 +31,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * controller class for reinforcement phase
+ *
+ * @author: WW
+ */
 public class ReinforceviewController implements Initializable {
     @FXML
     private Button btn_nextStep;
@@ -60,14 +66,20 @@ public class ReinforceviewController implements Initializable {
     @FXML
     private Label lbl_countriesInfo;
 
-    private static int curPlayerIndex = Main.curRoundPlayerIndex;
-
+    /**     *
+     * @param location default value
+     * @param resources default value
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        reinforceViewInit(curPlayerIndex);
+        reinforceViewInit(Main.curRoundPlayerIndex);
 
     }
 
+
+    /**
+     * @param playerIndex initialize UI controls and display information of current player
+     */
     private void reinforceViewInit(int playerIndex) {
         lbl_playerInfo.setText("Player : " +playerIndex);
 
@@ -84,7 +96,7 @@ public class ReinforceviewController implements Initializable {
 
         System.out.println("country display index: " + curPlayer.getPlayerIndex());
 
-        InfoRetriver.getRenderedCountryItems(playerIndex, lsv_ownedCountries);
+        ListviewRenderer.getRenderedCountryItems(playerIndex, lsv_ownedCountries);
 
         pct_countryDistributionChart.setData(ReinforcePhase.getPieChartData(curPlayer));
 
@@ -104,6 +116,11 @@ public class ReinforceviewController implements Initializable {
         });
     }
 
+
+    /**
+     * @param sbc_occupationRatio display a stack bar chart that shows quantity of conquered country by the current player and<br/>
+     *        total amount of country in each continent
+     */
     private void displayStackedBarChart(StackedBarChart sbc_occupationRatio) {
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
@@ -115,17 +132,22 @@ public class ReinforceviewController implements Initializable {
 
     }
 
+    /**
+     * @param actionEvent next player's turn or proceed to attackview if all players finish reinforcement
+     * @throws IOException reinforcement.fxml or attakview.fxml not found     *
+     */
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-        curPlayerIndex++;
+        Main.curRoundPlayerIndex++;
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-        if (curPlayerIndex < Main.totalNumOfPlayers) {
+        if (Main.curRoundPlayerIndex < Main.totalNumOfPlayers) {
             Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/reinforceview.fxml")).load();
             Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
-            reinforceViewInit(curPlayerIndex);
+            reinforceViewInit(Main.curRoundPlayerIndex);
             curStage.setScene(reinforceScene);
             curStage.show();
         } else {
+            Main.curRoundPlayerIndex = Main.curRoundPlayerIndex % Main.totalNumOfPlayers;
             Pane attackPane = new FXMLLoader(getClass().getResource("../views/attackview.fxml")).load();
             Scene attackScene = new Scene(attackPane, 1200, 900);
 
@@ -135,16 +157,22 @@ public class ReinforceviewController implements Initializable {
     }
 
 
+    /**
+     * @param mouseEvent clicking one country name in the listview will display its adjacent countries
+     */
     public void selectOneCountry(MouseEvent mouseEvent) {
         int countryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
-        ObservableList datalist = InfoRetriver.getAdjacentCountryObservablelist(countryIndex);
+        ObservableList datalist = InfoRetriver.getAdjacentCountryObservablelist(Main.curRoundPlayerIndex, countryIndex);
 
         lsv_adjacentCountries.setItems(datalist);
-        InfoRetriver.getRenderedCountryItems(curPlayerIndex, lsv_adjacentCountries);
+        ListviewRenderer.getRenderedCountryItems(Main.curRoundPlayerIndex, lsv_adjacentCountries);
 
     }
 
 
+    /**
+     * @param actionEvent deploy a selected number of army to the selected country
+     */
     public void clickConfirmDeployment(ActionEvent actionEvent) {
         int selectedCountryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
         int undeloyedArmyCount = Integer.parseInt(lbl_undeployedArmy.getText());
@@ -157,7 +185,6 @@ public class ReinforceviewController implements Initializable {
             alert.showAndWait();
         } else {
             int deployArmyCount = Integer.parseInt(lbl_deployArmyCount.getText());
-
 
             ArrayList<String> countryList = Main.playersList.get(Main.curRoundPlayerIndex).getOwnedCountryNameList();
             String selectedCountryName = countryList.get(selectedCountryIndex);
@@ -187,9 +214,12 @@ public class ReinforceviewController implements Initializable {
     }
 
 
+    /**
+     * @param player update country list view after a deployment
+     */
     private void updateCountryListview(Player player) {
         lsv_ownedCountries.setItems(InfoRetriver.getPlayerCountryObservablelist(player));
-        InfoRetriver.getRenderedCountryItems(curPlayerIndex, lsv_ownedCountries);
+        ListviewRenderer.getRenderedCountryItems(Main.curRoundPlayerIndex, lsv_ownedCountries);
 
     }
 }
