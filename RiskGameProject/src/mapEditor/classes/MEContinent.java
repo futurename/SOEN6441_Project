@@ -5,6 +5,7 @@ import java.util.LinkedList;
 public class MEContinent{
     private String continentName;
     private int bonus;
+    private int countryNumber = 0;
     private LinkedList<String> countryList = new LinkedList<String>();
 
     public void setContinentName(String newContinentName){
@@ -19,6 +20,7 @@ public class MEContinent{
 
     public boolean addCountry(String countryName){
         if(!countryList.contains(countryName)){
+            countryNumber++;
             return countryList.add(countryName);
         }
         return false;
@@ -32,5 +34,8 @@ public class MEContinent{
         return countryList.toString();
     }
 
+    public int getCountryNumber(){
+        return countryNumber;
+    }
 
 }
