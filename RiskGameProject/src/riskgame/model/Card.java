@@ -1,4 +1,4 @@
-package riskgame.classes;
+package riskgame.model;
 
 /**
  * @author WW

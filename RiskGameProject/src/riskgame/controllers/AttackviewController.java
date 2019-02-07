@@ -6,7 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import riskgame.Main;
-import riskgame.classes.Player;
+import riskgame.model.Player;
 import riskgame.model.InfoRetriver;
 import riskgame.model.ListviewRenderer;
 

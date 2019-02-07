@@ -1,4 +1,4 @@
-package riskgame.classes;
+package riskgame.model;
 
 import javafx.scene.paint.Color;
 

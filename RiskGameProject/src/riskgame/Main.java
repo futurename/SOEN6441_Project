@@ -5,9 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import riskgame.classes.Continent;
-import riskgame.classes.Country;
-import riskgame.classes.Player;
+import riskgame.model.Continent;
+import riskgame.model.Country;
+import riskgame.model.Player;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -3,8 +3,6 @@ package riskgame.model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import riskgame.Main;
-import riskgame.classes.Country;
-import riskgame.classes.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;

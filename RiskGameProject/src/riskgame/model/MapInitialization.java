@@ -1,8 +1,6 @@
 package riskgame.model;
 
 import riskgame.Main;
-import riskgame.classes.Continent;
-import riskgame.classes.Country;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

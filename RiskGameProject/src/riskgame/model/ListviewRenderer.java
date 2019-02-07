@@ -9,8 +9,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import riskgame.Main;
-import riskgame.classes.Country;
-import riskgame.classes.Player;
 
 /**
  * model class that includes all renderer methods for generating required effects for listviews
