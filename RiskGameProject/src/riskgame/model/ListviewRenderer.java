@@ -76,6 +76,8 @@ public class ListviewRenderer {
                     if (item != null && !empty) {
                         text = new Text(item);
 
+                        System.out.println(">>>>>>>>>>>>>>>>>>player index: " + playerIndex + ", totalplayernum: " + Main.totalNumOfPlayers);
+
                         if(playerIndex != -1){
                             if(playerIndex == Main.totalNumOfPlayers){
                                 if(getIndex() != 0 && getIndex() != 1){

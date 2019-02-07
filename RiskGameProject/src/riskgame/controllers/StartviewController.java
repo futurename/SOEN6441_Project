@@ -278,7 +278,7 @@ public class StartviewController {
      * reset all variables to original values
      */
     private void resetStaticVariables() {
-        Main.totalNumOfPlayers = DEFAULT_NUM_OF_PLAYERS;
+        Main.totalNumOfPlayers = -1;
         Main.playersList = new ArrayList<>();
         Main.curRoundPlayerIndex = 0;
         Main.worldCountriesMap = new HashMap<>();
