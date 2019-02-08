@@ -49,6 +49,7 @@ public class AttackviewController implements Initializable {
     /**
      * @param mouseEvent display its adjacent countries of the selected country
      */
+    @FXML
     public void selectOneCountry(MouseEvent mouseEvent) {
         int countryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
 

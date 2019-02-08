@@ -31,6 +31,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Pane root = FXMLLoader.load(getClass().getResource("views/startview.fxml"));
+
+
+        //Pane root = FXMLLoader.load(getClass().getResource("views/demoview.fxml"));
         primaryStage.setTitle("Risk Game");
         primaryStage.setScene(new Scene(root, 1200, 900));
 

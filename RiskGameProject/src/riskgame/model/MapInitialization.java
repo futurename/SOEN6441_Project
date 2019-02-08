@@ -3,6 +3,7 @@ package riskgame.model;
 import riskgame.Main;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +23,10 @@ public class MapInitialization {
      * @throws IOException map file not found
      */
     public static void buildWorldMap(String mapPath) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(mapPath));
+        System.out.println(new File("maps/World.map").getAbsolutePath());
+
+        BufferedReader bufferedReader = new BufferedReader(new FileReader("./maps/World.map"));
+
 
         String curLine;
 

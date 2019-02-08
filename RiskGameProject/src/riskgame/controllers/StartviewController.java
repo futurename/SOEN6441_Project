@@ -61,7 +61,6 @@ public class StartviewController {
     private final int MAX_NUM_OF_PLAYERS = 8;
     private final int MIN_NUM_OF_PLAYERS = 2;
 
-    private final int DEFAULT_STEP_VALUE = 1;
     private final String DEFAULT_MAP_PATH = "./maps/World.map";
     private IntegerProperty numOfPlayersProperty;
     private String mapPath;
@@ -88,6 +87,7 @@ public class StartviewController {
     /**
      * @param actionEvent reduce number of players by one
      */
+    @FXML
     public void clickReducePlayerNumber(ActionEvent actionEvent) {
         if (numOfPlayersProperty.get() > MIN_NUM_OF_PLAYERS) {
             numOfPlayersProperty.set(numOfPlayersProperty.get() - 1);
@@ -105,6 +105,7 @@ public class StartviewController {
     /**
      * @param actionEvent increase number of players by one
      */
+    @FXML
     public void clickIncreasePlayerNumber(ActionEvent actionEvent) {
         if (numOfPlayersProperty.get() < MAX_NUM_OF_PLAYERS) {
             numOfPlayersProperty.set(numOfPlayersProperty.get() + 1);
@@ -122,6 +123,7 @@ public class StartviewController {
      * @param actionEvent load map to memeory
      * @throws IOException map file not found
      */
+    @FXML
     public void clickLoadMap(ActionEvent actionEvent) throws IOException {
         btn_loadMap.setVisible(false);
 
@@ -174,6 +176,7 @@ public class StartviewController {
      * @param actionEvent proceed to reinforcement phase
      * @throws IOException reinforcview.fxml not found
      */
+    @FXML
     public void clickNextToReinforcePhase(ActionEvent actionEvent) throws IOException {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
@@ -189,6 +192,7 @@ public class StartviewController {
     /**
      * @param actionEvent confirm the number of players
      */
+    @FXML
     public void clickConfirmPlayerNum(ActionEvent actionEvent) {
         Main.totalNumOfPlayers = Integer.parseInt(txf_playerNumbers.getText());
 
@@ -247,6 +251,7 @@ public class StartviewController {
      * @param actionEvent switch information display between world map(country distribution in continents) and players(with their allocated coutries)
      * @throws IOException map file not found
      */
+    @FXML
     public void clickInfoDisplaySwitcher(ActionEvent actionEvent) throws IOException {
         if (isMapInfoOn) {
             btn_infoSwitcher.setText("Map Info");
@@ -261,6 +266,7 @@ public class StartviewController {
      * @param actionEvent reset player settings to initlized state
      * @throws IOException map file not found
      */
+    @FXML
     public void clickReset(ActionEvent actionEvent) throws IOException {
         resetStaticVariables();
 

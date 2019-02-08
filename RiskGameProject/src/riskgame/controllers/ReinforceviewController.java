@@ -136,6 +136,7 @@ public class ReinforceviewController implements Initializable {
      * @param actionEvent next player's turn or proceed to attackview if all players finish reinforcement
      * @throws IOException reinforcement.fxml or attakview.fxml not found     *
      */
+    @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
         Main.curRoundPlayerIndex++;
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -160,6 +161,7 @@ public class ReinforceviewController implements Initializable {
     /**
      * @param mouseEvent clicking one country name in the listview will display its adjacent countries
      */
+    @FXML
     public void selectOneCountry(MouseEvent mouseEvent) {
         int countryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
         ObservableList datalist = InfoRetriver.getAdjacentCountryObservablelist(Main.curRoundPlayerIndex, countryIndex);
@@ -173,6 +175,7 @@ public class ReinforceviewController implements Initializable {
     /**
      * @param actionEvent deploy a selected number of army to the selected country
      */
+    @FXML
     public void clickConfirmDeployment(ActionEvent actionEvent) {
         int selectedCountryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
         int undeloyedArmyCount = Integer.parseInt(lbl_undeployedArmy.getText());
