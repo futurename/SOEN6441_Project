@@ -1,4 +1,4 @@
-package mapEditor.classes;
+package mapeditor.model;
 
 import java.util.LinkedList;
 
