@@ -7,7 +7,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapeditor.controller.MapEditorEditPageController">
    <children>
       <Label fx:id="lab_EditPagetitle" layoutX="61.0" layoutY="41.0" text="Edit">
@@ -15,6 +14,10 @@
             <Font size="34.0" />
          </font>
       </Label>
-      <Button layoutX="109.0" layoutY="706.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="btn_AddCountry" layoutX="683.0" layoutY="706.0" mnemonicParsing="false" text="AddCountry" />
+      <Button fx:id="btn_DeleteContinent" layoutX="398.0" layoutY="706.0" mnemonicParsing="false" text="DeleteContinent" />
+      <Button fx:id="btn_AddContinent" layoutX="161.0" layoutY="706.0" mnemonicParsing="false" text="AddContinent" />
+      <Button fx:id="btn_DeleteCountry" layoutX="919.0" layoutY="706.0" mnemonicParsing="false" text="DeleteCountry" />
+      <Button fx:id="btn_Save" layoutX="573.0" layoutY="796.0" mnemonicParsing="false" text="Save" />
    </children>
 </AnchorPane>
