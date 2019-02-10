@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapeditor.controller.MapEditorEditPageController">
+   <children>
+      <Label fx:id="lab_EditPagetitle" layoutX="61.0" layoutY="41.0" text="Edit">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Button layoutX="109.0" layoutY="706.0" mnemonicParsing="false" text="Button" />
+   </children>
+</AnchorPane>

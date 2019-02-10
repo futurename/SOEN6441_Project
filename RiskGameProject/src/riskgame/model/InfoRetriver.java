@@ -2,10 +2,13 @@ package riskgame.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
 import riskgame.Main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static riskgame.Main.playersList;
 
 /**
  * model class for generating different types of required data
@@ -63,7 +66,7 @@ public class InfoRetriver {
     public static ObservableList getAdjacentCountryObservablelist(int curPlayerIndex, int countryIndex) {
         ObservableList result = FXCollections.observableArrayList();
 
-        ArrayList<String> countryList = Main.playersList.get(Main.curRoundPlayerIndex).getOwnedCountryNameList();
+        ArrayList<String> countryList = playersList.get(Main.curRoundPlayerIndex).getOwnedCountryNameList();
         String selectedCountryName = countryList.get(countryIndex);
         ArrayList<String> adjacentCountryList = Main.worldCountriesMap.get(selectedCountryName).getAdjacentCountryNameList();
 

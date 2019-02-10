@@ -2,8 +2,10 @@ package riskgame.model;
 
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
-public class Country {
+public class Country extends Observable {
     private final String countryName;
     private final String continentName;
     private int countryOwnerIndex;
@@ -22,6 +24,10 @@ public class Country {
         this.adjacentCountryNameList = new ArrayList<>();
     }
 
+    public void addCountryObserver(Observer observer) {
+        this.addObserver(observer);
+    }
+
     public String getCountryName() {
         return countryName;
     }
@@ -32,6 +38,8 @@ public class Country {
 
     public void setCountryOwnerIndex(int countryOwnerIndex) {
         this.countryOwnerIndex = countryOwnerIndex;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public int getCountryArmyNumber() {
@@ -40,18 +48,22 @@ public class Country {
 
     public boolean addToCountryArmyNumber(int addedNumber) {
         boolean result = false;
-        if(this.countryArmyNumber >= 0) {
+        if (this.countryArmyNumber >= 0) {
             this.countryArmyNumber += addedNumber;
             result = true;
+            this.setChanged();
+            this.notifyObservers();
         }
         return result;
     }
 
-    public boolean reduceFromCountryArmyNumber(int reducedNumber){
+    public boolean reduceFromCountryArmyNumber(int reducedNumber) {
         boolean result = false;
-        if(this.countryArmyNumber >= reducedNumber){
+        if (this.countryArmyNumber >= reducedNumber) {
             this.countryArmyNumber -= reducedNumber;
             result = true;
+            this.setChanged();
+            this.notifyObservers();
         }
         return result;
     }
@@ -62,5 +74,7 @@ public class Country {
 
     public void addToAdjacentCountryNameList(String adjacentCountryName) {
         this.adjacentCountryNameList.add(adjacentCountryName);
+        this.setChanged();
+        this.notifyObservers();
     }
 }
