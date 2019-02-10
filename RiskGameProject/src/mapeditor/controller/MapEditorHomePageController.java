@@ -55,7 +55,7 @@ public class MapEditorHomePageController {
         public void clickToCreate(ActionEvent actionEvent) throws Exception{
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-            Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/MapEditorCreateView.fxml")).load();
+            Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/MapEditorCreatePageView.fxml")).load();
             Scene reinforceScene = new Scene(reinforcePane,1200,900);
 
             curStage.setScene(reinforceScene);
