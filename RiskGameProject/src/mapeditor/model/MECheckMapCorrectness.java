@@ -9,10 +9,10 @@ public class MECheckMapCorrectness{
     private static boolean checkFlagCC = true;
     private static boolean checkFlagCB = true;
 
-    public static boolean isCorrect(ArrayList< LinkedList<String> > country, ArrayList<MEContinent> continents){
-        boolean checkFlagCGResult = correctCheckConnectGraph(country);
-        boolean checkFlagCCResult = correctCheckContinentCountry(continents,country);
-        boolean checkFlagCBResult = correctCheckCountryBelonging(continents,country);
+    public static boolean isCorrect(ArrayList< MECountry> countryArr, ArrayList<MEContinent> continentsArr){
+        boolean checkFlagCGResult = correctCheckConnectGraph(countryArr);
+        boolean checkFlagCCResult = correctCheckContinentCountry(continentsArr,countryArr);
+        boolean checkFlagCBResult = correctCheckCountryBelonging(continentsArr,countryArr);
         boolean correctnessFlag = checkFlagCGResult&&checkFlagCCResult&&checkFlagCBResult;
         return correctnessFlag;
     }
@@ -21,23 +21,28 @@ public class MECheckMapCorrectness{
      * first correct checkCC
      * check whether it is a connect graph or not
      */
-    public static boolean correctCheckConnectGraph(ArrayList< LinkedList<String> > country){
+    public static boolean correctCheckConnectGraph(ArrayList<MECountry > countryArr){
         Queue<String> queue = new LinkedList<String>();
         HashMap<String,Boolean> visited = new HashMap<String,Boolean>();
-        for(int i=0 ; i<country.size(); i++ ){
-            String countryTemp = country.get(i).getFirst();
+        for(int i=0 ; i<countryArr.size(); i++ ){
+            String countryTemp = countryArr.get(i).getCountryName();
             visited.put(countryTemp,false);
         }
-        String firstCountry = country.get(0).getFirst();
+        String firstCountry = countryArr.get(0).getCountryName();
         queue.offer(firstCountry);
         //bfs
         while(!queue.isEmpty()){
             String queueHead = queue.poll();
             visited.put(queueHead, Boolean.TRUE);
-            for(int j=0 ;j<country.size();j++){
-                if(country.get(j).getFirst().equals(queueHead)){
-                    for(int k = 1;k<country.get(j).size();k++){
-                        String readyToAddInQueue = country.get(j).get(k);
+            for(int j=0 ;j<countryArr.size();j++){
+                if(countryArr.get(j).getCountryName().equals(queueHead)){
+                    String countryNeighbor = countryArr.get(j).getNeighbor();
+                    countryNeighbor = countryNeighbor.replaceAll("\\[","");
+                    countryNeighbor = countryNeighbor.replaceAll("\\]","");
+                    countryNeighbor = countryNeighbor.replaceAll(" ","");
+                    String[] countryNeighbors = countryNeighbor.split(",");
+                    for(int k = 1;k<countryNeighbors.length;k++){
+                        String readyToAddInQueue = countryNeighbors[k];
                         if(visited.get(readyToAddInQueue)==false){
                             queue.offer(readyToAddInQueue);
                         }
@@ -58,7 +63,7 @@ public class MECheckMapCorrectness{
      * second correct check
      * check whether all countries in one continent are placed together
      */
-    public static boolean correctCheckContinentCountry(ArrayList<MEContinent> continents, ArrayList<LinkedList<String>> country){
+    public static boolean correctCheckContinentCountry(ArrayList<MEContinent> continents, ArrayList<MECountry> country){
         for(int i=0 ;i<continents.size();i++){
             if(continents.get(i).getCountryNumber()!=1){
                 //TO DO
@@ -71,12 +76,12 @@ public class MECheckMapCorrectness{
      * third correct check
      *  every country belongs to one and only one continent
      */
-    public static boolean correctCheckCountryBelonging(ArrayList<MEContinent> continents, ArrayList<LinkedList<String>> country){
+    public static boolean correctCheckCountryBelonging(ArrayList<MEContinent> continentsArr, ArrayList<MECountry> countryArr){
         int countryAddByContient = 0;
-        for(int i = 0; i<continents.size();i++){
-            countryAddByContient = continents.get(i).getCountryNumber()+countryAddByContient;
+        for(int i = 0; i<continentsArr.size();i++){
+            countryAddByContient = continentsArr.get(i).getCountryNumber()+countryAddByContient;
         }
-        if(countryAddByContient != country.size()){
+        if(countryAddByContient != countryArr.size()){
             checkFlagCB = false;
         }
         return checkFlagCB;
