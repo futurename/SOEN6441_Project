@@ -6,19 +6,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import riskgame.Main;
-import riskgame.model.Player;
+import riskgame.model.BasicClass.Player;
 import riskgame.model.InfoRetriver;
-import riskgame.model.ListviewRenderer;
+import riskgame.model.Utils.ListviewRenderer;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * controller class for attackview.fxml
+ * controller class for AttackView.fxml
  *
  * @author WW
  */
-public class AttackviewController implements Initializable {
+public class AttackViewController implements Initializable {
 
     @FXML
     private ListView lsv_adjacentCountries;

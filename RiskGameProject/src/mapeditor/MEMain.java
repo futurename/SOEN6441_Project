@@ -20,7 +20,7 @@ public class MEMain extends Application {
         Pane root = FXMLLoader.load(getClass().getResource("views/MapEditorHomePageView.fxml"));
 
 
-        //Pane root = FXMLLoader.load(getClass().getResource("views/demoview.fxml"));
+        //Pane root = FXMLLoader.load(getClass().getResource("view/demoview.fxml"));
         primaryStage.setTitle("Risk Game Map Editor");
         primaryStage.setScene(new Scene(root, 1200, 900));
 

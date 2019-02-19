@@ -2,8 +2,9 @@ package riskgame.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ListView;
 import riskgame.Main;
+import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -16,11 +16,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import riskgame.Main;
-import riskgame.model.Continent;
-import riskgame.model.Player;
-import riskgame.model.ListviewRenderer;
-import riskgame.model.MapInitialization;
-import riskgame.model.PlayerInitialization;
+import riskgame.model.BasicClass.Continent;
+import riskgame.model.BasicClass.Player;
+import riskgame.model.Utils.InitMapGraph;
+import riskgame.model.Utils.ListviewRenderer;
+import riskgame.model.Utils.MapInitialization;
+import riskgame.model.Utils.PlayerInitialization;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,10 +29,9 @@ import java.util.HashMap;
 
 /**
  * controller class for startview.fxml
- *
  * @author WW
  */
-public class StartviewController {
+public class StartViewController {
 
     @FXML
     private TextField txf_mapPath;
@@ -61,7 +61,7 @@ public class StartviewController {
     private final int MAX_NUM_OF_PLAYERS = 8;
     private final int MIN_NUM_OF_PLAYERS = 2;
 
-    private final String DEFAULT_MAP_PATH = "./maps/World.map";
+    private final String DEFAULT_MAP_PATH = "maps/World.map";
     private IntegerProperty numOfPlayersProperty;
     private String mapPath;
     private boolean isMapInfoOn = false;
@@ -125,6 +125,8 @@ public class StartviewController {
      */
     @FXML
     public void clickLoadMap(ActionEvent actionEvent) throws IOException {
+        InitMapGraph.buildWorldMapGraph(DEFAULT_MAP_PATH);
+
         btn_loadMap.setVisible(false);
 
         displayWorldMap();
@@ -145,8 +147,12 @@ public class StartviewController {
      */
     private void displayWorldMap() throws IOException {
         if (Main.worldCountriesMap.isEmpty()) {
-            MapInitialization.buildWorldMap(DEFAULT_MAP_PATH);
+           // MapInitialization.buildWorldMap(DEFAULT_MAP_PATH);
         }
+
+
+
+
         hbx_infoDisplayHbox.getChildren().clear();
         txf_mapPromptInfo.setText("World Map");
         txf_mapPromptInfo.setVisible(true);
@@ -164,7 +170,7 @@ public class StartviewController {
             datalist.add("");
             datalist.addAll(curContinent.getContinentCountryNameList());
 
-            ListView<String> curListView = ListviewRenderer.getRenderedStartview(Main.totalNumOfPlayers,datalist, avgListviewWidth);
+            ListView<String> curListView = ListviewRenderer.getRenderedStartview(Main.totalNumOfPlayers, datalist, avgListviewWidth);
             mapListviews.add(curListView);
         }
 
@@ -180,8 +186,8 @@ public class StartviewController {
     public void clickNextToReinforcePhase(ActionEvent actionEvent) throws IOException {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-        Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/reinforceview.fxml")).load();
-        Scene reinforceScene = new Scene(reinforcePane,1200,900);
+        Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
+        Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
 
         curStage.setScene(reinforceScene);
 
@@ -240,7 +246,7 @@ public class StartviewController {
 
             datalist.addAll(curPlayerCountryNameList);
 
-            ListView<String> curListView = ListviewRenderer.getRenderedStartview(playerIndex,datalist,avgListviewWidth);
+            ListView<String> curListView = ListviewRenderer.getRenderedStartview(playerIndex, datalist, avgListviewWidth);
 
             playerListViews.add(curListView);
         }
@@ -270,9 +276,9 @@ public class StartviewController {
     public void clickReset(ActionEvent actionEvent) throws IOException {
         resetStaticVariables();
 
-        Stage startviewStage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage startviewStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../views/startview.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/startview.fxml"));
         Pane root = fxmlLoader.load();
         startviewStage.setScene(new Scene(root, 1200, 900));
 
