@@ -1,6 +1,5 @@
 package riskgame.model.BasicClass;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 /**
