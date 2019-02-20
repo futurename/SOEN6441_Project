@@ -13,7 +13,6 @@ public class Country extends Observable {
     private String coordinateY;
     private int countryOwnerIndex;
     private int countryArmyNumber;
-    //private ArrayList<String> adjacentCountryNameList;
 
     /**
      * constructor for class Country
@@ -27,7 +26,6 @@ public class Country extends Observable {
         this.coordinateY = "";
         this.countryOwnerIndex = -1;
         this.countryArmyNumber = 1;
-        //this.adjacentCountryNameList = new ArrayList<>();
     }
 
     public Country(String countryName, String continentName) {
@@ -37,7 +35,6 @@ public class Country extends Observable {
         this.coordinateY = "";
         this.countryOwnerIndex = -1;
         this.countryArmyNumber = 1;
-        //this.adjacentCountryNameList = new ArrayList<>();
     }
 
     public String getContinentName() {
@@ -107,7 +104,6 @@ public class Country extends Observable {
         }
         return result;
     }
-
 
     @Override
     public String toString() {

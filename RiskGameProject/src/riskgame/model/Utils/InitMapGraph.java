@@ -36,7 +36,6 @@ public class InitMapGraph {
                     //Initialize a new Continent object
                     Continent oneContinent = new Continent(curContinnentName, curContinentBonusValue);
                     Main.worldContinentMap.put(curContinnentName, oneContinent);
-                    continue;
                 }
             }
 
@@ -89,6 +88,7 @@ public class InitMapGraph {
         }
         printGraph();
         printContinent();
+        bufferedReader.close();
     }
 
     private static void printContinent() {

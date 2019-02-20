@@ -75,14 +75,15 @@ public class ReinforceViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         reinforceViewInit(Main.curRoundPlayerIndex);
-
     }
-
 
     /**
      * @param playerIndex initialize UI controls and display information of current player
      */
     private void reinforceViewInit(int playerIndex) {
+
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> cur player: " + playerIndex);
+
         lbl_playerInfo.setText("Player : " +playerIndex);
 
         Player curPlayer = Main.playersList.get(playerIndex);
@@ -118,20 +119,17 @@ public class ReinforceViewController implements Initializable {
         });
     }
 
-
     /**
      * @param sbc_occupationRatio display a stack bar chart that shows quantity of conquered country by the current player and<br/>
      *        total amount of country in each continent
      */
     private void displayStackedBarChart(StackedBarChart sbc_occupationRatio) {
-        final CategoryAxis xAxis = new CategoryAxis();
-        final NumberAxis yAxis = new NumberAxis();
+        //final CategoryAxis xAxis = new CategoryAxis();
+        //final NumberAxis yAxis = new NumberAxis();
 
-        ArrayList<String> continentNameList = ReinforcePhase.getContinentNameList();
+       // ArrayList<String> continentNameList = ReinforcePhase.getContinentNameList();
 
-        xAxis.setCategories(FXCollections.observableArrayList(continentNameList));
-
-
+       // xAxis.setCategories(FXCollections.observableArrayList(continentNameList));
     }
 
     /**
@@ -159,7 +157,6 @@ public class ReinforceViewController implements Initializable {
         }
     }
 
-
     /**
      * @param mouseEvent clicking one country name in the listview will display its adjacent countries
      */
@@ -172,7 +169,6 @@ public class ReinforceViewController implements Initializable {
         ListviewRenderer.getRenderedCountryItems(Main.curRoundPlayerIndex, lsv_adjacentCountries);
 
     }
-
 
     /**
      * @param actionEvent deploy a selected number of army to the selected country

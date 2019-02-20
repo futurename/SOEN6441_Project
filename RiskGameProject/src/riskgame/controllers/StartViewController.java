@@ -33,7 +33,8 @@ import java.util.Map;
  *
  * @author WW
  */
-public class StartViewController_rev {
+@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+public class StartViewController {
     @FXML
     private TextField txf_mapPath;
     @FXML
@@ -56,12 +57,11 @@ public class StartViewController_rev {
     private Button btn_infoSwitcher;
 
 
-    private final int DEFAULT_NUM_OF_PLAYERS = 3;
+    private static final int DEFAULT_NUM_OF_PLAYERS = 3;
 
-    //need modify the values in the tooltips of the buttons to match following threshold numbers
-    private final int MAX_NUM_OF_PLAYERS = 8;
-    private final int MIN_NUM_OF_PLAYERS = 2;
-    private final String DEFAULT_MAP_PATH = "maps/World.map";
+    private static final int MAX_NUM_OF_PLAYERS = 8;
+    private static final int MIN_NUM_OF_PLAYERS = 2;
+    private static final String DEFAULT_MAP_PATH = "maps/World.map";
     private String mapPath;
     private IntegerProperty numOfPlayersProperty;
 
@@ -151,7 +151,6 @@ public class StartViewController_rev {
     private void displayWorldMap(String path) throws IOException {
         if (Main.graphSingleton.isEmpty()) {
             InitMapGraph.buildWorldMapGraph(path);
-            //MapInitialization.buildWorldMap(path);
         }
 
         hbx_infoDisplayHbox.getChildren().clear();
