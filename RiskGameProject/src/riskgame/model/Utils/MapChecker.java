@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class MapChecker {
-    private ArrayList<String> continentsNames;
 
-    private boolean checkMapValidity(String path)throws IOException, NumberFormatException{
+    public static boolean checkMapValidity(String path)throws IOException, NumberFormatException{
         boolean isContinentFound = false;
         boolean isTerritoriesFound = false;
+        ArrayList continentsNames = new ArrayList<String>();
 
         BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
         String line;
@@ -19,7 +19,7 @@ public class MapChecker {
                 isContinentFound = true;
                 while ((line = bufferedReader.readLine()).length() != 0){
                     if (line.contains("=")){
-                        if (!checkContinentCountInteger(line)){
+                        if (!checkContinentCountInteger(line, continentsNames)){
                             return false;
                         }
                     }else return false;
@@ -28,7 +28,7 @@ public class MapChecker {
                 isTerritoriesFound = true;
                 while ((line = bufferedReader.readLine()) != null){
                     if (line.length() != 0 && line.contains(",")){
-                        if (!checkTerritoriesFormat(line)){
+                        if (!checkTerritoriesFormat(line, continentsNames)){
                             return false;
                         }
                     }else return false;
@@ -39,19 +39,19 @@ public class MapChecker {
         return (isContinentFound && isTerritoriesFound);
     }
 
-    private boolean checkContinentCountInteger(String continentLine){
+    private static boolean checkContinentCountInteger(String continentLine, ArrayList<String> continents){
         String[] splitedLine = continentLine.split("=");
         try {
             Integer.parseInt(splitedLine[1]);
         }catch (NumberFormatException e){
             return false;
         }finally {
-            continentsNames.add(splitedLine[0]);
+            continents.add((String)splitedLine[0]);
         }
         return true;
     }
 
-    private boolean checkTerritoriesFormat(String territoriesLine){
+    private static boolean checkTerritoriesFormat(String territoriesLine, ArrayList<String> continents){
         String[] splitedLine = territoriesLine.split(",");
         if (splitedLine.length<5){
             return false;
@@ -62,11 +62,11 @@ public class MapChecker {
         }catch (NumberFormatException e){
             return false;
         }
-        if (!continentsNames.contains(splitedLine[3])){
+        if (!continents.contains(splitedLine[3])){
             return false;
         }
         for (int i=3; i<splitedLine.length; i++){
-            if (continentsNames.contains(splitedLine[i])){
+            if (continents.contains(splitedLine[i])){
                 return false;
             }
         }

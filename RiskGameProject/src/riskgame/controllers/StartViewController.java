@@ -18,10 +18,7 @@ import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.Player;
-import riskgame.model.Utils.InitMapGraph;
-import riskgame.model.Utils.ListviewRenderer;
-import riskgame.model.Utils.MapInitialization;
-import riskgame.model.Utils.PlayerInitialization;
+import riskgame.model.Utils.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -129,15 +126,17 @@ public class StartViewController {
 
         btn_loadMap.setVisible(false);
 
-        displayWorldMap();
+        if (MapChecker.checkMapValidity(txf_mapPath.getText())){
+            displayWorldMap();
 
-        if (!btn_confirmPlayerNum.isVisible()) {
-            btn_infoSwitcher.setVisible(true);
-            btn_infoSwitcher.setText("Players Info");
-            btn_nextStep.setVisible(true);
+            if (!btn_confirmPlayerNum.isVisible()) {
+                btn_infoSwitcher.setVisible(true);
+                btn_infoSwitcher.setText("Players Info");
+                btn_nextStep.setVisible(true);
 
-            if (Main.playersList.isEmpty()) {
-                PlayerInitialization.initPlayers();
+                if (Main.playersList.isEmpty()) {
+                    PlayerInitialization.initPlayers();
+                }
             }
         }
     }
@@ -296,6 +295,4 @@ public class StartViewController {
         Main.worldCountriesMap = new HashMap<>();
         Main.worldContinentsList = new ArrayList<>();
     }
-
-
 }
