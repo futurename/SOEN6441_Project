@@ -3,7 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane fx:id="acp_startView" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="riskgame.controllers.StartViewController">
+<AnchorPane fx:id="acp_startView" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="riskgame.controllers.StartViewController_rev">
    <children>
       <TextField fx:id="txf_mapPath" layoutX="730.0" layoutY="110.0" prefHeight="35.0" prefWidth="277.0" text="./maps/World.map">
          <font>

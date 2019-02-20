@@ -26,7 +26,7 @@ public class InfoRetriver {
         HashMap<String, Integer> countryDistributionMap = new HashMap<>();
         for (int i = 0; i < countryList.size(); i++) {
             String curCountryName = countryList.get(i);
-            String curContinentName = Main.worldCountriesMap.get(curCountryName).getContinentName();
+            String curContinentName = Main.graphSingleton.get(curCountryName).getCountry().getContinentName();
             int countOfCountry;
             if (countryDistributionMap.containsKey(curContinentName)) {
                 countOfCountry = countryDistributionMap.get(curContinentName);
@@ -51,7 +51,7 @@ public class InfoRetriver {
 
         for (int i = 0; i < coutryList.size(); i++) {
             String curCountryName = coutryList.get(i);
-            int armyNum = Main.worldCountriesMap.get(curCountryName).getCountryArmyNumber();
+            int armyNum = Main.graphSingleton.get(curCountryName).getCountry().getCountryArmyNumber();
 
             String printString = getPrintOneCountryInfo(curCountryName, armyNum);
             result.add(printString);
@@ -69,14 +69,14 @@ public class InfoRetriver {
 
         ArrayList<String> countryList = playersList.get(Main.curRoundPlayerIndex).getOwnedCountryNameList();
         String selectedCountryName = countryList.get(countryIndex);
-        ArrayList<String> adjacentCountryList = Main.worldCountriesMap.get(selectedCountryName).getAdjacentCountryNameList();
+        ArrayList<Country> adjacentCountryList = Main.graphSingleton.get(selectedCountryName).getAdjacentCountryList();
 
         for (int i = 0; i < adjacentCountryList.size(); i++) {
-            String oneCountryName = adjacentCountryList.get(i);
-            Country curCountry = Main.worldCountriesMap.get(oneCountryName);
-            int armyNum = curCountry.getCountryArmyNumber();
-            int countryOwnerIndex = curCountry.getCountryOwnerIndex();
-            String printString = getPrintOneCountryInfo(oneCountryName, countryOwnerIndex, armyNum);
+            Country curAdjacentCountry = adjacentCountryList.get(i);
+            String curAdjacentCountryName = curAdjacentCountry.getCountryName();
+            int armyNum = curAdjacentCountry.getCountryArmyNumber();
+            int countryOwnerIndex = curAdjacentCountry.getCountryOwnerIndex();
+            String printString = getPrintOneCountryInfo(curAdjacentCountryName, countryOwnerIndex, armyNum);
 
             System.out.println(printString);
 

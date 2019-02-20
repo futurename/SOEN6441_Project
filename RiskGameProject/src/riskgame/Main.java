@@ -16,7 +16,7 @@ import java.util.LinkedHashMap;
  * @author WW
  */
 public class Main extends Application {
-    public static HashMap<String, Country> worldCountriesMap = new HashMap<>();
+    //public static HashMap<String, Country> worldCountriesMap = new HashMap<>();
     public static ArrayList<Player> playersList = new ArrayList<>();
     public static LinkedHashMap<String, Continent> worldContinentMap = new LinkedHashMap<>();
     public static int curRoundPlayerIndex  =0;

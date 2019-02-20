@@ -85,7 +85,7 @@ public class ListviewRenderer {
                                 if(getIndex() != 0 && getIndex() != 1){
                                     String curCountryName = text.toString().split("\"")[1];
 
-                                    Country curCountry = Main.worldCountriesMap.get(curCountryName);
+                                    Country curCountry = Main.graphSingleton.get(curCountryName).getCountry();
                                     int curCountryOwnerIndex = curCountry.getCountryOwnerIndex();
 
                                     Color curCountryColor = Main.playersList.get(curCountryOwnerIndex).getPlayerColor();

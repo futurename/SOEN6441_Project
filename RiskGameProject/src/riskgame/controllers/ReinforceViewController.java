@@ -193,7 +193,7 @@ public class ReinforceViewController implements Initializable {
 
             ArrayList<String> countryList = Main.playersList.get(Main.curRoundPlayerIndex).getOwnedCountryNameList();
             String selectedCountryName = countryList.get(selectedCountryIndex);
-            Country curCountry = Main.worldCountriesMap.get(selectedCountryName);
+            Country curCountry = Main.graphSingleton.get(selectedCountryName).getCountry();
             curCountry.addToCountryArmyNumber(deployArmyCount);
 
             int remainUndeployedArmyCount = undeloyedArmyCount - deployArmyCount;

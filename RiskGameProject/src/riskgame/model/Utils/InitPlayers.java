@@ -2,6 +2,7 @@ package riskgame.model.Utils;
 
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.Player;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.Random;
  *
  * @author WW
  */
-public class PlayerInitialization {
+public class InitPlayers {
 
     /**
      * create and initialize all the player instances
@@ -34,9 +35,11 @@ public class PlayerInitialization {
      */
     private static ArrayList<String> buildAllocatesCountryNameList() {
         ArrayList<String> result = new ArrayList<>();
-        for (Map.Entry<String, Country> entry : Main.worldCountriesMap.entrySet()) {
-            String oneCountryName = entry.getKey();
-            result.add(oneCountryName);
+        for(Map.Entry<String, GraphNode> entry: Main.graphSingleton.entrySet()){
+            GraphNode curNode = entry.getValue();
+            String curCountryName = entry.getKey();
+
+            result.add(curCountryName);
         }
         return result;
     }
@@ -48,7 +51,7 @@ public class PlayerInitialization {
      */
     private static void getInitCountryNameList(Player curPlayer, ArrayList<String> coutryNameList) {
 
-        int avgCountryCount = Main.worldCountriesMap.size() / Main.totalNumOfPlayers;
+        int avgCountryCount = Main.graphSingleton.size() / Main.totalNumOfPlayers;
         int allocatsCountryNum = (curPlayer.getPlayerIndex() != (Main.totalNumOfPlayers - 1)) ? avgCountryCount : coutryNameList.size();
 
         for (int count = 0; count < allocatsCountryNum; count++) {
@@ -59,7 +62,7 @@ public class PlayerInitialization {
 
             String oneCountryName = coutryNameList.remove(randomIndex);
 
-            Main.worldCountriesMap.get(oneCountryName).setCountryOwnerIndex(curPlayer.getPlayerIndex());
+            Main.graphSingleton.get(oneCountryName).getCountry().setCountryOwnerIndex(curPlayer.getPlayerIndex());
 
             curPlayer.addToOwnedCountryNameList(oneCountryName);
         }
