@@ -4,12 +4,12 @@ import riskgame.Main;
 import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
-import riskgame.model.BasicClass.GraphSingleton;
-
 import java.io.*;
-import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class initialize the graph from a valid map file
+ */
 public class InitMapGraph {
     protected static final String CONTINENT_HEADER_STRING = "[Continents]";
     protected static final String COUNTRY_HEADER_STRING = "[Territories]";
@@ -35,7 +35,7 @@ public class InitMapGraph {
 
                     //Initialize a new Continent object
                     Continent oneContinent = new Continent(curContinnentName, curContinentBonusValue);
-                    Main.worldContinentsList.add(oneContinent);
+                    Main.worldContinentMap.put(curContinnentName, oneContinent);
                     continue;
                 }
             }
@@ -56,6 +56,8 @@ public class InitMapGraph {
                             curCountry = curGraphNode.getCountry();
                         }
 
+                        Main.graphSingleton.put(curCountryName, curGraphNode);
+
                         String curCoordinateX = curLineSplitArray[COORDINATE_X_POSITION];
                         String curCoordinateY = curLineSplitArray[COORDINATE_Y_POSITION];
                         curCountry.setCoordinateX(curCoordinateX);
@@ -63,12 +65,13 @@ public class InitMapGraph {
 
                         String curContinentName = curLineSplitArray[CONTINENT_POSITION];
                         curCountry.setContinentName(curContinentName);
+                        Main.worldContinentMap.get(curContinentName).addToContinentCountryNameList(curCountryName);
 
                         for (int i = CONTINENT_POSITION + 1; i < curLineSplitArray.length; i++) {
                             Country oneCountry;
                             GraphNode oneGraphNode;
-
                             String adjacentCountryName = curLineSplitArray[i];
+
                             if (!Main.graphSingleton.containsKey(adjacentCountryName)) {
                                 oneCountry = new Country(adjacentCountryName);
                                 oneGraphNode = new GraphNode(oneCountry);
@@ -80,20 +83,29 @@ public class InitMapGraph {
                             curGraphNode.addAdjacentCountry(oneCountry);
                             Main.graphSingleton.put(adjacentCountryName, oneGraphNode);
                         }
-                    } else {
-                        continue;
                     }
                 }
             }
         }
-        //printGraph();
+        printGraph();
+        printContinent();
+    }
+
+    private static void printContinent() {
+        for(Map.Entry<String, Continent> entry: Main.worldContinentMap.entrySet()){
+            Continent curContinent = entry.getValue();
+            String curContinentName = entry.getKey();
+
+            System.out.println("\n---[" + curContinentName + "]---");
+            System.out.println(curContinent.getContinentCountryNameList());
+        }
     }
 
     public static void printGraph() {
         for(Map.Entry<String, GraphNode> entry: Main.graphSingleton.entrySet()){
             String countryName = entry.getKey();
             GraphNode node = entry.getValue();
-            System.out.println(">>>>>>>>>>>> country: " + countryName + " <<<<<<<<<<<<<<<");
+            System.out.println(">>>>>>>>>>>> country: " + countryName + ", continent: " + node.getCountry().getContinentName() + " <<<<<<<<<<<<<<<");
             printGraphNode(node);
         }
     }

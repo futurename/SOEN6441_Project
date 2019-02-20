@@ -10,6 +10,7 @@ import riskgame.model.BasicClass.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * @author WW
@@ -17,10 +18,10 @@ import java.util.HashMap;
 public class Main extends Application {
     public static HashMap<String, Country> worldCountriesMap = new HashMap<>();
     public static ArrayList<Player> playersList = new ArrayList<>();
-    public static ArrayList<Continent> worldContinentsList = new ArrayList<>();
+    public static LinkedHashMap<String, Continent> worldContinentMap = new LinkedHashMap<>();
     public static int curRoundPlayerIndex  =0;
     public static int totalNumOfPlayers = -1;
-    public static HashMap<String, GraphNode> graphSingleton = GraphSingleton.INSTANCE.getInstance();
+    public static LinkedHashMap<String, GraphNode> graphSingleton = GraphSingleton.INSTANCE.getInstance();
 
 
     /**

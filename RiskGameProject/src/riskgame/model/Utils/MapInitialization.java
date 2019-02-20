@@ -9,14 +9,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * model class that includes methods for world map initialization
  *
  * @author WW
  */
-public class  MapInitialization {
+public class MapInitialization {
     private static final String CONTINENT_ID_LOWER_CASE_STRING = "continents";
     private static final String COUNTRY_ID_LOWER_CASE_STRING = "territories";
     private static final int FIRST_POS_OF_ADJACENT_LIST = 4;
@@ -26,9 +26,9 @@ public class  MapInitialization {
      * @throws IOException map file not found
      */
     public static void buildWorldMap(String mapPath) throws IOException {
-        System.out.println(new File("maps/World.map").getAbsolutePath());
+        System.out.println(new File(mapPath).getAbsolutePath());
 
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("./maps/World.map"));
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(mapPath));
 
         String curLine;
 
@@ -45,24 +45,20 @@ public class  MapInitialization {
 
                     //Initialize a new Continent object
                     Continent oneContinent = new Continent(curContinnentName, curContinentBonusValue);
-                    Main.worldContinentsList.add(oneContinent);
-                    continue;
+                    Main.worldContinentMap.put(curContinnentName, oneContinent);
                 }
             }
 
             //read country section
             if (curLine.toLowerCase().contains(COUNTRY_ID_LOWER_CASE_STRING)) {
-                int continentSeqIndx = 0;
-
-
                 while ((curLine = bufferedReader.readLine()) != null) {
-
                     if (curLine.length() != 0) {
                         String[] curLineSplitArray = curLine.split(",");
                         String curCountryName = curLineSplitArray[0];
+                        String curContinentName = curLineSplitArray[3];
 
-                        Main.worldContinentsList.get(continentSeqIndx).addToContinentCountryNameList(curCountryName);
-                        String curContinentName = Main.worldContinentsList.get(continentSeqIndx).getContinentName();
+                        Main.worldContinentMap.get(curContinentName).addToContinentCountryNameList(curCountryName);
+
                         Country oneCountry = new Country(curCountryName, curContinentName);
                         Main.worldCountriesMap.put(curCountryName, oneCountry);
 
@@ -70,8 +66,6 @@ public class  MapInitialization {
                             String nextAdjacentCountryName = curLineSplitArray[i];
                             oneCountry.addToAdjacentCountryNameList(nextAdjacentCountryName);
                         }
-                    } else {
-                        continentSeqIndx++;
                     }
                 }
             }
@@ -83,10 +77,13 @@ public class  MapInitialization {
      * print formatted world map
      */
     private static void printMapInformation() {
-        for(int i = 0; i < Main.worldContinentsList.size(); i++){
-            Continent curContinent = Main.worldContinentsList.get(i);
-            System.out.println("["+curContinent.getContinentName() +"]");
+        for (Map.Entry<String, Continent> entry : Main.worldContinentMap.entrySet()) {
+            Continent curContinent = entry.getValue();
+            String curContinentName = entry.getKey();
             ArrayList<String> countryNamesInContinent = curContinent.getContinentCountryNameList();
+
+            System.out.println("size: " + Main.worldContinentMap.size() + " >>>>>>>>>>>>>>>>>>>\n");
+            System.out.println("[" + curContinentName + "]");
             System.out.println(countryNamesInContinent + "\n");
         }
     }

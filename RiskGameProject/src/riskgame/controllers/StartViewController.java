@@ -18,14 +18,20 @@ import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.Player;
-import riskgame.model.Utils.*;
+import riskgame.model.Utils.InitMapGraph;
+import riskgame.model.Utils.ListviewRenderer;
+import riskgame.model.Utils.MapInitialization;
+import riskgame.model.Utils.PlayerInitialization;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * controller class for startview.fxml
+ *
  * @author WW
  */
 public class StartViewController {
@@ -57,10 +63,10 @@ public class StartViewController {
     //need modify the values in the tooltips of the buttons to match following threshold numbers
     private final int MAX_NUM_OF_PLAYERS = 8;
     private final int MIN_NUM_OF_PLAYERS = 2;
-
     private final String DEFAULT_MAP_PATH = "maps/World.map";
-    private IntegerProperty numOfPlayersProperty;
     private String mapPath;
+    private IntegerProperty numOfPlayersProperty;
+
     private boolean isMapInfoOn = false;
 
     /**
@@ -69,7 +75,6 @@ public class StartViewController {
      */
     public void initialize() {
         txf_playerNumbers.setText(Integer.toString(DEFAULT_NUM_OF_PLAYERS));
-        mapPath = "./maps/World.map";
 
         numOfPlayersProperty = new SimpleIntegerProperty(DEFAULT_NUM_OF_PLAYERS);
 
@@ -122,21 +127,22 @@ public class StartViewController {
      */
     @FXML
     public void clickLoadMap(ActionEvent actionEvent) throws IOException {
-        InitMapGraph.buildWorldMapGraph(DEFAULT_MAP_PATH);
+        mapPath = DEFAULT_MAP_PATH;
+
+        InitMapGraph.buildWorldMapGraph(mapPath);
 
         btn_loadMap.setVisible(false);
+        txf_mapPath.setEditable(false);
 
-        if (MapChecker.checkMapValidity(txf_mapPath.getText())){
-            displayWorldMap();
+        displayWorldMap(mapPath);
 
-            if (!btn_confirmPlayerNum.isVisible()) {
-                btn_infoSwitcher.setVisible(true);
-                btn_infoSwitcher.setText("Players Info");
-                btn_nextStep.setVisible(true);
+        if (!btn_confirmPlayerNum.isVisible()) {
+            btn_infoSwitcher.setVisible(true);
+            btn_infoSwitcher.setText("Players Info");
+            btn_nextStep.setVisible(true);
 
-                if (Main.playersList.isEmpty()) {
-                    PlayerInitialization.initPlayers();
-                }
+            if (Main.playersList.isEmpty()) {
+                PlayerInitialization.initPlayers();
             }
         }
     }
@@ -144,13 +150,12 @@ public class StartViewController {
     /**
      * @throws IOException map file not found
      */
-    private void displayWorldMap() throws IOException {
+    private void displayWorldMap(String path) throws IOException {
         if (Main.worldCountriesMap.isEmpty()) {
-           // MapInitialization.buildWorldMap(DEFAULT_MAP_PATH);
+
+            System.out.println("enter building new world map----------------------");
+            MapInitialization.buildWorldMap(path);
         }
-
-
-
 
         hbx_infoDisplayHbox.getChildren().clear();
         txf_mapPromptInfo.setText("World Map");
@@ -159,13 +164,14 @@ public class StartViewController {
         ArrayList<ListView<String>> mapListviews = new ArrayList<>();
 
         double hboxPaneWidth = hbx_infoDisplayHbox.getWidth();
-        double avgListviewWidth = hboxPaneWidth / Main.worldContinentsList.size();
+        double avgListviewWidth = hboxPaneWidth / Main.worldContinentMap.size();
 
-        for (int i = 0; i < Main.worldContinentsList.size(); i++) {
-            Continent curContinent = Main.worldContinentsList.get(i);
+        for (Map.Entry<String, Continent> entry: Main.worldContinentMap.entrySet()) {
+            Continent curContinent = entry.getValue();
+            String curContinentName = entry.getKey();
 
             ObservableList<String> datalist = FXCollections.observableArrayList();
-            datalist.add(curContinent.getContinentName());
+            datalist.add(curContinentName);
             datalist.add("");
             datalist.addAll(curContinent.getContinentCountryNameList());
 
@@ -191,7 +197,6 @@ public class StartViewController {
         curStage.setScene(reinforceScene);
 
         curStage.show();
-
     }
 
     /**
@@ -211,7 +216,6 @@ public class StartViewController {
             displayPlayerInfo();
             btn_nextStep.setVisible(true);
         }
-
     }
 
     /**
@@ -263,7 +267,7 @@ public class StartViewController {
             displayPlayerInfo();
         } else {
             btn_infoSwitcher.setText("Players Info");
-            displayWorldMap();
+            displayWorldMap(mapPath);
         }
     }
 
@@ -293,6 +297,8 @@ public class StartViewController {
         Main.playersList = new ArrayList<>();
         Main.curRoundPlayerIndex = 0;
         Main.worldCountriesMap = new HashMap<>();
-        Main.worldContinentsList = new ArrayList<>();
+        Main.worldContinentMap = new LinkedHashMap<>();
     }
+
+
 }

@@ -1,6 +1,7 @@
 package riskgame.model.BasicClass;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * singleton class for world map
@@ -11,13 +12,13 @@ public enum GraphSingleton {
      */
     INSTANCE;
 
-    private HashMap<String, GraphNode> instance;
+    private LinkedHashMap<String, GraphNode> instance;
 
     GraphSingleton(){
-        instance = new HashMap<>();
+        instance = new LinkedHashMap<>();
     }
 
-    public HashMap<String, GraphNode> getInstance(){
+    public LinkedHashMap<String, GraphNode> getInstance(){
         return this.instance;
     }
 

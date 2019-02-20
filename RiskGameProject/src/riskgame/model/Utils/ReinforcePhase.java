@@ -57,8 +57,9 @@ public class ReinforcePhase {
      */
     public static ArrayList<String> getContinentNameList() {
         ArrayList<String> result = new ArrayList<>();
-        for (Continent continent : Main.worldContinentsList) {
-            String curContinentName = continent.getContinentName();
+        for (Map.Entry<String, Continent> entry : Main.worldContinentMap.entrySet()) {
+            Continent curContinent = entry.getValue();
+            String curContinentName = entry.getKey();
             result.add(curContinentName);
         }
         return result;
