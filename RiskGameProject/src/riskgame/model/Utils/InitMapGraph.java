@@ -11,8 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class InitMapGraph {
-    private static final String CONTINENT_HEADER_STRING = "Continents";
-    private static final String COUNTRY_HEADER_STRING = "Territories";
+    protected static final String CONTINENT_HEADER_STRING = "[Continents]";
+    protected static final String COUNTRY_HEADER_STRING = "[Territories]";
     private static final int COORDINATE_X_POSITION = 1;
     private static final int COORDINATE_Y_POSITION = 2;
     private static final int CONTINENT_POSITION = 3;
