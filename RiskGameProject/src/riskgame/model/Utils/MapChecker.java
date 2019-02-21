@@ -1,18 +1,29 @@
 package riskgame.model.Utils;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import javafx.scene.control.Alert;
+
+import java.io.*;
 import java.util.ArrayList;
 
 public class MapChecker {
 
-    public static boolean checkMapValidity(String path) throws IOException, NumberFormatException {
+    public static boolean checkMapValidity(String path) throws NumberFormatException, IOException {
         boolean isContinentFound = false;
         boolean isTerritoriesFound = false;
         ArrayList continentsNames = new ArrayList<String>();
 
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
+        BufferedReader bufferedReader = null;
+
+        System.out.println(new File(path).getAbsolutePath());
+
+        try {
+            bufferedReader = new BufferedReader(new FileReader(path));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Map file invalid, please select another one!");
+            alert.showAndWait();
+        }
         String line;
         while ((line = bufferedReader.readLine()) != null) {
             if (line.contains(InitMapGraph.CONTINENT_HEADER_STRING)) {

@@ -79,8 +79,8 @@ public class AttackViewController implements Initializable {
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-        Pane fortificaionPane = new FXMLLoader(getClass().getResource("../view/FortificationView.fxml")).load();
-        Scene fortificationScene = new Scene(fortificaionPane, 1200, 900);
+        Pane fortificationPane = new FXMLLoader(getClass().getResource("../view/FortificationView.fxml")).load();
+        Scene fortificationScene = new Scene(fortificationPane, 1200, 900);
 
         curStage.setScene(fortificationScene);
 

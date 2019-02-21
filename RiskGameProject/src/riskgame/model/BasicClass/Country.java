@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-
-
+/**
+ * class for storing related information of a country
+ */
 public class Country extends Observable {
     private final String countryName;
     private String continentName;
@@ -20,15 +21,6 @@ public class Country extends Observable {
      * @param countryName string of a country name
      */
     public Country(String countryName) {
-        this.countryName = countryName;
-        this.continentName = null;
-        this.coordinateX = "";
-        this.coordinateY = "";
-        this.countryOwnerIndex = -1;
-        this.countryArmyNumber = 1;
-    }
-
-    public Country(String countryName, String continentName) {
         this.countryName = countryName;
         this.continentName = null;
         this.coordinateX = "";

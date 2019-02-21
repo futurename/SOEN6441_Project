@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -22,6 +23,7 @@ import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InitMapGraph;
 import riskgame.model.Utils.InitPlayers;
 import riskgame.model.Utils.ListviewRenderer;
+import riskgame.model.Utils.MapChecker;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,7 +35,7 @@ import java.util.Map;
  *
  * @author WW
  */
-@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+
 public class StartViewController {
     @FXML
     private TextField txf_mapPath;
@@ -64,6 +66,7 @@ public class StartViewController {
     private static final String DEFAULT_MAP_PATH = "maps/World.map";
     private String mapPath;
     private IntegerProperty numOfPlayersProperty;
+    private int inputCounter = 3;
 
     private boolean isMapInfoOn = false;
 
@@ -125,24 +128,41 @@ public class StartViewController {
      */
     @FXML
     public void clickLoadMap(ActionEvent actionEvent) throws IOException {
-        mapPath = DEFAULT_MAP_PATH;
-
-        InitMapGraph.buildWorldMapGraph(mapPath);
-
-        btn_loadMap.setVisible(false);
-        txf_mapPath.setEditable(false);
-
-        displayWorldMap(mapPath);
-
-        if (!btn_confirmPlayerNum.isVisible()) {
-            btn_infoSwitcher.setVisible(true);
-            btn_infoSwitcher.setText("Players Info");
-            btn_nextStep.setVisible(true);
-
-            if (Main.playersList.isEmpty()) {
-                InitPlayers.initPlayers();
+        mapPath = txf_mapPath.getText();
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        if (inputCounter > 0) {
+            if (!MapChecker.checkMapValidity(mapPath)) {
+                alert.setContentText("Map file invalid, please select another one!\nCounter: " + inputCounter);
+                alert.showAndWait();
+                txf_mapPath.setText(DEFAULT_MAP_PATH);
             }
         }
+        if (inputCounter == 0){
+            alert.setContentText("Use default map!");
+            alert.showAndWait();
+            mapPath = DEFAULT_MAP_PATH;
+        }
+        if (MapChecker.checkMapValidity(mapPath)) {
+            InitMapGraph.buildWorldMapGraph(mapPath);
+
+            btn_loadMap.setVisible(false);
+            txf_mapPath.setEditable(false);
+
+            displayWorldMap(mapPath);
+
+            if (!btn_confirmPlayerNum.isVisible()) {
+                btn_infoSwitcher.setVisible(true);
+                btn_infoSwitcher.setText("Players Info");
+                btn_nextStep.setVisible(true);
+
+                if (Main.playersList.isEmpty()) {
+                    InitPlayers.initPlayers();
+                }
+            }
+        }
+
+        System.out.println(txf_mapPath.getText() + ", " + MapChecker.checkMapValidity(mapPath));
+        inputCounter--;
     }
 
     /**
@@ -162,7 +182,7 @@ public class StartViewController {
         double hboxPaneWidth = hbx_infoDisplayHbox.getWidth();
         double avgListviewWidth = hboxPaneWidth / Main.worldContinentMap.size();
 
-        for (Map.Entry<String, Continent> entry: Main.worldContinentMap.entrySet()) {
+        for (Map.Entry<String, Continent> entry : Main.worldContinentMap.entrySet()) {
             Continent curContinent = entry.getValue();
             String curContinentName = entry.getKey();
 
@@ -274,7 +294,6 @@ public class StartViewController {
     @FXML
     public void clickReset(ActionEvent actionEvent) throws IOException {
         resetStaticVariables();
-
         Stage startviewStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/startview.fxml"));

@@ -1,7 +1,6 @@
 package riskgame.model.Utils;
 
 import riskgame.Main;
-import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.Player;
 
@@ -20,7 +19,7 @@ public class InitPlayers {
      * create and initialize all the player instances
      */
     public static void initPlayers() {
-        ArrayList<String> forAllocatesCountryNameList = buildAllocatesCountryNameList();
+        ArrayList<String> forAllocatesCountryNameList = generateUnallocatedNameList();
 
         for (int playerIndex = 0; playerIndex < Main.totalNumOfPlayers; playerIndex++) {
             Player onePlayer = new Player(playerIndex);
@@ -33,12 +32,11 @@ public class InitPlayers {
     /**
      * @return an arraylist of all country names
      */
-    private static ArrayList<String> buildAllocatesCountryNameList() {
+    private static ArrayList<String> generateUnallocatedNameList() {
         ArrayList<String> result = new ArrayList<>();
         for(Map.Entry<String, GraphNode> entry: Main.graphSingleton.entrySet()){
             GraphNode curNode = entry.getValue();
             String curCountryName = entry.getKey();
-
             result.add(curCountryName);
         }
         return result;

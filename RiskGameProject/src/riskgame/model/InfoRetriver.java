@@ -39,6 +39,7 @@ public class InfoRetriver {
         return countryDistributionMap;
     }
 
+
     /**
      * @param player a player instance
      * @return an ObservableList of the player's country names

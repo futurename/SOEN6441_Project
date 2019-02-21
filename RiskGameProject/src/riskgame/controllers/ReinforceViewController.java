@@ -2,7 +2,6 @@ package riskgame.controllers;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,8 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.StackedBarChart;
 import javafx.scene.control.*;
@@ -24,7 +21,7 @@ import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
-import riskgame.model.Utils.ReinforcePhase;
+import riskgame.model.ReinforcePhase;
 
 import java.io.IOException;
 import java.net.URL;
@@ -68,8 +65,8 @@ public class ReinforceViewController implements Initializable {
     @FXML
     private Label lbl_countriesInfo;
 
-    /**     *
-     * @param location default value
+    /**
+     * @param location  default value
      * @param resources default value
      */
     @Override
@@ -84,7 +81,7 @@ public class ReinforceViewController implements Initializable {
 
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> cur player: " + playerIndex);
 
-        lbl_playerInfo.setText("Player : " +playerIndex);
+        lbl_playerInfo.setText("Player : " + playerIndex);
 
         Player curPlayer = Main.playersList.get(playerIndex);
         Color curPlayerColor = curPlayer.getPlayerColor();
@@ -121,15 +118,15 @@ public class ReinforceViewController implements Initializable {
 
     /**
      * @param sbc_occupationRatio display a stack bar chart that shows quantity of conquered country by the current player and<br/>
-     *        total amount of country in each continent
+     *                            total amount of country in each continent
      */
     private void displayStackedBarChart(StackedBarChart sbc_occupationRatio) {
         //final CategoryAxis xAxis = new CategoryAxis();
         //final NumberAxis yAxis = new NumberAxis();
 
-       // ArrayList<String> continentNameList = ReinforcePhase.getContinentNameList();
+        // ArrayList<String> continentNameList = ReinforcePhase.getContinentNameList();
 
-       // xAxis.setCategories(FXCollections.observableArrayList(continentNameList));
+        // xAxis.setCategories(FXCollections.observableArrayList(continentNameList));
     }
 
     /**

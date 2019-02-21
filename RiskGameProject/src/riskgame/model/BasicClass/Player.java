@@ -1,11 +1,15 @@
 package riskgame.model.BasicClass;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 
-public class Player {
+public class Player extends Observable {
     private static final int DEFAULT_DIVISION_FACTOR = 3;
 
     private final int playerIndex;
@@ -53,4 +57,5 @@ public class Player {
     public void addToOwnedCountryNameList(String countryName) {
         this.ownedCountryNameList.add(countryName);
     }
+
 }

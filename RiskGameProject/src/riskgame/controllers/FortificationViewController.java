@@ -27,7 +27,7 @@ public class FortificationViewController {
     @FXML
     private Label lbl_playerInfo;
     @FXML
-    private Label lbl_MaxArmyNumber;
+    private Label lbl_maxArmyNumber;
     @FXML
     private Label lbl_deployArmyNumber;
     @FXML

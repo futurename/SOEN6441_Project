@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapeditor.controller.MapEditorEditController">
+   <children>
+      <Text fx:id="txt_OMEtitle" layoutX="499.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OldMapEdit">
+         <font>
+            <Font size="40.0" />
+         </font></Text>
+      <Label fx:id="lab_MapPath" layoutX="258.0" layoutY="285.0" text="MapPath">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txf_defaultMapPath" layoutX="513.0" layoutY="289.0" promptText="./maps/World.map" />
+      <Button fx:id="btn_MapSelect" layoutX="843.0" layoutY="285.0" mnemonicParsing="false" text="Select">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
