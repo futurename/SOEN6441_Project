@@ -1,5 +1,7 @@
 package riskgame.model.BasicClass;
 
+import riskgame.Main;
+
 import java.util.ArrayList;
 
 /**
@@ -84,6 +86,9 @@ public class GraphNode {
      * @return list of all reachable countries the owner has
      */
     public ArrayList<Country> BreathFirstSearch(){
+
+
+        System.out.println("BFS");
         return null;
     };
 
