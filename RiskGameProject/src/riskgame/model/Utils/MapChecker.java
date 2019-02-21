@@ -11,6 +11,7 @@ public class MapChecker {
         boolean isContinentFound = false;
         boolean isTerritoriesFound = false;
         ArrayList continentsNames = new ArrayList<String>();
+        Alert alert = new Alert(Alert.AlertType.WARNING);
 
         BufferedReader bufferedReader = null;
 
@@ -20,7 +21,7 @@ public class MapChecker {
             bufferedReader = new BufferedReader(new FileReader(path));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.WARNING);
+
             alert.setContentText("Map file invalid, please select another one!");
             alert.showAndWait();
         }
@@ -33,12 +34,14 @@ public class MapChecker {
                         if (!checkContinentCountInteger(line, continentsNames)) {
                             return false;
                         }
-                    } else return false;
+                    } else {
+                        return false;
+                    }
                 }
             } else if (line.contains(InitMapGraph.COUNTRY_HEADER_STRING)) {
                 isTerritoriesFound = true;
-                while ((line = bufferedReader.readLine()) != null) {
-                    if (line.length() != 0 && line.contains(",")) {
+                while ((line = bufferedReader.readLine()) != null && line.length() != 0) {
+                    if (line.contains(",")) {
                         if (!checkTerritoriesFormat(line, continentsNames)) {
                             return false;
                         }
@@ -67,19 +70,23 @@ public class MapChecker {
     private static boolean checkTerritoriesFormat(String territoriesLine, ArrayList<String> continents) {
         String[] splitedLine = territoriesLine.split(",");
         if (splitedLine.length < 5) {
+            System.out.println("1");
             return false;
         }
         try {
             Integer.parseInt(splitedLine[1]);
             Integer.parseInt(splitedLine[2]);
         } catch (NumberFormatException e) {
+            System.out.println("2");
             return false;
         }
         if (!continents.contains(splitedLine[3])) {
+            System.out.println("3");
             return false;
         }
-        for (int i = 3; i < splitedLine.length; i++) {
+        for (int i = 4; i < splitedLine.length; i++) {
             if (continents.contains(splitedLine[i])) {
+                System.out.println("44");
                 return false;
             }
         }

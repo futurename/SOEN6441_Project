@@ -6,7 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import riskgame.model.BasicClass.*;
+import riskgame.model.Utils.MapChecker;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +32,12 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception{
+        String path = "maps/World.map";
+        File file = new File(path);
+        System.out.println("path: " + file.getAbsolutePath());
+        System.out.println("check map: " + MapChecker.checkMapValidity(path));
+
+
         Pane root = FXMLLoader.load(getClass().getResource("view/startview.fxml"));
 
 
@@ -47,6 +55,10 @@ public class Main extends Application {
      * @throws IOException launch fails
      */
     public static void main(String[] args) throws IOException {
+
+
+
+
         launch(args);
     }
 }
