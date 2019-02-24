@@ -6,8 +6,16 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class MapChecker {
+    private static final int NO_ERROR = 9527;
+    private static final int ERROR_TYPE_NO_DESCRIPTOR = 6324;
+    private static final int ERROR_TYPE_NO_SEPARATOR = 605;
+    private static final int ERROR_TYPE_COORDINATE_NUMBER_FORMAT = 604;
+    private static final int ERROR_TYPE_CONTINENT_NUMBER_FORMAT = 607;
+    private static final int ERROR_TYPE_COUNTRY_NAME_INVALID = 609;
+    private static final int ERROR_TYPE_CONTINENT_NOT_STATED = 608;
+    private static final int ERROR_TYPE_EMPTY_CONTINENT = 603;
 
-    public static boolean checkMapValidity(String path) throws NumberFormatException, IOException {
+    public static int checkMapValidity(String path) throws NumberFormatException, IOException {
         boolean isContinentFound = false;
         boolean isTerritoriesFound = false;
         ArrayList continentsNames = new ArrayList<String>();
@@ -31,66 +39,68 @@ public class MapChecker {
                 isContinentFound = true;
                 while ((line = bufferedReader.readLine()).length() != 0) {
                     if (line.contains("=")) {
-                        if (!checkContinentCountInteger(line, continentsNames)) {
-                            return false;
+                        int status = checkContinentCountInteger(line, continentsNames);
+                        if (status != NO_ERROR) {
+                            return status;
                         }
                     } else {
-                        return false;
+                        return ERROR_TYPE_NO_SEPARATOR;
                     }
                 }
             } else if (line.contains(InitMapGraph.COUNTRY_HEADER_STRING)) {
                 isTerritoriesFound = true;
                 while ((line = bufferedReader.readLine()) != null && line.length() != 0) {
                     if (line.contains(",")) {
-                        if (!checkTerritoriesFormat(line, continentsNames)) {
-                            return false;
+                        int status = checkTerritoriesFormat(line, continentsNames);
+                        if (status != NO_ERROR) {
+                            return status;
                         }
                     } else {
-                        return false;
+                        return ERROR_TYPE_NO_DESCRIPTOR;
                     }
                 }
             }
         }
         bufferedReader.close();
-        return (isContinentFound && isTerritoriesFound);
+        if (!(isContinentFound && isTerritoriesFound)){
+            return ERROR_TYPE_NO_DESCRIPTOR;
+        }else {
+            return NO_ERROR;
+        }
     }
 
-    private static boolean checkContinentCountInteger(String continentLine, ArrayList<String> continents) {
+    private static int checkContinentCountInteger(String continentLine, ArrayList<String> continents) {
         String[] splitedLine = continentLine.split("=");
         try {
             Integer.parseInt(splitedLine[1]);
         } catch (NumberFormatException e) {
-            return false;
+            return ERROR_TYPE_CONTINENT_NUMBER_FORMAT;
         } finally {
             continents.add((String) splitedLine[0]);
         }
-        return true;
+        return NO_ERROR;
     }
 
-    private static boolean checkTerritoriesFormat(String territoriesLine, ArrayList<String> continents) {
+    private static int checkTerritoriesFormat(String territoriesLine, ArrayList<String> continents) {
         String[] splitedLine = territoriesLine.split(",");
         if (splitedLine.length < 5) {
-            System.out.println("1");
-            return false;
+            return ERROR_TYPE_EMPTY_CONTINENT;
         }
         try {
             Integer.parseInt(splitedLine[1]);
             Integer.parseInt(splitedLine[2]);
         } catch (NumberFormatException e) {
-            System.out.println("2");
-            return false;
+            return ERROR_TYPE_COORDINATE_NUMBER_FORMAT;
         }
         if (!continents.contains(splitedLine[3])) {
-            System.out.println("3");
-            return false;
+            return ERROR_TYPE_COUNTRY_NAME_INVALID;
         }
         for (int i = 4; i < splitedLine.length; i++) {
             if (continents.contains(splitedLine[i])) {
-                System.out.println("44");
-                return false;
+                return ERROR_TYPE_CONTINENT_NOT_STATED;
             }
         }
-        return true;
+        return NO_ERROR;
     }
 
 
