@@ -1,15 +1,16 @@
 package riskgame.model.BasicClass;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.value.ObservableValue;
+
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
+import riskgame.Main;
+import riskgame.model.BasicClass.Observer.CountryChangedObserver;
 
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Observer;
 
 
-public class Player extends Observable {
+public class Player {
     private static final int DEFAULT_DIVISION_FACTOR = 3;
 
     private final int playerIndex;
@@ -17,10 +18,8 @@ public class Player extends Observable {
     private ArrayList<Card> cardsList;
     private ArrayList<String> ownedCountryNameList;
     private Color playerColor;
+    private CountryChangedObserver countryChangedObserver;
 
-    public Color getPlayerColor() {
-        return playerColor;
-    }
 
     public Player(int playerIndex) {
         this.playerIndex = playerIndex;
@@ -28,6 +27,11 @@ public class Player extends Observable {
         this.cardsList = new ArrayList<>();
         this.ownedCountryNameList = new ArrayList<>();
         this.playerColor = PlayerColor.values()[playerIndex].colorValue;
+        this.countryChangedObserver = new CountryChangedObserver(playerIndex);
+    }
+
+    public Color getPlayerColor() {
+        return playerColor;
     }
 
     public int getPlayerIndex() {
@@ -58,4 +62,7 @@ public class Player extends Observable {
         this.ownedCountryNameList.add(countryName);
     }
 
+    public CountryChangedObserver getCountryChangedObserver() {
+        return countryChangedObserver;
+    }
 }

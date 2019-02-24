@@ -1,6 +1,8 @@
 package riskgame.model.Utils;
 
+import com.sun.deploy.util.FXLoader;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
@@ -21,7 +23,7 @@ public class ListviewRenderer {
 
     /**
      * @param curPlayerIndex index of current player
-     * @param lsv_countries to be rendered ListView
+     * @param lsv_countries  to be rendered ListView
      */
     public static void getRenderedCountryItems(int curPlayerIndex, ListView lsv_countries) {
         lsv_countries.setCellFactory(cell -> {
@@ -38,7 +40,7 @@ public class ListviewRenderer {
                         int playerIndex;
                         if (curString.toLowerCase().contains("player")) {
                             playerIndex = Integer.parseInt(curStringSplitArray[1]);
-                        }else{
+                        } else {
                             playerIndex = curPlayerIndex;
                         }
                         Color curPlayerColor = Main.playersList.get(playerIndex).getPlayerColor();
@@ -56,8 +58,8 @@ public class ListviewRenderer {
     }
 
     /**
-     * @param playerIndex player's index number
-     * @param datalist an ObservableList from a ListView UI control
+     * @param playerIndex      player's index number
+     * @param datalist         an ObservableList from a ListView UI control
      * @param avgListviewWidth allowed width of this ListView UI control
      * @return a new rendered ListView for display in worldmap or player's information HBox pane
      */
@@ -78,11 +80,9 @@ public class ListviewRenderer {
                     if (item != null && !empty) {
                         text = new Text(item);
 
-                        //System.out.println(">>>>>>>>>>>>>>>>>>player index: " + playerIndex + ", totalplayernum: " + Main.totalNumOfPlayers);
-
-                        if(playerIndex != -1){
-                            if(playerIndex == Main.totalNumOfPlayers){
-                                if(getIndex() != 0 && getIndex() != 1){
+                        if (playerIndex != -1) {
+                            if (playerIndex == Main.totalNumOfPlayers) {
+                                if (getIndex() != 0 && getIndex() != 1) {
                                     String curCountryName = text.toString().split("\"")[1];
 
                                     Country curCountry = Main.graphSingleton.get(curCountryName).getCountry();
@@ -91,7 +91,7 @@ public class ListviewRenderer {
                                     Color curCountryColor = Main.playersList.get(curCountryOwnerIndex).getPlayerColor();
                                     text.setFill(curCountryColor);
                                 }
-                            }else{
+                            } else {
                                 Player curPlayer = Main.playersList.get(playerIndex);
                                 Color curPlayerColor = curPlayer.getPlayerColor();
                                 text.setFill(curPlayerColor);

@@ -83,21 +83,38 @@ public class GraphNode {
 
     /**
      * Breath first search
+     *
      * @return list of all reachable countries the owner has
      */
-    public ArrayList<Country> BreathFirstSearch(){
+    public ArrayList<Country> BreathFirstSearch() {
 
 
         System.out.println("BFS");
         return null;
-    };
+    }
+
 
     /**
      * Depth first search
+     *
      * @return list of all reachable countries the owner has
      */
-    public ArrayList<Country> DepthFirstSearch(){
-        return null;
-    };
+    public ArrayList<Country> DepthFirstSearch(int playerIndex) {
+        ArrayList<Country> result = new ArrayList<>();
+        this.isVisited = true;
+        ArrayList<Country> adjacentList = getAdjacentCountryList();
+
+        for(Country country: adjacentList){
+            GraphNode curGraphNode = Main.graphSingleton.get(country.getCountryName());
+            while(curGraphNode.getCountry().getCountryOwnerIndex() == playerIndex && !curGraphNode.isVisited){
+                result.add(curGraphNode.getCountry());
+                curGraphNode.setVisited(true);
+                result.addAll(DepthFirstSearch(playerIndex));
+            }
+        }
+        return result;
+    }
+
+
 
 }
