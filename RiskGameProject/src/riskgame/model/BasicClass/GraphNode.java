@@ -95,24 +95,20 @@ public class GraphNode {
 
 
     /**
-     * Depth first search
+     * Depth first search for getting all reachable countries the player owns from the selected country
      *
-     * @return list of all reachable countries the owner has
      */
-    public ArrayList<Country> getReachableCountryListDFS(int playerIndex) {
-        ArrayList<Country> result = new ArrayList<>();
-        this.isVisited = true;
+    public void getReachableCountryListDFS(int playerIndex, Country curCountry, ArrayList<Country> list) {
         ArrayList<Country> adjacentList = getAdjacentCountryList();
 
         for(Country country: adjacentList){
             GraphNode curGraphNode = Main.graphSingleton.get(country.getCountryName());
-            while(curGraphNode.getCountry().getCountryOwnerIndex() == playerIndex && !curGraphNode.isVisited){
-                result.add(curGraphNode.getCountry());
+            if(curGraphNode.getCountry().getCountryOwnerIndex() == playerIndex && !curGraphNode.isVisited){
+                list.add(curGraphNode.getCountry());
                 curGraphNode.setVisited(true);
-                result.addAll(getReachableCountryListDFS(playerIndex));
+                getReachableCountryListDFS(playerIndex,country,list);
             }
         }
-        return result;
     }
 
 

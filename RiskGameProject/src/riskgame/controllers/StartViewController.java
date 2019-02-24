@@ -131,7 +131,7 @@ public class StartViewController {
         mapPath = txf_mapPath.getText();
         Alert alert = new Alert(Alert.AlertType.WARNING);
         if (inputCounter > 0) {
-            if (!MapChecker.checkMapValidity(mapPath)) {
+            if (!MapChecker.isMapValid(mapPath)) {
                 alert.setContentText("Map file invalid, please select another one!\nCounter: " + inputCounter);
                 alert.showAndWait();
                 txf_mapPath.setText(DEFAULT_MAP_PATH);
@@ -142,7 +142,7 @@ public class StartViewController {
             alert.showAndWait();
             mapPath = DEFAULT_MAP_PATH;
         }
-        if (MapChecker.checkMapValidity(mapPath)) {
+        if (MapChecker.isMapValid(mapPath)) {
             InitMapGraph.buildWorldMapGraph(mapPath);
 
             btn_loadMap.setVisible(false);

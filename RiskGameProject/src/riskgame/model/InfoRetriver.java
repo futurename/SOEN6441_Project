@@ -115,12 +115,13 @@ public class InfoRetriver {
 
     public static ObservableList<String> getReachableCountryObservableList(int playerIndex, String selectedCountryName) {
         ArrayList<String> updatedCountryInfoList = new ArrayList<>();
-        ArrayList<Country> countryList;
+        ArrayList<Country> countryList = new ArrayList<>();
 
         GraphNode selectedGraphNode = Main.graphSingleton.get(selectedCountryName);
         GraphSingleton.INSTANCE.resetGraphVisitedFlag();
+        Country selectedCountry = selectedGraphNode.getCountry();
 
-        countryList = selectedGraphNode.getReachableCountryListDFS(playerIndex);
+        selectedGraphNode.getReachableCountryListDFS(playerIndex, selectedCountry,countryList);
 
         for(Country country: countryList){
             String updatedCountryInfoString = getPrintOneCountryInfo(country.getCountryName(), country.getCountryArmyNumber());
