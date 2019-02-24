@@ -5,6 +5,12 @@ import javafx.scene.control.Alert;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Map checker examines the map format before display it.
+ * @date Feb 24
+ * @since 1.0
+ * @version 1.0
+ */
 public class MapChecker {
     private static final int NO_ERROR = 9527;
     private static final int ERROR_TYPE_NO_DESCRIPTOR = 6324;
@@ -15,7 +21,24 @@ public class MapChecker {
     private static final int ERROR_TYPE_CONTINENT_NOT_STATED = 608;
     private static final int ERROR_TYPE_EMPTY_CONTINENT = 603;
 
-    public static int checkMapValidity(String path) throws NumberFormatException, IOException {
+    /**
+     * Wrapper function for checkMapValidity()
+     * @param path
+     * @throws IOException
+     * @see MapChecker#checkMapValidity
+     */
+    public static boolean isMapValid(String path) throws IOException {
+        if (checkMapValidity(path) == NO_ERROR){
+            return true;
+        }else return false;
+    }
+    /**
+     * static method for outer call
+     * @param path map path
+     * @return error type
+     * @throws IOException if path invalid
+     */
+    public static int checkMapValidity(String path) throws IOException {
         boolean isContinentFound = false;
         boolean isTerritoriesFound = false;
         ArrayList continentsNames = new ArrayList<String>();
@@ -56,7 +79,7 @@ public class MapChecker {
                             return status;
                         }
                     } else {
-                        return ERROR_TYPE_NO_DESCRIPTOR;
+                        return ERROR_TYPE_NO_SEPARATOR;
                     }
                 }
             }
@@ -69,6 +92,12 @@ public class MapChecker {
         }
     }
 
+    /**
+     * The number of the continent should be a integer at the description.
+     * @param continentLine a read-in line
+     * @param continents read in all continents stated
+     * @return error type
+     */
     private static int checkContinentCountInteger(String continentLine, ArrayList<String> continents) {
         String[] splitedLine = continentLine.split("=");
         try {
@@ -81,6 +110,12 @@ public class MapChecker {
         return NO_ERROR;
     }
 
+    /**
+     * Territories description should be formated.
+     * @param territoriesLine a read-in line
+     * @param continents all pre-stated continents at continent description.
+     * @return error type
+     */
     private static int checkTerritoriesFormat(String territoriesLine, ArrayList<String> continents) {
         String[] splitedLine = territoriesLine.split(",");
         if (splitedLine.length < 5) {
