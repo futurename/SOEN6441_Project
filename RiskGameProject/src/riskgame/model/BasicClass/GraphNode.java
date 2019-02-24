@@ -99,7 +99,7 @@ public class GraphNode {
      *
      * @return list of all reachable countries the owner has
      */
-    public ArrayList<Country> DepthFirstSearch(int playerIndex) {
+    public ArrayList<Country> getReachableCountryListDFS(int playerIndex) {
         ArrayList<Country> result = new ArrayList<>();
         this.isVisited = true;
         ArrayList<Country> adjacentList = getAdjacentCountryList();
@@ -109,7 +109,7 @@ public class GraphNode {
             while(curGraphNode.getCountry().getCountryOwnerIndex() == playerIndex && !curGraphNode.isVisited){
                 result.add(curGraphNode.getCountry());
                 curGraphNode.setVisited(true);
-                result.addAll(DepthFirstSearch(playerIndex));
+                result.addAll(getReachableCountryListDFS(playerIndex));
             }
         }
         return result;

@@ -120,7 +120,7 @@ public class InfoRetriver {
         GraphNode selectedGraphNode = Main.graphSingleton.get(selectedCountryName);
         GraphSingleton.INSTANCE.resetGraphVisitedFlag();
 
-        countryList = selectedGraphNode.DepthFirstSearch(playerIndex);
+        countryList = selectedGraphNode.getReachableCountryListDFS(playerIndex);
 
         for(Country country: countryList){
             String updatedCountryInfoString = getPrintOneCountryInfo(country.getCountryName(), country.getCountryArmyNumber());
