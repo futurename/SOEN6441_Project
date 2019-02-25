@@ -22,6 +22,21 @@ public class MapChecker {
     private static final int ERROR_TYPE_EMPTY_CONTINENT = 603;
 
     /**
+     * check map file path
+     * @param path map path
+     */
+    public static boolean isMapPathValid(String path) {
+        System.out.println(new File(path).getAbsolutePath());
+        try {
+            new FileReader(path);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Wrapper function for checkMapValidity()
      * @param path
      * @throws IOException
@@ -32,30 +47,22 @@ public class MapChecker {
             return true;
         }else return false;
     }
+
     /**
      * static method for outer call
      * @param path map path
      * @return error type
-     * @throws IOException if path invalid
+     * @throws IOException if buffered reader fails
      */
     public static int checkMapValidity(String path) throws IOException {
         boolean isContinentFound = false;
         boolean isTerritoriesFound = false;
         ArrayList continentsNames = new ArrayList<String>();
-        Alert alert = new Alert(Alert.AlertType.WARNING);
 
         BufferedReader bufferedReader = null;
-
         System.out.println(new File(path).getAbsolutePath());
+        bufferedReader = new BufferedReader(new FileReader(path));
 
-        try {
-            bufferedReader = new BufferedReader(new FileReader(path));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-
-            alert.setContentText("Map file invalid, please select another one!");
-            alert.showAndWait();
-        }
         String line;
         while ((line = bufferedReader.readLine()) != null) {
             if (line.contains(InitMapGraph.CONTINENT_HEADER_STRING)) {

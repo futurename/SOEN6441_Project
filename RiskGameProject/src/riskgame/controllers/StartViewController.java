@@ -124,12 +124,17 @@ public class StartViewController {
 
     /**
      * @param actionEvent load map to memeory
-     * @throws IOException map file not found
+     * @throws IOException when file reader fails
      */
     @FXML
     public void clickLoadMap(ActionEvent actionEvent) throws IOException {
-        mapPath = txf_mapPath.getText();
         Alert alert = new Alert(Alert.AlertType.WARNING);
+        mapPath = txf_mapPath.getText();
+        if (MapChecker.isMapPathValid(mapPath)){
+            alert.setContentText("Map file not exist!");
+            alert.showAndWait();
+            return;
+        }
         if (inputCounter > 0) {
             if (!MapChecker.isMapValid(mapPath)) {
                 alert.setContentText("Map file invalid, please select another one!\nCounter: " + inputCounter);
