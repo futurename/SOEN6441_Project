@@ -45,6 +45,16 @@ public class MEMain extends Application {
         }
         arrMECountry.add(meCountry);
     }
+
+    public static void deleteContinent(String continentName){
+        for(int i = 0;i<arrMEContinent.size();i++){
+            if(continentName.equals(arrMEContinent.get(i).getContinentName())){
+                arrMEContinent.remove(i);
+                break;
+            }
+        }
+    }
+
     public static void main(String[] agrs) throws Exception{
         launch(agrs);
     }

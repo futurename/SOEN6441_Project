@@ -1,9 +1,17 @@
 package mapeditor.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import mapeditor.MEMain;
 
 public class MapEditorDeleteContinentController {
 
@@ -11,10 +19,10 @@ public class MapEditorDeleteContinentController {
     private Button btn_DeleteContinentOK;
 
     @FXML
-    private Label lab_DeleteContinentName;
+    private ComboBox<String> cbb_deleteContinentName;
 
     @FXML
-    private TextField txf_DeleteContinentName;
+    private Label lab_DeleteContinentName;
 
     @FXML
     private Button btn_DeleteContinentApply;
@@ -22,4 +30,29 @@ public class MapEditorDeleteContinentController {
     @FXML
     private Label lab_DeleteContinenttitle;
 
+    private String selectedContinentName;
+
+    public void initialize(){
+        for(int i = 0;i< MEMain.arrMEContinent.size();i++) {
+            cbb_deleteContinentName.getItems().add(MEMain.arrMEContinent.get(i).getContinentName());
+        }
+    }
+
+    @FXML
+    public void clickToApply(ActionEvent actionEvent) throws Exception{
+        selectedContinentName = cbb_deleteContinentName.getValue();
+        MEMain.deleteContinent(selectedContinentName);
+    }
+    @FXML
+
+    public void clickToOk(ActionEvent actionEvent) throws Exception{
+        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();
+        Scene reinforceScene = new Scene(reinforcePane,1200,900);
+
+        curStage.setScene(reinforceScene);
+
+        curStage.show();
+    }
 }

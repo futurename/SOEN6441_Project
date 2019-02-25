@@ -26,7 +26,7 @@
       </Label>
       <TextField fx:id="txf_AddContinentName" layoutX="567.0" layoutY="267.0" promptText="Asia" />
       <TextField fx:id="txf_ContinentBonus" layoutX="567.0" layoutY="351.0" promptText="7" />
-      <Button fx:id="btn_AddContinentApply" layoutX="360.0" layoutY="535.0" mnemonicParsing="false" text="Apply" />
-      <Button fx:id="btn_AddContinentOK" layoutX="634.0" layoutY="535.0" mnemonicParsing="false" text="OK" />
+      <Button fx:id="btn_AddContinentApply" layoutX="360.0" layoutY="535.0" mnemonicParsing="false" onAction="#clickToApply" text="Apply" />
+      <Button fx:id="btn_AddContinentOK" layoutX="634.0" layoutY="535.0" mnemonicParsing="false" onAction="#clickToOk" text="OK" />
    </children>
 </AnchorPane>
