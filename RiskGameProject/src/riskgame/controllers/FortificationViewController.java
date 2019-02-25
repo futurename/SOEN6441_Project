@@ -43,9 +43,9 @@ public class FortificationViewController {
     @FXML
     private ScrollBar scb_armyNbrAdjustment;
     @FXML
-    private ListView lsv_ownedCountries;
+    private ListView<Country> lsv_ownedCountries;
     @FXML
-    private ListView lsv_reachableCountry;
+    private ListView<Country> lsv_reachableCountry;
 
     private Player curPlayer;
     private Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -54,9 +54,9 @@ public class FortificationViewController {
         String playerInfo = "Player: " + Integer.toString(Main.curRoundPlayerIndex);
         lbl_playerInfo.setText(playerInfo);
         curPlayer = Main.playersList.get(Main.curRoundPlayerIndex);
-        lsv_ownedCountries.setItems(InfoRetriver.getPlayerCountryObservablelist(curPlayer));
+        lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
 
-        ListviewRenderer.getRenderedCountryItems(curPlayer.getPlayerIndex(), lsv_ownedCountries);
+        ListviewRenderer.renderCountryItems(lsv_ownedCountries);
 
         setCountryObservers();
     }
@@ -67,16 +67,17 @@ public class FortificationViewController {
         String selectedCountryName = curPlayer.getOwnedCountryNameList().get(selectedCountryIndex);
         Country selectedCountry = Main.graphSingleton.get(selectedCountryName).getCountry();
 
-        System.out.println("selected country name: " + selectedCountryName);
+        System.out.println("selected country name: " + selectedCountryName + ", army: " + selectedCountry.getCountryArmyNumber());
 
         if (selectedCountry.getCountryArmyNumber() < 2) {
             alert.setContentText("No enough army for fortification!");
             alert.showAndWait();
         } else {
 
-            ObservableList<String> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayer.getPlayerIndex(), selectedCountryName);
+            ObservableList<Country> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayer.getPlayerIndex(),
+                    selectedCountryName);
             lsv_reachableCountry.setItems(reachableCountryList);
-            ListviewRenderer.getRenderedCountryItems(curPlayer.getPlayerIndex(), lsv_reachableCountry);
+            ListviewRenderer.renderCountryItems(lsv_reachableCountry);
 
             updateDeploymentInfo(selectedCountry);
 
@@ -153,23 +154,9 @@ public class FortificationViewController {
 
             System.out.println("after move, selected: " + selectedCountryName + ": " + selectedCountry.getCountryArmyNumber() + ", target: " + selectedTargetCountryName + ": " + selecctedTargetCountry.getCountryArmyNumber());
 
-            updatedListView(selectedOwnedCountryIndex);
-
-            updateDeploymentInfo(selectedCountry);
-
+            lsv_ownedCountries.refresh();
+            lsv_reachableCountry.refresh();
         }
-    }
-
-    private void updatedListView(int selectedCountryIndex) {
-        lsv_ownedCountries.setItems(InfoRetriver.getPlayerCountryObservablelist(curPlayer));
-        ListviewRenderer.getRenderedCountryItems(curPlayer.getPlayerIndex(), lsv_ownedCountries);
-
-        String selectedCountryName = curPlayer.getOwnedCountryNameList().get(selectedCountryIndex);
-        Country selectedCountry = Main.graphSingleton.get(selectedCountryName).getCountry();
-
-        ObservableList<String> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayer.getPlayerIndex(), selectedCountryName);
-        lsv_reachableCountry.setItems(reachableCountryList);
-        ListviewRenderer.getRenderedCountryItems(curPlayer.getPlayerIndex(), lsv_reachableCountry);
     }
 
     private void updateDeploymentInfo(Country selectedCountry) {

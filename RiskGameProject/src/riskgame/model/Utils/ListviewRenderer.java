@@ -11,8 +11,11 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import riskgame.Main;
+import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
+
+import java.util.ArrayList;
 
 /**
  * model class that includes all renderer methods for generating required effects for listviews
@@ -21,34 +24,29 @@ import riskgame.model.BasicClass.Player;
  */
 public class ListviewRenderer {
 
-    /**
-     * @param curPlayerIndex index of current player
-     * @param lsv_countries  to be rendered ListView
-     */
-    public static void getRenderedCountryItems(int curPlayerIndex, ListView lsv_countries) {
+    public static void renderCountryItems(ListView<Country> lsv_countries) {
         lsv_countries.setCellFactory(cell -> {
-            return new ListCell<String>() {
+            return new ListCell<Country>() {
                 private Text text;
 
                 @Override
-                protected void updateItem(String item, boolean empty) {
+                protected void updateItem(Country item, boolean empty) {
                     super.updateItem(item, empty);
 
-                    if (item != null && !empty) {
-                        String curString = item.toString();
-                        String[] curStringSplitArray = curString.split(" ");
-                        int playerIndex;
-                        if (curString.toLowerCase().contains("player")) {
-                            playerIndex = Integer.parseInt(curStringSplitArray[1]);
-                        } else {
-                            playerIndex = curPlayerIndex;
-                        }
+                    if (item != null) {
+                        String countryName = item.getCountryName();
+                        int armyNumber = item.getCountryArmyNumber();
+                        int playerIndex = item.getCountryOwnerIndex();
+
+                        System.out.println(">>>in renderer, player:  " + playerIndex + ", countryname: " + countryName + ", army: " + armyNumber);
+
                         Color curPlayerColor = Main.playersList.get(playerIndex).getPlayerColor();
 
-                        text = new Text(item);
+                        text = new Text(item.getCountryName() + " : " + armyNumber);
                         text.setFill(curPlayerColor);
                         setGraphic(text);
-                    } else if (empty) {
+                    }
+                    if (empty) {
                         setText(null);
                         setGraphic(null);
                     }
@@ -57,7 +55,7 @@ public class ListviewRenderer {
         });
     }
 
-    /**
+     /**
      * @param playerIndex      player's index number
      * @param datalist         an ObservableList from a ListView UI control
      * @param avgListviewWidth allowed width of this ListView UI control

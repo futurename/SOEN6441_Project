@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import riskgame.Main;
+import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
@@ -57,8 +58,8 @@ public class AttackViewController implements Initializable {
      * @param curPlayer display all country names of the current player
      */
     private void initCountryListviewDisplay(Player curPlayer) {
-        lsv_ownedCountries.setItems(InfoRetriver.getPlayerCountryObservablelist(curPlayer));
-        ListviewRenderer.getRenderedCountryItems(Main.curRoundPlayerIndex,lsv_ownedCountries);
+        lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
+        ListviewRenderer.renderCountryItems(lsv_ownedCountries);
     }
 
     /**
@@ -70,10 +71,9 @@ public class AttackViewController implements Initializable {
 
         System.out.println("#############selected country index: " + countryIndex);
 
-        ObservableList datalist = InfoRetriver.getAdjacentCountryObservablelist(Main.curRoundPlayerIndex,countryIndex);
+        ObservableList<Country> datalist = InfoRetriver.getAdjacentCountryObservablelist(Main.curRoundPlayerIndex,countryIndex);
         lsv_adjacentCountries.setItems(datalist);
-
-        ListviewRenderer.getRenderedCountryItems(Main.curRoundPlayerIndex,lsv_adjacentCountries);
+        ListviewRenderer.renderCountryItems(lsv_adjacentCountries);
     }
 
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
