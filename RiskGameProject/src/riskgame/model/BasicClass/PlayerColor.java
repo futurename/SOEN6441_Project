@@ -18,7 +18,6 @@ public enum PlayerColor {
 
     public final Color colorValue;
 
-
     PlayerColor(Color colorValue) {
         this.colorValue = colorValue;
     }

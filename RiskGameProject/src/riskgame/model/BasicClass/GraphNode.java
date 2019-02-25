@@ -3,6 +3,7 @@ package riskgame.model.BasicClass;
 import riskgame.Main;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * @program: RiskGameProject
@@ -83,21 +84,56 @@ public class GraphNode {
 
     /**
      * Breath first search
+     *
      * @return list of all reachable countries the owner has
      */
-    public ArrayList<Country> BreathFirstSearch(){
+    public ArrayList<Country> getReachableCountryListBFS(int playerIndex) {
+        ArrayList<Country> result = new ArrayList<>();
+        ArrayList<Country> adjacentList = getAdjacentCountryList();
+
+        // Create a queue for BFS
+        LinkedList<Integer> queue = new LinkedList<Integer>();
+
+        // Mark the current node as visited and enqueue it
+        this.isVisited = true;
+        queue.add(playerIndex);
+
+        while(queue.size() != 0) {
+
+            playerIndex = queue.poll();
+
+            for(Country country: adjacentList){
+                GraphNode curGraphNode = Main.graphSingleton.get(country.getCountryName());
+                while(curGraphNode.getCountry().getCountryOwnerIndex() == playerIndex && !curGraphNode.isVisited){
+                    result.add(curGraphNode.getCountry());
+                    curGraphNode.setVisited(true);
+                    queue.add(curGraphNode.getCountry().getCountryOwnerIndex());
+                }
+            }
+        }
 
 
-        System.out.println("BFS");
-        return null;
-    };
+        return result;
+    }
+
 
     /**
-     * Depth first search
-     * @return list of all reachable countries the owner has
+     * Depth first search for getting all reachable countries the player owns from the selected country
+     *
      */
-    public ArrayList<Country> DepthFirstSearch(){
-        return null;
-    };
+    public void getReachableCountryListDFS(int playerIndex, Country curCountry, ArrayList<Country> list) {
+        ArrayList<Country> adjacentList = getAdjacentCountryList();
+
+        for(Country country: adjacentList){
+            GraphNode curGraphNode = Main.graphSingleton.get(country.getCountryName());
+            if(curGraphNode.getCountry().getCountryOwnerIndex() == playerIndex && !curGraphNode.isVisited){
+                list.add(curGraphNode.getCountry());
+                curGraphNode.setVisited(true);
+                getReachableCountryListDFS(playerIndex,country,list);
+            }
+        }
+    }
+
+
 
 }

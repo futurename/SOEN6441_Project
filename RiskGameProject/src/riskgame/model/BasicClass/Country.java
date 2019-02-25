@@ -1,19 +1,20 @@
 package riskgame.model.BasicClass;
 
-import java.util.ArrayList;
+import riskgame.model.BasicClass.Observable.CountryObservable;
+
 import java.util.Observable;
-import java.util.Observer;
 
 /**
  * class for storing related information of a country
  */
-public class Country extends Observable {
+public class Country {
     private final String countryName;
     private String continentName;
     private String coordinateX;
     private String coordinateY;
     private int countryOwnerIndex;
     private int countryArmyNumber;
+    private CountryObservable countryObservable;
 
     /**
      * constructor for class Country
@@ -27,6 +28,7 @@ public class Country extends Observable {
         this.coordinateY = "";
         this.countryOwnerIndex = -1;
         this.countryArmyNumber = 1;
+        this.countryObservable = new CountryObservable();
     }
 
     public String getContinentName() {
@@ -53,10 +55,6 @@ public class Country extends Observable {
         this.coordinateY = coordinateY;
     }
 
-    public void addCountryObserver(Observer observer) {
-        this.addObserver(observer);
-    }
-
     public String getCountryName() {
         return countryName;
     }
@@ -65,10 +63,13 @@ public class Country extends Observable {
         return countryOwnerIndex;
     }
 
+    public CountryObservable getCountryObservable() {
+        return countryObservable;
+    }
+
     public void setCountryOwnerIndex(int countryOwnerIndex) {
         this.countryOwnerIndex = countryOwnerIndex;
-        this.setChanged();
-        this.notifyObservers();
+
     }
 
     public int getCountryArmyNumber() {
@@ -80,8 +81,7 @@ public class Country extends Observable {
         if (this.countryArmyNumber >= 0) {
             this.countryArmyNumber += addedNumber;
             result = true;
-            this.setChanged();
-            this.notifyObservers();
+            this.countryObservable.notifyObservers(this.getCountryName());
         }
         return result;
     }
@@ -91,8 +91,7 @@ public class Country extends Observable {
         if (this.countryArmyNumber >= reducedNumber) {
             this.countryArmyNumber -= reducedNumber;
             result = true;
-            this.setChanged();
-            this.notifyObservers();
+            this.countryObservable.notifyObservers();
         }
         return result;
     }
@@ -101,4 +100,7 @@ public class Country extends Observable {
     public String toString() {
         return getCountryName() + " : " + getCountryArmyNumber();
     }
+
+
+
 }

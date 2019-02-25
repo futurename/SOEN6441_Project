@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.Observer.CountryChangedObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
@@ -26,6 +27,7 @@ import riskgame.model.ReinforcePhase;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
@@ -65,6 +67,8 @@ public class ReinforceViewController implements Initializable {
     @FXML
     private Label lbl_countriesInfo;
 
+    private Player curPlayer;
+
     /**
      * @param location  default value
      * @param resources default value
@@ -83,7 +87,10 @@ public class ReinforceViewController implements Initializable {
 
         lbl_playerInfo.setText("Player : " + playerIndex);
 
-        Player curPlayer = Main.playersList.get(playerIndex);
+        curPlayer = Main.playersList.get(playerIndex);
+
+        setCountryObservers();
+
         Color curPlayerColor = curPlayer.getPlayerColor();
         int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
         int curUndeployedArmy = ReinforcePhase.getStandardReinforceArmyNum(ownedCountryNum);
@@ -110,10 +117,18 @@ public class ReinforceViewController implements Initializable {
         scb_armyNbrAdjustment.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-
                 lbl_deployArmyCount.setText(Integer.toString(newValue.intValue()));
             }
         });
+    }
+
+    private void setCountryObservers() {
+        ArrayList<String> ownedCountryNameList = curPlayer.getOwnedCountryNameList();
+        CountryChangedObserver observer = curPlayer.getCountryChangedObserver();
+        for(String name: ownedCountryNameList){
+            Main.graphSingleton.get(name).getCountry().getCountryObservable().deleteObservers();
+            Main.graphSingleton.get(name).getCountry().getCountryObservable().addObserver(observer);
+        }
     }
 
     /**
@@ -164,7 +179,6 @@ public class ReinforceViewController implements Initializable {
 
         lsv_adjacentCountries.setItems(datalist);
         ListviewRenderer.getRenderedCountryItems(Main.curRoundPlayerIndex, lsv_adjacentCountries);
-
     }
 
     /**
@@ -174,7 +188,6 @@ public class ReinforceViewController implements Initializable {
     public void clickConfirmDeployment(ActionEvent actionEvent) {
         int selectedCountryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
         int undeloyedArmyCount = Integer.parseInt(lbl_undeployedArmy.getText());
-        Player curPlayer = Main.playersList.get(Main.curRoundPlayerIndex);
 
         if (selectedCountryIndex == -1) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -218,7 +231,6 @@ public class ReinforceViewController implements Initializable {
     private void updateCountryListview(Player player) {
         lsv_ownedCountries.setItems(InfoRetriver.getPlayerCountryObservablelist(player));
         ListviewRenderer.getRenderedCountryItems(Main.curRoundPlayerIndex, lsv_ownedCountries);
-
     }
 }
 

@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.GraphNode;
+import riskgame.model.BasicClass.GraphSingleton;
 import riskgame.model.BasicClass.Player;
 
 import java.util.ArrayList;
@@ -72,6 +74,8 @@ public class InfoRetriver {
         String selectedCountryName = countryList.get(countryIndex);
         ArrayList<Country> adjacentCountryList = Main.graphSingleton.get(selectedCountryName).getAdjacentCountryList();
 
+        System.out.println("adjacent country: " + adjacentCountryList);
+
         for (int i = 0; i < adjacentCountryList.size(); i++) {
             Country curAdjacentCountry = adjacentCountryList.get(i);
             String curAdjacentCountryName = curAdjacentCountry.getCountryName();
@@ -109,6 +113,23 @@ public class InfoRetriver {
         return oneCountryName + " : " + armyNum;
     }
 
+    public static ObservableList<String> getReachableCountryObservableList(int playerIndex, String selectedCountryName) {
+        ArrayList<String> updatedCountryInfoList = new ArrayList<>();
+        ArrayList<Country> countryList = new ArrayList<>();
+
+        GraphNode selectedGraphNode = Main.graphSingleton.get(selectedCountryName);
+        GraphSingleton.INSTANCE.resetGraphVisitedFlag();
+        Country selectedCountry = selectedGraphNode.getCountry();
+
+        selectedGraphNode.getReachableCountryListDFS(playerIndex, selectedCountry,countryList);
+
+        for(Country country: countryList){
+            String updatedCountryInfoString = getPrintOneCountryInfo(country.getCountryName(), country.getCountryArmyNumber());
+            updatedCountryInfoList.add(updatedCountryInfoString);
+        }
+
+        return FXCollections.observableArrayList(updatedCountryInfoList);
+    }
 }
 
 

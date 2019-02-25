@@ -1,6 +1,8 @@
 package riskgame.model.BasicClass;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
+
 
 /**
  * singleton class for world map
@@ -25,7 +27,9 @@ public enum GraphSingleton {
      * set @param isVisited to false in all graph nodes
      */
     public void resetGraphVisitedFlag(){
-
+       for(Map.Entry<String, GraphNode> entry: this.instance.entrySet()){
+           entry.getValue().setVisited(false);
+       }
     }
 
 }

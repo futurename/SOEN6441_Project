@@ -19,7 +19,7 @@
          </font>
       </Label>
       <TextField fx:id="txf_defaultMapPath" layoutX="513.0" layoutY="289.0" promptText="./maps/World.map" />
-      <Button fx:id="btn_MapSelect" layoutX="843.0" layoutY="285.0" mnemonicParsing="false" text="Select">
+      <Button fx:id="btn_MapSelect" layoutX="843.0" layoutY="285.0" mnemonicParsing="false" onAction="#selectPath" text="Select">
          <font>
             <Font size="19.0" />
          </font>
