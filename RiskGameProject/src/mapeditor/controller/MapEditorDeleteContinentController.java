@@ -13,6 +13,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import mapeditor.MEMain;
 
+import java.util.Collection;
+
 public class MapEditorDeleteContinentController {
 
     @FXML
@@ -33,9 +35,12 @@ public class MapEditorDeleteContinentController {
     private String selectedContinentName;
 
     public void initialize(){
+
+        cbb_deleteContinentName.getItems().clear();
         for(int i = 0;i< MEMain.arrMEContinent.size();i++) {
             cbb_deleteContinentName.getItems().add(MEMain.arrMEContinent.get(i).getContinentName());
         }
+
     }
 
     @FXML
@@ -46,6 +51,8 @@ public class MapEditorDeleteContinentController {
     @FXML
 
     public void clickToOk(ActionEvent actionEvent) throws Exception{
+
+
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
         Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();
@@ -54,5 +61,8 @@ public class MapEditorDeleteContinentController {
         curStage.setScene(reinforceScene);
 
         curStage.show();
+
+
+
     }
 }
