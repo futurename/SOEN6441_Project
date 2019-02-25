@@ -41,7 +41,10 @@ public class MapEditorEditPageController {
 
     public void initialize()throws Exception{
         path = MEMain.OLDMAPPATH;
-        readMap(path);
+        if(MEMain.EDITPAGEFLAG==false) {
+            readMap(path);
+            MEMain.EDITPAGEFLAG=true;
+        }
     }
 
     private void readMap(String path)throws Exception{
