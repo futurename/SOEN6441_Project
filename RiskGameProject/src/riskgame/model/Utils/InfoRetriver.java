@@ -41,80 +41,27 @@ public class InfoRetriver {
         return countryDistributionMap;
     }
 
-
-    /**
-     * @param player a player instance
-     * @return an ObservableList of the player's country names
-     */
-    public static ObservableList getPlayerCountryObservablelist(Player player) {
-
-        ObservableList result = FXCollections.observableArrayList();
-
-        ArrayList<String> coutryList = player.getOwnedCountryNameList();
-
-        for (int i = 0; i < coutryList.size(); i++) {
-            String curCountryName = coutryList.get(i);
-            int armyNum = Main.graphSingleton.get(curCountryName).getCountry().getCountryArmyNumber();
-
-            String printString = getPrintOneCountryInfo(curCountryName, armyNum);
-            result.add(printString);
-        }
-        return result;
-    }
-
     /**
      * @param curPlayerIndex player index number
      * @param countryIndex   the index of a selected country name from the listview
      * @return a formatted ObservableList of adjacent country names and their army numbers
      */
-    public static ObservableList getAdjacentCountryObservablelist(int curPlayerIndex, int countryIndex) {
-        ObservableList result = FXCollections.observableArrayList();
+    public static ObservableList<Country> getAdjacentCountryObservablelist(int curPlayerIndex, int countryIndex) {
+        ObservableList<Country> result;
 
-        ArrayList<String> countryList = playersList.get(Main.curRoundPlayerIndex).getOwnedCountryNameList();
+        ArrayList<String> countryList = playersList.get(curPlayerIndex).getOwnedCountryNameList();
         String selectedCountryName = countryList.get(countryIndex);
         ArrayList<Country> adjacentCountryList = Main.graphSingleton.get(selectedCountryName).getAdjacentCountryList();
 
-        System.out.println("adjacent country: " + adjacentCountryList);
+        //System.out.println("adjacent country: " + adjacentCountryList);
 
-        for (int i = 0; i < adjacentCountryList.size(); i++) {
-            Country curAdjacentCountry = adjacentCountryList.get(i);
-            String curAdjacentCountryName = curAdjacentCountry.getCountryName();
-            int armyNum = curAdjacentCountry.getCountryArmyNumber();
-            int countryOwnerIndex = curAdjacentCountry.getCountryOwnerIndex();
-            String printString = getPrintOneCountryInfo(curAdjacentCountryName, countryOwnerIndex, armyNum);
+        result = FXCollections.observableArrayList(adjacentCountryList);
 
-            System.out.println(printString);
-
-            result.add(printString);
-        }
         return result;
     }
 
-    /**
-     * @param oneCountryName    a country name
-     * @param countryOwnerIndex its owner index number
-     * @param armyNum           army number of the country
-     * @return a formatted combination string of above information
-     */
-    private static String getPrintOneCountryInfo(String oneCountryName, int countryOwnerIndex, int armyNum) {
-        if (countryOwnerIndex == Main.curRoundPlayerIndex) {
-            return getPrintOneCountryInfo(oneCountryName, armyNum);
-        } else {
-            return "player " + countryOwnerIndex + " : " + oneCountryName + " ( " + armyNum + " )";
-        }
-    }
-
-    /**
-     * @param oneCountryName one country name
-     * @param armyNum        its army number
-     * @return a formatted string of above information
-     */
-    private static String getPrintOneCountryInfo(String oneCountryName, int armyNum) {
-        return oneCountryName + " : " + armyNum;
-    }
-
-    public static ObservableList<String> getReachableCountryObservableList(int playerIndex, String selectedCountryName) {
-        ArrayList<String> updatedCountryInfoList = new ArrayList<>();
+    public static ObservableList<Country> getReachableCountryObservableList(int playerIndex, String selectedCountryName) {
+        ObservableList<Country> result;
         ArrayList<Country> countryList = new ArrayList<>();
 
         GraphNode selectedGraphNode = Main.graphSingleton.get(selectedCountryName);
@@ -124,12 +71,24 @@ public class InfoRetriver {
         selectedGraphNode.getReachableCountryListBFS(playerIndex, selectedCountry, countryList);
         //selectedGraphNode.getReachableCountryListDFS(playerIndex, selectedCountry, countryList);
 
-        for (Country country : countryList) {
-            String updatedCountryInfoString = getPrintOneCountryInfo(country.getCountryName(), country.getCountryArmyNumber());
-            updatedCountryInfoList.add(updatedCountryInfoString);
+        result = FXCollections.observableArrayList(countryList);
+        return result;
+    }
+
+    public static ObservableList<Country> getObservableCountryList(Player player){
+        ArrayList<String> ownedCountryNameList = player.getOwnedCountryNameList();
+
+        ObservableList<Country> result;
+        ArrayList<Country> countryList = new ArrayList<>();
+
+        for(String name: ownedCountryNameList){
+            Country country = Main.graphSingleton.get(name).getCountry();
+            countryList.add(country);
         }
 
-        return FXCollections.observableArrayList(updatedCountryInfoList);
+        result = FXCollections.observableArrayList(countryList);
+
+        return result;
     }
 }
 

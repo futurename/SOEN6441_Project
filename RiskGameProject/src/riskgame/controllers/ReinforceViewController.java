@@ -40,9 +40,9 @@ public class ReinforceViewController implements Initializable {
     @FXML
     private Button btn_nextStep;
     @FXML
-    private ListView lsv_ownedCountries;
+    private ListView<Country> lsv_ownedCountries;
     @FXML
-    private ListView lsv_adjacentCountries;
+    private ListView<Country> lsv_adjacentCountries;
     @FXML
     private Label lbl_undeployedArmy;
     @FXML
@@ -98,11 +98,12 @@ public class ReinforceViewController implements Initializable {
         lbl_countriesInfo.setTextFill(curPlayerColor);
         lbl_adjacentCountriesInfo.setTextFill(curPlayerColor);
         lbl_undeployedArmy.setText(Integer.toString(curUndeployedArmy));
-        lsv_ownedCountries.setItems(InfoRetriver.getPlayerCountryObservablelist(curPlayer));
+        //lsv_ownedCountries.setItems(InfoRetriver.getPlayerCountryObservablelist(curPlayer));
+        lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
 
         System.out.println("country display index: " + curPlayer.getPlayerIndex());
 
-        ListviewRenderer.getRenderedCountryItems(playerIndex, lsv_ownedCountries);
+        ListviewRenderer.renderCountryItems(lsv_ownedCountries);
 
         pct_countryDistributionChart.setData(ReinforcePhase.getPieChartData(curPlayer));
 
@@ -177,7 +178,7 @@ public class ReinforceViewController implements Initializable {
         ObservableList datalist = InfoRetriver.getAdjacentCountryObservablelist(Main.curRoundPlayerIndex, countryIndex);
 
         lsv_adjacentCountries.setItems(datalist);
-        ListviewRenderer.getRenderedCountryItems(Main.curRoundPlayerIndex, lsv_adjacentCountries);
+        ListviewRenderer.renderCountryItems(lsv_adjacentCountries);
     }
 
     /**
@@ -204,7 +205,7 @@ public class ReinforceViewController implements Initializable {
             int remainUndeployedArmyCount = undeloyedArmyCount - deployArmyCount;
             lbl_undeployedArmy.setText(Integer.toString(remainUndeployedArmyCount));
 
-            updateCountryListview(curPlayer);
+            lsv_ownedCountries.refresh();
 
             if (remainUndeployedArmyCount == 0) {
                 btn_confirmDeployment.setVisible(false);
@@ -221,15 +222,6 @@ public class ReinforceViewController implements Initializable {
                 lbl_deployArmyCount.setText(Integer.toString(remainUndeployedArmyCount));
             }
         }
-    }
-
-
-    /**
-     * @param player update country list view after a deployment
-     */
-    private void updateCountryListview(Player player) {
-        lsv_ownedCountries.setItems(InfoRetriver.getPlayerCountryObservablelist(player));
-        ListviewRenderer.getRenderedCountryItems(Main.curRoundPlayerIndex, lsv_ownedCountries);
     }
 }
 
