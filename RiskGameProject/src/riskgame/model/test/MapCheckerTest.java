@@ -9,11 +9,13 @@ import java.io.IOException;
 import static org.junit.Assert.*;
 
 public class MapCheckerTest {
-    private String path;
+    private String path, error_path, error_map;
 
     @Before
     public void setUp() throws Exception {
         path = "./maps/World.map";
+        error_path = "./maps/World";
+        error_map = "./maps/TestWorld.map";
     }
 
     @Test
@@ -22,7 +24,12 @@ public class MapCheckerTest {
     }
 
     @Test
-    public void isMapValid(){
+    public void isMapValid() throws IOException {
+        assertFalse(MapChecker.isMapValid(this.error_map));
+    }
 
+    @Test
+    public void isMapPathValid(){
+        assertFalse(MapChecker.isMapPathValid(this.error_path));
     }
 }

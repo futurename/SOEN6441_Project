@@ -79,7 +79,10 @@ public class MapChecker {
                 }
             } else if (line.contains(InitMapGraph.COUNTRY_HEADER_STRING)) {
                 isTerritoriesFound = true;
-                while ((line = bufferedReader.readLine()) != null && line.length() != 0) {
+                while ((line = bufferedReader.readLine()) != null) {
+                    if (line.length() == 0){
+                        continue;
+                    }
                     if (line.contains(",")) {
                         int status = checkTerritoriesFormat(line, continentsNames);
                         if (status != NO_ERROR) {
@@ -124,6 +127,7 @@ public class MapChecker {
      * @return error type
      */
     private static int checkTerritoriesFormat(String territoriesLine, ArrayList<String> continents) {
+        System.out.println(territoriesLine);
         String[] splitedLine = territoriesLine.split(",");
         if (splitedLine.length < 5) {
             return ERROR_TYPE_EMPTY_CONTINENT;
