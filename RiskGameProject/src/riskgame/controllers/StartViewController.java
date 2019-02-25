@@ -130,7 +130,7 @@ public class StartViewController {
     public void clickLoadMap(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         mapPath = txf_mapPath.getText();
-        if (MapChecker.isMapPathValid(mapPath)){
+        if (!MapChecker.isMapValid(mapPath)){
             alert.setContentText("Map file not exist!");
             alert.showAndWait();
             return;

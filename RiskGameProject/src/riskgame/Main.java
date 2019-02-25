@@ -55,10 +55,6 @@ public class Main extends Application {
      * @throws IOException launch fails
      */
     public static void main(String[] args) throws IOException {
-
-
-
-
         launch(args);
     }
 }

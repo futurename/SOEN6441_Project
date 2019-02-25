@@ -99,7 +99,6 @@ public class GraphNode {
         queue.add(playerIndex);
 
         while(queue.size() != 0) {
-
             playerIndex = queue.poll();
 
             for(Country country: adjacentList){
@@ -111,8 +110,6 @@ public class GraphNode {
                 }
             }
         }
-
-
         return result;
     }
 
