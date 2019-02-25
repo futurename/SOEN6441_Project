@@ -56,6 +56,26 @@ public class MEMain extends Application {
         }
     }
 
+    public static void deleteCountry(String countryName){
+        for(int i = 0;i<arrMECountry.size();i++){
+            if(arrMECountry.get(i).getCountryName().equals(countryName)){
+                arrMECountry.remove(i);
+            }
+            break;
+        }
+        for(int j=0;j<arrMEContinent.size();j++){
+            if(arrMEContinent.get(j).getcountryList().contains(countryName)){
+                arrMEContinent.get(j).deleteCountry(countryName);
+            }
+            break;
+        }
+        for(int k= 0;k<arrMECountry.size();k++){
+            if(arrMECountry.get(k).getNeighbor().contains(countryName)){
+                arrMECountry.get(k).deleteNeighbor(countryName);
+            }
+        }
+    }
+
     public static void main(String[] agrs) throws Exception{
         launch(agrs);
     }
