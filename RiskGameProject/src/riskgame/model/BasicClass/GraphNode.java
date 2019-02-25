@@ -83,54 +83,49 @@ public class GraphNode {
     }
 
     /**
-     * Breath first search
-     *
-     * @return list of all reachable countries the owner has
+     * Breath first search for getting all reachable countries the player owns from the selected country
      */
-    public ArrayList<Country> getReachableCountryListBFS(int playerIndex) {
-        ArrayList<Country> result = new ArrayList<>();
-        ArrayList<Country> adjacentList = getAdjacentCountryList();
+    public void getReachableCountryListBFS(int playerIndex, Country curCountry, ArrayList<Country> list) {
+        String curCountryName = curCountry.getCountryName();
+        GraphNode curGraphNode = Main.graphSingleton.get(curCountryName);
+        ArrayList<Country> adjacentList = curGraphNode.getAdjacentCountryList();
+        curGraphNode.setVisited(true);
 
-        // Create a queue for BFS
-        LinkedList<Integer> queue = new LinkedList<Integer>();
+        ArrayList<Country> queue = new ArrayList<>();
 
-        // Mark the current node as visited and enqueue it
-        this.isVisited = true;
-        queue.add(playerIndex);
-
-        while(queue.size() != 0) {
-            playerIndex = queue.poll();
-
-            for(Country country: adjacentList){
-                GraphNode curGraphNode = Main.graphSingleton.get(country.getCountryName());
-                while(curGraphNode.getCountry().getCountryOwnerIndex() == playerIndex && !curGraphNode.isVisited){
-                    result.add(curGraphNode.getCountry());
-                    curGraphNode.setVisited(true);
-                    queue.add(curGraphNode.getCountry().getCountryOwnerIndex());
-                }
+        for(Country country: adjacentList){
+            GraphNode graphNode = Main.graphSingleton.get(country.getCountryName());
+            if (graphNode.getCountry().getCountryOwnerIndex() == playerIndex && !graphNode.isVisited) {
+                list.add(graphNode.getCountry());
+                graphNode.setVisited(true);
+                queue.add(country);
             }
         }
-        return result;
+
+        while(!queue.isEmpty()){
+            getReachableCountryListBFS(playerIndex, queue.remove(0), list);
+        }
     }
 
 
     /**
      * Depth first search for getting all reachable countries the player owns from the selected country
-     *
      */
     public void getReachableCountryListDFS(int playerIndex, Country curCountry, ArrayList<Country> list) {
-        ArrayList<Country> adjacentList = getAdjacentCountryList();
+        String curCountryName = curCountry.getCountryName();
+        GraphNode curGraphNode = Main.graphSingleton.get(curCountryName);
+        ArrayList<Country> adjacentList = curGraphNode.getAdjacentCountryList();
+        curGraphNode.setVisited(true);
 
-        for(Country country: adjacentList){
-            GraphNode curGraphNode = Main.graphSingleton.get(country.getCountryName());
-            if(curGraphNode.getCountry().getCountryOwnerIndex() == playerIndex && !curGraphNode.isVisited){
-                list.add(curGraphNode.getCountry());
-                curGraphNode.setVisited(true);
-                getReachableCountryListDFS(playerIndex,country,list);
+        for (Country country : adjacentList) {
+            GraphNode graphNode = Main.graphSingleton.get(country.getCountryName());
+            if (graphNode.getCountry().getCountryOwnerIndex() == playerIndex && !graphNode.isVisited) {
+                list.add(graphNode.getCountry());
+                graphNode.setVisited(true);
+                getReachableCountryListDFS(playerIndex, country, list);
             }
         }
     }
-
 
 
 }
