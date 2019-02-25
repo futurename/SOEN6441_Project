@@ -6,18 +6,18 @@ import java.util.LinkedList;
 public class MECountry{
 
     private String countryName;
-    private LinkedList<MECountry> neighbor = new LinkedList<MECountry>();
+    private LinkedList<String> neighbor = new LinkedList<String>();
 
 
     public void setCountryName(String newCountryName){
         this.countryName = newCountryName;
     }
 
-    public void setNeighbor(MECountry newNeighbor){
+    public void setNeighbor(String newNeighbor){
         neighbor.offer(newNeighbor);
     }
 
-    public void deleteNeighbor(MECountry oldNeighbor){
+    public void deleteNeighbor(String oldNeighbor){
         if(neighbor.indexOf(oldNeighbor)!=-1){
             neighbor.remove(oldNeighbor);
         }

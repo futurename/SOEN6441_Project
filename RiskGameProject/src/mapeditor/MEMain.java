@@ -29,6 +29,22 @@ public class MEMain extends Application {
         primaryStage.show();
     }
 
+
+    public static void createContinent(String continentName,int bonus){
+        MEContinent meContinent = new MEContinent();
+        meContinent.setContinentName(continentName);
+        meContinent.setBonus(bonus);
+        arrMEContinent.add(meContinent);
+    }
+
+    public static void createCountry(String countryName,String[] neighbor){
+        MECountry meCountry = new MECountry();
+        meCountry.setCountryName(countryName);
+        for(int i=3;i<neighbor.length;i++){
+            meCountry.setNeighbor(neighbor[i]);
+        }
+        arrMECountry.add(meCountry);
+    }
     public static void main(String[] agrs) throws Exception{
         launch(agrs);
     }

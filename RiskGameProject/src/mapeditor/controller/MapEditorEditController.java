@@ -29,6 +29,12 @@ public class MapEditorEditController {
     @FXML
     private Text txt_OMEtitle;
 
+    private static final String DEFAULT_PATH = "C://Users/effrey Wei/Desktop/pct/SOEN6441_Project/RiskGameProject/src/mapeditor/World.map";
+
+    public void initialize(){
+        txf_defaultMapPath.setText(DEFAULT_PATH);
+    }
+
     @FXML
     public void selectPath(ActionEvent actionEvent) throws Exception{
         MEMain.OLDMAPPATH = txf_defaultMapPath.getText();
