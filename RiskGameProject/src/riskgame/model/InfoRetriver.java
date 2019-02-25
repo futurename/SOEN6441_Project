@@ -64,7 +64,7 @@ public class InfoRetriver {
 
     /**
      * @param curPlayerIndex player index number
-     * @param countryIndex the index of a selected country name from the listview
+     * @param countryIndex   the index of a selected country name from the listview
      * @return a formatted ObservableList of adjacent country names and their army numbers
      */
     public static ObservableList getAdjacentCountryObservablelist(int curPlayerIndex, int countryIndex) {
@@ -91,9 +91,9 @@ public class InfoRetriver {
     }
 
     /**
-     * @param oneCountryName a country name
+     * @param oneCountryName    a country name
      * @param countryOwnerIndex its owner index number
-     * @param armyNum army number of the country
+     * @param armyNum           army number of the country
      * @return a formatted combination string of above information
      */
     private static String getPrintOneCountryInfo(String oneCountryName, int countryOwnerIndex, int armyNum) {
@@ -106,7 +106,7 @@ public class InfoRetriver {
 
     /**
      * @param oneCountryName one country name
-     * @param armyNum its army number
+     * @param armyNum        its army number
      * @return a formatted string of above information
      */
     private static String getPrintOneCountryInfo(String oneCountryName, int armyNum) {
@@ -121,10 +121,10 @@ public class InfoRetriver {
         GraphSingleton.INSTANCE.resetGraphVisitedFlag();
         Country selectedCountry = selectedGraphNode.getCountry();
 
-        //selectedGraphNode.getReachableCountryListDFS(playerIndex, selectedCountry,countryList);
-        countryList = selectedGraphNode.getReachableCountryListBFS(playerIndex);
+        selectedGraphNode.getReachableCountryListBFS(playerIndex, selectedCountry, countryList);
+        //selectedGraphNode.getReachableCountryListDFS(playerIndex, selectedCountry, countryList);
 
-        for(Country country: countryList){
+        for (Country country : countryList) {
             String updatedCountryInfoString = getPrintOneCountryInfo(country.getCountryName(), country.getCountryArmyNumber());
             updatedCountryInfoList.add(updatedCountryInfoString);
         }
