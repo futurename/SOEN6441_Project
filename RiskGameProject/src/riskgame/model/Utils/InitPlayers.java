@@ -14,7 +14,6 @@ import java.util.Random;
  * @author WW
  */
 public class InitPlayers {
-
     /**
      * create and initialize all the player instances
      */

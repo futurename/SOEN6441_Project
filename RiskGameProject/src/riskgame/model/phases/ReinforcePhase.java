@@ -1,4 +1,4 @@
-package riskgame.model;
+package riskgame.model.phases;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,7 +6,7 @@ import javafx.scene.chart.PieChart;
 import riskgame.Main;
 import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.Player;
-import riskgame.model.InfoRetriver;
+import riskgame.model.Utils.InfoRetriver;
 
 import java.util.ArrayList;
 import java.util.HashMap;

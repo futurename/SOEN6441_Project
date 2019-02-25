@@ -20,14 +20,13 @@ import riskgame.Main;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Observer.CountryChangedObserver;
 import riskgame.model.BasicClass.Player;
-import riskgame.model.InfoRetriver;
+import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
-import riskgame.model.ReinforcePhase;
+import riskgame.model.phases.ReinforcePhase;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**

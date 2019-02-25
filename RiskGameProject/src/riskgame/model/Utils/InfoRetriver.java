@@ -1,4 +1,4 @@
-package riskgame.model;
+package riskgame.model.Utils;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

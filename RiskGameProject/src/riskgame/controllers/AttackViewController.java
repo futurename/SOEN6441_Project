@@ -15,7 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Player;
-import riskgame.model.InfoRetriver;
+import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
 
 import java.io.IOException;
