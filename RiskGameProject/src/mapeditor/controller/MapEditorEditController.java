@@ -29,7 +29,7 @@ public class MapEditorEditController {
     @FXML
     private Text txt_OMEtitle;
 
-    private static final String DEFAULT_PATH = "D:\\workspace\\SOEN6441_Project\\RiskGameProject\\src\\mapeditor\\World.map";
+    private static final String DEFAULT_PATH = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\src\\mapeditor\\World.map";
 
     public void initialize(){
         txf_defaultMapPath.setText(DEFAULT_PATH);
@@ -41,11 +41,10 @@ public class MapEditorEditController {
         //need to add map path check
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-        Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();
-        Scene reinforceScene = new Scene(reinforcePane,1200,900);
+        Pane mapEditorEditPagePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();
+        Scene mapEditorEditPageScene = new Scene(mapEditorEditPagePane,1200,900);
 
-        curStage.setScene(reinforceScene);
-
+        curStage.setScene(mapEditorEditPageScene);
         curStage.show();
     }
 }

@@ -45,11 +45,10 @@ public class MapEditorHomePageController {
         public void clickToEdit(ActionEvent actionEvent) throws Exception{
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-            Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditView.fxml")).load();
-            Scene reinforceScene = new Scene(reinforcePane,1200,900);
+            Pane mapEditorEditPane = new FXMLLoader(getClass().getResource("../views/MapEditorEditView.fxml")).load();
+            Scene mapEditorEditScene = new Scene(mapEditorEditPane,1200,900);
 
-            curStage.setScene(reinforceScene);
-
+            curStage.setScene(mapEditorEditScene);
             curStage.show();
         }
         @FXML
@@ -57,11 +56,10 @@ public class MapEditorHomePageController {
             MEMain.EDITPAGEFLAG = true;
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-            Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();
-            Scene reinforceScene = new Scene(reinforcePane,1200,900);
+            Pane mapEditorEditPagePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();
+            Scene mapEditorEditPageScene = new Scene(mapEditorEditPagePane,1200,900);
 
-            curStage.setScene(reinforceScene);
-
+            curStage.setScene(mapEditorEditPageScene);
             curStage.show();
         }
     }

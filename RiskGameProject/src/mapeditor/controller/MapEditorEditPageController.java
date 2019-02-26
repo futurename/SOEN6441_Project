@@ -152,22 +152,20 @@ public class MapEditorEditPageController {
     public void clickToAddContinent(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-        Pane addContinentPane = new FXMLLoader(getClass().getResource("../views/MapEditorAddContinentView.fxml")).load();
-        Scene addContinentScene = new Scene(addContinentPane,1200,900);
+        Pane mapEditorAddContinentPane = new FXMLLoader(getClass().getResource("../views/MapEditorAddContinentView.fxml")).load();
+        Scene mapEditorAddContinentScene = new Scene(mapEditorAddContinentPane,1200,900);
 
-        curStage.setScene(addContinentScene);
-
+        curStage.setScene(mapEditorAddContinentScene);
         curStage.show();
     }
     @FXML
     public void clickToDeleteContinent(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-        Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/MapEditorDeleteContinentView.fxml")).load();
-        Scene reinforceScene = new Scene(reinforcePane,1200,900);
+        Pane mapEditorDeleteContinentPane = new FXMLLoader(getClass().getResource("../views/MapEditorDeleteContinentView.fxml")).load();
+        Scene mapEditorDeleteContinentScene = new Scene(mapEditorDeleteContinentPane,1200,900);
 
-        curStage.setScene(reinforceScene);
-
+        curStage.setScene(mapEditorDeleteContinentScene);
         curStage.show();
     }
 
@@ -175,11 +173,10 @@ public class MapEditorEditPageController {
     public void clickToAddCountry(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-        Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/MapEditorAddCountryView.fxml")).load();
-        Scene reinforceScene = new Scene(reinforcePane,1200,900);
+        Pane mapEditorAddCountryPane = new FXMLLoader(getClass().getResource("../views/MapEditorAddCountryView.fxml")).load();
+        Scene mapEditorAddCountryScene = new Scene(mapEditorAddCountryPane,1200,900);
 
-        curStage.setScene(reinforceScene);
-
+        curStage.setScene(mapEditorAddCountryScene);
         curStage.show();
     }
 
@@ -187,11 +184,10 @@ public class MapEditorEditPageController {
     public void clickToDeleteCountry(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-        Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/MapEditorDeleteCountryView.fxml")).load();
-        Scene reinforceScene = new Scene(reinforcePane,1200,900);
+        Pane mapEditorDeleteCountryPane = new FXMLLoader(getClass().getResource("../views/MapEditorDeleteCountryView.fxml")).load();
+        Scene mapEditorDeleteCountryScene = new Scene(mapEditorDeleteCountryPane,1200,900);
 
-        curStage.setScene(reinforceScene);
-
+        curStage.setScene(mapEditorDeleteCountryScene);
         curStage.show();
     }
 
@@ -199,11 +195,10 @@ public class MapEditorEditPageController {
     public void clickToSave(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-        Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/MapEditorSaveFileView.fxml")).load();
-        Scene reinforceScene = new Scene(reinforcePane,1200,900);
+        Pane mapEditorSaveFilePane = new FXMLLoader(getClass().getResource("../views/MapEditorSaveFileView.fxml")).load();
+        Scene mapEditorSaveFileScene = new Scene(mapEditorSaveFilePane,1200,900);
 
-        curStage.setScene(reinforceScene);
-
+        curStage.setScene(mapEditorSaveFileScene);
         curStage.show();
     }
 

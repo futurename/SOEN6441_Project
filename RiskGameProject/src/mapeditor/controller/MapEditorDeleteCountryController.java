@@ -48,11 +48,10 @@ public class MapEditorDeleteCountryController {
     public void clickToOk(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-        Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();
-        Scene reinforceScene = new Scene(reinforcePane,1200,900);
+        Pane mapEditorEditPagePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();
+        Scene mapEditorEditPageScene = new Scene(mapEditorEditPagePane,1200,900);
 
-        curStage.setScene(reinforceScene);
-
+        curStage.setScene(mapEditorEditPageScene);
         curStage.show();
     }
 }
