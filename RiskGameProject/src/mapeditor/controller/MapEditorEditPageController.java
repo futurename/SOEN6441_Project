@@ -1,5 +1,8 @@
 package mapeditor.controller;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,17 +10,22 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import mapeditor.MEMain;
+import mapeditor.model.MEContinent;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class MapEditorEditPageController {
+
 
     @FXML
     private Button btn_AddContinent;
@@ -37,7 +45,25 @@ public class MapEditorEditPageController {
     @FXML
     private Button btn_DeleteContinent;
 
+    @FXML
+    private TableView<MEContinent> ContinentTable;
+
+    @FXML
+    private TableColumn<MEContinent, String> ContinentNameCol;
+
+    @FXML
+    private TableColumn<MEContinent, String> ContinentBonusCol;
+
+    @FXML
+    private TableColumn<MEContinent, String> CountryCol;
+
+
+    private ObservableList<MEContinent> continentData = FXCollections.observableArrayList();
+
     private String path;
+
+    public MapEditorEditPageController() {
+    }
 
     public void initialize()throws Exception{
         path = MEMain.OLDMAPPATH;
@@ -45,6 +71,19 @@ public class MapEditorEditPageController {
             readMap(path);
             MEMain.EDITPAGEFLAG=true;
         }
+
+
+
+        ContinentNameCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        ContinentBonusCol.setCellValueFactory(cellData -> cellData.getValue().bonusProperty());
+        CountryCol.setCellValueFactory(cellData -> cellData.getValue().countryProperty());
+
+        ContinentTable.setItems(continentData);
+
+        for(Iterator<MEContinent> iterator = MEMain.arrMEContinent.iterator(); iterator.hasNext();){
+            continentData.add(iterator.next());
+        }
+
     }
 
     private void readMap(String path)throws Exception{
@@ -94,13 +133,20 @@ public class MapEditorEditPageController {
     }
 
     @FXML
+    public void loadTable() throws Exception{
+
+
+    }
+
+
+    @FXML
     public void clickToAddContinent(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-        Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/MapEditorAddContinentView.fxml")).load();
-        Scene reinforceScene = new Scene(reinforcePane,1200,900);
+        Pane addContinentPane = new FXMLLoader(getClass().getResource("../views/MapEditorAddContinentView.fxml")).load();
+        Scene addContinentScene = new Scene(addContinentPane,1200,900);
 
-        curStage.setScene(reinforceScene);
+        curStage.setScene(addContinentScene);
 
         curStage.show();
     }
