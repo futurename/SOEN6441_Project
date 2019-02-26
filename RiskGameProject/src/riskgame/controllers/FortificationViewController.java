@@ -156,6 +156,7 @@ public class FortificationViewController {
 
             lsv_ownedCountries.refresh();
             lsv_reachableCountry.refresh();
+            updateDeploymentInfo(selectedCountry);
         }
     }
 
