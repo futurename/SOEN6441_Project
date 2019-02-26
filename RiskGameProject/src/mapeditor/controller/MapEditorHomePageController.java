@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import mapeditor.MEMain;
 
 public class MapEditorHomePageController {
 
@@ -53,9 +54,10 @@ public class MapEditorHomePageController {
         }
         @FXML
         public void clickToCreate(ActionEvent actionEvent) throws Exception{
+            MEMain.EDITPAGEFLAG = true;
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-            Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/MapEditorCreatePageView.fxml")).load();
+            Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();
             Scene reinforceScene = new Scene(reinforcePane,1200,900);
 
             curStage.setScene(reinforceScene);
