@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mapeditor.MEMain;
 import mapeditor.model.MEContinent;
@@ -44,6 +45,12 @@ public class MapEditorEditPageController {
 
     @FXML
     private Button btn_DeleteContinent;
+
+    @FXML
+    private Button btn_check;
+
+    @FXML
+    private Text txt_check;
 
     @FXML
     private TableView<MEContinent> ContinentTable;
@@ -199,4 +206,8 @@ public class MapEditorEditPageController {
     }
 
 
+    @FXML
+    public void clickToCheck(ActionEvent actionEvent) throws Exception{
+        txt_check.setText(String.valueOf(MEMain.CHECKRESULT));
+    }
 }
