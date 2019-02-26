@@ -44,7 +44,7 @@ public class MapEditorDeleteContinentController {
     }
 
     @FXML
-    public void clickToApply(ActionEvent actionEvent) throws Exception{
+    public void clickToDeleteContinent(ActionEvent actionEvent) throws Exception{
         selectedContinentName = cbb_deleteContinentName.getValue();
         MEMain.deleteContinent(selectedContinentName);
     }
