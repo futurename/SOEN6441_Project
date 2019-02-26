@@ -19,5 +19,13 @@
       <Button fx:id="btn_AddContinent" layoutX="161.0" layoutY="706.0" mnemonicParsing="false" onAction="#clickToAddContinent" text="AddContinent" />
       <Button fx:id="btn_DeleteCountry" layoutX="919.0" layoutY="706.0" mnemonicParsing="false" onAction="#clickToDeleteCountry" text="DeleteCountry" />
       <Button fx:id="btn_Save" layoutX="573.0" layoutY="796.0" mnemonicParsing="false" onAction="#clickToSave" text="Save" />
+      <TabPane layoutX="258.0" layoutY="242.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" />
+      <TableView fx:id="ContinentTable" layoutX="162.0" layoutY="142.0" prefHeight="541.0" prefWidth="856.0">
+        <columns>
+          <TableColumn fx:id="ContinentNameCol" prefWidth="100.0" text="Name" />
+          <TableColumn fx:id="ContinentBonusCol" prefWidth="75.0" text="Bonus" />
+            <TableColumn fx:id="CountryCol" prefWidth="800.0" text="Country" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
