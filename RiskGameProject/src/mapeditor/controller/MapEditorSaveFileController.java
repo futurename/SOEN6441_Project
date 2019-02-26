@@ -15,6 +15,10 @@ import mapeditor.MEMain;
 import mapeditor.model.MEContinent;
 import mapeditor.model.MECountry;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+
 import static mapeditor.model.MECheckMapCorrectness.isCorrect;
 
 public class MapEditorSaveFileController {
@@ -67,4 +71,39 @@ public class MapEditorSaveFileController {
 
     }
 
+
+    public void generateMap(String authorName) throws Exception{
+        File writename = new File(".\\newMap.map");
+        writename.createNewFile();
+        BufferedWriter out = new BufferedWriter(new FileWriter(writename));
+        out.write("author="+authorName+"\r\n");
+        out.write("image=world.bmp\r\n");
+        out.write("wrap=\r\n");
+        out.write("scroll=horizontal\r\n");
+        out.write("warn=yes\r\n");
+        out.write("\r\n");
+
+        out.write("[Continents]\r\n");
+        for(int i=0;i<MEMain.arrMEContinent.size();i++) {
+            MEContinent printContinent = MEMain.arrMEContinent.get(i);
+            out.write(printContinent.getContinentName()+"="+printContinent.getBonus());
+        }
+        out.write("\r\n");
+
+        out.write("[Territories]\r\n");
+        for(int i=0;i<MEMain.arrMECountry.size();i++) {
+            MECountry printCountry = MEMain.arrMECountry.get(i);
+            String neighbor =  printCountry.getNeighbor();
+            for(int j=0;j<MEMain.arrMECountry.size();j++){
+
+                neighbor = neighbor.replaceAll("\\[", "");
+                neighbor = neighbor.replaceAll("\\]", "");
+                neighbor = neighbor.replaceAll(" ", "");
+            }
+            out.write(printCountry.getCountryName()+",0,0,"+ neighbor);
+        }
+        out.flush();
+        out.close();
+
+    }
 }

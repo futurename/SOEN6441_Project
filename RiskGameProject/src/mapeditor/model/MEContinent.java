@@ -43,6 +43,7 @@ public class MEContinent{
         return bns;
     }
 
+
     public StringProperty countryProperty() {
         if (countries == null) {
             countries = new SimpleStringProperty(this, "country");
@@ -77,6 +78,10 @@ public class MEContinent{
 
     public String getContinentName(){
         return continentName;
+    }
+
+    public int getBonus(){
+        return this.bonus;
     }
 
     public String getcountryList(){
