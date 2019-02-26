@@ -29,7 +29,7 @@ public class MapEditorEditController {
     @FXML
     private Text txt_OMEtitle;
 
-    private static final String DEFAULT_PATH = "D:\\workspace\\SOEN6441_Project\\RiskGameProject\\src\\mapeditor\\World.map";
+    private static final String DEFAULT_PATH = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\src\\mapeditor\\World.map";
 
     public void initialize(){
         txf_defaultMapPath.setText(DEFAULT_PATH);
