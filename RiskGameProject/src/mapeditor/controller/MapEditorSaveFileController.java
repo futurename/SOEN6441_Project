@@ -12,6 +12,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mapeditor.MEMain;
+import mapeditor.model.MEContinent;
+import mapeditor.model.MECountry;
+
+import static mapeditor.model.MECheckMapCorrectness.isCorrect;
 
 public class MapEditorSaveFileController {
 
@@ -43,7 +47,7 @@ public class MapEditorSaveFileController {
     public void clickToCheck(ActionEvent actionEvent) throws Exception{
 
 
-        txt_checkResult.setText(String.valueOf(MEMain.CHECKRESULT));
+        txt_checkResult.setText(isCorrect(MEMain.arrMECountry, MEMain.arrMEContinent));
 
     }
 

@@ -4,17 +4,24 @@ import java.util.*;
 
 public class MECheckMapCorrectness{
 
-    private static boolean correctnessFlag = true;
     private static boolean checkFlagCG = true;
     private static boolean checkFlagCC = true;
     private static boolean checkFlagCB = true;
 
-    public static boolean isCorrect(ArrayList< MECountry> countryArr, ArrayList<MEContinent> continentsArr){
+    public static String isCorrect(ArrayList< MECountry> countryArr, ArrayList<MEContinent> continentsArr){
         boolean checkFlagCGResult = correctCheckConnectGraph(countryArr);
         boolean checkFlagCCResult = correctCheckContinentCountry(continentsArr,countryArr);
         boolean checkFlagCBResult = correctCheckCountryBelonging(continentsArr,countryArr);
-        boolean correctnessFlag = checkFlagCGResult&&checkFlagCCResult&&checkFlagCBResult;
-        return correctnessFlag;
+        if(checkFlagCGResult == false){
+           return "Unconnected Graph";
+        }
+        if(checkFlagCCResult == false){
+            return "Unconnected Country in Continent";
+        }
+        if(checkFlagCBResult == false){
+            return "Country belongs to mutiple continent";
+        }
+        return "True";
     }
 
     /**
@@ -39,7 +46,7 @@ public class MECheckMapCorrectness{
                     String countryNeighbor = countryArr.get(j).getNeighbor();
                     countryNeighbor = countryNeighbor.replaceAll("\\[","");
                     countryNeighbor = countryNeighbor.replaceAll("\\]","");
-                    countryNeighbor = countryNeighbor.replaceAll(" ","");
+                    countryNeighbor = countryNeighbor.replaceAll(", ",",");
                     String[] countryNeighbors = countryNeighbor.split(",");
                     for(int k = 1;k<countryNeighbors.length;k++){
                         String readyToAddInQueue = countryNeighbors[k];
@@ -65,8 +72,16 @@ public class MECheckMapCorrectness{
      */
     public static boolean correctCheckContinentCountry(ArrayList<MEContinent> continents, ArrayList<MECountry> country){
         for(int i=0 ;i<continents.size();i++){
-            if(continents.get(i).getCountryNumber()!=1){
-                //TO DO
+            if(continents.get(i).getCountryNumber() >= 1){
+                //
+                for(int j=0;j<country.size();j++){
+                    MECountry checkCountry = country.get(j);
+                    if(checkCountry.getNeighbor().isEmpty()){
+                        return checkFlagCC = false;
+                    }
+                }
+            }else {
+                continue;
             }
         }
         return checkFlagCC;
@@ -79,6 +94,7 @@ public class MECheckMapCorrectness{
     public static boolean correctCheckCountryBelonging(ArrayList<MEContinent> continentsArr, ArrayList<MECountry> countryArr){
         int countryAddByContient = 0;
         for(int i = 0; i<continentsArr.size();i++){
+
             countryAddByContient = continentsArr.get(i).getCountryNumber()+countryAddByContient;
         }
         if(countryAddByContient != countryArr.size()){

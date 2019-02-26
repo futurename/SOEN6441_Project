@@ -15,7 +15,6 @@ public class MEMain extends Application {
     public static ArrayList<MEContinent> arrMEContinent = new ArrayList<MEContinent>();
     public static ArrayList<MECountry> arrMECountry = new ArrayList<MECountry>();
     public static String OLDMAPPATH;
-    public static boolean CHECKRESULT = true;
     public static boolean EDITPAGEFLAG = false;
 
     @Override
