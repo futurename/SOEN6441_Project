@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane fx:id="txt_saveFiletitle" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapeditor.controller.MapEditorSaveFileController">
+   <children>
+      <Text layoutX="133.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SaveFile">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <Text fx:id="txt_fileName" layoutX="347.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="name">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Text fx:id="txt_mapPath" layoutX="347.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mappath">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txf_fileName" layoutX="546.0" layoutY="289.0" promptText="newmap.map" />
+      <TextField fx:id="txf_mapPath" layoutX="546.0" layoutY="404.0" promptText="../maps/" />
+      <Button fx:id="btn_save" layoutX="578.0" layoutY="556.0" mnemonicParsing="false" text="save" />
+   </children>
+</AnchorPane>
