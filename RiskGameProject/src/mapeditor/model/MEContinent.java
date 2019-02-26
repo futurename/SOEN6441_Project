@@ -8,11 +8,12 @@ import java.util.LinkedList;
 public class MEContinent{
     private String continentName;
     private int bonus;
-    private int countryNumber;
+    private int countryNumber = 0;
     private LinkedList<String> countryList = new LinkedList<String>();
 
     private StringProperty name;
     private StringProperty bns;
+    private StringProperty countries;
 
     public void setContinentName(String newContinentName){
 
@@ -35,22 +36,30 @@ public class MEContinent{
         bonusProperty().set(bonusToString);
     }
 
-    public StringProperty bonusProperty(){
-        if(bns == null){
+    public StringProperty bonusProperty() {
+        if (bns == null) {
             bns = new SimpleStringProperty(this, "name");
         }
         return bns;
     }
 
-
-    public void initCountryNumber(){
-        this.countryNumber = 0;
+    public StringProperty countryProperty() {
+        if (countries == null) {
+            countries = new SimpleStringProperty(this, "country");
+        }
+        return countries;
     }
+
 
     public boolean addCountry(String countryName){
         if(!countryList.contains(countryName)){
             countryNumber++;
-            return countryList.add(countryName);
+            boolean sign = countryList.add(countryName);
+            String replaceSymbol = countryList.toString();
+            replaceSymbol = replaceSymbol.replaceAll( "\\[","");
+            replaceSymbol = replaceSymbol.replaceAll( "\\]","");
+            countryProperty().set(replaceSymbol);
+            return sign;
         }
         return false;
     }
@@ -58,6 +67,10 @@ public class MEContinent{
     public void deleteCountry(String countryName){
         if(countryList.contains(countryName)){
             countryList.remove(countryName);
+            String replaceSymbol = countryList.toString();
+            replaceSymbol = replaceSymbol.replaceAll( "\\[","");
+            replaceSymbol = replaceSymbol.replaceAll( "\\]","");
+            countryProperty().set(replaceSymbol);
             countryNumber--;
         }
     }
