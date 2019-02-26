@@ -4,18 +4,7 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b37bafe5-661e-42dc-a6f2-1cbeccedba03" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/views/MapEditorAddContinentView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/views/MapEditorAddContinentView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/views/MapEditorDeleteContinentView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/views/MapEditorDeleteContinentView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/views/MapEditorEditPageView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/views/MapEditorEditPageView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/controllers/AttackViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/controllers/AttackViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/controllers/ReinforceViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/controllers/ReinforceViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/Utils/ListviewRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/Utils/ListviewRenderer.java" afterDir="false" />
-    </list>
+    <list default="true" id="b37bafe5-661e-42dc-a6f2-1cbeccedba03" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,28 +15,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java">
+        <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorDeleteContinentController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="165" column="42" selection-start-line="165" selection-start-column="42" selection-end-line="165" selection-end-column="42" />
+            <state relative-caret-position="68">
+              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/ListviewRenderer.java">
+        <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorDeleteCountryController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-273">
-              <caret line="57" column="1" selection-start-line="57" selection-start-column="1" selection-end-line="57" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="202" column="61" selection-start-line="202" selection-start-column="49" selection-end-line="202" selection-end-column="61" />
+            <state relative-caret-position="-68">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -56,80 +36,76 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InitPlayers.java">
+        <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditPageController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="2091">
+              <caret line="123" column="37" selection-start-line="123" selection-start-column="37" selection-end-line="123" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InitMapGraph.java">
+        <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorHomePageController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-119">
-              <caret line="40" selection-start-line="40" selection-end-line="40" />
+            <state relative-caret-position="306">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorSaveFileController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mapeditor/model/MECheckMapCorrectness.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mapeditor/model/MEContinent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/ReinforceViewController.java">
+        <entry file="file://$PROJECT_DIR$/src/mapeditor/model/MECountry.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="207" column="41" selection-start-line="207" selection-start-column="41" selection-end-line="207" selection-end-column="41" />
+            <state relative-caret-position="85">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/javafx-src.zip!/javafx/scene/control/ListView.java">
+        <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorAddCountryController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="566" selection-start-line="566" selection-end-line="566" />
+            <state relative-caret-position="68">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
               <folding>
-                <element signature="e#17232#17233#0" expanded="true" />
-                <element signature="e#17274#17275#0" expanded="true" />
-                <element signature="e#23346#23347#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/javafx-src.zip!/javafx/beans/property/ObjectPropertyBase.java">
+        <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="143" selection-start-line="143" selection-end-line="143" />
-              <folding>
-                <element signature="e#3863#3864#0" expanded="true" />
-                <element signature="e#3904#3905#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="74" selection-start-line="74" selection-end-line="74" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/javafx-src.zip!/javafx/collections/FXCollections.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="339" selection-start-line="339" selection-end-line="339" />
-              <folding>
-                <element signature="e#11614#11615#0" expanded="true" />
-                <element signature="e#11668#11669#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="85">
+              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -231,6 +207,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -242,6 +220,33 @@
               <item name="RiskGameProject" type="b2602c69:ProjectViewProjectNode" />
               <item name="RiskGameProject" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RiskGameProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RiskGameProject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="mapeditor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RiskGameProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RiskGameProject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="mapeditor" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RiskGameProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RiskGameProject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="mapeditor" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RiskGameProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RiskGameProject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="mapeditor" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RiskGameProject" type="b2602c69:ProjectViewProjectNode" />
@@ -337,8 +342,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -677,13 +680,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128555000" />
+    <option name="totallyTimeSpent" value="128721000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20469083" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21321961" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -703,7 +705,7 @@
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50159913" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="Version Control" order="13" sideWeight="0.49840087" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="13" sideWeight="0.49840087" visible="true" />
       <window_info anchor="bottom" id="GitHub Pull Requests" order="14" />
       <window_info anchor="bottom" id="Inspection Results" order="15" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -777,7 +779,8 @@
     <MESSAGE value="integrate bfs" />
     <MESSAGE value="fix bug: DFS,BFS" />
     <MESSAGE value="set test folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="set test folder" />
+    <MESSAGE value="overwrite current version" />
+    <option name="LAST_COMMIT_MESSAGE" value="overwrite current version" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/test/riskgame/model/BasicClass/GraphSingletonTest.java" />
@@ -852,6 +855,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -864,8 +870,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorDeleteCountryController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
+        <state relative-caret-position="-68">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -878,25 +887,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditPageController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        <state relative-caret-position="2091">
+          <caret line="123" column="37" selection-start-line="123" selection-start-column="37" selection-end-line="123" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorHomePageController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
+        <state relative-caret-position="306">
           <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorSaveController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorSaveController.java" />
     <entry file="file://$PROJECT_DIR$/src/mapeditor/model/MEContinent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
