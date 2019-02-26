@@ -55,8 +55,7 @@ public class MEMain extends Application {
                 deletecontinentcountry = arrMEContinent.get(i).getcountryList();
                 deletecontinentcountry = deletecontinentcountry.replaceAll("\\[","");
                 deletecontinentcountry = deletecontinentcountry.replaceAll("\\]","");
-                deletecontinentcountry = deletecontinentcountry.replaceAll(" ","");
-                deletecontinentcountryarr = deletecontinentcountry.split(",");
+                deletecontinentcountryarr = deletecontinentcountry.split(", ");
                 for(int j= 0;j<deletecontinentcountryarr.length;j++){
                     deleteCountry(deletecontinentcountryarr[j]);
                 }
