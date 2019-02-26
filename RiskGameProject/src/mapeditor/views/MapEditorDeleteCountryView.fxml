@@ -19,8 +19,13 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="btn_DeleteCountryApply" layoutX="334.0" layoutY="584.0" mnemonicParsing="false" onAction="#clickToApply" text="Apply" />
-      <Button fx:id="btn_DeleteCountryOK" layoutX="660.0" layoutY="584.0" mnemonicParsing="false" onAction="#clickToOk" text="OK" />
-      <ComboBox fx:id="cbb__DeleteCountryName" layoutX="491.0" layoutY="292.0" prefHeight="30.0" prefWidth="249.0" promptText="Country" />
+      <Button fx:id="btn_DeleteCountryApply" layoutX="334.0" layoutY="584.0" mnemonicParsing="false" text="Apply" />
+      <Button fx:id="btn_DeleteCountryOK" layoutX="660.0" layoutY="584.0" mnemonicParsing="false" text="OK" />
+      <MenuButton fx:id="mbt_DeleteCountryName" layoutX="487.0" layoutY="292.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="249.0" text="Country">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </MenuButton>
    </children>
 </AnchorPane>

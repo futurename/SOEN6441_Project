@@ -30,13 +30,6 @@ public class MEContinent{
         return false;
     }
 
-    public void deleteCountry(String countryName){
-        if(countryList.contains(countryName)){
-            countryList.remove(countryName);
-            countryNumber--;
-        }
-    }
-
     public String getContinentName(){
         return continentName;
     }
