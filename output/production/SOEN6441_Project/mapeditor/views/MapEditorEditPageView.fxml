@@ -27,5 +27,7 @@
             <TableColumn fx:id="CountryCol" prefWidth="800.0" text="Country" />
         </columns>
       </TableView>
+      <Text fx:id="txt_check" layoutX="320.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="check correctness of loading file" wrappingWidth="276.0" />
+      <Button fx:id="btn_check" layoutX="683.0" layoutY="48.0" mnemonicParsing="false" onAction="#clickToCheck" text="check" />
    </children>
 </AnchorPane>

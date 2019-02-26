@@ -40,6 +40,22 @@ public class MapEditorSaveFileController {
     private Text txt_mapPath;
 
     @FXML
+    private Button btn_return;
+
+    @FXML
+    public void clickToReturn(ActionEvent actionEvent) throws Exception{
+        MEMain.EDITPAGEFLAG = true;
+        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();
+        Scene reinforceScene = new Scene(reinforcePane,1200,900);
+
+        curStage.setScene(reinforceScene);
+
+        curStage.show();
+    }
+
+    @FXML
     public void clickToCheck(ActionEvent actionEvent) throws Exception{
 
 

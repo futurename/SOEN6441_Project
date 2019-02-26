@@ -33,5 +33,6 @@
          </font>
       </Text>
       <Button fx:id="btn_check" layoutX="570.0" layoutY="612.0" mnemonicParsing="false" onAction="#clickToCheck" text="check" />
+      <Button fx:id="btn_return" layoutX="566.0" layoutY="672.0" mnemonicParsing="false" onAction="#clickToReturn" text="Return" />
    </children>
 </AnchorPane>
