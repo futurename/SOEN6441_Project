@@ -48,8 +48,18 @@ public class MEMain extends Application {
     }
 
     public static void deleteContinent(String continentName){
+        String deletecontinentcountry;
+        String[] deletecontinentcountryarr;
         for(int i = 0;i<arrMEContinent.size();i++){
             if(continentName.equals(arrMEContinent.get(i).getContinentName())){
+                deletecontinentcountry = arrMEContinent.get(i).getcountryList();
+                deletecontinentcountry = deletecontinentcountry.replaceAll("\\[","");
+                deletecontinentcountry = deletecontinentcountry.replaceAll("\\]","");
+                deletecontinentcountry = deletecontinentcountry.replaceAll(" ","");
+                deletecontinentcountryarr = deletecontinentcountry.split(",");
+                for(int j= 0;j<deletecontinentcountryarr.length;j++){
+                    deleteCountry(deletecontinentcountryarr[j]);
+                }
                 arrMEContinent.remove(i);
                 break;
             }
@@ -64,7 +74,7 @@ public class MEMain extends Application {
             break;
         }
         for(int j=0;j<arrMEContinent.size();j++){
-            if(arrMEContinent.get(j).getcountryList().contains(countryName)){
+            if(arrMEContinent.get(j).getcountryList().contains(countryName)) {
                 arrMEContinent.get(j).deleteCountry(countryName);
             }
             break;
