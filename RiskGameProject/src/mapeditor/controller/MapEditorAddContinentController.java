@@ -40,7 +40,7 @@ public class MapEditorAddContinentController {
 
     private int newContinentBonus;
 
-    public void clickToApply()throws Exception{
+    public void clickToApply(ActionEvent actionEvent)throws Exception{
         newContinentName = txf_continentName.getText();
         newContinentBonus = Integer.parseInt(txf_continentBonus.getText());
         for(int i = 0; i< MEMain.arrMEContinent.size(); i++) {
