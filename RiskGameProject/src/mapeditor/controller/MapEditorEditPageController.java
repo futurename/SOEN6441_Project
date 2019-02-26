@@ -25,6 +25,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import static mapeditor.model.MECheckMapCorrectness.isCorrect;
+
 public class MapEditorEditPageController {
 
 
@@ -208,6 +210,7 @@ public class MapEditorEditPageController {
 
     @FXML
     public void clickToCheck(ActionEvent actionEvent) throws Exception{
-        txt_check.setText(String.valueOf(MEMain.CHECKRESULT));
+        System.out.println(isCorrect(MEMain.arrMECountry, MEMain.arrMEContinent));
+        txt_check.setText(isCorrect(MEMain.arrMECountry, MEMain.arrMEContinent));
     }
 }
