@@ -1,5 +1,7 @@
 package mapeditor.controller;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,14 +33,25 @@ public class MapEditorAddContinentController {
     private TextField txf_continentBonus;
 
     @FXML
-    private Button btn_apply;
+    private Button btn_addContinentApply;
 
     @FXML
     private Button btn_ok;
 
+    private String DEFAULTCONTINENTNAME = "";
+
     private String newContinentName;
 
-    private int newContinentBonus;
+    private int newContinentBonus = -1;
+
+    BooleanBinding booleanBindingName ;
+
+    BooleanBinding booleanBindingBonus ;
+
+    public void initialize(){
+        newContinentName = DEFAULTCONTINENTNAME;
+        detectInputValidation();
+    }
 
     public void clickToApply(ActionEvent actionEvent)throws Exception{
         newContinentName = txf_continentName.getText();
@@ -50,6 +63,40 @@ public class MapEditorAddContinentController {
         }
         MEMain.createContinent(newContinentName,newContinentBonus);
     }
+
+    private boolean checkNameInput(String newContinentName){
+        for(int i=0;i<MEMain.arrMEContinent.size();i++){
+            if(MEMain.arrMEContinent.get(i).getContinentName().equals(newContinentName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @FXML
+    public void detectInputValidation(){
+
+        booleanBindingName = Bindings.createBooleanBinding(()->{
+            if(txf_continentName.getText().equals("")||checkNameInput(txf_continentName.getText())){
+                return false;
+            }
+            else{
+                return true;
+            }
+        },txf_continentName.textProperty());
+
+        booleanBindingBonus = Bindings.createBooleanBinding(()->{
+            if(txf_continentBonus.getText().equals("")){
+                return false;
+            }
+            else{
+                return true;
+            }
+        },txf_continentBonus.textProperty());
+
+        btn_addContinentApply.disableProperty().bind(booleanBindingBonus.not().or(booleanBindingName).not());
+    }
+
     @FXML
     public void clickToOk(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

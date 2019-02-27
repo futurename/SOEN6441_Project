@@ -43,6 +43,7 @@ public class MapEditorEditController {
 
     public void initialize(){
         txf_defaultMapPath.setText(DEFAULT_PATH);
+        detectDirectory();
     }
 
     @FXML

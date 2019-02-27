@@ -24,9 +24,9 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <TextField fx:id="txf_continentName" layoutX="652.0" layoutY="299.0" promptText="Asia" />
-      <TextField fx:id="txf_continentBonus" layoutX="652.0" layoutY="443.0" promptText="7" />
-      <Button fx:id="btn_apply" layoutX="398.0" layoutY="620.0" mnemonicParsing="false" onAction="#clickToApply" text="Apply" />
+      <TextField fx:id="txf_continentName" layoutX="652.0" layoutY="299.0" onKeyPressed="#detectInputValidation" onKeyReleased="#detectInputValidation" promptText="Asia" />
+      <TextField fx:id="txf_continentBonus" layoutX="652.0" layoutY="443.0" onKeyPressed="#detectInputValidation" onKeyReleased="#detectInputValidation" promptText="7" />
+      <Button fx:id="btn_addContinentApply" layoutX="398.0" layoutY="620.0" mnemonicParsing="false" onAction="#clickToApply" text="Apply" />
       <Button fx:id="btn_ok" layoutX="719.0" layoutY="620.0" mnemonicParsing="false" onAction="#clickToOk" text="OK" />
    </children>
 </AnchorPane>
