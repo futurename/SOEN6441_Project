@@ -42,7 +42,7 @@ public class MapEditorAddCountryController {
     @FXML
     private ComboBox<String> cbb_setContinent;
 
-    private String newContryName;
+    private String newCountryName;
 
     private String newNeighborName;
 
@@ -63,22 +63,22 @@ public class MapEditorAddCountryController {
 
     @FXML
     public void clickToApply(ActionEvent actionEvent)throws Exception{
-        newContryName = txf_AddCountryName.getText();
+        newCountryName = txf_AddCountryName.getText();
         newNeighborName = cbb_NeighborCountry.getValue();
         setContinent = cbb_setContinent.getValue();
 
-        if(newNeighborName.equals(newContryName)){
+        if(newCountryName.equals(newNeighborName)){
             throw new Exception("a country's neighbor should not be itself ");
         }
-        if(newContryName.equals("")){
+        if(newCountryName.equals("")){
             throw new Exception("a country must have a name");
         }
 
         for(int i = 0;i<MEMain.arrMECountry.size();i++){
             if(newNeighborName.equals(MEMain.arrMECountry.get(i).getCountryName())){
-                MEMain.arrMECountry.get(i).setNeighbor(newContryName);
+                MEMain.arrMECountry.get(i).setNeighbor(newCountryName);
             }
-            if(newContryName.equals(MEMain.arrMECountry.get(i).getCountryName())) {
+            if(newCountryName.equals(MEMain.arrMECountry.get(i).getCountryName())) {
                 ISNOTANEWCOUNTRY = true;
                 MEMain.arrMECountry.get(i).setNeighbor(newNeighborName);
                 break;
@@ -87,13 +87,18 @@ public class MapEditorAddCountryController {
         if(ISNOTANEWCOUNTRY==false){
             for(int k = 0;k<MEMain.arrMEContinent.size();k++){
                 if(setContinent.equals(MEMain.arrMEContinent.get(k).getContinentName())){
-                    MEMain.arrMEContinent.get(k).addCountry(newContryName);
+                    MEMain.arrMEContinent.get(k).addCountry(newCountryName);
+                    if(MEMain.arrMEContinent.get(k).getCountryNumber()>1){
+                        String[] tempneighbor = new String[4];
+                        tempneighbor[3] = newNeighborName;
+                        MEMain.createCountry(newCountryName,tempneighbor);
+                    }
+                    else{
+                        MEMain.createsSoloCountry(newCountryName);
+                    }
                     break;
                 }
             }
-            String[] tempneighbor = new String[4];
-            tempneighbor[3] = newNeighborName;
-            MEMain.createCountry(newContryName,tempneighbor);
         }
     }
 

@@ -3,13 +3,15 @@ package mapeditor.model;
 import javafx.beans.property.*;
 import javafx.beans.value.ObservableValue;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class MEContinent{
     private String continentName;
     private int bonus;
     private int countryNumber = 0;
-    private LinkedList<String> countryList = new LinkedList<String>();
+    public LinkedList<String> countryList = new LinkedList<String>();
 
     private StringProperty name;
     private StringProperty bns;
@@ -84,8 +86,12 @@ public class MEContinent{
         return this.bonus;
     }
 
-    public String getcountryList(){
+    public String getCountryList(){
         return countryList.toString();
+    }
+
+    public LinkedList<String> getCountryListName(){
+        return countryList;
     }
 
     public int getCountryNumber(){ return countryNumber;  }

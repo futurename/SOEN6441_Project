@@ -1,5 +1,9 @@
 package mapeditor.controller;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +17,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mapeditor.MEMain;
+
+import java.io.File;
 
 
 public class MapEditorEditController {
@@ -29,10 +35,29 @@ public class MapEditorEditController {
     @FXML
     private Text txt_OMEtitle;
 
+    //BooleanProperty property = new SimpleBooleanProperty(false);
+
+    BooleanBinding booleanBinding ;
+
     private static final String DEFAULT_PATH = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\src\\mapeditor\\World.map";
 
     public void initialize(){
         txf_defaultMapPath.setText(DEFAULT_PATH);
+    }
+
+    @FXML
+    public void detectDirectory(){
+        System.out.println("000000");
+        File file = new File(txf_defaultMapPath.getText());
+        booleanBinding = Bindings.createBooleanBinding(()->{
+            if(file.exists()&&txf_defaultMapPath.getText().endsWith(".map")){
+                return true;
+            }
+            else{
+                return false;
+            }
+        },txf_defaultMapPath.textProperty());
+        btn_MapSelect.disableProperty().bind(booleanBinding.not());
     }
 
     @FXML

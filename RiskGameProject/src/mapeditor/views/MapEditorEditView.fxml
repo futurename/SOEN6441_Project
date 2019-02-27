@@ -18,7 +18,7 @@
             <Font size="29.0" />
          </font>
       </Label>
-      <TextField fx:id="txf_defaultMapPath" layoutX="513.0" layoutY="289.0" promptText="./maps/World.map" />
+      <TextField fx:id="txf_defaultMapPath" layoutX="513.0" layoutY="289.0" onKeyPressed="#detectDirectory" onKeyReleased="#detectDirectory" promptText="./maps/World.map" />
       <Button fx:id="btn_MapSelect" layoutX="843.0" layoutY="285.0" mnemonicParsing="false" onAction="#selectPath" text="Select">
          <font>
             <Font size="19.0" />

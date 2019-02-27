@@ -195,10 +195,10 @@ public class MapEditorEditPageController {
     public void clickToSave(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-        Pane mapEditorSaveFilePane = new FXMLLoader(getClass().getResource("../views/MapEditorSaveFileView.fxml")).load();
-        Scene mapEditorSaveFileScene = new Scene(mapEditorSaveFilePane,1200,900);
+        Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/MapEditorSaveFileView.fxml")).load();
+        Scene reinforceScene = new Scene(reinforcePane,1200,900);
 
-        curStage.setScene(mapEditorSaveFileScene);
+        curStage.setScene(reinforceScene);
         curStage.show();
     }
 

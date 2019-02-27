@@ -18,6 +18,7 @@ import mapeditor.model.MECountry;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.LinkedList;
 
 import static mapeditor.model.MECheckMapCorrectness.isCorrect;
 
@@ -39,13 +40,7 @@ public class MapEditorSaveFileController {
     private TextField txf_fileName;
 
     @FXML
-    private TextField txf_mapPath;
-
-    @FXML
     private Button btn_save;
-
-    @FXML
-    private Text txt_mapPath;
 
     @FXML
     private Button btn_return;
@@ -71,13 +66,14 @@ public class MapEditorSaveFileController {
     }
 
 
-    public void generateMap(String authorName) throws Exception{
+    public void generateMap(ActionEvent actionEvent) throws Exception{
         File writename = new File(".\\newMap.map");
         writename.createNewFile();
         BufferedWriter out = new BufferedWriter(new FileWriter(writename));
-        out.write("author="+authorName+"\r\n");
+        out.write("[Map]\r\n");
+        out.write("author=author\r\n");
         out.write("image=world.bmp\r\n");
-        out.write("wrap=\r\n");
+        out.write("wrap=no\r\n");
         out.write("scroll=horizontal\r\n");
         out.write("warn=yes\r\n");
         out.write("\r\n");
@@ -85,21 +81,30 @@ public class MapEditorSaveFileController {
         out.write("[Continents]\r\n");
         for(int i=0;i<MEMain.arrMEContinent.size();i++) {
             MEContinent printContinent = MEMain.arrMEContinent.get(i);
-            out.write(printContinent.getContinentName()+"="+printContinent.getBonus());
+            out.write(printContinent.getContinentName()+"="+printContinent.getBonus()+"\r\n");
         }
         out.write("\r\n");
 
         out.write("[Territories]\r\n");
-        for(int i=0;i<MEMain.arrMECountry.size();i++) {
-            MECountry printCountry = MEMain.arrMECountry.get(i);
-            String neighbor =  printCountry.getNeighbor();
-            for(int j=0;j<MEMain.arrMECountry.size();j++){
+        for(int k=0;k<MEMain.arrMEContinent.size();k++){
+            MEContinent getContinent = MEMain.arrMEContinent.get(k);
+            LinkedList<String> countryName= getContinent.getCountryListName();
+            for(int i=0;i<countryName.size();i++) {
+                String curCountryName = countryName.get(i);
+                for (int j = 0; j < MEMain.arrMECountry.size(); j++) {
+                    MECountry printCountry = MEMain.arrMECountry.get(j);
+                    if (!printCountry.getCountryName().equals(curCountryName)) {
+                        continue;
+                    }
 
-                neighbor = neighbor.replaceAll("\\[", "");
-                neighbor = neighbor.replaceAll("\\]", "");
-                neighbor = neighbor.replaceAll(" ", "");
+                    String neighbor = printCountry.getNeighbor();
+                    neighbor = neighbor.replaceAll("\\[", "");
+                    neighbor = neighbor.replaceAll("\\]", "");
+                    neighbor = neighbor.replaceAll(" ", "");
+                    out.write(printCountry.getCountryName() + ",0,0," + neighbor + "\r\n");
+                }
             }
-            out.write(printCountry.getCountryName()+",0,0,"+ neighbor);
+            out.write("\r\n");
         }
         out.flush();
         out.close();

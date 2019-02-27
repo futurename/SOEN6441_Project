@@ -35,6 +35,7 @@ public class MapEditorDeleteCountryController {
     public void initialize(){
         cbb__DeleteCountryName.getItems().clear();
         for(int i = 0; i< MEMain.arrMECountry.size(); i++){
+
             cbb__DeleteCountryName.getItems().add(MEMain.arrMECountry.get(i).getCountryName());
         }
     }
