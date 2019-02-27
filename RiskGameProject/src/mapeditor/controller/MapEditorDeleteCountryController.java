@@ -1,5 +1,7 @@
 package mapeditor.controller;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,23 +27,40 @@ public class MapEditorDeleteCountryController {
     private Label lab_DeleteCountrytitle;
 
     @FXML
-    private ComboBox<String> cbb__DeleteCountryName;
+    private ComboBox<String> cbb_DeleteCountryName;
 
     @FXML
     private Label lab_DeleteCountryName;
 
     private String deleteCountryName;
 
+    BooleanBinding booleanBinding ;
+
     public void initialize(){
-        cbb__DeleteCountryName.getItems().clear();
+        cbb_DeleteCountryName.getItems().clear();
         for(int i = 0; i< MEMain.arrMECountry.size(); i++){
 
-            cbb__DeleteCountryName.getItems().add(MEMain.arrMECountry.get(i).getCountryName());
+            cbb_DeleteCountryName.getItems().add(MEMain.arrMECountry.get(i).getCountryName());
         }
+        detectSelectionValidation();
     }
+
+    @FXML
+    public void detectSelectionValidation(){ ;
+        booleanBinding = Bindings.createBooleanBinding(()->{
+            if(cbb_DeleteCountryName.getValue()==null){
+                return false;
+            }
+            else{
+                return true;
+            }
+        },cbb_DeleteCountryName.itemsProperty());
+        btn_DeleteCountryApply.disableProperty().bind(booleanBinding.not());
+    }
+
     @FXML
     public void clickToApply(ActionEvent actionEvent) throws Exception{
-        deleteCountryName = cbb__DeleteCountryName.getValue();
+        deleteCountryName = cbb_DeleteCountryName.getValue();
         MEMain.deleteCountry(deleteCountryName);
     }
 

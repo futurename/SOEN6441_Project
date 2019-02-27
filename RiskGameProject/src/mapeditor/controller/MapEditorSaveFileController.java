@@ -45,6 +45,12 @@ public class MapEditorSaveFileController {
     @FXML
     private Button btn_return;
 
+    private String DEFAULTPATH = ".\\newMap.map";
+
+    public void initialize(){
+        txf_fileName.setText(DEFAULTPATH);
+    }
+
     @FXML
     public void clickToReturn(ActionEvent actionEvent) throws Exception{
         MEMain.EDITPAGEFLAG = true;
@@ -67,7 +73,7 @@ public class MapEditorSaveFileController {
 
 
     public void generateMap(ActionEvent actionEvent) throws Exception{
-        File writename = new File(".\\newMap.map");
+        File writename = new File(txf_fileName.getText());
         writename.createNewFile();
         BufferedWriter out = new BufferedWriter(new FileWriter(writename));
         out.write("[Map]\r\n");

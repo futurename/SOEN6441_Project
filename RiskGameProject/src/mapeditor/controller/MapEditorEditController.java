@@ -47,7 +47,6 @@ public class MapEditorEditController {
 
     @FXML
     public void detectDirectory(){
-        System.out.println("000000");
         File file = new File(txf_defaultMapPath.getText());
         booleanBinding = Bindings.createBooleanBinding(()->{
             if(file.exists()&&txf_defaultMapPath.getText().endsWith(".map")){

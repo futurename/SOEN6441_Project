@@ -1,5 +1,7 @@
 package mapeditor.controller;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import mapeditor.MEMain;
 
+import java.io.File;
 import java.util.Collection;
 
 public class MapEditorDeleteContinentController {
@@ -32,7 +35,9 @@ public class MapEditorDeleteContinentController {
     @FXML
     private Label lab_DeleteContinenttitle;
 
-    private String selectedContinentName;
+    private String selectedContinentName = "";
+
+    BooleanBinding booleanBinding ;
 
     public void initialize(){
 
@@ -40,7 +45,20 @@ public class MapEditorDeleteContinentController {
         for(int i = 0;i< MEMain.arrMEContinent.size();i++) {
             cbb_deleteContinentName.getItems().add(MEMain.arrMEContinent.get(i).getContinentName());
         }
+        detectSelectionValidation();
+    }
 
+    @FXML
+    public void detectSelectionValidation(){ ;
+        booleanBinding = Bindings.createBooleanBinding(()->{
+            if(cbb_deleteContinentName.getValue()==null){
+                return false;
+            }
+            else{
+                return true;
+            }
+        },cbb_deleteContinentName.itemsProperty());
+        btn_DeleteContinentApply.disableProperty().bind(booleanBinding.not());
     }
 
     @FXML
