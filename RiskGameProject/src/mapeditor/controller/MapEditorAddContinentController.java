@@ -94,7 +94,7 @@ public class MapEditorAddContinentController {
             }
         },txf_continentBonus.textProperty());
 
-        btn_addContinentApply.disableProperty().bind(booleanBindingBonus.not().or(booleanBindingName).not());
+        btn_addContinentApply.disableProperty().bind(booleanBindingBonus.not().or(booleanBindingName.not()));
     }
 
     @FXML
