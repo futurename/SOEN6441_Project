@@ -93,7 +93,7 @@ public class MapEditorAddCountryController {
     public void neighborSelectValidation(){
 
         booleanBindingNeighbor = Bindings.createBooleanBinding(()->{
-            if(cbb_NeighborCountry.getValue() == null){
+            if(cbb_NeighborCountry.getValue() == null||cbb_NeighborCountry.getValue().equals(txf_AddCountryName.getText())){
                 return false;
             }
             else{
