@@ -14,19 +14,19 @@
             <Font size="40.0" />
          </font>
       </Text>
-      <Text fx:id="txt_fileName" layoutX="347.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="name">
+      <Text fx:id="txt_fileName" layoutX="405.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="name">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <TextField fx:id="txf_fileName" layoutX="546.0" layoutY="289.0" promptText="newmap.map" />
-      <Button fx:id="btn_save" layoutX="580.0" layoutY="562.0" mnemonicParsing="false" onAction="#generateMap" text="save" />
-      <Text fx:id="txt_checkResult" layoutX="510.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" text="haven't check" wrappingWidth="211.70361328125">
+      <TextField fx:id="txf_fileName" layoutX="520.0" layoutY="303.0" promptText="newmap.map" />
+      <Button fx:id="btn_save" layoutX="579.0" layoutY="539.0" mnemonicParsing="false" onAction="#generateMap" text="save" />
+      <Text fx:id="txt_checkResult" layoutX="494.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Haven't check" wrappingWidth="211.70361328125">
          <font>
             <Font size="29.0" />
          </font>
       </Text>
-      <Button fx:id="btn_check" layoutX="575.0" layoutY="450.0" mnemonicParsing="false" onAction="#clickToCheck" text="check" />
-      <Button fx:id="btn_return" layoutX="570.0" layoutY="503.0" mnemonicParsing="false" onAction="#clickToReturn" text="Return" />
+      <Button fx:id="btn_check" layoutX="472.0" layoutY="539.0" mnemonicParsing="false" onAction="#clickToCheck" text="check" />
+      <Button fx:id="btn_return" layoutX="682.0" layoutY="539.0" mnemonicParsing="false" onAction="#clickToReturn" text="back" />
    </children>
 </AnchorPane>
