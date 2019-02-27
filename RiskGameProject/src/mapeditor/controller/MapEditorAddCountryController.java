@@ -1,5 +1,7 @@
 package mapeditor.controller;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,7 +52,17 @@ public class MapEditorAddCountryController {
 
     private boolean ISNOTANEWCOUNTRY = false;
 
-    public void initialize(){
+    //booleanBindingCountryName is used to monitor the input of txf_AddCountryName.
+    BooleanBinding booleanBindingCountryName;
+    //booleanBindingNeighbor is used to monitor thw selection of cbb_NeighborCountry.
+    BooleanBinding booleanBindingNeighbor;
+    //booleanBindingBelongingContinent is used to monitor thw selection of cbb_setContinent.
+    BooleanBinding booleanBindingContinent;
+
+
+    public void initialize() {
+
+        CheckAddCountryPageInput();
         cbb_NeighborCountry.getItems().clear();
         for(int i=0;i< MEMain.arrMECountry.size();i++){
             cbb_NeighborCountry.getItems().add(MEMain.arrMECountry.get(i).getCountryName());
@@ -60,6 +72,79 @@ public class MapEditorAddCountryController {
             cbb_setContinent.getItems().add(MEMain.arrMEContinent.get(j).getContinentName());
         }
     }
+
+    /**
+     * Check the validation of country name.
+     */
+    public void CountryNameValidation() {
+
+        booleanBindingCountryName = Bindings.createBooleanBinding(() -> {
+            if (txf_AddCountryName.getText().equals("")) {
+                return false;
+            } else {
+                return true;
+            }
+        }, txf_AddCountryName.textProperty());
+    }
+
+    /**
+     * Check the validation of neighbor selection.
+     */
+    public void neighborSelectValidation(){
+
+        booleanBindingNeighbor = Bindings.createBooleanBinding(()->{
+            if(cbb_NeighborCountry.getValue() == null){
+                return false;
+            }
+            else{
+                return true;
+            }
+        },cbb_NeighborCountry.itemsProperty());
+    }
+
+    /**
+     * Check the validation of continent selection.
+     */
+    public void continentSelectValidation(){
+
+        booleanBindingContinent = Bindings.createBooleanBinding(()->{
+            if(cbb_setContinent.getValue() == null){
+                return false;
+            }
+            else{
+                return true;
+            }
+        },cbb_setContinent.itemsProperty());
+    }
+
+    /**
+     * This method is for ensure the validation of user's input.
+     */
+    @FXML
+    public void CheckAddCountryPageInput(){
+
+        CountryNameValidation();
+        neighborSelectValidation();
+        continentSelectValidation();
+
+        if(!MEMain.arrMECountry.isEmpty()){
+
+            String checkIfSecondTime = MEMain.arrMECountry.toString();
+            checkIfSecondTime.replaceAll("\\[", "");
+            checkIfSecondTime.replaceAll("\\]", "");
+
+            //If it is the first time to add this country.
+            if (!checkIfSecondTime.contains(txf_AddCountryName.getText())) {
+                //Second or more than second time.
+                btn_AddCountryApply.disableProperty().bind(booleanBindingCountryName.not().or(booleanBindingNeighbor.not()));
+            }
+
+        }else {
+            //The First time.
+            btn_AddCountryApply.disableProperty().bind(booleanBindingCountryName.not().or(booleanBindingContinent.not()));
+        }
+    }
+
 
     @FXML
     public void clickToApply(ActionEvent actionEvent)throws Exception{

@@ -205,7 +205,6 @@ public class MapEditorEditPageController {
 
     @FXML
     public void clickToCheck(ActionEvent actionEvent) throws Exception{
-        System.out.println(isCorrect(MEMain.arrMECountry, MEMain.arrMEContinent));
         txt_check.setText(isCorrect(MEMain.arrMECountry, MEMain.arrMEContinent));
     }
 }
