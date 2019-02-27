@@ -28,8 +28,14 @@ public class MECheckMapCorrectness{
      * first correct checkCC
      * check whether it is a connect graph or not
      */
-    public static boolean correctCheckConnectGraph(ArrayList<MECountry > countryArr){
+    public static boolean correctCheckConnectGraph(ArrayList<MECountry> countryArr){
         Queue<String> queue = new LinkedList<String>();
+
+        //If it is a empty map.
+        if(countryArr.isEmpty()){
+            return true;
+        }
+
         HashMap<String,Boolean> visited = new HashMap<String,Boolean>();
         for(int i=0 ; i<countryArr.size(); i++ ){
             String countryTemp = countryArr.get(i).getCountryName();
@@ -71,6 +77,11 @@ public class MECheckMapCorrectness{
      * check whether all countries in one continent are placed together
      */
     public static boolean correctCheckContinentCountry(ArrayList<MEContinent> continents, ArrayList<MECountry> country){
+        //If it is a empty map.
+        if(continents.isEmpty() && country.isEmpty()) {
+            return true;
+        }
+
         for(int i=0 ;i<continents.size();i++){
             if(continents.get(i).getCountryNumber() >= 1){
                 //
@@ -92,12 +103,18 @@ public class MECheckMapCorrectness{
      *  every country belongs to one and only one continent
      */
     public static boolean correctCheckCountryBelonging(ArrayList<MEContinent> continentsArr, ArrayList<MECountry> countryArr){
-        int countryAddByContient = 0;
+        int countryAddByContinent = 0;
+
+        //If the map is empty.
+        if(continentsArr.isEmpty() && countryArr.isEmpty()){
+            return true;
+        }
+
         for(int i = 0; i<continentsArr.size();i++){
 
-            countryAddByContient = continentsArr.get(i).getCountryNumber()+countryAddByContient;
+            countryAddByContinent = continentsArr.get(i).getCountryNumber()+countryAddByContinent;
         }
-        if(countryAddByContient != countryArr.size()){
+        if(countryAddByContinent != countryArr.size()){
             checkFlagCB = false;
         }
         return checkFlagCB;
