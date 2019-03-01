@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * class continent
+ */
 public class MEContinent{
     private String continentName;
     private int bonus;
@@ -17,11 +20,16 @@ public class MEContinent{
     private StringProperty bns;
     private StringProperty countries;
 
+    /**
+     * set continent name
+     * @param newContinentName new continent name
+     */
     public void setContinentName(String newContinentName){
 
         this.continentName = newContinentName;
         nameProperty().set(newContinentName);
     }
+
 
     public StringProperty nameProperty(){
         if(name == null){
@@ -30,7 +38,10 @@ public class MEContinent{
         return name;
     }
 
-
+    /**
+     * set bonus
+     * @param bonus set the bonus of this continent
+     */
     public void setBonus(int bonus){
 
         this.bonus = bonus;
@@ -53,7 +64,11 @@ public class MEContinent{
         return countries;
     }
 
-
+    /**
+     * add a new country in this continent
+     * @param countryName the name of country you want to add
+     * @return whether it is success or not
+     */
     public boolean addCountry(String countryName){
         if(!countryList.contains(countryName)){
             countryNumber++;
@@ -67,6 +82,10 @@ public class MEContinent{
         return false;
     }
 
+    /**
+     * delete a country from this continent
+     * @param countryName the name of the country you want to delete
+     */
     public void deleteCountry(String countryName){
         if(countryList.contains(countryName)){
             countryList.remove(countryName);
@@ -78,22 +97,42 @@ public class MEContinent{
         }
     }
 
+    /**
+     * get continent name
+     * @return the name of this continent
+     */
     public String getContinentName(){
         return continentName;
     }
 
+    /**
+     * get bonus
+     * @return the bonus of this continent
+     */
     public int getBonus(){
         return this.bonus;
     }
 
+    /**
+     * get country list, same as get country list name but in String ,for example"[A, B, C]"
+     * @return country list
+     */
     public String getCountryList(){
         return countryList.toString();
     }
 
+    /**
+     * get country list name
+     * @return the countries name in this continent
+     */
     public LinkedList<String> getCountryListName(){
         return countryList;
     }
 
+    /**
+     * get country number
+     * @return the number of countries in this continent
+     */
     public int getCountryNumber(){ return countryNumber;  }
 
 }

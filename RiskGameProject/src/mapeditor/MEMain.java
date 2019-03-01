@@ -10,6 +10,9 @@ import mapeditor.model.MECountry;
 
 import java.util.ArrayList;
 
+/**
+ * @author Yunqiang Wei
+ */
 public class MEMain extends Application {
 
     public static ArrayList<MEContinent> arrMEContinent = new ArrayList<MEContinent>();
@@ -17,6 +20,11 @@ public class MEMain extends Application {
     public static String OLDMAPPATH;
     public static boolean EDITPAGEFLAG = false;
 
+    /**
+     * start
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         Pane root = FXMLLoader.load(getClass().getResource("views/MapEditorHomePageView.fxml"));
@@ -31,6 +39,11 @@ public class MEMain extends Application {
     }
 
 
+    /**
+     * this is the method of creating a continent
+     * @param continentName the name of continent you want to create
+     * @param bonus the continent bonus
+     */
     public static void createContinent(String continentName,int bonus){
         MEContinent meContinent = new MEContinent();
         meContinent.setContinentName(continentName);
@@ -38,6 +51,11 @@ public class MEMain extends Application {
         arrMEContinent.add(meContinent);
     }
 
+    /**
+     * this is the method of creating a regular country
+     * @param countryName the name of country you want to create
+     * @param neighbor the neighbor country name
+     */
     public static void createCountry(String countryName,String[] neighbor){
         MECountry meCountry = new MECountry();
         meCountry.setCountryName(countryName);
@@ -47,12 +65,20 @@ public class MEMain extends Application {
         arrMECountry.add(meCountry);
     }
 
+    /**
+     * this method is creating a country when it is the first country in a continent, which means it has no neighbor when creating it
+     * @param soloCountryName the name of country you want to create
+     */
     public static void createsSoloCountry(String soloCountryName){
         MECountry meCountry = new MECountry();
         meCountry.setCountryName(soloCountryName);
         arrMECountry.add(meCountry);
     }
 
+    /**
+     * this is the method of deleting continent
+     * @param continentName the name of continent you want to delete
+     */
     public static void deleteContinent(String continentName){
         String deletecontinentcountry;
         String[] deletecontinentcountryarr;
@@ -72,6 +98,10 @@ public class MEMain extends Application {
         }
     }
 
+    /**
+     * this is the method of deleting country
+     * @param countryName the name of country you want to delete
+     */
     public static void deleteCountry(String countryName){
         for(int i = 0;i<arrMECountry.size();i++){
             if(arrMECountry.get(i).getCountryName().equals(countryName)){
@@ -94,6 +124,11 @@ public class MEMain extends Application {
         }
     }
 
+    /**
+     * main method
+     * @param agrs
+     * @throws Exception
+     */
     public static void main(String[] agrs) throws Exception{
         launch(agrs);
     }
