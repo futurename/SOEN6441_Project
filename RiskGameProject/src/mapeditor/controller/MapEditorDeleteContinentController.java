@@ -48,6 +48,9 @@ public class MapEditorDeleteContinentController {
         detectSelectionValidation();
     }
 
+    /**
+     * check the validation of input , if there is no input then the apply button cannot be pressed
+     */
     @FXML
     public void detectSelectionValidation(){ ;
         booleanBinding = Bindings.createBooleanBinding(()->{
@@ -61,6 +64,11 @@ public class MapEditorDeleteContinentController {
         btn_DeleteContinentApply.disableProperty().bind(booleanBinding.not());
     }
 
+    /**
+     * confirm the continent to be delete, p.s. if the continent is deleted ,then the country in this continent will be delete as well.
+     * @param actionEvent
+     * @throws Exception
+     */
     @FXML
     public void clickToDeleteContinent(ActionEvent actionEvent) throws Exception{
         selectedContinentName = cbb_deleteContinentName.getValue();
@@ -68,6 +76,9 @@ public class MapEditorDeleteContinentController {
     }
     @FXML
 
+    /**
+     * return to the edit page
+     */
     public void clickToOk(ActionEvent actionEvent) throws Exception{
 
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

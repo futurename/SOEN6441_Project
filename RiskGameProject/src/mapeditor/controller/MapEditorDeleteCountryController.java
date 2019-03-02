@@ -45,6 +45,9 @@ public class MapEditorDeleteCountryController {
         detectSelectionValidation();
     }
 
+    /**
+     * check the validation of selection, if there is no input the apply button cannot be pressed
+     */
     @FXML
     public void detectSelectionValidation(){ ;
         booleanBinding = Bindings.createBooleanBinding(()->{
@@ -58,12 +61,22 @@ public class MapEditorDeleteCountryController {
         btn_DeleteCountryApply.disableProperty().bind(booleanBinding.not());
     }
 
+    /**
+     * confirm the country to be delete
+     * @param actionEvent
+     * @throws Exception
+     */
     @FXML
-    public void clickToApply(ActionEvent actionEvent) throws Exception{
+    public void clickToDeleteCountry(ActionEvent actionEvent) throws Exception{
         deleteCountryName = cbb_DeleteCountryName.getValue();
         MEMain.deleteCountry(deleteCountryName);
     }
 
+    /**
+     * return to the edit page
+     * @param actionEvent
+     * @throws Exception
+     */
     @FXML
     public void clickToOk(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

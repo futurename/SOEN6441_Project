@@ -187,6 +187,7 @@ public class MapEditorAddCountryController {
         }
     }
 
+
     @FXML
     public void clickToOk(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
