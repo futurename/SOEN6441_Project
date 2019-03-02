@@ -16,7 +16,6 @@ import mapeditor.MEMain;
 public class MapEditorAddCountryController {
 
 
-
     @FXML
     private Text txt_setCountinent;
 
@@ -64,11 +63,11 @@ public class MapEditorAddCountryController {
 
         CheckAddCountryPageInput();
         cbb_NeighborCountry.getItems().clear();
-        for(int i=0;i< MEMain.arrMECountry.size();i++){
+        for (int i = 0; i < MEMain.arrMECountry.size(); i++) {
             cbb_NeighborCountry.getItems().add(MEMain.arrMECountry.get(i).getCountryName());
         }
         cbb_setContinent.getItems().clear();
-        for(int j=0;j<MEMain.arrMEContinent.size();j++){
+        for (int j = 0; j < MEMain.arrMEContinent.size(); j++) {
             cbb_setContinent.getItems().add(MEMain.arrMEContinent.get(j).getContinentName());
         }
     }
@@ -145,9 +144,13 @@ public class MapEditorAddCountryController {
         }
     }
 
-
+    /**
+     * clickToAddCountry receive action event and add a new country instance to the program.
+     * @param actionEvent
+     * @throws Exception
+     */
     @FXML
-    public void clickToApply(ActionEvent actionEvent)throws Exception{
+    public void clickToAddCountry(ActionEvent actionEvent) throws Exception{
         newCountryName = txf_AddCountryName.getText();
         newNeighborName = cbb_NeighborCountry.getValue();
         setContinent = cbb_setContinent.getValue();
@@ -187,7 +190,11 @@ public class MapEditorAddCountryController {
         }
     }
 
-
+    /**
+     * return to the edit page
+     * @param actionEvent
+     * @throws Exception
+     */
     @FXML
     public void clickToOk(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

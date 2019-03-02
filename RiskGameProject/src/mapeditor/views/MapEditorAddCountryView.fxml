@@ -24,7 +24,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="btn_AddCountryApply" layoutX="358.0" layoutY="661.0" mnemonicParsing="false" onAction="#clickToApply" text="Apply" />
+      <Button fx:id="btn_AddCountryApply" layoutX="358.0" layoutY="661.0" mnemonicParsing="false" onAction="#clickToAddCountry" text="Apply" />
       <Button fx:id="btn_AddCountryOK" layoutX="729.0" layoutY="661.0" mnemonicParsing="false" onAction="#clickToOk" text="OK" />
       <TextField fx:id="txf_AddCountryName" layoutX="466.0" layoutY="213.0" onKeyPressed="#CheckAddCountryPageInput" onKeyReleased="#CheckAddCountryPageInput" promptText="China" />
       <ComboBox fx:id="cbb_NeighborCountry" layoutX="466.0" layoutY="285.0" onAction="#CheckAddCountryPageInput" prefHeight="30.0" prefWidth="323.0" promptText="NeighborCountry" />
