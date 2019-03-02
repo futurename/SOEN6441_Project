@@ -51,6 +51,11 @@ public class MapEditorSaveFileController {
         txf_fileName.setText(DEFAULTPATH);
     }
 
+    /**
+     * clickToReturn method return to the previous page.
+     * @param actionEvent
+     * @throws Exception
+     */
     @FXML
     public void clickToReturn(ActionEvent actionEvent) throws Exception{
         MEMain.EDITPAGEFLAG = true;
@@ -63,15 +68,23 @@ public class MapEditorSaveFileController {
         curStage.show();
     }
 
+    /**
+     * clickToCheck check the map correctness in the save file page
+     * @param actionEvent
+     * @throws Exception
+     */
     @FXML
     public void clickToCheck(ActionEvent actionEvent) throws Exception{
-
 
         txt_checkResult.setText(isCorrect(MEMain.arrMECountry, MEMain.arrMEContinent));
 
     }
 
-
+    /**
+     * generateMap method generate a map according to the data.
+     * @param actionEvent
+     * @throws Exception
+     */
     public void generateMap(ActionEvent actionEvent) throws Exception{
         File writename = new File(txf_fileName.getText());
         writename.createNewFile();
