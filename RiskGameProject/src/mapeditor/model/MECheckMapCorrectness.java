@@ -8,6 +8,12 @@ public class MECheckMapCorrectness{
     private static boolean checkFlagCC = true;
     private static boolean checkFlagCB = true;
 
+    /**
+     * isCorrect method compare all the three test result and ruturn to the UI.
+     * @param countryArr
+     * @param continentsArr
+     * @return
+     */
     public static String isCorrect(ArrayList< MECountry> countryArr, ArrayList<MEContinent> continentsArr){
         boolean checkFlagCGResult = correctCheckConnectGraph(countryArr);
         boolean checkFlagCCResult = correctCheckContinentCountry(continentsArr,countryArr);

@@ -85,7 +85,7 @@ public class MapEditorEditPageController {
         }
 
 
-
+        //Pass value to the corresponding table column.
         ContinentNameCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         ContinentBonusCol.setCellValueFactory(cellData -> cellData.getValue().bonusProperty());
         CountryCol.setCellValueFactory(cellData -> cellData.getValue().countryProperty());

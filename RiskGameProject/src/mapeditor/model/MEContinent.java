@@ -30,7 +30,10 @@ public class MEContinent{
         nameProperty().set(newContinentName);
     }
 
-
+    /**
+     * Bind continent name to table view
+     * @return
+     */
     public StringProperty nameProperty(){
         if(name == null){
             name = new SimpleStringProperty(this, "name");
@@ -49,6 +52,10 @@ public class MEContinent{
         bonusProperty().set(bonusToString);
     }
 
+    /**
+     * Bind continent bonus infomation to table view.
+     * @return
+     */
     public StringProperty bonusProperty() {
         if (bns == null) {
             bns = new SimpleStringProperty(this, "name");
@@ -56,7 +63,10 @@ public class MEContinent{
         return bns;
     }
 
-
+    /**
+     * Bind country infomation to table view.
+     * @return
+     */
     public StringProperty countryProperty() {
         if (countries == null) {
             countries = new SimpleStringProperty(this, "country");
