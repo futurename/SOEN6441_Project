@@ -10,13 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import mapeditor.MEMain;
 
-import java.io.File;
-import java.util.Collection;
 
 public class MapEditorDeleteContinentController {
 

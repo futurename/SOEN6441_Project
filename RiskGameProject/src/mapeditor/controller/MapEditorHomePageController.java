@@ -1,9 +1,4 @@
 package mapeditor.controller;
-
-    /**
-     * Sample Skeleton for 'MapEditorHomePageView.fxml' Controller Class
-     */
-
 import javafx.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
