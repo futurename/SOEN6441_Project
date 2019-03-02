@@ -17,52 +17,70 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mapeditor.MEMain;
 
+/**
+ * home page class
+ */
 public class MapEditorHomePageController {
 
-        @FXML // ResourceBundle that was given to the FXMLLoader
-        private ResourceBundle resources;
+    @FXML // ResourceBundle that was given to the FXMLLoader
+    private ResourceBundle resources;
 
-        @FXML // URL location of the FXML file that was given to the FXMLLoader
-        private URL location;
+    @FXML // URL location of the FXML file that was given to the FXMLLoader
+    private URL location;
 
-        @FXML // fx:id="btn_CreateNewMap"
-        private Button btn_CreateNewMap; // Value injected by FXMLLoader
+    @FXML // fx:id="btn_CreateNewMap"
+    private Button btn_CreateNewMap; // Value injected by FXMLLoader
 
-        @FXML // fx:id="txt_Title"
-        private Text txt_Title; // Value injected by FXMLLoader
+    @FXML // fx:id="txt_Title"
+    private Text txt_Title; // Value injected by FXMLLoader
 
-        @FXML // fx:id="btn_EditOldMap"
-        private Button btn_EditOldMap; // Value injected by FXMLLoader
+    @FXML // fx:id="btn_EditOldMap"
+    private Button btn_EditOldMap; // Value injected by FXMLLoader
 
-        @FXML // This method is called by the FXMLLoader when initialization is complete
-        void initialize() {
-            assert btn_CreateNewMap != null : "fx:id=\"btn_CreateNewMap\" was not injected: check your FXML file 'MapEditorHomePageView.fxml'.";
-            assert txt_Title != null : "fx:id=\"txt_Title\" was not injected: check your FXML file 'MapEditorHomePageView.fxml'.";
-            assert btn_EditOldMap != null : "fx:id=\"btn_EditOldMap\" was not injected: check your FXML file 'MapEditorHomePageView.fxml'.";
+    /**
+    * This method is called by the FXMLLoader when initialization is complete
+    */
+    @FXML
+    void initialize() {
+        assert btn_CreateNewMap != null : "fx:id=\"btn_CreateNewMap\" was not injected: check your FXML file 'MapEditorHomePageView.fxml'.";
+        assert txt_Title != null : "fx:id=\"txt_Title\" was not injected: check your FXML file 'MapEditorHomePageView.fxml'.";
+        assert btn_EditOldMap != null : "fx:id=\"btn_EditOldMap\" was not injected: check your FXML file 'MapEditorHomePageView.fxml'.";
 
-        }
-        @FXML
-        public void clickToEdit(ActionEvent actionEvent) throws Exception{
-            Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
-            Pane mapEditorEditPane = new FXMLLoader(getClass().getResource("../views/MapEditorEditView.fxml")).load();
-            Scene mapEditorEditScene = new Scene(mapEditorEditPane,1200,900);
-
-            curStage.setScene(mapEditorEditScene);
-            curStage.show();
-        }
-        @FXML
-        public void clickToCreate(ActionEvent actionEvent) throws Exception{
-            MEMain.EDITPAGEFLAG = true;
-            Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
-            Pane mapEditorEditPagePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();
-            Scene mapEditorEditPageScene = new Scene(mapEditorEditPagePane,1200,900);
-
-            curStage.setScene(mapEditorEditPageScene);
-            curStage.show();
-        }
     }
+
+    /**
+     * this method control the edit button to the select map path page
+     * @param actionEvent
+     * @throws Exception
+     */
+    @FXML
+    public void clickToEdit(ActionEvent actionEvent) throws Exception{
+        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        Pane mapEditorEditPane = new FXMLLoader(getClass().getResource("../views/MapEditorEditView.fxml")).load();
+        Scene mapEditorEditScene = new Scene(mapEditorEditPane,1200,900);
+
+        curStage.setScene(mapEditorEditScene);
+        curStage.show();
+    }
+
+    /**
+     * this method control the create button to the edit page
+     * @param actionEvent
+     * @throws Exception
+     */
+    @FXML
+    public void clickToCreate(ActionEvent actionEvent) throws Exception{
+        MEMain.EDITPAGEFLAG = true;
+        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        Pane mapEditorEditPagePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();
+        Scene mapEditorEditPageScene = new Scene(mapEditorEditPagePane,1200,900);
+
+        curStage.setScene(mapEditorEditPageScene);
+        curStage.show();
+    }
+}
 
 
 

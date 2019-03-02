@@ -20,7 +20,9 @@ import mapeditor.MEMain;
 
 import java.io.File;
 
-
+/**
+ * this class is to select old map from folder
+ */
 public class MapEditorEditController {
 
     @FXML
@@ -46,6 +48,9 @@ public class MapEditorEditController {
         detectDirectory();
     }
 
+    /**
+     * detect the directory in the text field is valid, if not then the button cannot be pressed
+     */
     @FXML
     public void detectDirectory(){
         File file = new File(txf_defaultMapPath.getText());
@@ -60,6 +65,11 @@ public class MapEditorEditController {
         btn_MapSelect.disableProperty().bind(booleanBinding.not());
     }
 
+    /**
+     * if the directory is valid then the button will jump to the edit page
+     * @param actionEvent
+     * @throws Exception
+     */
     @FXML
     public void selectPath(ActionEvent actionEvent) throws Exception{
         MEMain.OLDMAPPATH = txf_defaultMapPath.getText();

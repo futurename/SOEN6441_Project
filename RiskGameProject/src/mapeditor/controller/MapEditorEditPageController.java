@@ -27,6 +27,9 @@ import java.util.Iterator;
 
 import static mapeditor.model.MECheckMapCorrectness.isCorrect;
 
+/**
+ * edit page class
+ */
 public class MapEditorEditPageController {
 
 
@@ -95,6 +98,11 @@ public class MapEditorEditPageController {
 
     }
 
+    /**
+     * read map from the given valid map path
+     * @param path
+     * @throws Exception
+     */
     private void readMap(String path)throws Exception{
         ArrayList<String> fileRead = new ArrayList<String>();
         try {
@@ -144,10 +152,13 @@ public class MapEditorEditPageController {
     @FXML
     public void loadTable() throws Exception{
 
-
     }
 
-
+    /**
+     * jump to the add continent page
+     * @param actionEvent
+     * @throws Exception
+     */
     @FXML
     public void clickToAddContinent(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -158,6 +169,12 @@ public class MapEditorEditPageController {
         curStage.setScene(mapEditorAddContinentScene);
         curStage.show();
     }
+
+    /**
+     * jump to the delete continent page
+     * @param actionEvent
+     * @throws Exception
+     */
     @FXML
     public void clickToDeleteContinent(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -169,6 +186,11 @@ public class MapEditorEditPageController {
         curStage.show();
     }
 
+    /**
+     * jump to the add country page
+     * @param actionEvent
+     * @throws Exception
+     */
     @FXML
     public void clickToAddCountry(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -180,6 +202,11 @@ public class MapEditorEditPageController {
         curStage.show();
     }
 
+    /**
+     * jump to the delete country page
+     * @param actionEvent
+     * @throws Exception
+     */
     @FXML
     public void clickToDeleteCountry(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -191,6 +218,11 @@ public class MapEditorEditPageController {
         curStage.show();
     }
 
+    /**
+     * jump to the save file page
+     * @param actionEvent
+     * @throws Exception
+     */
     @FXML
     public void clickToSave(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -202,7 +234,11 @@ public class MapEditorEditPageController {
         curStage.show();
     }
 
-
+    /**
+     * check whether the loading map is correct or not
+     * @param actionEvent
+     * @throws Exception
+     */
     @FXML
     public void clickToCheck(ActionEvent actionEvent) throws Exception{
         txt_check.setText(isCorrect(MEMain.arrMECountry, MEMain.arrMEContinent));

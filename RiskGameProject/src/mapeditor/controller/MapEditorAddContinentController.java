@@ -53,6 +53,11 @@ public class MapEditorAddContinentController {
         detectInputValidation();
     }
 
+    /**
+     * press apply button to confirm changes
+     * @param actionEvent
+     * @throws Exception
+     */
     public void clickToApply(ActionEvent actionEvent)throws Exception{
         newContinentName = txf_continentName.getText();
         newContinentBonus = Integer.parseInt(txf_continentBonus.getText());
@@ -64,6 +69,11 @@ public class MapEditorAddContinentController {
         MEMain.createContinent(newContinentName,newContinentBonus);
     }
 
+    /**
+     * check whether the input continent name has already exist in the map
+     * @param newContinentName
+     * @return
+     */
     private boolean checkNameInput(String newContinentName){
         for(int i=0;i<MEMain.arrMEContinent.size();i++){
             if(MEMain.arrMEContinent.get(i).getContinentName().equals(newContinentName)) {
@@ -73,6 +83,9 @@ public class MapEditorAddContinentController {
         return false;
     }
 
+    /**
+     * if the input is invalid then the apply button cannot be pressed
+     */
     @FXML
     public void detectInputValidation(){
 
@@ -97,6 +110,11 @@ public class MapEditorAddContinentController {
         btn_addContinentApply.disableProperty().bind(booleanBindingBonus.not().or(booleanBindingName.not()));
     }
 
+    /**
+     * return to the edit page
+     * @param actionEvent
+     * @throws Exception
+     */
     @FXML
     public void clickToOk(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
