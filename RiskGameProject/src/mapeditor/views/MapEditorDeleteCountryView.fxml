@@ -19,7 +19,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="btn_DeleteCountryApply" layoutX="334.0" layoutY="584.0" mnemonicParsing="false" onAction="#clickToApply" text="Apply" />
+      <Button fx:id="btn_DeleteCountryApply" layoutX="334.0" layoutY="584.0" mnemonicParsing="false" onAction="#clickToDeleteCountry" text="Apply" />
       <Button fx:id="btn_DeleteCountryOK" layoutX="660.0" layoutY="584.0" mnemonicParsing="false" onAction="#clickToOk" text="OK" />
       <ComboBox fx:id="cbb_DeleteCountryName" layoutX="491.0" layoutY="292.0" onAction="#detectSelectionValidation" prefHeight="30.0" prefWidth="249.0" promptText="Country" />
    </children>
