@@ -1,4 +1,4 @@
-package test.mapeditor;
+package mapeditor.Test;
 
 public class MapEditorTest {
 }
