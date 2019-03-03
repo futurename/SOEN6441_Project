@@ -13,8 +13,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Continent;
@@ -25,6 +27,7 @@ import riskgame.model.Utils.InitPlayers;
 import riskgame.model.Utils.ListviewRenderer;
 import riskgame.model.Utils.MapChecker;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -42,7 +45,9 @@ public class StartViewController {
     @FXML
     private TextField txf_playerNumbers;
     @FXML
-    private Button btn_loadMap;
+    private Button btn_confirmLoadFile;
+    @FXML
+    private Button btn_loadFile;
     @FXML
     private Button btn_reducePlayerNumber;
     @FXML
@@ -67,8 +72,9 @@ public class StartViewController {
     private String mapPath;
     private IntegerProperty numOfPlayersProperty;
     private int inputCounter = 3;
-
     private boolean isMapInfoOn = false;
+
+    private Stage curStage;
 
     /**
      * set default map path, default number of players and its range
@@ -127,7 +133,7 @@ public class StartViewController {
      * @throws IOException when file reader fails
      */
     @FXML
-    public void clickLoadMap(ActionEvent actionEvent) throws IOException {
+    public void clickConfirmLoadMap(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         mapPath = txf_mapPath.getText();
         if (!MapChecker.isMapValid(mapPath)){
@@ -150,7 +156,8 @@ public class StartViewController {
         if (MapChecker.isMapValid(mapPath)) {
             InitMapGraph.buildWorldMapGraph(mapPath);
 
-            btn_loadMap.setVisible(false);
+            btn_confirmLoadFile.setVisible(false);
+            btn_loadFile.setVisible(false);
             txf_mapPath.setEditable(false);
 
             displayWorldMap(mapPath);
@@ -231,7 +238,7 @@ public class StartViewController {
         btn_plusPlayerNumber.setVisible(false);
         btn_confirmPlayerNum.setVisible(false);
 
-        if (!btn_loadMap.isVisible()) {
+        if (!btn_confirmLoadFile.isVisible()) {
             btn_infoSwitcher.setVisible(true);
             btn_infoSwitcher.setText("Map Info");
             displayPlayerInfo();
@@ -322,4 +329,16 @@ public class StartViewController {
     }
 
 
+    public void clickLoadMap(ActionEvent actionEvent) throws IOException {
+        Stage fileStage = null; //(Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select map file");
+
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir").concat("/maps")));
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Map files(*.map)", "*.map");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(fileStage);
+        txf_mapPath.setText(file.getAbsolutePath());
+    }
 }

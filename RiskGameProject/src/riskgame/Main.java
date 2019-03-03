@@ -18,10 +18,9 @@ import java.util.LinkedHashMap;
  * @author WW
  */
 public class Main extends Application {
-    //public static HashMap<String, Country> worldCountriesMap = new HashMap<>();
     public static ArrayList<Player> playersList = new ArrayList<>();
     public static LinkedHashMap<String, Continent> worldContinentMap = new LinkedHashMap<>();
-    public static int curRoundPlayerIndex  =0;
+    public static int curRoundPlayerIndex = 0;
     public static int totalNumOfPlayers = -1;
     public static LinkedHashMap<String, GraphNode> graphSingleton = GraphSingleton.INSTANCE.getInstance();
 
@@ -31,7 +30,7 @@ public class Main extends Application {
      * @throws Exception startview.fxml not found
      */
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         String path = "maps/World.map";
         File file = new File(path);
         System.out.println("path: " + file.getAbsolutePath());
@@ -39,7 +38,6 @@ public class Main extends Application {
 
         Pane root = FXMLLoader.load(getClass().getResource("view/StartView.fxml"));
 
-        //Pane root = FXMLLoader.load(getClass().getResource("view/demoview.fxml"));
         primaryStage.setTitle("Risk Game");
         primaryStage.setScene(new Scene(root, 1200, 900));
 
