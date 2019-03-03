@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d3533e36-e2c6-493e-8c86-f4e87db12115" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/junitgenerator-prj-settings.xml" afterDir="false" />
+    <list default="true" id="d3533e36-e2c6-493e-8c86-f4e87db12115" name="Default Changelist" comment="add filechooser to startview">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/MEMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/MEMain.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/controller/MapEditorAddContinentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/controller/MapEditorAddContinentController.class" afterDir="false" />
@@ -17,9 +16,6 @@
       <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/model/MEContinent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/model/MEContinent.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/model/MECountry.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/model/MECountry.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/views/MapEditorSaveFileView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/views/MapEditorSaveFileView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/view/StartView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/view/StartView.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -88,8 +84,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="337" column="82" selection-start-line="337" selection-start-column="82" selection-end-line="337" selection-end-column="82" />
+            <state relative-caret-position="647">
+              <caret line="344" lean-forward="true" selection-start-line="344" selection-end-line="344" />
             </state>
           </provider>
         </entry>
@@ -183,7 +179,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551578262315" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551578387986" />
     <property name="last.edited.regexp" value="Sample Text" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -250,7 +246,7 @@
       <option name="presentableId" value="Default" />
       <updated>1551571277172</updated>
       <workItem from="1551571279110" duration="104000" />
-      <workItem from="1551571396068" duration="5983000" />
+      <workItem from="1551571396068" duration="6609000" />
     </task>
     <task id="LOCAL-00001" summary="add button in Mapeditor for jumping to game page">
       <created>1551572808143</created>
@@ -259,15 +255,28 @@
       <option name="project" value="LOCAL" />
       <updated>1551572808144</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add filechooser to startview">
+      <created>1551578301472</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1551578301472</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add filechooser to startview">
+      <created>1551578323890</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1551578323890</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6087000" />
+    <option name="totallyTimeSpent" value="6713000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1753" height="954" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2525074" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -279,7 +288,7 @@
       <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -307,7 +316,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add button in Mapeditor for jumping to game page" />
-    <option name="LAST_COMMIT_MESSAGE" value="add button in Mapeditor for jumping to game page" />
+    <MESSAGE value="add filechooser to startview" />
+    <option name="LAST_COMMIT_MESSAGE" value="add filechooser to startview" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/RiskGameProject.iml" />
@@ -364,8 +374,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="337" column="82" selection-start-line="337" selection-start-column="82" selection-end-line="337" selection-end-column="82" />
+        <state relative-caret-position="647">
+          <caret line="344" lean-forward="true" selection-start-line="344" selection-end-line="344" />
         </state>
       </provider>
     </entry>
