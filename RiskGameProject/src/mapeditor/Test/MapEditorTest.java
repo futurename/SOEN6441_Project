@@ -4,21 +4,26 @@ package mapeditor.Test;
 import mapeditor.MEMain;
 import mapeditor.model.MEContinent;
 import mapeditor.model.MECountry;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MapEditorTest {
 
-    MEMain testMEMain;
-    @Before public void before(){
+    public static MEMain testMEMain;
+
+    @BeforeClass public static void before(){
         testMEMain = new MEMain();
         testMEMain.createContinent("testFirstContinent",1);
-        testMEMain.arrMEContinent.get(0).addCountry("testFirstCountry");
         testMEMain.createsSoloCountry("testFirstCountry");
+        testMEMain.arrMEContinent.get(0).addCountry("testFirstCountry");
+        testMEMain.createsSoloCountry("testSecondCountry");
     }
 
-   @Test public void testMEMainCreateContinent(){
+    @Test public void testMEMainCreateContinent(){
         MEContinent newContinent =  testMEMain.arrMEContinent.get(0);
         assertEquals("testFirstContinent",newContinent.getContinentName());
         assertEquals(1,newContinent.getBonus());
@@ -29,15 +34,14 @@ public class MapEditorTest {
         assertEquals("testFirstCountry",newCountry.getCountryName());
     }
 
-    @Test public void testMEMainDeleteContinent (){
+    @Test public void testMEMainDeleteContinent () {
         testMEMain.deleteContinent("testFirstContinent");
-        assertEquals(0,testMEMain.arrMEContinent.size());
-        assertEquals(0,testMEMain.arrMECountry.size());
+        assertEquals(0, testMEMain.arrMEContinent.size());
+        assertEquals(1, testMEMain.arrMECountry.size());
     }
 
     @Test public void testMEMainDeleteCountry(){
-        testMEMain.deleteCountry("testFirstCountry");
-        assertEquals(1,testMEMain.arrMEContinent.size());
+        testMEMain.deleteCountry("testSecondCountry");
         assertEquals(0,testMEMain.arrMECountry.size());
     }
 
