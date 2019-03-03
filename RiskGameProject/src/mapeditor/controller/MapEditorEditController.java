@@ -26,6 +26,9 @@ public class MapEditorEditController {
     private Button btn_MapSelect;
 
     @FXML
+    private Button btn_returnToHomePage;
+
+    @FXML
     private Label lab_MapPath;
 
     @FXML
@@ -38,7 +41,7 @@ public class MapEditorEditController {
 
     BooleanBinding booleanBinding ;
 
-    private static final String DEFAULT_PATH = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\src\\mapeditor\\World.map";
+    private static final String DEFAULT_PATH = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\maps\\World.map";
 
     public void initialize(){
         txf_defaultMapPath.setText(DEFAULT_PATH);
@@ -70,13 +73,28 @@ public class MapEditorEditController {
     @FXML
     public void selectPath(ActionEvent actionEvent) throws Exception{
         MEMain.OLDMAPPATH = txf_defaultMapPath.getText();
-        //need to add map path check
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
         Pane mapEditorEditPagePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();
         Scene mapEditorEditPageScene = new Scene(mapEditorEditPagePane,1200,900);
 
         curStage.setScene(mapEditorEditPageScene);
+        curStage.show();
+    }
+
+    /**
+     * return to homepage
+     * @param actionEvent
+     * @throws Exception
+     */
+    @FXML
+    public void clickToReturn(ActionEvent actionEvent) throws Exception{
+        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        Pane mapEditorHomePagePane = new FXMLLoader(getClass().getResource("../views/MapEditorHomePageView.fxml")).load();
+        Scene mapEditorHomePageScene = new Scene(mapEditorHomePagePane,1200,900);
+
+        curStage.setScene(mapEditorHomePageScene);
         curStage.show();
     }
 }

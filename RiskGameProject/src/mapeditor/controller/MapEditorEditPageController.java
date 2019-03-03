@@ -55,6 +55,9 @@ public class MapEditorEditPageController {
     private Button btn_check;
 
     @FXML
+    private Button btn_returnToHomePage;
+
+    @FXML
     private Text txt_check;
 
     @FXML
@@ -227,10 +230,26 @@ public class MapEditorEditPageController {
     public void clickToSave(ActionEvent actionEvent) throws Exception{
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-        Pane reinforcePane = new FXMLLoader(getClass().getResource("../views/MapEditorSaveFileView.fxml")).load();
-        Scene reinforceScene = new Scene(reinforcePane,1200,900);
+        Pane SaveFilePane = new FXMLLoader(getClass().getResource("../views/MapEditorSaveFileView.fxml")).load();
+        Scene SaveFileScene = new Scene(SaveFilePane,1200,900);
 
-        curStage.setScene(reinforceScene);
+        curStage.setScene(SaveFileScene);
+        curStage.show();
+    }
+
+    /**
+     * return to homepage
+     * @param actionEvent
+     * @throws Exception
+     */
+    @FXML
+    public void clickToReturn(ActionEvent actionEvent) throws Exception{
+        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        Pane returnToHomePagePane = new FXMLLoader(getClass().getResource("../views/MapEditorHomePageView.fxml")).load();
+        Scene returnToHomePageScene = new Scene(returnToHomePagePane,1200,900);
+
+        curStage.setScene(returnToHomePageScene);
         curStage.show();
     }
 

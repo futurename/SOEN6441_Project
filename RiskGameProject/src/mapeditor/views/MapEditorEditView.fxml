@@ -24,5 +24,6 @@
             <Font size="19.0" />
          </font>
       </Button>
+      <Button fx:id="btn_returnToHomePage" layoutX="579.0" layoutY="435.0" mnemonicParsing="false" onAction="#clickToReturn" text="Return" />
    </children>
 </AnchorPane>

@@ -4,6 +4,7 @@ package mapeditor.Test;
 import mapeditor.MEMain;
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class MapEditorTest {
 
@@ -22,11 +23,15 @@ public class MapEditorTest {
 
     }
 
-    @Test public void testMEMainDeleteCountry(){
-
-    }
-
     @Test public void testMEMainDeleteContinent (){
-
+        testMEMain.deleteContinent("testfirstcontinent");
+        assertEquals(0,testMEMain.arrMEContinent.size());
+        assertEquals(0,testMEMain.arrMECountry.size());
     }
+
+    @Test public void testMEMainDeleteCountry(){
+        assertEquals(1,testMEMain.arrMEContinent.size());
+        assertEquals(0,testMEMain.arrMECountry.size());
+    }
+
 }
