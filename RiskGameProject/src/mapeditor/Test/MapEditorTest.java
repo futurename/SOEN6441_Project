@@ -14,10 +14,11 @@ public class MapEditorTest {
     @Before public void before(){
         testMEMain = new MEMain();
         testMEMain.createContinent("testFirstContinent",1);
+        testMEMain.arrMEContinent.get(0).addCountry("testFirstCountry");
         testMEMain.createsSoloCountry("testFirstCountry");
     }
 
-    @Test public void testMEMainCreateContinent(){
+   @Test public void testMEMainCreateContinent(){
         MEContinent newContinent =  testMEMain.arrMEContinent.get(0);
         assertEquals("testFirstContinent",newContinent.getContinentName());
         assertEquals(1,newContinent.getBonus());
@@ -35,6 +36,7 @@ public class MapEditorTest {
     }
 
     @Test public void testMEMainDeleteCountry(){
+        testMEMain.deleteCountry("testFirstCountry");
         assertEquals(1,testMEMain.arrMEContinent.size());
         assertEquals(0,testMEMain.arrMECountry.size());
     }

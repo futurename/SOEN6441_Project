@@ -7,7 +7,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane fx:id="txt_saveFiletitle" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapeditor.controller.MapEditorSaveFileController">
    <children>
       <Text layoutX="133.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SaveFile">
@@ -15,18 +14,19 @@
             <Font size="40.0" />
          </font>
       </Text>
-      <Text fx:id="txt_fileName" layoutX="347.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="name">
+      <Text fx:id="txt_fileName" layoutX="405.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="name">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <Text fx:id="txt_mapPath" layoutX="347.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mappath">
+      <TextField fx:id="txf_fileName" layoutX="520.0" layoutY="303.0" promptText="newmap.map" />
+      <Button fx:id="btn_save" layoutX="579.0" layoutY="539.0" mnemonicParsing="false" onAction="#generateMap" text="save" />
+      <Text fx:id="txt_checkResult" layoutX="494.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Haven't check" wrappingWidth="211.70361328125">
          <font>
-            <Font size="25.0" />
+            <Font size="29.0" />
          </font>
       </Text>
-      <TextField fx:id="txf_fileName" layoutX="546.0" layoutY="289.0" promptText="newmap.map" />
-      <TextField fx:id="txf_mapPath" layoutX="546.0" layoutY="404.0" promptText="../maps/" />
-      <Button fx:id="btn_save" layoutX="578.0" layoutY="556.0" mnemonicParsing="false" text="save" />
+      <Button fx:id="btn_check" layoutX="472.0" layoutY="539.0" mnemonicParsing="false" onAction="#clickToCheck" text="check" />
+      <Button fx:id="btn_return" layoutX="682.0" layoutY="539.0" mnemonicParsing="false" onAction="#clickToReturn" text="back" />
    </children>
 </AnchorPane>
