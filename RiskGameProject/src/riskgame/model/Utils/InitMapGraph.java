@@ -64,7 +64,7 @@ public class InitMapGraph {
 
                         String curContinentName = curLineSplitArray[CONTINENT_POSITION];
                         curCountry.setContinentName(curContinentName);
-                        Main.worldContinentMap.get(curContinentName).addToContinentCountryNameList(curCountryName);
+                        Main.worldContinentMap.get(curContinentName).getContinentCountryGraph().put(curCountryName, curCountry);
 
                         for (int i = CONTINENT_POSITION + 1; i < curLineSplitArray.length; i++) {
                             Country oneCountry;
@@ -97,11 +97,11 @@ public class InitMapGraph {
             String curContinentName = entry.getKey();
 
             System.out.println("\n---[" + curContinentName + "]---");
-            System.out.println(curContinent.getContinentCountryNameList());
+            System.out.println(curContinent);
         }
     }
 
-    public static void printGraph() {
+    private static void printGraph() {
         for(Map.Entry<String, GraphNode> entry: Main.graphSingleton.entrySet()){
             String countryName = entry.getKey();
             GraphNode node = entry.getValue();
