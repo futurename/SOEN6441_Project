@@ -92,7 +92,6 @@ public class MapEditorEditPageController {
         ContinentNameCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         ContinentBonusCol.setCellValueFactory(cellData -> cellData.getValue().bonusProperty());
         CountryCol.setCellValueFactory(cellData -> cellData.getValue().countryProperty());
-
         ContinentTable.setItems(continentData);
 
         for(Iterator<MEContinent> iterator = MEMain.arrMEContinent.iterator(); iterator.hasNext();){

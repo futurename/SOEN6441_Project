@@ -18,19 +18,19 @@ import mapeditor.MEMain;
 public class MapEditorDeleteContinentController {
 
     @FXML
-    private Button btn_DeleteContinentOK;
+    private Button btn_deleteContinentOK;
 
     @FXML
     private ComboBox<String> cbb_deleteContinentName;
 
     @FXML
-    private Label lab_DeleteContinentName;
+    private Label lab_deleteContinentName;
 
     @FXML
-    private Button btn_DeleteContinentApply;
+    private Button btn_deleteContinentApply;
 
     @FXML
-    private Label lab_DeleteContinenttitle;
+    private Label lab_deleteContinentTitle;
 
     private String selectedContinentName = "";
 
@@ -58,7 +58,7 @@ public class MapEditorDeleteContinentController {
                 return true;
             }
         },cbb_deleteContinentName.itemsProperty());
-        btn_DeleteContinentApply.disableProperty().bind(booleanBinding.not());
+        btn_deleteContinentApply.disableProperty().bind(booleanBinding.not());
     }
 
     /**

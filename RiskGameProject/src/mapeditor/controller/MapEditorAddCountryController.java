@@ -17,28 +17,28 @@ public class MapEditorAddCountryController {
 
 
     @FXML
-    private Text txt_setCountinent;
+    private Text txt_setContinent;
 
     @FXML
-    private Label lab_AddCountryName;
+    private Label lab_addCountryName;
 
     @FXML
-    private Label lab_AddCountrySelectNeighbor;
+    private Label lab_addCountrySelectNeighbor;
 
     @FXML
-    private TextField txf_AddCountryName;
+    private TextField txf_addCountryName;
 
     @FXML
-    private Label lab_AddCountrytitle;
+    private Label lab_addCountryTitle;
 
     @FXML
-    private Button btn_AddCountryOK;
+    private Button btn_addCountryOK;
 
     @FXML
-    private ComboBox<String> cbb_NeighborCountry;
+    private ComboBox<String> cbb_neighborCountry;
 
     @FXML
-    private Button btn_AddCountryApply;
+    private Button btn_addCountryApply;
 
     @FXML
     private ComboBox<String> cbb_setContinent;
@@ -62,9 +62,9 @@ public class MapEditorAddCountryController {
     public void initialize() {
 
         CheckAddCountryPageInput();
-        cbb_NeighborCountry.getItems().clear();
+        cbb_neighborCountry.getItems().clear();
         for (int i = 0; i < MEMain.arrMECountry.size(); i++) {
-            cbb_NeighborCountry.getItems().add(MEMain.arrMECountry.get(i).getCountryName());
+            cbb_neighborCountry.getItems().add(MEMain.arrMECountry.get(i).getCountryName());
         }
         cbb_setContinent.getItems().clear();
         for (int j = 0; j < MEMain.arrMEContinent.size(); j++) {
@@ -78,12 +78,12 @@ public class MapEditorAddCountryController {
     public void CountryNameValidation() {
 
         booleanBindingCountryName = Bindings.createBooleanBinding(() -> {
-            if (txf_AddCountryName.getText().equals("")) {
+            if (txf_addCountryName.getText().equals("")) {
                 return false;
             } else {
                 return true;
             }
-        }, txf_AddCountryName.textProperty());
+        }, txf_addCountryName.textProperty());
     }
 
     /**
@@ -92,13 +92,13 @@ public class MapEditorAddCountryController {
     public void neighborSelectValidation(){
 
         booleanBindingNeighbor = Bindings.createBooleanBinding(()->{
-            if(cbb_NeighborCountry.getValue() == null||cbb_NeighborCountry.getValue().equals(txf_AddCountryName.getText())){
+            if(cbb_neighborCountry.getValue() == null||cbb_neighborCountry.getValue().equals(txf_addCountryName.getText())){
                 return false;
             }
             else{
                 return true;
             }
-        },cbb_NeighborCountry.itemsProperty());
+        },cbb_neighborCountry.itemsProperty());
     }
 
     /**
@@ -133,14 +133,14 @@ public class MapEditorAddCountryController {
             checkIfSecondTime.replaceAll("\\]", "");
 
             //If it is the first time to add this country.
-            if (!checkIfSecondTime.contains(txf_AddCountryName.getText())) {
+            if (!checkIfSecondTime.contains(txf_addCountryName.getText())) {
                 //Second or more than second time.
-                btn_AddCountryApply.disableProperty().bind(booleanBindingCountryName.not().or(booleanBindingNeighbor.not()));
+                btn_addCountryApply.disableProperty().bind(booleanBindingCountryName.not().or(booleanBindingNeighbor.not()));
             }
 
         }else {
             //The First time.
-            btn_AddCountryApply.disableProperty().bind(booleanBindingCountryName.not().or(booleanBindingContinent.not()));
+            btn_addCountryApply.disableProperty().bind(booleanBindingCountryName.not().or(booleanBindingContinent.not()));
         }
     }
 
@@ -151,8 +151,8 @@ public class MapEditorAddCountryController {
      */
     @FXML
     public void clickToAddCountry(ActionEvent actionEvent) throws Exception{
-        newCountryName = txf_AddCountryName.getText();
-        newNeighborName = cbb_NeighborCountry.getValue();
+        newCountryName = txf_addCountryName.getText();
+        newNeighborName = cbb_neighborCountry.getValue();
         setContinent = cbb_setContinent.getValue();
 
         if(newCountryName.equals(newNeighborName)){

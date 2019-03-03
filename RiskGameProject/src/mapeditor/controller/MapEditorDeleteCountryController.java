@@ -17,29 +17,29 @@ import mapeditor.MEMain;
 public class MapEditorDeleteCountryController {
 
     @FXML
-    private Button btn_DeleteCountryOK;
+    private Button btn_deleteCountryOK;
 
     @FXML
-    private Button btn_DeleteCountryApply;
+    private Button btn_deleteCountryApply;
 
     @FXML
-    private Label lab_DeleteCountrytitle;
+    private Label lab_deleteCountryTitle;
 
     @FXML
-    private ComboBox<String> cbb_DeleteCountryName;
+    private ComboBox<String> cbb_deleteCountryName;
 
     @FXML
-    private Label lab_DeleteCountryName;
+    private Label lab_deleteCountryName;
 
     private String deleteCountryName;
 
-    BooleanBinding booleanBinding ;
+    BooleanBinding booleanBinding;
 
     public void initialize(){
-        cbb_DeleteCountryName.getItems().clear();
+        cbb_deleteCountryName.getItems().clear();
         for(int i = 0; i< MEMain.arrMECountry.size(); i++){
 
-            cbb_DeleteCountryName.getItems().add(MEMain.arrMECountry.get(i).getCountryName());
+            cbb_deleteCountryName.getItems().add(MEMain.arrMECountry.get(i).getCountryName());
         }
         detectSelectionValidation();
     }
@@ -50,14 +50,14 @@ public class MapEditorDeleteCountryController {
     @FXML
     public void detectSelectionValidation(){ ;
         booleanBinding = Bindings.createBooleanBinding(()->{
-            if(cbb_DeleteCountryName.getValue()==null){
+            if(cbb_deleteCountryName.getValue()==null){
                 return false;
             }
             else{
                 return true;
             }
-        },cbb_DeleteCountryName.itemsProperty());
-        btn_DeleteCountryApply.disableProperty().bind(booleanBinding.not());
+        },cbb_deleteCountryName.itemsProperty());
+        btn_deleteCountryApply.disableProperty().bind(booleanBinding.not());
     }
 
     /**
@@ -67,7 +67,7 @@ public class MapEditorDeleteCountryController {
      */
     @FXML
     public void clickToDeleteCountry(ActionEvent actionEvent) throws Exception{
-        deleteCountryName = cbb_DeleteCountryName.getValue();
+        deleteCountryName = cbb_deleteCountryName.getValue();
         MEMain.deleteCountry(deleteCountryName);
     }
 

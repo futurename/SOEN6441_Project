@@ -18,7 +18,7 @@ import mapeditor.MEMain;
 public class MapEditorAddContinentController {
 
     @FXML
-    private Text txt_addContinenttitle;
+    private Text txt_addContinentTitle;
 
     @FXML
     private Text txt_continentName;
@@ -58,7 +58,7 @@ public class MapEditorAddContinentController {
      * @param actionEvent
      * @throws Exception
      */
-    public void clickToApply(ActionEvent actionEvent)throws Exception{
+    public void clickToAddContinent(ActionEvent actionEvent)throws Exception{
         newContinentName = txf_continentName.getText();
         newContinentBonus = Integer.parseInt(txf_continentBonus.getText());
         for(int i = 0; i< MEMain.arrMEContinent.size(); i++) {

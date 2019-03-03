@@ -23,7 +23,7 @@ import java.io.File;
 public class MapEditorEditController {
 
     @FXML
-    private Button btn_MapSelect;
+    private Button btn_mapSelect;
 
     @FXML
     private Button btn_returnToHomePage;
@@ -62,7 +62,7 @@ public class MapEditorEditController {
                 return false;
             }
         },txf_defaultMapPath.textProperty());
-        btn_MapSelect.disableProperty().bind(booleanBinding.not());
+        btn_mapSelect.disableProperty().bind(booleanBinding.not());
     }
 
     /**

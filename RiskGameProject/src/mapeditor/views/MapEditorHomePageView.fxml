@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.text.*?>
-<?import javafx.scene.canvas.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapeditor.controller.MapEditorHomePageController">
    <children>
-      <Text fx:id="txt_Title" layoutX="447.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MapEditor" wrappingWidth="365.30029296875">
+      <Text fx:id="txt_title" layoutX="447.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MapEditor" wrappingWidth="365.30029296875">
          <font>
             <Font size="57.0" />
          </font>
       </Text>
-      <Button fx:id="btn_EditOldMap" layoutX="254.0" layoutY="422.0" mnemonicParsing="false" onAction="#clickToEdit" text="EditOldMap">
+      <Button fx:id="btn_editOldMap" layoutX="254.0" layoutY="422.0" mnemonicParsing="false" onAction="#clickToEdit" text="EditOldMap">
          <font>
             <Font size="28.0" />
          </font>
       </Button>
-      <Button fx:id="btn_CreateNewMap" layoutX="702.0" layoutY="419.0" mnemonicParsing="false" onAction="#clickToCreate" text="CreateNewMap">
+      <Button fx:id="btn_createNewMap" layoutX="702.0" layoutY="419.0" mnemonicParsing="false" onAction="#clickToCreate" text="CreateNewMap">
          <font>
             <Font size="28.0" />
          </font>
