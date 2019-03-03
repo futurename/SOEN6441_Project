@@ -1,5 +1,7 @@
 package mapeditor.controller;
 import javafx.event.ActionEvent;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -31,6 +33,9 @@ public class MapEditorHomePageController {
 
     @FXML // fx:id="btn_EditOldMap"
     private Button btn_EditOldMap; // Value injected by FXMLLoader
+
+    @FXML
+    private Button btn_playGame;
 
     /**
     * This method is called by the FXMLLoader when initialization is complete
@@ -73,6 +78,16 @@ public class MapEditorHomePageController {
         Scene mapEditorEditPageScene = new Scene(mapEditorEditPagePane,1200,900);
 
         curStage.setScene(mapEditorEditPageScene);
+        curStage.show();
+    }
+
+    public void clickPlayGame(ActionEvent actionEvent) throws IOException {
+        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        Pane startViewPane = FXMLLoader.load(getClass().getResource("../../riskGame/view/StartView.fxml"));
+        Scene startViewScene = new Scene(startViewPane,1200,900);
+
+        curStage.setScene(startViewScene);
         curStage.show();
     }
 }

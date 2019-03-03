@@ -19,8 +19,8 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="btn_DeleteContinentApply" layoutX="415.0" layoutY="499.0" mnemonicParsing="false" onAction="#clickToApply" text="Apply" />
+      <Button fx:id="btn_DeleteContinentApply" layoutX="415.0" layoutY="499.0" mnemonicParsing="false" onAction="#clickToDeleteContinent" text="Apply" />
       <Button fx:id="btn_DeleteContinentOK" layoutX="667.0" layoutY="499.0" mnemonicParsing="false" onAction="#clickToOk" text="OK" />
-      <ComboBox fx:id="cbb_deleteContinentName" layoutX="600.0" layoutY="324.0" prefHeight="30.0" prefWidth="202.0" promptText="remove continent" />
+      <ComboBox fx:id="cbb_deleteContinentName" layoutX="600.0" layoutY="324.0" onAction="#detectSelectionValidation" prefHeight="30.0" prefWidth="202.0" promptText="remove continent" />
    </children>
 </AnchorPane>

@@ -37,7 +37,7 @@ public class Main extends Application {
         System.out.println("path: " + file.getAbsolutePath());
         System.out.println("check map: " + MapChecker.checkMapValidity(path));
 
-        Pane root = FXMLLoader.load(getClass().getResource("view/startview.fxml"));
+        Pane root = FXMLLoader.load(getClass().getResource("view/StartView.fxml"));
 
         //Pane root = FXMLLoader.load(getClass().getResource("view/demoview.fxml"));
         primaryStage.setTitle("Risk Game");

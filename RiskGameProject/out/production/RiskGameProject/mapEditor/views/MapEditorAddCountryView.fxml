@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapeditor.views.MapEditorAddCountryController">
+<AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapeditor.controller.MapEditorAddCountryController">
    <children>
       <Label fx:id="lab_AddCountrytitle" layoutX="131.0" layoutY="79.0" text="AddCountry">
          <font>
@@ -24,14 +24,15 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="btn_AddCountryApply" layoutX="358.0" layoutY="661.0" mnemonicParsing="false" text="Apply" />
-      <Button fx:id="btn_AddCountryOK" layoutX="729.0" layoutY="661.0" mnemonicParsing="false" text="OK" />
-      <MenuButton fx:id="mbt_NeighborCountry" layoutX="466.0" layoutY="281.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="323.0" text="NeighborCountry">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
-        </items>
-      </MenuButton>
-      <TextField fx:id="txf_AddCountryName" layoutX="466.0" layoutY="213.0" />
+      <Button fx:id="btn_AddCountryApply" layoutX="358.0" layoutY="661.0" mnemonicParsing="false" onAction="#clickToAddCountry" text="Apply" />
+      <Button fx:id="btn_AddCountryOK" layoutX="729.0" layoutY="661.0" mnemonicParsing="false" onAction="#clickToOk" text="OK" />
+      <TextField fx:id="txf_AddCountryName" layoutX="466.0" layoutY="213.0" onKeyPressed="#CheckAddCountryPageInput" onKeyReleased="#CheckAddCountryPageInput" promptText="China" />
+      <ComboBox fx:id="cbb_NeighborCountry" layoutX="466.0" layoutY="285.0" onAction="#CheckAddCountryPageInput" prefHeight="30.0" prefWidth="323.0" promptText="NeighborCountry" />
+      <Text fx:id="txt_setCountinent" layoutX="262.0" layoutY="416.0" strokeType="OUTSIDE" strokeWidth="0.0" text="if this is a new country, please set it continent" wrappingWidth="483.7666015625">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="cbb_setContinent" layoutX="466.0" layoutY="450.0" onAction="#CheckAddCountryPageInput" prefHeight="30.0" prefWidth="323.0" promptText="SetContinent" />
    </children>
 </AnchorPane>
