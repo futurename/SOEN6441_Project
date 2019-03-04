@@ -6,10 +6,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
- * @program: RiskGameProject
- * @description: Node class of the world map graph
- * @author: WW
- * @date: 2019-02-10
+ * This class represents a node in world map graph data structure, including a country object, its adjacent country objects and an
+ * indicator for traversal usage. It also include traversal methods of depth first and breadth first search for acquiring all reachable countries
+ * from a selected country.
+ *
+ * @author WW
  **/
 
 public class GraphNode {
@@ -18,9 +19,9 @@ public class GraphNode {
     private boolean isVisited;
 
     /**
-     * constructor for class GraphNode
+     * constructor for GraphNode class
      *
-     * @param country string name of the graph node
+     * @param country a country object
      */
     public GraphNode(Country country) {
         this.country = country;
@@ -29,7 +30,7 @@ public class GraphNode {
     }
 
     /**
-     * get Country instance of the graph node
+     * getter
      *
      * @return current Country instance
      */
@@ -38,7 +39,7 @@ public class GraphNode {
     }
 
     /**
-     * get all adjacent Country instances of current Country instance.
+     * getter
      *
      * @return ArrayList of all the adjacent Country instances
      */
@@ -47,7 +48,7 @@ public class GraphNode {
     }
 
     /**
-     * retrive the state if the node is visited
+     * getter
      *
      * @return true for visited and false for not visited
      */
@@ -56,16 +57,16 @@ public class GraphNode {
     }
 
     /**
-     * set the flag whether the node is visited or not
+     * setter
      *
      * @param visited true for visited and false for not visited
      */
-    public void setVisited(boolean visited) {
+    void setVisited(boolean visited) {
         isVisited = visited;
     }
 
     /**
-     * get the country name of the node
+     * getter
      *
      * @return current country name
      */
@@ -74,7 +75,7 @@ public class GraphNode {
     }
 
     /**
-     * add a Country instance to the list of current Country instance
+     * add a Country instance to the adjacent country list
      *
      * @param adjacentCountry an adjacent country instance
      */
@@ -90,10 +91,8 @@ public class GraphNode {
         GraphNode curGraphNode = Main.graphSingleton.get(curCountryName);
         ArrayList<Country> adjacentList = curGraphNode.getAdjacentCountryList();
         curGraphNode.setVisited(true);
-
         ArrayList<Country> queue = new ArrayList<>();
-
-        for(Country country: adjacentList){
+        for (Country country : adjacentList) {
             GraphNode graphNode = Main.graphSingleton.get(country.getCountryName());
             if (graphNode.getCountry().getCountryOwnerIndex() == playerIndex && !graphNode.isVisited) {
                 list.add(graphNode.getCountry());
@@ -102,7 +101,7 @@ public class GraphNode {
             }
         }
 
-        while(!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             getReachableCountryListBFS(playerIndex, queue.remove(0), list);
         }
     }
@@ -111,7 +110,7 @@ public class GraphNode {
     /**
      * Depth first search for getting all reachable countries the player owns from the selected country
      */
-    public void getReachableCountryListDFS(int playerIndex, Country curCountry, ArrayList<Country> list) {
+    private void getReachableCountryListDFS(int playerIndex, Country curCountry, ArrayList<Country> list) {
         String curCountryName = curCountry.getCountryName();
         GraphNode curGraphNode = Main.graphSingleton.get(curCountryName);
         ArrayList<Country> adjacentList = curGraphNode.getAdjacentCountryList();

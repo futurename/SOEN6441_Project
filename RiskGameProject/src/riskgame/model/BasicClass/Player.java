@@ -9,7 +9,11 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-
+/**
+ * This class includes attributes a player need and required methods
+ *
+ * @author WW
+ **/
 public class Player {
     private static final int DEFAULT_DIVISION_FACTOR = 3;
 
@@ -21,6 +25,11 @@ public class Player {
     private CountryChangedObserver countryChangedObserver;
 
 
+    /**
+     * class contructor
+     *
+     * @param playerIndex index of current player
+     */
     public Player(int playerIndex) {
         this.playerIndex = playerIndex;
         this.reinforcementArmyCount = 0;
@@ -30,38 +39,74 @@ public class Player {
         this.countryChangedObserver = new CountryChangedObserver(playerIndex);
     }
 
+    /**
+     * getter
+     *
+     * @return color the player is preassigned
+     */
     public Color getPlayerColor() {
         return playerColor;
     }
 
+    /**
+     * getter
+     *
+     * @return player index
+     */
     public int getPlayerIndex() {
         return playerIndex;
     }
 
+    /**
+     * getter
+     *
+     * @return army number the player has
+     */
     public int getReinforcementArmyCount() {
         return reinforcementArmyCount;
     }
 
-    public void setReinforcementArmyCount(int reinforcementArmyCount) {
-        this.reinforcementArmyCount = reinforcementArmyCount;
-    }
-
+    /**
+     * getter
+     *
+     * @return arraylist of cards the player owns
+     */
     public ArrayList<Card> getCardsList() {
         return cardsList;
     }
 
+    /**
+     * add a Card to the card list the player owns
+     *
+     * @param oneCard card object
+     */
     public void addToCardsList(Card oneCard) {
         this.cardsList.add(oneCard);
     }
 
+    /**
+     * getter
+     *
+     * @return arraylist of country names the player owns
+     */
     public ArrayList<String> getOwnedCountryNameList() {
         return ownedCountryNameList;
     }
 
+    /**
+     * add one country name to the list the player owns
+     *
+     * @param countryName country name
+     */
     public void addToOwnedCountryNameList(String countryName) {
         this.ownedCountryNameList.add(countryName);
     }
 
+    /**
+     * observer method
+     *
+     * @return changer indicates change
+     */
     public CountryChangedObserver getCountryChangedObserver() {
         return countryChangedObserver;
     }

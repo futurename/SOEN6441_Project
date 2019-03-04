@@ -9,10 +9,10 @@ import java.util.Map;
 import java.util.Random;
 
 /**
- * model class that includes methods for player initialization
+ * This class includes methods for initlizing all players and allocating countries to each player randomly
  *
  * @author WW
- */
+ **/
 public class InitPlayers {
     /**
      * create and initialize all the player instances
@@ -23,17 +23,17 @@ public class InitPlayers {
         for (int playerIndex = 0; playerIndex < Main.totalNumOfPlayers; playerIndex++) {
             Player onePlayer = new Player(playerIndex);
             getInitCountryNameList(onePlayer, forAllocatesCountryNameList);
-
-            //System.out.println("player index: " + playerIndex + ", total:" + Main.totalNumOfPlayers);
         }
     }
 
     /**
+     * this method acquires all unallocated country names
+     *
      * @return an arraylist of all country names
      */
     private static ArrayList<String> generateUnallocatedNameList() {
         ArrayList<String> result = new ArrayList<>();
-        for(Map.Entry<String, GraphNode> entry: Main.graphSingleton.entrySet()){
+        for (Map.Entry<String, GraphNode> entry : Main.graphSingleton.entrySet()) {
             GraphNode curNode = entry.getValue();
             String curCountryName = entry.getKey();
             result.add(curCountryName);
@@ -42,8 +42,9 @@ public class InitPlayers {
     }
 
     /**
-     * @method randomly allocates all countries to all players
-     * @param curPlayer a player instance
+     * This method randomly allocates all countries to all players
+     *
+     * @param curPlayer      a player instance
      * @param coutryNameList the arraylist of its country names
      */
     private static void getInitCountryNameList(Player curPlayer, ArrayList<String> coutryNameList) {

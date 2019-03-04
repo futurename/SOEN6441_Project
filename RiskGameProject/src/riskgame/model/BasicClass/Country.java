@@ -5,8 +5,10 @@ import riskgame.model.BasicClass.Observable.CountryObservable;
 import java.util.Observable;
 
 /**
- * class for storing related information of a country
- */
+ * This class includes attributes a country needs and required methods
+ *
+ * @author WW
+ **/
 public class Country {
     private final String countryName;
     private String continentName;
@@ -100,7 +102,6 @@ public class Country {
     public String toString() {
         return getCountryName() + " : " + getCountryArmyNumber();
     }
-
 
 
 }

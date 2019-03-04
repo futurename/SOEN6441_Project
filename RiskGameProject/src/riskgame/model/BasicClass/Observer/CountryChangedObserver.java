@@ -8,10 +8,15 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Observer class for country
+ *
+ * @author WW
+ **/
 public class CountryChangedObserver implements Observer {
-    int playerIndex;
+    private int playerIndex;
 
-    public CountryChangedObserver(int playerIndex){
+    public CountryChangedObserver(int playerIndex) {
         this.playerIndex = playerIndex;
     }
 
@@ -21,11 +26,11 @@ public class CountryChangedObserver implements Observer {
         Country curCountry = Main.graphSingleton.get(countryName).getCountry();
         ArrayList<String> ownedCountryNameList = curPlayer.getOwnedCountryNameList();
 
-        if(ownedCountryNameList.contains(countryName)){
-            if(curCountry.getCountryOwnerIndex() != curPlayer.getPlayerIndex()){
+        if (ownedCountryNameList.contains(countryName)) {
+            if (curCountry.getCountryOwnerIndex() != curPlayer.getPlayerIndex()) {
                 curPlayer.getOwnedCountryNameList().remove(countryName);
             }
-        }else{
+        } else {
             curPlayer.getOwnedCountryNameList().add((String) countryName);
         }
     }

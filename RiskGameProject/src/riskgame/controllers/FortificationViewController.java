@@ -26,14 +26,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * @program: RiskGameProject
- * @description:
- * @author: WW
- * @date: 2019-02-20
+ * controller class for FortificationView.fxml
+ *
+ * @author WW
  **/
 
 public class FortificationViewController {
-
     @FXML
     private Label lbl_playerInfo;
     @FXML
@@ -47,20 +45,33 @@ public class FortificationViewController {
     @FXML
     private ListView<Country> lsv_reachableCountry;
 
+    /**
+     * current player in this phase
+     */
     private Player curPlayer;
+
+    /**
+     * warning alert used for notification
+     */
     private Alert alert = new Alert(Alert.AlertType.WARNING);
 
+    /**
+     * init method for fortification phase view
+     */
     public void initialize() {
-        String playerInfo = "Player: " + Integer.toString(Main.curRoundPlayerIndex);
+        String playerInfo = "Player: " + Main.curRoundPlayerIndex;
         lbl_playerInfo.setText(playerInfo);
         curPlayer = Main.playersList.get(Main.curRoundPlayerIndex);
         lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
-
         ListviewRenderer.renderCountryItems(lsv_ownedCountries);
-
         setCountryObservers();
     }
 
+    /**
+     * onClick event when a country item in the ListView is selected, display its adjacent country list in adjacent ListView
+     *
+     * @param mouseEvent a country item is selected
+     */
     @FXML
     public void selectOneCountry(MouseEvent mouseEvent) {
         int selectedCountryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
@@ -81,16 +92,14 @@ public class FortificationViewController {
 
             updateDeploymentInfo(selectedCountry);
 
-            scb_armyNbrAdjustment.valueProperty().addListener(new ChangeListener<Number>() {
-                @Override
-                public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                    lbl_deployArmyNumber.setText(Integer.toString(newValue.intValue()));
-                }
-            });
+            scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue) -> lbl_deployArmyNumber.setText(Integer.toString(newValue.intValue())));
         }
 
     }
 
+    /**
+     * set observers of country objects.
+     */
     private void setCountryObservers() {
         ArrayList<String> ownedCountryNameList = curPlayer.getOwnedCountryNameList();
         CountryChangedObserver observer = curPlayer.getCountryChangedObserver();
@@ -100,6 +109,12 @@ public class FortificationViewController {
         }
     }
 
+    /**
+     * onClick event for moving to attack phase view.
+     *
+     * @param actionEvent button is clicked
+     * @throws IOException AttackView.fxml is not found
+     */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
         Main.curRoundPlayerIndex = (Main.curRoundPlayerIndex + 1) % Main.totalNumOfPlayers;
@@ -116,6 +131,11 @@ public class FortificationViewController {
 
     }
 
+    /**
+     * onClick event for confirming moving army from one country to another owned country
+     *
+     * @param actionEvent button is clicked
+     */
     @FXML
     public void clickConfirmMoveArmy(ActionEvent actionEvent) {
         int selectedOwnedCountryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
@@ -160,6 +180,11 @@ public class FortificationViewController {
         }
     }
 
+    /**
+     * calculate modification of army numbers and update undeployment data
+     *
+     * @param selectedCountry selected country object
+     */
     private void updateDeploymentInfo(Country selectedCountry) {
         int curUndeployedArmy = selectedCountry.getCountryArmyNumber() - 1;
         scb_armyNbrAdjustment.setMax(curUndeployedArmy);

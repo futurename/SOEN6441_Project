@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
  * controller class for AttackView.fxml
  *
  * @author WW
- */
+ **/
 public class AttackViewController implements Initializable {
 
     @FXML
@@ -39,22 +39,24 @@ public class AttackViewController implements Initializable {
     @FXML
     private Label lbl_playerInfo;
 
-    //private int curPlayerIndex = Main.curRoundPlayerIndex;
-
     /**
-     * @param location default value
+     * init method for attack phase view
+     *
+     * @param location  default value
      * @param resources default value
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Player curPlayer = Main.playersList.get(Main.curRoundPlayerIndex);
-        String playerInfo = "Player: " + Integer.toString(Main.curRoundPlayerIndex);
+        String playerInfo = "Player: " + Main.curRoundPlayerIndex;
         lbl_playerInfo.setText(playerInfo);
         initCountryListviewDisplay(curPlayer);
 
     }
 
     /**
+     * display name and army number of countries the player owns
+     *
      * @param curPlayer display all country names of the current player
      */
     private void initCountryListviewDisplay(Player curPlayer) {
@@ -63,6 +65,8 @@ public class AttackViewController implements Initializable {
     }
 
     /**
+     * onClick event when a country item is selected from country ListView
+     *
      * @param mouseEvent display its adjacent countries of the selected country
      */
     @FXML
@@ -71,11 +75,17 @@ public class AttackViewController implements Initializable {
 
         System.out.println("#############selected country index: " + countryIndex);
 
-        ObservableList<Country> datalist = InfoRetriver.getAdjacentCountryObservablelist(Main.curRoundPlayerIndex,countryIndex);
+        ObservableList<Country> datalist = InfoRetriver.getAdjacentCountryObservablelist(Main.curRoundPlayerIndex, countryIndex);
         lsv_adjacentCountries.setItems(datalist);
         ListviewRenderer.renderCountryItems(lsv_adjacentCountries);
     }
 
+    /**
+     * onClick event for moving to fortification phase of the game
+     *
+     * @param actionEvent button is clicked
+     * @throws IOException FotificationView.fxml is not found
+     */
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 

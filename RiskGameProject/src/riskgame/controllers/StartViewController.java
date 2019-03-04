@@ -34,10 +34,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * controller class for startview.fxml
+ * controller class for StartView.fxml
  *
  * @author WW
- */
+ **/
 
 public class StartViewController {
     @FXML
@@ -63,22 +63,48 @@ public class StartViewController {
     @FXML
     private Button btn_infoSwitcher;
 
-
+    /**
+     * default number of players
+     */
     private static final int DEFAULT_NUM_OF_PLAYERS = 3;
 
+    /**
+     * defalut maximum player number supported in the program
+     */
     private static final int MAX_NUM_OF_PLAYERS = 8;
-    private static final int MIN_NUM_OF_PLAYERS = 2;
-    private static final String DEFAULT_MAP_PATH = "maps/World.map";
-    private String mapPath;
-    private IntegerProperty numOfPlayersProperty;
-    private int inputCounter = 3;
-    private boolean isMapInfoOn = false;
-
-    private Stage curStage;
 
     /**
-     * set default map path, default number of players and its range
-     * constrain the range of number of player with UI controls
+     * default minimum player number supported in the program
+     */
+    private static final int MIN_NUM_OF_PLAYERS = 2;
+
+    /**
+     * default path of map file
+     */
+    private static final String DEFAULT_MAP_PATH = "maps/World.map";
+
+    /**
+     * variable for storing map file path
+     */
+    private String mapPath;
+
+    /**
+     * player number bean
+     */
+    private IntegerProperty numOfPlayersProperty;
+
+    /**
+     * counter for recording times of error selection of map file
+     */
+    private int inputCounter = 3;
+
+    /**
+     * indicator for marking whether world map file has been read and initialized
+     */
+    private boolean isMapInfoOn = false;
+
+    /**
+     * set default map path, default number of players and its range, constrain the range of number of player with UI controls
      */
     public void initialize() {
         txf_playerNumbers.setText(Integer.toString(DEFAULT_NUM_OF_PLAYERS));
@@ -94,6 +120,8 @@ public class StartViewController {
     }
 
     /**
+     * onClick event for modifying UI controls and their values
+     *
      * @param actionEvent reduce number of players by one
      */
     @FXML
@@ -112,6 +140,8 @@ public class StartViewController {
     }
 
     /**
+     * onClick event for modifying UI controls and their values
+     *
      * @param actionEvent increase number of players by one
      */
     @FXML
@@ -129,14 +159,16 @@ public class StartViewController {
     }
 
     /**
+     * onClick event for confirming load map file from selected path
+     *
      * @param actionEvent load map to memeory
-     * @throws IOException when file reader fails
+     * @throws IOException file reading fails
      */
     @FXML
     public void clickConfirmLoadMap(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         mapPath = txf_mapPath.getText();
-        if (!MapChecker.isMapValid(mapPath)){
+        if (!MapChecker.isMapValid(mapPath)) {
             alert.setContentText("Map file not exist!");
             alert.showAndWait();
             return;
@@ -148,7 +180,7 @@ public class StartViewController {
                 txf_mapPath.setText(DEFAULT_MAP_PATH);
             }
         }
-        if (inputCounter == 0){
+        if (inputCounter == 0) {
             alert.setContentText("Use default map!");
             alert.showAndWait();
             mapPath = DEFAULT_MAP_PATH;
@@ -178,6 +210,8 @@ public class StartViewController {
     }
 
     /**
+     * display world map and country allocation
+     *
      * @throws IOException map file not found
      */
     private void displayWorldMap(String path) throws IOException {
@@ -212,6 +246,8 @@ public class StartViewController {
     }
 
     /**
+     * onClick event for moving to reinforce phase view
+     *
      * @param actionEvent proceed to reinforcement phase
      * @throws IOException reinforcview.fxml not found
      */
@@ -228,6 +264,8 @@ public class StartViewController {
     }
 
     /**
+     * onClick event for confirming the total number of players
+     *
      * @param actionEvent confirm the number of players
      */
     @FXML
@@ -247,7 +285,7 @@ public class StartViewController {
     }
 
     /**
-     * display information of all players and their countries
+     * display information of all players and their owned countries
      */
     private void displayPlayerInfo() {
         isMapInfoOn = false;
@@ -285,6 +323,8 @@ public class StartViewController {
     }
 
     /**
+     * onClick event for switch from world map display to players/countries display
+     *
      * @param actionEvent switch information display between world map(country distribution in continents) and players(with their allocated coutries)
      * @throws IOException map file not found
      */
@@ -300,6 +340,8 @@ public class StartViewController {
     }
 
     /**
+     * reset all parameters to original state
+     *
      * @param actionEvent reset player settings to initlized state
      * @throws IOException map file not found
      */
@@ -329,8 +371,14 @@ public class StartViewController {
     }
 
 
+    /**
+     * onClick event for confirming the map file selection
+     *
+     * @param actionEvent confirm button is clicked
+     * @throws IOException map file not found
+     */
     public void clickLoadMap(ActionEvent actionEvent) throws IOException {
-        Stage fileStage = null; //(Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Stage fileStage = null;
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select map file");

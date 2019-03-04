@@ -5,8 +5,10 @@ import java.util.Map;
 
 
 /**
- * singleton class for world map
- */
+ * This class represnets a singleton pattern graph for storing world map information
+ *
+ * @author WW
+ **/
 public enum GraphSingleton {
     /**
      * singleton instance implemented with enum approach
@@ -15,21 +17,21 @@ public enum GraphSingleton {
 
     private LinkedHashMap<String, GraphNode> instance;
 
-    GraphSingleton(){
+    GraphSingleton() {
         instance = new LinkedHashMap<>();
     }
 
-    public LinkedHashMap<String, GraphNode> getInstance(){
+    public LinkedHashMap<String, GraphNode> getInstance() {
         return this.instance;
     }
 
     /**
-     * set @param isVisited to false in all graph nodes
+     * reset visited indicator of all GraphNode to false
      */
-    public void resetGraphVisitedFlag(){
-       for(Map.Entry<String, GraphNode> entry: this.instance.entrySet()){
-           entry.getValue().setVisited(false);
-       }
+    public void resetGraphVisitedFlag() {
+        for (Map.Entry<String, GraphNode> entry : this.instance.entrySet()) {
+            entry.getValue().setVisited(false);
+        }
     }
 
 }

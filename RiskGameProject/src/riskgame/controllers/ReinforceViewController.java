@@ -30,10 +30,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
- * @program: RiskGameProject
- * @description: controller class for ReinforceView.fxml
- * @author: WW
- * @date: 2019-02-20
+ * controller class for ReinforceView.fxml
+ *
+ * @author WW
  **/
 
 public class ReinforceViewController implements Initializable {
@@ -66,9 +65,14 @@ public class ReinforceViewController implements Initializable {
     @FXML
     private Label lbl_countriesInfo;
 
+    /**
+     * current player in this phase
+     */
     private Player curPlayer;
 
     /**
+     * init method for reinforce phase view
+     *
      * @param location  default value
      * @param resources default value
      */
@@ -78,6 +82,8 @@ public class ReinforceViewController implements Initializable {
     }
 
     /**
+     * init UI controls and corresponding varaibles
+     *
      * @param playerIndex initialize UI controls and display information of current player
      */
     private void reinforceViewInit(int playerIndex) {
@@ -98,7 +104,6 @@ public class ReinforceViewController implements Initializable {
         lbl_countriesInfo.setTextFill(curPlayerColor);
         lbl_adjacentCountriesInfo.setTextFill(curPlayerColor);
         lbl_undeployedArmy.setText(Integer.toString(curUndeployedArmy));
-        //lsv_ownedCountries.setItems(InfoRetriver.getPlayerCountryObservablelist(curPlayer));
         lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
 
         System.out.println("country display index: " + curPlayer.getPlayerIndex());
@@ -114,39 +119,36 @@ public class ReinforceViewController implements Initializable {
         scb_armyNbrAdjustment.adjustValue(curUndeployedArmy);
         lbl_deployArmyCount.setText(Integer.toString(curUndeployedArmy));
 
-        scb_armyNbrAdjustment.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                lbl_deployArmyCount.setText(Integer.toString(newValue.intValue()));
-            }
-        });
+        scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue) -> lbl_deployArmyCount.setText(Integer.toString(newValue.intValue())));
     }
 
+    /**
+     * set observer for a country
+     */
     private void setCountryObservers() {
         ArrayList<String> ownedCountryNameList = curPlayer.getOwnedCountryNameList();
         CountryChangedObserver observer = curPlayer.getCountryChangedObserver();
-        for(String name: ownedCountryNameList){
+        for (String name : ownedCountryNameList) {
             Main.graphSingleton.get(name).getCountry().getCountryObservable().deleteObservers();
             Main.graphSingleton.get(name).getCountry().getCountryObservable().addObserver(observer);
         }
     }
 
     /**
+     * unfinished
+     *
      * @param sbc_occupationRatio display a stack bar chart that shows quantity of conquered country by the current player and<br/>
      *                            total amount of country in each continent
      */
     private void displayStackedBarChart(StackedBarChart sbc_occupationRatio) {
-        //final CategoryAxis xAxis = new CategoryAxis();
-        //final NumberAxis yAxis = new NumberAxis();
 
-        // ArrayList<String> continentNameList = ReinforcePhase.getContinentNameList();
-
-        // xAxis.setCategories(FXCollections.observableArrayList(continentNameList));
     }
 
     /**
+     * onClick event for moving to next player if reinforcement phase is not finished or attack view from the first player
+     *
      * @param actionEvent next player's turn or proceed to attackview if all players finish reinforcement
-     * @throws IOException reinforcement.fxml or attakview.fxml not found     *
+     * @throws IOException reinforcement.fxml or attakview.fxml are not found
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
@@ -170,6 +172,8 @@ public class ReinforceViewController implements Initializable {
     }
 
     /**
+     * onClick event when a country item in the ListView is selected and display its adjacent country data in adjacent ListView
+     *
      * @param mouseEvent clicking one country name in the listview will display its adjacent countries
      */
     @FXML
@@ -182,6 +186,8 @@ public class ReinforceViewController implements Initializable {
     }
 
     /**
+     * onClick event for confirming army deployment
+     *
      * @param actionEvent deploy a selected number of army to the selected country
      */
     @FXML

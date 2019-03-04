@@ -13,15 +13,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * model class that includes methods for reinforcement phase
+ * This class includes methods which are used for reinforce phase
  *
  * @author WW
- */
+ **/
 public class ReinforcePhase {
+    /**
+     * default factor for calculting standard number of army used for reinforce phase
+     */
     private static final int DEFAULT_DIVISION_FACTOR = 3;
+
+    /**
+     * minimun army number that is assigned to each player
+     */
     private static final int DEFAULT_MIN_REINFORCE_ARMY_NBR = 3;
 
     /**
+     * calculate army number for reinforcement with default value
+     *
      * @param countryNum number of all countries a player owns
      * @return calculated number of army for reinforcement phase
      */
@@ -31,6 +40,8 @@ public class ReinforcePhase {
     }
 
     /**
+     * acquire ObservableList for displaying in pie chart. The pie chart presents number of countries in different continents a play has.
+     *
      * @param player a player instance
      * @return distribution of (continent, number of country) this player owns
      */
@@ -52,18 +63,6 @@ public class ReinforcePhase {
         return result;
     }
 
-    /**
-     * @return all continent names
-     */
-    public static ArrayList<String> getContinentNameList() {
-        ArrayList<String> result = new ArrayList<>();
-        for (Map.Entry<String, Continent> entry : Main.worldContinentMap.entrySet()) {
-            Continent curContinent = entry.getValue();
-            String curContinentName = entry.getKey();
-            result.add(curContinentName);
-        }
-        return result;
-    }
 }
 
 

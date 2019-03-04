@@ -1,8 +1,10 @@
 package riskgame.model.BasicClass;
 
 /**
+ * Card class
+ *
  * @author WW
- */
+ **/
 
 public enum Card {
     INFANTRY("Infantry"),
@@ -11,7 +13,7 @@ public enum Card {
 
     private final String cardType;
 
-    Card(String cardType){
+    Card(String cardType) {
         this.cardType = cardType;
     }
 }
