@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollBar?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+
 
 <AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="riskgame.controllers.FortificationViewController">
     <children>
@@ -30,7 +24,7 @@
                 <Font name="System Bold" size="22.0" />
             </font>
         </Label>
-        <Button fx:id="btn_nextStep" layoutX="1018.0" layoutY="737.0" mnemonicParsing="false" onAction="#clickNextStep" prefHeight="35.0" prefWidth="127.0" text="NEXT" textFill="#fc0303" underline="true">
+        <Button fx:id="btn_nextStep" layoutX="1018.0" layoutY="737.0" mnemonicParsing="false" onAction="#clickNextStep" prefHeight="35.0" prefWidth="127.0" text="NEXT" textFill="#fc0303" underline="true" visible="false">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>

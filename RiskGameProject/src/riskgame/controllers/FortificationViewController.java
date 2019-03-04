@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollBar;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -44,6 +41,15 @@ public class FortificationViewController {
     private ListView<Country> lsv_ownedCountries;
     @FXML
     private ListView<Country> lsv_reachableCountry;
+    @FXML
+    private Button btn_confirmMoveArmy;
+    @FXML
+    private Button btn_nextStep;
+
+    /**
+     * default minimum army number in a country
+     */
+    private static final int MIN_ARMY_NUMBER_IN_COUNTRY = 0;
 
     /**
      * current player in this phase
@@ -80,11 +86,10 @@ public class FortificationViewController {
 
         System.out.println("selected country name: " + selectedCountryName + ", army: " + selectedCountry.getCountryArmyNumber());
 
-        if (selectedCountry.getCountryArmyNumber() < 2) {
+        if (selectedCountry.getCountryArmyNumber() <= MIN_ARMY_NUMBER_IN_COUNTRY) {
             alert.setContentText("No enough army for fortification!");
             alert.showAndWait();
         } else {
-
             ObservableList<Country> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayer.getPlayerIndex(),
                     selectedCountryName);
             lsv_reachableCountry.setItems(reachableCountryList);
@@ -94,7 +99,6 @@ public class FortificationViewController {
 
             scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue) -> lbl_deployArmyNumber.setText(Integer.toString(newValue.intValue())));
         }
-
     }
 
     /**
@@ -118,17 +122,12 @@ public class FortificationViewController {
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
         Main.curRoundPlayerIndex = (Main.curRoundPlayerIndex + 1) % Main.totalNumOfPlayers;
-
         System.out.println("one round finished: " + Main.curRoundPlayerIndex);
-
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
         Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/AttackView.fxml")).load();
         Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
-
         curStage.setScene(reinforceScene);
         curStage.show();
-
     }
 
     /**
@@ -138,9 +137,11 @@ public class FortificationViewController {
      */
     @FXML
     public void clickConfirmMoveArmy(ActionEvent actionEvent) {
+        ObservableList<Country> countryObservableList = lsv_ownedCountries.getItems();
+        ObservableList<Country> adjacentCountryObservableList = lsv_reachableCountry.getItems();
+
         int selectedOwnedCountryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
         int selectedReachableCountryIndex = lsv_reachableCountry.getSelectionModel().getSelectedIndex();
-        ArrayList<String> ownedCountryNameList = curPlayer.getOwnedCountryNameList();
 
         if (selectedOwnedCountryIndex == -1 && selectedReachableCountryIndex == -1) {
             alert.setContentText("Both source and target countries are selected!");
@@ -152,18 +153,13 @@ public class FortificationViewController {
             alert.setContentText("Please select a target country for fortification!");
             alert.showAndWait();
         } else {
-            String selectedCountryName = ownedCountryNameList.get(selectedOwnedCountryIndex);
+            String selectedCountryName = countryObservableList.get(selectedOwnedCountryIndex).getCountryName();
             Country selectedCountry = Main.graphSingleton.get(selectedCountryName).getCountry();
 
-            String selectedReachableItemString = lsv_reachableCountry.getSelectionModel().getSelectedItem().toString();
-            String[] splitString = selectedReachableItemString.split(":");
-
-            System.out.println("reachable index: " + selectedReachableCountryIndex + ", splitstring: " + selectedReachableItemString);
-
-            String selectedTargetCountryName = splitString[0].trim();
+            String selectedTargetCountryName = adjacentCountryObservableList.get(selectedReachableCountryIndex).getCountryName();
             Country selecctedTargetCountry = Main.graphSingleton.get(selectedTargetCountryName).getCountry();
 
-            System.out.println("before move, selected: " + selectedCountryName + ": " + selectedCountry.getCountryArmyNumber() + ", target: " + selectedTargetCountryName + ": " + selecctedTargetCountry.getCountryArmyNumber() + ", display: " + splitString[1]);
+            System.out.println("before move, selected: " + selectedCountryName + ": " + selectedCountry.getCountryArmyNumber() + ", target: " + selectedTargetCountryName + ": " + selecctedTargetCountry.getCountryArmyNumber());
 
             int deployArmyNumber = Integer.parseInt(lbl_deployArmyNumber.getText());
 
@@ -177,7 +173,18 @@ public class FortificationViewController {
             lsv_ownedCountries.refresh();
             lsv_reachableCountry.refresh();
             updateDeploymentInfo(selectedCountry);
+            setUIControllers();
         }
+    }
+
+    /**
+     * set fortification realted UI controllers invisible and visibalize Next button
+     */
+    private void setUIControllers() {
+        btn_confirmMoveArmy.setVisible(false);
+        btn_nextStep.setVisible(true);
+        scb_armyNbrAdjustment.setVisible(false);
+
     }
 
     /**
@@ -186,12 +193,12 @@ public class FortificationViewController {
      * @param selectedCountry selected country object
      */
     private void updateDeploymentInfo(Country selectedCountry) {
-        int curUndeployedArmy = selectedCountry.getCountryArmyNumber() - 1;
+        int curUndeployedArmy = selectedCountry.getCountryArmyNumber() - MIN_ARMY_NUMBER_IN_COUNTRY;
         scb_armyNbrAdjustment.setMax(curUndeployedArmy);
-        scb_armyNbrAdjustment.setMin(1);
+        scb_armyNbrAdjustment.setMin(MIN_ARMY_NUMBER_IN_COUNTRY);
         scb_armyNbrAdjustment.adjustValue(curUndeployedArmy);
         lbl_maxArmyNumber.setText(Integer.toString(curUndeployedArmy));
-        int minNumber = curUndeployedArmy >= 1 ? curUndeployedArmy : 0;
+        int minNumber = curUndeployedArmy >= MIN_ARMY_NUMBER_IN_COUNTRY ? curUndeployedArmy : 0;
         lbl_deployArmyNumber.setText(String.valueOf(minNumber));
     }
 }

@@ -96,4 +96,12 @@ public class AttackViewController implements Initializable {
 
         curStage.show();
     }
+
+    /**
+     * onClick event for confirmting attack
+     *
+     * @param actionEvent button clicked
+     */
+    public void clickConfirmAttack(ActionEvent actionEvent) {
+    }
 }

@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapeditor.controller.MapEditorAddContinentController">
    <children>
-      <Text fx:id="txt_addContinenttitle" layoutX="102.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AddContinent">
+      <Text fx:id="txt_addContinentTitle" layoutX="102.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AddContinent">
          <font>
             <Font size="40.0" />
          </font>
@@ -26,7 +23,7 @@
       </Text>
       <TextField fx:id="txf_continentName" layoutX="652.0" layoutY="299.0" onKeyPressed="#detectInputValidation" onKeyReleased="#detectInputValidation" promptText="Asia" />
       <TextField fx:id="txf_continentBonus" layoutX="652.0" layoutY="443.0" onKeyPressed="#detectInputValidation" onKeyReleased="#detectInputValidation" promptText="7" />
-      <Button fx:id="btn_addContinentApply" layoutX="398.0" layoutY="620.0" mnemonicParsing="false" onAction="#clickToApply" text="Apply" />
+      <Button fx:id="btn_addContinentApply" layoutX="398.0" layoutY="620.0" mnemonicParsing="false" onAction="#clickToAddContinent" text="Apply" />
       <Button fx:id="btn_ok" layoutX="719.0" layoutY="620.0" mnemonicParsing="false" onAction="#clickToOk" text="OK" />
    </children>
 </AnchorPane>

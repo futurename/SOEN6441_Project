@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapeditor.controller.MapEditorDeleteContinentController">
    <children>
-      <Label fx:id="lab_DeleteContinenttitle" layoutX="91.0" layoutY="68.0" text="DeleteContinent">
+      <Label fx:id="lab_deleteContinentTitle" layoutX="91.0" layoutY="68.0" text="DeleteContinent">
          <font>
             <Font size="38.0" />
          </font>
       </Label>
-      <Label fx:id="lab_DeleteContinentName" layoutX="373.0" layoutY="325.0" text="ContinentName">
+      <Label fx:id="lab_deleteContinentName" layoutX="373.0" layoutY="325.0" text="ContinentName">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="btn_DeleteContinentApply" layoutX="415.0" layoutY="499.0" mnemonicParsing="false" onAction="#clickToDeleteContinent" text="Apply" />
-      <Button fx:id="btn_DeleteContinentOK" layoutX="667.0" layoutY="499.0" mnemonicParsing="false" onAction="#clickToOk" text="OK" />
+      <Button fx:id="btn_deleteContinentApply" layoutX="415.0" layoutY="499.0" mnemonicParsing="false" onAction="#clickToDeleteContinent" text="Apply" />
+      <Button fx:id="btn_deleteContinentOK" layoutX="667.0" layoutY="499.0" mnemonicParsing="false" onAction="#clickToOk" text="OK" />
       <ComboBox fx:id="cbb_deleteContinentName" layoutX="600.0" layoutY="324.0" onAction="#detectSelectionValidation" prefHeight="30.0" prefWidth="202.0" promptText="remove continent" />
    </children>
 </AnchorPane>
