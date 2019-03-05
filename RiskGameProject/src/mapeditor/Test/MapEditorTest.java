@@ -17,17 +17,19 @@ public class MapEditorTest {
 
     @BeforeClass public static void before(){
         testMEMain = new MEMain();
-        testMEMain.createContinent("testFirstContinent",1);
-        testMEMain.createsSoloCountry("testFirstCountry");
-        testMEMain.arrMEContinent.get(0).addCountry("testFirstCountry");
-        testMEMain.createsSoloCountry("testSecondCountry");
+        MEMain.createContinent("testFirstContinent",1);
+        MEMain.createsSoloCountry("testFirstCountry");
+        MEMain.arrMEContinent.get(0).addCountry("testFirstCountry");
+        MEMain.createsSoloCountry("testSecondCountry");
+
+        System.out.println("Test map editor");
     }
 
     /**
      * Check add continent function
      */
     @Test public void testMEMainCreateContinent(){
-        MEContinent newContinent =  testMEMain.arrMEContinent.get(0);
+        MEContinent newContinent =  MEMain.arrMEContinent.get(0);
         assertEquals("testFirstContinent",newContinent.getContinentName());
         assertEquals(1,newContinent.getBonus());
     }
@@ -36,7 +38,7 @@ public class MapEditorTest {
      * Check add country function
      */
     @Test public void testMEMainCreateCountry(){
-        MECountry newCountry =  testMEMain.arrMECountry.get(0);
+        MECountry newCountry =  MEMain.arrMECountry.get(0);
         assertEquals("testFirstCountry",newCountry.getCountryName());
     }
 
@@ -44,17 +46,17 @@ public class MapEditorTest {
      * Check delete continent function
      */
     @Test public void testMEMainDeleteContinent () {
-        testMEMain.deleteContinent("testFirstContinent");
-        assertEquals(0, testMEMain.arrMEContinent.size());
-        assertEquals(1, testMEMain.arrMECountry.size());
+        MEMain.deleteContinent("testFirstContinent");
+        assertEquals(0, MEMain.arrMEContinent.size());
+        assertEquals(1, MEMain.arrMECountry.size());
     }
 
     /**
      * Check delete country function
      */
     @Test public void testMEMainDeleteCountry(){
-        testMEMain.deleteCountry("testSecondCountry");
-        assertEquals(0,testMEMain.arrMECountry.size());
+        MEMain.deleteCountry("testSecondCountry");
+        assertEquals(0, MEMain.arrMECountry.size());
     }
 
 }
