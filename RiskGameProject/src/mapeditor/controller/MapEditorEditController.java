@@ -80,7 +80,7 @@ public class MapEditorEditController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select map file");
 
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir").concat("/maps")));
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Map files(*.map)", "*.map");
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(fileStage);

@@ -75,7 +75,7 @@ public class GraphTester {
         return result;
     }
 
-    private ArrayList<String> getReachablePathPlayerZeroFromMUral(){
+    private ArrayList<String> getReachablePathPlayerZeroFromUral(){
         ArrayList<String> result = new ArrayList<>();
         result.addAll(Arrays.asList("Middle East", "Afghanistan", "India", "Siberia"));
         return result;
@@ -91,6 +91,10 @@ public class GraphTester {
         ArrayList<String> result = new ArrayList<>();
         result.addAll(Arrays.asList("Japan", "Kamchatka", "New Guinea", "Western Australia", "Eastern Australia"));
         return result;
+    }
+
+    public LinkedHashMap<String, GraphNode> getDemoGraph() {
+        return demoGraph;
     }
 
 }

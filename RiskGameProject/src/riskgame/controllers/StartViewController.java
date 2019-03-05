@@ -18,11 +18,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import mapeditor.model.MECheckMapCorrectness;
 import riskgame.Main;
 import riskgame.model.BasicClass.*;
 import riskgame.model.Utils.InitPlayers;
 import riskgame.model.Utils.ListviewRenderer;
-import riskgame.model.Utils.MapChecker;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -194,13 +194,13 @@ public class StartViewController {
     public void clickConfirmLoadMap(ActionEvent actionEvent) throws IOException {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         mapPath = txf_mapPath.getText();
-        if (!MapChecker.isMapValid(mapPath)) {
+        if (!MECheckMapCorrectness.checkCorrectness(mapPath)) {
             alert.setContentText("Map file not exist!");
             alert.showAndWait();
             return;
         }
         if (inputCounter > 0) {
-            if (!MapChecker.isMapValid(mapPath)) {
+            if (!MECheckMapCorrectness.checkCorrectness(mapPath)) {
                 alert.setContentText("Map file invalid, please select another one!\nCounter: " + inputCounter);
                 alert.showAndWait();
                 txf_mapPath.setText(DEFAULT_MAP_PATH);
@@ -211,7 +211,7 @@ public class StartViewController {
             alert.showAndWait();
             mapPath = DEFAULT_MAP_PATH;
         }
-        if (MapChecker.isMapValid(mapPath)) {
+        if (MECheckMapCorrectness.checkCorrectness(mapPath)) {
             buildWorldMapGraph(mapPath, graphSingleton);
 
             btn_confirmLoadFile.setVisible(false);
@@ -231,7 +231,7 @@ public class StartViewController {
             }
         }
 
-        System.out.println(txf_mapPath.getText() + ", " + MapChecker.checkMapValidity(mapPath));
+        System.out.println(txf_mapPath.getText() + ", " + MECheckMapCorrectness.checkCorrectness(mapPath));
 
         inputCounter--;
     }
@@ -410,7 +410,7 @@ public class StartViewController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select map file");
 
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir").concat("/maps")));
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Map files(*.map)", "*.map");
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(fileStage);
