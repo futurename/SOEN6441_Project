@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3533e36-e2c6-493e-8c86-f4e87db12115" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/controller/MapEditorEditController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/controller/MapEditorEditController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mapeditor/Test/MapEditorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mapeditor/Test/MapEditorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/view/AttackView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/view/AttackView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/view/FortificationView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/view/FortificationView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/riskgame/model/Utils/MapCheckerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/MapCheckerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/riskgame/model/phases/ReinforcePhaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ReinforcePhaseTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,11 +25,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="421" column="11" selection-start-line="421" selection-start-column="11" selection-end-line="421" selection-end-column="11" />
+            <state relative-caret-position="-970">
+              <caret line="434" column="55" selection-start-line="434" selection-start-column="55" selection-end-line="434" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/mapeditor/model/MECheckMapCorrectness.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="595">
+              <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InitPlayers.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="815">
+              <caret line="69" selection-start-line="69" selection-end-line="69" />
             </state>
           </provider>
         </entry>
@@ -42,19 +62,23 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mapeditor/model/MECheckMapCorrectness.java">
+        <entry file="file://$PROJECT_DIR$/src/test/MapCheckerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+            <state relative-caret-position="136">
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+              <folding>
+                <element signature="e#783#784#0" expanded="true" />
+                <element signature="e#854#855#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/mapeditor/Test/MapEditorTest.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/ReinforcePhaseTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
+            <state relative-caret-position="283">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -63,10 +87,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InitPlayers.java">
+        <entry file="file://$PROJECT_DIR$/src/mapeditor/Test/MapEditorTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-85">
-              <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+            <state relative-caret-position="425">
+              <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -74,8 +101,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/ReinforceViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="21" column="45" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+            <state relative-caret-position="815">
+              <caret line="231" selection-start-line="231" selection-end-line="231" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -84,10 +111,20 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java">
+        <entry file="file://$PROJECT_DIR$/src/mapeditor/views/MapEditorEditView.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="541">
-              <caret line="100" selection-start-line="100" selection-end-line="100" />
+            <state relative-caret-position="442">
+              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="815">
+              <caret line="112" selection-start-line="112" selection-end-line="112" />
             </state>
           </provider>
         </entry>
@@ -102,7 +139,6 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
@@ -234,8 +270,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="riskgame" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
-              <item name="BasicClass" type="462c0819:PsiDirectoryNode" />
-              <item name="Observe" type="462c0819:PsiDirectoryNode" />
+              <item name="phases" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="RiskGameProject" type="b2602c69:ProjectViewProjectNode" />
@@ -489,7 +524,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28365000" />
+    <option name="totallyTimeSpent" value="28576000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -739,8 +774,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/ReinforceViewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="21" column="45" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+        <state relative-caret-position="815">
+          <caret line="231" selection-start-line="231" selection-end-line="231" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -823,8 +858,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InitPlayers.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+        <state relative-caret-position="815">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
         </state>
       </provider>
     </entry>
@@ -852,7 +887,11 @@
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mapeditor/views/MapEditorEditView.fxml">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/riskgame/Main.java">
@@ -871,18 +910,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="87" column="47" lean-forward="true" selection-start-line="87" selection-start-column="47" selection-end-line="87" selection-end-column="47" />
+        <state relative-caret-position="815">
+          <caret line="112" selection-start-line="112" selection-end-line="112" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InitMapGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InitMapGraph.java" />
     <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="541">
@@ -892,8 +925,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="421" column="11" selection-start-line="421" selection-start-column="11" selection-end-line="421" selection-end-column="11" />
+        <state relative-caret-position="-970">
+          <caret line="434" column="55" selection-start-line="434" selection-start-column="55" selection-end-line="434" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -909,8 +942,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mapeditor/Test/MapEditorTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
+        <state relative-caret-position="425">
+          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
