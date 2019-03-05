@@ -31,6 +31,25 @@ public class MECheckMapCorrectness{
     }
 
     /**
+     * check map correctness interface
+     * @param countryArr
+     * @param continentsArr
+     * @return
+     */
+    public static boolean checkCorrectness(ArrayList< MECountry> countryArr, ArrayList<MEContinent> continentsArr){
+        if(correctCheckConnectGraph(countryArr) == false){
+            return false;
+        }
+        if(correctCheckContinentCountry(continentsArr,countryArr) == false){
+            return false;
+        }
+        if(correctCheckCountryBelonging(continentsArr,countryArr) == false) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * first correct checkCC
      * check whether it is a connect graph or not
      */
