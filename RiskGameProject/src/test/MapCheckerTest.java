@@ -2,11 +2,11 @@ package riskgame.model.Utils;
 
 import org.junit.Before;
 import org.junit.Test;
-import riskgame.model.Utils.MapChecker;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 /**
  * MapChecker tester.

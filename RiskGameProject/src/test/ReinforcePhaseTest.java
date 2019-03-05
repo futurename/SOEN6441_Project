@@ -1,13 +1,11 @@
 package test.riskgame.model.phases;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.Before;
 import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.phases.ReinforcePhase;
-
-import javax.sound.midi.Soundbank;
 
 /**
  * ReinforcePhase Tester.
