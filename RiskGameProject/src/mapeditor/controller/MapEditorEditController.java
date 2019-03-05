@@ -48,24 +48,8 @@ public class MapEditorEditController {
 
     public void initialize() {
         txf_defaultMapPath.setText(DEFAULT_PATH);
-        detectDirectory();
     }
 
-    /**
-     * detect the directory in the text field is valid, if not then the button cannot be pressed
-     */
-    @FXML
-    public void detectDirectory() {
-        File file = new File(txf_defaultMapPath.getText());
-        booleanBinding = Bindings.createBooleanBinding(() -> {
-            if (file.exists() && txf_defaultMapPath.getText().endsWith(".map")) {
-                return true;
-            } else {
-                return false;
-            }
-        }, txf_defaultMapPath.textProperty());
-        btn_mapSelect.disableProperty().bind(booleanBinding.not());
-    }
 
     /**
      * select map file path
