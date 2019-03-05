@@ -1,4 +1,4 @@
-package riskgame.model.BasicClass.Observable;
+package riskgame.model.BasicClass.Observe;
 
 import java.util.Observable;
 
