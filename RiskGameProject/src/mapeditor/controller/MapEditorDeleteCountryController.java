@@ -31,6 +31,9 @@ public class MapEditorDeleteCountryController {
     @FXML
     private Label lab_deleteCountryName;
 
+    /**
+     * Delete country name input
+     */
     private String deleteCountryName;
 
     BooleanBinding booleanBinding;

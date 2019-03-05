@@ -23,23 +23,35 @@ public class MapEditorTest {
         testMEMain.createsSoloCountry("testSecondCountry");
     }
 
+    /**
+     * Check add continent function
+     */
     @Test public void testMEMainCreateContinent(){
         MEContinent newContinent =  testMEMain.arrMEContinent.get(0);
         assertEquals("testFirstContinent",newContinent.getContinentName());
         assertEquals(1,newContinent.getBonus());
     }
 
+    /**
+     * Check add country function
+     */
     @Test public void testMEMainCreateCountry(){
         MECountry newCountry =  testMEMain.arrMECountry.get(0);
         assertEquals("testFirstCountry",newCountry.getCountryName());
     }
 
+    /**
+     * Check delete continent function
+     */
     @Test public void testMEMainDeleteContinent () {
         testMEMain.deleteContinent("testFirstContinent");
         assertEquals(0, testMEMain.arrMEContinent.size());
         assertEquals(1, testMEMain.arrMECountry.size());
     }
 
+    /**
+     * Check delete country function
+     */
     @Test public void testMEMainDeleteCountry(){
         testMEMain.deleteCountry("testSecondCountry");
         assertEquals(0,testMEMain.arrMECountry.size());

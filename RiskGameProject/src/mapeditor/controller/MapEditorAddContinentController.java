@@ -38,10 +38,19 @@ public class MapEditorAddContinentController {
     @FXML
     private Button btn_ok;
 
+    /**
+     * Default continent name
+     */
     private String DEFAULTCONTINENTNAME = "";
 
+    /**
+     * Continent name input
+     */
     private String newContinentName;
 
+    /**
+     * Continent bonus input
+     */
     private int newContinentBonus = -1;
 
     BooleanBinding booleanBindingName ;

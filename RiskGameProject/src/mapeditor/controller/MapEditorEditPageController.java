@@ -75,6 +75,9 @@ public class MapEditorEditPageController {
 
     private ObservableList<MEContinent> continentData = FXCollections.observableArrayList();
 
+    /**
+     * Old map path
+     */
     private String path;
 
     public MapEditorEditPageController() {

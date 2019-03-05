@@ -32,6 +32,9 @@ public class MapEditorDeleteContinentController {
     @FXML
     private Label lab_deleteContinentTitle;
 
+    /**
+     * Delete continent name input
+     */
     private String selectedContinentName = "";
 
     BooleanBinding booleanBinding ;

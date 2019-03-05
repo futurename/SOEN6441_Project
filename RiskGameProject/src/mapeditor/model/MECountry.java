@@ -8,7 +8,14 @@ import java.util.LinkedList;
  */
 public class MECountry{
 
+    /**
+     * Country name attribute
+     */
     private String countryName;
+
+    /**
+     * Neighbor countries list
+     */
     private LinkedList<String> neighbor = new LinkedList<String>();
 
     /**

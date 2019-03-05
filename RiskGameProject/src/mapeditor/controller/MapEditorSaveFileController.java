@@ -45,6 +45,9 @@ public class MapEditorSaveFileController {
     @FXML
     private Button btn_return;
 
+    /**
+     * Default output path
+     */
     private String DEFAULTPATH = ".\\newMap.map";
 
     public void initialize(){

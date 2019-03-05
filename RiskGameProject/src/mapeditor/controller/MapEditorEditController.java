@@ -29,7 +29,7 @@ public class MapEditorEditController {
     private Button btn_returnToHomePage;
 
     @FXML
-    private Label lab_MapPath;
+    private Label lab_mapPath;
 
     @FXML
     private TextField txf_defaultMapPath;

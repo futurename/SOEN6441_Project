@@ -11,9 +11,24 @@ import java.util.List;
  * class continent
  */
 public class MEContinent{
+    /**
+     * Continent name attribute
+     */
     private String continentName;
+
+    /**
+     *Continent bonus attribute
+     */
     private int bonus;
+
+    /**
+     *Number of countries in this continent
+     */
     private int countryNumber = 0;
+
+    /**
+     *Name list of countries in this continent
+     */
     public LinkedList<String> countryList = new LinkedList<String>();
 
     private StringProperty name;

@@ -43,10 +43,19 @@ public class MapEditorAddCountryController {
     @FXML
     private ComboBox<String> cbb_setContinent;
 
+    /**
+     * Country name input
+     */
     private String newCountryName;
 
+    /**
+     * Neighbor name input
+     */
     private String newNeighborName;
 
+    /**
+     * Set continent input
+     */
     private String setContinent;
 
     private boolean ISNOTANEWCOUNTRY = false;
