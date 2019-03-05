@@ -5,6 +5,7 @@ import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.Player;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
@@ -16,13 +17,16 @@ import java.util.Random;
 public class InitPlayers {
     /**
      * create and initialize all the player instances
+     *
+     * @param numOfPlayers number of players this round
+     * @param graphSingleton world map singleton
      */
-    public static void initPlayers() {
+    public static void initPlayers(int numOfPlayers, LinkedHashMap<String, GraphNode> graphSingleton) {
         ArrayList<String> forAllocatesCountryNameList = generateUnallocatedNameList();
 
-        for (int playerIndex = 0; playerIndex < Main.totalNumOfPlayers; playerIndex++) {
+        for (int playerIndex = 0; playerIndex < numOfPlayers; playerIndex++) {
             Player onePlayer = new Player(playerIndex);
-            getInitCountryNameList(onePlayer, forAllocatesCountryNameList);
+            getInitCountryNameList(onePlayer, forAllocatesCountryNameList, numOfPlayers, graphSingleton);
         }
     }
 
@@ -42,25 +46,25 @@ public class InitPlayers {
     }
 
     /**
-     * This method randomly allocates all countries to all players
+     * This method allocates all countries to a player randomly
      *
-     * @param curPlayer      a player instance
-     * @param coutryNameList the arraylist of its country names
+     * @param curPlayer current player
+     * @param coutryNameList unallocated country names
+     * @param numOfPlayers number of players
+     * @param graphSingleton world map singleton
      */
-    private static void getInitCountryNameList(Player curPlayer, ArrayList<String> coutryNameList) {
+    private static void getInitCountryNameList(Player curPlayer, ArrayList<String> coutryNameList, int numOfPlayers, LinkedHashMap<String,
+            GraphNode> graphSingleton) {
 
-        int avgCountryCount = Main.graphSingleton.size() / Main.totalNumOfPlayers;
-        int allocatsCountryNum = (curPlayer.getPlayerIndex() != (Main.totalNumOfPlayers - 1)) ? avgCountryCount : coutryNameList.size();
+        int avgCountryCount = graphSingleton.size() / numOfPlayers;
+        int allocatsCountryNum = (curPlayer.getPlayerIndex() != (numOfPlayers - 1)) ? avgCountryCount : coutryNameList.size();
 
         for (int count = 0; count < allocatsCountryNum; count++) {
             int randomIndex = new Random().nextInt(coutryNameList.size());
 
-            //System.out.println("random index: " + randomIndex + ", list size: " + coutryNameList.size() + ", player index: " + curPlayer
-            // .getPlayerIndex());
-
             String oneCountryName = coutryNameList.remove(randomIndex);
 
-            Main.graphSingleton.get(oneCountryName).getCountry().setCountryOwnerIndex(curPlayer.getPlayerIndex());
+            graphSingleton.get(oneCountryName).getCountry().setCountryOwnerIndex(curPlayer.getPlayerIndex());
 
             curPlayer.addToOwnedCountryNameList(oneCountryName);
         }

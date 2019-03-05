@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
@@ -30,6 +31,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import static riskgame.Main.graphSingleton;
 
 /**
  * controller class for StartView.fxml
@@ -159,6 +162,7 @@ public class StartViewController {
         if (numOfPlayersProperty.get() < MAX_NUM_OF_PLAYERS) {
             btn_plusPlayerNumber.setVisible(true);
         }
+
     }
 
     /**
@@ -208,7 +212,7 @@ public class StartViewController {
             mapPath = DEFAULT_MAP_PATH;
         }
         if (MapChecker.isMapValid(mapPath)) {
-            buildWorldMapGraph(mapPath);
+            buildWorldMapGraph(mapPath, graphSingleton);
 
             btn_confirmLoadFile.setVisible(false);
             btn_loadFile.setVisible(false);
@@ -222,12 +226,13 @@ public class StartViewController {
                 btn_nextStep.setVisible(true);
 
                 if (Main.playersList.isEmpty()) {
-                    InitPlayers.initPlayers();
+                    InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton);
                 }
             }
         }
 
         System.out.println(txf_mapPath.getText() + ", " + MapChecker.checkMapValidity(mapPath));
+
         inputCounter--;
     }
 
@@ -237,8 +242,8 @@ public class StartViewController {
      * @throws IOException map file not found
      */
     private void displayWorldMap(String path) throws IOException {
-        if (Main.graphSingleton.isEmpty()) {
-            buildWorldMapGraph(path);
+        if (graphSingleton.isEmpty()) {
+            buildWorldMapGraph(path, graphSingleton);
         }
 
         hbx_infoDisplayHbox.getChildren().clear();
@@ -312,7 +317,7 @@ public class StartViewController {
     private void displayPlayerInfo() {
         isMapInfoOn = false;
         if (Main.playersList.isEmpty()) {
-            InitPlayers.initPlayers();
+            InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton);
         }
         txf_mapPromptInfo.setText("Players Info");
 
@@ -389,7 +394,7 @@ public class StartViewController {
         Main.curRoundPlayerIndex = 0;
         //Main.worldCountriesMap = new HashMap<>();
         Main.worldContinentMap = new LinkedHashMap<>();
-        Main.graphSingleton = GraphSingleton.INSTANCE.getInstance();
+        graphSingleton = GraphSingleton.INSTANCE.getInstance();
     }
 
 
@@ -418,7 +423,7 @@ public class StartViewController {
      * @param path path of map file
      * @throws IOException map file not found
      */
-    private static void buildWorldMapGraph(String path) throws IOException {
+    public static void buildWorldMapGraph(String path, LinkedHashMap<String, GraphNode> graphSingleton) throws IOException {
         System.out.println(new File(path).getAbsolutePath());
 
         BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
@@ -445,15 +450,15 @@ public class StartViewController {
                         String curCountryName = curLineSplitArray[0];
                         Country curCountry;
                         GraphNode curGraphNode;
-                        if (!Main.graphSingleton.containsKey(curCountryName)) {
+                        if (!graphSingleton.containsKey(curCountryName)) {
                             curCountry = new Country(curCountryName);
                             curGraphNode = new GraphNode(curCountry);
                         } else {
-                            curGraphNode = Main.graphSingleton.get(curCountryName);
+                            curGraphNode = graphSingleton.get(curCountryName);
                             curCountry = curGraphNode.getCountry();
                         }
 
-                        Main.graphSingleton.put(curCountryName, curGraphNode);
+                        graphSingleton.put(curCountryName, curGraphNode);
 
                         String curCoordinateX = curLineSplitArray[COORDINATE_X_POSITION];
                         String curCoordinateY = curLineSplitArray[COORDINATE_Y_POSITION];
@@ -469,16 +474,16 @@ public class StartViewController {
                             GraphNode oneGraphNode;
                             String adjacentCountryName = curLineSplitArray[i];
 
-                            if (!Main.graphSingleton.containsKey(adjacentCountryName)) {
+                            if (!graphSingleton.containsKey(adjacentCountryName)) {
                                 oneCountry = new Country(adjacentCountryName);
                                 oneGraphNode = new GraphNode(oneCountry);
                             } else {
-                                oneGraphNode = Main.graphSingleton.get(adjacentCountryName);
+                                oneGraphNode = graphSingleton.get(adjacentCountryName);
                                 oneCountry = oneGraphNode.getCountry();
                             }
 
                             curGraphNode.addAdjacentCountry(oneCountry);
-                            Main.graphSingleton.put(adjacentCountryName, oneGraphNode);
+                            graphSingleton.put(adjacentCountryName, oneGraphNode);
                         }
                     }
                 }
@@ -506,7 +511,7 @@ public class StartViewController {
      * this method prints world map graph in console
      */
     private static void printGraph() {
-        for (Map.Entry<String, GraphNode> entry : Main.graphSingleton.entrySet()) {
+        for (Map.Entry<String, GraphNode> entry : graphSingleton.entrySet()) {
             String countryName = entry.getKey();
             GraphNode node = entry.getValue();
             System.out.println(">>>>>>>>>>>> country: " + countryName + ", continent: " + node.getCountry().getContinentName() + " <<<<<<<<<<<<<<<");
@@ -527,7 +532,6 @@ public class StartViewController {
         System.out.println("\n");
     }
 
-
     /**
      * getter
      *
@@ -545,4 +549,5 @@ public class StartViewController {
     public static String getCountryHeaderString() {
         return COUNTRY_HEADER_STRING;
     }
+
 }

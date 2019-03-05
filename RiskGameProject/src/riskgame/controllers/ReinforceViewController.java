@@ -1,5 +1,6 @@
 package riskgame.controllers;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,11 +21,12 @@ import riskgame.model.BasicClass.Observe.CountryChangedObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
-import riskgame.model.phases.ReinforcePhase;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
@@ -69,6 +71,16 @@ public class ReinforceViewController implements Initializable {
     private Player curPlayer;
 
     /**
+     * default factor for calculting standard number of army used for reinforce phase
+     */
+    private static final int DEFAULT_DIVISION_FACTOR = 3;
+
+    /**
+     * minimun army number that is assigned to each player
+     */
+    private static final int DEFAULT_MIN_REINFORCE_ARMY_NBR = 3;
+
+    /**
      * init method for reinforce phase view
      *
      * @param location  default value
@@ -96,7 +108,7 @@ public class ReinforceViewController implements Initializable {
 
         Color curPlayerColor = curPlayer.getPlayerColor();
         int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
-        int curUndeployedArmy = ReinforcePhase.getStandardReinforceArmyNum(ownedCountryNum);
+        int curUndeployedArmy = getStandardReinforceArmyNum(ownedCountryNum);
 
         lbl_playerInfo.setTextFill(curPlayerColor);
         lbl_countriesInfo.setTextFill(curPlayerColor);
@@ -108,7 +120,7 @@ public class ReinforceViewController implements Initializable {
 
         ListviewRenderer.renderCountryItems(lsv_ownedCountries);
 
-        pct_countryDistributionChart.setData(ReinforcePhase.getPieChartData(curPlayer));
+        pct_countryDistributionChart.setData(getPieChartData(curPlayer));
 
         displayStackedBarChart(sbc_occupationRatio);
 
@@ -226,6 +238,41 @@ public class ReinforceViewController implements Initializable {
                 lbl_deployArmyCount.setText(Integer.toString(remainUndeployedArmyCount));
             }
         }
+    }
+
+    /**
+     * calculate army number for reinforcement with default value
+     *
+     * @param countryNum number of all countries a player owns
+     * @return calculated number of army for reinforcement phase
+     */
+    public static int getStandardReinforceArmyNum(int countryNum) {
+        int calResult = countryNum / DEFAULT_DIVISION_FACTOR;
+        return calResult > DEFAULT_MIN_REINFORCE_ARMY_NBR ? calResult : DEFAULT_MIN_REINFORCE_ARMY_NBR;
+    }
+
+    /**
+     * acquire ObservableList for displaying in pie chart. The pie chart presents number of countries in different continents a play has.
+     *
+     * @param player a player instance
+     * @return distribution of (continent, number of country) this player owns
+     */
+    public static ObservableList<PieChart.Data> getPieChartData(Player player) {
+        ObservableList<PieChart.Data> result = FXCollections.observableArrayList();
+
+        ArrayList<String> countryList = player.getOwnedCountryNameList();
+
+        HashMap<String, Integer> countryDistributionMap = InfoRetriver.getCountryDistributionMap(countryList);
+
+        for (Map.Entry<String, Integer> entry : countryDistributionMap.entrySet()) {
+            String oneCountryName = entry.getKey();
+            int count = entry.getValue();
+            PieChart.Data onePieChartData = new PieChart.Data(oneCountryName, count);
+            result.add(onePieChartData);
+
+            System.out.println("country name: " + oneCountryName + ", curCount: " + count);
+        }
+        return result;
     }
 }
 

@@ -1,4 +1,4 @@
-package test.riskgame.model.phases;
+package test;
 
 import org.junit.Assert;
 import org.junit.Test;

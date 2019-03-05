@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import mapeditor.MEMain;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * this class is to select old map from folder
@@ -38,13 +39,14 @@ public class MapEditorEditController {
     @FXML
     private Text txt_OMEtitle;
 
-    //BooleanProperty property = new SimpleBooleanProperty(false);
+    @FXML
+    private Button btn_confirmMapSelection;
 
-    BooleanBinding booleanBinding ;
+    BooleanBinding booleanBinding;
 
     private static final String DEFAULT_PATH = "maps/World.map";
 
-    public void initialize(){
+    public void initialize() {
         txf_defaultMapPath.setText(DEFAULT_PATH);
         detectDirectory();
     }
@@ -53,26 +55,26 @@ public class MapEditorEditController {
      * detect the directory in the text field is valid, if not then the button cannot be pressed
      */
     @FXML
-    public void detectDirectory(){
+    public void detectDirectory() {
         File file = new File(txf_defaultMapPath.getText());
-        booleanBinding = Bindings.createBooleanBinding(()->{
-            if(file.exists()&&txf_defaultMapPath.getText().endsWith(".map")){
+        booleanBinding = Bindings.createBooleanBinding(() -> {
+            if (file.exists() && txf_defaultMapPath.getText().endsWith(".map")) {
                 return true;
-            }
-            else{
+            } else {
                 return false;
             }
-        },txf_defaultMapPath.textProperty());
+        }, txf_defaultMapPath.textProperty());
         btn_mapSelect.disableProperty().bind(booleanBinding.not());
     }
 
     /**
-     * if the directory is valid then the button will jump to the edit page
+     * select map file path
+     *
      * @param actionEvent
      * @throws Exception
      */
     @FXML
-    public void selectPath(ActionEvent actionEvent) throws Exception{
+    public void selectPath(ActionEvent actionEvent) throws Exception {
         Stage fileStage = null;
 
         FileChooser fileChooser = new FileChooser();
@@ -82,31 +84,39 @@ public class MapEditorEditController {
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Map files(*.map)", "*.map");
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(fileStage);
-        lab_mapPath.setText(file.getAbsolutePath());
-
-        MEMain.OLDMAPPATH = lab_mapPath.getText();
-        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
-        Pane mapEditorEditPagePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();
-        Scene mapEditorEditPageScene = new Scene(mapEditorEditPagePane,1200,900);
-
-        curStage.setScene(mapEditorEditPageScene);
-        curStage.show();
+        txf_defaultMapPath.setText(file.getAbsolutePath());
     }
 
     /**
      * return to homepage
+     *
      * @param actionEvent
      * @throws Exception
      */
     @FXML
-    public void clickToReturn(ActionEvent actionEvent) throws Exception{
+    public void clickToReturn(ActionEvent actionEvent) throws Exception {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
         Pane mapEditorHomePagePane = new FXMLLoader(getClass().getResource("../views/MapEditorHomePageView.fxml")).load();
-        Scene mapEditorHomePageScene = new Scene(mapEditorHomePagePane,1200,900);
+        Scene mapEditorHomePageScene = new Scene(mapEditorHomePagePane, 1200, 900);
 
         curStage.setScene(mapEditorHomePageScene);
+        curStage.show();
+    }
+
+    /**
+     * confirm map file path and jump to edit page
+     *
+     * @param actionEvent onClick event for confirming map file selection
+     */
+    public void onClickConfirmMapSelection(ActionEvent actionEvent) throws IOException {
+        MEMain.OLDMAPPATH = txf_defaultMapPath.getText();
+        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        Pane mapEditorEditPagePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();
+        Scene mapEditorEditPageScene = new Scene(mapEditorEditPagePane, 1200, 900);
+
+        curStage.setScene(mapEditorEditPageScene);
         curStage.show();
     }
 }
