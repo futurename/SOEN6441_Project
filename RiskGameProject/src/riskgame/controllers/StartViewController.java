@@ -18,11 +18,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import mapeditor.model.MECheckMapCorrectness;
 import riskgame.Main;
 import riskgame.model.BasicClass.*;
 import riskgame.model.Utils.InitPlayers;
 import riskgame.model.Utils.ListviewRenderer;
+import riskgame.model.Utils.MapObject;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -192,15 +192,16 @@ public class StartViewController {
      */
     @FXML
     public void clickConfirmLoadMap(ActionEvent actionEvent) throws IOException {
+        MapObject check = new MapObject();
         Alert alert = new Alert(Alert.AlertType.WARNING);
         mapPath = txf_mapPath.getText();
-        if (!MECheckMapCorrectness.checkCorrectness(mapPath)) {
+        if (!check.checkCorrectness(mapPath)) {
             alert.setContentText("Map file not exist!");
             alert.showAndWait();
             return;
         }
         if (inputCounter > 0) {
-            if (!MECheckMapCorrectness.checkCorrectness(mapPath)) {
+            if (!check.checkCorrectness(mapPath)) {
                 alert.setContentText("Map file invalid, please select another one!\nCounter: " + inputCounter);
                 alert.showAndWait();
                 txf_mapPath.setText(DEFAULT_MAP_PATH);
@@ -211,7 +212,7 @@ public class StartViewController {
             alert.showAndWait();
             mapPath = DEFAULT_MAP_PATH;
         }
-        if (MECheckMapCorrectness.checkCorrectness(mapPath)) {
+        if (check.checkCorrectness(mapPath)) {
             buildWorldMapGraph(mapPath, graphSingleton);
 
             btn_confirmLoadFile.setVisible(false);
@@ -231,7 +232,7 @@ public class StartViewController {
             }
         }
 
-        System.out.println(txf_mapPath.getText() + ", " + MECheckMapCorrectness.checkCorrectness(mapPath));
+        System.out.println(txf_mapPath.getText() + ", " + check.checkCorrectness(mapPath));
 
         inputCounter--;
     }

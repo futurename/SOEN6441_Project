@@ -10,9 +10,9 @@ import java.util.*;
 
 public class MECheckMapCorrectness{
 
-    private static boolean checkFlagCG = true;
-    private static boolean checkFlagCC = true;
-    private static boolean checkFlagCB = true;
+    private boolean checkFlagCG = true;
+    private boolean checkFlagCC = true;
+    private boolean checkFlagCB = true;
 
     /**
      * isCorrect method compare all the three test result and ruturn to the UI.
@@ -20,7 +20,7 @@ public class MECheckMapCorrectness{
      * @param continentsArr
      * @return error information
      */
-    public static String isCorrect(ArrayList< MECountry> countryArr, ArrayList<MEContinent> continentsArr){
+    public String isCorrect(ArrayList< MECountry> countryArr, ArrayList<MEContinent> continentsArr){
         boolean checkFlagCGResult = correctCheckConnectGraph(countryArr);
         boolean checkFlagCCResult = correctCheckContinentCountry(continentsArr,countryArr);
         boolean checkFlagCBResult = correctCheckCountryBelonging(continentsArr,countryArr);
@@ -37,74 +37,10 @@ public class MECheckMapCorrectness{
     }
 
     /**
-     * check map correctness interface
-     * @param mapPath read map path
-     * @return if the map is correct, return true, else return false
-     */
-    public static boolean checkCorrectness(String mapPath){
-        MEMain newMap = new MEMain();
-
-        ArrayList<String> fileRead = new ArrayList<String>();
-        try {
-            File file=new File(mapPath);
-            if(file.isFile()&&file.exists()){
-                InputStreamReader read = new InputStreamReader(new FileInputStream(file));
-                BufferedReader bufferedReader=new BufferedReader(read);
-                String lineTxt=null;
-                while((lineTxt=bufferedReader.readLine())!=null){
-                    fileRead.add(lineTxt);
-                }
-                read.close();
-            }else{
-                System.out.println("cannot find file");
-            }
-        } catch (Exception e){
-            System.out.println("wrong");
-            e.printStackTrace();
-        }
-        for(int i = 0;i<fileRead.size();i++){
-            if(fileRead.get(i).equals("[Continents]")){
-                for(int j=i+1;j<fileRead.size();j++){
-                    if(!fileRead.get(j).equals("")){
-                        newMap.createContinent(fileRead.get(j).split("=")[0],Integer.parseInt(fileRead.get(j).split("=")[1]));
-                    }
-                    else{
-                        break;
-                    }
-                }
-            }
-            else if(fileRead.get(i).equals("[Territories]")){
-                int continentNumber = 0;
-                for(int k=i+1;k<fileRead.size();k++){
-                    if(!fileRead.get(k).equals("")){
-                        String[] countrydata = fileRead.get(k).split(",");
-                        newMap.createCountry(countrydata[0],countrydata);
-                        newMap.arrMEContinent.get(continentNumber).addCountry(countrydata[0]);
-                    }
-                    else{
-                        continentNumber++;
-                    }
-                }
-            }
-        }
-
-        if(correctCheckConnectGraph(newMap.arrMECountry) == false){
-            return false;
-        }
-        if(correctCheckContinentCountry(newMap.arrMEContinent,newMap.arrMECountry) == false){
-            return false;
-        }
-        if(correctCheckCountryBelonging(newMap.arrMEContinent,newMap.arrMECountry) == false) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
      * first correct checkCC
      * check whether it is a connect graph or not
      */
-    public static boolean correctCheckConnectGraph(ArrayList<MECountry> countryArr){
+    public boolean correctCheckConnectGraph(ArrayList<MECountry> countryArr){
         Queue<String> queue = new LinkedList<String>();
 
         //If it is a empty map.
@@ -152,7 +88,7 @@ public class MECheckMapCorrectness{
      * second correct check
      * check whether all countries in one continent are placed together
      */
-    public static boolean correctCheckContinentCountry(ArrayList<MEContinent> continents, ArrayList<MECountry> country){
+    public  boolean correctCheckContinentCountry(ArrayList<MEContinent> continents, ArrayList<MECountry> country){
         //If it is a empty map.
         if(continents.isEmpty() && country.isEmpty()) {
             return true;
@@ -176,9 +112,9 @@ public class MECheckMapCorrectness{
 
     /**
      * third correct check
-     *  every country belongs to one and only one continent
+     * every country belongs to one and only one continent
      */
-    public static boolean correctCheckCountryBelonging(ArrayList<MEContinent> continentsArr, ArrayList<MECountry> countryArr){
+    public  boolean correctCheckCountryBelonging(ArrayList<MEContinent> continentsArr, ArrayList<MECountry> countryArr){
         int countryAddByContinent = 0;
 
         //If the map is empty.
@@ -191,6 +127,8 @@ public class MECheckMapCorrectness{
             countryAddByContinent = continentsArr.get(i).getCountryNumber()+countryAddByContinent;
         }
         if(countryAddByContinent != countryArr.size()){
+            System.out.println(countryAddByContinent);
+            System.out.println(countryArr.size());
             checkFlagCB = false;
         }
         return checkFlagCB;

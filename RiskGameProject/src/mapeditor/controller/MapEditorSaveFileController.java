@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mapeditor.MEMain;
+import mapeditor.model.MECheckMapCorrectness;
 import mapeditor.model.MEContinent;
 import mapeditor.model.MECountry;
 
@@ -19,8 +20,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.LinkedList;
-
-import static mapeditor.model.MECheckMapCorrectness.isCorrect;
 
 public class MapEditorSaveFileController {
 
@@ -78,8 +77,8 @@ public class MapEditorSaveFileController {
      */
     @FXML
     public void clickToCheck(ActionEvent actionEvent) throws Exception{
-
-        txt_checkResult.setText(isCorrect(MEMain.arrMECountry, MEMain.arrMEContinent));
+        MECheckMapCorrectness check = new MECheckMapCorrectness();
+        txt_checkResult.setText(check.isCorrect(MEMain.arrMECountry, MEMain.arrMEContinent));
 
     }
 
