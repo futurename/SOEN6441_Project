@@ -1,5 +1,11 @@
 package mapeditor.model;
 
+import mapeditor.MEMain;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class MECheckMapCorrectness{
@@ -12,14 +18,14 @@ public class MECheckMapCorrectness{
      * isCorrect method compare all the three test result and ruturn to the UI.
      * @param countryArr
      * @param continentsArr
-     * @return
+     * @return error information
      */
     public static String isCorrect(ArrayList< MECountry> countryArr, ArrayList<MEContinent> continentsArr){
         boolean checkFlagCGResult = correctCheckConnectGraph(countryArr);
         boolean checkFlagCCResult = correctCheckContinentCountry(continentsArr,countryArr);
         boolean checkFlagCBResult = correctCheckCountryBelonging(continentsArr,countryArr);
         if(checkFlagCGResult == false){
-           return "Unconnected Graph";
+            return "Unconnected Graph";
         }
         if(checkFlagCCResult == false){
             return "Unconnected Country in Continent";
@@ -32,18 +38,63 @@ public class MECheckMapCorrectness{
 
     /**
      * check map correctness interface
-     * @param countryArr
-     * @param continentsArr
-     * @return
+     * @param mapPath read map path
+     * @return if the map is correct, return true, else return false
      */
-    public static boolean checkCorrectness(ArrayList< MECountry> countryArr, ArrayList<MEContinent> continentsArr){
-        if(correctCheckConnectGraph(countryArr) == false){
+    public static boolean checkCorrectness(String mapPath){
+        MEMain newMap = new MEMain();
+
+        ArrayList<String> fileRead = new ArrayList<String>();
+        try {
+            File file=new File(mapPath);
+            if(file.isFile()&&file.exists()){
+                InputStreamReader read = new InputStreamReader(new FileInputStream(file));
+                BufferedReader bufferedReader=new BufferedReader(read);
+                String lineTxt=null;
+                while((lineTxt=bufferedReader.readLine())!=null){
+                    fileRead.add(lineTxt);
+                }
+                read.close();
+            }else{
+                System.out.println("cannot find file");
+            }
+        } catch (Exception e){
+            System.out.println("wrong");
+            e.printStackTrace();
+        }
+        for(int i = 0;i<fileRead.size();i++){
+            if(fileRead.get(i).equals("[Continents]")){
+                for(int j=i+1;j<fileRead.size();j++){
+                    if(!fileRead.get(j).equals("")){
+                        newMap.createContinent(fileRead.get(j).split("=")[0],Integer.parseInt(fileRead.get(j).split("=")[1]));
+                    }
+                    else{
+                        break;
+                    }
+                }
+            }
+            else if(fileRead.get(i).equals("[Territories]")){
+                int continentNumber = 0;
+                for(int k=i+1;k<fileRead.size();k++){
+                    if(!fileRead.get(k).equals("")){
+                        String[] countrydata = fileRead.get(k).split(",");
+                        newMap.createCountry(countrydata[0],countrydata);
+                        newMap.arrMEContinent.get(continentNumber).addCountry(countrydata[0]);
+                    }
+                    else{
+                        continentNumber++;
+                    }
+                }
+            }
+        }
+
+        if(correctCheckConnectGraph(newMap.arrMECountry) == false){
             return false;
         }
-        if(correctCheckContinentCountry(continentsArr,countryArr) == false){
+        if(correctCheckContinentCountry(newMap.arrMEContinent,newMap.arrMECountry) == false){
             return false;
         }
-        if(correctCheckCountryBelonging(continentsArr,countryArr) == false) {
+        if(correctCheckCountryBelonging(newMap.arrMEContinent,newMap.arrMECountry) == false) {
             return false;
         }
         return true;
