@@ -2,12 +2,9 @@ package riskgame.model.BasicClass;
 
 
 import javafx.scene.paint.Color;
-import riskgame.Main;
-import riskgame.model.BasicClass.Observer.CountryChangedObserver;
+import riskgame.model.BasicClass.Observe.CountryChangedObserver;
 
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  * This class includes attributes a player need and required methods

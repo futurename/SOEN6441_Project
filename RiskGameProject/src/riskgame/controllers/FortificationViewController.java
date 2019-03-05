@@ -1,7 +1,5 @@
 package riskgame.controllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
-import riskgame.model.BasicClass.Observer.CountryChangedObserver;
+import riskgame.model.BasicClass.Observe.CountryChangedObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;

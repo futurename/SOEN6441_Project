@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import mapeditor.MEMain;
 
@@ -41,7 +42,7 @@ public class MapEditorEditController {
 
     BooleanBinding booleanBinding ;
 
-    private static final String DEFAULT_PATH = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\maps\\World.map";
+    private static final String DEFAULT_PATH = "maps/World.map";
 
     public void initialize(){
         txf_defaultMapPath.setText(DEFAULT_PATH);
@@ -72,7 +73,18 @@ public class MapEditorEditController {
      */
     @FXML
     public void selectPath(ActionEvent actionEvent) throws Exception{
-        MEMain.OLDMAPPATH = txf_defaultMapPath.getText();
+        Stage fileStage = null;
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select map file");
+
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir").concat("/maps")));
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Map files(*.map)", "*.map");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(fileStage);
+        lab_mapPath.setText(file.getAbsolutePath());
+
+        MEMain.OLDMAPPATH = lab_mapPath.getText();
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
         Pane mapEditorEditPagePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();

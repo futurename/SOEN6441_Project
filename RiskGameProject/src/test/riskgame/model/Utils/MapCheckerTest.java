@@ -8,6 +8,10 @@ import java.io.IOException;
 
 import static org.junit.Assert.*;
 
+/**
+ * MapChecker tester.
+ */
+
 public class MapCheckerTest {
     private String path, error_path, error_map;
 
@@ -29,7 +33,7 @@ public class MapCheckerTest {
     }
 
     @Test
-    public void isMapPathValid(){
+    public void isMapPathValid() {
         assertFalse(MapChecker.isMapPathValid(this.error_path));
     }
 }
