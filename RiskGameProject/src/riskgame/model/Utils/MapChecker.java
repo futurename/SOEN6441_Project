@@ -1,6 +1,6 @@
 package riskgame.model.Utils;
 
-import javafx.scene.control.Alert;
+import riskgame.controllers.StartViewController;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -43,9 +43,7 @@ public class MapChecker {
      * @see MapChecker#checkMapValidity
      */
     public static boolean isMapValid(String path) throws IOException {
-        if (checkMapValidity(path) == NO_ERROR){
-            return true;
-        }else return false;
+        return checkMapValidity(path) == NO_ERROR;
     }
 
     /**
@@ -65,7 +63,7 @@ public class MapChecker {
 
         String line;
         while ((line = bufferedReader.readLine()) != null) {
-            if (line.contains(InitMapGraph.CONTINENT_HEADER_STRING)) {
+            if (line.contains(StartViewController.getContinentHeaderString())) {
                 isContinentFound = true;
                 while ((line = bufferedReader.readLine()).length() != 0) {
                     if (line.contains("=")) {
@@ -77,7 +75,7 @@ public class MapChecker {
                         return ERROR_TYPE_NO_SEPARATOR;
                     }
                 }
-            } else if (line.contains(InitMapGraph.COUNTRY_HEADER_STRING)) {
+            } else if (line.contains(StartViewController.getCountryHeaderString())) {
                 isTerritoriesFound = true;
                 while ((line = bufferedReader.readLine()) != null) {
                     if (line.length() == 0){
@@ -115,7 +113,7 @@ public class MapChecker {
         } catch (NumberFormatException e) {
             return ERROR_TYPE_CONTINENT_NUMBER_FORMAT;
         } finally {
-            continents.add((String) splitedLine[0]);
+            continents.add(splitedLine[0]);
         }
         return NO_ERROR;
     }

@@ -13,7 +13,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
@@ -526,5 +525,24 @@ public class StartViewController {
             System.out.printf("%s, ", countryName);
         }
         System.out.println("\n");
+    }
+
+
+    /**
+     * getter
+     *
+     * @return default continent header string
+     */
+    public static String getContinentHeaderString() {
+        return CONTINENT_HEADER_STRING;
+    }
+
+    /**
+     * getter
+     *
+     * @return default country header string
+     */
+    public static String getCountryHeaderString() {
+        return COUNTRY_HEADER_STRING;
     }
 }
