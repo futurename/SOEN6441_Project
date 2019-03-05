@@ -1,9 +1,5 @@
 package riskgame.model.Utils;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import mapeditor.model.MEContinent;
 import mapeditor.model.MECountry;
 
@@ -22,7 +18,14 @@ public class MapObject {
     private boolean checkFlagCC = true;
     private boolean checkFlagCB = true;
 
+    /**
+     * arrContinent storage new continent
+     */
     public ArrayList<MEContinent> arrContinent = new ArrayList<MEContinent>();
+
+    /**
+     * arrayCountry storage new country
+     */
     public ArrayList<MECountry> arrCountry = new ArrayList<MECountry>();
 
     /**
@@ -215,5 +218,4 @@ public class MapObject {
         }
         return checkFlagCB;
     }
-
 }
