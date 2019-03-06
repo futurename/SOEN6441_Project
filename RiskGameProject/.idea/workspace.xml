@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3533e36-e2c6-493e-8c86-f4e87db12115" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/Utils/MapObject.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/phases/ReinforcePhase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/FortificationPhaseTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/GraphTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/GraphTester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/MapCheckerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/MapCheckerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/ReinforcePhaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ReinforcePhaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/model/MECheckMapCorrectness.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/model/MECheckMapCorrectness.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/controllers/StartViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/controllers/StartViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/Utils/InfoRetriver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/Utils/InfoRetriver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/FortificationPhaseTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/MapCheckerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/test/MapCheckerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/ReinforcePhaseTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/test/ReinforcePhaseTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="C:\Users\WW\Google Drive\!!Winter 2019\SOEN6441_Advanced_Programming\SOEN6441_Project\RiskGameProject\.idea\shelf/" />
@@ -73,8 +76,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="109" column="18" lean-forward="true" selection-end-line="202" />
+            <state relative-caret-position="-457">
+              <caret line="132" column="6" selection-start-line="132" selection-start-column="6" selection-end-line="132" selection-end-column="6" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -83,10 +86,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/FortificationPhaseTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-380">
+              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/GraphTester.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="19" column="24" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="24" />
+            <state relative-caret-position="1529">
+              <caret line="122" selection-start-line="122" selection-end-line="122" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#4069#4070#0" expanded="true" />
@@ -193,15 +208,15 @@
         <option value="$PROJECT_DIR$/src/riskgame/model/Utils/InitPlayers.java" />
         <option value="$PROJECT_DIR$/src/riskgame/model/Utils/MapChecker.java" />
         <option value="$PROJECT_DIR$/src/mapeditor/model/MECheckMapCorrectness.java" />
-        <option value="$PROJECT_DIR$/src/test/GraphTester.java" />
         <option value="$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditController.java" />
         <option value="$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java" />
         <option value="$PROJECT_DIR$/src/mapeditor/model/MapObject.java" />
         <option value="$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java" />
-        <option value="$PROJECT_DIR$/src/test/FortificationPhaseTest.java" />
         <option value="$PROJECT_DIR$/src/test/MapCheckerTest.java" />
         <option value="$PROJECT_DIR$/src/test/ReinforcePhaseTest.java" />
         <option value="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" />
+        <option value="$PROJECT_DIR$/src/test/FortificationPhaseTest.java" />
+        <option value="$PROJECT_DIR$/src/test/GraphTester.java" />
       </list>
     </option>
   </component>
@@ -331,7 +346,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551833412465" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551833620990" />
     <property name="last.edited.regexp" value="Sample Text" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -555,7 +570,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33061000" />
+    <option name="totallyTimeSpent" value="33487000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -662,13 +677,6 @@
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/mapeditor/MEMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="32" column="84" selection-start-line="32" selection-start-column="84" selection-end-line="32" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mapeditor/views/MapEditorSaveFileView.fxml">
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
       <provider editor-type-id="text-editor" />
@@ -992,8 +1000,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="109" column="18" lean-forward="true" selection-end-line="202" />
+        <state relative-caret-position="-457">
+          <caret line="132" column="6" selection-start-line="132" selection-start-column="6" selection-end-line="132" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1002,12 +1010,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/GraphTester.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="19" column="24" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="24" />
+        <state relative-caret-position="1529">
+          <caret line="122" selection-start-line="122" selection-end-line="122" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4069#4070#0" expanded="true" />
             <element signature="e#4101#4102#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/FortificationPhaseTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-380">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
