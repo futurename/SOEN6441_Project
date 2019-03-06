@@ -1,11 +1,9 @@
 package mapeditor.model;
 
-import javafx.beans.property.*;
-import javafx.beans.value.ObservableValue;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * class continent
@@ -47,7 +45,7 @@ public class MEContinent{
 
     /**
      * Bind continent name to table view
-     * @return
+     * @return StringProperty of name
      */
     public StringProperty nameProperty(){
         if(name == null){
@@ -69,7 +67,7 @@ public class MEContinent{
 
     /**
      * Bind continent bonus infomation to table view.
-     * @return
+     * @return StringPropety of bonus
      */
     public StringProperty bonusProperty() {
         if (bns == null) {
@@ -80,7 +78,7 @@ public class MEContinent{
 
     /**
      * Bind country infomation to table view.
-     * @return
+     * @return StringProperty of country
      */
     public StringProperty countryProperty() {
         if (countries == null) {

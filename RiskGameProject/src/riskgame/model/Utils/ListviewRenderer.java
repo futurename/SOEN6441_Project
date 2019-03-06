@@ -1,8 +1,6 @@
 package riskgame.model.Utils;
 
-import com.sun.deploy.util.FXLoader;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
@@ -11,11 +9,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import riskgame.Main;
-import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
-
-import java.util.ArrayList;
 
 /**
  * This class includes methods for rendering itmes displayed in ListViews

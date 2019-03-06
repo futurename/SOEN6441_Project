@@ -8,7 +8,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -101,8 +104,8 @@ public class MapEditorEditPageController {
 
     /**
      * read map from the given valid map path
-     * @param path
-     * @throws Exception
+     * @param path map file path
+     * @throws Exception map file not found
      */
     private void readMap(String path)throws Exception{
         ArrayList<String> fileRead = new ArrayList<String>();
@@ -150,15 +153,11 @@ public class MapEditorEditPageController {
         }
     }
 
-    @FXML
-    public void loadTable() throws Exception{
-
-    }
 
     /**
      * jump to the add continent page
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click button
+     * @throws Exception apEditorAddContinentView.fxml not found
      */
     @FXML
     public void clickToAddContinent(ActionEvent actionEvent) throws Exception{
@@ -173,8 +172,8 @@ public class MapEditorEditPageController {
 
     /**
      * jump to the delete continent page
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click button
+     * @throws Exception MapEditorDeleteContinentView.fxml not found
      */
     @FXML
     public void clickToDeleteContinent(ActionEvent actionEvent) throws Exception{
@@ -189,8 +188,8 @@ public class MapEditorEditPageController {
 
     /**
      * jump to the add country page
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click button
+     * @throws Exception MapEditorAddCountryView.fxml not found
      */
     @FXML
     public void clickToAddCountry(ActionEvent actionEvent) throws Exception{
@@ -205,8 +204,8 @@ public class MapEditorEditPageController {
 
     /**
      * jump to the delete country page
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click button
+     * @throws Exception apEditorDeleteCountryView.fxml not found
      */
     @FXML
     public void clickToDeleteCountry(ActionEvent actionEvent) throws Exception{
@@ -221,8 +220,8 @@ public class MapEditorEditPageController {
 
     /**
      * jump to the save file page
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click button
+     * @throws Exception MapEditorSaveFileView.fxml not found
      */
     @FXML
     public void clickToSave(ActionEvent actionEvent) throws Exception{
@@ -237,8 +236,8 @@ public class MapEditorEditPageController {
 
     /**
      * return to homepage
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click button
+     * @throws Exception apEditorHomePageView.fxml not found
      */
     @FXML
     public void clickToReturn(ActionEvent actionEvent) throws Exception{
@@ -253,8 +252,8 @@ public class MapEditorEditPageController {
 
     /**
      * check whether the loading map is correct or not
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click button
+     * @throws Exception file not found
      */
     @FXML
     public void clickToCheck(ActionEvent actionEvent) throws Exception{

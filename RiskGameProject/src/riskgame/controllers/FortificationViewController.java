@@ -46,6 +46,11 @@ public class FortificationViewController {
     private Button btn_skipFortification;
 
     /**
+     * fortification move counter
+     */
+    private int counter = 1;
+
+    /**
      * default minimum army number in a country
      */
     private static final int MIN_ARMY_NUMBER_IN_COUNTRY = 0;
@@ -74,7 +79,18 @@ public class FortificationViewController {
             btn_confirmMoveArmy.setVisible(false);
             btn_skipFortification.setVisible(false);
             btn_nextStep.setVisible(true);
+            setListViewsTransparent();
         }
+    }
+
+    /**
+     * set ownedcountry and adjacentcountry ListViews uncontrollable.
+     */
+    private void setListViewsTransparent() {
+        lsv_ownedCountries.setMouseTransparent(true);
+        lsv_ownedCountries.setFocusTraversable(false);
+        lsv_reachableCountry.setMouseTransparent(true);
+        lsv_reachableCountry.setFocusTraversable(false);
     }
 
     /**
@@ -84,32 +100,39 @@ public class FortificationViewController {
      */
     @FXML
     public void selectOneCountry(MouseEvent mouseEvent) {
-        int selectedCountryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
-        String selectedCountryName = curPlayer.getOwnedCountryNameList().get(selectedCountryIndex);
-        Country selectedCountry = Main.graphSingleton.get(selectedCountryName).getCountry();
-
-        System.out.println("selected country name: " + selectedCountryName + ", army: " + selectedCountry.getCountryArmyNumber());
-
-        if (selectedCountry.getCountryArmyNumber() <= MIN_ARMY_NUMBER_IN_COUNTRY) {
-            alert.setContentText("No enough army for fortification!");
-            alert.showAndWait();
+        if (counter == 0) {
             btn_skipFortification.setVisible(false);
-            btn_skipFortification.setVisible(false);
+            btn_confirmMoveArmy.setVisible(false);
+            btn_nextStep.setVisible(true);
+            setListViewsTransparent();
         } else {
-            ObservableList<Country> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayer.getPlayerIndex(),
-                    selectedCountryName);
-            if (reachableCountryList.isEmpty()) {
-                btn_confirmMoveArmy.setVisible(false);
-                lsv_reachableCountry.setItems(null);
-                lbl_deployArmyNumber.setText("0");
-                lbl_maxArmyNumber.setText("0");
+            int selectedCountryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
+            String selectedCountryName = curPlayer.getOwnedCountryNameList().get(selectedCountryIndex);
+            Country selectedCountry = Main.graphSingleton.get(selectedCountryName).getCountry();
+
+            System.out.println("selected country name: " + selectedCountryName + ", army: " + selectedCountry.getCountryArmyNumber());
+
+            if (selectedCountry.getCountryArmyNumber() <= MIN_ARMY_NUMBER_IN_COUNTRY) {
+                alert.setContentText("No enough army for fortification!");
+                alert.showAndWait();
+                btn_skipFortification.setVisible(false);
+                btn_skipFortification.setVisible(false);
             } else {
-                btn_nextStep.setVisible(false);
-                btn_confirmMoveArmy.setVisible(true);
-                lsv_reachableCountry.setItems(reachableCountryList);
-                ListviewRenderer.renderCountryItems(lsv_reachableCountry);
-                updateDeploymentInfo(selectedCountry);
-                scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue) -> lbl_deployArmyNumber.setText(Integer.toString(newValue.intValue())));
+                ObservableList<Country> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayer.getPlayerIndex(),
+                        selectedCountryName);
+                if (reachableCountryList.isEmpty()) {
+                    btn_confirmMoveArmy.setVisible(false);
+                    lsv_reachableCountry.setItems(null);
+                    lbl_deployArmyNumber.setText("0");
+                    lbl_maxArmyNumber.setText("0");
+                } else {
+                    btn_nextStep.setVisible(false);
+                    btn_confirmMoveArmy.setVisible(true);
+                    lsv_reachableCountry.setItems(reachableCountryList);
+                    ListviewRenderer.renderCountryItems(lsv_reachableCountry);
+                    updateDeploymentInfo(selectedCountry);
+                    scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue) -> lbl_deployArmyNumber.setText(Integer.toString(newValue.intValue())));
+                }
             }
         }
     }
@@ -173,6 +196,8 @@ public class FortificationViewController {
      */
     @FXML
     public void clickConfirmMoveArmy(ActionEvent actionEvent) {
+        counter--;
+
         ObservableList<Country> countryObservableList = lsv_ownedCountries.getItems();
         ObservableList<Country> adjacentCountryObservableList = lsv_reachableCountry.getItems();
 

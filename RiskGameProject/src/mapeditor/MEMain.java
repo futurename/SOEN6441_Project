@@ -11,7 +11,7 @@ import mapeditor.model.MECountry;
 import java.util.ArrayList;
 
 /**
- * @author Yunqiang Wei
+ * The class init map editor
  */
 public class MEMain extends Application {
 
@@ -20,17 +20,10 @@ public class MEMain extends Application {
     public static String OLDMAPPATH;
     public static boolean EDITPAGEFLAG = false;
 
-    /**
-     * start
-     * @param primaryStage
-     * @throws Exception
-     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         Pane root = FXMLLoader.load(getClass().getResource("views/MapEditorHomePageView.fxml"));
 
-
-        //Pane root = FXMLLoader.load(getClass().getResource("view/demoview.fxml"));
         primaryStage.setTitle("Risk Game Map Editor");
         primaryStage.setScene(new Scene(root, 1200, 900));
 
@@ -124,11 +117,6 @@ public class MEMain extends Application {
         }
     }
 
-    /**
-     * main method
-     * @param agrs
-     * @throws Exception
-     */
     public static void main(String[] agrs) throws Exception{
         launch(agrs);
     }

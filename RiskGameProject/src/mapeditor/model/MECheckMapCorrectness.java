@@ -2,11 +2,10 @@ package mapeditor.model;
 
 import mapeditor.MEMain;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class MECheckMapCorrectness{
 
@@ -16,9 +15,9 @@ public class MECheckMapCorrectness{
 
     /**
      * isCorrect method compare all the three test result and ruturn to the UI.
-     * @param countryArr
-     * @param continentsArr
-     * @return error information
+     * @param countryArr country list
+     * @param continentsArr continent list
+     * @return error information error string
      */
     public String isCorrect(ArrayList< MECountry> countryArr, ArrayList<MEContinent> continentsArr){
         boolean checkFlagCGResult = correctCheckConnectGraph(countryArr);
@@ -39,6 +38,8 @@ public class MECheckMapCorrectness{
     /**
      * first correct checkCC
      * check whether it is a connect graph or not
+     * @param countryArr country list
+     * @return true for correct, false for error
      */
     public boolean correctCheckConnectGraph(ArrayList<MECountry> countryArr){
         Queue<String> queue = new LinkedList<String>();
@@ -87,6 +88,9 @@ public class MECheckMapCorrectness{
     /**
      * second correct check
      * check whether a country is separate from other country in its continent
+     * @param continents continent list
+     * @param country country list
+     * @return true for correct, false for error
      */
     public  boolean correctCheckContinentCountry(ArrayList<MEContinent> continents, ArrayList<MECountry> country){
         //If it is a empty map.
@@ -115,6 +119,9 @@ public class MECheckMapCorrectness{
     /**
      * third correct check
      * every country belongs to one and only one continent
+     * @param continentsArr continent list
+     * @param countryArr country list
+     * @return ture for correct, false for error
      */
     public  boolean correctCheckCountryBelonging(ArrayList<MEContinent> continentsArr, ArrayList<MECountry> countryArr){
         int countryAddByContinent = 0;

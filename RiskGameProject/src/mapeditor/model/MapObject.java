@@ -111,16 +111,15 @@ public class MapObject {
             System.out.println("2");
             return false;
         }
-        if(correctCheckCountryBelonging(mapObj.arrContinent,mapObj.arrCountry) == false) {
-            //System.out.println("3");
-            return false;
-        }
-        return true;
+        //System.out.println("3");
+        return correctCheckCountryBelonging(mapObj.arrContinent, mapObj.arrCountry) != false;
     }
 
     /**
      * first correct checkCC
      * check whether it is a connect graph or not
+     * @param countryArr country object list
+     * @return true for correct, false for error
      */
     public boolean correctCheckConnectGraph(ArrayList<MECountry> countryArr){
         Queue<String> queue = new LinkedList<String>();
@@ -169,6 +168,9 @@ public class MapObject {
     /**
      * second correct check
      * check whether all countries in one continent are placed together
+     * @param continents continent object list
+     * @param country country object list
+     * @return true for correct, false for error
      */
     public  boolean correctCheckContinentCountry(ArrayList<MEContinent> continents, ArrayList<MECountry> country){
         //If it is a empty map.
@@ -195,6 +197,9 @@ public class MapObject {
     /**
      * third correct check
      * every country belongs to one and only one continent
+     * @param continentsArr continent object list
+     * @param countryArr country ojbect list
+     * @return true for correct, false for not correct
      */
     public  boolean correctCheckCountryBelonging(ArrayList<MEContinent> continentsArr, ArrayList<MECountry> countryArr){
         int countryAddByContinent = 0;

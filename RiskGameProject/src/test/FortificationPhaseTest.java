@@ -32,7 +32,7 @@ public class FortificationPhaseTest {
      * test reachable country list of player zero starting from Ural
      */
     @Test
-    public void playerZeroReachableCountryTest() throws Exception {
+    public void playerZeroReachableCountryTest() {
         LinkedHashMap<String, GraphNode> worldGraph = graphTester.getDemoGraph();
         Country uralCountry = graphTester.getDemoGraph().get("Ural").getCountry();
         ArrayList<Country> playerZeroCountryListFromUral = new ArrayList<>();
@@ -52,7 +52,7 @@ public class FortificationPhaseTest {
      * test reachable country list of player one starting from China
      */
     @Test
-    public void playerOneReachableCountryTest() throws Exception {
+    public void playerOneReachableCountryTest() {
         LinkedHashMap<String, GraphNode> worldGraph = graphTester.getDemoGraph();
         Country chinaCountry = graphTester.getDemoGraph().get("China").getCountry();
         ArrayList<Country> playerOneCountryListFromChina = new ArrayList<>();
@@ -72,7 +72,7 @@ public class FortificationPhaseTest {
      * test reachable country list of player two starting from Indonesia
      */
     @Test
-    public void playerTwoReachableCountryTest() throws Exception {
+    public void playerTwoReachableCountryTest() {
         LinkedHashMap<String, GraphNode> worldGraph = graphTester.getDemoGraph();
         Country indonesiaCountry = graphTester.getDemoGraph().get("Indonesia").getCountry();
         ArrayList<Country> playerTwoCountryListFromIndonesia = new ArrayList<>();

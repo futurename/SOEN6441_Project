@@ -1,6 +1,5 @@
 package riskgame.model.Utils;
 
-import javafx.scene.control.Alert;
 import riskgame.controllers.StartViewController;
 
 import java.io.*;
@@ -22,6 +21,7 @@ public class MapChecker {
     /**
      * check map file path
      * @param path map path
+     * @return true for correct, false for error
      */
     public static boolean isMapPathValid(String path) {
         System.out.println(new File(path).getAbsolutePath());
@@ -39,13 +39,10 @@ public class MapChecker {
      * @param path string of map file
      * @throws IOException map file not found
      * @see MapChecker#checkMapValidity
+     * @return true for correct, false for error
      */
     public static boolean isMapValid(String path) throws IOException {
-        if (checkMapValidity(path) == NO_ERROR){
-            return true;
-        }else {
-            return false;
-        }
+        return checkMapValidity(path) == NO_ERROR;
     }
 
     /**
@@ -115,7 +112,7 @@ public class MapChecker {
         } catch (NumberFormatException e) {
             return ERROR_TYPE_CONTINENT_NUMBER_FORMAT;
         } finally {
-            continents.add((String) splitedLine[0]);
+            continents.add(splitedLine[0]);
         }
         return NO_ERROR;
     }

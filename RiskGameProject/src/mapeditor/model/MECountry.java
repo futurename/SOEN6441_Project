@@ -20,7 +20,7 @@ public class MECountry{
 
     /**
      * set country name
-     * @param newCountryName
+     * @param newCountryName country name
      */
     public void setCountryName(String newCountryName){
         this.countryName = newCountryName;
@@ -28,7 +28,7 @@ public class MECountry{
 
     /**
      * set neighbor name
-     * @param newNeighbor
+     * @param newNeighbor neighbor country name
      */
     public void setNeighbor(String newNeighbor){
         neighbor.offer(newNeighbor);
@@ -36,7 +36,7 @@ public class MECountry{
 
     /**
      * delete neighbor
-     * @param oldNeighbor
+     * @param oldNeighbor old neighbor country name
      */
     public void deleteNeighbor(String oldNeighbor){
         if(neighbor.indexOf(oldNeighbor)!=-1){

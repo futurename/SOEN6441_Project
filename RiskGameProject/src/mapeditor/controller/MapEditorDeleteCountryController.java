@@ -51,33 +51,27 @@ public class MapEditorDeleteCountryController {
      * check the validation of selection, if there is no input the apply button cannot be pressed
      */
     @FXML
-    public void detectSelectionValidation(){ ;
+    public void detectSelectionValidation() {
         booleanBinding = Bindings.createBooleanBinding(()->{
-            if(cbb_deleteCountryName.getValue()==null){
-                return false;
-            }
-            else{
-                return true;
-            }
+            return cbb_deleteCountryName.getValue() != null;
         },cbb_deleteCountryName.itemsProperty());
         btn_deleteCountryApply.disableProperty().bind(booleanBinding.not());
     }
 
     /**
      * confirm the country to be delete
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click button
      */
     @FXML
-    public void clickToDeleteCountry(ActionEvent actionEvent) throws Exception{
+    public void clickToDeleteCountry(ActionEvent actionEvent) {
         deleteCountryName = cbb_deleteCountryName.getValue();
         MEMain.deleteCountry(deleteCountryName);
     }
 
     /**
      * return to the edit page
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click button
+     * @throws Exception MapEditorEditPageView.fxml not found
      */
     @FXML
     public void clickToOk(ActionEvent actionEvent) throws Exception{

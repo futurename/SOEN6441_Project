@@ -64,8 +64,8 @@ public class MapEditorAddContinentController {
 
     /**
      * press apply button to confirm changes
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent onClick event
+     * @throws Exception continent data exists
      */
     public void clickToAddContinent(ActionEvent actionEvent)throws Exception{
         newContinentName = txf_continentName.getText();
@@ -80,8 +80,8 @@ public class MapEditorAddContinentController {
 
     /**
      * check whether the input continent name has already exist in the map
-     * @param newContinentName
-     * @return
+     * @param newContinentName continent name
+     * @return true for correct, false for error
      */
     private boolean checkNameInput(String newContinentName){
         for(int i=0;i<MEMain.arrMEContinent.size();i++){
@@ -99,21 +99,11 @@ public class MapEditorAddContinentController {
     public void detectInputValidation(){
 
         booleanBindingName = Bindings.createBooleanBinding(()->{
-            if(txf_continentName.getText().equals("")||checkNameInput(txf_continentName.getText())){
-                return false;
-            }
-            else{
-                return true;
-            }
+            return !txf_continentName.getText().equals("") && !checkNameInput(txf_continentName.getText());
         },txf_continentName.textProperty());
 
         booleanBindingBonus = Bindings.createBooleanBinding(()->{
-            if(txf_continentBonus.getText().equals("")){
-                return false;
-            }
-            else{
-                return true;
-            }
+            return !txf_continentBonus.getText().equals("");
         },txf_continentBonus.textProperty());
 
         btn_addContinentApply.disableProperty().bind(booleanBindingBonus.not().or(booleanBindingName.not()));
@@ -121,8 +111,8 @@ public class MapEditorAddContinentController {
 
     /**
      * return to the edit page
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click button
+     * @throws Exception MapEditorEditPageView.fxml not found
      */
     @FXML
     public void clickToOk(ActionEvent actionEvent) throws Exception{

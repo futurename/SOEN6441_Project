@@ -7,7 +7,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -87,11 +90,7 @@ public class MapEditorAddCountryController {
     public void CountryNameValidation() {
 
         booleanBindingCountryName = Bindings.createBooleanBinding(() -> {
-            if (txf_addCountryName.getText().equals("")) {
-                return false;
-            } else {
-                return true;
-            }
+            return !txf_addCountryName.getText().equals("");
         }, txf_addCountryName.textProperty());
     }
 
@@ -101,12 +100,7 @@ public class MapEditorAddCountryController {
     public void neighborSelectValidation(){
 
         booleanBindingNeighbor = Bindings.createBooleanBinding(()->{
-            if(cbb_neighborCountry.getValue() == null||cbb_neighborCountry.getValue().equals(txf_addCountryName.getText())){
-                return false;
-            }
-            else{
-                return true;
-            }
+            return cbb_neighborCountry.getValue() != null && !cbb_neighborCountry.getValue().equals(txf_addCountryName.getText());
         },cbb_neighborCountry.itemsProperty());
     }
 
@@ -116,12 +110,7 @@ public class MapEditorAddCountryController {
     public void continentSelectValidation(){
 
         booleanBindingContinent = Bindings.createBooleanBinding(()->{
-            if(cbb_setContinent.getValue() == null){
-                return false;
-            }
-            else{
-                return true;
-            }
+            return cbb_setContinent.getValue() != null;
         },cbb_setContinent.itemsProperty());
     }
 
@@ -155,8 +144,8 @@ public class MapEditorAddCountryController {
 
     /**
      * clickToAddCountry receive action event and add a new country instance to the program.
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click button
+     * @throws Exception file not found
      */
     @FXML
     public void clickToAddCountry(ActionEvent actionEvent) throws Exception{
@@ -201,8 +190,8 @@ public class MapEditorAddCountryController {
 
     /**
      * return to the edit page
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click button
+     * @throws Exception MapEditorEditPageView.fxml not found
      */
     @FXML
     public void clickToOk(ActionEvent actionEvent) throws Exception{

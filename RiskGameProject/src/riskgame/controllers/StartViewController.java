@@ -419,6 +419,7 @@ public class StartViewController {
      * this method read and initialize world map
      *
      * @param path path of map file
+     * @param graphSingleton world map graph singleton
      * @throws IOException map file not found
      */
     public static void buildWorldMapGraph(String path, LinkedHashMap<String, GraphNode> graphSingleton) throws IOException {

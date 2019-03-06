@@ -55,8 +55,8 @@ public class MapEditorSaveFileController {
 
     /**
      * clickToReturn method return to the previous page.
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click button
+     * @throws Exception MapEditorEditPageView.fxml not found
      */
     @FXML
     public void clickToReturn(ActionEvent actionEvent) throws Exception{
@@ -72,8 +72,8 @@ public class MapEditorSaveFileController {
 
     /**
      * clickToCheck check the map correctness in the save file page
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click button
+     * @throws Exception file not found
      */
     @FXML
     public void clickToCheck(ActionEvent actionEvent) throws Exception{
@@ -84,8 +84,8 @@ public class MapEditorSaveFileController {
 
     /**
      * generateMap method generate a map according to the data.
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click button
+     * @throws Exception map file not found
      */
     public void generateMap(ActionEvent actionEvent) throws Exception{
         File writename = new File(txf_fileName.getText());

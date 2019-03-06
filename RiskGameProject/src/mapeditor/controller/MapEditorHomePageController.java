@@ -1,9 +1,6 @@
 package mapeditor.controller;
-import javafx.event.ActionEvent;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,6 +10,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mapeditor.MEMain;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * home page class
@@ -50,8 +51,8 @@ public class MapEditorHomePageController {
 
     /**
      * this method control the edit button to the select map path page
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click button
+     * @throws Exception MapEditorEditView.fxml not found
      */
     @FXML
     public void clickToEdit(ActionEvent actionEvent) throws Exception{
@@ -66,8 +67,8 @@ public class MapEditorHomePageController {
 
     /**
      * this method control the create button to the edit page
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click button
+     * @throws Exception MapEditorEditPageView.fxml not found
      */
     @FXML
     public void clickToCreate(ActionEvent actionEvent) throws Exception{
@@ -81,6 +82,12 @@ public class MapEditorHomePageController {
         curStage.show();
     }
 
+    /**
+     * This method switch to game page
+     *
+     * @param actionEvent click button
+     * @throws IOException StartView.fxml not found
+     */
     public void clickPlayGame(ActionEvent actionEvent) throws IOException {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 

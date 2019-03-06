@@ -1,6 +1,5 @@
 package mapeditor.controller;
 
-import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,8 +53,8 @@ public class MapEditorEditController {
     /**
      * select map file path
      *
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click button
+     * @throws Exception path not found
      */
     @FXML
     public void selectPath(ActionEvent actionEvent) throws Exception {
@@ -74,8 +73,8 @@ public class MapEditorEditController {
     /**
      * return to homepage
      *
-     * @param actionEvent
-     * @throws Exception
+     * @param actionEvent click return button
+     * @throws Exception MapEditorHomePageView.fxml not found
      */
     @FXML
     public void clickToReturn(ActionEvent actionEvent) throws Exception {
@@ -92,6 +91,7 @@ public class MapEditorEditController {
      * confirm map file path and jump to edit page
      *
      * @param actionEvent onClick event for confirming map file selection
+     * @throws IOException MapEditorEditPageView.fxml not found
      */
     public void onClickConfirmMapSelection(ActionEvent actionEvent) throws IOException {
         MEMain.OLDMAPPATH = txf_defaultMapPath.getText();

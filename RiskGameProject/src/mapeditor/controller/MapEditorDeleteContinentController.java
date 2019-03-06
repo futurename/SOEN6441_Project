@@ -37,12 +37,12 @@ public class MapEditorDeleteContinentController {
      */
     private String selectedContinentName = "";
 
-    BooleanBinding booleanBinding ;
+    BooleanBinding booleanBinding;
 
-    public void initialize(){
+    public void initialize() {
 
         cbb_deleteContinentName.getItems().clear();
-        for(int i = 0;i< MEMain.arrMEContinent.size();i++) {
+        for (int i = 0; i < MEMain.arrMEContinent.size(); i++) {
             cbb_deleteContinentName.getItems().add(MEMain.arrMEContinent.get(i).getContinentName());
         }
         detectSelectionValidation();
@@ -52,42 +52,36 @@ public class MapEditorDeleteContinentController {
      * check the validation of input , if there is no input then the apply button cannot be pressed
      */
     @FXML
-    public void detectSelectionValidation(){ ;
-        booleanBinding = Bindings.createBooleanBinding(()->{
-            if(cbb_deleteContinentName.getValue()==null){
-                return false;
-            }
-            else{
-                return true;
-            }
-        },cbb_deleteContinentName.itemsProperty());
+    public void detectSelectionValidation() {
+        booleanBinding = Bindings.createBooleanBinding(() -> {
+            return cbb_deleteContinentName.getValue() != null;
+        }, cbb_deleteContinentName.itemsProperty());
         btn_deleteContinentApply.disableProperty().bind(booleanBinding.not());
     }
 
     /**
      * confirm the continent to be delete, p.s. if the continent is deleted ,then the country in this continent will be delete as well.
-     * @param actionEvent
-     * @throws Exception
+     *
+     * @param actionEvent click button
      */
     @FXML
-    public void clickToDeleteContinent(ActionEvent actionEvent) throws Exception{
+    public void clickToDeleteContinent(ActionEvent actionEvent) {
         selectedContinentName = cbb_deleteContinentName.getValue();
         MEMain.deleteContinent(selectedContinentName);
     }
-    @FXML
 
+    @FXML
     /**
      * return to the edit page
      */
-    public void clickToOk(ActionEvent actionEvent) throws Exception{
+    public void clickToOk(ActionEvent actionEvent) throws Exception {
 
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
         Pane mapEditorEditPagePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();
-        Scene mapEditorEditPageScene = new Scene(mapEditorEditPagePane,1200,900);
+        Scene mapEditorEditPageScene = new Scene(mapEditorEditPagePane, 1200, 900);
 
         curStage.setScene(mapEditorEditPageScene);
         curStage.show();
-
     }
 }
