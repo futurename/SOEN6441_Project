@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.Observe.CountryChangedObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
@@ -41,6 +42,8 @@ public class FortificationViewController {
     private Button btn_confirmMoveArmy;
     @FXML
     private Button btn_nextStep;
+    @FXML
+    private Button btn_skipFortification;
 
     /**
      * default minimum army number in a country
@@ -67,6 +70,11 @@ public class FortificationViewController {
         lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
         ListviewRenderer.renderCountryItems(lsv_ownedCountries);
         setCountryObservers();
+        if (isAllReachableCountryEmpty(curPlayer)) {
+            btn_confirmMoveArmy.setVisible(false);
+            btn_skipFortification.setVisible(false);
+            btn_nextStep.setVisible(true);
+        }
     }
 
     /**
@@ -85,16 +93,48 @@ public class FortificationViewController {
         if (selectedCountry.getCountryArmyNumber() <= MIN_ARMY_NUMBER_IN_COUNTRY) {
             alert.setContentText("No enough army for fortification!");
             alert.showAndWait();
+            btn_skipFortification.setVisible(false);
+            btn_skipFortification.setVisible(false);
         } else {
             ObservableList<Country> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayer.getPlayerIndex(),
                     selectedCountryName);
-            lsv_reachableCountry.setItems(reachableCountryList);
-            ListviewRenderer.renderCountryItems(lsv_reachableCountry);
-
-            updateDeploymentInfo(selectedCountry);
-
-            scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue) -> lbl_deployArmyNumber.setText(Integer.toString(newValue.intValue())));
+            if (reachableCountryList.isEmpty()) {
+                btn_confirmMoveArmy.setVisible(false);
+                lsv_reachableCountry.setItems(null);
+                lbl_deployArmyNumber.setText("0");
+                lbl_maxArmyNumber.setText("0");
+            } else {
+                btn_nextStep.setVisible(false);
+                btn_confirmMoveArmy.setVisible(true);
+                lsv_reachableCountry.setItems(reachableCountryList);
+                ListviewRenderer.renderCountryItems(lsv_reachableCountry);
+                updateDeploymentInfo(selectedCountry);
+                scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue) -> lbl_deployArmyNumber.setText(Integer.toString(newValue.intValue())));
+            }
         }
+    }
+
+    /**
+     * check whether reachable country lists from all owned countries are empty
+     *
+     * @param curPlayer current player
+     * @return true for all list empty, false for existing reachable country list
+     */
+    private boolean isAllReachableCountryEmpty(Player curPlayer) {
+        boolean result = true;
+        ArrayList<String> ownedCountryList = curPlayer.getOwnedCountryNameList();
+        int playerIndex = curPlayer.getPlayerIndex();
+        for (String countryName : ownedCountryList) {
+            GraphNode curGraphNode = Main.graphSingleton.get(countryName);
+            Country curCountry = curGraphNode.getCountry();
+            ArrayList<Country> tempCountryList = new ArrayList<>();
+            curGraphNode.getReachableCountryListBFS(playerIndex, curCountry, tempCountryList);
+            if (!tempCountryList.isEmpty()) {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 
     /**
@@ -178,6 +218,7 @@ public class FortificationViewController {
      */
     private void setUIControllers() {
         btn_confirmMoveArmy.setVisible(false);
+        btn_skipFortification.setVisible(false);
         btn_nextStep.setVisible(true);
         scb_armyNbrAdjustment.setVisible(false);
 
@@ -196,5 +237,16 @@ public class FortificationViewController {
         lbl_maxArmyNumber.setText(Integer.toString(curUndeployedArmy));
         int minNumber = curUndeployedArmy >= MIN_ARMY_NUMBER_IN_COUNTRY ? curUndeployedArmy : 0;
         lbl_deployArmyNumber.setText(String.valueOf(minNumber));
+    }
+
+    /**
+     * onClick event for skipping fortification phase this round
+     *
+     * @param actionEvent skip button is pressed
+     */
+    public void clickSkipFortification(ActionEvent actionEvent) {
+        btn_confirmMoveArmy.setVisible(false);
+        btn_skipFortification.setVisible(false);
+        btn_nextStep.setVisible(true);
     }
 }

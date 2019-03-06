@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
-
-
 <AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="riskgame.controllers.FortificationViewController">
     <children>
         <ListView fx:id="lsv_ownedCountries" focusTraversable="false" layoutX="75.0" layoutY="145.0" onMouseClicked="#selectOneCountry" prefHeight="697.0" prefWidth="283.0" stylesheets="@css/playercountries.css" />
@@ -56,9 +54,15 @@
             </font>
         </Label>
       <Button fx:id="btn_confirmMoveArmy" layoutX="367.0" layoutY="261.0" mnemonicParsing="false" onAction="#clickConfirmMoveArmy" prefHeight="37.0" prefWidth="68.0" text="Move" textAlignment="CENTER" textFill="#f80505" AnchorPane.leftAnchor="367.0" AnchorPane.rightAnchor="765.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
+          <font>
+              <Font name="System Bold" size="16.0"/>
+          </font>
       </Button>
+        <Button fx:id="btn_skipFortification" layoutX="367.0" layoutY="364.0" mnemonicParsing="false" onAction="#clickSkipFortification"
+                prefHeight="37.0" prefWidth="68.0" text="Skip" textAlignment="CENTER" textFill="#f80505">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Button>
     </children>
 </AnchorPane>

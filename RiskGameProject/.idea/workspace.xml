@@ -2,79 +2,184 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3533e36-e2c6-493e-8c86-f4e87db12115" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../UML/daigaram.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/daigaram.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/LICENCE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/Umlet.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/custom_elements/AutoResize1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/custom_elements/AutoResize2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/custom_elements/Default.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/custom_elements/RectangleRound.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/custom_elements/WordWrap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/img/umlet_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/autocomplete-2.5.8.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/batik-awt-util-1.8.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/batik-dom-1.8.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/batik-ext-1.8.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/batik-svggen-1.8.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/batik-util-1.8.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/batik-xml-1.8.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/bcel-5.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/commons-io-2.4.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/ecj-4.4.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/itextpdf-5.4.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/javaparser-core-2.3.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/javax.mail-1.5.6.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/jlibeps-0.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/log4j-1.2.17.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/rsyntaxtextarea-2.5.8.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/slf4j-api-1.7.7.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/slf4j-log4j12-1.7.13.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/umlet-elements-14.3.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/umlet-swing-14.3.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/Custom Drawings.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/Deprecated UML Sequence - All in one.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/Generic Colors.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/Generic Layers.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/Generic Text and Alignment.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/Plots.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Activity - All in one.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Activity.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Class.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Common Elements.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Composite Structure.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Package.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Sequence - All in one.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Sequence.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML State Machine.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Structure and Deployment.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Timing Diagram.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Use Case.uxf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/umlet.desktop" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/umlet.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/umlet.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/controllers/AttackViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/controllers/AttackViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RiskGameProject.7z" beforeDir="false" afterPath="$PROJECT_DIR$/../RiskGameProject.7z" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/allclasses-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/allclasses-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/allclasses-noframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/allclasses-noframe.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/constant-values.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/constant-values.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/deprecated-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/deprecated-list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/help-doc.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/help-doc.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-10.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-10.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-11.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-11.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-12.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-12.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-13.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-13.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-14.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-14.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-15.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-15.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-16.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-16.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-17.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-17.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-18.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-18.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-19.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-19.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-3.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-3.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-4.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-5.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-5.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-6.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-6.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-7.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-7.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-8.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-8.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-9.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-9.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/MEMain.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/MEMain.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/Test/MapEditorTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/Test/MapEditorTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/Test/class-use/MapEditorTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/Test/class-use/MapEditorTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/Test/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/Test/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/Test/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/Test/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/Test/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/Test/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/Test/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/Test/package-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/class-use/MEMain.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/class-use/MEMain.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorAddContinentController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorAddContinentController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorAddCountryController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorAddCountryController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorDeleteContinentController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorDeleteContinentController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorDeleteCountryController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorDeleteCountryController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorEditController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorEditController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorEditPageController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorEditPageController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorHomePageController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorHomePageController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorSaveFileController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorSaveFileController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorAddContinentController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorAddContinentController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorAddCountryController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorAddCountryController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorDeleteContinentController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorDeleteContinentController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorDeleteCountryController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorDeleteCountryController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorEditController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorEditController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorEditPageController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorEditPageController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorHomePageController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorHomePageController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorSaveFileController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorSaveFileController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/package-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/MECheckMapCorrectness.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/MECheckMapCorrectness.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/MEContinent.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/MEContinent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/MECountry.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/MECountry.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/MapObject.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/MapObject.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/class-use/MECheckMapCorrectness.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/class-use/MECheckMapCorrectness.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/class-use/MEContinent.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/class-use/MEContinent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/class-use/MECountry.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/class-use/MECountry.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/class-use/MapObject.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/class-use/MapObject.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/package-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/package-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/overview-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/overview-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/overview-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/overview-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/overview-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/Main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/class-use/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/class-use/Main.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/AttackViewController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/AttackViewController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/FortificationViewController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/FortificationViewController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/ReinforceViewController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/ReinforceViewController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/StartViewController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/StartViewController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/class-use/AttackViewController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/class-use/AttackViewController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/class-use/FortificationViewController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/class-use/FortificationViewController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/class-use/ReinforceViewController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/class-use/ReinforceViewController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/class-use/StartViewController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/class-use/StartViewController.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/package-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Card.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Card.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Continent.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Continent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Country.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Country.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/GraphNode.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/GraphNode.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/GraphSingleton.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/GraphSingleton.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/CountryChangedObserver.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/CountryChangedObserver.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/CountryObservable.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/CountryObservable.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/class-use/CountryChangedObserver.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/class-use/CountryChangedObserver.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/class-use/CountryObservable.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/class-use/CountryObservable.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/package-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Player.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Player.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/PlayerColor.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/PlayerColor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/Card.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/Card.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/Continent.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/Continent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/Country.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/Country.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/GraphNode.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/GraphNode.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/GraphSingleton.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/GraphSingleton.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/Player.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/Player.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/PlayerColor.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/PlayerColor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/package-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/InfoRetriver.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/InfoRetriver.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/InitPlayers.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/InitPlayers.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/ListviewRenderer.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/ListviewRenderer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/MapChecker.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/MapChecker.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/class-use/InfoRetriver.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/class-use/InfoRetriver.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/class-use/InitPlayers.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/class-use/InitPlayers.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/class-use/ListviewRenderer.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/class-use/ListviewRenderer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/class-use/MapChecker.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/class-use/MapChecker.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/package-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/package-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/test/FortificationPhaseTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/FortificationPhaseTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/test/GraphTester.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/GraphTester.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/test/MapCheckerTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/MapCheckerTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/test/ReinforcePhaseTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/ReinforcePhaseTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/test/class-use/FortificationPhaseTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/class-use/FortificationPhaseTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/test/class-use/GraphTester.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/class-use/GraphTester.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/test/class-use/MapCheckerTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/class-use/MapCheckerTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/test/class-use/ReinforcePhaseTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/class-use/ReinforcePhaseTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/test/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/package-frame.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/test/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/package-summary.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/test/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/package-tree.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_Doc/test/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/package-use.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/META-INF/RiskGameProject.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/MEMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/MEMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/controller/MapEditorAddCountryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/controller/MapEditorAddCountryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/controller/MapEditorEditController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/controller/MapEditorEditController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/controller/MapEditorEditPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/controller/MapEditorEditPageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/controller/MapEditorSaveFileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/controller/MapEditorSaveFileController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/views/MapEditorEditView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/views/MapEditorEditView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/controllers/AttackViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/controllers/AttackViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/controllers/FortificationViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/controllers/FortificationViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/controllers/ReinforceViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/controllers/ReinforceViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/controllers/StartViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/controllers/StartViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/BasicClass/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/BasicClass/Card.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/BasicClass/Continent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/BasicClass/Continent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/BasicClass/Country.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/BasicClass/Country.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/BasicClass/GraphNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/BasicClass/GraphNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/BasicClass/GraphSingleton.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/BasicClass/GraphSingleton.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/BasicClass/Observe/CountryChangedObserver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/BasicClass/Observe/CountryChangedObserver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/BasicClass/Observe/CountryObservable.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/BasicClass/Observe/CountryObservable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/BasicClass/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/BasicClass/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/BasicClass/PlayerColor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/BasicClass/PlayerColor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/Utils/InfoRetriver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/Utils/InfoRetriver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/Utils/InitPlayers.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/Utils/InitPlayers.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/Utils/ListviewRenderer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/Utils/ListviewRenderer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/Utils/ListviewRenderer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/Utils/ListviewRenderer$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/Utils/ListviewRenderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/Utils/ListviewRenderer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/Utils/MapChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/Utils/MapChecker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/phases/ReinforcePhase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/view/FortificationView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/view/FortificationView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/ReinforcePhaseTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/test/ReinforcePhaseTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/controllers/ReinforceViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/controllers/ReinforceViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Continent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Continent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Country.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphSingleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Observe/CountryChangedObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Observe/CountryChangedObserver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Observe/CountryObservable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Observe/CountryObservable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/BasicClass/PlayerColor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/BasicClass/PlayerColor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/Utils/InitPlayers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/Utils/InitPlayers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/Utils/ListviewRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/Utils/ListviewRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/Utils/MapChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/Utils/MapChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/FortificationPhaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/FortificationPhaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/GraphTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/GraphTester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/ReinforcePhaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ReinforcePhaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/view/FortificationView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/view/FortificationView.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="C:\Users\WW\Google Drive\!!Winter 2019\SOEN6441_Advanced_Programming\SOEN6441_Project\RiskGameProject\.idea\shelf/" />
@@ -106,19 +211,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InitPlayers.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="12" column="106" selection-start-line="12" selection-start-column="106" selection-end-line="12" selection-end-column="106" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/MapChecker.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1250">
-              <caret line="53" column="25" lean-forward="true" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
+              <caret line="53" column="25" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -126,11 +222,41 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphNode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="112" column="85" selection-start-line="112" selection-start-column="85" selection-end-line="112" selection-end-column="85" />
+            <state relative-caret-position="280">
+              <caret line="90" column="33" selection-start-line="90" selection-start-column="33" selection-end-line="90" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="74" column="26" selection-start-line="74" selection-start-column="26" selection-end-line="74" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphSingleton.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="7" column="84" selection-start-line="7" selection-start-column="84" selection-end-line="7" selection-end-column="84" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="776">
+              <caret line="111" column="54" selection-start-line="111" selection-start-column="54" selection-end-line="111" selection-end-column="54" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -143,6 +269,16 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/riskgame/view/FortificationView.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="646">
+              <caret line="62" column="124" selection-start-line="62" selection-start-column="124" selection-end-line="62" selection-end-column="124" />
             </state>
           </provider>
         </entry>
@@ -178,33 +314,6 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/ListviewRenderer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="20" column="73" selection-start-line="20" selection-start-column="73" selection-end-line="20" selection-end-column="73" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/PlayerColor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="63" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="16" column="116" selection-start-line="16" selection-start-column="116" selection-end-line="16" selection-end-column="116" />
             </state>
           </provider>
         </entry>
@@ -253,7 +362,6 @@
         <option value="$PROJECT_DIR$/src/mapeditor/model/MapObject.java" />
         <option value="$PROJECT_DIR$/src/test/MapCheckerTest.java" />
         <option value="$PROJECT_DIR$/src/riskgame/controllers/AttackViewController.java" />
-        <option value="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" />
         <option value="$PROJECT_DIR$/src/riskgame/controllers/ReinforceViewController.java" />
         <option value="$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java" />
         <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/Observe/CountryChangedObserver.java" />
@@ -272,6 +380,7 @@
         <option value="$PROJECT_DIR$/src/test/ReinforcePhaseTest.java" />
         <option value="$PROJECT_DIR$/src/riskgame/model/Utils/MapChecker.java" />
         <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphNode.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" />
       </list>
     </option>
   </component>
@@ -410,7 +519,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551835482902" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551838847065" />
     <property name="last.edited.regexp" value="Sample Text" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -634,7 +743,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34453000" />
+    <option name="totallyTimeSpent" value="37486000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -649,7 +758,7 @@
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24040511" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24040511" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -658,7 +767,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -789,14 +898,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/view/FortificationView.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/riskgame/view/ReinforceView.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
@@ -911,16 +1012,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/ReinforceViewController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -979,13 +1070,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphSingleton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="7" column="84" selection-start-line="7" selection-start-column="84" selection-end-line="7" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1000,13 +1084,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="16" column="116" selection-start-line="16" selection-start-column="116" selection-end-line="16" selection-end-column="116" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InitPlayers.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1018,16 +1095,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="20" column="73" selection-start-line="20" selection-start-column="73" selection-end-line="20" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/FortificationPhaseTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1063,17 +1130,59 @@
     <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/MapChecker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1250">
-          <caret line="53" column="25" lean-forward="true" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
+          <caret line="53" column="25" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/FortificationPhaseTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/view/FortificationView.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="62" column="124" selection-start-line="62" selection-start-column="124" selection-end-line="62" selection-end-column="124" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphSingleton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" column="84" selection-start-line="7" selection-start-column="84" selection-end-line="7" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="112" column="85" selection-start-line="112" selection-start-column="85" selection-end-line="112" selection-end-column="85" />
+        <state relative-caret-position="280">
+          <caret line="90" column="33" selection-start-line="90" selection-start-column="33" selection-end-line="90" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="74" column="26" selection-start-line="74" selection-start-column="26" selection-end-line="74" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="776">
+          <caret line="111" column="54" selection-start-line="111" selection-start-column="54" selection-end-line="111" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
