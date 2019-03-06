@@ -1,14 +1,15 @@
 package test;
 
-import riskgame.Main;
-import riskgame.controllers.ReinforceViewController;
 import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.GraphSingleton;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * demo graph for test
@@ -51,45 +52,66 @@ public class GraphTester {
         demoGraph.get("Eastern Australia").getCountry().setCountryOwnerIndex(2);
     }
 
-    private ArrayList<String> getOwnedCountryNames(int playerIndex){
+    public ArrayList<String> getOwnedCountryNames(int playerIndex) {
         ArrayList<String> result = new ArrayList<>();
 
-        for(Map.Entry<String, GraphNode> entry: demoGraph.entrySet()){
+        for (Map.Entry<String, GraphNode> entry : demoGraph.entrySet()) {
             String curCountryName = entry.getKey();
             int curPlayerIndex = entry.getValue().getCountry().getCountryOwnerIndex();
-            if(playerIndex == curPlayerIndex){
+            if (playerIndex == curPlayerIndex) {
                 result.add(curCountryName);
             }
         }
         return result;
     }
 
-    private ArrayList<String> getAdjacentCountryNames(String countryName){
+    public ArrayList<String> getAdjacentCountryNames(String countryName) {
         ArrayList<String> result = new ArrayList<>();
         ArrayList<Country> adjacentCountryList = demoGraph.get(countryName).getAdjacentCountryList();
 
-        for(Country country: adjacentCountryList){
+        for (Country country : adjacentCountryList) {
             String curCountryName = country.getCountryName();
             result.add(curCountryName);
         }
         return result;
     }
 
-    private ArrayList<String> getReachablePathPlayerZeroFromUral(){
-        ArrayList<String> result = new ArrayList<>();
-        result.addAll(Arrays.asList("Middle East", "Afghanistan", "India", "Siberia"));
+    public ArrayList<String> getReachablePathPlayerZeroFromUral() {
+        ArrayList<String> result = new ArrayList<String>() {
+            {
+                add("Middle East");
+                add("Afghanistan");
+                add("India");
+                add("Siberia");
+            }
+        };
+        Collections.sort(result);
         return result;
     }
 
-    private ArrayList<String> getReachablePathPlayerOneFromChina(){
-        ArrayList<String> result = new ArrayList<>();
-        result.addAll(Arrays.asList("Siam", "mongolia", "Irkustk", "Yatusk"));
+    public ArrayList<String> getReachablePathPlayerOneFromChina() {
+        ArrayList<String> result = new ArrayList<String>() {
+            {
+                add("Siam");
+                add("Mongolia");
+                add("Irkutsk");
+                add("Yatusk");
+
+            }
+        };
+        Collections.sort(result);
         return result;
     }
 
-    private ArrayList<String> getReachablePathPlayerTwoFromIndonesia(){
-        ArrayList<String> result = new ArrayList<>();
-        result.addAll(Arrays.asList("Japan", "Kamchatka", "New Guinea", "Western Australia", "Eastern Australia"));
+    public ArrayList<String> getReachablePathPlayerTwoFromIndonesia() {
+        ArrayList<String> result = new ArrayList<String>() {
+            {
+                add("New Guinea");
+                add("Western Australia");
+                add("Eastern Australia");
+            }
+        };
+        Collections.sort(result);
         return result;
     }
 

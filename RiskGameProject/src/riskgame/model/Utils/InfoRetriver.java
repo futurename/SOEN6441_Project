@@ -75,7 +75,6 @@ public class InfoRetriver {
         Country selectedCountry = selectedGraphNode.getCountry();
 
         selectedGraphNode.getReachableCountryListBFS(playerIndex, selectedCountry, countryList);
-        //selectedGraphNode.getReachableCountryListDFS(playerIndex, selectedCountry, countryList);
 
         result = FXCollections.observableArrayList(countryList);
         return result;

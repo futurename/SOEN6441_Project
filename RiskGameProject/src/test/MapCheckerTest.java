@@ -6,7 +6,8 @@ import riskgame.model.Utils.MapChecker;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 /**
  * MapChecker tester.
@@ -25,11 +26,6 @@ public class MapCheckerTest {
     @Test
     public void checkMapValidity() throws IOException {
         assertEquals(9527, MapChecker.checkMapValidity(this.path));
-    }
-
-    @Test
-    public void isMapValid() throws IOException {
-        assertFalse(MapChecker.isMapValid(this.error_map));
     }
 
     @Test

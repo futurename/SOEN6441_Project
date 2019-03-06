@@ -1,13 +1,11 @@
 package test;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.Before;
 import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import riskgame.controllers.ReinforceViewController;
 import riskgame.model.BasicClass.Country;
-import riskgame.model.phases.ReinforcePhase;
-
-import javax.sound.midi.Soundbank;
 
 /**
  * ReinforcePhase Tester.
@@ -20,14 +18,14 @@ public class ReinforcePhaseTest {
     private Country countryTester;
 
     @Before
-    public void before() throws Exception {
+    public void before() {
         countryTester = new Country("TestCountry");
 
         System.out.println(countryTester);
     }
 
     @After
-    public void after() throws Exception {
+    public void after() {
     }
 
     /**
@@ -35,15 +33,15 @@ public class ReinforcePhaseTest {
      * Minimum army number is 3, calculated number is rounded down to closest integer.
      */
     @Test
-    public void testGetStandardReinforceArmyNum() throws Exception {
-        Assert.assertEquals(3, ReinforcePhase.getStandardReinforceArmyNum(9));
-        Assert.assertEquals(3, ReinforcePhase.getStandardReinforceArmyNum(10));
-        Assert.assertEquals(3, ReinforcePhase.getStandardReinforceArmyNum(11));
-        Assert.assertEquals(4, ReinforcePhase.getStandardReinforceArmyNum(12));
+    public void testGetStandardReinforceArmyNum() {
+        Assert.assertEquals(3, ReinforceViewController.getStandardReinforceArmyNum(9));
+        Assert.assertEquals(3, ReinforceViewController.getStandardReinforceArmyNum(10));
+        Assert.assertEquals(3, ReinforceViewController.getStandardReinforceArmyNum(11));
+        Assert.assertEquals(4, ReinforceViewController.getStandardReinforceArmyNum(12));
 
-        Assert.assertEquals(3, ReinforcePhase.getStandardReinforceArmyNum(8));
-        Assert.assertEquals(3, ReinforcePhase.getStandardReinforceArmyNum(0));
-        Assert.assertEquals(3, ReinforcePhase.getStandardReinforceArmyNum(-1));
+        Assert.assertEquals(3, ReinforceViewController.getStandardReinforceArmyNum(8));
+        Assert.assertEquals(3, ReinforceViewController.getStandardReinforceArmyNum(0));
+        Assert.assertEquals(3, ReinforceViewController.getStandardReinforceArmyNum(-1));
     }
 
 } 
