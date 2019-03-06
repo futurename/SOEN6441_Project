@@ -86,7 +86,7 @@ public class MECheckMapCorrectness{
 
     /**
      * second correct check
-     * check whether all countries in one continent are placed together
+     * check whether a country is separate from other country in its continent
      */
     public  boolean correctCheckContinentCountry(ArrayList<MEContinent> continents, ArrayList<MECountry> country){
         //If it is a empty map.
@@ -99,8 +99,10 @@ public class MECheckMapCorrectness{
                 //
                 for(int j=0;j<country.size();j++){
                     MECountry checkCountry = country.get(j);
-                    if(checkCountry.getNeighbor().isEmpty()){
-                        return checkFlagCC = false;
+                    if(MEMain.arrMEContinent.get(i).getCountryNumber()>1) {
+                        if (checkCountry.getNeighbor().isEmpty()) {
+                            return checkFlagCC = false;
+                        }
                     }
                 }
             }else {
