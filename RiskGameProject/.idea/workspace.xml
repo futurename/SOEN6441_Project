@@ -2,170 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3533e36-e2c6-493e-8c86-f4e87db12115" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/allclasses-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/allclasses-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/allclasses-noframe.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/allclasses-noframe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/constant-values.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/constant-values.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/deprecated-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/deprecated-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/help-doc.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/help-doc.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-1.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-10.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-10.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-11.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-11.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-12.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-12.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-13.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-13.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-14.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-14.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-15.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-15.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-16.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-16.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-17.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-17.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-18.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-18.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-19.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-19.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-2.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-3.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-4.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-4.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-5.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-5.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-6.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-6.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-7.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-7.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-8.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-8.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index-files/index-9.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index-files/index-9.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/MEMain.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/MEMain.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/Test/MapEditorTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/Test/MapEditorTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/Test/class-use/MapEditorTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/Test/class-use/MapEditorTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/Test/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/Test/package-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/Test/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/Test/package-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/Test/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/Test/package-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/Test/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/Test/package-use.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/class-use/MEMain.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/class-use/MEMain.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorAddContinentController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorAddContinentController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorAddCountryController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorAddCountryController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorDeleteContinentController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorDeleteContinentController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorDeleteCountryController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorDeleteCountryController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorEditController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorEditController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorEditPageController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorEditPageController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorHomePageController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorHomePageController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorSaveFileController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/MapEditorSaveFileController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorAddContinentController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorAddContinentController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorAddCountryController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorAddCountryController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorDeleteContinentController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorDeleteContinentController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorDeleteCountryController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorDeleteCountryController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorEditController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorEditController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorEditPageController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorEditPageController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorHomePageController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorHomePageController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorSaveFileController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/class-use/MapEditorSaveFileController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/package-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/package-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/package-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/controller/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/controller/package-use.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/MECheckMapCorrectness.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/MECheckMapCorrectness.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/MEContinent.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/MEContinent.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/MECountry.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/MECountry.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/MapObject.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/MapObject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/class-use/MECheckMapCorrectness.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/class-use/MECheckMapCorrectness.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/class-use/MEContinent.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/class-use/MEContinent.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/class-use/MECountry.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/class-use/MECountry.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/class-use/MapObject.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/class-use/MapObject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/package-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/package-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/package-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/model/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/model/package-use.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/package-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/package-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/package-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/mapeditor/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/mapeditor/package-use.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/overview-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/overview-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/overview-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/overview-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/overview-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/overview-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/Main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/class-use/Main.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/class-use/Main.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/AttackViewController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/AttackViewController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/FortificationViewController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/FortificationViewController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/ReinforceViewController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/ReinforceViewController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/StartViewController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/StartViewController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/class-use/AttackViewController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/class-use/AttackViewController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/class-use/FortificationViewController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/class-use/FortificationViewController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/class-use/ReinforceViewController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/class-use/ReinforceViewController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/class-use/StartViewController.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/class-use/StartViewController.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/package-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/package-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/package-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/controllers/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/controllers/package-use.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Card.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Card.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Continent.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Continent.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Country.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Country.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/GraphNode.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/GraphNode.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/GraphSingleton.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/GraphSingleton.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/CountryChangedObserver.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/CountryChangedObserver.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/CountryObservable.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/CountryObservable.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/class-use/CountryChangedObserver.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/class-use/CountryChangedObserver.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/class-use/CountryObservable.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/class-use/CountryObservable.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/package-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/package-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/package-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Observe/package-use.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Player.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/Player.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/PlayerColor.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/PlayerColor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/Card.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/Card.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/Continent.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/Continent.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/Country.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/Country.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/GraphNode.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/GraphNode.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/GraphSingleton.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/GraphSingleton.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/Player.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/Player.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/PlayerColor.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/class-use/PlayerColor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/package-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/package-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/package-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/BasicClass/package-use.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/InfoRetriver.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/InfoRetriver.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/InitPlayers.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/InitPlayers.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/ListviewRenderer.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/ListviewRenderer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/MapChecker.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/MapChecker.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/class-use/InfoRetriver.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/class-use/InfoRetriver.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/class-use/InitPlayers.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/class-use/InitPlayers.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/class-use/ListviewRenderer.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/class-use/ListviewRenderer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/class-use/MapChecker.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/class-use/MapChecker.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/package-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/package-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/package-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/model/Utils/package-use.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/package-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/package-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/package-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/riskgame/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/riskgame/package-use.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/test/FortificationPhaseTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/FortificationPhaseTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/test/GraphTester.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/GraphTester.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/test/MapCheckerTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/MapCheckerTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/test/ReinforcePhaseTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/ReinforcePhaseTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/test/class-use/FortificationPhaseTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/class-use/FortificationPhaseTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/test/class-use/GraphTester.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/class-use/GraphTester.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/test/class-use/MapCheckerTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/class-use/MapCheckerTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/test/class-use/ReinforcePhaseTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/class-use/ReinforcePhaseTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/test/package-frame.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/package-frame.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/test/package-summary.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/package-summary.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/test/package-tree.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/package-tree.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API_Doc/test/package-use.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_Doc/test/package-use.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Build I final schedule.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/RiskGameProject/test/FortificationPhaseTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../RiskGameProject.7z" beforeDir="false" afterPath="$PROJECT_DIR$/../RiskGameProject.7z" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/MEMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/MEMain.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/controller/MapEditorAddCountryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/controller/MapEditorAddCountryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/controller/MapEditorDeleteContinentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/controller/MapEditorDeleteContinentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/controller/MapEditorDeleteCountryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/controller/MapEditorDeleteCountryController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/controller/MapEditorEditController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/controller/MapEditorEditController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/controller/MapEditorEditPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/controller/MapEditorEditPageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/controller/MapEditorHomePageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/controller/MapEditorHomePageController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/controller/MapEditorSaveFileController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/controller/MapEditorSaveFileController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mapeditor/MEMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mapeditor/MEMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mapeditor/controller/MapEditorAddContinentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mapeditor/controller/MapEditorAddContinentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mapeditor/controller/MapEditorAddCountryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mapeditor/controller/MapEditorAddCountryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mapeditor/controller/MapEditorDeleteContinentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mapeditor/controller/MapEditorDeleteContinentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mapeditor/controller/MapEditorDeleteCountryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mapeditor/controller/MapEditorDeleteCountryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mapeditor/controller/MapEditorHomePageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mapeditor/controller/MapEditorHomePageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mapeditor/controller/MapEditorSaveFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mapeditor/controller/MapEditorSaveFileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mapeditor/model/MECheckMapCorrectness.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mapeditor/model/MECheckMapCorrectness.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mapeditor/model/MEContinent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mapeditor/model/MEContinent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mapeditor/model/MECountry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mapeditor/model/MECountry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mapeditor/model/MapObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mapeditor/model/MapObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/Utils/ListviewRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/Utils/ListviewRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/riskgame/model/Utils/MapChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/Utils/MapChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/FortificationPhaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/FortificationPhaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/model/MECheckMapCorrectness.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/model/MECheckMapCorrectness.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/model/MapObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapeditor/model/MapObject.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="C:\Users\WW\Google Drive\!!Winter 2019\SOEN6441_Advanced_Programming\SOEN6441_Project\RiskGameProject\.idea\shelf/" />
@@ -200,7 +49,7 @@
         <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="122">
-              <caret line="418" column="54" selection-start-line="418" selection-start-column="54" selection-end-line="418" selection-end-column="54" />
+              <caret line="421" column="54" selection-start-line="421" selection-start-column="54" selection-end-line="421" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -212,7 +61,7 @@
         <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorDeleteContinentController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
-              <caret line="77" column="9" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
+              <caret line="72" column="9" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -221,7 +70,7 @@
         <entry file="file://$PROJECT_DIR$/src/mapeditor/model/MapObject.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="382">
-              <caret line="175" column="48" selection-start-line="175" selection-start-column="48" selection-end-line="175" selection-end-column="48" />
+              <caret line="172" column="48" selection-start-line="172" selection-start-column="48" selection-end-line="172" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -230,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/src/mapeditor/model/MEContinent.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-774">
-              <caret line="82" column="40" selection-start-line="82" selection-start-column="40" selection-end-line="82" selection-end-column="40" />
+              <caret line="80" column="40" selection-start-line="80" selection-start-column="40" selection-end-line="80" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -248,7 +97,7 @@
         <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorAddCountryController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="416">
-              <caret line="204" column="61" selection-start-line="204" selection-start-column="61" selection-end-line="204" selection-end-column="61" />
+              <caret line="193" column="61" selection-start-line="193" selection-start-column="61" selection-end-line="193" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -257,7 +106,7 @@
         <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorDeleteCountryController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
-              <caret line="78" column="61" selection-start-line="78" selection-start-column="61" selection-end-line="78" selection-end-column="61" />
+              <caret line="73" column="61" selection-start-line="73" selection-start-column="61" selection-end-line="73" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -266,7 +115,7 @@
         <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="246">
-              <caret line="94" column="63" selection-start-line="94" selection-start-column="63" selection-end-line="94" selection-end-column="63" />
+              <caret line="93" column="63" selection-start-line="93" selection-start-column="63" selection-end-line="93" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -505,7 +354,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551841727353" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551841900000" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last.edited.regexp" value="Sample Text" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
@@ -701,7 +550,14 @@
       <option name="project" value="LOCAL" />
       <updated>1551839020554</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="complement all documentation&#10;double check files">
+      <created>1551841870475</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1551841870475</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -737,7 +593,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40293000" />
+    <option name="totallyTimeSpent" value="40536000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -840,7 +696,8 @@
     <MESSAGE value="recovered files to latest version" />
     <MESSAGE value="simulate test map and add test cases for DFS testing" />
     <MESSAGE value="javadoc documentation&#10;add varifications in fortification phase" />
-    <option name="LAST_COMMIT_MESSAGE" value="javadoc documentation&#10;add varifications in fortification phase" />
+    <MESSAGE value="complement all documentation&#10;double check files" />
+    <option name="LAST_COMMIT_MESSAGE" value="complement all documentation&#10;double check files" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -1132,14 +989,14 @@
     <entry file="file://$PROJECT_DIR$/src/mapeditor/model/MapObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="382">
-          <caret line="175" column="48" selection-start-line="175" selection-start-column="48" selection-end-line="175" selection-end-column="48" />
+          <caret line="172" column="48" selection-start-line="172" selection-start-column="48" selection-end-line="172" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mapeditor/model/MEContinent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-774">
-          <caret line="82" column="40" selection-start-line="82" selection-start-column="40" selection-end-line="82" selection-end-column="40" />
+          <caret line="80" column="40" selection-start-line="80" selection-start-column="40" selection-end-line="80" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -1153,21 +1010,21 @@
     <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorAddCountryController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
-          <caret line="204" column="61" selection-start-line="204" selection-start-column="61" selection-end-line="204" selection-end-column="61" />
+          <caret line="193" column="61" selection-start-line="193" selection-start-column="61" selection-end-line="193" selection-end-column="61" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorDeleteCountryController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
-          <caret line="78" column="61" selection-start-line="78" selection-start-column="61" selection-end-line="78" selection-end-column="61" />
+          <caret line="73" column="61" selection-start-line="73" selection-start-column="61" selection-end-line="73" selection-end-column="61" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
-          <caret line="418" column="54" selection-start-line="418" selection-start-column="54" selection-end-line="418" selection-end-column="54" />
+          <caret line="421" column="54" selection-start-line="421" selection-start-column="54" selection-end-line="421" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1177,14 +1034,14 @@
     <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorDeleteContinentController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="77" column="9" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
+          <caret line="72" column="9" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="246">
-          <caret line="94" column="63" selection-start-line="94" selection-start-column="63" selection-end-line="94" selection-end-column="63" />
+          <caret line="93" column="63" selection-start-line="93" selection-start-column="63" selection-end-line="93" selection-end-column="63" />
         </state>
       </provider>
     </entry>
