@@ -13,10 +13,6 @@ import java.util.LinkedHashMap;
 
 /**
  * Fortification phase tester
- *
- * @author <WW>
- * @version 1.0
- * @since <pre>Mar 5, 2019</pre>
  */
 
 public class FortificationPhaseTest {

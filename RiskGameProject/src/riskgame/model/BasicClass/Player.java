@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 /**
  * This class includes attributes a player need and required methods
- *
- * @author WW
  **/
 public class Player {
     private static final int DEFAULT_DIVISION_FACTOR = 3;

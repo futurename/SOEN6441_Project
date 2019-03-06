@@ -2,8 +2,6 @@ package riskgame.model.BasicClass;
 
 /**
  * Card class
- *
- * @author WW
  **/
 
 public enum Card {

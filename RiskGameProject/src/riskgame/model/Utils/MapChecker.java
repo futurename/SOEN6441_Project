@@ -8,9 +8,6 @@ import java.util.ArrayList;
 
 /**
  * Map checker examines the map format before display it.
- * @date Feb 24
- * @since 1.0
- * @version 1.0
  */
 public class MapChecker {
     private static final int NO_ERROR = 9527;
@@ -39,14 +36,16 @@ public class MapChecker {
 
     /**
      * Wrapper function for checkMapValidity()
-     * @param path
-     * @throws IOException
+     * @param path string of map file
+     * @throws IOException map file not found
      * @see MapChecker#checkMapValidity
      */
     public static boolean isMapValid(String path) throws IOException {
         if (checkMapValidity(path) == NO_ERROR){
             return true;
-        }else return false;
+        }else {
+            return false;
+        }
     }
 
     /**

@@ -25,8 +25,6 @@ import java.util.ResourceBundle;
 
 /**
  * controller class for AttackView.fxml
- *
- * @author WW
  **/
 public class AttackViewController implements Initializable {
 

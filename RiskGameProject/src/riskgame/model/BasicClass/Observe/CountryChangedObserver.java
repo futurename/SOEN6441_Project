@@ -10,8 +10,6 @@ import java.util.Observer;
 
 /**
  * Observer class for country
- *
- * @author WW
  **/
 public class CountryChangedObserver implements Observer {
     private int playerIndex;

@@ -22,8 +22,6 @@ import java.util.ArrayList;
 
 /**
  * controller class for FortificationView.fxml
- *
- * @author WW
  **/
 
 public class FortificationViewController {

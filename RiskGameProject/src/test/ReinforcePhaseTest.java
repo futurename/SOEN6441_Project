@@ -9,10 +9,6 @@ import riskgame.model.BasicClass.Country;
 
 /**
  * ReinforcePhase Tester.
- *
- * @author <WW>
- * @version 1.0
- * @since <pre>Mar 5, 2019</pre>
  */
 public class ReinforcePhaseTest {
     private Country countryTester;

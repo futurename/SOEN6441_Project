@@ -2,17 +2,79 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3533e36-e2c6-493e-8c86-f4e87db12115" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/model/MECheckMapCorrectness.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/mapEditor/model/MECheckMapCorrectness.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/controllers/StartViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/controllers/StartViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/Utils/InfoRetriver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/riskgame/model/Utils/InfoRetriver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/FortificationPhaseTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/test/GraphTester.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/MapCheckerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/test/MapCheckerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/RiskGameProject/test/ReinforcePhaseTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/RiskGameProject/test/ReinforcePhaseTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/daigaram.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/daigaram.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/LICENCE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/Umlet.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/custom_elements/AutoResize1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/custom_elements/AutoResize2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/custom_elements/Default.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/custom_elements/RectangleRound.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/custom_elements/WordWrap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/img/umlet_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/autocomplete-2.5.8.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/batik-awt-util-1.8.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/batik-dom-1.8.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/batik-ext-1.8.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/batik-svggen-1.8.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/batik-util-1.8.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/batik-xml-1.8.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/bcel-5.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/commons-io-2.4.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/ecj-4.4.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/itextpdf-5.4.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/javaparser-core-2.3.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/javax.mail-1.5.6.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/jlibeps-0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/log4j-1.2.17.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/rsyntaxtextarea-2.5.8.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/slf4j-api-1.7.7.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/slf4j-log4j12-1.7.13.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/umlet-elements-14.3.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/lib/umlet-swing-14.3.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/Custom Drawings.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/Deprecated UML Sequence - All in one.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/Generic Colors.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/Generic Layers.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/Generic Text and Alignment.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/Plots.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Activity - All in one.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Activity.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Class.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Common Elements.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Composite Structure.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Package.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Sequence - All in one.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Sequence.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML State Machine.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Structure and Deployment.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Timing Diagram.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/palettes/UML Use Case.uxf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/umlet.desktop" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/umlet.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../UML/umlet-standalone-14.3.0/Umlet/umlet.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/controllers/AttackViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/controllers/AttackViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/controllers/ReinforceViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/controllers/ReinforceViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Continent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Continent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Country.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphSingleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Observe/CountryChangedObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Observe/CountryChangedObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Observe/CountryObservable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Observe/CountryObservable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/BasicClass/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/model/BasicClass/PlayerColor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/BasicClass/PlayerColor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/model/Utils/InitPlayers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/Utils/InitPlayers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/model/Utils/ListviewRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/Utils/ListviewRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/model/Utils/MapChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/model/Utils/MapChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/FortificationPhaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/FortificationPhaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/GraphTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/GraphTester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/ReinforcePhaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/ReinforcePhaseTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="C:\Users\WW\Google Drive\!!Winter 2019\SOEN6441_Advanced_Programming\SOEN6441_Project\RiskGameProject\.idea\shelf/" />
@@ -44,40 +106,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java">
+        <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InitPlayers.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="815">
-              <caret line="553" selection-start-line="553" selection-end-line="553" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="85">
+              <caret line="12" column="106" selection-start-line="12" selection-start-column="106" selection-end-line="12" selection-end-column="106" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mapeditor/model/MapObject.java">
+        <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/MapChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="815">
-              <caret line="104" selection-start-line="104" selection-end-line="104" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-457">
-              <caret line="132" column="6" selection-start-line="132" selection-start-column="6" selection-end-line="132" selection-end-column="6" />
+            <state relative-caret-position="-1250">
+              <caret line="53" column="25" lean-forward="true" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -86,10 +127,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphNode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="42">
+              <caret line="112" column="85" selection-start-line="112" selection-start-column="85" selection-end-line="112" selection-end-column="85" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/FortificationPhaseTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-380">
-              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+            <state relative-caret-position="238">
+              <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -100,36 +150,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/GraphTester.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1529">
-              <caret line="122" selection-start-line="122" selection-end-line="122" />
+            <state relative-caret-position="106">
+              <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#4069#4070#0" expanded="true" />
                 <element signature="e#4101#4102#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mapeditor/Test/MapEditorTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="38" column="7" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/ReinforcePhaseTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="747">
-              <caret line="47" selection-start-line="47" selection-end-line="47" />
-              <folding>
-                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -145,13 +171,40 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/ReinforceViewController.java">
+        <entry file="file://$PROJECT_DIR$/src/test/ReinforcePhaseTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2433">
-              <caret line="110" column="42" selection-start-line="110" selection-start-column="42" selection-end-line="110" selection-end-column="42" />
+            <state relative-caret-position="170">
+              <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/ListviewRenderer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="20" column="73" selection-start-line="20" selection-start-column="73" selection-end-line="20" selection-end-column="73" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/PlayerColor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="63" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="16" column="116" selection-start-line="16" selection-start-column="116" selection-end-line="16" selection-end-column="116" />
             </state>
           </provider>
         </entry>
@@ -181,17 +234,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/mapeditor/controller/MapEditorHomePageController.java" />
         <option value="$PROJECT_DIR$/src/riskgame/Main.java" />
-        <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/Card.java" />
         <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/Observable/CountryObservable.java" />
-        <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/PlayerColor.java" />
-        <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphSingleton.java" />
-        <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/Country.java" />
         <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/Observer/CountryChangedObserver.java" />
-        <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/Continent.java" />
-        <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/Player.java" />
-        <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphNode.java" />
-        <option value="$PROJECT_DIR$/src/riskgame/model/Utils/ListviewRenderer.java" />
-        <option value="$PROJECT_DIR$/src/riskgame/controllers/AttackViewController.java" />
         <option value="$PROJECT_DIR$/src/riskgame/view/AttackView.fxml" />
         <option value="$PROJECT_DIR$/src/riskgame/view/FortificationView.fxml" />
         <option value="$PROJECT_DIR$/src/riskgame/view/ReinforceView.fxml" />
@@ -204,19 +248,30 @@
         <option value="$PROJECT_DIR$/src/riskgame/model/Utils/InitMapGraph.java" />
         <option value="$PROJECT_DIR$/src/mapeditor/Test/MapEditorTest.java" />
         <option value="$PROJECT_DIR$/src/mapeditor/views/MapEditorEditView.fxml" />
-        <option value="$PROJECT_DIR$/src/riskgame/controllers/ReinforceViewController.java" />
-        <option value="$PROJECT_DIR$/src/riskgame/model/Utils/InitPlayers.java" />
-        <option value="$PROJECT_DIR$/src/riskgame/model/Utils/MapChecker.java" />
         <option value="$PROJECT_DIR$/src/mapeditor/model/MECheckMapCorrectness.java" />
         <option value="$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditController.java" />
-        <option value="$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java" />
         <option value="$PROJECT_DIR$/src/mapeditor/model/MapObject.java" />
-        <option value="$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java" />
         <option value="$PROJECT_DIR$/src/test/MapCheckerTest.java" />
-        <option value="$PROJECT_DIR$/src/test/ReinforcePhaseTest.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/controllers/AttackViewController.java" />
         <option value="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" />
-        <option value="$PROJECT_DIR$/src/test/FortificationPhaseTest.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/controllers/ReinforceViewController.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/Observe/CountryChangedObserver.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/Observe/CountryObservable.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/Card.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/Continent.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/Country.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphSingleton.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/Player.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/PlayerColor.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/model/Utils/InitPlayers.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/model/Utils/ListviewRenderer.java" />
         <option value="$PROJECT_DIR$/src/test/GraphTester.java" />
+        <option value="$PROJECT_DIR$/src/test/FortificationPhaseTest.java" />
+        <option value="$PROJECT_DIR$/src/test/ReinforcePhaseTest.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/model/Utils/MapChecker.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphNode.java" />
       </list>
     </option>
   </component>
@@ -312,6 +367,15 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="riskgame" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="BasicClass" type="462c0819:PsiDirectoryNode" />
+              <item name="Observe" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RiskGameProject" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RiskGameProject" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="riskgame" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
               <item name="Utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -346,7 +410,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551833620990" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551835482902" />
     <property name="last.edited.regexp" value="Sample Text" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -570,7 +634,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33487000" />
+    <option name="totallyTimeSpent" value="34453000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -585,7 +649,7 @@
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24040511" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24040511" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -594,7 +658,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -602,10 +666,10 @@
       <window_info anchor="bottom" id="FindBugs-IDEA" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="bottom" id="Version Control" order="12" />
-      <window_info anchor="bottom" id="Messages" order="13" />
+      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.49946696" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -712,58 +776,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/PlayerColor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphSingleton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/Continent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/Card.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-224">
-          <caret line="88" column="100" selection-start-line="88" selection-start-column="100" selection-end-line="88" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/ListviewRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/UML/SOEN6441_Class_Country.puml" />
     <entry file="file://$PROJECT_DIR$/UML/SOEN6441_Diag1_PlayerInput.puml" />
     <entry file="file://$PROJECT_DIR$/UML/SOEN6441_Diag2_InitMap.puml" />
@@ -793,37 +805,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/AttackViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="37" column="27" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/Country.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="101" column="5" selection-start-line="101" selection-start-column="5" selection-end-line="101" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/Observe/CountryObservable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/Observe/CountryChangedObserver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/riskgame/model/Utils/InfoRetriverTest.java" />
     <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/Assert.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -843,13 +824,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/model/phases/ReinforcePhase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="36" column="67" selection-start-line="36" selection-start-column="67" selection-end-line="36" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/model/phases/ReinforcePhase.java" />
     <entry file="file://$PROJECT_DIR$/src/test/riskgame/model/phases/ReinforcePhaseTest.java" />
     <entry file="file://$PROJECT_DIR$/src/test/riskgame/model/Utils/MapCheckerTest.java" />
     <entry file="file://$PROJECT_DIR$/src/mapeditor/views/MapEditorHomePageView.fxml">
@@ -891,33 +866,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InitPlayers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="815">
-          <caret line="73" selection-start-line="73" selection-end-line="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/ReinforceViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2433">
-          <caret line="110" column="42" selection-start-line="110" selection-start-column="42" selection-end-line="110" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/MapChecker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="80" column="81" selection-start-line="80" selection-start-column="81" selection-end-line="80" selection-end-column="81" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mapeditor/Test/MapEditorTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -946,27 +894,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/GraphTester.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="91" column="13" selection-start-line="91" selection-start-column="13" selection-end-line="91" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3740#3741#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="815">
-          <caret line="553" selection-start-line="553" selection-end-line="553" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mapeditor/model/MapObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -974,10 +901,145 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/AttackViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/ReinforceViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="32" column="42" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="36" column="38" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/Observe/CountryChangedObserver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/Observe/CountryObservable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/Continent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/Country.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="70" selection-start-line="5" selection-start-column="70" selection-end-line="5" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphSingleton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" column="84" selection-start-line="7" selection-start-column="84" selection-end-line="7" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="9" column="68" selection-start-line="9" selection-start-column="68" selection-end-line="9" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/PlayerColor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="63" selection-start-line="5" selection-start-column="63" selection-end-line="5" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InfoRetriver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="815">
-          <caret line="104" selection-start-line="104" selection-end-line="104" />
+        <state relative-caret-position="85">
+          <caret line="16" column="116" selection-start-line="16" selection-start-column="116" selection-end-line="16" selection-end-column="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InitPlayers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="12" column="106" selection-start-line="12" selection-start-column="106" selection-end-line="12" selection-end-column="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/ListviewRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="20" column="73" selection-start-line="20" selection-start-column="73" selection-end-line="20" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/FortificationPhaseTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/GraphTester.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4069#4070#0" expanded="true" />
+            <element signature="e#4101#4102#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -990,43 +1052,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/ReinforcePhaseTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="747">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        <state relative-caret-position="170">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java">
+    <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/MapChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-457">
-          <caret line="132" column="6" selection-start-line="132" selection-start-column="6" selection-end-line="132" selection-end-column="6" />
+        <state relative-caret-position="-1250">
+          <caret line="53" column="25" lean-forward="true" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/GraphTester.java">
+    <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphNode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1529">
-          <caret line="122" selection-start-line="122" selection-end-line="122" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4069#4070#0" expanded="true" />
-            <element signature="e#4101#4102#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/FortificationPhaseTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-380">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="42">
+          <caret line="112" column="85" selection-start-line="112" selection-start-column="85" selection-end-line="112" selection-end-column="85" />
         </state>
       </provider>
     </entry>

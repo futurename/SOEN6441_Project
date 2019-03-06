@@ -35,8 +35,6 @@ import static riskgame.Main.graphSingleton;
 
 /**
  * controller class for StartView.fxml
- *
- * @author WW
  **/
 
 public class StartViewController {

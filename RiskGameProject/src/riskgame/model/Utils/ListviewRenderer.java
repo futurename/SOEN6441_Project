@@ -19,8 +19,6 @@ import java.util.ArrayList;
 
 /**
  * This class includes methods for rendering itmes displayed in ListViews
- *
- * @author WW
  **/
 public class ListviewRenderer {
 

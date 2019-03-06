@@ -31,8 +31,6 @@ import java.util.ResourceBundle;
 
 /**
  * controller class for ReinforceView.fxml
- *
- * @author WW
  **/
 
 public class ReinforceViewController implements Initializable {

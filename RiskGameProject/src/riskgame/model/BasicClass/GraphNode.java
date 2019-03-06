@@ -9,8 +9,6 @@ import java.util.LinkedList;
  * This class represents a node in world map graph data structure, including a country object, its adjacent country objects and an
  * indicator for traversal usage. It also include traversal methods of depth first and breadth first search for acquiring all reachable countries
  * from a selected country.
- *
- * @author WW
  **/
 
 public class GraphNode {
@@ -85,6 +83,10 @@ public class GraphNode {
 
     /**
      * Breath first search for getting all reachable countries the player owns from the selected country
+     *
+     * @param playerIndex current player index
+     * @param curCountry  selected country starting for traverse
+     * @param list        countries that are reachable from selected country
      */
     public void getReachableCountryListBFS(int playerIndex, Country curCountry, ArrayList<Country> list) {
         String curCountryName = curCountry.getCountryName();
@@ -109,6 +111,10 @@ public class GraphNode {
 
     /**
      * Depth first search for getting all reachable countries the player owns from the selected country
+     *
+     * @param playerIndex current player index
+     * @param curCountry  selected country starting for traverse
+     * @param list        countries that are reachable from selected country
      */
     private void getReachableCountryListDFS(int playerIndex, Country curCountry, ArrayList<Country> list) {
         String curCountryName = curCountry.getCountryName();
