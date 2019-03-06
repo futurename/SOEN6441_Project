@@ -105,17 +105,14 @@ public class MapObject {
                 }
             }
         }
-        System.out.println(" HERE "+ mapObj.arrCountry.size());
+
         if(correctCheckConnectGraph(mapObj.arrCountry) == false){
-            System.out.println("1");
             return false;
         }
         if(correctCheckContinentCountry(mapObj.arrContinent,mapObj.arrCountry) == false){
-            System.out.println("2");
             return false;
         }
         if(correctCheckCountryBelonging(mapObj.arrContinent,mapObj.arrCountry) == false) {
-            //System.out.println("3");
             return false;
         }
         return true;
