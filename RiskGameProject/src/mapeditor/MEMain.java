@@ -59,7 +59,7 @@ public class MEMain extends Application {
     public static void createCountry(String countryName,String[] neighbor){
         MECountry meCountry = new MECountry();
         meCountry.setCountryName(countryName);
-        for(int i=3;i<neighbor.length;i++){
+        for(int i=4;i<neighbor.length;i++){
             meCountry.setNeighbor(neighbor[i]);
         }
         arrMECountry.add(meCountry);

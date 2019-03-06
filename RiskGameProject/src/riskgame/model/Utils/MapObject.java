@@ -48,7 +48,7 @@ public class MapObject {
     public void createCountry(String countryName,String[] neighbor){
         MECountry meCountry = new MECountry();
         meCountry.setCountryName(countryName);
-        for(int i=3;i<neighbor.length;i++){
+        for(int i=4;i<neighbor.length;i++){
             meCountry.setNeighbor(neighbor[i]);
         }
         arrCountry.add(meCountry);

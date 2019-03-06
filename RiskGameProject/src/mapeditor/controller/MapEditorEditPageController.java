@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -138,16 +135,16 @@ public class MapEditorEditPageController {
                 }
             }
             else if(fileRead.get(i).equals("[Territories]")){
-                int continentNumber = 0;
                 for(int k=i+1;k<fileRead.size();k++){
                     if(!fileRead.get(k).equals("")){
                         String[] countrydata = fileRead.get(k).split(",");
                         MEMain.createCountry(countrydata[0],countrydata);
-                        MEMain.arrMEContinent.get(continentNumber).addCountry(countrydata[0]);
+                        for(int z=0; z<MEMain.arrMEContinent.size();z++) {
+                            if(MEMain.arrMEContinent.get(z).getContinentName().equals(countrydata[3]))
+                                MEMain.arrMEContinent.get(z).addCountry(countrydata[0]);
+                        }
                     }
-                    else{
-                        continentNumber++;
-                    }
+
                 }
             }
         }

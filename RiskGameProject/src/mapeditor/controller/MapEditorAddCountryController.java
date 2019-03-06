@@ -186,8 +186,8 @@ public class MapEditorAddCountryController {
                 if(setContinent.equals(MEMain.arrMEContinent.get(k).getContinentName())){
                     MEMain.arrMEContinent.get(k).addCountry(newCountryName);
                     if(MEMain.arrMEContinent.get(k).getCountryNumber()>1){
-                        String[] tempneighbor = new String[4];
-                        tempneighbor[3] = newNeighborName;
+                        String[] tempneighbor = new String[5];
+                        tempneighbor[4] = newNeighborName;
                         MEMain.createCountry(newCountryName,tempneighbor);
                     }
                     else{

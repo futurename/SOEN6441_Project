@@ -122,7 +122,7 @@ public class MapEditorSaveFileController {
                     neighbor = neighbor.replaceAll("\\[", "");
                     neighbor = neighbor.replaceAll("\\]", "");
                     neighbor = neighbor.replaceAll(" ", "");
-                    out.write(printCountry.getCountryName() + ",0,0," + neighbor + "\r\n");
+                    out.write(printCountry.getCountryName() + ",0,0," + getContinent.getContinentName()+neighbor + "\r\n");
                 }
             }
             out.write("\r\n");
