@@ -1,5 +1,7 @@
 ## SOEN6441_Project
 
+[Project]: ProjectDescription.pdf
+
 #### **Common github commands**:
 
 + clone project:   **<font color = #ff4500 size = 4>git clone https://github.com/futurename/SOEN6441_Project.git </font>**
