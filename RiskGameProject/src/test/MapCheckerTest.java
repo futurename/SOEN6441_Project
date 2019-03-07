@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import riskgame.model.Utils.MapChecker;
 
+import java.io.File;
 import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
@@ -15,6 +16,7 @@ import static org.junit.Assert.assertFalse;
 
 public class MapCheckerTest {
     private String path, error_path, error_map;
+    private String newMapPath = "maps/USA.map";
 
     @Before
     public void setUp() throws Exception {
@@ -25,7 +27,11 @@ public class MapCheckerTest {
 
     @Test
     public void checkMapValidity() throws IOException {
-        assertEquals(9527, MapChecker.checkMapValidity(this.path));
+
+        System.out.println((new File(newMapPath).getAbsolutePath()));
+
+        assertEquals(9527, MapChecker.checkMapValidity(this.newMapPath));
+
     }
 
     @Test

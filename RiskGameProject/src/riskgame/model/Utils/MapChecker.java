@@ -62,7 +62,7 @@ public class MapChecker {
 
         String line;
         while ((line = bufferedReader.readLine()) != null) {
-            if (line.contains(StartViewController.getContinentHeaderString())) {
+            if (line.contains(InitWorldMap.getContinentHeaderString())) {
                 isContinentFound = true;
                 while ((line = bufferedReader.readLine()).length() != 0) {
                     if (line.contains("=")) {
@@ -74,7 +74,7 @@ public class MapChecker {
                         return ERROR_TYPE_NO_SEPARATOR;
                     }
                 }
-            } else if (line.contains(StartViewController.getCountryHeaderString())) {
+            } else if (line.contains(InitWorldMap.getCountryHeaderString())) {
                 isTerritoriesFound = true;
                 while ((line = bufferedReader.readLine()) != null) {
                     if (line.length() == 0){
@@ -145,6 +145,4 @@ public class MapChecker {
         }
         return NO_ERROR;
     }
-
-
 }
