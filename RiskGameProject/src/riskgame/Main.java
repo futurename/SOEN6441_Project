@@ -5,13 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import riskgame.model.BasicClass.*;
-import riskgame.model.Utils.MapChecker;
+import riskgame.model.BasicClass.Continent;
+import riskgame.model.BasicClass.GraphNode;
+import riskgame.model.BasicClass.GraphSingleton;
+import riskgame.model.BasicClass.Player;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 /**
@@ -31,11 +31,6 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        String path = "maps/World.map";
-        File file = new File(path);
-        System.out.println("path: " + file.getAbsolutePath());
-        System.out.println("check map: " + MapChecker.checkMapValidity(path));
-
         Pane root = FXMLLoader.load(getClass().getResource("view/StartView.fxml"));
 
         primaryStage.setTitle("Risk Game");
