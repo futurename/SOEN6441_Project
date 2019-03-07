@@ -71,48 +71,46 @@ public class MapObject {
                 }
                 read.close();
             }else{
-                System.out.println("cannot find file");
+                errorMessage(0);
             }
         } catch (Exception e){
-            System.out.println("wrong");
             e.printStackTrace();
         }
-        for(int i = 0;i<fileRead.size();i++){
-            if(fileRead.get(i).equals("[Continents]")){
-                for(int j=i+1;j<fileRead.size();j++){
-                    if(!fileRead.get(j).equals("")){
-                        mapObj.createContinent(fileRead.get(j).split("=")[0],Integer.parseInt(fileRead.get(j).split("=")[1]));
-                    }
-                    else{
+        for(int i = 0;i<fileRead.size();i++) {
+            if (fileRead.get(i).equals("[Continents]")) {
+                for (int j = i + 1; j < fileRead.size(); j++) {
+                    if (!fileRead.get(j).equals("")) {
+                        mapObj.createContinent(fileRead.get(j).split("=")[0], Integer.parseInt(fileRead.get(j).split("=")[1]));
+                    } else {
                         break;
                     }
                 }
-            }
-            else if(fileRead.get(i).equals("[Territories]")){
-                int continentNumber = 0;
-                for(int k=i+1;k<fileRead.size();k++){
-                    if(!fileRead.get(k).equals("")){
+            } else if (fileRead.get(i).equals("[Territories]")) {
+                for (int k = i + 1; k < fileRead.size(); k++) {
+                    if (!fileRead.get(k).equals("")) {
                         String[] countrydata = fileRead.get(k).split(",");
-                        mapObj.createCountry(countrydata[0],countrydata);
-                        mapObj.arrContinent.get(continentNumber).addCountry(countrydata[0]);
-                    }
-                    else{
-                        continentNumber++;
+                        mapObj.createCountry(countrydata[0], countrydata);
+                        for (int z = 0; z < mapObj.arrContinent.size(); z++) {
+                            if (mapObj.arrContinent.get(z).getContinentName().equals(countrydata[3]))
+                                mapObj.arrContinent.get(z).addCountry(countrydata[0]);
+                        }
                     }
                 }
             }
         }
-        System.out.println(" HERE "+ mapObj.arrCountry.size());
         if(correctCheckConnectGraph(mapObj.arrCountry) == false){
-            System.out.println("1");
+            errorMessage(10);
             return false;
         }
         if(correctCheckContinentCountry(mapObj.arrContinent,mapObj.arrCountry) == false){
-            System.out.println("2");
+            errorMessage(11);
             return false;
         }
-        //System.out.println("3");
-        return correctCheckCountryBelonging(mapObj.arrContinent, mapObj.arrCountry) != false;
+        if (correctCheckCountryBelonging(mapObj.arrContinent, mapObj.arrCountry) == false){
+            errorMessage(12);
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -214,10 +212,24 @@ public class MapObject {
             countryAddByContinent = continentsArr.get(i).getCountryNumber()+countryAddByContinent;
         }
         if(countryAddByContinent != countryArr.size()){
-            System.out.println(countryAddByContinent);
-            System.out.println(countryArr.size());
             checkFlagCB = false;
         }
         return checkFlagCB;
+    }
+
+    public String errorMessage(int errorNbr){
+        if(errorNbr == 0){
+            return "File not exist";
+        }
+        if(errorNbr == 10){
+            return "Graph not connected";
+        }
+        if(errorNbr == 11){
+            return "Disconnected neighbor";
+        }
+        if(errorNbr == 12){
+            return "Country belongs to multiple continent";
+        }
+        return null;
     }
 }
