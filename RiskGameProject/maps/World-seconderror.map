@@ -1,0 +1,15 @@
+[Map]
+author=Sean O'Connor
+image=world.bmp
+wrap=no
+scroll=horizontal
+warn=yes
+
+[Continents]
+North America=5
+
+
+[Territories]
+Western United States,159,204,North America
+Eastern United States,219,216,North America
+
