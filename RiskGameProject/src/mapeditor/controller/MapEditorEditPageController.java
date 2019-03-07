@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -242,6 +239,11 @@ public class MapEditorEditPageController {
      */
     @FXML
     public void clickToReturn(ActionEvent actionEvent) throws Exception{
+
+        MEMain.arrMEContinent.clear();
+        MEMain.arrMECountry.clear();
+        MEMain.OLDMAPPATH = "";
+        MEMain.EDITPAGEFLAG = false;
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
         Pane returnToHomePagePane = new FXMLLoader(getClass().getResource("../views/MapEditorHomePageView.fxml")).load();
