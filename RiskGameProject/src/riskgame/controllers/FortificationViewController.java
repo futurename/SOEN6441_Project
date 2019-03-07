@@ -53,7 +53,7 @@ public class FortificationViewController {
     /**
      * default minimum army number in a country
      */
-    private static final int MIN_ARMY_NUMBER_IN_COUNTRY = 0;
+    private static final int MIN_ARMY_NUMBER_IN_COUNTRY = 1;
 
     /**
      * current player in this phase
