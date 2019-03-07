@@ -58,6 +58,7 @@ public class MapObject {
      * @return if the map is correct, return true, else return false
      */
     public boolean checkCorrectness(String mapPath){
+        boolean result = true;
         MapObject mapObj = new MapObject();
 
         ArrayList<String> fileRead = new ArrayList<String>();
@@ -101,17 +102,17 @@ public class MapObject {
         }
         if(correctCheckConnectGraph(mapObj.arrCountry) == false){
             errorMsg(10);
-            return false;
+            result  = false;
         }
         if(correctCheckContinentCountry(mapObj.arrContinent,mapObj.arrCountry) == false){
             errorMsg(11);
-            return false;
+            result =  false;
         }
         if (correctCheckCountryBelonging(mapObj.arrContinent, mapObj.arrCountry) == false){
             errorMsg(12);
-            return false;
+            result = false;
         }
-        return true;
+        return result;
     }
 
     /**
@@ -220,16 +221,16 @@ public class MapObject {
 
     public void errorMsg(int errorNbr){
         if(errorNbr == 0){
-            errorMsg.append("File not exist");
+            errorMsg.append("File not exist\n");
         }
         if(errorNbr == 10){
-            errorMsg.append("Graph not connected");
+            errorMsg.append("Graph not connected\n");
         }
         if(errorNbr == 11){
-            errorMsg.append("Disconnected neighbor");
+            errorMsg.append("Disconnected neighbor\n");
         }
         if(errorNbr == 12){
-            errorMsg.append( "Country belongs to multiple continent");
+            errorMsg.append( "Country belongs to multiple continent\n");
         }
     }
 

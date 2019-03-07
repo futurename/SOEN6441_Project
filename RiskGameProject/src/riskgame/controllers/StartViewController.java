@@ -167,7 +167,7 @@ public class StartViewController {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         mapPath = txf_mapPath.getText();
         if (!mapChecker.checkCorrectness(mapPath)) {
-            alert.setContentText(mapChecker.getErrorMsg());
+            alert.setContentText("Map reading error!");
             alert.showAndWait();
             return;
         }
