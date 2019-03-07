@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import mapeditor.MEMain;
 import mapeditor.model.MECheckMapCorrectness;
 import mapeditor.model.MEContinent;
+import mapeditor.model.MapObject;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -77,7 +78,7 @@ public class MapEditorEditPageController {
     /**
      * Old map path
      */
-    private String path;
+    public String path;
 
     public MapEditorEditPageController() {
     }
@@ -257,7 +258,7 @@ public class MapEditorEditPageController {
      */
     @FXML
     public void clickToCheck(ActionEvent actionEvent) throws Exception{
-        MECheckMapCorrectness check = new MECheckMapCorrectness();
-        txt_check.setText(check.isCorrect(MEMain.arrMECountry, MEMain.arrMEContinent));
+        MapObject check = new MapObject();
+        txt_check.setText(String.valueOf(check.checkCorrectness(path)));
     }
 }

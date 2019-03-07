@@ -4,19 +4,28 @@ package mapeditor.Test;
 import mapeditor.MEMain;
 import mapeditor.model.MEContinent;
 import mapeditor.model.MECountry;
+import mapeditor.model.MapObject;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 
+import javax.lang.model.element.NestingKind;
+import java.util.Map;
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MapEditorTest {
 
     public static MEMain testMEMain;
+    public String firstmap = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\maps\\World-firsterror.map";
+    public String secondmap = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\maps\\World-seconderror.map";
+    public String thirdmap = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\maps\\World-thirderror.map";
 
     @BeforeClass public static void before(){
         testMEMain = new MEMain();
+
+
         MEMain.createContinent("testFirstContinent",1);
         MEMain.createsSoloCountry("testFirstCountry");
         MEMain.arrMEContinent.get(0).addCountry("testFirstCountry");
@@ -59,4 +68,27 @@ public class MapEditorTest {
         assertEquals(0, MEMain.arrMECountry.size());
     }
 
+    /**
+     * Test for checking whether all countries in map are connected
+     */
+    @Test public void testCheckConnectGraph(){
+        MapObject mapObject = new MapObject();
+        assertFalse(mapObject.checkCorrectness(firstmap));
+    }
+
+    /**
+     * Test for checking whether all countries in one continent are placed together
+     */
+    @Test public void testCheckContinentCountry(){
+        MapObject mapObject = new MapObject();
+        assertFalse(mapObject.checkCorrectness(secondmap));
+    }
+
+    /**
+     * Test for checking whether a country only belongs to one continent
+     */
+    @Test public void testCheckContinentBelonging(){
+        MapObject mapObject = new MapObject();
+        assertFalse(mapObject.checkCorrectness(thirdmap));
+    }
 }
