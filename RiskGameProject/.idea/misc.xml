@@ -6,14 +6,6 @@
   <component name="ErlangCompilerOptions">
     <useRebarCompiler>true</useRebarCompiler>
   </component>
-  <component name="JavaScriptSettings">
-    <option name="languageLevel" value="ES6" />
-  </component>
-  <component name="JavadocGenerationManager">
-    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/API_Doc" />
-    <option name="OPTION_DOCUMENT_TAG_USE" value="true" />
-    <option name="OPTION_DOCUMENT_TAG_AUTHOR" value="true" />
-  </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
       <profile-state>
@@ -32,6 +24,6 @@
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="RebarSettings">
-    <rebarPath>$PROJECT_DIR$/../../../../!!Soft/Erlang Related/rebar</rebarPath>
+    <rebarPath>$PROJECT_DIR$/../../Google Drive/!!Soft/Erlang Related/rebar</rebarPath>
   </component>
 </project>
