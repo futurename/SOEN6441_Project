@@ -219,6 +219,10 @@ public class MapObject {
         return checkFlagCB;
     }
 
+    /**
+     * processing error message
+     * @param errorNbr error code
+     */
     public void errorMsg(int errorNbr){
         if(errorNbr == 0){
             errorMsg.append("File not exist\n");
@@ -234,6 +238,10 @@ public class MapObject {
         }
     }
 
+    /**
+     * error message
+     * @return string or error message
+     */
     public String getErrorMsg(){
         return errorMsg.toString();
     }
