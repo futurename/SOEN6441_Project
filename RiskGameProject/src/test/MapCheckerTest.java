@@ -31,6 +31,7 @@ public class MapCheckerTest {
         System.out.println((new File(newMapPath).getAbsolutePath()));
 
         assertEquals(9527, MapChecker.checkMapValidity(this.newMapPath));
+
     }
 
     @Test

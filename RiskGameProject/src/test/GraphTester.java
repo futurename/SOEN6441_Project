@@ -4,6 +4,7 @@ import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.GraphSingleton;
+import riskgame.model.Utils.InitWorldMap;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class GraphTester {
 
     public GraphTester() throws IOException {
         demoGraph = GraphSingleton.INSTANCE.getInstance();
-        StartViewController.buildWorldMapGraph(TEST_MAP_FILE_PATH, demoGraph);
+        InitWorldMap.buildWorldMapGraph(TEST_MAP_FILE_PATH, demoGraph);
 
         demoGraph.get("Middle East").getCountry().setCountryOwnerIndex(0);
         demoGraph.get("Ural").getCountry().setCountryOwnerIndex(0);
