@@ -14,6 +14,7 @@ public class MapObject {
     private boolean checkFlagCG = true;
     private boolean checkFlagCC = true;
     private boolean checkFlagCB = true;
+    private StringBuilder errorMsg = new StringBuilder("");
 
     /**
      * arrContinent storage new continent
@@ -71,7 +72,7 @@ public class MapObject {
                 }
                 read.close();
             }else{
-                errorMessage(0);
+                errorMsg(0);
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -99,15 +100,15 @@ public class MapObject {
             }
         }
         if(correctCheckConnectGraph(mapObj.arrCountry) == false){
-            errorMessage(10);
+            errorMsg(10);
             return false;
         }
         if(correctCheckContinentCountry(mapObj.arrContinent,mapObj.arrCountry) == false){
-            errorMessage(11);
+            errorMsg(11);
             return false;
         }
         if (correctCheckCountryBelonging(mapObj.arrContinent, mapObj.arrCountry) == false){
-            errorMessage(12);
+            errorMsg(12);
             return false;
         }
         return true;
@@ -217,19 +218,22 @@ public class MapObject {
         return checkFlagCB;
     }
 
-    public String errorMessage(int errorNbr){
+    public void errorMsg(int errorNbr){
         if(errorNbr == 0){
-            return "File not exist";
+            errorMsg.append("File not exist");
         }
         if(errorNbr == 10){
-            return "Graph not connected";
+            errorMsg.append("Graph not connected");
         }
         if(errorNbr == 11){
-            return "Disconnected neighbor";
+            errorMsg.append("Disconnected neighbor");
         }
         if(errorNbr == 12){
-            return "Country belongs to multiple continent";
+            errorMsg.append( "Country belongs to multiple continent");
         }
-        return null;
+    }
+
+    public String getErrorMsg(){
+        return errorMsg.toString();
     }
 }
