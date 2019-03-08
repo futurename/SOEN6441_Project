@@ -123,7 +123,7 @@ Label: lbl_playerInformation
 
 **[Return to top](#top)**
 
-##<span id = "control_structure">Controller Structures</span>
+## <span id = "control_structure">Controller Structures</span>
 
 Control structures include if, for, while, switch, etc. Here is a sample if statement, since it is the most complicated of them:JavaFX controllers used in views should be concatenation of two parts: abbreviation of controller type and nouns followed by above convention concatenated with underscore.
 
