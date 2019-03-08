@@ -1,12 +1,16 @@
-## Code Standards:
+# Coding Standards:
 
++ **<span id = "top">[Name convention](#name_convention)</span>**
 
++ **[Controller Structures](#control_structure)**
 
-+ **[Name convention](#anchor1)**
++ **[Formatting](#formatting)**
+
++ **[Documentation](#documentation)**
 
   
 
-## Class Names
+## <span id="name_convention">Class Names</span>
 
 Class names should be nouns, as they represent “things” or “objects.” They should be mixed case (camel case) with only the first letter of each word capitalized, as in the following:
 
@@ -68,7 +72,7 @@ public interface Map <K,V> {
 }
 ```
 
-## <span id="anchor1">Constant Names</span>
+## Constant Names
 
 Constant names should be all uppercase letters, and multiple words should be separated by underscores:
 
@@ -117,4 +121,146 @@ Button: btn_nextStep
 Label: lbl_playerInformation
 ```
 
-## 
+**[Return to top](#top)**
+
+##<span id = "control_structure">Controller Structures</span>
+
+Control structures include if, for, while, switch, etc. Here is a sample if statement, since it is the most complicated of them:JavaFX controllers used in views should be concatenation of two parts: abbreviation of controller type and nouns followed by above convention concatenated with underscore.
+
+```java
+if (condition1 || condition2) {
+  action1;
+}
+elseif (condition3 && condition4) {
+  action2;
+}
+else {
+  defaultaction;
+}
+```
+
+Control statements should have one space between the control keyword and opening parenthesis, to distinguish them from function calls.
+
+Always use curly braces even in situations where they are technically optional. Having them increases readability and decreases the likelihood of logic errors being introduced when new lines are added. The opening curly should be on the same line as the opening statement, preceded by one space. The closing curly should be on a line by itself and indented to the same level as the opening statement.
+
+For switch statements:.
+
+```java
+switch (condition) {
+  case 1:
+    action1;
+    break;
+
+  case 2:
+    action2;
+    break;
+
+  default:
+    defaultaction;
+}
+```
+
+For do-while statements:
+
+```java
+do {
+  actions;
+} while ($condition);
+  
+```
+
+**[Return to top](#top)**
+
+## <span id = "formatting">Formatting</span>
+
+#### Use line breaks wisely
+
+There are generally two reasons to insert a line break:
+
+1. Your statement exceeds the column limit.
+2. You want to logically separate a thought.
+   Writing code is like telling a story. Written language constructs like chapters, paragraphs, and punctuation (e.g. semicolons, commas, periods, hyphens) convey thought hierarchy and separation. We have similar constructs in programming languages; you should use them to your advantage to effectively tell the story to those reading the code.
+
+#### Indent style
+
+Indent size is 4 spaces.
+
+```java
+// Like this.
+if (x < 0) {
+    negative(x);
+} else {
+    nonnegative(x);
+}
+
+// Not like this.
+if (x < 0)
+  negative(x);
+
+// Also not like this.
+if (x < 0) negative(x);
+```
+
+Don't break up a statement unnecessarily.
+
+```java
+// Bad.
+final String value =
+    otherValue;
+
+// Good.
+final String value = otherValue;
+```
+
+##### Chained method calls
+
+```java
+// Bad.
+//   - Line breaks are based on line length, not logic.
+Iterable<Module> modules = ImmutableList.<Module>builder().add(new LifecycleModule())
+    .add(new AppLauncherModule()).addAll(application.getModules()).build();
+
+// Better.
+//   - Calls are logically separated.
+//   - However, the trailing period logically splits a statement across two lines.
+Iterable<Module> modules = ImmutableList.<Module>builder().
+    add(new LifecycleModule()).
+    add(new AppLauncherModule()).
+    addAll(application.getModules()).
+    build();
+
+// Good.
+//   - Method calls are isolated to a line.
+//   - The proper location for a new method call is unambiguous.
+Iterable<Module> modules = ImmutableList.<Module>builder()
+    .add(new LifecycleModule())
+    .add(new AppLauncherModule())
+    .addAll(application.getModules())
+    .build();
+```
+
+**[Return to top](#top)**
+
+## <span id = "documentation">Documentation</span>
+
+Documentation for a class may range from a single sentence to paragraphs with code examples. Documentation should serve to disambiguate any conceptual blanks in the API, and make it easier to quickly and *correctly* use your API. A thorough class doc usually has a one sentence summary and, if necessary, a more detailed explanation.
+
+```java
+/**
+ * A volatile storage for objects based on a key, which may be invalidated and discarded.
+ */
+class Cache {
+  ...
+}
+
+/**
+ * Splits a string on whitespace.
+ *
+ * @param s The string to split.  An {@code null} string is treated as an empty string.
+ * @return A list of the whitespace-delimited parts of the input.
+ */
+List<String> split(String s);
+```
+
+**[Return to top](#top)**
+

@@ -104,7 +104,9 @@ public class AttackViewController implements Initializable {
      */
     public void clickAttack(ActionEvent actionEvent) {
         Player attacker = Main.playersList.get(curPlayerIndex);
-        Country attackingCountry = (Country) lsv_ownedCountries.getSelectionModel().getSelectedItem();
+        Country attackingCountry = (Country) lsv_ownedCountries
+                .getSelectionModel()
+                .getSelectedItem();
         Country defendingCountry = (Country) lsv_adjacentCountries.getSelectionModel().getSelectedItem();
 
         attacker.attckCountry(attackingCountry, defendingCountry);
