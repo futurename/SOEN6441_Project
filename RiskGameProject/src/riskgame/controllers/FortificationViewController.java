@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
-import riskgame.model.BasicClass.ObserverPattern.CountryChangedObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
@@ -74,7 +73,7 @@ public class FortificationViewController {
         curPlayer = Main.playersList.get(Main.curRoundPlayerIndex);
         lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
         ListviewRenderer.renderCountryItems(lsv_ownedCountries);
-        setCountryObservers();
+
         if (isAllReachableCountryEmpty(curPlayer)) {
             btn_confirmMoveArmy.setVisible(false);
             btn_skipFortification.setVisible(false);
@@ -173,18 +172,6 @@ public class FortificationViewController {
             }
         }
         return result;
-    }
-
-    /**
-     * set observers of country objects.
-     */
-    private void setCountryObservers() {
-        ArrayList<String> ownedCountryNameList = curPlayer.getOwnedCountryNameList();
-        CountryChangedObserver observer = curPlayer.getCountryChangedObserver();
-        for (String name : ownedCountryNameList) {
-            Main.graphSingleton.get(name).getCountry().getCountryObservable().deleteObservers();
-            Main.graphSingleton.get(name).getCountry().getCountryObservable().addObserver(observer);
-        }
     }
 
     /**

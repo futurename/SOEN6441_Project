@@ -2,7 +2,6 @@ package riskgame.model.BasicClass;
 
 
 import javafx.scene.paint.Color;
-import riskgame.model.BasicClass.ObserverPattern.CountryChangedObserver;
 
 import java.util.ArrayList;
 
@@ -17,7 +16,7 @@ public class Player{
     private ArrayList<Card> cardsList;
     private ArrayList<String> ownedCountryNameList;
     private Color playerColor;
-    private CountryChangedObserver countryChangedObserver;
+
 
 
     /**
@@ -31,7 +30,7 @@ public class Player{
         this.cardsList = new ArrayList<>();
         this.ownedCountryNameList = new ArrayList<>();
         this.playerColor = PlayerColor.values()[playerIndex].colorValue;
-        this.countryChangedObserver = new CountryChangedObserver(playerIndex);
+
     }
 
     /**
@@ -96,16 +95,6 @@ public class Player{
     public void addToOwnedCountryNameList(String countryName) {
         this.ownedCountryNameList.add(countryName);
     }
-
-    /**
-     * observer method
-     *
-     * @return changer indicates change
-     */
-    public CountryChangedObserver getCountryChangedObserver() {
-        return countryChangedObserver;
-    }
-
 
     /**
      * Processing attack with following the game rules:

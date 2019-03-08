@@ -17,7 +17,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
-import riskgame.model.BasicClass.ObserverPattern.CountryChangedObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
@@ -102,8 +101,6 @@ public class ReinforceViewController implements Initializable {
 
         curPlayer = Main.playersList.get(playerIndex);
 
-        setCountryObservers();
-
         Color curPlayerColor = curPlayer.getPlayerColor();
         int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
         int curUndeployedArmy = getStandardReinforceArmyNum(ownedCountryNum);
@@ -128,18 +125,6 @@ public class ReinforceViewController implements Initializable {
         lbl_deployArmyCount.setText(Integer.toString(curUndeployedArmy));
 
         scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue) -> lbl_deployArmyCount.setText(Integer.toString(newValue.intValue())));
-    }
-
-    /**
-     * set observer for a country
-     */
-    private void setCountryObservers() {
-        ArrayList<String> ownedCountryNameList = curPlayer.getOwnedCountryNameList();
-        CountryChangedObserver observer = curPlayer.getCountryChangedObserver();
-        for (String name : ownedCountryNameList) {
-            Main.graphSingleton.get(name).getCountry().getCountryObservable().deleteObservers();
-            Main.graphSingleton.get(name).getCountry().getCountryObservable().addObserver(observer);
-        }
     }
 
     /**

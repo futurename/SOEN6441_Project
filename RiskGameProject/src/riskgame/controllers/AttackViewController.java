@@ -105,7 +105,7 @@ public class AttackViewController implements Initializable {
 
         System.out.println("#############selected country index: " + countryIndex);
 
-        ObservableList<Country> datalist = InfoRetriver.getAdjacentCountryObservablelist(Main.curRoundPlayerIndex, countryIndex);
+        ObservableList<Country> datalist = InfoRetriver.getAttackableAdjacentCountryList(Main.curRoundPlayerIndex, countryIndex);
 
         adjacentCountryListViewObserver.setObservableList(datalist);
         ListviewRenderer.renderCountryItems(adjacentCountryListViewObserver.getListView());
@@ -154,9 +154,14 @@ public class AttackViewController implements Initializable {
                     .getSelectionModel()
                     .getSelectedItem();
 
-            attacker.attckCountry(attackingCountry, defendingCountry);
+            if (attackingCountry.getCountryArmyNumber() < 2) {
+                alert.setContentText("No enough army for attacking! Please select another country!");
+                alert.showAndWait();
+            } else {
+                attacker.attckCountry(attackingCountry, defendingCountry);
 
-            System.out.println("!!!!!!!!!!!attacking!!!!!!!!!!!!!!!!");
+                System.out.println("!!!!!!!!!!!attacking!!!!!!!!!!!!!!!!");
+            }
         }
     }
 

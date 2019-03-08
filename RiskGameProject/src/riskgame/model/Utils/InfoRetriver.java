@@ -40,19 +40,36 @@ public class InfoRetriver {
      * acquire adjacent country list for a selected country and player
      *
      * @param curPlayerIndex player index number
-     * @param countryIndex   the index of a selected country name from the listview
+     * @param selectedCountryIndex   the index of a selected country name from the listview
      * @return a formatted ObservableList of adjacent country names and their army numbers
      */
-    public static ObservableList<Country> getAdjacentCountryObservablelist(int curPlayerIndex, int countryIndex) {
+    public static ObservableList<Country> getAdjacentCountryObservablelist(int curPlayerIndex, int selectedCountryIndex) {
         ObservableList<Country> result;
 
         ArrayList<String> countryList = playersList.get(curPlayerIndex).getOwnedCountryNameList();
-        String selectedCountryName = countryList.get(countryIndex);
+        String selectedCountryName = countryList.get(selectedCountryIndex);
         ArrayList<Country> adjacentCountryList = Main.graphSingleton.get(selectedCountryName).getAdjacentCountryList();
 
-        //System.out.println("adjacent country: " + adjacentCountryList);
-
         result = FXCollections.observableArrayList(adjacentCountryList);
+
+        return result;
+    }
+
+    public static ObservableList<Country> getAttackableAdjacentCountryList(int curPlayerIndex, int selectedCountryIndex){
+        ObservableList<Country> result;
+
+        ArrayList<String> countryList = playersList.get(curPlayerIndex).getOwnedCountryNameList();
+        String selectedCountryName = countryList.get(selectedCountryIndex);
+        ArrayList<Country> adjacentCountryList = Main.graphSingleton.get(selectedCountryName).getAdjacentCountryList();
+
+        ArrayList<Country> attackableAdjacentCountryList = new ArrayList<>();
+        for(Country country: adjacentCountryList){
+            if(country.getCountryOwnerIndex() != curPlayerIndex){
+                attackableAdjacentCountryList.add(country);
+            }
+        }
+
+        result = FXCollections.observableArrayList(attackableAdjacentCountryList);
 
         return result;
     }
