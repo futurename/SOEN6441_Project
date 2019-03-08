@@ -18,11 +18,11 @@ import java.util.Map;
 public class MapEditorTest {
 
     public static MEMain testMEMain;
-    public String firstmap = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\maps\\World-firsterror.map";
-    public String secondmap = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\maps\\World-seconderror.map";
-    public String thirdmap = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\maps\\World-thirderror.map";
-    public String fourthmap = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\maps\\World-fourtherror.map";
-    public String fifthmap = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\maps\\World-fiftherror.map";
+    public String firstmap = "maps/World-firsterror.map";
+    public String secondmap = "maps/World-seconderror.map";
+    public String thirdmap = "maps/World-thirderror.map";
+    public String fourthmap = "maps/World-fourtherror.map";
+    public String fifthmap = "maps/World-fiftherror.map";
 
     @BeforeClass public static void before(){
         testMEMain = new MEMain();
