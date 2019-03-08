@@ -233,6 +233,51 @@ public class MapObject {
         }
     }
 
+    /**
+     * check map format
+     * @param mapPath map path
+     * @return if map format is true then return true, else return false
+     */
+    public Boolean mapFormatCheck(String mapPath){
+        ArrayList<String> fileRead = new ArrayList<String>();
+        try {
+            File file=new File(mapPath);
+            if(file.isFile()&&file.exists()&&file.length()==0){
+                InputStreamReader read = new InputStreamReader(new FileInputStream(file));
+                BufferedReader bufferedReader=new BufferedReader(read);
+                String lineTxt=null;
+                while((lineTxt=bufferedReader.readLine())!=null){
+                    fileRead.add(lineTxt);
+                }
+                read.close();
+            }else{
+                return false;
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        boolean mapflag = false;
+        boolean continentflag = false;
+        boolean countryflag = false;
+        for(int i =0;i<fileRead.size();i++){
+            if(fileRead.get(i).equals("[Map]")){
+                mapflag = true;
+            }
+            else if(fileRead.get(i).equals("[Continents]")){
+                continentflag = true;
+            }
+            else if(fileRead.get(i).equals("[Territories]")) {
+                countryflag = true;
+            }
+        }
+        if((mapflag&&continentflag&&countryflag)==false){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+
     public String getErrorMsg(){
         return errorMsg.toString();
     }
