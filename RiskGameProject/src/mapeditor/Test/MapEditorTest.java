@@ -21,6 +21,8 @@ public class MapEditorTest {
     public String firstmap = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\maps\\World-firsterror.map";
     public String secondmap = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\maps\\World-seconderror.map";
     public String thirdmap = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\maps\\World-thirderror.map";
+    public String fourthmap = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\maps\\World-fourtherror.map";
+    public String fifthmap = "C:\\Users\\Jeffrey Wei\\Desktop\\pct\\SOEN6441_Project\\RiskGameProject\\maps\\World-fiftherror.map";
 
     @BeforeClass public static void before(){
         testMEMain = new MEMain();
@@ -90,5 +92,21 @@ public class MapEditorTest {
     @Test public void testCheckContinentBelonging(){
         MapObject mapObject = new MapObject();
         assertFalse(mapObject.checkCorrectness(thirdmap));
+    }
+
+    /**
+     * Test for reading empty map
+     */
+    @Test public void testEmptyMap(){
+        MapObject mapObject = new MapObject();
+        assertFalse(mapObject.mapFormatCheck(fifthmap));
+    }
+
+    /**
+     * Test for reading invalid map
+     */
+    @Test public void testInvalidMap(){
+        MapObject mapObject = new MapObject();
+        assertFalse(mapObject.mapFormatCheck(fourthmap));
     }
 }
