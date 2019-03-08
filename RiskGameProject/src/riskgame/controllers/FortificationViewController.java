@@ -113,14 +113,13 @@ public class FortificationViewController {
             System.out.println("selected country name: " + selectedCountryName + ", army: " + selectedCountry.getCountryArmyNumber());
 
             if (selectedCountry.getCountryArmyNumber() <= MIN_ARMY_NUMBER_IN_COUNTRY) {
-                btn_skipFortification.setVisible(false);
                 btn_confirmMoveArmy.setVisible(false);
                 alert.setContentText("No enough army for fortification!");
                 alert.showAndWait();
             } else {
                 ObservableList<Country> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayer.getPlayerIndex(),
                         selectedCountryName);
-                if (reachableCountryList.isEmpty() || !getCountOfValidCountries()) {
+                if (reachableCountryList.isEmpty()) {
                     btn_confirmMoveArmy.setVisible(false);
                     lsv_reachableCountry.setItems(null);
                     lbl_deployArmyNumber.setText("0");

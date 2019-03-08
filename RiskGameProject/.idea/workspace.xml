@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2b2896ac-1909-40fe-8576-f5b2ddc390dc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,36 +24,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mapeditor/model/MapObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="100" column="9" selection-start-line="100" selection-start-column="9" selection-end-line="100" selection-end-column="9" />
-              <folding>
-                <element signature="e#1957#1965#0" expanded="true" />
-                <element signature="e#4481#4489#0" expanded="true" />
-                <element signature="e#4649#4665#0" expanded="true" />
-                <element signature="e#8645#8653#0" expanded="true" />
-                <element signature="e#8480#8481#0" expanded="true" />
-                <element signature="e#8522#8523#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="213">
-              <caret line="99" column="8" selection-start-line="99" selection-start-column="8" selection-end-line="99" selection-end-column="8" />
+              <caret line="97" selection-start-line="97" selection-end-line="97" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-5304">
+              <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="142" column="82" selection-start-line="142" selection-start-column="82" selection-end-line="142" selection-end-column="82" />
+            <state relative-caret-position="348">
+              <caret line="118" column="20" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -136,8 +128,8 @@
         <option value="$PROJECT_DIR$/src/mapeditor/model/MapObject.java" />
         <option value="$PROJECT_DIR$/src/test/GraphTester.java" />
         <option value="$PROJECT_DIR$/src/test/MapCheckerTest.java" />
-        <option value="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" />
         <option value="$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditController.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" />
       </list>
     </option>
   </component>
@@ -261,7 +253,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552007715413" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552008512560" />
     <property name="last.edited.regexp" value="Sample Text" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Google Drive/!!Winter 2019/SOEN6441_Advanced_Programming/SOEN6441_Project" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -405,7 +397,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552007694128</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="delete format check in MapEditorEditController">
+      <created>1552007966768</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1552007966768</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -432,13 +431,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4187000" />
+    <option name="totallyTimeSpent" value="4565000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1753" height="954" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24955752" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24955752" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -447,7 +446,7 @@
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -502,7 +501,8 @@
     <MESSAGE value="generate doc" />
     <MESSAGE value="map file reorganized" />
     <MESSAGE value="function update for fortificaiton phase" />
-    <option name="LAST_COMMIT_MESSAGE" value="function update for fortificaiton phase" />
+    <MESSAGE value="delete format check in MapEditorEditController" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete format check in MapEditorEditController" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
@@ -530,13 +530,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="239">
           <caret line="102" column="13" selection-start-line="102" selection-start-column="13" selection-end-line="104" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -597,13 +590,6 @@
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
       <provider editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="142" column="82" selection-start-line="142" selection-start-column="82" selection-end-line="142" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditPageController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -614,7 +600,21 @@
     <entry file="file://$PROJECT_DIR$/src/mapeditor/controller/MapEditorEditController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
-          <caret line="99" column="8" selection-start-line="99" selection-start-column="8" selection-end-line="99" selection-end-column="8" />
+          <caret line="97" selection-start-line="97" selection-end-line="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/StartViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5304">
+          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="118" column="20" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="20" />
         </state>
       </provider>
     </entry>
