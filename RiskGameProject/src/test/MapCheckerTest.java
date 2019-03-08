@@ -4,11 +4,11 @@ import org.junit.Before;
 import org.junit.Test;
 import riskgame.model.Utils.MapChecker;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 /**
  * MapChecker tester.
@@ -25,10 +25,9 @@ public class MapCheckerTest {
         errorMaps = new ArrayList<String>();
         loadableMaps.add("./maps/World.map");
         loadableMaps.add("./maps/Alberta.map");
-        loadableMaps.add("./maps/test_map.map");
+        loadableMaps.add("./maps/TestMap/test_map.map");
         loadableMaps.add("./maps/USA.map");
-        errorMaps.add("./maps/ErrorMap_ContinentsAmount_United States.map");
-        loadableMaps.add("./maps/World-error.map");
+        errorMaps.add("./maps/ErrorMap/ErrorMap_ContinentsAmount_United States.map");
 
         error_path = "./maps/World";
     }
@@ -43,7 +42,7 @@ public class MapCheckerTest {
     @Test
     public void isMapValid() throws IOException {
         for (int i=0;i<errorMaps.size();i++){
-            assertTrue(MapChecker.isMapValid((String) errorMaps.get(i)));
+            assertFalse(MapChecker.isMapValid((String) errorMaps.get(i)));
         }
     }
 

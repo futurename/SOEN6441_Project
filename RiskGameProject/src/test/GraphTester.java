@@ -1,6 +1,5 @@
 package test;
 
-import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.GraphSingleton;
@@ -20,7 +19,7 @@ public class GraphTester {
     /**
      * default path of testing map file
      */
-    private static final String TEST_MAP_FILE_PATH = "maps/test_map.map";
+    private static final String TEST_MAP_FILE_PATH = "maps/TestMap/test_map.map";
 
     /**
      * demo world map singleton for testing
