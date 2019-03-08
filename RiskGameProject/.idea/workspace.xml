@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2b2896ac-1909-40fe-8576-f5b2ddc390dc" name="Default Changelist" comment="" />
+    <list default="true" id="2b2896ac-1909-40fe-8576-f5b2ddc390dc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,36 +15,19 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RiskGameProject.iml">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/InitWorldMap.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/MapChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+            <state relative-caret-position="161">
+              <caret line="60" selection-start-line="60" selection-end-line="60" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mapeditor/model/MapObject.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="230">
-              <caret line="100" column="9" lean-forward="true" selection-start-line="100" selection-start-column="9" selection-end-line="100" selection-end-column="9" />
+              <caret line="100" column="9" selection-start-line="100" selection-start-column="9" selection-end-line="100" selection-end-column="9" />
               <folding>
                 <element signature="e#1957#1965#0" expanded="true" />
                 <element signature="e#4481#4489#0" expanded="true" />
@@ -63,11 +49,26 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="122" column="55" selection-start-line="122" selection-start-column="55" selection-end-line="122" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/riskgame/view/FortificationView.fxml">
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+          <provider editor-type-id="text-editor" />
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/FortificationPhaseTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="161">
-              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+              <caret line="32" column="7" lean-forward="true" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,8 +79,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/GraphTester.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1334">
-              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+            <state relative-caret-position="136">
+              <caret line="17" column="6" lean-forward="true" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -87,17 +88,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/MapCheckerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="44" column="45" selection-start-line="44" selection-start-column="45" selection-end-line="44" selection-end-column="45" />
+            <state relative-caret-position="357">
+              <caret line="29" column="85" selection-start-line="29" selection-start-column="85" selection-end-line="29" selection-end-column="85" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/Country.java">
+        <entry file="file://$PROJECT_DIR$/src/test/ReinforcePhaseTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1563">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="119">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -106,7 +107,7 @@
         <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphNode.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="239">
-              <caret line="102" column="13" lean-forward="true" selection-start-line="102" selection-start-column="13" selection-end-line="104" />
+              <caret line="102" column="13" selection-start-line="102" selection-start-column="13" selection-end-line="104" />
             </state>
           </provider>
         </entry>
@@ -133,6 +134,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/mapeditor/model/MapObject.java" />
+        <option value="$PROJECT_DIR$/src/test/GraphTester.java" />
+        <option value="$PROJECT_DIR$/src/test/MapCheckerTest.java" />
+        <option value="$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java" />
       </list>
     </option>
   </component>
@@ -247,12 +251,16 @@
   </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="riskgameproject" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552001067806" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552007625763" />
     <property name="last.edited.regexp" value="Sample Text" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Google Drive/!!Winter 2019/SOEN6441_Advanced_Programming/SOEN6441_Project" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -274,7 +282,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="riskgame.Main" />
       <module name="RiskGameProject" />
@@ -288,9 +296,57 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FortificationPhaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RiskGameProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.FortificationPhaseTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MapCheckerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RiskGameProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.MapCheckerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReinforcePhaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RiskGameProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.ReinforcePhaseTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ReinforcePhaseTest" />
+        <item itemvalue="JUnit.MapCheckerTest" />
+        <item itemvalue="JUnit.FortificationPhaseTest" />
       </list>
     </recent_temporary>
   </component>
@@ -327,11 +383,48 @@
       <option name="project" value="LOCAL" />
       <updated>1551999906974</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="generate doc">
+      <created>1552006280093</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1552006280093</updated>
+    </task>
+    <task id="LOCAL-00005" summary="map file reorganized">
+      <created>1552006727252</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1552006727252</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="FortificationPhaseTest - 2019.03.07 at 19h 55m 46s.xml">
+      <configuration name="FortificationPhaseTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MapCheckerTest - 2019.03.07 at 19h 55m 59s.xml">
+      <configuration name="MapCheckerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MapCheckerTest - 2019.03.07 at 19h 56m 24s.xml">
+      <configuration name="MapCheckerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MapCheckerTest - 2019.03.07 at 19h 56m 36s.xml">
+      <configuration name="MapCheckerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MapCheckerTest - 2019.03.07 at 19h 56m 58s.xml">
+      <configuration name="MapCheckerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MapCheckerTest - 2019.03.07 at 19h 57m 57s.xml">
+      <configuration name="MapCheckerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ReinforcePhaseTest - 2019.03.07 at 19h 58m 09s.xml">
+      <configuration name="ReinforcePhaseTest" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2356000" />
+    <option name="totallyTimeSpent" value="3755000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1753" height="954" extended-state="6" />
@@ -393,11 +486,15 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="sync 20190307_1742" />
     <MESSAGE value="sync 20190307_1744" />
     <MESSAGE value="diagram modification" />
-    <option name="LAST_COMMIT_MESSAGE" value="diagram modification" />
+    <MESSAGE value="generate doc" />
+    <MESSAGE value="map file reorganized" />
+    <option name="LAST_COMMIT_MESSAGE" value="map file reorganized" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/RiskGameProject.iml">
@@ -413,13 +510,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/MapChecker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/Country.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1563">
@@ -430,24 +520,7 @@
     <entry file="file://$PROJECT_DIR$/src/riskgame/model/BasicClass/GraphNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="239">
-          <caret line="102" column="13" lean-forward="true" selection-start-line="102" selection-start-column="13" selection-end-line="104" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/FortificationPhaseTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/MapCheckerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="44" column="45" selection-start-line="44" selection-start-column="45" selection-end-line="44" selection-end-column="45" />
+          <caret line="102" column="13" selection-start-line="102" selection-start-column="13" selection-end-line="104" />
         </state>
       </provider>
     </entry>
@@ -461,7 +534,7 @@
     <entry file="file://$PROJECT_DIR$/src/mapeditor/model/MapObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
-          <caret line="100" column="9" lean-forward="true" selection-start-line="100" selection-start-column="9" selection-end-line="100" selection-end-column="9" />
+          <caret line="100" column="9" selection-start-line="100" selection-start-column="9" selection-end-line="100" selection-end-column="9" />
           <folding>
             <element signature="e#1957#1965#0" expanded="true" />
             <element signature="e#4481#4489#0" expanded="true" />
@@ -470,6 +543,55 @@
             <element signature="e#8480#8481#0" expanded="true" />
             <element signature="e#8522#8523#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/GraphTester.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="17" column="6" lean-forward="true" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/FortificationPhaseTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="32" column="7" lean-forward="true" selection-start-line="32" selection-start-column="7" selection-end-line="32" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/model/Utils/MapChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/MapCheckerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="29" column="85" selection-start-line="29" selection-start-column="85" selection-end-line="29" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/ReinforcePhaseTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/view/FortificationView.fxml">
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/riskgame/controllers/FortificationViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="122" column="55" selection-start-line="122" selection-start-column="55" selection-end-line="122" selection-end-column="55" />
         </state>
       </provider>
     </entry>

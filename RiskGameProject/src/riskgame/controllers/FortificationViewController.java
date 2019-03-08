@@ -113,14 +113,14 @@ public class FortificationViewController {
             System.out.println("selected country name: " + selectedCountryName + ", army: " + selectedCountry.getCountryArmyNumber());
 
             if (selectedCountry.getCountryArmyNumber() <= MIN_ARMY_NUMBER_IN_COUNTRY) {
+                btn_skipFortification.setVisible(false);
+                btn_confirmMoveArmy.setVisible(false);
                 alert.setContentText("No enough army for fortification!");
                 alert.showAndWait();
-                btn_skipFortification.setVisible(false);
-                btn_skipFortification.setVisible(false);
             } else {
                 ObservableList<Country> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayer.getPlayerIndex(),
                         selectedCountryName);
-                if (reachableCountryList.isEmpty()) {
+                if (reachableCountryList.isEmpty() || !getCountOfValidCountries()) {
                     btn_confirmMoveArmy.setVisible(false);
                     lsv_reachableCountry.setItems(null);
                     lbl_deployArmyNumber.setText("0");
@@ -128,6 +128,7 @@ public class FortificationViewController {
                 } else {
                     btn_nextStep.setVisible(false);
                     btn_confirmMoveArmy.setVisible(true);
+                    btn_skipFortification.setVisible(true);
                     lsv_reachableCountry.setItems(reachableCountryList);
                     ListviewRenderer.renderCountryItems(lsv_reachableCountry);
                     updateDeploymentInfo(selectedCountry);
@@ -135,6 +136,21 @@ public class FortificationViewController {
                 }
             }
         }
+    }
+
+    /**
+     * get count of countries whose army number is greate than one
+     * @return true for two or monre countries, false for less than two countries.
+     */
+    private boolean getCountOfValidCountries() {
+        ObservableList<Country> countryObservableList = lsv_ownedCountries.getItems();
+        int count = 0;
+        for(Country country : countryObservableList){
+            if(country.getCountryArmyNumber() > MIN_ARMY_NUMBER_IN_COUNTRY){
+                count++;
+            }
+        }
+        return count > 1;
     }
 
     /**
