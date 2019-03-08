@@ -1,8 +1,8 @@
-## Naming Convention:
+## Code Standards:
 
 
 
-+ **Ref: [Java 8 Pocket Guide by Patricia Liguori, Robert Liguori](https://www.oreilly.com/library/view/java-8-pocket/9781491901083/ch01.html)**
++ **[Name convention](#anchor1)**
 
   
 
@@ -68,7 +68,7 @@ public interface Map <K,V> {
 }
 ```
 
-## Constant Names
+## <span id="anchor1">Constant Names</span>
 
 Constant names should be all uppercase letters, and multiple words should be separated by underscores:
 
@@ -106,3 +106,15 @@ Annotation names have been presented several ways in the Java SE API for predefi
 @Target(ElementType.TYPE)
 public @interface FunctionalInterface {}
 ```
+
+## GUI controllers
+
+JavaFX controllers used in views should be concatenation of two parts: abbreviation of controller type and nouns followed by above convention concatenated with underscore.
+
+```java
+ListView: lsw_ownedCountries
+Button: btn_nextStep
+Label: lbl_playerInformation
+```
+
+## 
