@@ -1,0 +1,10 @@
+@startuml
+start
+partition GameBegin{
+    while (Last player wins?) is (False)
+        :
+    endwhile
+}
+
+
+@enduml

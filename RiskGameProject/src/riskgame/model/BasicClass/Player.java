@@ -108,7 +108,7 @@ public class Player {
 
 
     /**
-     * Processing attack follwing the game rules:
+     * Processing attack with following the game rules:
      * <p>
      * if attacker army number is equal or greater than three, attacker will roll three dices
      * if defender army number is equal or greater than two, defender will roll two dices
