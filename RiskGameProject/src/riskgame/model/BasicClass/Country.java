@@ -1,6 +1,6 @@
 package riskgame.model.BasicClass;
 
-import riskgame.model.BasicClass.Observe.CountryObservable;
+import riskgame.model.BasicClass.ObserverPattern.CountryObservable;
 
 /**
  * This class includes attributes a country needs and required methods

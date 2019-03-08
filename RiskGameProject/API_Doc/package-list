@@ -6,6 +6,6 @@ riskgame
 riskgame.controllers
 riskgame.model
 riskgame.model.BasicClass
-riskgame.model.BasicClass.Observe
+riskgame.model.BasicClass.ObserverPattern
 riskgame.model.Utils
 test

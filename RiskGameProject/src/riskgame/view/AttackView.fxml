@@ -30,8 +30,7 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-        <Button fx:id="btn_confirmAttack" layoutX="375.0" layoutY="271.0" mnemonicParsing="false" onAction="#clickAttack" prefHeight="37.0"
-                prefWidth="72.0" text="Attack" textAlignment="CENTER" textFill="#f80505">
+        <Button fx:id="btn_confirmAttack" layoutX="375.0" layoutY="271.0" mnemonicParsing="false" onAction="#clickAttack" prefHeight="37.0" prefWidth="72.0" text="Attack" textAlignment="CENTER" textFill="#f80505">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -59,5 +58,10 @@
       <ScrollBar fx:id="scb_armyNbrAdjustment" layoutX="713.0" layoutY="634.0" max="0.0" orientation="VERTICAL" prefHeight="58.0" prefWidth="14.0" />
       <ListView fx:id="lsv_adjacentCountries" layoutX="459.0" layoutY="137.0" prefHeight="438.0" prefWidth="283.0" stylesheets="@css/playercountries.css" />
       <ListView fx:id="lsv_ownedCountries" focusTraversable="false" layoutX="85.0" layoutY="137.0" onMouseClicked="#selectOneCountry" prefHeight="697.0" prefWidth="283.0" stylesheets="@css/playercountries.css" />
+      <Button fx:id="btn_finishAttack" layoutX="377.0" layoutY="374.0" mnemonicParsing="false" onAction="#clickFinishAttack" prefHeight="37.0" prefWidth="68.0" text="Finish" textAlignment="CENTER" textFill="#f80505">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

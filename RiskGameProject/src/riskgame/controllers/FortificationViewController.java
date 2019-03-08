@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
-import riskgame.model.BasicClass.Observe.CountryChangedObserver;
+import riskgame.model.BasicClass.ObserverPattern.CountryChangedObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;

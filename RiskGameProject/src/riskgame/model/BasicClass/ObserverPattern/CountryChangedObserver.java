@@ -1,4 +1,4 @@
-package riskgame.model.BasicClass.Observe;
+package riskgame.model.BasicClass.ObserverPattern;
 
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
