@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -15,7 +14,6 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import mapeditor.MEMain;
-import mapeditor.model.MapObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -97,15 +95,7 @@ public class MapEditorEditController {
      */
     public void onClickConfirmMapSelection(ActionEvent actionEvent) throws IOException {
         MEMain.OLDMAPPATH = txf_defaultMapPath.getText();
-        MapObject mapObject = new MapObject();
-        boolean checkmapformatresult = mapObject.mapFormatCheck(MEMain.OLDMAPPATH);
-        if(checkmapformatresult == false) {
-            System.out.println(checkmapformatresult);
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("format error");
-            alert.showAndWait();
-            return;
-        }
+
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
         Pane mapEditorEditPagePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();
