@@ -6,23 +6,20 @@ import mapeditor.model.MEContinent;
 import mapeditor.model.MECountry;
 import mapeditor.model.MapObject;
 import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.FixMethodOrder;
+import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import javax.lang.model.element.NestingKind;
-import java.util.Map;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MapEditorTest {
 
     public static MEMain testMEMain;
-    public String firstmap = "maps/World-firsterror.map";
-    public String secondmap = "maps/World-seconderror.map";
-    public String thirdmap = "maps/World-thirderror.map";
-    public String fourthmap = "maps/World-fourtherror.map";
-    public String fifthmap = "maps/World-fiftherror.map";
+    public String firstmap = "maps/ErrorMap/World-firsterror.map";
+    public String secondmap = "maps/ErrorMap/World-seconderror.map";
+    public String thirdmap = "maps/ErrorMap/World-thirderror.map";
 
     @BeforeClass public static void before(){
         testMEMain = new MEMain();
@@ -94,19 +91,4 @@ public class MapEditorTest {
         assertFalse(mapObject.checkCorrectness(thirdmap));
     }
 
-    /**
-     * Test for reading empty map
-     */
-    @Test public void testEmptyMap(){
-        MapObject mapObject = new MapObject();
-        assertFalse(mapObject.mapFormatCheck(fifthmap));
-    }
-
-    /**
-     * Test for reading invalid map
-     */
-    @Test public void testInvalidMap(){
-        MapObject mapObject = new MapObject();
-        assertFalse(mapObject.mapFormatCheck(fourthmap));
-    }
 }
