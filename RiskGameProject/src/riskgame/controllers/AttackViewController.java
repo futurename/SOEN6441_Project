@@ -16,7 +16,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
-import riskgame.model.BasicClass.ObserverPattern.ListViewObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
@@ -49,16 +48,6 @@ public class AttackViewController implements Initializable {
     private final int curPlayerIndex = Main.curRoundPlayerIndex;
 
     /**
-     * Observer ListView for storing owned country list.
-     */
-    private ListViewObserver ownedCountryListViewObserver;
-
-    /**
-     * Observer ListView for storing adjacent country list.
-     */
-    private ListViewObserver adjacentCountryListViewObserver;
-
-    /**
      * Alert object
      */
     private Alert alert;
@@ -77,7 +66,6 @@ public class AttackViewController implements Initializable {
         alert = new Alert(Alert.AlertType.WARNING);
 
         initCountryListviewDisplay(curPlayer);
-
     }
 
     /**
@@ -87,8 +75,8 @@ public class AttackViewController implements Initializable {
      */
     private void initCountryListviewDisplay(Player curPlayer) {
         ObservableList<Country> ownedObservevableCountryList = InfoRetriver.getObservableCountryList(curPlayer);
-        ownedCountryListViewObserver = new ListViewObserver(lsv_ownedCountries, ownedObservevableCountryList);
-        adjacentCountryListViewObserver = new ListViewObserver(lsv_adjacentCountries, null);
+        lsv_ownedCountries.setItems(ownedObservevableCountryList);
+        ListviewRenderer.renderCountryItems(lsv_ownedCountries);
     }
 
     /**
@@ -98,8 +86,7 @@ public class AttackViewController implements Initializable {
      */
     @FXML
     public void selectOneCountry(MouseEvent mouseEvent) {
-        int countryIndex = ownedCountryListViewObserver
-                .getListView()
+        int countryIndex = lsv_ownedCountries
                 .getSelectionModel()
                 .getSelectedIndex();
 
@@ -107,8 +94,8 @@ public class AttackViewController implements Initializable {
 
         ObservableList<Country> datalist = InfoRetriver.getAttackableAdjacentCountryList(Main.curRoundPlayerIndex, countryIndex);
 
-        adjacentCountryListViewObserver.setObservableList(datalist);
-        ListviewRenderer.renderCountryItems(adjacentCountryListViewObserver.getListView());
+        lsv_adjacentCountries.setItems(datalist);
+        ListviewRenderer.renderCountryItems(lsv_adjacentCountries);
     }
 
     /**
@@ -133,8 +120,7 @@ public class AttackViewController implements Initializable {
      * @param actionEvent button clicked
      */
     public void clickAttack(ActionEvent actionEvent) {
-        int defendingCountryIndex = adjacentCountryListViewObserver
-                .getListView()
+        int defendingCountryIndex = lsv_adjacentCountries
                 .getSelectionModel()
                 .getSelectedIndex();
 
@@ -144,13 +130,11 @@ public class AttackViewController implements Initializable {
         } else {
             Player attacker = Main.playersList.get(curPlayerIndex);
 
-            Country attackingCountry = (Country) ownedCountryListViewObserver
-                    .getListView()
+            Country attackingCountry = (Country) lsv_ownedCountries
                     .getSelectionModel()
                     .getSelectedItem();
 
-            Country defendingCountry = (Country) adjacentCountryListViewObserver
-                    .getListView()
+            Country defendingCountry = (Country) lsv_adjacentCountries
                     .getSelectionModel()
                     .getSelectedItem();
 

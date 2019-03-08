@@ -17,6 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
@@ -77,6 +78,8 @@ public class ReinforceViewController implements Initializable {
      */
     private static final int DEFAULT_MIN_REINFORCE_ARMY_NBR = 3;
 
+    private PhaseViewObserver reinforcePhaseViewObserver;
+
     /**
      * init method for reinforce phase view
      *
@@ -125,6 +128,14 @@ public class ReinforceViewController implements Initializable {
         lbl_deployArmyCount.setText(Integer.toString(curUndeployedArmy));
 
         scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue) -> lbl_deployArmyCount.setText(Integer.toString(newValue.intValue())));
+    }
+
+    public PhaseViewObserver getReinforcePhaseViewObserver() {
+        return reinforcePhaseViewObserver;
+    }
+
+    public void setReinforcePhaseViewObserver(PhaseViewObserver reinforcePhaseViewObserver) {
+        this.reinforcePhaseViewObserver = reinforcePhaseViewObserver;
     }
 
     /**

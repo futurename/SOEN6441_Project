@@ -21,6 +21,8 @@ import mapeditor.model.MapObject;
 import riskgame.Main;
 import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.GraphSingleton;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InitPlayers;
 import riskgame.model.Utils.ListviewRenderer;
@@ -103,9 +105,20 @@ public class StartViewController {
     private boolean isMapInfoOn = false;
 
     /**
+     * Phase view observable object.
+     */
+    private static PhaseViewObservable reinforcePhaseViewObservable;
+
+    /**
+     * Phase view observable object.
+     */
+    private static  PhaseViewObserver startPhaseViewObserver;
+
+    /**
      * set default map path, default number of players and its range, constrain the range of number of player with UI controls
      */
     public void initialize() {
+
         txf_playerNumbers.setText(Integer.toString(DEFAULT_NUM_OF_PLAYERS));
 
         numOfPlayersProperty = new SimpleIntegerProperty(DEFAULT_NUM_OF_PLAYERS);
@@ -116,6 +129,14 @@ public class StartViewController {
         if (numOfPlayersProperty.get() >= MAX_NUM_OF_PLAYERS) {
             btn_plusPlayerNumber.setVisible(false);
         }
+    }
+
+    public static PhaseViewObserver getStartPhaseViewObserver() {
+        return startPhaseViewObserver;
+    }
+
+    public static void setStartPhaseViewObserver(PhaseViewObserver startPhaseViewObserver) {
+        startPhaseViewObserver = startPhaseViewObserver;
     }
 
     /**

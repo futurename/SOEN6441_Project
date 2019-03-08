@@ -1,7 +1,5 @@
 package riskgame.model.BasicClass;
 
-import riskgame.model.BasicClass.ObserverPattern.CountryObservable;
-
 /**
  * This class includes attributes a country needs and required methods
  **/
@@ -12,7 +10,6 @@ public class Country {
     private String coordinateY;
     private int countryOwnerIndex;
     private int countryArmyNumber;
-    private CountryObservable countryObservable;
 
     /**
      * constructor for class Country
@@ -26,7 +23,6 @@ public class Country {
         this.coordinateY = "";
         this.countryOwnerIndex = -1;
         this.countryArmyNumber = 1;
-        this.countryObservable = new CountryObservable();
     }
 
     /**
@@ -84,15 +80,6 @@ public class Country {
     }
 
     /**
-     * Observable pattern
-     *
-     * @return obervable object
-     */
-    public CountryObservable getCountryObservable() {
-        return countryObservable;
-    }
-
-    /**
      * setter
      *
      * @param countryOwnerIndex player index of the country owner
@@ -122,7 +109,6 @@ public class Country {
         if (this.countryArmyNumber >= 0) {
             this.countryArmyNumber += addedNumber;
             result = true;
-            this.countryObservable.notifyObservers(this.getCountryName());
         }
         return result;
     }
@@ -138,7 +124,6 @@ public class Country {
         if (this.countryArmyNumber >= reducedNumber) {
             this.countryArmyNumber -= reducedNumber;
             result = true;
-            this.countryObservable.notifyObservers();
         }
         return result;
     }

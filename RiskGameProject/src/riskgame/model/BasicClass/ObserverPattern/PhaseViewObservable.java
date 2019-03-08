@@ -3,7 +3,8 @@ package riskgame.model.BasicClass.ObserverPattern;
 import java.util.Observable;
 
 /**
- * observable class for country
+ * created on 2019/03/08_15:11
  **/
-public class CountryObservable extends Observable {
+
+public class PhaseViewObservable extends Observable {
 }
