@@ -105,4 +105,28 @@ public class Player {
     public CountryChangedObserver getCountryChangedObserver() {
         return countryChangedObserver;
     }
+
+
+    /**
+     * Processing attack follwing the game rules:
+     * <p>
+     * if attacker army number is equal or greater than three, attacker will roll three dices
+     * if defender army number is equal or greater than two, defender will roll two dices
+     * if army number is less than above requirements, it will roll the dices as many times as the remaining army number
+     * compare the best dice with both sides then compare the second best dice
+     * deduct army number from the losing side
+     * </p>
+     *
+     * @param attackingCountry
+     * @param defendingCountry the defending country ojbect
+     */
+    public void attckCountry(Country attackingCountry, Country defendingCountry) {
+        int defenderIndex = defendingCountry.getCountryOwnerIndex();
+        int defendingArmyNbr = defendingCountry.getCountryArmyNumber();
+        int attackingArmyNbr = attackingCountry.getCountryArmyNumber();
+
+
+    }
+
+
 }

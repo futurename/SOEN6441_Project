@@ -145,7 +145,7 @@ public class ReinforceViewController implements Initializable {
     /**
      * unfinished
      *
-     * @param sbc_occupationRatio display a stack bar chart that shows quantity of conquered country by the current player and<br/>
+     * @param sbc_occupationRatio display a stack bar chart that shows quantity of conquered country by the current player and
      *                            total amount of country in each continent
      */
     private void displayStackedBarChart(StackedBarChart sbc_occupationRatio) {

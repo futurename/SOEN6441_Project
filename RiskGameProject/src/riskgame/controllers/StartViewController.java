@@ -19,7 +19,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import mapeditor.model.MapObject;
 import riskgame.Main;
-import riskgame.model.BasicClass.*;
+import riskgame.model.BasicClass.Continent;
+import riskgame.model.BasicClass.GraphSingleton;
+import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InitPlayers;
 import riskgame.model.Utils.ListviewRenderer;
 
@@ -211,6 +213,7 @@ public class StartViewController {
     /**
      * display world map and country allocation
      *
+     * @param path map file path
      * @throws IOException map file not found
      */
     private void displayWorldMap(String path) throws IOException {

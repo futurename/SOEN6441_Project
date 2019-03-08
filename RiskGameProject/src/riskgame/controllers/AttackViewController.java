@@ -37,6 +37,8 @@ public class AttackViewController implements Initializable {
     @FXML
     private Label lbl_playerInfo;
 
+    private final int curPlayerIndex = Main.curRoundPlayerIndex;
+
     /**
      * init method for attack phase view
      *
@@ -96,10 +98,15 @@ public class AttackViewController implements Initializable {
     }
 
     /**
-     * onClick event for confirmting attack
+     * onClick event for confirming attack
      *
      * @param actionEvent button clicked
      */
-    public void clickConfirmAttack(ActionEvent actionEvent) {
+    public void clickAttack(ActionEvent actionEvent) {
+        Player attacker = Main.playersList.get(curPlayerIndex);
+        Country attackingCountry = (Country) lsv_ownedCountries.getSelectionModel().getSelectedItem();
+        Country defendingCountry = (Country) lsv_adjacentCountries.getSelectionModel().getSelectedItem();
+
+        attacker.attckCountry(attackingCountry, defendingCountry);
     }
 }

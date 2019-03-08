@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 
+
 /**
  * Fortification phase tester
  */
@@ -20,7 +21,7 @@ public class FortificationPhaseTest {
 
     @Before
     public void before() throws Exception {
-        graphTester = new GraphTester();
+        graphTester = new test.GraphTester();
     }
 
     @After
