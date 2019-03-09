@@ -76,11 +76,12 @@ public class FortificationViewController {
      */
     public void initialize() {
         initObserver();
-        curGamePhase = fortiObserver.getPhaseName();
-        String playerInfo = "Player: " + fortiObserver.getPlayerIndex();
+
+        String playerInfo = "Player: " + curPlayerIndex;
 //        String playerInfo = "Player: " + Main.curRoundPlayerIndex;
         lbl_playerInfo.setText(playerInfo);
-        curPlayer = Main.playersList.get(Main.curRoundPlayerIndex);
+//        curPlayer = Main.playersList.get(Main.curRoundPlayerIndex);
+        curPlayer = Main.playersList.get(curPlayerIndex);
         lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
         ListviewRenderer.renderCountryItems(lsv_ownedCountries);
 
@@ -192,11 +193,9 @@ public class FortificationViewController {
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-//        Main.curRoundPlayerIndex = (Main.curRoundPlayerIndex + 1) % Main.totalNumOfPlayers;
-        int nextPlayerIndex = (curPlayerIndex + 1) % Main.totalNumOfPlayers;
-        gamePhase.setAllParam("to_ATK", nextPlayerIndex, "NO ACT");
-        gamePhase.notifyObservers("REGULAR NOTIFICATION");
-        System.out.println("one round finished: " + nextPlayerIndex);
+
+        notifyGamePhaseChanged();
+
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/AttackView.fxml")).load();
         Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
@@ -292,6 +291,15 @@ public class FortificationViewController {
 
     private void initObserver(){
         this.fortiObserver = Main.phaseViewObserver;
+        curGamePhase = fortiObserver.getPhaseName();
+        curPlayerIndex = fortiObserver.getPlayerIndex();
+    }
+
+    private void notifyGamePhaseChanged(){
         this.gamePhase = Main.phaseViewObservable;
+        int nextPlayerIndex = (curPlayerIndex + 1) % Main.totalNumOfPlayers;
+        gamePhase.setAllParam("to_ATK", nextPlayerIndex, "NO ACT");
+        gamePhase.notifyObservers("from fortiView");
+        System.out.println("one round finished: " + nextPlayerIndex);
     }
 }

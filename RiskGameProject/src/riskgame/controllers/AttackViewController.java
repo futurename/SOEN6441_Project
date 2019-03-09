@@ -67,10 +67,9 @@ public class AttackViewController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Player curPlayer = Main.playersList.get(Main.curRoundPlayerIndex);
         initObserver();
-        curPlayerIndex = atkObserver.getPlayerIndex();
-        curGamePhase = gamePhase.getPhaseName();
+
+        Player curPlayer = Main.playersList.get(curPlayerIndex);
         String playerInfo = "Player: " + curPlayerIndex;
         lbl_playerInfo.setText(playerInfo);
         alert = new Alert(Alert.AlertType.WARNING);
@@ -102,7 +101,7 @@ public class AttackViewController implements Initializable {
 
         System.out.println("#############selected country index: " + countryIndex);
 
-        ObservableList<Country> datalist = InfoRetriver.getAttackableAdjacentCountryList(Main.curRoundPlayerIndex, countryIndex);
+        ObservableList<Country> datalist = InfoRetriver.getAttackableAdjacentCountryList(this.curPlayerIndex, countryIndex);
 
         lsv_adjacentCountries.setItems(datalist);
         ListviewRenderer.renderCountryItems(lsv_adjacentCountries);
@@ -115,8 +114,7 @@ public class AttackViewController implements Initializable {
      * @throws IOException FotificationView.fxml is not found
      */
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-        gamePhase.setAllParam("TO_forti", curPlayerIndex, "no action");
-        gamePhase.notifyObservers("from atk view");
+        notifyGamePhaseChanged();
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Pane fortificationPane = new FXMLLoader(getClass().getResource("../view/FortificationView.fxml")).load();
         Scene fortificationScene = new Scene(fortificationPane, 1200, 900);
@@ -173,6 +171,13 @@ public class AttackViewController implements Initializable {
 
     private void initObserver(){
         this.atkObserver = Main.phaseViewObserver;
+        curPlayerIndex = atkObserver.getPlayerIndex();
+        curGamePhase = atkObserver.getPhaseName();
+    }
+
+    private void notifyGamePhaseChanged(){
         this.gamePhase = Main.phaseViewObservable;
+        gamePhase.setAllParam("TO_forti", curPlayerIndex, "no action");
+        gamePhase.notifyObservers("from atk view");
     }
 }
