@@ -45,6 +45,8 @@ public class FortificationViewController {
     private Button btn_nextStep;
     @FXML
     private Button btn_skipFortification;
+    @FXML
+    private Label lbl_phaseViewName;
 
     /**
      * fortification move counter
@@ -60,16 +62,13 @@ public class FortificationViewController {
      * current player in this phase
      */
     private Player curPlayer;
+    private int curPlayerIndex;
+    private String curGamePhase;
 
     /**
      * warning alert used for notification
      */
     private Alert alert = new Alert(Alert.AlertType.WARNING);
-
-    private PhaseViewObserver fortiObserver;
-    private PhaseViewObservable gamePhase;
-    private int curPlayerIndex;
-    private String curGamePhase;
 
     /**
      * init method for fortification phase view
@@ -82,6 +81,7 @@ public class FortificationViewController {
         lbl_playerInfo.setText(playerInfo);
 //        curPlayer = Main.playersList.get(Main.curRoundPlayerIndex);
         curPlayer = Main.playersList.get(curPlayerIndex);
+        lbl_phaseViewName.setText(curGamePhase);
         lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
         ListviewRenderer.renderCountryItems(lsv_ownedCountries);
 
@@ -193,7 +193,7 @@ public class FortificationViewController {
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-        notifyGamePhaseChanged();
+        notifyGameStageChanged();
 
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/AttackView.fxml")).load();
@@ -289,16 +289,15 @@ public class FortificationViewController {
     }
 
     private void initObserver(){
-        this.fortiObserver = Main.phaseViewObserver;
-        curGamePhase = fortiObserver.getPhaseName();
-        curPlayerIndex = fortiObserver.getPlayerIndex();
+        curGamePhase = Main.phaseViewObserver.getPhaseName();
+        curPlayerIndex = Main.phaseViewObserver.getPlayerIndex();
     }
 
-    private void notifyGamePhaseChanged(){
-        this.gamePhase = Main.phaseViewObservable;
+    private void notifyGameStageChanged(){
         int nextPlayerIndex = (curPlayerIndex + 1) % Main.totalNumOfPlayers;
-        gamePhase.setAllParam("to_ATK", nextPlayerIndex, "NO ACT");
-        gamePhase.notifyObservers("from fortiView");
-        System.out.println("one round finished: " + nextPlayerIndex);
+        Main.phaseViewObservable.setAllParam("Attack Phase", nextPlayerIndex, "NO ACT");
+        Main.phaseViewObservable.notifyObservers("from fortification view");
+
+        System.out.printf("player %s finished fortification, player %s's turn\n", curPlayerIndex, nextPlayerIndex);
     }
 }

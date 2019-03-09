@@ -42,7 +42,7 @@ public class PhaseViewObserver implements Observer {
         this.playerIndex = ((PhaseViewObservable)o).getPlayerIndex();
         this.actionString = ((PhaseViewObservable)o).getActionString();
 
-        System.out.println("observer updated: \n");
-        System.out.println(phaseName + ", " + playerIndex + ", " + actionString + ", " + (String)arg);
+        System.out.println("observer updated to:\n");
+        System.out.printf("%s, player %s, %s, %s\n",phaseName, playerIndex, actionString, arg);
     }
 }

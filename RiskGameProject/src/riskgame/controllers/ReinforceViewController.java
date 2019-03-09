@@ -324,7 +324,7 @@ public class ReinforceViewController implements Initializable {
             Main.phaseViewObservable.setAllParam("Reinforcement Phase", nextPlayerIndex, "NO ACT");
             Main.phaseViewObservable.notifyObservers("from reinforcement");
         }
-        System.out.println("one round finished, next player's turn" + nextPlayerIndex);
+        System.out.printf("player %s finished, player %s's turn\n", curPlayerIndex, nextPlayerIndex);
     }
 }
 

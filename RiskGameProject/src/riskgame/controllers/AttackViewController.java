@@ -43,6 +43,8 @@ public class AttackViewController implements Initializable {
     private Button btn_finishAttack;
     @FXML
     private Button btn_confirmAttack;
+    @FXML
+    private Label lbl_phaseViewName;
 
     /**
      * curent player index
@@ -55,9 +57,6 @@ public class AttackViewController implements Initializable {
      * Alert object
      */
     private Alert alert;
-
-    private PhaseViewObserver atkObserver;
-    private PhaseViewObservable gamePhase;
 
     /**
      * init method for attack phase view
@@ -72,6 +71,7 @@ public class AttackViewController implements Initializable {
         Player curPlayer = Main.playersList.get(curPlayerIndex);
         String playerInfo = "Player: " + curPlayerIndex;
         lbl_playerInfo.setText(playerInfo);
+        lbl_phaseViewName.setText(curGamePhase);
         alert = new Alert(Alert.AlertType.WARNING);
 
         initCountryListviewDisplay(curPlayer);
@@ -170,14 +170,13 @@ public class AttackViewController implements Initializable {
     }
 
     private void initObserver(){
-        this.atkObserver = Main.phaseViewObserver;
-        curPlayerIndex = atkObserver.getPlayerIndex();
-        curGamePhase = atkObserver.getPhaseName();
+        curPlayerIndex = Main.phaseViewObserver.getPlayerIndex();
+        curGamePhase = Main.phaseViewObserver.getPhaseName();
     }
 
     private void notifyGamePhaseChanged(){
-        this.gamePhase = Main.phaseViewObservable;
-        gamePhase.setAllParam("TO_forti", curPlayerIndex, "no action");
-        gamePhase.notifyObservers("from atk view");
+        Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "no action");
+        Main.phaseViewObservable.notifyObservers("from attack view");
+        System.out.printf("player %s finished attack, player %s's turn\n", curPlayerIndex, curPlayerIndex);
     }
 }

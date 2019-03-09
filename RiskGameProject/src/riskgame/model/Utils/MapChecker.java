@@ -24,7 +24,6 @@ public class MapChecker {
      * @return true for correct, false for error
      */
     public static boolean isMapPathValid(String path) {
-        System.out.println(new File(path).getAbsolutePath());
         try {
             new FileReader(path);
         } catch (FileNotFoundException e) {
@@ -57,7 +56,7 @@ public class MapChecker {
         ArrayList continentsNames = new ArrayList<String>();
 
         BufferedReader bufferedReader = null;
-        System.out.println(new File(path).getAbsolutePath());
+        System.out.println("Reading map from: " + new File(path).getAbsolutePath());
         bufferedReader = new BufferedReader(new FileReader(path));
 
         String line;
@@ -124,7 +123,6 @@ public class MapChecker {
      * @return error type
      */
     private static int checkTerritoriesFormat(String territoriesLine, ArrayList<String> continents) {
-        System.out.println(territoriesLine);
         String[] splitedLine = territoriesLine.split(",");
         if (splitedLine.length < 5) {
             return ERROR_TYPE_EMPTY_CONTINENT;
