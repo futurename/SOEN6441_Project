@@ -2,13 +2,13 @@ package riskgame.model.BasicClass;
 
 import java.util.Random;
 
-public class dice{
+public class Dice {
     private Random r;
 
-    public dice(int seed){
+    public Dice(int seed){
         r = new Random(seed);
     }
-    public dice(){
+    public Dice(){
         int defaultSeed = 6;
         r = new Random(defaultSeed);
     }

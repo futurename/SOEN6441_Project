@@ -123,16 +123,16 @@ public class Player{
         int defenderSecondBestDice = 0;
         int attackerSecondBestDice = 0;
 
-        Random random = new Random();
+        Dice dice = new Dice(128);
 
         /**
          * calculating attacker best dice and second best dice when attacker country number is greater than 3
          */
         if (attackingArmyNbr >= 3)
         {
-            attackerFirstDice = random.nextInt(6) + 1;
-            attackerSecondDice = random.nextInt(6) + 1;
-            attackerThirdDice = random.nextInt(6) + 1;
+            attackerFirstDice = dice.rollADice();
+            attackerSecondDice = dice.rollADice();
+            attackerThirdDice = dice.rollADice();
             /**
              * calculating attacker best dice when attacker country number is greater than 3
              */
@@ -158,15 +158,15 @@ public class Player{
          * * * calculating attacker best dice  when attacker country number is 1
          */
         else if (attackingArmyNbr == 1) {
-            attackerBestDice = random.nextInt(6) + 1;
+            attackerBestDice = dice.rollADice();
         }
         /**
          * calculating attacker best dice  when attacker country number is 2
          */
         else if (attackingArmyNbr == 2)
         {
-            attackerFirstDice = random.nextInt(6) + 1;
-            attackerSecondDice = random.nextInt(6) + 1;
+            attackerFirstDice = dice.rollADice();
+            attackerSecondDice = dice.rollADice();
             if (attackerFirstDice > attackerSecondDice)
             {
                 attackerBestDice = attackerFirstDice;
@@ -179,8 +179,8 @@ public class Player{
          * calculating defender best dice  when attacker country number greater than or equal 2
          */
         if (defendingArmyNbr >= 2) {
-            defenderFirstDice = random.nextInt(6) + 1;
-            defenderSecondDice = random.nextInt(6) + 1;
+            defenderFirstDice = dice.rollADice();
+            defenderSecondDice = dice.rollADice();
             if (defenderSecondDice > defenderFirstDice)
             {
                 defenderBestDice = defenderSecondDice;
@@ -197,14 +197,14 @@ public class Player{
          * calculating attacker best dice  when defender country number is 1
          */
         else if (defendingArmyNbr == 1) {
-            defenderBestDice = random.nextInt(6) + 1;
+            defenderBestDice = dice.rollADice();
         }
         /**
-         * calculating defender best dice  when defender country number is less than 1
+         * calculating defender best dice when defender country number is less than 1
          */
         else if (defendingArmyNbr < 1)
         {
-            /**attacker conquerd that countryv
+            /**attacker conquerd that country
              *
              */
         }
