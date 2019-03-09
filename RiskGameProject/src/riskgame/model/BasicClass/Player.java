@@ -134,7 +134,9 @@ public class Player{
         int defenderBestDice = 0;
         int defenderSecondBestDice = 0;
         int attackerSecondBestDice = 0;
-
+        /**
+         * using user defined dice class
+         */
         Dice dice = new Dice(128);
 
         /**
