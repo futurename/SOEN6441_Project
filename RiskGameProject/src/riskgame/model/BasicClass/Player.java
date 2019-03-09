@@ -4,6 +4,7 @@ package riskgame.model.BasicClass;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * This class includes attributes a player need and required methods
@@ -126,6 +127,7 @@ public class Player{
         int defenderIndex = defendingCountry.getCountryOwnerIndex();
         int defendingArmyNbr = defendingCountry.getCountryArmyNumber();
         int attackingArmyNbr = attackingCountry.getCountryArmyNumber();
+        int attackerDice=0;
         int attackerFirstDice = 0;
         int attackerSecondDice = 0;
         int attackerThirdDice = 0;
@@ -135,7 +137,7 @@ public class Player{
         int defenderBestDice = 0;
         int defenderSecondBestDice = 0;
         int attackerSecondBestDice = 0;
-        ArrayList list =new ArrayList();
+        ArrayList<Integer> list =new ArrayList<Integer>();
         /**
          * using user defined dice class
          */
@@ -145,30 +147,15 @@ public class Player{
          * calculating attacker best dice and second best dice when attacker country number is greater than 3
          */
 
-            if (attackingArmyNbr >= 3) {
-                attackerFirstDice = dice.rollADice();
-                attackerSecondDice = dice.rollADice();
-                attackerThirdDice = dice.rollADice();
-                /**
-                 * calculating attacker best dice when attacker country number is greater than 3
-                 */
-                if (attackerFirstDice > attackerSecondDice && attackerFirstDice > attackerSecondDice) {
-                    attackerBestDice = attackerFirstDice;
-                } else if (attackerSecondDice > attackerFirstDice && attackerSecondDice > attackerThirdDice) {
-                    attackerBestDice = attackerSecondDice;
-                } else if (attackerThirdDice > attackerSecondDice && attackerThirdDice > attackerFirstDice) {
-                    attackerBestDice = attackerThirdDice;
+            if (attackingArmyNbr >= 3)
+            {
+                for (int turn = 0; turn <= 3; turn++) {
+                    attackerDice = dice.rollADice();
+                    list.add(attackerDice);
                 }
-                /**
-                 * calculating attacker second best dice when attacker country number is greater than 3
-                 */
-                if ((attackerFirstDice < attackerSecondDice && attackerSecondDice < attackerThirdDice) || (attackerThirdDice < attackerSecondDice && attackerSecondDice < attackerFirstDice)) {
-                    attackerSecondBestDice = attackerSecondDice;
-                } else if ((attackerSecondDice < attackerFirstDice && attackerFirstDice < attackerThirdDice) || (attackerThirdDice < attackerFirstDice && attackerFirstDice < attackerSecondDice)) {
-                    attackerSecondBestDice = attackerFirstDice;
-                } else {
-                    attackerSecondBestDice = attackerThirdDice;
-                }
+                Collections.sort(list);
+                attackerBestDice = list.get(list.size() - 1);
+                attackerSecondBestDice = list.get(list.size() - 2);
             }
             /**
              * * * calculating attacker best dice  when attacker country number is 1
