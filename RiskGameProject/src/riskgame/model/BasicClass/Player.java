@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * This class includes attributes a player need and required methods
  **/
-public class Player{
+public class Player {
     private static final int DEFAULT_DIVISION_FACTOR = 3;
 
     private final int playerIndex;
@@ -17,7 +17,6 @@ public class Player{
     private ArrayList<Card> cardsList;
     private ArrayList<String> ownedCountryNameList;
     private Color playerColor;
-
 
 
     /**
@@ -107,13 +106,14 @@ public class Player{
      * deduct army number from the losing side
      * </p>
      *
-     * @param attackingCountry
+     * @param attackingCountry the attacking country object
      * @param defendingCountry the defending country ojbect
      */
     public void attckCountry(Country attackingCountry, Country defendingCountry) {
         int defenderIndex = defendingCountry.getCountryOwnerIndex();
         int defendingArmyNbr = defendingCountry.getCountryArmyNumber();
-        int attackingArmyNbr = attackingCountry.getCountryArmyNumber();int attackerFirstDice = 0;
+        int attackingArmyNbr = attackingCountry.getCountryArmyNumber();
+        int attackerFirstDice = 0;
         int attackerSecondDice = 0;
         int attackerThirdDice = 0;
         int attackerBestDice = 0;
@@ -128,8 +128,7 @@ public class Player{
         /**
          * calculating attacker best dice and second best dice when attacker country number is greater than 3
          */
-        if (attackingArmyNbr >= 3)
-        {
+        if (attackingArmyNbr >= 3) {
             attackerFirstDice = random.nextInt(6) + 1;
             attackerSecondDice = random.nextInt(6) + 1;
             attackerThirdDice = random.nextInt(6) + 1;
@@ -163,15 +162,12 @@ public class Player{
         /**
          * calculating attacker best dice  when attacker country number is 2
          */
-        else if (attackingArmyNbr == 2)
-        {
+        else if (attackingArmyNbr == 2) {
             attackerFirstDice = random.nextInt(6) + 1;
             attackerSecondDice = random.nextInt(6) + 1;
-            if (attackerFirstDice > attackerSecondDice)
-            {
+            if (attackerFirstDice > attackerSecondDice) {
                 attackerBestDice = attackerFirstDice;
-            } else
-            {
+            } else {
                 attackerBestDice = attackerSecondDice;
             }
         }
@@ -181,12 +177,10 @@ public class Player{
         if (defendingArmyNbr >= 2) {
             defenderFirstDice = random.nextInt(6) + 1;
             defenderSecondDice = random.nextInt(6) + 1;
-            if (defenderSecondDice > defenderFirstDice)
-            {
+            if (defenderSecondDice > defenderFirstDice) {
                 defenderBestDice = defenderSecondDice;
                 defenderSecondBestDice = defenderFirstDice;
-            } else
-            {
+            } else {
                 defenderBestDice = defenderFirstDice;
                 defenderSecondBestDice = defenderSecondDice;
             }
@@ -202,8 +196,7 @@ public class Player{
         /**
          * calculating defender best dice  when defender country number is less than 1
          */
-        else if (defendingArmyNbr < 1)
-        {
+        else if (defendingArmyNbr < 1) {
             /**attacker conquerd that countryv
              *
              */
@@ -222,7 +215,7 @@ public class Player{
         /**
          * comparing attacker and defender best dice when defending army number greater one and attacking army number is eual and greater than three
          */
-        else if (defendingArmyNbr > 1 && attackingArmyNbr >=2) {
+        else if (defendingArmyNbr > 1 && attackingArmyNbr >= 2) {
             if (attackerBestDice > defenderBestDice) {
                 /**
                  * attacker wins and defender loses one army
@@ -252,8 +245,7 @@ public class Player{
                 /**
                  *  attacker wins and defender loses one army
                  */
-            }
-            else {
+            } else {
                 /**
                  * defender wins and attacker loses one army
                  */

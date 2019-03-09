@@ -8,6 +8,16 @@ import java.util.Observer;
  **/
 
 public class PhaseViewObserver implements Observer {
+    private String phaseName;
+    private String playerName;
+    private String actionString;
+
+    public PhaseViewObserver(String phaseName, int playerIndex, String actionString) {
+        this.phaseName = phaseName;
+        this.playerName = "Player_" + playerIndex;
+        this.actionString = actionString;
+    }
+
     @Override
     public void update(Observable o, Object arg) {
 

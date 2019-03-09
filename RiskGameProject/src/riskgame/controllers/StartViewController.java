@@ -110,7 +110,7 @@ public class StartViewController {
     private static PhaseViewObservable reinforcePhaseViewObservable;
 
     /**
-     * Phase view observable object.
+     * Phase view observer object.
      */
     private static  PhaseViewObserver startPhaseViewObserver;
 
