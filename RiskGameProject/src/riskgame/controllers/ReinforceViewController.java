@@ -9,15 +9,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.scene.chart.StackedBarChart;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
-import riskgame.model.BasicClass.ObserverPattern.PhaseViewObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
@@ -28,6 +27,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+
+import static riskgame.Main.*;
 
 /**
  * controller class for ReinforceView.fxml
@@ -45,9 +46,7 @@ public class ReinforceViewController implements Initializable {
     @FXML
     private PieChart pct_countryDistributionChart;
     @FXML
-    private StackedBarChart sbc_occupationRatio;
-    @FXML
-    private Label lbl_playerInfo;
+    private VBox vbx_worldDomiView;
     @FXML
     private ScrollBar scb_armyNbrAdjustment;
     @FXML
@@ -62,6 +61,13 @@ public class ReinforceViewController implements Initializable {
     private Label lbl_adjacentCountriesInfo;
     @FXML
     private Label lbl_countriesInfo;
+    @FXML
+    private Label lbl_actionString;
+    @FXML
+    private Label lbl_playerName;
+    @FXML
+    private Label lbl_phaseViewName;
+
 
     /**
      * current player in this phase
@@ -78,7 +84,9 @@ public class ReinforceViewController implements Initializable {
      */
     private static final int DEFAULT_MIN_REINFORCE_ARMY_NBR = 3;
 
-    private PhaseViewObserver reinforcePhaseViewObserver;
+
+
+
 
     /**
      * init method for reinforce phase view
@@ -88,7 +96,7 @@ public class ReinforceViewController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        reinforceViewInit(Main.curRoundPlayerIndex);
+        reinforceViewInit(curRoundPlayerIndex);
     }
 
     /**
@@ -98,17 +106,15 @@ public class ReinforceViewController implements Initializable {
      */
     private void reinforceViewInit(int playerIndex) {
 
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>> cur player: " + playerIndex);
-
-        lbl_playerInfo.setText("Player : " + playerIndex);
 
         curPlayer = Main.playersList.get(playerIndex);
+        initPhaseView(curPlayer);
 
         Color curPlayerColor = curPlayer.getPlayerColor();
         int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
         int curUndeployedArmy = getStandardReinforceArmyNum(ownedCountryNum);
 
-        lbl_playerInfo.setTextFill(curPlayerColor);
+       // lbl_playerInfo.setTextFill(curPlayerColor);
         lbl_countriesInfo.setTextFill(curPlayerColor);
         lbl_adjacentCountriesInfo.setTextFill(curPlayerColor);
         lbl_undeployedArmy.setText(Integer.toString(curUndeployedArmy));
@@ -120,8 +126,6 @@ public class ReinforceViewController implements Initializable {
 
         pct_countryDistributionChart.setData(getPieChartData(curPlayer));
 
-        displayStackedBarChart(sbc_occupationRatio);
-
         scb_armyNbrAdjustment.setMax(curUndeployedArmy);
         scb_armyNbrAdjustment.setMin(1);
         scb_armyNbrAdjustment.adjustValue(curUndeployedArmy);
@@ -130,23 +134,27 @@ public class ReinforceViewController implements Initializable {
         scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue) -> lbl_deployArmyCount.setText(Integer.toString(newValue.intValue())));
     }
 
-    public PhaseViewObserver getReinforcePhaseViewObserver() {
-        return reinforcePhaseViewObserver;
+    private void initPhaseView(Player curPlayer) {
+
+        String playerName = "Player_" + phaseViewObserver.getPlayerIndex();
+        lbl_phaseViewName.setText(phaseViewObserver.getPhaseName());
+        lbl_playerName.setText(playerName);
+        lbl_playerName.setTextFill(curPlayer.getPlayerColor());
+        lbl_actionString.setText(phaseViewObserver.getActionString());
     }
 
-    public void setReinforcePhaseViewObserver(PhaseViewObserver reinforcePhaseViewObserver) {
-        this.reinforcePhaseViewObserver = reinforcePhaseViewObserver;
+
+    private void setPhaseViewObservable(){
+        String phaseName = "Attack Phase";
+        int nextPlayerIndex = curRoundPlayerIndex + 1;
+        String actionString = "Action:\nBegin Attack phase, please select one of your country and adjacent country to attack";
+
+        phaseViewObservable.setAllParam(phaseName, nextPlayerIndex, actionString);
+        phaseViewObservable.notifyObservers(phaseViewObservable);
     }
 
-    /**
-     * unfinished
-     *
-     * @param sbc_occupationRatio display a stack bar chart that shows quantity of conquered country by the current player and
-     *                            total amount of country in each continent
-     */
-    private void displayStackedBarChart(StackedBarChart sbc_occupationRatio) {
 
-    }
+
 
     /**
      * onClick event for moving to next player if reinforcement phase is not finished or attack view from the first player

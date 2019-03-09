@@ -16,6 +16,7 @@ public class Player{
     private ArrayList<Card> cardsList;
     private ArrayList<String> ownedCountryNameList;
     private Color playerColor;
+    private int ownedCountryNbr;
 
 
 
@@ -30,8 +31,20 @@ public class Player{
         this.cardsList = new ArrayList<>();
         this.ownedCountryNameList = new ArrayList<>();
         this.playerColor = PlayerColor.values()[playerIndex].colorValue;
-
+        this.ownedCountryNbr = 0;
     }
+
+
+
+    public int getOwnedCountryNbr() {
+        ownedCountryNbr = ownedCountryNameList.size();
+        return ownedCountryNbr;
+    }
+
+    public void setOwnedCountryNbr(int ownedCountryNbr) {
+        this.ownedCountryNbr = ownedCountryNbr;
+    }
+
 
     /**
      * getter

@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static riskgame.Main.graphSingleton;
+import static riskgame.Main.*;
 import static riskgame.model.Utils.InitWorldMap.buildWorldMapGraph;
 
 /**
@@ -112,7 +112,11 @@ public class StartViewController {
     /**
      * Phase view observer object.
      */
-    private static  PhaseViewObserver startPhaseViewObserver;
+    private static PhaseViewObserver startPhaseViewObserver;
+
+
+
+
 
     /**
      * set default map path, default number of players and its range, constrain the range of number of player with UI controls
@@ -276,6 +280,8 @@ public class StartViewController {
      */
     @FXML
     public void clickNextToReinforcePhase(ActionEvent actionEvent) throws IOException {
+        setPhaseViewObservable();
+
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
         Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
@@ -285,6 +291,17 @@ public class StartViewController {
 
         curStage.show();
     }
+
+
+    private void setPhaseViewObservable(){
+        String phaseName = "Reinforce Phase";
+        int nextPlayerIndex = curRoundPlayerIndex;
+        String actionString = "Action:\nBegin reinforce phase, need deploy armies to your countries";
+
+        phaseViewObservable.setAllParam(phaseName, nextPlayerIndex, actionString);
+        phaseViewObservable.notifyObservers(phaseViewObservable);
+    }
+
 
     /**
      * onClick event for confirming the total number of players
