@@ -16,6 +16,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
@@ -45,12 +47,17 @@ public class AttackViewController implements Initializable {
     /**
      * curent player index
      */
-    private final int curPlayerIndex = Main.curRoundPlayerIndex;
+    private int curPlayerIndex;
+
+    private String curGamePhase;
 
     /**
      * Alert object
      */
     private Alert alert;
+
+    private PhaseViewObserver atkObserver;
+    private PhaseViewObservable gamePhase;
 
     /**
      * init method for attack phase view
@@ -61,7 +68,10 @@ public class AttackViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Player curPlayer = Main.playersList.get(Main.curRoundPlayerIndex);
-        String playerInfo = "Player: " + Main.curRoundPlayerIndex;
+        initObserver();
+        curPlayerIndex = atkObserver.getPlayerIndex();
+        curGamePhase = gamePhase.getPhaseName();
+        String playerInfo = "Player: " + curPlayerIndex;
         lbl_playerInfo.setText(playerInfo);
         alert = new Alert(Alert.AlertType.WARNING);
 
@@ -105,8 +115,9 @@ public class AttackViewController implements Initializable {
      * @throws IOException FotificationView.fxml is not found
      */
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
+        gamePhase.setAllParam("TO_forti", curPlayerIndex, "no action");
+        gamePhase.notifyObservers("from atk view");
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
         Pane fortificationPane = new FXMLLoader(getClass().getResource("../view/FortificationView.fxml")).load();
         Scene fortificationScene = new Scene(fortificationPane, 1200, 900);
 
@@ -158,5 +169,10 @@ public class AttackViewController implements Initializable {
         btn_confirmAttack.setVisible(false);
         btn_finishAttack.setVisible(false);
         btn_nextStep.setVisible(true);
+    }
+
+    private void initObserver(){
+        this.atkObserver = Main.phaseViewObserver;
+        this.gamePhase = Main.phaseViewObservable;
     }
 }

@@ -299,7 +299,7 @@ public class StartViewController {
         String actionString = "Action:\nBegin reinforce phase, need deploy armies to your countries";
 
         phaseViewObservable.setAllParam(phaseName, nextPlayerIndex, actionString);
-        phaseViewObservable.notifyObservers(phaseViewObservable);
+        phaseViewObservable.notifyObservers("message_null");
     }
 
 
