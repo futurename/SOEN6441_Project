@@ -193,7 +193,6 @@ public class FortificationViewController {
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-
         notifyGamePhaseChanged();
 
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

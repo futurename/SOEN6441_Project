@@ -75,6 +75,8 @@ public class ReinforceViewController implements Initializable {
      * current player in this phase
      */
     private Player curPlayer;
+    private int curPlayerIndex;
+    private String curGamePhase;
 
     /**
      * default factor for calculting standard number of army used for reinforce phase
@@ -95,18 +97,17 @@ public class ReinforceViewController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        reinforceViewInit(curRoundPlayerIndex);
+        reinforceViewInit();
     }
 
     /**
      * init UI controls and corresponding varaibles
      *
-     * @param playerIndex initialize UI controls and display information of current player
+     * param playerIndex initialize UI controls and display information of current player
      */
-    private void reinforceViewInit(int playerIndex) {
+    private void reinforceViewInit() {
 
-        curPlayer = Main.playersList.get(playerIndex);
-        initPhaseView(curPlayer);
+        initPhaseView();
         initPlayerDominationView();
 
         Color curPlayerColor = curPlayer.getPlayerColor();
@@ -163,12 +164,13 @@ public class ReinforceViewController implements Initializable {
     /**
      * set contents to phase view labels
      *
-     * @param curPlayer
      */
-    private void initPhaseView(Player curPlayer) {
-
-        String playerName = "Player_" + phaseViewObserver.getPlayerIndex();
-        lbl_phaseViewName.setText(phaseViewObserver.getPhaseName());
+    private void initPhaseView() {
+        curGamePhase = phaseViewObserver.getPhaseName();
+        curPlayerIndex = phaseViewObserver.getPlayerIndex();
+        curPlayer = Main.playersList.get(curPlayerIndex);
+        String playerName = "Player_" + curPlayerIndex;
+        lbl_phaseViewName.setText(curGamePhase);
         lbl_playerName.setText(playerName);
         lbl_playerName.setTextFill(curPlayer.getPlayerColor());
         lbl_actionString.setText(phaseViewObserver.getActionString());
@@ -193,17 +195,19 @@ public class ReinforceViewController implements Initializable {
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-        Main.curRoundPlayerIndex++;
+//        Main.curRoundPlayerIndex++;
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-        if (Main.curRoundPlayerIndex < Main.totalNumOfPlayers) {
+        if (curPlayerIndex+1 < Main.totalNumOfPlayers) {
+            notifyGameStageChanged(false);
             Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
             Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
-            reinforceViewInit(Main.curRoundPlayerIndex);
+            reinforceViewInit();
             curStage.setScene(reinforceScene);
             curStage.show();
         } else {
-            Main.curRoundPlayerIndex = Main.curRoundPlayerIndex % Main.totalNumOfPlayers;
+            notifyGameStageChanged(true);
+//            Main.curRoundPlayerIndex = Main.curRoundPlayerIndex % Main.totalNumOfPlayers;
             Pane attackPane = new FXMLLoader(getClass().getResource("../view/AttackView.fxml")).load();
             Scene attackScene = new Scene(attackPane, 1200, 900);
 
@@ -304,6 +308,23 @@ public class ReinforceViewController implements Initializable {
             System.out.println("country name: " + oneCountryName + ", curCount: " + count);
         }
         return result;
+    }
+
+    /**
+     * notify all phase view observer that game stage changed.
+     * Changes can be next player's reinforcement or going to attack phase.
+     * @param nextPhase true for going to attack phase otherwise, next player's turn
+     */
+    private void notifyGameStageChanged(boolean nextPhase){
+        int nextPlayerIndex = (curPlayerIndex + 1) % Main.totalNumOfPlayers;
+        if (nextPhase){
+            Main.phaseViewObservable.setAllParam("Attack Phase", nextPlayerIndex, "NO ACT");
+            Main.phaseViewObservable.notifyObservers("from reinforcement");
+        }else {
+            Main.phaseViewObservable.setAllParam("Reinforcement Phase", nextPlayerIndex, "NO ACT");
+            Main.phaseViewObservable.notifyObservers("from reinforcement");
+        }
+        System.out.println("one round finished, next player's turn" + nextPlayerIndex);
     }
 }
 
