@@ -1,0 +1,188 @@
+[Map]
+author=Rob Werhand
+image=United States.bmp
+wrap=yes
+scroll=none
+warn=yes
+
+[Continents]
+Oregon and Washington=3
+California and Nevada=4
+Idaho Montana and Wyoming=1
+Utah and Colorado=3
+Arizona and New Mexico=3
+The Dakotas=1
+Nebraska and Kansas=2
+Oklahoma=1
+Texas=3
+Minnesota=2
+Iowa=1
+Missouri and Arkansas=4
+Louisiana=2
+Wisconsin=2
+Illinois=3
+Mississippi and Alabama=4
+Michigan=3
+Indiana=2
+Kentucky=1
+Tennessee=2
+Georgia=2
+Florida=3
+Ohio=3
+The Virginias=4
+The Carolinas=5
+Maryland and Delaware=3
+Pennsylvania=3
+New Jersey=3
+New York=3
+Connecticut and Rhode Island=2
+Massachusetts=3
+Vermont New Hampshire and Maine=2
+
+[Territories]
+Seattle,114,123,Oregon and Washington,Portland,Southern Washington,Northern Washington
+Northern Washington,192,101,Oregon and Washington,Seattle,Southern Washington,Idaho
+Southern Washington,180,139,Oregon and Washington,Seattle,Northern Washington,Idaho,Portland,Oregon
+Portland,106,169,Oregon and Washington,Seattle,Southern Washington,Oregon
+Oregon,153,216,Oregon and Washington,Southern Washington,Portland,Northern California,Nevada,Idaho
+San Fransisco,74,377,California and Nevada,Northern California
+Los Angeles,128,474,California and Nevada,San Diego,Southern California
+San Diego,153,513,California and Nevada,Los Angeles,Southern California
+Northern California,80,306,California and Nevada,Oregon,San Fransisco,Nevada,Southern California
+Southern California,152,442,California and Nevada,San Diego,Los Angeles,Northern California,Nevada,Western Arizona
+Nevada,188,341,California and Nevada,Oregon,Northern California,Southern California,Idaho,Salt Lake City,Utah,Western Arizona
+Idaho,261,233,Idaho Montana and Wyoming,Northern Washington,Southern Washington,Oregon,Nevada,Montana,Wyoming,Salt Lake City
+Salt Lake City,289,322,Utah and Colorado,Nevada,Idaho,Wyoming,Utah
+Utah,297,389,Utah and Colorado,Nevada,Salt Lake City,Western Colorado,Eastern Arizona,Western Arizona
+Phoenix,264,531,Arizona and New Mexico,Western Arizona,Eastern Arizona
+Western Arizona,242,489,Arizona and New Mexico,Southern California,Nevada,Utah,Phoenix,Eastern Arizona
+Eastern Arizona,303,506,Arizona and New Mexico,Utah,Phoenix,New Mexico,Western Arizona
+Montana,385,166,Idaho Montana and Wyoming,Idaho,Wyoming,North Dakota,South Dakota
+Wyoming,404,283,Idaho Montana and Wyoming,Idaho,Salt Lake City,Western Colorado,Denver,Montana,South Dakota,Northern Nebraska
+Denver,431,386,Utah and Colorado,Western Colorado,Eastern Colorado,Wyoming
+Western Colorado,385,400,Utah and Colorado,Utah,Santa Fe,New Mexico,Denver,Eastern Colorado,Wyoming
+Eastern Colorado,480,409,Utah and Colorado,Santa Fe,New Mexico,Denver,Western Colorado,Northern Nebraska,Southern Nebraska,Kansas,Western Oklahoma
+Santa Fe,417,477,Arizona and New Mexico,New Mexico,Western Colorado,Eastern Colorado
+New Mexico,405,537,Arizona and New Mexico,Eastern Arizona,Santa Fe,Western Colorado,Eastern Colorado,Western Oklahoma,Texas
+North Dakota,564,171,The Dakotas,Montana,South Dakota,Northern Minnesota,Central Minnesota
+South Dakota,563,256,The Dakotas,Wyoming,Montana,Northern Nebraska,North Dakota,Central Minnesota,Southern Minnesota,Western Iowa
+Northern Nebraska,563,314,Nebraska and Kansas,Wyoming,Eastern Colorado,Southern Nebraska,South Dakota,Western Iowa
+Southern Nebraska,591,355,Nebraska and Kansas,Eastern Colorado,Kansas,Northern Nebraska,Western Iowa,Northern Missouri
+Wichita,621,438,Nebraska and Kansas,Eastern Oklahoma,Western Oklahoma,Kansas
+Kansas,568,415,Nebraska and Kansas,Eastern Colorado,Western Oklahoma,Eastern Oklahoma,Wichita,Southern Nebraska,Central Missouri,Northern Missouri
+Oklahoma City,623,504,Oklahoma,Western Oklahoma,Eastern Oklahoma
+Western Oklahoma,583,499,Oklahoma,Eastern Colorado,New Mexico,Oklahoma City,Eastern Oklahoma,Wichita,Kansas,Dallas,Texas
+Eastern Oklahoma,662,508,Oklahoma,Oklahoma City,Western Oklahoma,Wichita,Kansas,Central Missouri,Northern Arkansas,Southern Arkansas,Dallas
+Dallas,628,581,Texas,Texas,Western Oklahoma,Eastern Oklahoma
+Houston,690,651,Texas,Texas,Austin,Southwestern Louisiana
+Austin,632,662,Texas,Texas,San Antonio,Houston
+San Antonio,583,699,Texas,Texas,Austin
+Texas,548,598,Texas,Dallas,San Antonio,Austin,Houston,Southern Arkansas,Northwestern Louisiana,New Mexico,Western Oklahoma
+Minneapolis,707,239,Minnesota,Southern Minnesota,Central Minnesota,Northern Wisconsin
+Northern Minnesota,688,174,Minnesota,Central Minnesota,North Dakota
+Central Minnesota,666,227,Minnesota,Southern Minnesota,Minneapolis,Northern Minnesota,Northern Wisconsin,North Dakota,South Dakota
+Southern Minnesota,696,268,Minnesota,Western Iowa,Eastern Iowa,Northern Wisconsin,Minneapolis,Central Minnesota,Southwestern Wisconsin,South Dakota
+Des Moines,697,344,Iowa,Northern Missouri,Western Iowa,Eastern Iowa
+Western Iowa,676,308,Iowa,Northern Missouri,Des Moines,Eastern Iowa,Southern Minnesota,South Dakota,Northern Nebraska,Southern Nebraska
+Eastern Iowa,742,322,Iowa,Northern Missouri,Des Moines,Western Iowa,Western Illinois,Northern Illinois,Southwestern Wisconsin,Southern Minnesota
+St. Louis,769,415,Missouri and Arkansas,Southern Missouri,Northern Missouri,Western Illinois,Southern Illinois,Central Missouri
+Northern Missouri,719,389,Missouri and Arkansas,Kansas,Southern Nebraska,Western Iowa,Des Moines,Eastern Iowa,Western Illinois,St. Louis,Central Missouri
+Central Missouri,719,419,Missouri and Arkansas,Eastern Oklahoma,Kansas,Northern Missouri,St. Louis,Southern Missouri
+Southern Missouri,771,453,Missouri and Arkansas,Northern Arkansas,Western Tennessee,Western Kentucky,Southern Illinois,St. Louis,Central Missouri
+Northern Arkansas,741,499,Missouri and Arkansas,Southern Arkansas,Memphis,Southern Missouri,Eastern Oklahoma
+Southern Arkansas,738,548,Missouri and Arkansas,Texas,Northwestern Louisiana,Northeastern Louisiana,Northern Mississippi,Northern Arkansas,Eastern Oklahoma
+Northwestern Louisiana,730,602,Louisiana,Texas,Southwestern Louisiana,Southern Arkansas,Northeastern Louisiana
+Northeastern Louisiana,750,602,Louisiana,Southern Arkansas,Northern Mississippi,Jackson,Southwestern Louisiana,Northwestern Louisiana
+Southwestern Louisiana,740,643,Louisiana,Houston,Northwestern Louisiana,Northeastern Louisiana,Southeastern Louisiana
+Southeastern Louisiana,780,644,Louisiana,Southwestern Louisiana,Jackson,Southern Mississippi
+Milwaukee,819,287,Wisconsin,Southeastern Wisconsin,Chicago
+Northern Wisconsin,775,228,Wisconsin,Southern Minnesota,Minneapolis,Upper Peninsula,Southwestern Wisconsin,Southeastern Wisconsin,Central Minnesota
+Southwestern Wisconsin,773,280,Wisconsin,Eastern Iowa,Northern Wisconsin,Southeastern Wisconsin,Northern Illinois,Southern Minnesota
+Southeastern Wisconsin,802,264,Wisconsin,Northern Wisconsin,Milwaukee,Northern Illinois,Southwestern Wisconsin
+Chicago,825,327,Illinois,Milwaukee,Northern Illinois,Northern Indiana,Eastern Illinois
+Northern Illinois,797,321,Illinois,Eastern Iowa,Southeastern Wisconsin,Southwestern Wisconsin,Chicago,Eastern Illinois,Western Illinois
+Western Illinois,785,375,Illinois,St. Louis,Eastern Iowa,Northern Illinois,Eastern Illinois,Southern Illinois,Northern Missouri
+Eastern Illinois,828,371,Illinois,Northern Illinois,Southwestern Indiana,Western Illinois,Southern Illinois,Chicago
+Southern Illinois,821,424,Illinois,Southern Missouri,St. Louis,Eastern Illinois,Western Illinois,Western Kentucky,Southwestern Indiana
+Jackson,793,602,Mississippi and Alabama,Northeastern Louisiana,Southeastern Louisiana,Northern Mississippi,Southern Mississippi
+Northern Mississippi,811,550,Mississippi and Alabama,Northeastern Louisiana,Southern Arkansas,Jackson,Northern Alabama,Memphis,Western Tennessee,Southern Mississippi
+Southern Mississippi,831,608,Mississippi and Alabama,Southeastern Louisiana,Jackson,Southwestern Alabama,Northern Mississippi
+Detroit,926,282,Michigan,Southern Lower Michigan,Central Lower Michigan,Northwestern Ohio
+Upper Peninsula,819,199,Michigan,Northern Wisconsin,Northern Lower Michigan
+Northern Lower Michigan,892,239,Michigan,Central Lower Michigan,Upper Peninsula
+Central Lower Michigan,888,279,Michigan,Southern Lower Michigan,Detroit,Northern Lower Michigan
+Southern Lower Michigan,889,305,Michigan,Northern Indiana,Detroit,Central Lower Michigan,Northwestern Ohio
+Indianapolis,878,372,Indiana,Southeastern Indiana,Southwestern Indiana,Northern Indiana
+Northern Indiana,876,341,Indiana,Chicago,Southeastern Indiana,Indianapolis,Southwestern Indiana,Southern Lower Michigan,Northwestern Ohio
+Southwestern Indiana,864,397,Indiana,Eastern Illinois,Southern Illinois,Central Kentucky,Southeastern Indiana,Indianapolis,Northern Indiana,Western Kentucky
+Southeastern Indiana,895,394,Indiana,Central Kentucky,Eastern Kentucky,Northern Indiana,Southwestern Indiana,Indianapolis,Southwestern Ohio
+Western Kentucky,848,451,Kentucky,Southern Missouri,Southern Illinois,Western Tennessee,Central Kentucky,Southwestern Indiana
+Central Kentucky,889,444,Kentucky,Western Tennessee,Nashville,Eastern Tennessee,Eastern Kentucky,Western Kentucky,Southwestern Indiana,Southeastern Indiana
+Eastern Kentucky,937,430,Kentucky,Central Kentucky,Eastern Tennessee,Southeastern Indiana,Southwestern Ohio,Southeastern Ohio,Northern West Virginia,Southern West Virginia,Western Virginia
+Memphis,812,502,Tennessee,Northern Arkansas,Northern Mississippi,Western Tennessee
+Nashville,888,476,Tennessee,Western Tennessee,Eastern Tennessee,Central Kentucky
+Western Tennessee,853,490,Tennessee,Southern Missouri,Northern Mississippi,Memphis,Western Kentucky,Central Kentucky,Northern Alabama,Eastern Tennessee,Nashville
+Eastern Tennessee,924,482,Tennessee,Western Tennessee,Nashville,Central Kentucky,Eastern Kentucky,Northern Alabama,Western Virginia,Western North Carolina,Northwestern Georgia
+Northern Alabama,875,538,Mississippi and Alabama,Northern Mississippi,Western Tennessee,Eastern Tennessee,Southwestern Alabama,Southeastern Alabama,Atlanta,Northwestern Georgia
+Southwestern Alabama,862,595,Mississippi and Alabama,Southern Mississippi,Northern Alabama,Southeastern Alabama,Florida Panhandle
+Southeastern Alabama,904,593,Mississippi and Alabama,Northern Alabama,Southwestern Alabama,Florida Panhandle,Southwestern Georgia,Northwestern Georgia
+Atlanta,929,541,Georgia,Northern Alabama,Northwestern Georgia
+Northwestern Georgia,960,548,Georgia,Southeastern Alabama,Northern Alabama,Southwestern Georgia,Eastern Georgia,Atlanta,Western North Carolina,Western South Carolina,Eastern Tennessee
+Southwestern Georgia,952,602,Georgia,Southeastern Alabama,Tallahassee,Eastern Georgia,Northwestern Georgia,Florida Panhandle
+Eastern Georgia,1000,581,Georgia,Central Florida,Jacksonville,Tallahassee,Southwestern Georgia,Northwestern Georgia,Western South Carolina,Southern South Carolina
+Jacksonville,1018,638,Florida,Central Florida,Eastern Georgia
+Tallahassee,972,632,Florida,Central Florida,Eastern Georgia,Southwestern Georgia,Florida Panhandle
+Florida Panhandle,913,628,Florida,Southwestern Alabama,Southeastern Alabama,Tallahassee,Southwestern Georgia
+Central Florida,1026,674,Florida,Southern Florida,Jacksonville,Tallahassee,Eastern Georgia
+Southern Florida,1054,722,Florida,Central Florida
+Columbus,952,360,Ohio,Northwestern Ohio,Southwestern Ohio,Southeastern Ohio
+Northwestern Ohio,924,335,Ohio,Columbus,Northeastern Ohio,Southwestern Ohio,Detroit,Southern Lower Michigan,Northern Indiana
+Northeastern Ohio,974,329,Ohio,Northwestern Ohio,Southeastern Ohio,Western Pennsylvania
+Southwestern Ohio,926,375,Ohio,Columbus,Northwestern Ohio,Southeastern Ohio,Southeastern Indiana,Eastern Kentucky
+Southeastern Ohio,978,360,Ohio,Columbus,Southwestern Ohio,Northeastern Ohio,Northern West Virginia,Western Pennsylvania,Eastern Kentucky
+Northern West Virginia,992,383,The Virginias,Southeastern Ohio,Western Pennsylvania,Southern Pennsylvania,Southern West Virginia,Eastern Kentucky
+Southern West Virginia,1008,410,The Virginias,Western Maryland,Northern West Virginia,Northern Virginia,Western Virginia,Eastern Kentucky
+Southern South Carolina,1027,543,The Carolinas,Eastern South Carolina,Western South Carolina,Eastern Georgia
+Western South Carolina,997,513,The Carolinas,Charlotte,Western North Carolina,Eastern South Carolina,Southern South Carolina,Eastern Georgia,Northwestern Georgia
+Eastern South Carolina,1046,515,The Carolinas,Southern North Carolina,Western South Carolina,Southern South Carolina
+Charlotte,1013,481,The Carolinas,Western North Carolina,Southern North Carolina,Western South Carolina
+Western North Carolina,1029,462,The Carolinas,Western Virginia,Charlotte,Southern North Carolina,Eastern North Carolina,Western South Carolina,Northwestern Georgia,Eastern Tennessee
+Eastern North Carolina,1091,462,The Carolinas,Southern Virginia,Virginia Beach,Western North Carolina,Southern North Carolina
+Southern North Carolina,1067,487,The Carolinas,Western North Carolina,Eastern North Carolina,Charlotte,Eastern South Carolina
+Virginia Beach,1096,424,The Virginias,Northern Virginia,Southern Virginia,Eastern North Carolina
+Northern Virginia,1061,401,The Virginias,Southern West Virginia,Western Maryland,Washington D.C.,Virginia Beach,Southern Virginia,Western Virginia
+Southern Virginia,1060,433,The Virginias,Northern Virginia,Western Virginia,Eastern North Carolina,Virginia Beach
+Western Virginia,1013,440,The Virginias,Northern Virginia,Southern West Virginia,Western North Carolina,Southern Virginia,Eastern Kentucky,Eastern Tennessee
+Western Maryland,1075,359,Maryland and Delaware,Northern Maryland,Washington D.C.,Southern Pennsylvania,Southern West Virginia,Northern Virginia
+Northern Maryland,1099,357,Maryland and Delaware,Delaware,Western Maryland,Philadelphia,Washington D.C.
+Washington D.C.,1100,376,Maryland and Delaware,Delaware,Western Maryland,Eastern Maryland,Northern Maryland,Northern Virginia
+Eastern Maryland,1119,384,Maryland and Delaware,Delaware,Washington D.C.
+Delaware,1162,392,Maryland and Delaware,Southern New Jersey,Northern Maryland,Washington D.C.,Eastern Maryland,Philadelphia
+Philadelphia,1104,330,Pennsylvania,Eastern Pennsylvania,Southern Pennsylvania,North Central New Jersey,Central New Jersey,South Central New Jersey,Delaware,Northern Maryland
+Northern Pennsylvania,1053,301,Pennsylvania,Western New York,Syracuse,Western Pennsylvania,Eastern Pennsylvania
+Western Pennsylvania,1021,328,Pennsylvania,Northern Pennsylvania,Southern Pennsylvania,Southeastern Ohio,Northern West Virginia,Northeastern Ohio
+Eastern Pennsylvania,1098,304,Pennsylvania,Eastern New York,New York,Northern Pennsylvania,Philadelphia,Southern Pennsylvania,Northern New Jersey,North Central New Jersey
+Southern Pennsylvania,1061,339,Pennsylvania,Philadelphia,Western Pennsylvania,Eastern Pennsylvania,Western Maryland,Northern West Virginia
+Northern New Jersey,1200,333,New Jersey,New York,North Central New Jersey,Eastern Pennsylvania
+North Central New Jersey,1199,348,New Jersey,Northern New Jersey,Central New Jersey,Eastern Pennsylvania,Philadelphia
+Central New Jersey,1199,361,New Jersey,North Central New Jersey,South Central New Jersey,Philadelphia
+South Central New Jersey,1201,374,New Jersey,Central New Jersey,Southern New Jersey,Philadelphia
+Southern New Jersey,1199,386,New Jersey,South Central New Jersey,Delaware
+New York,1134,286,New York,Western Connecticut,Eastern New York,Eastern Pennsylvania,Northern New Jersey
+Syracuse,1088,264,New York,Eastern New York,Western New York,Northern New York,Northern Pennsylvania
+Western New York,1049,275,New York,Syracuse,Northern Pennsylvania
+Northern New York,1110,218,New York,Vermont,Eastern New York,Syracuse
+Eastern New York,1122,259,New York,Vermont,Western Massachusetts,New York,Syracuse,Northern New York,Eastern Pennsylvania
+Western Connecticut,1183,305,Connecticut and Rhode Island,Western Massachusetts,Central Connecticut,New York
+Central Connecticut,1201,306,Connecticut and Rhode Island,Western Massachusetts,Eastern Connecticut,Western Connecticut
+Eastern Connecticut,1222,305,Connecticut and Rhode Island,Western Massachusetts,Central Connecticut,Rhode Island,South Central Massachusetts
+Rhode Island,1250,284,Connecticut and Rhode Island,Eastern Massachusetts,Eastern Connecticut
+Western Massachusetts,1155,254,Massachusetts,New Hampshire,Vermont,North Central Massachusetts,South Central Massachusetts,Eastern New York,Western Connecticut,Central Connecticut,Eastern Connecticut
+Boston,1248,211,Massachusetts,New Hampshire,North Central Massachusetts
+North Central Massachusetts,1247,225,Massachusetts,New Hampshire,Boston,South Central Massachusetts,Western Massachusetts
+South Central Massachusetts,1247,240,Massachusetts,North Central Massachusetts,Western Massachusetts,Eastern Massachusetts,Eastern Connecticut
+Eastern Massachusetts,1247,252,Massachusetts,South Central Massachusetts,Rhode Island
+Vermont,1146,207,Vermont New Hampshire and Maine,New Hampshire,Western Massachusetts,Northern New York,Eastern New York
+New Hampshire,1175,225,Vermont New Hampshire and Maine,Northern Maine,Augusta,Vermont,Boston,North Central Massachusetts,Western Massachusetts
+Augusta,1201,192,Vermont New Hampshire and Maine,Northern Maine,New Hampshire
+Northern Maine,1208,149,Vermont New Hampshire and Maine,Augusta,New Hampshire
