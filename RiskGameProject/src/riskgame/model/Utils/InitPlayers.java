@@ -25,6 +25,9 @@ public class InitPlayers {
         for (int playerIndex = 0; playerIndex < numOfPlayers; playerIndex++) {
             Player onePlayer = new Player(playerIndex);
             getInitCountryNameList(onePlayer, forAllocatesCountryNameList, numOfPlayers, graphSingleton);
+            onePlayer.updateArmyNbr();
+
+            System.out.println("init player: " + playerIndex + ", army nbr: " + onePlayer.getArmyNbr());
         }
     }
 

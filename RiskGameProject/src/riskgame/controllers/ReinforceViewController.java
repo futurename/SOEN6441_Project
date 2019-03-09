@@ -14,6 +14,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
@@ -85,9 +87,6 @@ public class ReinforceViewController implements Initializable {
     private static final int DEFAULT_MIN_REINFORCE_ARMY_NBR = 3;
 
 
-
-
-
     /**
      * init method for reinforce phase view
      *
@@ -106,15 +105,15 @@ public class ReinforceViewController implements Initializable {
      */
     private void reinforceViewInit(int playerIndex) {
 
-
         curPlayer = Main.playersList.get(playerIndex);
         initPhaseView(curPlayer);
+        initPlayerDominationView();
 
         Color curPlayerColor = curPlayer.getPlayerColor();
         int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
         int curUndeployedArmy = getStandardReinforceArmyNum(ownedCountryNum);
 
-       // lbl_playerInfo.setTextFill(curPlayerColor);
+        // lbl_playerInfo.setTextFill(curPlayerColor);
         lbl_countriesInfo.setTextFill(curPlayerColor);
         lbl_adjacentCountriesInfo.setTextFill(curPlayerColor);
         lbl_undeployedArmy.setText(Integer.toString(curUndeployedArmy));
@@ -134,6 +133,38 @@ public class ReinforceViewController implements Initializable {
         scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue) -> lbl_deployArmyCount.setText(Integer.toString(newValue.intValue())));
     }
 
+    /**
+     *Set contents to player domination the pane
+     */
+    private void initPlayerDominationView() {
+        ArrayList<Label> labelList = new ArrayList<>();
+
+        for(int playerIndex = 0; playerIndex < totalNumOfPlayers; playerIndex++){
+            Color curPlayerColor = playersList.get(playerIndex).getPlayerColor();
+            Label oneLabel = new Label();
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Player: ").append(playerIndex)
+                    .append("\n").append("Control ratio: ")
+                    .append(playerDomiViewObserver.getControlRatioList().get(playerIndex))
+                    .append("\n").append("Controlled continents: ")
+                    .append(playerDomiViewObserver.getControlledContinentNbrList().get(playerIndex))
+                    .append("\n").append("Total army: ")
+                    .append(playerDomiViewObserver.getTotalArmyNbrList().get(playerIndex))
+                    .append("\n\n");
+            oneLabel.setText(stringBuilder.toString());
+            oneLabel.setTextFill(curPlayerColor);
+            oneLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
+            labelList.add(oneLabel);
+        }
+
+        vbx_worldDomiView.getChildren().addAll(labelList);
+    }
+
+    /**
+     * set contents to phase view labels
+     *
+     * @param curPlayer
+     */
     private void initPhaseView(Player curPlayer) {
 
         String playerName = "Player_" + phaseViewObserver.getPlayerIndex();
@@ -144,7 +175,7 @@ public class ReinforceViewController implements Initializable {
     }
 
 
-    private void setPhaseViewObservable(){
+    private void setPhaseViewObservable() {
         String phaseName = "Attack Phase";
         int nextPlayerIndex = curRoundPlayerIndex + 1;
         String actionString = "Action:\nBegin Attack phase, please select one of your country and adjacent country to attack";
@@ -152,8 +183,6 @@ public class ReinforceViewController implements Initializable {
         phaseViewObservable.setAllParam(phaseName, nextPlayerIndex, actionString);
         phaseViewObservable.notifyObservers(phaseViewObservable);
     }
-
-
 
 
     /**

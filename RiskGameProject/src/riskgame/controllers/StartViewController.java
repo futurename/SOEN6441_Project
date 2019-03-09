@@ -21,8 +21,6 @@ import mapeditor.model.MapObject;
 import riskgame.Main;
 import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.GraphSingleton;
-import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
-import riskgame.model.BasicClass.ObserverPattern.PhaseViewObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InitPlayers;
 import riskgame.model.Utils.ListviewRenderer;
@@ -104,18 +102,6 @@ public class StartViewController {
      */
     private boolean isMapInfoOn = false;
 
-    /**
-     * Phase view observable object.
-     */
-    private static PhaseViewObservable reinforcePhaseViewObservable;
-
-    /**
-     * Phase view observer object.
-     */
-    private static PhaseViewObserver startPhaseViewObserver;
-
-
-
 
 
     /**
@@ -135,13 +121,6 @@ public class StartViewController {
         }
     }
 
-    public static PhaseViewObserver getStartPhaseViewObserver() {
-        return startPhaseViewObserver;
-    }
-
-    public static void setStartPhaseViewObserver(PhaseViewObserver startPhaseViewObserver) {
-        startPhaseViewObserver = startPhaseViewObserver;
-    }
 
     /**
      * onClick event for modifying UI controls and their values
@@ -281,6 +260,7 @@ public class StartViewController {
     @FXML
     public void clickNextToReinforcePhase(ActionEvent actionEvent) throws IOException {
         setPhaseViewObservable();
+        setPlayerWorldDominationView();
 
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
@@ -292,12 +272,27 @@ public class StartViewController {
         curStage.show();
     }
 
+    /**
+     * set player domination view for reinforce phase for displaying corresponding information
+     */
+    private void setPlayerWorldDominationView() {
+        playerDomiViewObservable.resetObservable();
+        playerDomiViewObservable.updateObservable();
+        playerDomiViewObservable.notifyObservers(playerDomiViewObservable);
 
+        System.out.println("\n>>>>>>domi view observer:" + playerDomiViewObserver.getControlRatioList());
+    }
+
+
+    /**
+     * set phase view observable params for reinforce phase for displaying corresponding information
+     */
     private void setPhaseViewObservable(){
         String phaseName = "Reinforce Phase";
         int nextPlayerIndex = curRoundPlayerIndex;
         String actionString = "Action:\nBegin reinforce phase, need deploy armies to your countries";
 
+        phaseViewObservable.resetObservable();
         phaseViewObservable.setAllParam(phaseName, nextPlayerIndex, actionString);
         phaseViewObservable.notifyObservers(phaseViewObservable);
     }

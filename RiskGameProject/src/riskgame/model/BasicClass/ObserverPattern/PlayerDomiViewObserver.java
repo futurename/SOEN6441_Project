@@ -1,5 +1,6 @@
 package riskgame.model.BasicClass.ObserverPattern;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -8,38 +9,38 @@ import java.util.Observer;
  **/
 
 public class PlayerDomiViewObserver implements Observer {
-    private float controlRatio;
-    private int controlledContinentNbr;
-    private int totalArmyNbr;
+    private ArrayList<Float> controlRatioList;
+    private ArrayList<Integer> controlledContinentNbrList;
+    private ArrayList<Integer> totalArmyNbrList;
 
-    public float getControlRatio() {
-        return controlRatio;
+    public ArrayList<Float> getControlRatioList() {
+        return controlRatioList;
     }
 
-    public void setControlRatio(float controlRatio) {
-        this.controlRatio = controlRatio;
+    public void setControlRatioList(ArrayList<Float> controlRatioList) {
+        this.controlRatioList = controlRatioList;
     }
 
-    public int getControlledContinentNbr() {
-        return controlledContinentNbr;
+    public ArrayList<Integer> getControlledContinentNbrList() {
+        return controlledContinentNbrList;
     }
 
-    public void setControlledContinentNbr(int controlledContinentNbr) {
-        this.controlledContinentNbr = controlledContinentNbr;
+    public void setControlledContinentNbrList(ArrayList<Integer> controlledContinentNbrList) {
+        this.controlledContinentNbrList = controlledContinentNbrList;
     }
 
-    public int getTotalArmyNbr() {
-        return totalArmyNbr;
+    public ArrayList<Integer> getTotalArmyNbrList() {
+        return totalArmyNbrList;
     }
 
-    public void setTotalArmyNbr(int totalArmyNbr) {
-        this.totalArmyNbr = totalArmyNbr;
+    public void setTotalArmyNbrList(ArrayList<Integer> totalArmyNbrList) {
+        this.totalArmyNbrList = totalArmyNbrList;
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        this.controlRatio = ((PlayerDomiViewObservable)o).getControlRatio();
-        this.controlledContinentNbr = ((PlayerDomiViewObservable)o).getControlledContinentNbr();
-        this.totalArmyNbr = ((PlayerDomiViewObservable)o).getTotalArmyNbr();
+        this.controlRatioList = ((PlayerDomiViewObservable)o).getControlRatioList();
+        this.controlledContinentNbrList = ((PlayerDomiViewObservable)o).getControlledContinentNbrList();
+        this.totalArmyNbrList = ((PlayerDomiViewObservable)o).getTotalArmyNbrList();
     }
 }

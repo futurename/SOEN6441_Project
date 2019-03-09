@@ -1,5 +1,11 @@
 package riskgame.model.BasicClass.ObserverPattern;
 
+import riskgame.Main;
+import riskgame.model.BasicClass.Continent;
+import riskgame.model.BasicClass.Player;
+
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Observable;
 
 /**
@@ -7,38 +13,62 @@ import java.util.Observable;
  **/
 
 public class PlayerDomiViewObservable extends Observable {
-    private float controlRatio;
-    private int controlledContinentNbr;
-    private int totalArmyNbr;
+    private ArrayList<Float> controlRatioList;
+    private ArrayList<Integer> controlledContinentNbrList;
+    private ArrayList<Integer> totalArmyNbrList;
 
-    public float getControlRatio() {
-        return controlRatio;
+    public PlayerDomiViewObservable(){
+        this.controlRatioList = new ArrayList<>();
+        this.controlledContinentNbrList = new ArrayList<>();
+        this.totalArmyNbrList = new ArrayList<>();
     }
 
-    public void setControlRatio(float controlRatio) {
-        this.controlRatio = controlRatio;
+    public ArrayList<Float> getControlRatioList() {
+        return controlRatioList;
     }
 
-    public int getControlledContinentNbr() {
-        return controlledContinentNbr;
+    public ArrayList<Integer> getControlledContinentNbrList() {
+        return controlledContinentNbrList;
     }
 
-    public void setControlledContinentNbr(int controlledContinentNbr) {
-        this.controlledContinentNbr = controlledContinentNbr;
+    public ArrayList<Integer> getTotalArmyNbrList() {
+        return totalArmyNbrList;
     }
 
-    public int getTotalArmyNbr() {
-        return totalArmyNbr;
-    }
+    public void updateObservable(){
+        int totalCountryNbr = Main.graphSingleton.size();
+        int totalPlayerNbr = Main.totalNumOfPlayers;
 
-    public void setTotalArmyNbr(int totalArmyNbr) {
-        this.totalArmyNbr = totalArmyNbr;
-    }
+        for(int playerIndex = 0; playerIndex < totalPlayerNbr; playerIndex++){
+            Player curPlayer = Main.playersList.get(playerIndex);
+            int ownedCountryNbr = curPlayer.getOwnedCountryNameList().size();
+            float curControlRatio = (float)ownedCountryNbr / totalCountryNbr;
+            controlRatioList.add(curControlRatio);
 
-    public void setAllParams(float controlRatio, int controlledContinentNbr, int totalArmyNbr){
-        this.controlRatio = controlRatio;
-        this.controlledContinentNbr = controlledContinentNbr;
-        this.totalArmyNbr = totalArmyNbr;
+            int curControlContinentNbr = getOwnedContinentNbr(playerIndex);
+            controlledContinentNbrList.add(curControlContinentNbr);
+
+            int curArmyNbr = curPlayer.getArmyNbr();
+            totalArmyNbrList.add(curArmyNbr);
+        }
         setChanged();
     }
+
+    private int getOwnedContinentNbr(int playerIndex) {
+        int result = 0;
+        for(Map.Entry<String, Continent> entry: Main.worldContinentMap.entrySet()){
+            Continent curContinent = entry.getValue();
+            if(curContinent.getContinentOwnerIndex() == playerIndex){
+                result++;
+            }
+        }
+        return result;
+    }
+
+    public void resetObservable(){
+        this.controlRatioList = new ArrayList<>();
+        this.controlledContinentNbrList = new ArrayList<>();
+        this.totalArmyNbrList = new ArrayList<>();
+    }
+
 }

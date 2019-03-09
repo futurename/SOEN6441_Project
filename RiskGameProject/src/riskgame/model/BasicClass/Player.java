@@ -2,23 +2,22 @@ package riskgame.model.BasicClass;
 
 
 import javafx.scene.paint.Color;
+import riskgame.Main;
 
 import java.util.ArrayList;
 
 /**
  * This class includes attributes a player need and required methods
  **/
-public class Player{
+public class Player {
     private static final int DEFAULT_DIVISION_FACTOR = 3;
 
     private final int playerIndex;
-    private int reinforcementArmyCount;
+    private int armyNbr;
     private ArrayList<Card> cardsList;
     private ArrayList<String> ownedCountryNameList;
     private Color playerColor;
     private int ownedCountryNbr;
-
-
 
     /**
      * class contructor
@@ -27,7 +26,7 @@ public class Player{
      */
     public Player(int playerIndex) {
         this.playerIndex = playerIndex;
-        this.reinforcementArmyCount = 0;
+        this.armyNbr = 0;
         this.cardsList = new ArrayList<>();
         this.ownedCountryNameList = new ArrayList<>();
         this.playerColor = PlayerColor.values()[playerIndex].colorValue;
@@ -35,7 +34,25 @@ public class Player{
     }
 
 
+    /**
+     * get the sum of army number in all owned countries
+     */
+    public void updateArmyNbr() {
+        int result = 0;
+        for (String countryName : ownedCountryNameList) {
+            Country country = Main.graphSingleton
+                    .get(countryName)
+                    .getCountry();
+            result += country.getCountryArmyNumber();
+        }
 
+    }
+
+    /**
+     * getter
+     *
+     * @return country number the player owns
+     */
     public int getOwnedCountryNbr() {
         ownedCountryNbr = ownedCountryNameList.size();
         return ownedCountryNbr;
@@ -65,12 +82,21 @@ public class Player{
     }
 
     /**
+     * setter
+     *
+     * @param armyNbr army number to be set
+     */
+    public void setArmyNbr(int armyNbr) {
+        this.armyNbr = armyNbr;
+    }
+
+    /**
      * getter
      *
      * @return army number the player has
      */
-    public int getReinforcementArmyCount() {
-        return reinforcementArmyCount;
+    public int getArmyNbr() {
+        return armyNbr;
     }
 
     /**
@@ -125,7 +151,8 @@ public class Player{
     public void attckCountry(Country attackingCountry, Country defendingCountry) {
         int defenderIndex = defendingCountry.getCountryOwnerIndex();
         int defendingArmyNbr = defendingCountry.getCountryArmyNumber();
-        int attackingArmyNbr = attackingCountry.getCountryArmyNumber();int attackerFirstDice = 0;
+        int attackingArmyNbr = attackingCountry.getCountryArmyNumber();
+        int attackerFirstDice = 0;
         int attackerSecondDice = 0;
         int attackerThirdDice = 0;
         int attackerBestDice = 0;
@@ -140,8 +167,7 @@ public class Player{
         /**
          * calculating attacker best dice and second best dice when attacker country number is greater than 3
          */
-        if (attackingArmyNbr >= 3)
-        {
+        if (attackingArmyNbr >= 3) {
             attackerFirstDice = dice.rollADice();
             attackerSecondDice = dice.rollADice();
             attackerThirdDice = dice.rollADice();
@@ -175,15 +201,12 @@ public class Player{
         /**
          * calculating attacker best dice  when attacker country number is 2
          */
-        else if (attackingArmyNbr == 2)
-        {
+        else if (attackingArmyNbr == 2) {
             attackerFirstDice = dice.rollADice();
             attackerSecondDice = dice.rollADice();
-            if (attackerFirstDice > attackerSecondDice)
-            {
+            if (attackerFirstDice > attackerSecondDice) {
                 attackerBestDice = attackerFirstDice;
-            } else
-            {
+            } else {
                 attackerBestDice = attackerSecondDice;
             }
         }
@@ -193,12 +216,10 @@ public class Player{
         if (defendingArmyNbr >= 2) {
             defenderFirstDice = dice.rollADice();
             defenderSecondDice = dice.rollADice();
-            if (defenderSecondDice > defenderFirstDice)
-            {
+            if (defenderSecondDice > defenderFirstDice) {
                 defenderBestDice = defenderSecondDice;
                 defenderSecondBestDice = defenderFirstDice;
-            } else
-            {
+            } else {
                 defenderBestDice = defenderFirstDice;
                 defenderSecondBestDice = defenderSecondDice;
             }
@@ -214,8 +235,7 @@ public class Player{
         /**
          * calculating defender best dice when defender country number is less than 1
          */
-        else if (defendingArmyNbr < 1)
-        {
+        else if (defendingArmyNbr < 1) {
             /**attacker conquerd that country
              *
              */
@@ -234,7 +254,7 @@ public class Player{
         /**
          * comparing attacker and defender best dice when defending army number greater one and attacking army number is eual and greater than three
          */
-        else if (defendingArmyNbr > 1 && attackingArmyNbr >=2) {
+        else if (defendingArmyNbr > 1 && attackingArmyNbr >= 2) {
             if (attackerBestDice > defenderBestDice) {
                 /**
                  * attacker wins and defender loses one army
@@ -264,8 +284,7 @@ public class Player{
                 /**
                  *  attacker wins and defender loses one army
                  */
-            }
-            else {
+            } else {
                 /**
                  * defender wins and attacker loses one army
                  */

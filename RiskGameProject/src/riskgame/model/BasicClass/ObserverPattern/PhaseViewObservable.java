@@ -11,6 +11,12 @@ public class PhaseViewObservable extends Observable {
     private int playerIndex;
     private String actionString;
 
+    public PhaseViewObservable(){
+        this.phaseName = "";
+        this.playerIndex = -1;
+        this.actionString = "";
+    }
+
     public String getPhaseName() {
         return phaseName;
     }
@@ -40,5 +46,11 @@ public class PhaseViewObservable extends Observable {
         setPlayerIndex(playerIndex);
         setActionString(actionString);
         setChanged();
+    }
+
+    public void resetObservable(){
+        this.phaseName = "";
+        this.playerIndex = -1;
+        this.actionString = "";
     }
 }
