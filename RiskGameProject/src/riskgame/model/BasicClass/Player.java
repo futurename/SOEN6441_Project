@@ -45,7 +45,7 @@ public class Player {
                     .getCountry();
             result += country.getCountryArmyNumber();
         }
-
+        setArmyNbr(result);
     }
 
     /**
