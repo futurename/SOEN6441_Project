@@ -294,7 +294,7 @@ public class StartViewController {
 
         phaseViewObservable.resetObservable();
         phaseViewObservable.setAllParam(phaseName, nextPlayerIndex, actionString);
-        phaseViewObservable.notifyObservers(phaseViewObservable);
+        phaseViewObservable.notifyObservers("message_null");
     }
 
 

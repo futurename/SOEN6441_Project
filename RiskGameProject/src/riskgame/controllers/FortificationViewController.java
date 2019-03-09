@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
@@ -64,11 +66,19 @@ public class FortificationViewController {
      */
     private Alert alert = new Alert(Alert.AlertType.WARNING);
 
+    private PhaseViewObserver fortiObserver;
+    private PhaseViewObservable gamePhase;
+    private int curPlayerIndex;
+    private String curGamePhase;
+
     /**
      * init method for fortification phase view
      */
     public void initialize() {
-        String playerInfo = "Player: " + Main.curRoundPlayerIndex;
+        initObserver();
+        curGamePhase = fortiObserver.getPhaseName();
+        String playerInfo = "Player: " + fortiObserver.getPlayerIndex();
+//        String playerInfo = "Player: " + Main.curRoundPlayerIndex;
         lbl_playerInfo.setText(playerInfo);
         curPlayer = Main.playersList.get(Main.curRoundPlayerIndex);
         lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
@@ -182,8 +192,11 @@ public class FortificationViewController {
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-        Main.curRoundPlayerIndex = (Main.curRoundPlayerIndex + 1) % Main.totalNumOfPlayers;
-        System.out.println("one round finished: " + Main.curRoundPlayerIndex);
+//        Main.curRoundPlayerIndex = (Main.curRoundPlayerIndex + 1) % Main.totalNumOfPlayers;
+        int nextPlayerIndex = (curPlayerIndex + 1) % Main.totalNumOfPlayers;
+        gamePhase.setAllParam("to_ATK", nextPlayerIndex, "NO ACT");
+        gamePhase.notifyObservers("REGULAR NOTIFICATION");
+        System.out.println("one round finished: " + nextPlayerIndex);
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/AttackView.fxml")).load();
         Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
@@ -275,5 +288,10 @@ public class FortificationViewController {
         btn_confirmMoveArmy.setVisible(false);
         btn_skipFortification.setVisible(false);
         btn_nextStep.setVisible(true);
+    }
+
+    private void initObserver(){
+        this.fortiObserver = Main.phaseViewObserver;
+        this.gamePhase = Main.phaseViewObservable;
     }
 }
