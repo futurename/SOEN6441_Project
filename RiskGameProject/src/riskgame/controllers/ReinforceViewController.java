@@ -26,10 +26,7 @@ import riskgame.model.Utils.ListviewRenderer;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static riskgame.Main.*;
 
@@ -70,17 +67,26 @@ public class ReinforceViewController implements Initializable {
     private Label lbl_playerName;
     @FXML
     private Label lbl_phaseViewName;
-
-
+    @FXML
+    private ListView lsv_cardsListView;
+    @FXML
+    private Button btn_skipCardsExchange;
+    @FXML
+    private Button btn_confirmExchangeCards;
 
     /**
      * current player in this phase
      */
-    private Player curPlayer;
-    private int curPlayerIndex;
+    private int curPlayerIndex = curRoundPlayerIndex;
+    private Player curPlayer = playersList.get(curPlayerIndex);
     private String curGamePhase;
 
     private HashMap<String, ArrayList<Card>> playersCards;
+
+    private int curUndeployedArmy = 0;
+
+
+    private Alert alert = new Alert(Alert.AlertType.WARNING);
 
     /**
      * default factor for calculting standard number of army used for reinforce phase
@@ -113,13 +119,15 @@ public class ReinforceViewController implements Initializable {
 
         initPhaseView();
         initPlayerDominationView();
-        initCardViewObserver();
+
+        initCurPlayerCardListView();
+
+        //initCardViewObserver();
 
         Color curPlayerColor = curPlayer.getPlayerColor();
         int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
-        int curUndeployedArmy = getStandardReinforceArmyNum(ownedCountryNum);
+        curUndeployedArmy += getStandardReinforceArmyNum(ownedCountryNum);
 
-        // lbl_playerInfo.setTextFill(curPlayerColor);
         lbl_countriesInfo.setTextFill(curPlayerColor);
         lbl_adjacentCountriesInfo.setTextFill(curPlayerColor);
         lbl_undeployedArmy.setText(Integer.toString(curUndeployedArmy));
@@ -135,6 +143,17 @@ public class ReinforceViewController implements Initializable {
         lbl_deployArmyCount.setText(Integer.toString(curUndeployedArmy));
 
         scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue) -> lbl_deployArmyCount.setText(Integer.toString(newValue.intValue())));
+
+        btn_confirmDeployment.setVisible(false);
+    }
+
+    private void initCurPlayerCardListView() {
+        ArrayList<Card> cardsList = curPlayer.getCardsList();
+        Collections.sort(cardsList, Collections.reverseOrder());
+        ObservableList<Card> cardObservableList = FXCollections.observableList(cardsList);
+        lsv_cardsListView.setItems(cardObservableList);
+        ListviewRenderer.renderCardsListView(lsv_cardsListView);
+        lsv_cardsListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     /**
@@ -170,7 +189,6 @@ public class ReinforceViewController implements Initializable {
     private void initPhaseView() {
         curGamePhase = phaseViewObserver.getPhaseName();
         curPlayerIndex = phaseViewObserver.getPlayerIndex();
-        curPlayer = Main.playersList.get(curPlayerIndex);
         String playerName = "Player_" + curPlayerIndex;
         lbl_phaseViewName.setText(curGamePhase);
         lbl_playerName.setText(playerName);
@@ -188,10 +206,10 @@ public class ReinforceViewController implements Initializable {
         phaseViewObservable.notifyObservers(phaseViewObservable);
     }
 
-    private void initCardViewObserver(){
+    private void initCardViewObserver() {
         playersCards = cardExchangeViewObserver.getPlayersCards();
         ArrayList<Label> labelList = new ArrayList<>();
-        for (int playerIndex = 0; playerIndex < totalNumOfPlayers; playerIndex++){
+        for (int playerIndex = 0; playerIndex < totalNumOfPlayers; playerIndex++) {
             Color curPlayerColor = playersList.get(playerIndex).getPlayerColor();
             String playerCardsDisplayable = playersCards.get(String.valueOf(playerIndex)).toString();
             Label oneLabel = new Label();
@@ -216,19 +234,28 @@ public class ReinforceViewController implements Initializable {
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-//        Main.curRoundPlayerIndex++;
+        Main.curRoundPlayerIndex++;
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        int nextPlayerIndex = (curPlayerIndex + 1) % totalNumOfPlayers;
 
-        if (curPlayerIndex + 1 < Main.totalNumOfPlayers) {
-            notifyGameStageChanged(false);
+        if (curPlayerIndex < Main.totalNumOfPlayers - 1) {
+            //notifyGameStageChanged(false);
+
+            Main.phaseViewObservable.setAllParam("Attack Phase", nextPlayerIndex, "NO ACT");
+            Main.phaseViewObservable.notifyObservers("from reinforcement");
+
             Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
             Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
-            reinforceViewInit();
+            //reinforceViewInit();
             curStage.setScene(reinforceScene);
             curStage.show();
         } else {
-            notifyGameStageChanged(true);
-//            Main.curRoundPlayerIndex = Main.curRoundPlayerIndex % Main.totalNumOfPlayers;
+            //notifyGameStageChanged(true);
+
+            Main.phaseViewObservable.setAllParam("Reinforcement Phase", nextPlayerIndex, "NO ACT");
+            Main.phaseViewObservable.notifyObservers("from reinforcement");
+
+            Main.curRoundPlayerIndex = Main.curRoundPlayerIndex % Main.totalNumOfPlayers;
             Pane attackPane = new FXMLLoader(getClass().getResource("../view/AttackView.fxml")).load();
             Scene attackScene = new Scene(attackPane, 1200, 900);
 
@@ -265,7 +292,6 @@ public class ReinforceViewController implements Initializable {
         int undeloyedArmyCount = Integer.parseInt(lbl_undeployedArmy.getText());
 
         if (selectedCountryIndex == -1) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText(null);
             alert.setContentText("Please select a country for army deployment");
             alert.showAndWait();
@@ -349,6 +375,80 @@ public class ReinforceViewController implements Initializable {
             Main.phaseViewObservable.notifyObservers("from reinforcement");
         }
         System.out.printf("player %s finished, player %s's turn\n", curPlayerIndex, nextPlayerIndex);
+    }
+
+    /**
+     * click button for confirming exchange cards
+     *
+     * @param actionEvent click this button
+     */
+    public void clickExchangeCards(ActionEvent actionEvent) {
+        ObservableList<Card> selectedCardList = lsv_cardsListView.getSelectionModel().getSelectedItems();
+
+        System.out.println("seleted cards: " + selectedCardList);
+
+        if (selectedCardList.isEmpty()) {
+            alert.setContentText("No card selected!");
+            alert.showAndWait();
+        } else if (validateCardsCombination(selectedCardList)) {
+            int exchangedArmyNbr = getExchangedArmyNbr(selectedCardList);
+            curUndeployedArmy += exchangedArmyNbr;
+
+            removeCardsFromList(selectedCardList);
+            lsv_cardsListView.refresh();
+
+            btn_confirmDeployment.setVisible(true);
+            btn_skipCardsExchange.setVisible(false);
+            btn_confirmExchangeCards.setVisible(false);
+
+
+        } else {
+            alert.setContentText("Wrong cards combination, please try again!");
+            alert.showAndWait();
+        }
+    }
+
+    /**
+     * Selected cards will be removed from cards list if the exchange succeeds.
+     *
+     * @param selectedCardList exchanged card list
+     */
+    private void removeCardsFromList(ObservableList<Card> selectedCardList) {
+        for (Card card : selectedCardList) {
+            curPlayer.getCardsList().remove(card);
+        }
+    }
+
+    /**
+     * if the selected cards list satifies the game rule, in this method it will be calculated to army number the player can exchange.
+     *
+     * @param seletectedCardList selected card list
+     * @return exchanged army number
+     */
+    private int getExchangedArmyNbr(ObservableList<Card> seletectedCardList) {
+
+        return 0;
+    }
+
+    /**
+     * selected cards list will be validated with game rules
+     *
+     * @param seletectedCardList selected cards arraylist
+     * @return true for correct combination, false for incorrect combination
+     */
+    private boolean validateCardsCombination(ObservableList<Card> seletectedCardList) {
+        return true;
+    }
+
+    /**
+     * skip exchanging cards in the round
+     *
+     * @param actionEvent click this button
+     */
+    public void clickSkipCardsExchange(ActionEvent actionEvent) {
+        btn_skipCardsExchange.setVisible(false);
+        btn_confirmExchangeCards.setVisible(false);
+        btn_confirmDeployment.setVisible(true);
     }
 }
 

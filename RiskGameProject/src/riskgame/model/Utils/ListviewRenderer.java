@@ -9,6 +9,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import riskgame.Main;
+import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
 
@@ -109,5 +110,32 @@ public class ListviewRenderer {
             }
         });
         return result;
+    }
+
+
+    public static void renderCardsListView(ListView lsv_cardsListView) {
+        lsv_cardsListView.setCellFactory(cell -> new ListCell<Card>() {
+            private Text text;
+
+            @Override
+            protected void updateItem(Card item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (item != null) {
+                    text = new Text(item.toString());
+
+                    Color textColor = Main.playersList
+                            .get(Main.curRoundPlayerIndex)
+                            .getPlayerColor();
+
+                    text.setFill(textColor);
+                    setGraphic(text);
+                }
+                if (empty) {
+                    setText(null);
+                    setGraphic(null);
+                }
+            }
+        });
     }
 }

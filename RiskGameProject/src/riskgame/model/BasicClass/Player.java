@@ -6,7 +6,6 @@ import riskgame.Main;
 
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Observer;
 
 /**
  * This class includes attributes a player need and required methods
@@ -33,6 +32,15 @@ public class Player extends Observable {
         this.ownedCountryNameList = new ArrayList<>();
         this.playerColor = PlayerColor.values()[playerIndex].colorValue;
         this.ownedCountryNbr = 0;
+
+
+
+        this.cardsList.add(Card.ARTILLERY);
+        this.cardsList.add(Card.INFANTRY);
+        this.cardsList.add(Card.ARTILLERY);
+        this.cardsList.add(Card.CAVALRY);
+        this.cardsList.add(Card.INFANTRY);
+
     }
 
 

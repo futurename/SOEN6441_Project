@@ -5,8 +5,8 @@
 <?import javafx.scene.text.*?>
 <AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="riskgame.controllers.FortificationViewController">
     <children>
-        <ListView fx:id="lsv_ownedCountries" focusTraversable="false" layoutX="571.0" layoutY="125.0" onMouseClicked="#selectOneCountry" prefHeight="697.0" prefWidth="283.0" stylesheets="@css/playercountries.css" />
-        <ListView fx:id="lsv_reachableCountry" layoutX="940.0" layoutY="125.0" prefHeight="438.0" prefWidth="239.0" stylesheets="@css/playercountries.css" />
+        <ListView fx:id="lsv_ownedCountries" focusTraversable="false" layoutX="571.0" layoutY="125.0" onMouseClicked="#selectOneCountry" prefHeight="697.0" prefWidth="283.0" stylesheets="@css/listviewStyle.css" />
+        <ListView fx:id="lsv_reachableCountry" layoutX="940.0" layoutY="125.0" prefHeight="438.0" prefWidth="239.0" stylesheets="@css/listviewStyle.css" />
         <Label alignment="CENTER" layoutX="627.0" layoutY="79.0" prefHeight="25.0" prefWidth="172.0" text="Countries">
             <font>
                 <Font name="System Bold" size="18.0" />

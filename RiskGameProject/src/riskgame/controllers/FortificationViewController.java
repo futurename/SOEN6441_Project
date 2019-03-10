@@ -74,9 +74,6 @@ public class FortificationViewController {
     public void initialize() {
         initObserver();
 
-        String playerInfo = "Player: " + curPlayerIndex;
-        lbl_playerInfo.setText(playerInfo);
-
         curPlayer = Main.playersList.get(curPlayerIndex);
         lbl_phaseViewName.setText(curGamePhase);
         lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
@@ -146,13 +143,14 @@ public class FortificationViewController {
 
     /**
      * get count of countries whose army number is greate than one
+     *
      * @return true for two or monre countries, false for less than two countries.
      */
     private boolean getCountOfValidCountries() {
         ObservableList<Country> countryObservableList = lsv_ownedCountries.getItems();
         int count = 0;
-        for(Country country : countryObservableList){
-            if(country.getCountryArmyNumber() > MIN_ARMY_NUMBER_IN_COUNTRY){
+        for (Country country : countryObservableList) {
+            if (country.getCountryArmyNumber() > MIN_ARMY_NUMBER_IN_COUNTRY) {
                 count++;
             }
         }
@@ -190,7 +188,7 @@ public class FortificationViewController {
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-        if (curPlayerIndex == Main.totalNumOfPlayers - 1){
+        if (curPlayerIndex == Main.totalNumOfPlayers - 1) {
             notifyGameStageChanged("Reinforcement Phase");
 
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -198,16 +196,15 @@ public class FortificationViewController {
             Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
             curStage.setScene(reinforceScene);
             curStage.show();
-        }else {
-            notifyGameStageChanged("Attack Phase");
+        } else {
+            notifyGameStageChanged("Reinforce Phase");
 
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Pane attackPane = new FXMLLoader(getClass().getResource("../view/AttackView.fxml")).load();
+            Pane attackPane = new FXMLLoader(getClass().getResource("../view/ReinforcePhase.fxml")).load();
             Scene attackScene = new Scene(attackPane, 1200, 900);
             curStage.setScene(attackScene);
             curStage.show();
         }
-
     }
 
     /**
@@ -296,12 +293,12 @@ public class FortificationViewController {
         btn_nextStep.setVisible(true);
     }
 
-    private void initObserver(){
+    private void initObserver() {
         curGamePhase = Main.phaseViewObserver.getPhaseName();
         curPlayerIndex = Main.phaseViewObserver.getPlayerIndex();
     }
 
-    private void notifyGameStageChanged(String phase){
+    private void notifyGameStageChanged(String phase) {
         int nextPlayerIndex = (curPlayerIndex + 1) % Main.totalNumOfPlayers;
         Main.phaseViewObservable.setAllParam(phase, nextPlayerIndex, "NO ACT");
         Main.phaseViewObservable.notifyObservers("from fortification view");
