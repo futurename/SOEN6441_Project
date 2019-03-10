@@ -191,7 +191,7 @@ public class AttackViewController implements Initializable {
     }
 
     private void notifyGamePhaseChanged(){
-        Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex+1, "no action");
+        Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "no action");
         Main.phaseViewObservable.notifyObservers("from attack view");
 
         System.out.printf("player %s finished attack, player %s's turn\n", curPlayerIndex, curPlayerIndex);

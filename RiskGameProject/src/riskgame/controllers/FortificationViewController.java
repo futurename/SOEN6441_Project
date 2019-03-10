@@ -65,9 +65,10 @@ public class FortificationViewController {
     /**
      * current player in this phase
      */
-    private Player curPlayer;
-    private int curPlayerIndex;
+
+    private int curPlayerIndex = Main.curRoundPlayerIndex;
     private String curGamePhase;
+    private Player curPlayer = Main.playersList.get(curPlayerIndex);
 
     /**
      * warning alert used for notification
@@ -96,7 +97,7 @@ public class FortificationViewController {
     private void initPhaseView() {
         Color curPlayerColor = curPlayer.getPlayerColor();
         String playerName = "Player_" + curPlayerIndex;
-        curPlayer = Main.playersList.get(curPlayerIndex);
+
         lbl_phaseViewName.setText(curGamePhase);
         lbl_playerName.setText(playerName);
         lbl_playerName.setTextFill(curPlayerColor);
@@ -217,9 +218,9 @@ public class FortificationViewController {
             notifyGameStageChanged("Reinforce Phase");
 
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Pane attackPane = new FXMLLoader(getClass().getResource("../view/ReinforcePhase.fxml")).load();
-            Scene attackScene = new Scene(attackPane, 1200, 900);
-            curStage.setScene(attackScene);
+            Pane nextPane = new FXMLLoader(getClass().getResource("../view/ReinforcePhase.fxml")).load();
+            Scene nextScene = new Scene(nextPane, 1200, 900);
+            curStage.setScene(nextScene);
             curStage.show();
         }
     }
