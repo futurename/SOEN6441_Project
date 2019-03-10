@@ -190,13 +190,24 @@ public class FortificationViewController {
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-        notifyGameStageChanged();
+        if (curPlayerIndex == Main.totalNumOfPlayers - 1){
+            notifyGameStageChanged("Reinforcement Phase");
 
-        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/AttackView.fxml")).load();
-        Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
-        curStage.setScene(reinforceScene);
-        curStage.show();
+            Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
+            Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
+            curStage.setScene(reinforceScene);
+            curStage.show();
+        }else {
+            notifyGameStageChanged("Attack Phase");
+
+            Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Pane attackPane = new FXMLLoader(getClass().getResource("../view/AttackView.fxml")).load();
+            Scene attackScene = new Scene(attackPane, 1200, 900);
+            curStage.setScene(attackScene);
+            curStage.show();
+        }
+
     }
 
     /**
@@ -290,9 +301,9 @@ public class FortificationViewController {
         curPlayerIndex = Main.phaseViewObserver.getPlayerIndex();
     }
 
-    private void notifyGameStageChanged(){
+    private void notifyGameStageChanged(String phase){
         int nextPlayerIndex = (curPlayerIndex + 1) % Main.totalNumOfPlayers;
-        Main.phaseViewObservable.setAllParam("Attack Phase", nextPlayerIndex, "NO ACT");
+        Main.phaseViewObservable.setAllParam(phase, nextPlayerIndex, "NO ACT");
         Main.phaseViewObservable.notifyObservers("from fortification view");
 
         System.out.printf("player %s finished fortification, player %s's turn\n", curPlayerIndex, nextPlayerIndex);

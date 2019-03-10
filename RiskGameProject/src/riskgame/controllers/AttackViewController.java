@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import riskgame.Main;
+import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
@@ -167,6 +168,8 @@ public class AttackViewController implements Initializable {
      * @param actionEvent onClick event
      */
     public void clickFinishAttack(ActionEvent actionEvent) {
+        //for testing card observer pattern TODO
+        notifyCardChanged();
         btn_confirmAttack.setVisible(false);
         btn_finishAttack.setVisible(false);
         btn_nextStep.setVisible(true);
@@ -181,5 +184,10 @@ public class AttackViewController implements Initializable {
         Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "no action");
         Main.phaseViewObservable.notifyObservers("from attack view");
         System.out.printf("player %s finished attack, player %s's turn\n", curPlayerIndex, curPlayerIndex);
+    }
+
+    private void notifyCardChanged(){
+        Main.playersList.get(curPlayerIndex).setObservableCard(Card.ARTILLERY);
+        Main.playersList.get(curPlayerIndex).notifyObservers("from attack view: get a new card");
     }
 }

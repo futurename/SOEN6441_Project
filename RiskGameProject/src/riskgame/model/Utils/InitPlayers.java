@@ -26,6 +26,7 @@ public class InitPlayers {
             Player onePlayer = new Player(playerIndex);
             getInitCountryNameList(onePlayer, forAllocatesCountryNameList, numOfPlayers, graphSingleton);
             onePlayer.updateArmyNbr();
+            initPlayerObservable(onePlayer);
 
             System.out.println("init player: " + playerIndex + ", army nbr: " + onePlayer.getArmyNbr());
         }
@@ -70,5 +71,11 @@ public class InitPlayers {
             curPlayer.addToOwnedCountryNameList(oneCountryName);
         }
         Main.playersList.add(curPlayer);
+    }
+
+    private static void initPlayerObservable(Player player){
+        player.addObserver(Main.cardExchangeViewObserver);
+        player.initObservableCard();
+        player.notifyObservers("add new player!");
     }
 }

@@ -5,11 +5,13 @@ import javafx.scene.paint.Color;
 import riskgame.Main;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * This class includes attributes a player need and required methods
  **/
-public class Player {
+public class Player extends Observable {
     private static final int DEFAULT_DIVISION_FACTOR = 3;
 
     private final int playerIndex;
@@ -291,6 +293,15 @@ public class Player {
             }
         }
 
+    }
+
+    public void setObservableCard(Card newCard){
+        cardsList.add(newCard);
+        setChanged();
+    }
+
+    public void initObservableCard(){
+        setChanged();
     }
 }
 

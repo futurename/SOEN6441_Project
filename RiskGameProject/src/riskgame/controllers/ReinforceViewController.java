@@ -18,6 +18,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import riskgame.Main;
+import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
@@ -48,6 +49,8 @@ public class ReinforceViewController implements Initializable {
     @FXML
     private VBox vbx_worldDomiView;
     @FXML
+    private VBox vbx_cardExchangeView;
+    @FXML
     private ScrollBar scb_armyNbrAdjustment;
     @FXML
     private Label lbl_deployArmyCount;
@@ -76,6 +79,8 @@ public class ReinforceViewController implements Initializable {
     private Player curPlayer;
     private int curPlayerIndex;
     private String curGamePhase;
+
+    private HashMap<String, ArrayList<Card>> playersCards;
 
     /**
      * default factor for calculting standard number of army used for reinforce phase
@@ -108,6 +113,7 @@ public class ReinforceViewController implements Initializable {
 
         initPhaseView();
         initPlayerDominationView();
+        initCardViewObserver();
 
         Color curPlayerColor = curPlayer.getPlayerColor();
         int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
@@ -180,6 +186,25 @@ public class ReinforceViewController implements Initializable {
 
         phaseViewObservable.setAllParam(phaseName, nextPlayerIndex, actionString);
         phaseViewObservable.notifyObservers(phaseViewObservable);
+    }
+
+    private void initCardViewObserver(){
+        playersCards = cardExchangeViewObserver.getPlayersCards();
+        ArrayList<Label> labelList = new ArrayList<>();
+        for (int playerIndex = 0; playerIndex < totalNumOfPlayers; playerIndex++){
+            Color curPlayerColor = playersList.get(playerIndex).getPlayerColor();
+            String playerCardsDisplayable = playersCards.get(String.valueOf(playerIndex)).toString();
+            Label oneLabel = new Label();
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Player: ").append(playerIndex)
+                    .append("\n").append(playerCardsDisplayable)
+                    .append("\n\n");
+            oneLabel.setText(stringBuilder.toString());
+            oneLabel.setTextFill(curPlayerColor);
+            oneLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
+            labelList.add(oneLabel);
+        }
+        vbx_cardExchangeView.getChildren().addAll(labelList);
     }
 
 
