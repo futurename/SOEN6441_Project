@@ -13,11 +13,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
-import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
-import riskgame.model.BasicClass.ObserverPattern.PhaseViewObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
@@ -38,13 +37,17 @@ public class AttackViewController implements Initializable {
     @FXML
     private Button btn_nextStep;
     @FXML
-    private Label lbl_playerInfo;
-    @FXML
     private Button btn_finishAttack;
     @FXML
     private Button btn_confirmAttack;
     @FXML
     private Label lbl_phaseViewName;
+    @FXML
+    private Label lbl_playerName;
+    @FXML
+    private Label lbl_actionString;
+    @FXML
+    private VBox vbx_worldDomiView;
 
     /**
      * curent player index
@@ -70,7 +73,7 @@ public class AttackViewController implements Initializable {
 
         Player curPlayer = Main.playersList.get(curPlayerIndex);
         String playerInfo = "Player: " + curPlayerIndex;
-        lbl_playerInfo.setText(playerInfo);
+        lbl_playerName.setText(playerInfo);
         lbl_phaseViewName.setText(curGamePhase);
         alert = new Alert(Alert.AlertType.WARNING);
 
@@ -99,7 +102,7 @@ public class AttackViewController implements Initializable {
                 .getSelectionModel()
                 .getSelectedIndex();
 
-        System.out.println("#############selected country index: " + countryIndex);
+        System.out.println("#############selected country index: " + countryIndex + ", " + lsv_ownedCountries.getSelectionModel().getSelectedItem());
 
         ObservableList<Country> datalist = InfoRetriver.getAttackableAdjacentCountryList(this.curPlayerIndex, countryIndex);
 

@@ -46,8 +46,6 @@ public class ReinforceViewController implements Initializable {
     @FXML
     private Label lbl_undeployedArmy;
     @FXML
-    private PieChart pct_countryDistributionChart;
-    @FXML
     private VBox vbx_worldDomiView;
     @FXML
     private ScrollBar scb_armyNbrAdjustment;
@@ -69,6 +67,7 @@ public class ReinforceViewController implements Initializable {
     private Label lbl_playerName;
     @FXML
     private Label lbl_phaseViewName;
+
 
 
     /**
@@ -102,7 +101,7 @@ public class ReinforceViewController implements Initializable {
 
     /**
      * init UI controls and corresponding varaibles
-     *
+     * <p>
      * param playerIndex initialize UI controls and display information of current player
      */
     private void reinforceViewInit() {
@@ -124,8 +123,6 @@ public class ReinforceViewController implements Initializable {
 
         ListviewRenderer.renderCountryItems(lsv_ownedCountries);
 
-        pct_countryDistributionChart.setData(getPieChartData(curPlayer));
-
         scb_armyNbrAdjustment.setMax(curUndeployedArmy);
         scb_armyNbrAdjustment.setMin(1);
         scb_armyNbrAdjustment.adjustValue(curUndeployedArmy);
@@ -135,12 +132,12 @@ public class ReinforceViewController implements Initializable {
     }
 
     /**
-     *Set contents to player domination the pane
+     * Set contents to player domination the pane
      */
     private void initPlayerDominationView() {
         ArrayList<Label> labelList = new ArrayList<>();
 
-        for(int playerIndex = 0; playerIndex < totalNumOfPlayers; playerIndex++){
+        for (int playerIndex = 0; playerIndex < totalNumOfPlayers; playerIndex++) {
             Color curPlayerColor = playersList.get(playerIndex).getPlayerColor();
             Label oneLabel = new Label();
             StringBuilder stringBuilder = new StringBuilder();
@@ -163,7 +160,6 @@ public class ReinforceViewController implements Initializable {
 
     /**
      * set contents to phase view labels
-     *
      */
     private void initPhaseView() {
         curGamePhase = phaseViewObserver.getPhaseName();
@@ -198,7 +194,7 @@ public class ReinforceViewController implements Initializable {
 //        Main.curRoundPlayerIndex++;
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-        if (curPlayerIndex+1 < Main.totalNumOfPlayers) {
+        if (curPlayerIndex + 1 < Main.totalNumOfPlayers) {
             notifyGameStageChanged(false);
             Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
             Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
@@ -228,6 +224,8 @@ public class ReinforceViewController implements Initializable {
 
         lsv_adjacentCountries.setItems(datalist);
         ListviewRenderer.renderCountryItems(lsv_adjacentCountries);
+
+        System.out.println(">>>select owned country: " + lsv_ownedCountries.getSelectionModel().getSelectedItem());
     }
 
     /**
@@ -237,6 +235,7 @@ public class ReinforceViewController implements Initializable {
      */
     @FXML
     public void clickConfirmDeployment(ActionEvent actionEvent) {
+        Country selectedCountry = lsv_ownedCountries.getSelectionModel().getSelectedItem();
         int selectedCountryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
         int undeloyedArmyCount = Integer.parseInt(lbl_undeployedArmy.getText());
 
@@ -247,11 +246,7 @@ public class ReinforceViewController implements Initializable {
             alert.showAndWait();
         } else {
             int deployArmyCount = Integer.parseInt(lbl_deployArmyCount.getText());
-
-            ArrayList<String> countryList = Main.playersList.get(Main.curRoundPlayerIndex).getOwnedCountryNameList();
-            String selectedCountryName = countryList.get(selectedCountryIndex);
-            Country curCountry = Main.graphSingleton.get(selectedCountryName).getCountry();
-            curCountry.addToCountryArmyNumber(deployArmyCount);
+            selectedCountry.addToCountryArmyNumber(deployArmyCount);
 
             int remainUndeployedArmyCount = undeloyedArmyCount - deployArmyCount;
             lbl_undeployedArmy.setText(Integer.toString(remainUndeployedArmyCount));
@@ -272,6 +267,9 @@ public class ReinforceViewController implements Initializable {
                 scb_armyNbrAdjustment.adjustValue(remainUndeployedArmyCount);
                 lbl_deployArmyCount.setText(Integer.toString(remainUndeployedArmyCount));
             }
+
+
+            System.out.println("\nfinish deployment to country " + selectedCountry.getCountryName() + ": " + selectedCountry.getCountryArmyNumber());
         }
     }
 
@@ -313,14 +311,15 @@ public class ReinforceViewController implements Initializable {
     /**
      * notify all phase view observer that game stage changed.
      * Changes can be next player's reinforcement or going to attack phase.
+     *
      * @param nextPhase true for going to attack phase otherwise, next player's turn
      */
-    private void notifyGameStageChanged(boolean nextPhase){
+    private void notifyGameStageChanged(boolean nextPhase) {
         int nextPlayerIndex = (curPlayerIndex + 1) % Main.totalNumOfPlayers;
-        if (nextPhase){
+        if (nextPhase) {
             Main.phaseViewObservable.setAllParam("Attack Phase", nextPlayerIndex, "NO ACT");
             Main.phaseViewObservable.notifyObservers("from reinforcement");
-        }else {
+        } else {
             Main.phaseViewObservable.setAllParam("Reinforcement Phase", nextPlayerIndex, "NO ACT");
             Main.phaseViewObservable.notifyObservers("from reinforcement");
         }

@@ -1,29 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollBar?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-
-<AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="riskgame.controllers.FortificationViewController">
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="riskgame.controllers.FortificationViewController">
     <children>
-        <ListView fx:id="lsv_ownedCountries" focusTraversable="false" layoutX="75.0" layoutY="145.0" onMouseClicked="#selectOneCountry" prefHeight="697.0" prefWidth="283.0" stylesheets="@css/playercountries.css" />
-        <ListView fx:id="lsv_reachableCountry" layoutX="444.0" layoutY="145.0" prefHeight="438.0" prefWidth="283.0" stylesheets="@css/playercountries.css" />
-        <Label alignment="CENTER" layoutX="131.0" layoutY="99.0" prefHeight="25.0" prefWidth="172.0" text="Countries">
+        <ListView fx:id="lsv_ownedCountries" focusTraversable="false" layoutX="571.0" layoutY="125.0" onMouseClicked="#selectOneCountry" prefHeight="697.0" prefWidth="283.0" stylesheets="@css/playercountries.css" />
+        <ListView fx:id="lsv_reachableCountry" layoutX="940.0" layoutY="125.0" prefHeight="438.0" prefWidth="239.0" stylesheets="@css/playercountries.css" />
+        <Label alignment="CENTER" layoutX="627.0" layoutY="79.0" prefHeight="25.0" prefWidth="172.0" text="Countries">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <Label alignment="CENTER" layoutX="481.0" layoutY="99.0" prefHeight="27.0" prefWidth="216.0" text="Reachable Countries">
+        <Label alignment="CENTER" layoutX="952.0" layoutY="79.0" prefHeight="27.0" prefWidth="216.0" text="Reachable Countries">
             <font>
                 <Font name="System Bold" size="18.0" />
-            </font>
-        </Label>
-        <Label fx:id="lbl_phaseViewName" alignment="CENTER" layoutX="75.0" layoutY="38.0" prefHeight="46.0" prefWidth="239.0" text="Unknown Phase" textAlignment="CENTER" textFill="#0127ff">
-            <font>
-                <Font name="System Bold" size="22.0" />
             </font>
         </Label>
         <Button fx:id="btn_nextStep" layoutX="1018.0" layoutY="737.0" mnemonicParsing="false" onAction="#clickNextStep" prefHeight="35.0" prefWidth="127.0" text="NEXT" textFill="#fc0303" underline="true" visible="false">
@@ -31,41 +22,56 @@
                 <Font name="System Bold" size="24.0" />
             </font>
         </Button>
-        <ScrollBar fx:id="scb_armyNbrAdjustment" layoutX="703.0" layoutY="624.0" max="0.0" orientation="VERTICAL" prefHeight="58.0" prefWidth="14.0" />
-        <Label fx:id="lbl_deployCountPrompt" alignment="CENTER" layoutX="462.0" layoutY="665.0" prefHeight="25.0" prefWidth="172.0" text="Deploy number :">
+        <ScrollBar fx:id="scb_armyNbrAdjustment" layoutX="1172.0" layoutY="609.0" max="0.0" orientation="VERTICAL" prefHeight="58.0" prefWidth="14.0" />
+        <Label fx:id="lbl_deployCountPrompt" alignment="CENTER" layoutX="931.0" layoutY="650.0" prefHeight="25.0" prefWidth="172.0" text="Deploy number :">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <Label fx:id="lbl_deployArmyNumber" alignment="CENTER" layoutX="634.0" layoutY="653.0" prefHeight="51.0" prefWidth="53.0" text="0" textFill="#fc0303">
+        <Label fx:id="lbl_deployArmyNumber" alignment="CENTER" layoutX="1103.0" layoutY="638.0" prefHeight="51.0" prefWidth="53.0" text="0" textFill="#fc0303">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>
         </Label>
-        <Label fx:id="lbl_maxArmyNumber" alignment="CENTER" layoutX="634.0" layoutY="602.0" prefHeight="51.0" prefWidth="53.0" text="0" textFill="#3705fa">
+        <Label fx:id="lbl_maxArmyNumber" alignment="CENTER" layoutX="1103.0" layoutY="587.0" prefHeight="51.0" prefWidth="53.0" text="0" textFill="#3705fa">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>
         </Label>
-        <Label fx:id="lbl_undeployArmyPrompt" alignment="CENTER" layoutX="462.0" layoutY="615.0" prefHeight="25.0" prefWidth="172.0" text="Max number :">
+        <Label fx:id="lbl_undeployArmyPrompt" alignment="CENTER" layoutX="931.0" layoutY="600.0" prefHeight="25.0" prefWidth="172.0" text="Max number :">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <Label fx:id="lbl_playerInfo" alignment="CENTER" focusTraversable="false" layoutX="346.0" layoutY="38.0" mouseTransparent="true" prefHeight="40.0" prefWidth="138.0" text="PlayerNum">
-            <font>
-                <Font name="System Bold" size="20.0" />
-            </font>
-        </Label>
-      <Button fx:id="btn_confirmMoveArmy" layoutX="367.0" layoutY="261.0" mnemonicParsing="false" onAction="#clickConfirmMoveArmy" prefHeight="37.0" prefWidth="68.0" text="Move" textAlignment="CENTER" textFill="#f80505" AnchorPane.leftAnchor="367.0" AnchorPane.rightAnchor="765.0">
+      <Button fx:id="btn_confirmMoveArmy" layoutX="863.0" layoutY="241.0" mnemonicParsing="false" onAction="#clickConfirmMoveArmy" prefHeight="37.0" prefWidth="68.0" text="Move" textAlignment="CENTER" textFill="#f80505" AnchorPane.leftAnchor="863.0" AnchorPane.rightAnchor="269.0">
           <font>
               <Font name="System Bold" size="16.0" />
           </font>
       </Button>
-        <Button fx:id="btn_skipFortification" layoutX="367.0" layoutY="364.0" mnemonicParsing="false" onAction="#clickSkipFortification" prefHeight="37.0" prefWidth="68.0" text="Skip" textAlignment="CENTER" textFill="#f80505">
+        <Button fx:id="btn_skipFortification" layoutX="863.0" layoutY="344.0" mnemonicParsing="false" onAction="#clickSkipFortification" prefHeight="37.0" prefWidth="68.0" text="Skip" textAlignment="CENTER" textFill="#f80505">
             <font>
                 <Font name="System Bold" size="16.0" />
             </font>
         </Button>
+      <VBox fx:id="vbx_worldDomiView" layoutX="20.0" layoutY="239.0" prefHeight="455.0" prefWidth="526.0" />
+      <AnchorPane fx:id="acp_phaseView" layoutX="34.0" layoutY="53.0" prefHeight="185.0" prefWidth="507.0">
+         <children>
+            <Label fx:id="lbl_phaseViewName" alignment="CENTER" layoutX="28.0" prefHeight="40.0" prefWidth="262.0" textFill="#1d04ff" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_playerName" layoutX="333.0" prefHeight="40.0" prefWidth="186.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_actionString" layoutX="14.0" layoutY="40.0" prefHeight="130.0" prefWidth="479.0" textFill="#070707" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>

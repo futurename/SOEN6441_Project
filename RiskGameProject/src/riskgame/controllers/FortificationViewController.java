@@ -13,8 +13,6 @@ import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
-import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
-import riskgame.model.BasicClass.ObserverPattern.PhaseViewObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
@@ -77,9 +75,8 @@ public class FortificationViewController {
         initObserver();
 
         String playerInfo = "Player: " + curPlayerIndex;
-//        String playerInfo = "Player: " + Main.curRoundPlayerIndex;
         lbl_playerInfo.setText(playerInfo);
-//        curPlayer = Main.playersList.get(Main.curRoundPlayerIndex);
+
         curPlayer = Main.playersList.get(curPlayerIndex);
         lbl_phaseViewName.setText(curGamePhase);
         lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
@@ -118,7 +115,7 @@ public class FortificationViewController {
         } else {
             int selectedCountryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
             String selectedCountryName = curPlayer.getOwnedCountryNameList().get(selectedCountryIndex);
-            Country selectedCountry = Main.graphSingleton.get(selectedCountryName).getCountry();
+            Country selectedCountry = lsv_ownedCountries.getSelectionModel().getSelectedItem();
 
             System.out.println("selected country name: " + selectedCountryName + ", army: " + selectedCountry.getCountryArmyNumber());
 
