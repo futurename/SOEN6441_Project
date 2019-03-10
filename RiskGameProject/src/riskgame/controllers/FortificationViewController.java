@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
@@ -25,8 +26,7 @@ import java.util.ArrayList;
  **/
 
 public class FortificationViewController {
-    @FXML
-    private Label lbl_playerInfo;
+
     @FXML
     private Label lbl_maxArmyNumber;
     @FXML
@@ -45,6 +45,12 @@ public class FortificationViewController {
     private Button btn_skipFortification;
     @FXML
     private Label lbl_phaseViewName;
+    @FXML
+    private Label lbl_rechanble_countries;
+    @FXML
+    private Label lbl_countries;
+    @FXML
+    private Label lbl_playerName;
 
     /**
      * fortification move counter
@@ -74,8 +80,8 @@ public class FortificationViewController {
     public void initialize() {
         initObserver();
 
-        curPlayer = Main.playersList.get(curPlayerIndex);
-        lbl_phaseViewName.setText(curGamePhase);
+        initPhaseView();
+
         lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
         ListviewRenderer.renderCountryItems(lsv_ownedCountries);
 
@@ -85,6 +91,17 @@ public class FortificationViewController {
             btn_nextStep.setVisible(true);
             setListViewsTransparent();
         }
+    }
+
+    private void initPhaseView() {
+        Color curPlayerColor = curPlayer.getPlayerColor();
+        String playerName = "Player_" + curPlayerIndex;
+        curPlayer = Main.playersList.get(curPlayerIndex);
+        lbl_phaseViewName.setText(curGamePhase);
+        lbl_playerName.setText(playerName);
+        lbl_playerName.setTextFill(curPlayerColor);
+        lbl_countries.setTextFill(curPlayerColor);
+        lbl_rechanble_countries.setTextFill(curPlayerColor);
     }
 
     /**

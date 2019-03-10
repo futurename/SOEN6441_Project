@@ -7,12 +7,12 @@
     <children>
         <ListView fx:id="lsv_ownedCountries" focusTraversable="false" layoutX="571.0" layoutY="125.0" onMouseClicked="#selectOneCountry" prefHeight="697.0" prefWidth="283.0" stylesheets="@css/listviewStyle.css" />
         <ListView fx:id="lsv_reachableCountry" layoutX="940.0" layoutY="125.0" prefHeight="438.0" prefWidth="239.0" stylesheets="@css/listviewStyle.css" />
-        <Label alignment="CENTER" layoutX="627.0" layoutY="79.0" prefHeight="25.0" prefWidth="172.0" text="Countries">
+        <Label fx:id="lbl_countries" alignment="CENTER" layoutX="627.0" layoutY="79.0" prefHeight="25.0" prefWidth="172.0" text="Countries">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <Label alignment="CENTER" layoutX="952.0" layoutY="79.0" prefHeight="27.0" prefWidth="216.0" text="Reachable Countries">
+        <Label fx:id="lbl_rechanble_countries" alignment="CENTER" layoutX="952.0" layoutY="79.0" prefHeight="27.0" prefWidth="216.0" text="Reachable Countries">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>

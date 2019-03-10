@@ -5,12 +5,12 @@
 <?import javafx.scene.text.*?>
 <AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="riskgame.controllers.AttackViewController">
     <children>
-        <Label alignment="CENTER" layoutX="940.0" layoutY="36.0" prefHeight="25.0" prefWidth="172.0" text="Adjacent Countries">
+        <Label fx:id="lbl_adjacentCountries" alignment="CENTER" layoutX="940.0" layoutY="36.0" prefHeight="25.0" prefWidth="172.0" text="Adjacent Countries">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <Label alignment="CENTER" layoutX="589.0" layoutY="36.0" prefHeight="25.0" prefWidth="172.0" text="Countries">
+        <Label fx:id="lbl_countries" alignment="CENTER" layoutX="589.0" layoutY="36.0" prefHeight="25.0" prefWidth="172.0" text="Countries">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>

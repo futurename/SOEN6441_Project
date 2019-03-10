@@ -46,8 +46,6 @@ public class ReinforceViewController implements Initializable {
     @FXML
     private VBox vbx_worldDomiView;
     @FXML
-    private VBox vbx_cardExchangeView;
-    @FXML
     private ScrollBar scb_armyNbrAdjustment;
     @FXML
     private Label lbl_deployArmyCount;
@@ -84,6 +82,8 @@ public class ReinforceViewController implements Initializable {
     private HashMap<String, ArrayList<Card>> playersCards;
 
     private int curUndeployedArmy = 0;
+
+    private static int reinforceInitCounter = totalNumOfPlayers;
 
 
     private Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -222,7 +222,6 @@ public class ReinforceViewController implements Initializable {
             oneLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
             labelList.add(oneLabel);
         }
-        vbx_cardExchangeView.getChildren().addAll(labelList);
     }
 
 
@@ -234,28 +233,31 @@ public class ReinforceViewController implements Initializable {
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-        Main.curRoundPlayerIndex++;
+        curRoundPlayerIndex = (curRoundPlayerIndex + 1) % totalNumOfPlayers;
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        int nextPlayerIndex = (curPlayerIndex + 1) % totalNumOfPlayers;
 
-        if (curPlayerIndex < Main.totalNumOfPlayers - 1) {
+        System.out.println("\n???????????????????????????" + reinforceInitCounter);
+
+        if (reinforceInitCounter > 1) {
             //notifyGameStageChanged(false);
 
-            Main.phaseViewObservable.setAllParam("Attack Phase", nextPlayerIndex, "NO ACT");
-            Main.phaseViewObservable.notifyObservers("from reinforcement");
+            reinforceInitCounter--;
+
+            Main.phaseViewObservable.setAllParam("Reinforce Phase", curRoundPlayerIndex, "NO ACT");
+            Main.phaseViewObservable.notifyObservers(phaseViewObservable);
 
             Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
             Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
-            //reinforceViewInit();
+
             curStage.setScene(reinforceScene);
             curStage.show();
+
         } else {
             //notifyGameStageChanged(true);
 
-            Main.phaseViewObservable.setAllParam("Reinforcement Phase", nextPlayerIndex, "NO ACT");
-            Main.phaseViewObservable.notifyObservers("from reinforcement");
+            Main.phaseViewObservable.setAllParam("Attack Phase", curRoundPlayerIndex, "NO ACT");
+            Main.phaseViewObservable.notifyObservers(phaseViewObservable);
 
-            Main.curRoundPlayerIndex = Main.curRoundPlayerIndex % Main.totalNumOfPlayers;
             Pane attackPane = new FXMLLoader(getClass().getResource("../view/AttackView.fxml")).load();
             Scene attackScene = new Scene(attackPane, 1200, 900);
 

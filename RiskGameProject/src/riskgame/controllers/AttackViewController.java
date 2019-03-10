@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Card;
@@ -44,6 +45,10 @@ public class AttackViewController implements Initializable {
     private Label lbl_phaseViewName;
     @FXML
     private Label lbl_playerName;
+    @FXML
+    private Label lbl_countries;
+    @FXML
+    private Label lbl_adjacentCountries;
 
 
     /**
@@ -56,7 +61,7 @@ public class AttackViewController implements Initializable {
     /**
      * Alert object
      */
-    private Alert alert;
+    private Alert alert = new Alert(Alert.AlertType.WARNING);
 
     /**
      * init method for attack phase view
@@ -68,13 +73,22 @@ public class AttackViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         initObserver();
 
-        Player curPlayer = Main.playersList.get(curPlayerIndex);
-        String playerInfo = "Player: " + curPlayerIndex;
-        lbl_playerName.setText(playerInfo);
-        lbl_phaseViewName.setText(curGamePhase);
-        alert = new Alert(Alert.AlertType.WARNING);
+        Player curPlayer = initPhaseView();
 
         initCountryListviewDisplay(curPlayer);
+    }
+
+    private Player initPhaseView() {
+        Player curPlayer = Main.playersList.get(curPlayerIndex);
+        String playerInfo = "Player: " + curPlayerIndex;
+        Color curPlayerColor = curPlayer.getPlayerColor();
+        lbl_playerName.setText(playerInfo);
+        lbl_playerName.setTextFill(curPlayerColor);
+        lbl_countries.setTextFill(curPlayerColor);
+        lbl_adjacentCountries.setTextFill(curPlayerColor);
+        lbl_phaseViewName.setText(curGamePhase);
+
+        return curPlayer;
     }
 
     /**
@@ -177,7 +191,7 @@ public class AttackViewController implements Initializable {
     }
 
     private void notifyGamePhaseChanged(){
-        Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "no action");
+        Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex+1, "no action");
         Main.phaseViewObservable.notifyObservers("from attack view");
 
         System.out.printf("player %s finished attack, player %s's turn\n", curPlayerIndex, curPlayerIndex);
