@@ -50,4 +50,5 @@ public class MapCheckerTest {
     public void isMapPathValid() {
         assertFalse(MapChecker.isMapPathValid(this.error_path));
     }
+
 }

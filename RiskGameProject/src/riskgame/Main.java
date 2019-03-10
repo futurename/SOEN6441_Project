@@ -8,10 +8,7 @@ import javafx.stage.Stage;
 import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.GraphSingleton;
-import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
-import riskgame.model.BasicClass.ObserverPattern.PhaseViewObserver;
-import riskgame.model.BasicClass.ObserverPattern.PlayerDomiViewObservable;
-import riskgame.model.BasicClass.ObserverPattern.PlayerDomiViewObserver;
+import riskgame.model.BasicClass.ObserverPattern.*;
 import riskgame.model.BasicClass.Player;
 
 import java.io.IOException;
@@ -53,6 +50,8 @@ public class Main extends Application {
     public static PlayerDomiViewObservable playerDomiViewObservable;
     public static PlayerDomiViewObserver playerDomiViewObserver;
 
+    public static CardExchangeViewObserver cardExchangeViewObserver;
+
     /**
      * @param primaryStage default start page
      * @throws Exception startview.fxml not found
@@ -84,6 +83,8 @@ public class Main extends Application {
         playerDomiViewObservable = new PlayerDomiViewObservable();
         playerDomiViewObserver = new PlayerDomiViewObserver();
         playerDomiViewObservable.addObserver(playerDomiViewObserver);
+
+        cardExchangeViewObserver = new CardExchangeViewObserver();
 
     }
 
