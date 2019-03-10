@@ -164,7 +164,7 @@ public class Player {
         Dice dice = new Dice(128);
 
         /**
-         * calculating attacker best dice  when attacker country number is greater than 3
+         * calculating attacker best dice  when attacker country number is greater than 3 and attacker decides dice number
          */
         if (attackingArmyNbr >= 3)
         {
