@@ -208,7 +208,7 @@ public class ReinforceViewController implements Initializable {
             oneLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
             labelList.add(oneLabel);
         }
-        vbx_worldDomiView.getChildren().addAll(labelList);
+        vbx_cardExchangeView.getChildren().addAll(labelList);
     }
 
 
