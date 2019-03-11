@@ -50,7 +50,7 @@ public class Main extends Application {
     public static PlayerDomiViewObservable playerDomiViewObservable;
     public static PlayerDomiViewObserver playerDomiViewObserver;
 
-    public static CardExchangeViewObserver cardExchangeViewObserver;
+//    public static CardExchangeViewObserver cardExchangeViewObserver;
 
     /**
      * @param primaryStage default start page
@@ -81,7 +81,7 @@ public class Main extends Application {
         playerDomiViewObserver = new PlayerDomiViewObserver();
         playerDomiViewObservable.addObserver(playerDomiViewObserver);
 
-        cardExchangeViewObserver = new CardExchangeViewObserver();
+//        cardExchangeViewObserver = new CardExchangeViewObserver();
 
     }
 

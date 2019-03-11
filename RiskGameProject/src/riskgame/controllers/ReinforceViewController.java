@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
@@ -83,6 +84,7 @@ public class ReinforceViewController implements Initializable {
 
     private Player curPlayer;
 
+    private CardExchangeViewObserver cardExchangeViewObserver;
     private HashMap<String, ArrayList<Card>> playersCards;
 
     private int curUndeployedArmy = 0;
@@ -148,7 +150,7 @@ public class ReinforceViewController implements Initializable {
     }
 
     private void initCurPlayerCardListView() {
-        playersCards = cardExchangeViewObserver.getPlayersCards();
+        initObserver("CardView");
         ArrayList<Card> cardsList = playersCards.get(String.valueOf(curPlayerIndex));
         Collections.sort(cardsList, Collections.reverseOrder());
         ObservableList<Card> cardObservableList = FXCollections.observableList(cardsList);
@@ -188,7 +190,7 @@ public class ReinforceViewController implements Initializable {
      * set contents to phase view labels
      */
     private void initPhaseView() {
-        initObserver();
+        initObserver("PhaseView");
         curPlayer = playersList.get(curPlayerIndex);
         Color curPlayerColor = curPlayer.getPlayerColor();
 
@@ -199,11 +201,22 @@ public class ReinforceViewController implements Initializable {
         lbl_actionString.setWrapText(true);
     }
 
-    private void initObserver() {
-        curGamePhase = phaseViewObserver.getPhaseName();
-        curPlayerIndex = phaseViewObserver.getPlayerIndex();
-        curPlayerName = "Player_" + curPlayerIndex;
-        curActionString = phaseViewObserver.getActionString();
+    private void initObserver(String whichObs) {
+        switch (whichObs){
+            case "PhaseView":
+                curGamePhase = phaseViewObserver.getPhaseName();
+                curPlayerIndex = phaseViewObserver.getPlayerIndex();
+                curPlayerName = "Player_" + curPlayerIndex;
+                curActionString = phaseViewObserver.getActionString();
+                break;
+            case "CardView":
+                this.cardExchangeViewObserver = new CardExchangeViewObserver();
+                curPlayer.addObserver(this.cardExchangeViewObserver);
+                curPlayer.initObservableCard();
+                curPlayer.notifyObservers("add new player!");
+                this.playersCards = this.cardExchangeViewObserver.getPlayersCards();
+        }
+
     }
 
 
