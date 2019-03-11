@@ -12,7 +12,7 @@ import java.util.Observer;
 public class CardExchangeViewObserver implements Observer {
     private HashMap<String, ArrayList<Card>> playersCards = new HashMap<>();
     private ArrayList<Card> playerCards;
-    private int exchangeTime;
+    private int exchangeTime = 1;
 
 //    public CardExchangeViewObserver() {
 //        playersCards = new HashMap<>();
@@ -24,7 +24,7 @@ public class CardExchangeViewObserver implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        if (arg == "AddExchangeTime"){
+        if (o instanceof PhaseViewObservable){
             exchangeTime = ((PhaseViewObservable)o).getExchangeTime();
         }else {
             String key = String.valueOf(((Player)o).getPlayerIndex());
@@ -48,7 +48,7 @@ public class CardExchangeViewObserver implements Observer {
         return playerCards;
     }
 
-    public int getExchangeCount() {
+    public int getExchangeTime() {
         return exchangeTime;
     }
 }

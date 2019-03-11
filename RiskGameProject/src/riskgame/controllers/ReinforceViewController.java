@@ -217,6 +217,8 @@ public class ReinforceViewController implements Initializable {
                 curPlayer.notifyObservers("add new player!");
                 this.playersCards = this.cardExchangeViewObserver.getPlayersCards();
                 phaseViewObservable.addObserver(this.cardExchangeViewObserver);
+                phaseViewObservable.initObservableExchangeTime();
+                phaseViewObservable.notifyObservers("keeping exchange time up to date.");
                 break;
         }
 
@@ -394,7 +396,7 @@ public class ReinforceViewController implements Initializable {
      */
     private void setAttackPhaseViewObservable() {
         String nextPhaseName = "Attack Phase";
-        int nextPlayerIndex = curRoundPlayerIndex;
+        int nextPlayerIndex = curPlayerIndex;
         String nextActionString = "Action:\n" +
                 "\n1. Select one attacking country" +
                 "\n2. Select an adjacent empty country" +
@@ -421,18 +423,22 @@ public class ReinforceViewController implements Initializable {
             alert.setContentText("No card selected!");
             alert.showAndWait();
         } else if (validateCardsCombination(selectedCardList)) {
-            int exchangedArmyNbr = getExchangedArmyNbr(selectedCardList);
+            int exchangedArmyNbr = getExchangedArmyNbr();
             curUndeployedArmy += exchangedArmyNbr;
+            System.out.printf("GET NEW %d ARMY!\n", exchangedArmyNbr);
 
             removeCardsFromList(selectedCardList);
             lsv_cardsListView.refresh();
+            lbl_undeployedArmy.setText(Integer.toString(curUndeployedArmy));
+            scb_armyNbrAdjustment.setMax(curUndeployedArmy);
+            scb_armyNbrAdjustment.adjustValue(curUndeployedArmy);
 
             btn_confirmDeployment.setVisible(true);
             btn_skipCardsExchange.setVisible(false);
             btn_confirmExchangeCards.setVisible(false);
 
             phaseViewObservable.addOneExchangeTime();
-            phaseViewObservable.notifyObservers("AddExchangeTime");
+            phaseViewObservable.notifyObservers("Add Exchange Time");
 
         } else {
             alert.setContentText("Wrong cards combination, please try again!");
@@ -455,12 +461,11 @@ public class ReinforceViewController implements Initializable {
     /**
      * if the selected cards list satisfies the game rule, in this method it will be calculated to army number the player can exchange.
      *
-     * @param seletectedCardList selected card list
      * @return exchanged army number
      */
-    private int getExchangedArmyNbr(ObservableList<Card> seletectedCardList) {
-
-        return 0;
+    private int getExchangedArmyNbr() {
+        //get exchange time from card observer
+        return  5 * cardExchangeViewObserver.getExchangeTime();
     }
 
     /**
@@ -471,7 +476,8 @@ public class ReinforceViewController implements Initializable {
      */
     private boolean validateCardsCombination(ObservableList<Card> seletectedCardList) {
         if (seletectedCardList.size() != 3){
-            return false;
+            //set true for testing
+            return true;
         }else {
             int sum = 0;
             for (Card card: seletectedCardList){
