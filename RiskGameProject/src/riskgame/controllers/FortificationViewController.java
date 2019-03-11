@@ -71,9 +71,9 @@ public class FortificationViewController {
      * current player in this phase
      */
 
-    private int curPlayerIndex = Main.curRoundPlayerIndex;
+    private int curPlayerIndex;
     private String curGamePhase;
-    private Player curPlayer = Main.playersList.get(curPlayerIndex);
+    private Player curPlayer;
 
     /**
      * warning alert used for notification
@@ -84,8 +84,6 @@ public class FortificationViewController {
      * init method for fortification phase view
      */
     public void initialize() {
-        initObserver();
-
         initPhaseView();
 
         lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
@@ -100,14 +98,20 @@ public class FortificationViewController {
     }
 
     private void initPhaseView() {
+        initObserver();
+        curPlayer = Main.playersList.get(curPlayerIndex);
         Color curPlayerColor = curPlayer.getPlayerColor();
         String playerName = "Player_" + curPlayerIndex;
-
         lbl_phaseViewName.setText(curGamePhase);
         lbl_playerName.setText(playerName);
         lbl_playerName.setTextFill(curPlayerColor);
         lbl_countries.setTextFill(curPlayerColor);
         lbl_rechanble_countries.setTextFill(curPlayerColor);
+    }
+
+    private void initObserver() {
+        curGamePhase = Main.phaseViewObserver.getPhaseName();
+        curPlayerIndex = Main.phaseViewObserver.getPlayerIndex();
     }
 
     /**
@@ -223,8 +227,6 @@ public class FortificationViewController {
 
         notifyGameStageChanged("Reinforce Phase");
 
-        Main.curRoundPlayerIndex = (Main.curRoundPlayerIndex + 1) % Main.totalNumOfPlayers;
-
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Pane nextPane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
         Scene nextScene = new Scene(nextPane, 1200, 900);
@@ -318,11 +320,6 @@ public class FortificationViewController {
         btn_confirmMoveArmy.setVisible(false);
         btn_skipFortification.setVisible(false);
         btn_nextStep.setVisible(true);
-    }
-
-    private void initObserver() {
-        curGamePhase = Main.phaseViewObserver.getPhaseName();
-        curPlayerIndex = Main.phaseViewObserver.getPlayerIndex();
     }
 
     private void notifyGameStageChanged(String phase) {

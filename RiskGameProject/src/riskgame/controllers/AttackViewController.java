@@ -55,7 +55,7 @@ public class AttackViewController implements Initializable {
      * curent player index
      */
     private int curPlayerIndex;
-
+    private Player curPlayer;
     private String curGamePhase;
 
     /**
@@ -71,15 +71,14 @@ public class AttackViewController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        initObserver();
-
-        Player curPlayer = initPhaseView();
+        initPhaseView();
 
         initCountryListviewDisplay(curPlayer);
     }
 
-    private Player initPhaseView() {
-        Player curPlayer = Main.playersList.get(curPlayerIndex);
+    private void initPhaseView() {
+        initObserver();
+        curPlayer = Main.playersList.get(curPlayerIndex);
         String playerInfo = "Player: " + curPlayerIndex;
         Color curPlayerColor = curPlayer.getPlayerColor();
         lbl_playerName.setText(playerInfo);
@@ -87,8 +86,11 @@ public class AttackViewController implements Initializable {
         lbl_countries.setTextFill(curPlayerColor);
         lbl_adjacentCountries.setTextFill(curPlayerColor);
         lbl_phaseViewName.setText(curGamePhase);
+    }
 
-        return curPlayer;
+    private void initObserver(){
+        curPlayerIndex = Main.phaseViewObserver.getPlayerIndex();
+        curGamePhase = Main.phaseViewObserver.getPhaseName();
     }
 
     /**
@@ -183,11 +185,6 @@ public class AttackViewController implements Initializable {
         btn_confirmAttack.setVisible(false);
         btn_finishAttack.setVisible(false);
         btn_nextStep.setVisible(true);
-    }
-
-    private void initObserver(){
-        curPlayerIndex = Main.phaseViewObserver.getPlayerIndex();
-        curGamePhase = Main.phaseViewObserver.getPhaseName();
     }
 
     private void notifyGamePhaseChanged(){

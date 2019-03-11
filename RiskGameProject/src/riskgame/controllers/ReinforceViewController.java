@@ -75,8 +75,8 @@ public class ReinforceViewController implements Initializable {
     /**
      * current player in this phase
      */
-    private int curPlayerIndex = curRoundPlayerIndex;
-    private Player curPlayer = playersList.get(curPlayerIndex);
+    private int curPlayerIndex;
+    private Player curPlayer;
     private String curGamePhase;
 
     private HashMap<String, ArrayList<Card>> playersCards;
@@ -116,13 +116,9 @@ public class ReinforceViewController implements Initializable {
      * param playerIndex initialize UI controls and display information of current player
      */
     private void reinforceViewInit() {
-
         initPhaseView();
         initPlayerDominationView();
-
         initCurPlayerCardListView();
-
-        //initCardViewObserver();
 
         Color curPlayerColor = curPlayer.getPlayerColor();
         int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
@@ -148,7 +144,8 @@ public class ReinforceViewController implements Initializable {
     }
 
     private void initCurPlayerCardListView() {
-        ArrayList<Card> cardsList = curPlayer.getCardsList();
+        playersCards = cardExchangeViewObserver.getPlayersCards();
+        ArrayList<Card> cardsList = playersCards.get(String.valueOf(curPlayerIndex));
         Collections.sort(cardsList, Collections.reverseOrder());
         ObservableList<Card> cardObservableList = FXCollections.observableList(cardsList);
         lsv_cardsListView.setItems(cardObservableList);
@@ -187,13 +184,18 @@ public class ReinforceViewController implements Initializable {
      * set contents to phase view labels
      */
     private void initPhaseView() {
-        curGamePhase = phaseViewObserver.getPhaseName();
-        curPlayerIndex = phaseViewObserver.getPlayerIndex();
+        initObserver();
+        curPlayer = playersList.get(curPlayerIndex);
         String playerName = "Player_" + curPlayerIndex;
         lbl_phaseViewName.setText(curGamePhase);
         lbl_playerName.setText(playerName);
         lbl_playerName.setTextFill(curPlayer.getPlayerColor());
         lbl_actionString.setText(phaseViewObserver.getActionString());
+    }
+
+    private void initObserver(){
+        curGamePhase = phaseViewObserver.getPhaseName();
+        curPlayerIndex = phaseViewObserver.getPlayerIndex();
     }
 
 
@@ -233,18 +235,15 @@ public class ReinforceViewController implements Initializable {
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-        curRoundPlayerIndex = (curRoundPlayerIndex + 1) % totalNumOfPlayers;
+//        curRoundPlayerIndex = (curRoundPlayerIndex + 1) % totalNumOfPlayers;
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
         System.out.println("\n???????????????????????????" + reinforceInitCounter);
 
         if (reinforceInitCounter > 1) {
-            //notifyGameStageChanged(false);
+            notifyGameStageChanged(false);
 
             reinforceInitCounter--;
-
-            Main.phaseViewObservable.setAllParam("Reinforce Phase", curRoundPlayerIndex, "NO ACT");
-            Main.phaseViewObservable.notifyObservers(phaseViewObservable);
 
             Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
             Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
@@ -253,10 +252,7 @@ public class ReinforceViewController implements Initializable {
             curStage.show();
 
         } else {
-            //notifyGameStageChanged(true);
-
-            Main.phaseViewObservable.setAllParam("Attack Phase", curRoundPlayerIndex, "NO ACT");
-            Main.phaseViewObservable.notifyObservers(phaseViewObservable);
+            notifyGameStageChanged(true);
 
             Pane attackPane = new FXMLLoader(getClass().getResource("../view/AttackView.fxml")).load();
             Scene attackScene = new Scene(attackPane, 1200, 900);
@@ -274,7 +270,7 @@ public class ReinforceViewController implements Initializable {
     @FXML
     public void selectOneCountry(MouseEvent mouseEvent) {
         int countryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
-        ObservableList datalist = InfoRetriver.getAdjacentCountryObservablelist(Main.curRoundPlayerIndex, countryIndex);
+        ObservableList datalist = InfoRetriver.getAdjacentCountryObservablelist(curPlayerIndex, countryIndex);
 
         lsv_adjacentCountries.setItems(datalist);
         ListviewRenderer.renderCountryItems(lsv_adjacentCountries);
