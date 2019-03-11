@@ -51,6 +51,11 @@ public class FortificationViewController {
     private Label lbl_countries;
     @FXML
     private Label lbl_playerName;
+    @FXML
+    private Label lbl_undeployArmyPrompt;
+    @FXML
+    private Label lbl_deployCountPrompt;
+
 
     /**
      * fortification move counter
@@ -206,7 +211,7 @@ public class FortificationViewController {
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-        if (curPlayerIndex == Main.totalNumOfPlayers - 1) {
+       /* if (curPlayerIndex == Main.totalNumOfPlayers - 1) {
             notifyGameStageChanged("Reinforcement Phase");
 
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -214,15 +219,19 @@ public class FortificationViewController {
             Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
             curStage.setScene(reinforceScene);
             curStage.show();
-        } else {
-            notifyGameStageChanged("Reinforce Phase");
+        } else {}*/
 
-            Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Pane nextPane = new FXMLLoader(getClass().getResource("../view/ReinforcePhase.fxml")).load();
-            Scene nextScene = new Scene(nextPane, 1200, 900);
-            curStage.setScene(nextScene);
-            curStage.show();
-        }
+        notifyGameStageChanged("Reinforce Phase");
+
+        Main.curRoundPlayerIndex = (Main.curRoundPlayerIndex + 1) % Main.totalNumOfPlayers;
+
+        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Pane nextPane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
+        Scene nextScene = new Scene(nextPane, 1200, 900);
+        curStage.setScene(nextScene);
+        curStage.show();
+
+
     }
 
     /**
@@ -319,7 +328,7 @@ public class FortificationViewController {
     private void notifyGameStageChanged(String phase) {
         int nextPlayerIndex = (curPlayerIndex + 1) % Main.totalNumOfPlayers;
         Main.phaseViewObservable.setAllParam(phase, nextPlayerIndex, "NO ACT");
-        Main.phaseViewObservable.notifyObservers("from fortification view");
+        Main.phaseViewObservable.notifyObservers(Main.phaseViewObservable);
 
         System.out.printf("player %s finished fortification, player %s's turn\n", curPlayerIndex, nextPlayerIndex);
     }
