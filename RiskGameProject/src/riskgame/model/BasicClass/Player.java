@@ -173,7 +173,7 @@ public class Player extends Observable {
 
         Dice dice = new Dice(128);
         /**
-         * calculating attacker best dice  when attacker country number is greater than 3
+         * calculating attacker best dice  when attacker country number is greater than 3.
          */
         if (attackingArmyNbr >= 3)
         {
@@ -190,7 +190,7 @@ public class Player extends Observable {
             }
         }
         /**
-         * calculating attacker best dice  when attacker country number is less than  3
+         * calculating attacker best dice  when attacker country number is less than  3.
          */
         if (attackingArmyNbr>0 && attackingArmyNbr<=2 )
         {
@@ -205,7 +205,7 @@ public class Player extends Observable {
         }
 
         /**
-         * calculating defender best dice when defender country number is less than 1
+         * calculating defender best dice when defender country number is less than 1.
          */
          if (defendingArmyNbr < 1) {
              /**attacker conquerd that country
@@ -213,13 +213,13 @@ public class Player extends Observable {
               */
          }
              /**
-              * calculating attacker best dice  when defender country number is 1
+              * calculating attacker best dice  when defender country number is 1.
               */
         else if (defendingArmyNbr == 1) {
                  defenderBestDice = dice.rollADice();
              }
          /**
-          * calculating defender best dice  when attacker country number greater than or equal 2
+          * calculating defender best dice  when attacker country number greater than or equal 2.
           */
 
          else
@@ -234,7 +234,7 @@ public class Player extends Observable {
         }
 
         /**
-         * comparing attacker and defender best dice when defending army number is one
+         * comparing attacker and defender best dice when defending army number is one.
          */
         if (defendingArmyNbr == 1) {
             if (defenderBestDice > attackerBestDice) {
@@ -244,17 +244,17 @@ public class Player extends Observable {
             }
         }
         /**
-         * comparing attacker and defender best dice when defending army number greater one and attacking army number is eual and greater than three
+         * comparing attacker and defender best dice when defending army number greater one and attacking army number is equal and greater than three
          */
         else if (defendingArmyNbr > 1 && attackingArmyNbr >= 2) {
             if (attackerBestDice > defenderBestDice) {
                 /**
-                 * attacker wins and defender loses one army
+                 * attacker wins and defender loses one army.
                  */
 
             } else {
                 /**
-                 * defender wins and attacker loses one army
+                 * defender wins and attacker loses one army.
                  */
             }
             if (attackerSecondBestDice > defenderSecondBestDice) {
@@ -264,12 +264,12 @@ public class Player extends Observable {
 
             } else {
                 /**
-                 * defender wins and attacker loses one army
+                 * defender wins and attacker loses one army.
                  */
             }
         }
         /**
-         * comparing attacker and defender best dice when attacking army number is less than 3
+         * comparing attacker and defender best dice when attacking army number is less than 3.
          */
         if (defendingArmyNbr > 1 && attackingArmyNbr < 2) {
             if (attackerBestDice > defenderBestDice) {
