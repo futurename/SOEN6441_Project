@@ -35,8 +35,6 @@ public class AttackViewController implements Initializable {
     @FXML
     private Button btn_nextStep;
     @FXML
-    private Button btn_finishAttack;
-    @FXML
     private Button btn_confirmAttack;
     @FXML
     private Label lbl_phaseViewName;
@@ -64,6 +62,8 @@ public class AttackViewController implements Initializable {
     private Label lbl_defenderArmyPrompt;
     @FXML
     private Label lbl_defenderArmyNbr;
+    @FXML
+    private Label lbl_actionString;
 
 
     /**
@@ -72,6 +72,8 @@ public class AttackViewController implements Initializable {
     private int curPlayerIndex;
     private Player curPlayer;
     private String curGamePhase;
+    private String curPlayerName;
+    private String curActionString;
 
     private final int MIN_ATTACKING_ARMY_NUMBER = 2;
 
@@ -95,19 +97,33 @@ public class AttackViewController implements Initializable {
 
     private void initPhaseView() {
         initObserver();
+
         curPlayer = Main.playersList.get(curPlayerIndex);
-        String playerInfo = "Player: " + curPlayerIndex;
         Color curPlayerColor = curPlayer.getPlayerColor();
-        lbl_playerName.setText(playerInfo);
+
+        lbl_playerName.setText(curPlayerName);
         lbl_playerName.setTextFill(curPlayerColor);
+        lbl_phaseViewName.setText(curGamePhase);
+        lbl_actionString.setText(curActionString);
+        lbl_actionString.setWrapText(true);
+
         lbl_countries.setTextFill(curPlayerColor);
         lbl_adjacentCountries.setTextFill(curPlayerColor);
-        lbl_phaseViewName.setText(curGamePhase);
+
+        initPlayerDominationView();
+    }
+
+    /**
+     * initialize player domination information
+     */
+    private void initPlayerDominationView() {
     }
 
     private void initObserver() {
         curPlayerIndex = Main.phaseViewObserver.getPlayerIndex();
         curGamePhase = Main.phaseViewObserver.getPhaseName();
+        curPlayerName = "Player_" + curPlayerIndex;
+        curActionString = Main.phaseViewObservable.getActionString();
     }
 
     /**
@@ -122,12 +138,12 @@ public class AttackViewController implements Initializable {
     }
 
     /**
-     * onClick event when a country item is selected from country ListView
+     * onClick event when an attacking country item is selected
      *
-     * @param mouseEvent display its adjacent countries of the selected country
+     * @param mouseEvent mouse click on an owned country
      */
     @FXML
-    public void selectOneCountry(MouseEvent mouseEvent) {
+    public void selectAttackingCountry(MouseEvent mouseEvent) {
         Country selectedCountry = (Country) lsv_ownedCountries.getSelectionModel().getSelectedItem();
 
         int selectedArmyNbr = selectedCountry.getCountryArmyNumber();
@@ -154,6 +170,14 @@ public class AttackViewController implements Initializable {
                     .addListener((observable, oldValue, newValue)
                             -> lbl_attackerArmyNbr.setText(Integer.toString(newValue.intValue())));
         }
+    }
+
+    /**
+     * onClick event when a defending country item is selected
+     *
+     * @param mouseEvent mouse click on an empty country
+     */
+    public void selectDefendingCountry(MouseEvent mouseEvent) {
     }
 
     /**
@@ -209,19 +233,6 @@ public class AttackViewController implements Initializable {
         }
     }
 
-    /**
-     * Click the button to finish this round of attack.
-     *
-     * @param actionEvent onClick event
-     */
-    public void clickFinishAttack(ActionEvent actionEvent) {
-        //for testing card observer pattern TODO
-        notifyCardChanged();
-        btn_confirmAttack.setVisible(false);
-        btn_finishAttack.setVisible(false);
-        btn_nextStep.setVisible(true);
-    }
-
     private void notifyGamePhaseChanged() {
         Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "select one owned country from left and another country of the " +
                 "right as target");
@@ -235,9 +246,20 @@ public class AttackViewController implements Initializable {
         Main.playersList.get(curPlayerIndex).notifyObservers("from attack view: get a new card");
     }
 
+    /**
+     * Use all-out mode for attacking, it will result in either attacker wins or defender wins
+     * @param actionEvent mouse click
+     */
     public void clickAllOutMode(ActionEvent actionEvent) {
+
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void clickAcceptArmySelection(ActionEvent actionEvent) {
     }
+
+
 }

@@ -55,6 +55,8 @@ public class FortificationViewController {
     private Label lbl_undeployArmyPrompt;
     @FXML
     private Label lbl_deployCountPrompt;
+    @FXML
+    private Label lbl_actionString;
 
 
     /**
@@ -73,6 +75,9 @@ public class FortificationViewController {
 
     private int curPlayerIndex;
     private String curGamePhase;
+    private String curPlayerName;
+    private String curActionString;
+
     private Player curPlayer;
 
     /**
@@ -99,12 +104,16 @@ public class FortificationViewController {
 
     private void initPhaseView() {
         initObserver();
+
         curPlayer = Main.playersList.get(curPlayerIndex);
         Color curPlayerColor = curPlayer.getPlayerColor();
-        String playerName = "Player_" + curPlayerIndex;
+
         lbl_phaseViewName.setText(curGamePhase);
-        lbl_playerName.setText(playerName);
+        lbl_playerName.setText(curPlayerName);
         lbl_playerName.setTextFill(curPlayerColor);
+        lbl_actionString.setText(curActionString);
+        lbl_actionString.setWrapText(true);
+
         lbl_countries.setTextFill(curPlayerColor);
         lbl_rechanble_countries.setTextFill(curPlayerColor);
     }
@@ -112,6 +121,8 @@ public class FortificationViewController {
     private void initObserver() {
         curGamePhase = Main.phaseViewObserver.getPhaseName();
         curPlayerIndex = Main.phaseViewObserver.getPlayerIndex();
+        curActionString = Main.phaseViewObservable.getActionString();
+        curPlayerName = "Player_" + curPlayerIndex;
     }
 
     /**

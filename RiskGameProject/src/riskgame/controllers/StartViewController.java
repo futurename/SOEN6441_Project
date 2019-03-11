@@ -288,12 +288,12 @@ public class StartViewController {
      * set phase view observable params for reinforce phase for displaying corresponding information
      */
     private void setPhaseViewObservable(){
-        String phaseName = "Reinforce Phase";
+        String nextPhaseName = "Reinforcement Phase";
         int nextPlayerIndex = curRoundPlayerIndex;
-        String actionString = "Action:\nBegin reinforce phase, need deploy armies to your countries";
+        String nextActionString = "Action:\nBegin reinforce phase, need deploy armies to your countries";
 
         phaseViewObservable.resetObservable();
-        phaseViewObservable.setAllParam(phaseName, nextPlayerIndex, actionString);
+        phaseViewObservable.setAllParam(nextPhaseName, nextPlayerIndex, nextActionString);
         phaseViewObservable.notifyObservers("message_null");
     }
 
@@ -400,7 +400,6 @@ public class StartViewController {
         Main.totalNumOfPlayers = -1;
         Main.playersList = new ArrayList<>();
         Main.curRoundPlayerIndex = 0;
-        //Main.worldCountriesMap = new HashMap<>();
         Main.worldContinentMap = new LinkedHashMap<>();
         graphSingleton = GraphSingleton.INSTANCE.getInstance();
     }
