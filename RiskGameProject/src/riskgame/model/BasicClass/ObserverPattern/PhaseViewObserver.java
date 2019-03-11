@@ -38,11 +38,13 @@ public class PhaseViewObserver implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        this.phaseName = ((PhaseViewObservable)o).getPhaseName();
-        this.playerIndex = ((PhaseViewObservable)o).getPlayerIndex();
-        this.actionString = ((PhaseViewObservable)o).getActionString();
+        if (arg != "AddExchangeTime"){
+            this.phaseName = ((PhaseViewObservable)o).getPhaseName();
+            this.playerIndex = ((PhaseViewObservable)o).getPlayerIndex();
+            this.actionString = ((PhaseViewObservable)o).getActionString();
 
-        System.out.println("observer updated to:\n");
-        System.out.printf("%s, player %s, %s, %s\n",phaseName, playerIndex, actionString, arg);
+            System.out.println("observer updated to:\n");
+            System.out.printf("%s, player %s, %s, %s\n",phaseName, playerIndex, actionString, arg);
+        }
     }
 }

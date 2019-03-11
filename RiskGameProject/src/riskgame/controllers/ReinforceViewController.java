@@ -21,6 +21,7 @@ import riskgame.Main;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
@@ -215,6 +216,7 @@ public class ReinforceViewController implements Initializable {
                 curPlayer.initObservableCard();
                 curPlayer.notifyObservers("add new player!");
                 this.playersCards = this.cardExchangeViewObserver.getPlayersCards();
+                phaseViewObservable.addObserver(this.cardExchangeViewObserver);
                 break;
         }
 
@@ -402,7 +404,7 @@ public class ReinforceViewController implements Initializable {
                 "\n  5. Click \"Attack\" button to use selected army number";
 
         phaseViewObservable.setAllParam(nextPhaseName, nextPlayerIndex, nextActionString);
-        phaseViewObservable.notifyObservers(phaseViewObservable);
+        phaseViewObservable.notifyObservers("From ReinforceView");
     }
 
     /**
@@ -429,6 +431,8 @@ public class ReinforceViewController implements Initializable {
             btn_skipCardsExchange.setVisible(false);
             btn_confirmExchangeCards.setVisible(false);
 
+            phaseViewObservable.addOneExchangeTime();
+            phaseViewObservable.notifyObservers("AddExchangeTime");
 
         } else {
             alert.setContentText("Wrong cards combination, please try again!");

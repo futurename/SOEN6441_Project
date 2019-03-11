@@ -24,10 +24,13 @@ public class CardExchangeViewObserver implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        String key = String.valueOf(((Player)o).getPlayerIndex());
-        playersCards.put(key, ((Player)o).getCardsList());
-        playerCards = ((Player)o).getCardsList();
-
+        if (arg == "AddExchangeTime"){
+            exchangeTime = ((PhaseViewObservable)o).getExchangeTime();
+        }else {
+            String key = String.valueOf(((Player)o).getPlayerIndex());
+            playersCards.put(key, ((Player)o).getCardsList());
+            playerCards = ((Player)o).getCardsList();
+        }
         System.out.printf("card observer updated: %s!\n", arg);
     }
 

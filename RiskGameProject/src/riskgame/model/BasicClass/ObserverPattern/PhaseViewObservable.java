@@ -10,6 +10,7 @@ public class PhaseViewObservable extends Observable {
     private String phaseName;
     private int playerIndex;
     private String actionString;
+    private int exchangeTime = 0;
 
     public PhaseViewObservable(){
         this.phaseName = "";
@@ -39,6 +40,14 @@ public class PhaseViewObservable extends Observable {
 
     public void setActionString(String actionString) {
         this.actionString = actionString;
+    }
+
+    public void addOneExchangeTime() {
+        this.exchangeTime++;
+    }
+
+    public int getExchangeTime() {
+        return exchangeTime;
     }
 
     public void setAllParam(String phaseName, int playerIndex, String actionString){
