@@ -243,7 +243,7 @@ public class ReinforceViewController implements Initializable {
 
             reinforceInitCounter--;
 
-            Main.phaseViewObservable.setAllParam("Reinforce Phase", curRoundPlayerIndex, "NO ACT");
+            Main.phaseViewObservable.setAllParam("Reinforce Phase", curRoundPlayerIndex, "exchange cards and deploy armies");
             Main.phaseViewObservable.notifyObservers(phaseViewObservable);
 
             Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
@@ -385,7 +385,9 @@ public class ReinforceViewController implements Initializable {
      * @param actionEvent click this button
      */
     public void clickExchangeCards(ActionEvent actionEvent) {
-        ObservableList<Card> selectedCardList = lsv_cardsListView.getSelectionModel().getSelectedItems();
+        ObservableList<Card> selectedCardList = lsv_cardsListView
+                .getSelectionModel()
+                .getSelectedItems();
 
         System.out.println("seleted cards: " + selectedCardList);
 
