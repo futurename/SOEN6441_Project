@@ -293,6 +293,13 @@ public class Player extends Observable {
     public void initObservableCard(){
         setChanged();
     }
+
+    public void removeObservableCards(Iterable<Card> cards) {
+        for (Card card: cards){
+            this.cardsList.remove(card);
+        }
+        setChanged();
+    }
 }
 
 

@@ -442,13 +442,14 @@ public class ReinforceViewController implements Initializable {
      * @param selectedCardList exchanged card list
      */
     private void removeCardsFromList(ObservableList<Card> selectedCardList) {
-        for (Card card : selectedCardList) {
-            curPlayer.getCardsList().remove(card);
-        }
+//        for (Card card : selectedCardList) {
+//            curPlayer.getCardsList().remove(card);
+//        }
+        curPlayer.removeObservableCards(selectedCardList);
     }
 
     /**
-     * if the selected cards list satifies the game rule, in this method it will be calculated to army number the player can exchange.
+     * if the selected cards list satisfies the game rule, in this method it will be calculated to army number the player can exchange.
      *
      * @param seletectedCardList selected card list
      * @return exchanged army number
@@ -465,7 +466,17 @@ public class ReinforceViewController implements Initializable {
      * @return true for correct combination, false for incorrect combination
      */
     private boolean validateCardsCombination(ObservableList<Card> seletectedCardList) {
-        return true;
+        if (seletectedCardList.size() != 3){
+            return false;
+        }else {
+            int sum = 0;
+            for (Card card: seletectedCardList){
+                sum += card.ordinal()+1;
+            }
+            if (sum == 3 || sum == 6 || sum == 9){
+                return true;
+            }else return false;
+        }
     }
 
     /**

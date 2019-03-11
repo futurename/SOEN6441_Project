@@ -12,6 +12,7 @@ import java.util.Observer;
 public class CardExchangeViewObserver implements Observer {
     private HashMap<String, ArrayList<Card>> playersCards = new HashMap<>();
     private ArrayList<Card> playerCards;
+    private int exchangeTime;
 
 //    public CardExchangeViewObserver() {
 //        playersCards = new HashMap<>();
@@ -42,5 +43,9 @@ public class CardExchangeViewObserver implements Observer {
 
     public ArrayList<Card> getPlayerCards() {
         return playerCards;
+    }
+
+    public int getExchangeCount() {
+        return exchangeTime;
     }
 }
