@@ -86,6 +86,7 @@ public class ReinforceViewController implements Initializable {
 
     private CardExchangeViewObserver cardExchangeViewObserver;
     private HashMap<String, ArrayList<Card>> playersCards;
+    private ArrayList<Card> playerCards;
 
     private int curUndeployedArmy = 0;
 
@@ -193,7 +194,6 @@ public class ReinforceViewController implements Initializable {
         initObserver("PhaseView");
         curPlayer = playersList.get(curPlayerIndex);
         Color curPlayerColor = curPlayer.getPlayerColor();
-
         lbl_phaseViewName.setText(curGamePhase);
         lbl_playerName.setText(curPlayerName);
         lbl_playerName.setTextFill(curPlayerColor);
@@ -215,29 +215,28 @@ public class ReinforceViewController implements Initializable {
                 curPlayer.initObservableCard();
                 curPlayer.notifyObservers("add new player!");
                 this.playersCards = this.cardExchangeViewObserver.getPlayersCards();
+                break;
         }
 
     }
 
-
-    private void initCardViewObserver() {
-        playersCards = cardExchangeViewObserver.getPlayersCards();
-        ArrayList<Label> labelList = new ArrayList<>();
-        for (int playerIndex = 0; playerIndex < totalNumOfPlayers; playerIndex++) {
-            Color curPlayerColor = playersList.get(playerIndex).getPlayerColor();
-            String playerCardsDisplayable = playersCards.get(String.valueOf(playerIndex)).toString();
-            Label oneLabel = new Label();
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Player: ").append(playerIndex)
-                    .append("\n").append(playerCardsDisplayable)
-                    .append("\n\n");
-            oneLabel.setText(stringBuilder.toString());
-            oneLabel.setTextFill(curPlayerColor);
-            oneLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
-            labelList.add(oneLabel);
-        }
-    }
-
+//    private void initCardViewObserver() {
+//        playersCards = cardExchangeViewObserver.getPlayersCards();
+//        ArrayList<Label> labelList = new ArrayList<>();
+//        for (int playerIndex = 0; playerIndex < totalNumOfPlayers; playerIndex++) {
+//            Color curPlayerColor = playersList.get(playerIndex).getPlayerColor();
+//            String playerCardsDisplayable = playersCards.get(String.valueOf(playerIndex)).toString();
+//            Label oneLabel = new Label();
+//            StringBuilder stringBuilder = new StringBuilder();
+//            stringBuilder.append("Player: ").append(playerIndex)
+//                    .append("\n").append(playerCardsDisplayable)
+//                    .append("\n\n");
+//            oneLabel.setText(stringBuilder.toString());
+//            oneLabel.setTextFill(curPlayerColor);
+//            oneLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
+//            labelList.add(oneLabel);
+//        }
+//    }
 
     /**
      * onClick event for moving to next player if reinforcement phase is not finished or attack view from the first player

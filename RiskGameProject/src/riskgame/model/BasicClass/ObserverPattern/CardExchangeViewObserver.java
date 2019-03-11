@@ -11,6 +11,7 @@ import java.util.Observer;
 
 public class CardExchangeViewObserver implements Observer {
     private HashMap<String, ArrayList<Card>> playersCards = new HashMap<>();
+    private ArrayList<Card> playerCards;
 
 //    public CardExchangeViewObserver() {
 //        playersCards = new HashMap<>();
@@ -24,6 +25,7 @@ public class CardExchangeViewObserver implements Observer {
     public void update(Observable o, Object arg) {
         String key = String.valueOf(((Player)o).getPlayerIndex());
         playersCards.put(key, ((Player)o).getCardsList());
+        playerCards = ((Player)o).getCardsList();
 
         System.out.printf("card observer updated: %s!\n", arg);
     }
@@ -38,4 +40,7 @@ public class CardExchangeViewObserver implements Observer {
         return playersCards;
     }
 
+    public ArrayList<Card> getPlayerCards() {
+        return playerCards;
+    }
 }
