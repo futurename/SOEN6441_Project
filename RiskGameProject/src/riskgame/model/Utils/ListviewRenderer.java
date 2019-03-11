@@ -113,7 +113,9 @@ public class ListviewRenderer {
     }
 
 
-    public static void renderCardsListView(ListView lsv_cardsListView) {
+    public static void renderCardsListView(ListView lsv_cardsListView, Player curPlayer) {
+        Color curPlayerColor = curPlayer.getPlayerColor();
+
         lsv_cardsListView.setCellFactory(cell -> new ListCell<Card>() {
             private Text text;
 
@@ -124,11 +126,7 @@ public class ListviewRenderer {
                 if (item != null) {
                     text = new Text(item.toString());
 
-                    Color textColor = Main.playersList
-                            .get(Main.curRoundPlayerIndex)
-                            .getPlayerColor();
-
-                    text.setFill(textColor);
+                    text.setFill(curPlayerColor);
                     setGraphic(text);
                 }
                 if (empty) {

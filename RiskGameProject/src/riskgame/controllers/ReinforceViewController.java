@@ -153,7 +153,7 @@ public class ReinforceViewController implements Initializable {
         Collections.sort(cardsList, Collections.reverseOrder());
         ObservableList<Card> cardObservableList = FXCollections.observableList(cardsList);
         lsv_cardsListView.setItems(cardObservableList);
-        ListviewRenderer.renderCardsListView(lsv_cardsListView);
+        ListviewRenderer.renderCardsListView(lsv_cardsListView, curPlayer);
         lsv_cardsListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
@@ -380,15 +380,14 @@ public class ReinforceViewController implements Initializable {
      */
     private void setAttackPhaseViewObservable() {
         String nextPhaseName = "Attack Phase";
-        int nextPlayerIndex = curPlayerIndex;
+        int nextPlayerIndex = curRoundPlayerIndex;
         String nextActionString = "Action:\n" +
-                "\n1. Select one of your country" +
+                "\n1. Select one attacking country" +
                 "\n2. Select an adjacent empty country" +
-                "\n3_1. Click \"All-Out\" button to use all attacking army" +
-                "\n3_2. Select certain number of army for attacker" +
-                "\n4. Select certain number of army for defender" +
-                "\n5. Click \"Accept\" button for confirming army number selection" +
-                "\n6. Click \"Attack\" button to use selected army number";
+                "\n3_1. Click \"All-Out\" button to use all army for attacking" +
+                "\n3_2. Select certain number of army for both attacker and defender" +
+                "\n  4. Click \"Accept\" button for confirming army number selection" +
+                "\n  5. Click \"Attack\" button to use selected army number";
 
         phaseViewObservable.setAllParam(nextPhaseName, nextPlayerIndex, nextActionString);
         phaseViewObservable.notifyObservers(phaseViewObservable);

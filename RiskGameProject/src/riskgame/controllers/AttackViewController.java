@@ -45,7 +45,9 @@ public class AttackViewController implements Initializable {
     @FXML
     private Label lbl_adjacentCountries;
     @FXML
-    private ScrollBar scb_armyNbrAdjustment;
+    private ScrollBar scb_attackerArmyAdjust;
+    @FXML
+    private ScrollBar scb_defenderArmyAdjust;
     @FXML
     private Label lbl_attackerMaxArmyNbrPrompt;
     @FXML
@@ -64,6 +66,10 @@ public class AttackViewController implements Initializable {
     private Label lbl_defenderArmyNbr;
     @FXML
     private Label lbl_actionString;
+    @FXML
+    private Button btn_acceptArmySelection;
+    @FXML
+    private Button btn_alloutMode;
 
 
     /**
@@ -76,6 +82,7 @@ public class AttackViewController implements Initializable {
     private String curActionString;
 
     private final int MIN_ATTACKING_ARMY_NUMBER = 2;
+
 
     /**
      * Alert object
@@ -109,6 +116,8 @@ public class AttackViewController implements Initializable {
 
         lbl_countries.setTextFill(curPlayerColor);
         lbl_adjacentCountries.setTextFill(curPlayerColor);
+        lbl_attackerArmyPrompt.setTextFill(curPlayerColor);
+        lbl_attackerArmyNbr.setTextFill(curPlayerColor);
 
         initPlayerDominationView();
     }
@@ -160,13 +169,13 @@ public class AttackViewController implements Initializable {
             lsv_adjacentCountries.setItems(datalist);
             ListviewRenderer.renderCountryItems(lsv_adjacentCountries);
 
-            scb_armyNbrAdjustment.setMax(selectedArmyNbr);
-            scb_armyNbrAdjustment.setMin(MIN_ATTACKING_ARMY_NUMBER);
-            scb_armyNbrAdjustment.adjustValue(selectedArmyNbr);
+            scb_attackerArmyAdjust.setMax(selectedArmyNbr);
+            scb_attackerArmyAdjust.setMin(MIN_ATTACKING_ARMY_NUMBER);
+            scb_attackerArmyAdjust.adjustValue(selectedArmyNbr);
             lbl_attackerArmyNbr.setText(Integer.toString(selectedArmyNbr));
             lbl_attackerMaxArmyNbr.setText(Integer.toString(selectedArmyNbr));
 
-            scb_armyNbrAdjustment.valueProperty()
+            scb_attackerArmyAdjust.valueProperty()
                     .addListener((observable, oldValue, newValue)
                             -> lbl_attackerArmyNbr.setText(Integer.toString(newValue.intValue())));
         }
@@ -178,6 +187,40 @@ public class AttackViewController implements Initializable {
      * @param mouseEvent mouse click on an empty country
      */
     public void selectDefendingCountry(MouseEvent mouseEvent) {
+        if (selectedItemNotEmpty(lsv_adjacentCountries)) {
+            Country selectedDefenderCountry = (Country) lsv_adjacentCountries.getSelectionModel().getSelectedItem();
+            Player defenderPlayer = Main.playersList.get(selectedDefenderCountry.getCountryOwnerIndex());
+            Color defenderColor = defenderPlayer.getPlayerColor();
+            int defenderArmyNbr = selectedDefenderCountry.getCountryArmyNumber();
+
+            lbl_defenderMaxArmyPrompt.setVisible(true);
+            lbl_defenderMaxArmyNbr.setVisible(true);
+            lbl_defenderArmyPrompt.setVisible(true);
+            lbl_defenderArmyNbr.setVisible(true);
+
+            lbl_defenderArmyPrompt.setTextFill(defenderColor);
+            lbl_defenderArmyNbr.setTextFill(defenderColor);
+
+            lbl_defenderMaxArmyNbr.setText(Integer.toString(defenderArmyNbr));
+            lbl_defenderArmyNbr.setText(Integer.toString(defenderArmyNbr));
+        }
+    }
+
+    /**
+     * Check whether the selected item contains country object
+     *
+     * @return true for not empty, false for empty selection
+     */
+    private boolean selectedItemNotEmpty(ListView listVIew) {
+        boolean result = false;
+
+        if (listVIew.getSelectionModel().getSelectedItem().equals(null)) {
+            alert.setContentText("Please select a country!");
+            alert.showAndWait();
+        } else {
+            result = true;
+        }
+        return result;
     }
 
     /**
@@ -202,35 +245,20 @@ public class AttackViewController implements Initializable {
      * @param actionEvent button clicked
      */
     public void clickAttack(ActionEvent actionEvent) {
-        int defendingCountryIndex = lsv_adjacentCountries
+        Country attackingCountry = (Country) lsv_ownedCountries
                 .getSelectionModel()
-                .getSelectedIndex();
+                .getSelectedItem();
 
-        if (defendingCountryIndex == -1) {
-            alert.setContentText("Please select an adjacent country to attack!");
-            alert.showAndWait();
-        } else {
-            Player attacker = Main.playersList.get(curPlayerIndex);
+        Country defendingCountry = (Country) lsv_adjacentCountries
+                .getSelectionModel()
+                .getSelectedItem();
 
-            Country attackingCountry = (Country) lsv_ownedCountries
-                    .getSelectionModel()
-                    .getSelectedItem();
+        int attackArmyNbr = Integer.parseInt(lbl_attackerArmyNbr.getText());
 
-            Country defendingCountry = (Country) lsv_adjacentCountries
-                    .getSelectionModel()
-                    .getSelectedItem();
+        curPlayer.attckCountry(attackingCountry, defendingCountry, attackArmyNbr);
 
-            if (attackingCountry.getCountryArmyNumber() < 2) {
-                alert.setContentText("No enough army for attacking! Please select another country!");
-                alert.showAndWait();
-            } else {
-                int attackArmyNbr = Integer.parseInt(lbl_attackerArmyNbr.getText());
+        System.out.println("!!!!!!!!!!!attacking!!!!!!!!!!!!!!!!");
 
-                attacker.attckCountry(attackingCountry, defendingCountry, attackArmyNbr);
-
-                System.out.println("!!!!!!!!!!!attacking!!!!!!!!!!!!!!!!");
-            }
-        }
     }
 
     private void notifyGamePhaseChanged() {
@@ -248,17 +276,69 @@ public class AttackViewController implements Initializable {
 
     /**
      * Use all-out mode for attacking, it will result in either attacker wins or defender wins
+     *
      * @param actionEvent mouse click
      */
     public void clickAllOutMode(ActionEvent actionEvent) {
+        if (isBothCountriesSelected()) {
+            btn_confirmAttack.setVisible(false);
+            btn_acceptArmySelection.setVisible(false);
 
+            Country selectedAttackerCountry = (Country) lsv_ownedCountries.getSelectionModel().getSelectedItem();
+            Country selectedDefenderCountry = (Country) lsv_adjacentCountries.getSelectionModel().getSelectedItem();
+            int attackingArmyNumber = selectedAttackerCountry.getCountryArmyNumber();
+
+            curPlayer.attckCountry(selectedAttackerCountry, selectedDefenderCountry, attackingArmyNumber);
+
+            System.out.println("\nSelect ALL-OUT mode for attacking!!!!");
+        }
     }
 
     /**
+     * check whether attacking and defending countries are selected first, then secure the selected army numbers, set \"Attack\" button visible
      *
-     * @param actionEvent
+     * @param actionEvent mouse click
      */
     public void clickAcceptArmySelection(ActionEvent actionEvent) {
+        if (isBothCountriesSelected()) {
+            scb_attackerArmyAdjust.setVisible(false);
+            scb_defenderArmyAdjust.setVisible(false);
+
+            btn_acceptArmySelection.setVisible(false);
+            btn_confirmAttack.setVisible(true);
+
+            lbl_attackerMaxArmyNbrPrompt.setVisible(false);
+            lbl_attackerMaxArmyNbr.setVisible(false);
+
+            lbl_defenderMaxArmyPrompt.setVisible(false);
+            lbl_defenderMaxArmyNbr.setVisible(false);
+
+
+            System.out.println("\nAccept army selection!!!!!!!!!");
+        }
+    }
+
+    /**
+     * check whether both attacking and defending countries are selected
+     *
+     * @return true for both countries are selected, false for not satisfied
+     */
+    private boolean isBothCountriesSelected() {
+        boolean result = false;
+
+        int selectedAttackerCountryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
+        int selectedDefenderCountryIndex = lsv_adjacentCountries.getSelectionModel().getSelectedIndex();
+
+        if (selectedAttackerCountryIndex == -1) {
+            alert.setContentText("Please select an attacking country!");
+            alert.showAndWait();
+        } else if (selectedDefenderCountryIndex == -1) {
+            alert.setContentText("Please select a defending country!");
+            alert.showAndWait();
+        } else {
+            result = true;
+        }
+        return result;
     }
 
 
