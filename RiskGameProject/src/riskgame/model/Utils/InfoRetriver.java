@@ -55,11 +55,10 @@ public class InfoRetriver {
         return result;
     }
 
-    public static ObservableList<Country> getAttackableAdjacentCountryList(int curPlayerIndex, int selectedCountryIndex){
+    public static ObservableList<Country> getAttackableAdjacentCountryList(int curPlayerIndex, Country selectedCountry){
         ObservableList<Country> result;
 
-        ArrayList<String> countryList = playersList.get(curPlayerIndex).getOwnedCountryNameList();
-        String selectedCountryName = countryList.get(selectedCountryIndex);
+        String selectedCountryName = selectedCountry.getCountryName();
         ArrayList<Country> adjacentCountryList = Main.graphSingleton.get(selectedCountryName).getAdjacentCountryList();
 
         ArrayList<Country> attackableAdjacentCountryList = new ArrayList<>();

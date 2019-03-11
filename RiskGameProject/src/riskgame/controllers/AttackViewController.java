@@ -7,10 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -49,6 +46,24 @@ public class AttackViewController implements Initializable {
     private Label lbl_countries;
     @FXML
     private Label lbl_adjacentCountries;
+    @FXML
+    private ScrollBar scb_armyNbrAdjustment;
+    @FXML
+    private Label lbl_attackerMaxArmyNbrPrompt;
+    @FXML
+    private Label lbl_attackerMaxArmyNbr;
+    @FXML
+    private Label lbl_attackerArmyPrompt;
+    @FXML
+    private Label lbl_attackerArmyNbr;
+    @FXML
+    private Label lbl_defenderMaxArmyPrompt;
+    @FXML
+    private Label lbl_defenderMaxArmyNbr;
+    @FXML
+    private Label lbl_defenderArmyPrompt;
+    @FXML
+    private Label lbl_defenderArmyNbr;
 
 
     /**
@@ -57,6 +72,8 @@ public class AttackViewController implements Initializable {
     private int curPlayerIndex;
     private Player curPlayer;
     private String curGamePhase;
+
+    private final int MIN_ATTACKING_ARMY_NUMBER = 2;
 
     /**
      * Alert object
@@ -88,7 +105,7 @@ public class AttackViewController implements Initializable {
         lbl_phaseViewName.setText(curGamePhase);
     }
 
-    private void initObserver(){
+    private void initObserver() {
         curPlayerIndex = Main.phaseViewObserver.getPlayerIndex();
         curGamePhase = Main.phaseViewObserver.getPhaseName();
     }
@@ -111,16 +128,32 @@ public class AttackViewController implements Initializable {
      */
     @FXML
     public void selectOneCountry(MouseEvent mouseEvent) {
-        int countryIndex = lsv_ownedCountries
-                .getSelectionModel()
-                .getSelectedIndex();
+        Country selectedCountry = (Country) lsv_ownedCountries.getSelectionModel().getSelectedItem();
 
-        System.out.println("#############selected country index: " + countryIndex + ", " + lsv_ownedCountries.getSelectionModel().getSelectedItem());
+        int selectedArmyNbr = selectedCountry.getCountryArmyNumber();
 
-        ObservableList<Country> datalist = InfoRetriver.getAttackableAdjacentCountryList(this.curPlayerIndex, countryIndex);
+        System.out.println("\nAttack phase, player: " + selectedCountry.getCountryOwnerIndex() + ", selected country: "
+                + selectedCountry.getCountryName() + ", army nbr: " + selectedArmyNbr);
 
-        lsv_adjacentCountries.setItems(datalist);
-        ListviewRenderer.renderCountryItems(lsv_adjacentCountries);
+        if (selectedArmyNbr < MIN_ATTACKING_ARMY_NUMBER) {
+            alert.setContentText("No enough army for attacking!");
+            alert.showAndWait();
+        } else {
+            ObservableList<Country> datalist = InfoRetriver.getAttackableAdjacentCountryList(this.curPlayerIndex, selectedCountry);
+
+            lsv_adjacentCountries.setItems(datalist);
+            ListviewRenderer.renderCountryItems(lsv_adjacentCountries);
+
+            scb_armyNbrAdjustment.setMax(selectedArmyNbr);
+            scb_armyNbrAdjustment.setMin(MIN_ATTACKING_ARMY_NUMBER);
+            scb_armyNbrAdjustment.adjustValue(selectedArmyNbr);
+            lbl_attackerArmyNbr.setText(Integer.toString(selectedArmyNbr));
+            lbl_attackerMaxArmyNbr.setText(Integer.toString(selectedArmyNbr));
+
+            scb_armyNbrAdjustment.valueProperty()
+                    .addListener((observable, oldValue, newValue)
+                            -> lbl_attackerArmyNbr.setText(Integer.toString(newValue.intValue())));
+        }
     }
 
     /**
@@ -167,7 +200,9 @@ public class AttackViewController implements Initializable {
                 alert.setContentText("No enough army for attacking! Please select another country!");
                 alert.showAndWait();
             } else {
-                attacker.attckCountry(attackingCountry, defendingCountry);
+                int attackArmyNbr = Integer.parseInt(lbl_attackerArmyNbr.getText());
+
+                attacker.attckCountry(attackingCountry, defendingCountry, attackArmyNbr);
 
                 System.out.println("!!!!!!!!!!!attacking!!!!!!!!!!!!!!!!");
             }
@@ -187,7 +222,7 @@ public class AttackViewController implements Initializable {
         btn_nextStep.setVisible(true);
     }
 
-    private void notifyGamePhaseChanged(){
+    private void notifyGamePhaseChanged() {
         Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "select one owned country from left and another country of the " +
                 "right as target");
         Main.phaseViewObservable.notifyObservers(Main.phaseViewObservable);
@@ -195,8 +230,14 @@ public class AttackViewController implements Initializable {
         System.out.printf("player %s finished attack, player %s's turn\n", curPlayerIndex, curPlayerIndex);
     }
 
-    private void notifyCardChanged(){
+    private void notifyCardChanged() {
         Main.playersList.get(curPlayerIndex).setObservableCard(Card.ARTILLERY);
         Main.playersList.get(curPlayerIndex).notifyObservers("from attack view: get a new card");
+    }
+
+    public void clickAllOutMode(ActionEvent actionEvent) {
+    }
+
+    public void clickAcceptArmySelection(ActionEvent actionEvent) {
     }
 }
