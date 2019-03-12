@@ -6,6 +6,7 @@ import riskgame.Main;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Observable;
 
 /**
@@ -159,132 +160,82 @@ public class Player extends Observable {
      * @param attackingCountry
      * @param defendingCountry the defending country ojbect
      */
-    public void attckCountry(Country attackingCountry, Country defendingCountry,int attackerDiceNumber) {
+    public int attckCountry(Country attackingCountry, Country defendingCountry,int attackerDiceNumber) {
         int defenderIndex = defendingCountry.getCountryOwnerIndex();
+        int attackerIndex = attackingCountry.getCountryOwnerIndex();
         int defendingArmyNbr = defendingCountry.getCountryArmyNumber();
         int attackingArmyNbr = attackingCountry.getCountryArmyNumber();
-        int attackerDice=0;
+        int defenderDiceNumber = 0;
         int attackerBestDice = 0;
         int defenderBestDice = 0;
-        int defenderDice=0;
         int defenderSecondBestDice = 0;
         int attackerSecondBestDice = 0;
-        ArrayList<Integer> list=new ArrayList<Integer>();
+        List<Integer> attackerDiceList;
+        List<Integer> defenderDiceList;
 
-        Dice dice = new Dice(128);
-        /**
-         * calculating attacker best dice  when attacker country number is greater than 3.
-         */
-        if (attackingArmyNbr >= 3)
-        {
-            while (attackerDiceNumber <=3 && attackerDiceNumber>0)
-            {
-                for (int roll = 0; roll <= attackerDiceNumber; roll++)
-                {
-                    attackerDice = dice.rollADice();
-                    list.add(attackerDice);
+
+
+        if(defendingArmyNbr < 1 ) {
+            return attackerIndex;
+        }
+
+        if (defendingArmyNbr >= 2 && attackerDiceNumber >= 2) {
+            defenderDiceNumber = 2;
+        } else {
+            defenderDiceNumber = 1;
+        }
+
+        attackerDiceList = getDiceList(attackerDiceNumber);
+        defenderDiceList = getDiceList(defenderDiceNumber);
+
+        attackerBestDice = attackerDiceList.get(0);
+        if (attackerDiceList.size() > 1) {
+            attackerSecondBestDice = attackerDiceList.get(1);
+        }
+        defenderBestDice = defenderDiceList.get(0);
+        if (defenderDiceList.size() > 1) {
+            defenderSecondBestDice = defenderDiceList.get(1);
+        }
+
+        switch (defenderDiceNumber) {
+            case 1:
+                if(attackerBestDice > defenderBestDice) {
+                    defendingArmyNbr--;
+                    return attackerIndex;
+                } else {
+                    attackingArmyNbr--;
+                    return  defenderIndex;
                 }
-                Collections.sort(list);
-                attackerBestDice = list.get(list.size() - 1);
-                attackerSecondBestDice = list.get(list.size() - 2);
-            }
-        }
-        /**
-         * calculating attacker best dice  when attacker country number is less than  3.
-         */
-        if (attackingArmyNbr>0 && attackingArmyNbr<=2 )
-        {
-            while (attackerDiceNumber <=2)
-                for (int turn = 1; turn <=attackerDiceNumber; turn++) {
-                    attackerDice = dice.rollADice();
-                    list.add(attackerDice);
+
+            case 2:
+                if(attackerBestDice > defenderBestDice) {
+                    defendingArmyNbr--;
+                } else {
+                    attackingArmyNbr--;
                 }
-            Collections.sort(list);
-            attackerBestDice = list.get(list.size() - 1);
-            attackerSecondBestDice = list.get(list.size() - 2);
+
+                if(attackerSecondBestDice > defenderSecondBestDice) {
+                    defendingArmyNbr--;
+                    return attackerIndex;
+                } else {
+                    attackingArmyNbr--;
+                    return  defenderIndex;
+                }
         }
-
-        /**
-         * calculating defender best dice when defender country number is less than 1.
-         */
-         if (defendingArmyNbr < 1) {
-             /**attacker conquerd that country
-              *
-              */
-         }
-             /**
-              * calculating attacker best dice  when defender country number is 1.
-              */
-        else if (defendingArmyNbr == 1) {
-                 defenderBestDice = dice.rollADice();
-             }
-         /**
-          * calculating defender best dice  when attacker country number greater than or equal 2.
-          */
-
-         else
-            if (defendingArmyNbr >= 2) {
-            for (int turn = 1; turn <=2; turn++) {
-                defenderDice = dice.rollADice();
-                list.add(attackerDice);
-            }
-            Collections.sort(list);
-            defenderBestDice = list.get(list.size() - 1);
-            defenderSecondBestDice = list.get(list.size() - 2);
-        }
-
-        /**
-         * comparing attacker and defender best dice when defending army number is one.
-         */
-        if (defendingArmyNbr == 1) {
-            if (defenderBestDice > attackerBestDice) {
-                /**
-                 * defender wins and attacker loses one army
-                 */
-            }
-        }
-        /**
-         * comparing attacker and defender best dice when defending army number greater one and attacking army number is equal and greater than three
-         */
-        else if (defendingArmyNbr > 1 && attackingArmyNbr >= 2) {
-            if (attackerBestDice > defenderBestDice) {
-                /**
-                 * attacker wins and defender loses one army.
-                 */
-
-            } else {
-                /**
-                 * defender wins and attacker loses one army.
-                 */
-            }
-            if (attackerSecondBestDice > defenderSecondBestDice) {
-                /**
-                 * attacker again wins and defender loses one army
-                 */
-
-            } else {
-                /**
-                 * defender wins and attacker loses one army.
-                 */
-            }
-        }
-        /**
-         * comparing attacker and defender best dice when attacking army number is less than 3.
-         */
-        if (defendingArmyNbr > 1 && attackingArmyNbr < 2) {
-            if (attackerBestDice > defenderBestDice) {
-                /**
-                 *  attacker wins and defender loses one army
-                 */
-            } else {
-                /**
-                 * defender wins and attacker loses one army
-                 */
-            }
-        }
-
+        return 0;
     }
 
+    public List<Integer> getDiceList(int diceRoll) {
+        List<Integer> list = new ArrayList<>();
+        Dice dice = new Dice(128);
+
+        for (int roll = 0; roll <= diceRoll; roll++) {
+            list.add(dice.rollADice());
+        }
+
+        Collections.reverse(list);
+        return  list;
+    }
     /**
      * public method for setting observable objects value.
      * Adding a new card to player
