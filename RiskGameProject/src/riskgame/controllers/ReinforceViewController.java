@@ -190,6 +190,7 @@ public class ReinforceViewController implements Initializable {
 
     /**
      * set contents to phase view labels
+     * contents are obtained via phaseViewObserver
      */
     private void initPhaseView() {
         initObserver("PhaseView");
@@ -202,6 +203,11 @@ public class ReinforceViewController implements Initializable {
         lbl_actionString.setWrapText(true);
     }
 
+    /**
+     * retrieving newest data from observer
+     * it will be called every time the view initializes
+     * @param whichObs observer name, two available so far
+     */
     private void initObserver(String whichObs) {
         switch (whichObs){
             case "PhaseView":
@@ -223,24 +229,6 @@ public class ReinforceViewController implements Initializable {
         }
 
     }
-
-//    private void initCardViewObserver() {
-//        playersCards = cardExchangeViewObserver.getPlayersCards();
-//        ArrayList<Label> labelList = new ArrayList<>();
-//        for (int playerIndex = 0; playerIndex < totalNumOfPlayers; playerIndex++) {
-//            Color curPlayerColor = playersList.get(playerIndex).getPlayerColor();
-//            String playerCardsDisplayable = playersCards.get(String.valueOf(playerIndex)).toString();
-//            Label oneLabel = new Label();
-//            StringBuilder stringBuilder = new StringBuilder();
-//            stringBuilder.append("Player: ").append(playerIndex)
-//                    .append("\n").append(playerCardsDisplayable)
-//                    .append("\n\n");
-//            oneLabel.setText(stringBuilder.toString());
-//            oneLabel.setTextFill(curPlayerColor);
-//            oneLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
-//            labelList.add(oneLabel);
-//        }
-//    }
 
     /**
      * onClick event for moving to next player if reinforcement phase is not finished or attack view from the first player

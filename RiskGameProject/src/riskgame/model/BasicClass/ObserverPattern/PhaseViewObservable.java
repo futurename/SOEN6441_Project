@@ -3,9 +3,12 @@ package riskgame.model.BasicClass.ObserverPattern;
 import java.util.Observable;
 
 /**
- * created on 2019/03/08_15:11
+ * Phase view observable objects include current phase,
+ * in-turn player, action to be executed and and global exchange time.
+ * It is observed by PhaseViewObserver and cardExchangeViewObserver who only look at exchange time.
+ * @see PhaseViewObserver
+ * @see CardExchangeViewObserver
  **/
-
 public class PhaseViewObservable extends Observable {
     private String phaseName;
     private int playerIndex;
@@ -52,6 +55,10 @@ public class PhaseViewObservable extends Observable {
         return exchangeTime;
     }
 
+    /**
+     * since cardViewObserver is not static, it has to
+     * initialize exchangeTime before using it, although no changes happened.
+     */
     public void initObservableExchangeTime(){
         setChanged();
     }

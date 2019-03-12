@@ -285,6 +285,11 @@ public class Player extends Observable {
 
     }
 
+    /**
+     * public method for setting observable objects value.
+     * Adding a new card to player
+     * @param newCard card
+     */
     public void setObservableCard(Card newCard){
         cardsList.add(newCard);
         setChanged();
@@ -294,6 +299,11 @@ public class Player extends Observable {
         setChanged();
     }
 
+    /**
+     * public method for setting observable objects value.
+     * Removing a set of cards from player
+     * @param cards iterable cards, e.g. ObservableList
+     */
     public void removeObservableCards(Iterable<Card> cards) {
         for (Card card: cards){
             this.cardsList.remove(card);

@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ *
+ */
 public class CardExchangeViewObserver implements Observer {
     private HashMap<String, ArrayList<Card>> playersCards = new HashMap<>();
     private ArrayList<Card> playerCards;
