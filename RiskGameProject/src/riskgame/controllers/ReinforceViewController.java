@@ -21,7 +21,6 @@ import riskgame.Main;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
-import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
@@ -154,7 +153,7 @@ public class ReinforceViewController implements Initializable {
     private void initCurPlayerCardListView() {
         initObserver("CardView");
         ArrayList<Card> cardsList = playersCards.get(String.valueOf(curPlayerIndex));
-        Collections.sort(cardsList, Collections.reverseOrder());
+        cardsList.sort(Collections.reverseOrder());
         ObservableList<Card> cardObservableList = FXCollections.observableList(cardsList);
         lsv_cardsListView.setItems(cardObservableList);
         ListviewRenderer.renderCardsListView(lsv_cardsListView, curPlayer);
@@ -384,7 +383,7 @@ public class ReinforceViewController implements Initializable {
      */
     private void setAttackPhaseViewObservable() {
         String nextPhaseName = "Attack Phase";
-        int nextPlayerIndex = curPlayerIndex;
+        int nextPlayerIndex = curRoundPlayerIndex;
         String nextActionString = "Action:\n" +
                 "\n1. Select one attacking country" +
                 "\n2. Select an adjacent empty country" +
@@ -471,9 +470,7 @@ public class ReinforceViewController implements Initializable {
             for (Card card: seletectedCardList){
                 sum += card.ordinal()+1;
             }
-            if (sum == 3 || sum == 6 || sum == 9){
-                return true;
-            }else return false;
+            return sum == 3 || sum == 6 || sum == 9;
         }
     }
 
