@@ -16,24 +16,12 @@ public class PhaseViewObserver implements Observer {
         return phaseName;
     }
 
-    public void setPhaseName(String phaseName) {
-        this.phaseName = phaseName;
-    }
-
     public int getPlayerIndex() {
         return playerIndex;
     }
 
-    public void setPlayerIndex(int playerIndex) {
-        this.playerIndex = playerIndex;
-    }
-
     public String getActionString() {
         return actionString;
-    }
-
-    public void setActionString(String actionString) {
-        this.actionString = actionString;
     }
 
     @Override

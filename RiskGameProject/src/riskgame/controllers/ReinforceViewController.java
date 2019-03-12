@@ -85,7 +85,6 @@ public class ReinforceViewController implements Initializable {
     private Player curPlayer;
 
     private CardExchangeViewObserver cardExchangeViewObserver;
-    private HashMap<String, ArrayList<Card>> playersCards;
     private ArrayList<Card> playerCards;
 
     private int curUndeployedArmy = 0;
@@ -152,7 +151,8 @@ public class ReinforceViewController implements Initializable {
 
     private void initCurPlayerCardListView() {
         initObserver("CardView");
-        ArrayList<Card> cardsList = playersCards.get(String.valueOf(curPlayerIndex));
+//        ArrayList<Card> cardsList = playersCards.get(String.valueOf(curPlayerIndex));
+        ArrayList<Card> cardsList = playerCards;
         cardsList.sort(Collections.reverseOrder());
         ObservableList<Card> cardObservableList = FXCollections.observableList(cardsList);
         lsv_cardsListView.setItems(cardObservableList);
@@ -220,7 +220,8 @@ public class ReinforceViewController implements Initializable {
                 curPlayer.addObserver(this.cardExchangeViewObserver);
                 curPlayer.initObservableCard();
                 curPlayer.notifyObservers("add new player!");
-                this.playersCards = this.cardExchangeViewObserver.getPlayersCards();
+//                this.playersCards = this.cardExchangeViewObserver.getPlayersCards();
+                this.playerCards = this.cardExchangeViewObserver.getPlayerCards();
                 phaseViewObservable.addObserver(this.cardExchangeViewObserver);
                 phaseViewObservable.initObservableExchangeTime();
                 phaseViewObservable.notifyObservers("keeping exchange time up to date.");
