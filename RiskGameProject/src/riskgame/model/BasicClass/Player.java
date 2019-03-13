@@ -153,7 +153,7 @@ public class Player extends Observable {
      * if attacker army number is equal or greater than three, attacker will roll three dices
      * if defender army number is equal or greater than two, defender will roll two dices
      * if army number is less than above requirements, it will roll the dices as many times as the remaining army number
-     * compare the best dice with both sides then compare the second best dice
+     * compare the best dice with both sides then compare the second best dicewdd
      * deduct army number from the losing side
      * </p>
      *
@@ -173,7 +173,9 @@ public class Player extends Observable {
         List<Integer> attackerDiceList;
         List<Integer> defenderDiceList;
 
-
+        /**
+         * if defendinf army number is less than 1 , attacker conquered the country
+         */
 
         if(defendingArmyNbr < 1 ) {
             return attackerIndex;
@@ -184,6 +186,9 @@ public class Player extends Observable {
         } else {
             defenderDiceNumber = 1;
         }
+        /**
+         * attacker select dice
+         */
 
         attackerDiceList = getDiceList(attackerDiceNumber);
         defenderDiceList = getDiceList(defenderDiceNumber);
