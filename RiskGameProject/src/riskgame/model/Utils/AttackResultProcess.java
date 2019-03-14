@@ -39,4 +39,26 @@ public class AttackResultProcess {
 
         return result;
     }
+
+    public static void updateWorldMapOwner(int attackerIndex) {
+
+    }
+
+    public static void updateContinentOwner(int attackerIndex ,String continentName) {
+        boolean result=true;
+        Continent curContinent = Main.worldContinentMap.get(continentName);
+        LinkedHashMap<String, Country> continentCountryGraph = curContinent.getContinentCountryGraph();
+
+        for(Map.Entry<String,Country> entry : continentCountryGraph.entrySet()) {
+            int curOwnerIndex = entry.getValue().getCountryOwnerIndex();
+            if (curOwnerIndex != attackerIndex) {
+                result = false;
+                break;
+            }
+        }
+        if(result==true){
+            curContinent.setContinentOwnerIndex(attackerIndex);
+        }
+
+    }
 }

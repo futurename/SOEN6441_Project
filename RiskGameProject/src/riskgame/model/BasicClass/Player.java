@@ -220,9 +220,7 @@ public class Player extends Observable {
                 defenderPlayer.reduceContinentBonus(continentBonus);
                 curContinent.setContinentOwnerIndex(-1);
 
-                if (curContinent.getContinentCountryNameList().size() == 1) {
-                    curContinent.setContinentOwnerIndex(attackerIndex);
-                }
+                AttackResultProcess.updateContinentOwner(attackerIndex,continentName);
 
             }
             if (AttackResultProcess.isContinentConquered(attackerIndex, continentName)) {
@@ -233,8 +231,8 @@ public class Player extends Observable {
 
                 attackerPlayer.addContinentBonus(continentBonus);
 
+                updateWorldMapOwner(attackerIndex);
             }
-        } else {
 
         }
 
