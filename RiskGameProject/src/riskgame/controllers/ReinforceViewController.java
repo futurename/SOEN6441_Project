@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -27,7 +26,9 @@ import riskgame.model.Utils.ListviewRenderer;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.ResourceBundle;
 
 import static riskgame.Main.*;
 
@@ -314,6 +315,7 @@ public class ReinforceViewController implements Initializable {
                 lbl_undeployArmyPrompt.setVisible(false);
 
                 btn_nextStep.setVisible(true);
+                lsv_ownedCountries.getSelectionModel().select(-1);
             } else {
                 scb_armyNbrAdjustment.setMax(remainUndeployedArmyCount);
                 scb_armyNbrAdjustment.adjustValue(remainUndeployedArmyCount);
@@ -336,29 +338,6 @@ public class ReinforceViewController implements Initializable {
         return calResult > DEFAULT_MIN_REINFORCE_ARMY_NBR ? calResult : DEFAULT_MIN_REINFORCE_ARMY_NBR;
     }
 
-    /**
-     * acquire ObservableList for displaying in pie chart. The pie chart presents number of countries in different continents a play has.
-     *
-     * @param player a player instance
-     * @return distribution of (continent, number of country) this player owns
-     */
-    public static ObservableList<PieChart.Data> getPieChartData(Player player) {
-        ObservableList<PieChart.Data> result = FXCollections.observableArrayList();
-
-        ArrayList<String> countryList = player.getOwnedCountryNameList();
-
-        HashMap<String, Integer> countryDistributionMap = InfoRetriver.getCountryDistributionMap(countryList);
-
-        for (Map.Entry<String, Integer> entry : countryDistributionMap.entrySet()) {
-            String oneCountryName = entry.getKey();
-            int count = entry.getValue();
-            PieChart.Data onePieChartData = new PieChart.Data(oneCountryName, count);
-            result.add(onePieChartData);
-
-            System.out.println("country name: " + oneCountryName + ", curCount: " + count);
-        }
-        return result;
-    }
 
     /**
      * notify all phase view observer that game stage changed.
@@ -403,7 +382,8 @@ public class ReinforceViewController implements Initializable {
      * @param actionEvent click this button
      */
     public void clickExchangeCards(ActionEvent actionEvent) {
-        ObservableList<Card> selectedCardList = lsv_cardsListView.getSelectionModel().getSelectedItems();
+        ObservableList<Card> selectedCardList =
+                FXCollections.observableArrayList(lsv_cardsListView.getSelectionModel().getSelectedItems());
 
         System.out.println("seleted cards: " + selectedCardList);
 
@@ -416,7 +396,10 @@ public class ReinforceViewController implements Initializable {
             System.out.printf("GET NEW %d ARMY!\n", exchangedArmyNbr);
 
             removeCardsFromList(selectedCardList);
+
             lsv_cardsListView.refresh();
+            lsv_cardsListView.getSelectionModel().select(-1);
+
             lbl_undeployedArmy.setText(Integer.toString(curUndeployedArmy));
             scb_armyNbrAdjustment.setMax(curUndeployedArmy);
             scb_armyNbrAdjustment.adjustValue(curUndeployedArmy);
@@ -440,9 +423,7 @@ public class ReinforceViewController implements Initializable {
      * @param selectedCardList exchanged card list
      */
     private void removeCardsFromList(ObservableList<Card> selectedCardList) {
-//        for (Card card : selectedCardList) {
-//            curPlayer.getCardsList().remove(card);
-//        }
+
         curPlayer.removeObservableCards(selectedCardList);
     }
 
