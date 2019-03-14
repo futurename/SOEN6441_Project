@@ -440,10 +440,8 @@ public class ReinforceViewController implements Initializable {
      * @param selectedCardList exchanged card list
      */
     private void removeCardsFromList(ObservableList<Card> selectedCardList) {
-//        for (Card card : selectedCardList) {
-//            curPlayer.getCardsList().remove(card);
-//        }
-        curPlayer.removeObservableCards(selectedCardList);
+        Card[] cardArray = selectedCardList.toArray(new Card[3]);
+        curPlayer.removeObservableCards(cardArray);
     }
 
     /**
@@ -465,7 +463,7 @@ public class ReinforceViewController implements Initializable {
     private boolean validateCardsCombination(ObservableList<Card> seletectedCardList) {
         if (seletectedCardList.size() != 3){
             //set true for testing
-            return true;
+            return false;
         }else {
             int sum = 0;
             for (Card card: seletectedCardList){

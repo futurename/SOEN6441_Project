@@ -258,9 +258,9 @@ public class Player extends Observable {
     /**
      * public method for setting observable objects value.
      * Removing a set of cards from player
-     * @param cards iterable cards, e.g. ObservableList
+     * @param cards iterable cards array
      */
-    public void removeObservableCards(Iterable<Card> cards) {
+    public void removeObservableCards(Card[] cards) {
         for (Card card: cards){
             this.cardsList.remove(card);
         }
