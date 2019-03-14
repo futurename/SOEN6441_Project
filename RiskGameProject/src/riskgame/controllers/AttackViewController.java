@@ -254,6 +254,7 @@ public class AttackViewController implements Initializable {
                 .getSelectedItem();
 
         int attackArmyNbr = Integer.parseInt(lbl_attackerArmyNbr.getText());
+        int defendArmyNbr = Integer.parseInt(lbl_defenderArmyNbr.getText());
 
         curPlayer.attckCountry(attackingCountry, defendingCountry, attackArmyNbr);
 

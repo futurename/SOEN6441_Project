@@ -3,13 +3,11 @@ package riskgame.model.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import riskgame.Main;
-import riskgame.model.BasicClass.Country;
-import riskgame.model.BasicClass.GraphNode;
-import riskgame.model.BasicClass.GraphSingleton;
-import riskgame.model.BasicClass.Player;
+import riskgame.model.BasicClass.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import static riskgame.Main.playersList;
 
@@ -111,6 +109,29 @@ public class InfoRetriver {
             countryList.add(country);
         }
         result = FXCollections.observableArrayList(countryList);
+        return result;
+    }
+
+    public static int getPlayerControlPecentage(Player curPlayer){
+        int result = 0;
+        int ownedCountryNbr = curPlayer.getOwnedCountryNameList().size();
+        int totalCountryNbr = Main.graphSingleton.size();
+        float tmpRatio = (float)totalCountryNbr / ownedCountryNbr;
+        result = Math.round(tmpRatio * 100);
+
+        return result;
+    }
+
+
+    public static int getConqueredContinentNbr(Player curPlayer) {
+        int playerIndex = curPlayer.getPlayerIndex();
+        int result = 0;
+        for(Map.Entry<String, Continent> entry: Main.worldContinentMap.entrySet()){
+            Continent curContinent = entry.getValue();
+            if(curContinent.getContinentOwnerIndex() == playerIndex){
+                result++;
+            }
+        }
         return result;
     }
 }
