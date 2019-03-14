@@ -5,7 +5,6 @@ import javafx.scene.paint.Color;
 import riskgame.Main;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
 
@@ -240,6 +239,11 @@ public class Player extends Observable {
         return 0;*/
     }
 
+    /**
+     * get the random dice result list
+     * @param diceTimes number of dicing rolls
+     * @return a new arrayList of Integer
+     */
     private ArrayList<Integer> getDiceResultList(int diceTimes) {
         ArrayList<Integer> result;
         Dice dice=new Dice();
@@ -248,17 +252,7 @@ public class Player extends Observable {
         return result;
     }
 
-    public List<Integer> getDiceList(int diceRoll) {
-        List<Integer> list = new ArrayList<>();
-        Dice dice = new Dice();
 
-        for (int roll = 0; roll <= diceRoll; roll++) {
-            list.add(dice.rollADice());
-        }
-
-        Collections.reverse(list);
-        return  list;
-    }
     /**
      * public method for setting observable objects value.
      * Adding a new card to player
