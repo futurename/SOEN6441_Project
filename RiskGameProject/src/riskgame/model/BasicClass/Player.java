@@ -167,6 +167,28 @@ public class Player extends Observable {
         System.out.println("defenderDiceResult:" + defenderDiceResultList);
 
 
+        int compareTimes = defenderDiceResultList.size() > 1 ? 2 : 1;
+
+        for(int i = 0; i < compareTimes; i++){
+            int bestAttackerDice = attackerDiceResultList.remove(0);
+            int bestDefenderDice = defenderDiceResultList.remove(0);
+
+            System.out.println("\nattacker: " +attackingCountry.getCountryArmyNumber()
+                    + ", defender: " + defendingCountry.getCountryArmyNumber());
+
+            if(bestAttackerDice > bestDefenderDice){
+                defendingCountry.reduceFromCountryArmyNumber(1);
+
+                System.out.println("Attacker win! attacker: " +attackingCountry.getCountryArmyNumber()
+                        + ", defender: " + defendingCountry.getCountryArmyNumber());
+
+            }else{
+                attackingCountry.reduceFromCountryArmyNumber(1);
+
+                System.out.println("Defender win! attacker: " +attackingCountry.getCountryArmyNumber()
+                        + ", defender: " + defendingCountry.getCountryArmyNumber());
+            }
+        }
 
 
 
@@ -238,6 +260,8 @@ public class Player extends Observable {
         }
         return 0;*/
     }
+
+
 
     /**
      * get the random dice result list
