@@ -231,7 +231,7 @@ public class Player extends Observable {
 
                 attackerPlayer.addContinentBonus(continentBonus);
 
-                updateWorldMapOwner(attackerIndex);
+                AttackResultProcess.updateWorldOwner(attackerIndex);
             }
 
         }

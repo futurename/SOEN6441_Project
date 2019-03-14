@@ -40,11 +40,7 @@ public class AttackResultProcess {
         return result;
     }
 
-    public static void updateWorldMapOwner(int attackerIndex) {
-
-    }
-
-    public static void updateContinentOwner(int attackerIndex ,String continentName) {
+    public static void updateContinentOwner(int attackerIndex,String continentName) {
         boolean result=true;
         Continent curContinent = Main.worldContinentMap.get(continentName);
         LinkedHashMap<String, Country> continentCountryGraph = curContinent.getContinentCountryGraph();
@@ -58,6 +54,22 @@ public class AttackResultProcess {
         }
         if(result==true){
             curContinent.setContinentOwnerIndex(attackerIndex);
+        }
+
+    }
+
+    public static void updateWorldOwner(int attackerIndex) {
+        boolean result=true;
+
+        for(Map.Entry<String,Continent> entry : Main.worldContinentMap.entrySet()) {
+            int curOwnerIndex = entry.getValue().getContinentOwnerIndex();
+            if (curOwnerIndex != attackerIndex) {
+                result = false;
+                break;
+            }
+        }
+        if(result==true){
+            System.out.println(attackerIndex + "wins");
         }
 
     }
