@@ -15,7 +15,7 @@
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="btn_nextStep" layoutX="1018.0" layoutY="737.0" mnemonicParsing="false" onAction="#clickNextStep" prefHeight="35.0" prefWidth="127.0" text="NEXT" textFill="#fc0303" underline="true">
+        <Button fx:id="btn_nextStep" layoutX="1018.0" layoutY="737.0" mnemonicParsing="false" onAction="#clickNextStep" prefHeight="35.0" prefWidth="127.0" text="NEXT" textFill="#fc0303" underline="true" AnchorPane.bottomAnchor="112.0" AnchorPane.rightAnchor="55.0">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>

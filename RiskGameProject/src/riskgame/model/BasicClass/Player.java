@@ -158,11 +158,23 @@ public class Player extends Observable {
      * @param attackingCountry
      * @param defendingCountry the defending country ojbect
      */
-    public int attckCountry(Country attackingCountry, Country defendingCountry,int attackerDiceNumber) {
+    public void attckCountry(Country attackingCountry, Country defendingCountry,int attackArmyNbr,int defendArmyNbr) {
+        int diceTimes = 0;
+        ArrayList<Integer> attackerDiceResultList = getDiceResultList(attackArmyNbr);
+
+        ArrayList<Integer> defenderDiceResultList= getDiceResultList(defendArmyNbr);
+
+        System.out.println("attackerDiceList: " + attackerDiceResultList );
+        System.out.println("defenderDiceResult:" + defenderDiceResultList);
+
+
+
+
+
+
+
         int defenderIndex = defendingCountry.getCountryOwnerIndex();
         int attackerIndex = attackingCountry.getCountryOwnerIndex();
-        int defendingArmyNbr = defendingCountry.getCountryArmyNumber();
-        int attackingArmyNbr = attackingCountry.getCountryArmyNumber();
         int defenderDiceNumber = 0;
         int attackerBestDice = 0;
         int defenderBestDice = 0;
@@ -175,7 +187,7 @@ public class Player extends Observable {
          * if defendinf army number is less than 1 , attacker conquered the country
          */
 
-        if(defendingArmyNbr < 1 ) {
+        /*if(defendingArmyNbr < 1 ) {
             return attackerIndex;
         }
 
@@ -184,9 +196,9 @@ public class Player extends Observable {
         } else {
             defenderDiceNumber = 1;
         }
-        /**
+        *//**
          * attacker select dice
-         */
+         *//*
 
         attackerDiceList = getDiceList(attackerDiceNumber);
         defenderDiceList = getDiceList(defenderDiceNumber);
@@ -225,12 +237,20 @@ public class Player extends Observable {
                     return  defenderIndex;
                 }
         }
-        return 0;
+        return 0;*/
+    }
+
+    private ArrayList<Integer> getDiceResultList(int diceTimes) {
+        ArrayList<Integer> result;
+        Dice dice=new Dice();
+        result=dice.rollNDice(diceTimes);
+
+        return result;
     }
 
     public List<Integer> getDiceList(int diceRoll) {
         List<Integer> list = new ArrayList<>();
-        Dice dice = new Dice(128);
+        Dice dice = new Dice();
 
         for (int roll = 0; roll <= diceRoll; roll++) {
             list.add(dice.rollADice());
