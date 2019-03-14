@@ -79,7 +79,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="btn_skipCardsExchange" layoutX="552.0" layoutY="797.0" mnemonicParsing="false" onAction="#clickSkipCardsExchange" prefHeight="40.0" prefWidth="97.0" text="Skip" textFill="#ff05b4" wrapText="true" AnchorPane.bottomAnchor="128.0" AnchorPane.rightAnchor="551.0">
+      <Button fx:id="btn_skipCardsExchange" layoutX="552.0" layoutY="802.0" mnemonicParsing="false" onAction="#clickSkipCardsExchange" prefHeight="40.0" prefWidth="97.0" text="Skip" textFill="#ff05b4" wrapText="true" AnchorPane.bottomAnchor="58.0" AnchorPane.rightAnchor="551.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
