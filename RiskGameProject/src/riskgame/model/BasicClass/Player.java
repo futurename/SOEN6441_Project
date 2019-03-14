@@ -3,6 +3,7 @@ package riskgame.model.BasicClass;
 
 import javafx.scene.paint.Color;
 import riskgame.Main;
+import riskgame.model.Utils.AttackResultProcess;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ public class Player extends Observable {
     private ArrayList<String> ownedCountryNameList;
     private Color playerColor;
     private int ownedCountryNbr;
+    private int continentBonus;
 
     /**
      * class contructor
@@ -33,6 +35,7 @@ public class Player extends Observable {
         this.ownedCountryNameList = new ArrayList<>();
         this.playerColor = PlayerColor.values()[playerIndex].colorValue;
         this.ownedCountryNbr = 0;
+        this.continentBonus = 0;
 
 
         this.cardsList.add(Card.ARTILLERY);
@@ -42,6 +45,18 @@ public class Player extends Observable {
         this.cardsList.add(Card.INFANTRY);
     }
 
+
+    public int getContinentBonus() {
+        return continentBonus;
+    }
+
+    public void addContinentBonus(int bonus) {
+        this.continentBonus += bonus;
+    }
+
+    public void reduceContinentBonus(int bonus) {
+        this.continentBonus -= bonus;
+    }
 
     /**
      * get the sum of army number in all owned countries
@@ -157,45 +172,73 @@ public class Player extends Observable {
      * @param attackingCountry
      * @param defendingCountry the defending country ojbect
      */
-    public void attckCountry(Country attackingCountry, Country defendingCountry,int attackArmyNbr,int defendArmyNbr) {
-        int diceTimes = 0;
+    public void attckCountry(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr) {
+        int defenderIndex = defendingCountry.getCountryOwnerIndex();
+        int attackerIndex = attackingCountry.getCountryOwnerIndex();
+        String continentName = defendingCountry.getContinentName();
+        Continent curContinent = Main.worldContinentMap.get(continentName);
+
         ArrayList<Integer> attackerDiceResultList = getDiceResultList(attackArmyNbr);
+        ArrayList<Integer> defenderDiceResultList = getDiceResultList(defendArmyNbr);
 
-        ArrayList<Integer> defenderDiceResultList= getDiceResultList(defendArmyNbr);
-
-        System.out.println("attackerDiceList: " + attackerDiceResultList );
+        System.out.println("attackerDiceList: " + attackerDiceResultList);
         System.out.println("defenderDiceResult:" + defenderDiceResultList);
 
 
         int compareTimes = defenderDiceResultList.size() > 1 ? 2 : 1;
 
-        for(int i = 0; i < compareTimes; i++){
+        for (int i = 0; i < compareTimes; i++) {
             int bestAttackerDice = attackerDiceResultList.remove(0);
             int bestDefenderDice = defenderDiceResultList.remove(0);
 
-            System.out.println("\nattacker: " +attackingCountry.getCountryArmyNumber()
+            System.out.println("\nattacker: " + attackingCountry.getCountryArmyNumber()
                     + ", defender: " + defendingCountry.getCountryArmyNumber());
 
-            if(bestAttackerDice > bestDefenderDice){
+            if (bestAttackerDice > bestDefenderDice) {
                 defendingCountry.reduceFromCountryArmyNumber(1);
 
-                System.out.println("Attacker win! attacker: " +attackingCountry.getCountryArmyNumber()
+                System.out.println("Attacker win! attacker: " + attackingCountry.getCountryArmyNumber()
                         + ", defender: " + defendingCountry.getCountryArmyNumber());
 
-            }else{
+            } else {
                 attackingCountry.reduceFromCountryArmyNumber(1);
 
-                System.out.println("Defender win! attacker: " +attackingCountry.getCountryArmyNumber()
+                System.out.println("Defender win! attacker: " + attackingCountry.getCountryArmyNumber()
                         + ", defender: " + defendingCountry.getCountryArmyNumber());
             }
         }
 
+        if (AttackResultProcess.isCountryConquered(defendingCountry)) {
+            defendingCountry.setCountryOwnerIndex(attackingCountry.getCountryOwnerIndex());
 
 
+            if (AttackResultProcess.isContinentConquered(defenderIndex, continentName)) {
+                Player defenderPlayer = Main.playersList.get(defenderIndex);
+
+                int continentBonus = curContinent.getContinentBonusValue();
+
+                defenderPlayer.reduceContinentBonus(continentBonus);
+                curContinent.setContinentOwnerIndex(-1);
+
+                if (curContinent.getContinentCountryNameList().size() == 1) {
+                    curContinent.setContinentOwnerIndex(attackerIndex);
+                }
+
+            }
+            if (AttackResultProcess.isContinentConquered(attackerIndex, continentName)) {
+                curContinent.setContinentOwnerIndex(attackerIndex);
+                Player attackerPlayer=Main.playersList.get(attackerIndex);
+
+                int continentBonus = curContinent.getContinentBonusValue();
+
+                attackerPlayer.addContinentBonus(continentBonus);
+
+            }
+        } else {
+
+        }
 
 
-        int defenderIndex = defendingCountry.getCountryOwnerIndex();
-        int attackerIndex = attackingCountry.getCountryOwnerIndex();
         int defenderDiceNumber = 0;
         int attackerBestDice = 0;
         int defenderBestDice = 0;
@@ -262,16 +305,16 @@ public class Player extends Observable {
     }
 
 
-
     /**
      * get the random dice result list
+     *
      * @param diceTimes number of dicing rolls
      * @return a new arrayList of Integer
      */
     private ArrayList<Integer> getDiceResultList(int diceTimes) {
         ArrayList<Integer> result;
-        Dice dice=new Dice();
-        result=dice.rollNDice(diceTimes);
+        Dice dice = new Dice();
+        result = dice.rollNDice(diceTimes);
 
         return result;
     }
@@ -280,24 +323,26 @@ public class Player extends Observable {
     /**
      * public method for setting observable objects value.
      * Adding a new card to player
+     *
      * @param newCard card
      */
-    public void setObservableCard(Card newCard){
+    public void setObservableCard(Card newCard) {
         cardsList.add(newCard);
         setChanged();
     }
 
-    public void initObservableCard(){
+    public void initObservableCard() {
         setChanged();
     }
 
     /**
      * public method for setting observable objects value.
      * Removing a set of cards from player
+     *
      * @param cards iterable cards, e.g. ObservableList
      */
     public void removeObservableCards(Iterable<Card> cards) {
-        for (Card card: cards){
+        for (Card card : cards) {
             this.cardsList.remove(card);
         }
         setChanged();
