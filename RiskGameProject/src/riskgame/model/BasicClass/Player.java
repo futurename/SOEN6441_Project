@@ -6,7 +6,6 @@ import riskgame.Main;
 import riskgame.model.Utils.AttackResultProcess;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
 
 /**
@@ -220,12 +219,12 @@ public class Player extends Observable {
                 defenderPlayer.reduceContinentBonus(continentBonus);
                 curContinent.setContinentOwnerIndex(-1);
 
-                AttackResultProcess.updateContinentOwner(attackerIndex,continentName);
+                AttackResultProcess.updateContinentOwner(attackerIndex, continentName);
 
             }
             if (AttackResultProcess.isContinentConquered(attackerIndex, continentName)) {
                 curContinent.setContinentOwnerIndex(attackerIndex);
-                Player attackerPlayer=Main.playersList.get(attackerIndex);
+                Player attackerPlayer = Main.playersList.get(attackerIndex);
 
                 int continentBonus = curContinent.getContinentBonusValue();
 
@@ -235,73 +234,7 @@ public class Player extends Observable {
             }
 
         }
-
-
-        int defenderDiceNumber = 0;
-        int attackerBestDice = 0;
-        int defenderBestDice = 0;
-        int defenderSecondBestDice = 0;
-        int attackerSecondBestDice = 0;
-        List<Integer> attackerDiceList;
-        List<Integer> defenderDiceList;
-
-        /**
-         * if defendinf army number is less than 1 , attacker conquered the country
-         */
-
-        /*if(defendingArmyNbr < 1 ) {
-            return attackerIndex;
-        }
-
-        if (defendingArmyNbr >= 2 && attackerDiceNumber >= 2) {
-            defenderDiceNumber = 2;
-        } else {
-            defenderDiceNumber = 1;
-        }
-        *//**
-         * attacker select dice
-         *//*
-
-        attackerDiceList = getDiceList(attackerDiceNumber);
-        defenderDiceList = getDiceList(defenderDiceNumber);
-
-        attackerBestDice = attackerDiceList.get(0);
-        if (attackerDiceList.size() > 1) {
-            attackerSecondBestDice = attackerDiceList.get(1);
-        }
-        defenderBestDice = defenderDiceList.get(0);
-        if (defenderDiceList.size() > 1) {
-            defenderSecondBestDice = defenderDiceList.get(1);
-        }
-
-        switch (defenderDiceNumber) {
-            case 1:
-                if(attackerBestDice > defenderBestDice) {
-                    defendingArmyNbr--;
-                    return attackerIndex;
-                } else {
-                    attackingArmyNbr--;
-                    return  defenderIndex;
-                }
-
-            case 2:
-                if(attackerBestDice > defenderBestDice) {
-                    defendingArmyNbr--;
-                } else {
-                    attackingArmyNbr--;
-                }
-
-                if(attackerSecondBestDice > defenderSecondBestDice) {
-                    defendingArmyNbr--;
-                    return attackerIndex;
-                } else {
-                    attackingArmyNbr--;
-                    return  defenderIndex;
-                }
-        }
-        return 0;*/
     }
-
 
     /**
      * get the random dice result list
