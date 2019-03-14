@@ -256,7 +256,7 @@ public class AttackViewController implements Initializable {
         int attackArmyNbr = Integer.parseInt(lbl_attackerArmyNbr.getText());
         int defendArmyNbr = Integer.parseInt(lbl_defenderArmyNbr.getText());
 
-        curPlayer.attckCountry(attackingCountry, defendingCountry, attackArmyNbr,defendArmyNbr);
+        curPlayer.attackCountry(attackingCountry, defendingCountry, attackArmyNbr,defendArmyNbr);
 
         System.out.println("!!!!!!!!!!!attacking!!!!!!!!!!!!!!!!");
 
@@ -290,7 +290,7 @@ public class AttackViewController implements Initializable {
             int attackingArmyNumber = selectedAttackerCountry.getCountryArmyNumber();
             int defendingArmyNumber = selectedDefenderCountry.getCountryArmyNumber();
 
-            curPlayer.attckCountry(selectedAttackerCountry, selectedDefenderCountry, attackingArmyNumber, defendingArmyNumber);
+            curPlayer.attackCountry(selectedAttackerCountry, selectedDefenderCountry, attackingArmyNumber, defendingArmyNumber);
 
             System.out.println("\nSelect ALL-OUT mode for attacking!!!!");
         }
