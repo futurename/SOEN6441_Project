@@ -238,11 +238,15 @@ public class MapObject {
      * @param mapPath map path
      * @return if map format is true then return true, else return false
      */
-    public Boolean mapFormatCheck(String mapPath){
+    public boolean mapFormatCheck(String mapPath){
+        boolean checkresult = true;
+        boolean checkresult1 = false;
+        boolean checkresult2 = false;
+        boolean checkresult3 = false;
         ArrayList<String> fileRead = new ArrayList<String>();
         try {
             File file=new File(mapPath);
-            if(file.isFile()&&file.exists()&&file.length()==0){
+            if(file.isFile()&&file.exists()){
                 InputStreamReader read = new InputStreamReader(new FileInputStream(file));
                 BufferedReader bufferedReader=new BufferedReader(read);
                 String lineTxt=null;
@@ -251,32 +255,26 @@ public class MapObject {
                 }
                 read.close();
             }else{
-                return false;
+                System.out.println("cannot find file");
             }
         } catch (Exception e){
+            System.out.println("wrong");
             e.printStackTrace();
         }
-        boolean mapflag = false;
-        boolean continentflag = false;
-        boolean countryflag = false;
-        for(int i =0;i<fileRead.size();i++){
-            if(fileRead.get(i).equals("[Map]")){
-                mapflag = true;
+        for(int i = 0;i<fileRead.size();i++){
+            if(fileRead.get(i).contains("[Map]")){
+                checkresult1 = true;
             }
-            else if(fileRead.get(i).equals("[Continents]")){
-                continentflag = true;
+            if(fileRead.get(i).contains("[Continents]")){
+                checkresult2 = true;
             }
-            else if(fileRead.get(i).equals("[Territories]")) {
-                countryflag = true;
+            if(fileRead.get(i).contains("[Territories]")) {
+                checkresult3 = true;
             }
         }
-        if((mapflag&&continentflag&&countryflag)==false){
-            return false;
-        }else{
-            return true;
-        }
+        checkresult = checkresult1&&checkresult2&&checkresult3;
+        return checkresult;
     }
-
 
     public String getErrorMsg(){
         return errorMsg.toString();

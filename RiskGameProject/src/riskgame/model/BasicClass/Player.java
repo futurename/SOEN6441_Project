@@ -36,13 +36,11 @@ public class Player extends Observable {
         this.ownedCountryNbr = 0;
 
 
-
         this.cardsList.add(Card.ARTILLERY);
         this.cardsList.add(Card.INFANTRY);
         this.cardsList.add(Card.ARTILLERY);
         this.cardsList.add(Card.CAVALRY);
         this.cardsList.add(Card.INFANTRY);
-
     }
 
 
@@ -153,18 +151,30 @@ public class Player extends Observable {
      * if attacker army number is equal or greater than three, attacker will roll three dices
      * if defender army number is equal or greater than two, defender will roll two dices
      * if army number is less than above requirements, it will roll the dices as many times as the remaining army number
-     * compare the best dice with both sides then compare the second best dice
+     * compare the best dice with both sides then compare the second best dicewdd
      * deduct army number from the losing side
      * </p>
      *
      * @param attackingCountry
      * @param defendingCountry the defending country ojbect
      */
-    public int attckCountry(Country attackingCountry, Country defendingCountry,int attackerDiceNumber) {
+    public void attckCountry(Country attackingCountry, Country defendingCountry,int attackArmyNbr,int defendArmyNbr) {
+        int diceTimes = 0;
+        ArrayList<Integer> attackerDiceResultList = getDiceResultList(attackArmyNbr);
+
+        ArrayList<Integer> defenderDiceResultList= getDiceResultList(defendArmyNbr);
+
+        System.out.println("attackerDiceList: " + attackerDiceResultList );
+        System.out.println("defenderDiceResult:" + defenderDiceResultList);
+
+
+
+
+
+
+
         int defenderIndex = defendingCountry.getCountryOwnerIndex();
         int attackerIndex = attackingCountry.getCountryOwnerIndex();
-        int defendingArmyNbr = defendingCountry.getCountryArmyNumber();
-        int attackingArmyNbr = attackingCountry.getCountryArmyNumber();
         int defenderDiceNumber = 0;
         int attackerBestDice = 0;
         int defenderBestDice = 0;
@@ -173,9 +183,11 @@ public class Player extends Observable {
         List<Integer> attackerDiceList;
         List<Integer> defenderDiceList;
 
+        /**
+         * if defendinf army number is less than 1 , attacker conquered the country
+         */
 
-
-        if(defendingArmyNbr < 1 ) {
+        /*if(defendingArmyNbr < 1 ) {
             return attackerIndex;
         }
 
@@ -184,6 +196,9 @@ public class Player extends Observable {
         } else {
             defenderDiceNumber = 1;
         }
+        *//**
+         * attacker select dice
+         *//*
 
         attackerDiceList = getDiceList(attackerDiceNumber);
         defenderDiceList = getDiceList(defenderDiceNumber);
@@ -222,12 +237,20 @@ public class Player extends Observable {
                     return  defenderIndex;
                 }
         }
-        return 0;
+        return 0;*/
+    }
+
+    private ArrayList<Integer> getDiceResultList(int diceTimes) {
+        ArrayList<Integer> result;
+        Dice dice=new Dice();
+        result=dice.rollNDice(diceTimes);
+
+        return result;
     }
 
     public List<Integer> getDiceList(int diceRoll) {
         List<Integer> list = new ArrayList<>();
-        Dice dice = new Dice(128);
+        Dice dice = new Dice();
 
         for (int roll = 0; roll <= diceRoll; roll++) {
             list.add(dice.rollADice());

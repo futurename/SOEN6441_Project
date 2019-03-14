@@ -8,7 +8,10 @@ import javafx.stage.Stage;
 import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.GraphSingleton;
-import riskgame.model.BasicClass.ObserverPattern.*;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObserver;
+import riskgame.model.BasicClass.ObserverPattern.PlayerDomiViewObservable;
+import riskgame.model.BasicClass.ObserverPattern.PlayerDomiViewObserver;
 import riskgame.model.BasicClass.Player;
 
 import java.io.IOException;
@@ -65,7 +68,7 @@ public class Main extends Application {
         primaryStage.setTitle("Risk Game");
         primaryStage.setScene(new Scene(root, 1200, 900));
 
-        primaryStage.setResizable(false);
+        //primaryStage.setResizable(false);
         primaryStage.show();
     }
 

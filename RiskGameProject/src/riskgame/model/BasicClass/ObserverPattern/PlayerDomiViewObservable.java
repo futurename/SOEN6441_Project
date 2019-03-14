@@ -1,11 +1,10 @@
 package riskgame.model.BasicClass.ObserverPattern;
 
 import riskgame.Main;
-import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.Utils.InfoRetriver;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Observable;
 
 /**
@@ -18,6 +17,7 @@ public class PlayerDomiViewObservable extends Observable {
     private ArrayList<Integer> totalArmyNbrList;
 
     public PlayerDomiViewObservable(){
+
         this.controlRatioList = new ArrayList<>();
         this.controlledContinentNbrList = new ArrayList<>();
         this.totalArmyNbrList = new ArrayList<>();
@@ -45,7 +45,7 @@ public class PlayerDomiViewObservable extends Observable {
             float curControlRatio = (float)ownedCountryNbr / totalCountryNbr;
             controlRatioList.add(curControlRatio);
 
-            int curControlContinentNbr = getOwnedContinentNbr(playerIndex);
+            int curControlContinentNbr = InfoRetriver.getConqueredContinentNbr(curPlayer);
             controlledContinentNbrList.add(curControlContinentNbr);
 
             int curArmyNbr = curPlayer.getArmyNbr();
@@ -54,16 +54,7 @@ public class PlayerDomiViewObservable extends Observable {
         setChanged();
     }
 
-    private int getOwnedContinentNbr(int playerIndex) {
-        int result = 0;
-        for(Map.Entry<String, Continent> entry: Main.worldContinentMap.entrySet()){
-            Continent curContinent = entry.getValue();
-            if(curContinent.getContinentOwnerIndex() == playerIndex){
-                result++;
-            }
-        }
-        return result;
-    }
+
 
     public void resetObservable(){
         this.controlRatioList = new ArrayList<>();

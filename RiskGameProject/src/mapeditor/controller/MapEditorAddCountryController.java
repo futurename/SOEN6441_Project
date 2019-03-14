@@ -161,7 +161,7 @@ public class MapEditorAddCountryController {
         }
 
         for(int i = 0;i<MEMain.arrMECountry.size();i++){
-            if(MEMain.arrMECountry.get(i).equals(newNeighborName)){
+            if(MEMain.arrMECountry.get(i).getCountryName().equals(newNeighborName)){
                 MEMain.arrMECountry.get(i).setNeighbor(newCountryName);
             }
             if(newCountryName.equals(MEMain.arrMECountry.get(i).getCountryName())) {
