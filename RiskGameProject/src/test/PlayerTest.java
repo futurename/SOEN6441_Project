@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.Utils.AttackProcess;
 
 import java.util.ArrayList;
 
@@ -33,7 +34,7 @@ public class PlayerTest {
 
     @Test
     public void testGetDiceResultList(){
-        ArrayList<Integer> result = playerTester.getDiceResultList(attackArmyNbr);
+        ArrayList<Integer> result = AttackProcess.getDiceResultList(attackArmyNbr);
         assertEquals(attackArmyNbr, result.size());
     }
 }

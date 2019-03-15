@@ -3,7 +3,7 @@ package riskgame.model.BasicClass;
 
 import javafx.scene.paint.Color;
 import riskgame.Main;
-import riskgame.model.Utils.AttackResultProcess;
+import riskgame.model.Utils.AttackProcess;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -173,89 +173,10 @@ public class Player extends Observable {
      */
 
     public void attackCountry(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr) {
-        int defenderIndex = defendingCountry.getCountryOwnerIndex();
-        int attackerIndex = attackingCountry.getCountryOwnerIndex();
-        String continentName = defendingCountry.getContinentName();
-        Continent curContinent = Main.worldContinentMap.get(continentName);
 
-
-
-        attackSimulate(attackingCountry, defendingCountry, attackArmyNbr,defendArmyNbr);
-
-        if (AttackResultProcess.isCountryConquered(defendingCountry)) {
-            defendingCountry.setCountryOwnerIndex(attackingCountry.getCountryOwnerIndex());
-
-
-            if (AttackResultProcess.isContinentConquered(defenderIndex, continentName)) {
-                Player defenderPlayer = Main.playersList.get(defenderIndex);
-
-                int continentBonus = curContinent.getContinentBonusValue();
-
-                defenderPlayer.reduceContinentBonus(continentBonus);
-                curContinent.setContinentOwnerIndex(-1);
-
-                AttackResultProcess.updateContinentOwner(attackerIndex, continentName);
-
-            }
-            if (AttackResultProcess.isContinentConquered(attackerIndex, continentName)) {
-                curContinent.setContinentOwnerIndex(attackerIndex);
-                Player attackerPlayer = Main.playersList.get(attackerIndex);
-
-                int continentBonus = curContinent.getContinentBonusValue();
-
-                attackerPlayer.addContinentBonus(continentBonus);
-
-                AttackResultProcess.updateWorldOwner(attackerIndex);
-            }
-
-        }
+        AttackProcess.attackSimulate(attackingCountry, defendingCountry, attackArmyNbr,defendArmyNbr);
     }
 
-    public void attackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr) {
-        ArrayList<Integer> attackerDiceResultList = getDiceResultList(attackArmyNbr);
-        ArrayList<Integer> defenderDiceResultList = getDiceResultList(defendArmyNbr);
-
-        System.out.println("attackerDiceList: " + attackerDiceResultList);
-        System.out.println("defenderDiceResult:" + defenderDiceResultList);
-
-
-        int compareTimes = defenderDiceResultList.size() > 1 ? 2 : 1;
-
-        for (int i = 0; i < compareTimes; i++) {
-            int bestAttackerDice = attackerDiceResultList.remove(0);
-            int bestDefenderDice = defenderDiceResultList.remove(0);
-
-            System.out.println("\nattacker: " + attackingCountry.getCountryArmyNumber()
-                    + ", defender: " + defendingCountry.getCountryArmyNumber());
-
-            if (bestAttackerDice > bestDefenderDice) {
-                defendingCountry.reduceFromCountryArmyNumber(1);
-
-                System.out.println("Attacker win! attacker: " + attackingCountry.getCountryArmyNumber()
-                        + ", defender: " + defendingCountry.getCountryArmyNumber());
-
-            } else {
-                attackingCountry.reduceFromCountryArmyNumber(1);
-
-                System.out.println("Defender win! attacker: " + attackingCountry.getCountryArmyNumber()
-                        + ", defender: " + defendingCountry.getCountryArmyNumber());
-            }
-        }
-    }
-
-    /**
-     * get the random dice result list
-     *
-     * @param diceTimes number of dicing rolls
-     * @return a new arrayList of Integer
-     */
-    public ArrayList<Integer> getDiceResultList(int diceTimes) {
-        ArrayList<Integer> result;
-        Dice dice = new Dice();
-        result = dice.rollNDice(diceTimes);
-
-        return result;
-    }
 
 
     /**
