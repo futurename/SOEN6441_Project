@@ -1,25 +1,27 @@
 package riskgame.model.BasicClass;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class Dice {
     private Random r;
+    private final int NUMBER_RANGE = 6;
 
-    public Dice(int seed){
-        r = new Random(seed);
-    }
     public Dice(){
-        int defaultSeed = 6;
-        r = new Random(defaultSeed);
+        r = new Random();
     }
+
     public int rollADice(){
-        return r.nextInt(5)+1;
+        return r.nextInt(NUMBER_RANGE)+1;
     }
-    public int[] rollNDice(int n){
-        int[] res = new int[n];
+
+    public ArrayList<Integer> rollNDice(int n){
+        ArrayList<Integer> result=new ArrayList<>();
         for (int i=0;i<n;i++){
-            res[i] = rollADice();
+            result.add(rollADice());
         }
-        return res;
+        Collections.sort(result,Collections.reverseOrder());
+        return result;
     }
 }

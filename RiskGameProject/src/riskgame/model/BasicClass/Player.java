@@ -3,10 +3,9 @@ package riskgame.model.BasicClass;
 
 import javafx.scene.paint.Color;
 import riskgame.Main;
+import riskgame.model.Utils.AttackResultProcess;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Observable;
 
 /**
@@ -21,6 +20,7 @@ public class Player extends Observable {
     private ArrayList<String> ownedCountryNameList;
     private Color playerColor;
     private int ownedCountryNbr;
+    private int continentBonus;
 
     /**
      * class contructor
@@ -34,6 +34,7 @@ public class Player extends Observable {
         this.ownedCountryNameList = new ArrayList<>();
         this.playerColor = PlayerColor.values()[playerIndex].colorValue;
         this.ownedCountryNbr = 0;
+        this.continentBonus = 0;
 
 
         this.cardsList.add(Card.ARTILLERY);
@@ -43,6 +44,18 @@ public class Player extends Observable {
         this.cardsList.add(Card.INFANTRY);
     }
 
+
+    public int getContinentBonus() {
+        return continentBonus;
+    }
+
+    public void addContinentBonus(int bonus) {
+        this.continentBonus += bonus;
+    }
+
+    public void reduceContinentBonus(int bonus) {
+        this.continentBonus -= bonus;
+    }
 
     /**
      * get the sum of army number in all owned countries
@@ -158,108 +171,116 @@ public class Player extends Observable {
      * @param attackingCountry
      * @param defendingCountry the defending country ojbect
      */
-    public int attckCountry(Country attackingCountry, Country defendingCountry,int attackerDiceNumber) {
+
+    public void attackCountry(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr) {
         int defenderIndex = defendingCountry.getCountryOwnerIndex();
         int attackerIndex = attackingCountry.getCountryOwnerIndex();
-        int defendingArmyNbr = defendingCountry.getCountryArmyNumber();
-        int attackingArmyNbr = attackingCountry.getCountryArmyNumber();
-        int defenderDiceNumber = 0;
-        int attackerBestDice = 0;
-        int defenderBestDice = 0;
-        int defenderSecondBestDice = 0;
-        int attackerSecondBestDice = 0;
-        List<Integer> attackerDiceList;
-        List<Integer> defenderDiceList;
+        String continentName = defendingCountry.getContinentName();
+        Continent curContinent = Main.worldContinentMap.get(continentName);
 
-        /**
-         * if defendinf army number is less than 1 , attacker conquered the country
-         */
 
-        if(defendingArmyNbr < 1 ) {
-            return attackerIndex;
+
+        attackSimulate(attackingCountry, defendingCountry, attackArmyNbr,defendArmyNbr);
+
+        if (AttackResultProcess.isCountryConquered(defendingCountry)) {
+            defendingCountry.setCountryOwnerIndex(attackingCountry.getCountryOwnerIndex());
+
+
+            if (AttackResultProcess.isContinentConquered(defenderIndex, continentName)) {
+                Player defenderPlayer = Main.playersList.get(defenderIndex);
+
+                int continentBonus = curContinent.getContinentBonusValue();
+
+                defenderPlayer.reduceContinentBonus(continentBonus);
+                curContinent.setContinentOwnerIndex(-1);
+
+                AttackResultProcess.updateContinentOwner(attackerIndex, continentName);
+
+            }
+            if (AttackResultProcess.isContinentConquered(attackerIndex, continentName)) {
+                curContinent.setContinentOwnerIndex(attackerIndex);
+                Player attackerPlayer = Main.playersList.get(attackerIndex);
+
+                int continentBonus = curContinent.getContinentBonusValue();
+
+                attackerPlayer.addContinentBonus(continentBonus);
+
+                AttackResultProcess.updateWorldOwner(attackerIndex);
+            }
+
         }
-
-        if (defendingArmyNbr >= 2 && attackerDiceNumber >= 2) {
-            defenderDiceNumber = 2;
-        } else {
-            defenderDiceNumber = 1;
-        }
-        /**
-         * attacker select dice
-         */
-
-        attackerDiceList = getDiceList(attackerDiceNumber);
-        defenderDiceList = getDiceList(defenderDiceNumber);
-
-        attackerBestDice = attackerDiceList.get(0);
-        if (attackerDiceList.size() > 1) {
-            attackerSecondBestDice = attackerDiceList.get(1);
-        }
-        defenderBestDice = defenderDiceList.get(0);
-        if (defenderDiceList.size() > 1) {
-            defenderSecondBestDice = defenderDiceList.get(1);
-        }
-
-        switch (defenderDiceNumber) {
-            case 1:
-                if(attackerBestDice > defenderBestDice) {
-                    defendingArmyNbr--;
-                    return attackerIndex;
-                } else {
-                    attackingArmyNbr--;
-                    return  defenderIndex;
-                }
-
-            case 2:
-                if(attackerBestDice > defenderBestDice) {
-                    defendingArmyNbr--;
-                } else {
-                    attackingArmyNbr--;
-                }
-
-                if(attackerSecondBestDice > defenderSecondBestDice) {
-                    defendingArmyNbr--;
-                    return attackerIndex;
-                } else {
-                    attackingArmyNbr--;
-                    return  defenderIndex;
-                }
-        }
-        return 0;
     }
 
-    public List<Integer> getDiceList(int diceRoll) {
-        List<Integer> list = new ArrayList<>();
-        Dice dice = new Dice(128);
+    public void attackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr) {
+        ArrayList<Integer> attackerDiceResultList = getDiceResultList(attackArmyNbr);
+        ArrayList<Integer> defenderDiceResultList = getDiceResultList(defendArmyNbr);
 
-        for (int roll = 0; roll <= diceRoll; roll++) {
-            list.add(dice.rollADice());
+        System.out.println("attackerDiceList: " + attackerDiceResultList);
+        System.out.println("defenderDiceResult:" + defenderDiceResultList);
+
+
+        int compareTimes = defenderDiceResultList.size() > 1 ? 2 : 1;
+
+        for (int i = 0; i < compareTimes; i++) {
+            int bestAttackerDice = attackerDiceResultList.remove(0);
+            int bestDefenderDice = defenderDiceResultList.remove(0);
+
+            System.out.println("\nattacker: " + attackingCountry.getCountryArmyNumber()
+                    + ", defender: " + defendingCountry.getCountryArmyNumber());
+
+            if (bestAttackerDice > bestDefenderDice) {
+                defendingCountry.reduceFromCountryArmyNumber(1);
+
+                System.out.println("Attacker win! attacker: " + attackingCountry.getCountryArmyNumber()
+                        + ", defender: " + defendingCountry.getCountryArmyNumber());
+
+            } else {
+                attackingCountry.reduceFromCountryArmyNumber(1);
+
+                System.out.println("Defender win! attacker: " + attackingCountry.getCountryArmyNumber()
+                        + ", defender: " + defendingCountry.getCountryArmyNumber());
+            }
         }
-
-        Collections.reverse(list);
-        return  list;
     }
+
+    /**
+     * get the random dice result list
+     *
+     * @param diceTimes number of dicing rolls
+     * @return a new arrayList of Integer
+     */
+    public ArrayList<Integer> getDiceResultList(int diceTimes) {
+        ArrayList<Integer> result;
+        Dice dice = new Dice();
+        result = dice.rollNDice(diceTimes);
+
+        return result;
+    }
+
+
     /**
      * public method for setting observable objects value.
      * Adding a new card to player
+     *
      * @param newCard card
      */
-    public void setObservableCard(Card newCard){
+    public void setObservableCard(Card newCard) {
         cardsList.add(newCard);
         setChanged();
     }
 
-    public void initObservableCard(){
+    public void initObservableCard() {
         setChanged();
     }
 
     /**
      * public method for setting observable objects value.
      * Removing a set of cards from player
-     * @param cards iterable cards array
+     *
+     * @param cards iterable cards, e.g. ObservableList
      */
-    public void removeObservableCards(Card[] cards) {
-        for (Card card: cards){
+    public void removeObservableCards(Iterable<Card> cards) {
+        for (Card card : cards) {
             this.cardsList.remove(card);
         }
         setChanged();
