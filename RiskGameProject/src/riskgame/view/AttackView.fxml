@@ -96,7 +96,7 @@
         </Label>
       <TextArea fx:id="txa_attackInfoDisplay" layoutX="574.0" layoutY="713.0" prefHeight="176.0" prefWidth="423.0" promptText="attack info">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="13.0" />
          </font>
       </TextArea>
     </children>

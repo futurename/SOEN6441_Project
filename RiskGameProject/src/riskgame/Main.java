@@ -37,6 +37,9 @@ public class Main extends Application {
      */
     public static int totalNumOfPlayers = -1;
 
+
+
+
     /**
      * Continent objects map
      */

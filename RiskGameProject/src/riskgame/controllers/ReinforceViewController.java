@@ -31,6 +31,7 @@ import java.util.Collections;
 import java.util.ResourceBundle;
 
 import static riskgame.Main.*;
+import static riskgame.controllers.StartViewController.reinforceInitCounter;
 
 /**
  * controller class for ReinforceView.fxml
@@ -89,8 +90,6 @@ public class ReinforceViewController implements Initializable {
     private ArrayList<Card> playerCards;
 
     private int curUndeployedArmy = 0;
-
-    private static int reinforceInitCounter = totalNumOfPlayers;
 
 
     private Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -206,10 +205,11 @@ public class ReinforceViewController implements Initializable {
     /**
      * retrieving newest data from observer
      * it will be called every time the view initializes
+     *
      * @param whichObs observer name, two available so far
      */
     private void initObserver(String whichObs) {
-        switch (whichObs){
+        switch (whichObs) {
             case "PhaseView":
                 curGamePhase = phaseViewObserver.getPhaseName();
                 curPlayerIndex = phaseViewObserver.getPlayerIndex();
@@ -263,6 +263,27 @@ public class ReinforceViewController implements Initializable {
 
             curStage.setScene(attackScene);
             curStage.show();
+        }
+    }
+
+
+    /**
+     * notify all phase view observer that game stage changed.
+     * Changes can be next player's reinforcement or going to attack phase.
+     *
+     * @param isAttackPhase true for going to attack phase otherwise, next player's turn
+     */
+    private void checkNextViewNeedChange(boolean isAttackPhase) {
+        if (!isAttackPhase) {
+            int nextPlayerIndex = (curPlayerIndex + 1) % Main.totalNumOfPlayers;
+
+            phaseViewObservable.setAllParam("Reinforcement Phase", nextPlayerIndex, curActionString);
+            phaseViewObservable.notifyObservers("continue reinforce");
+
+        } else {
+
+            setAttackPhaseViewObservable(curRoundPlayerIndex);
+            phaseViewObservable.notifyObservers("reinforce to attack");
         }
     }
 
@@ -340,30 +361,12 @@ public class ReinforceViewController implements Initializable {
 
 
     /**
-     * notify all phase view observer that game stage changed.
-     * Changes can be next player's reinforcement or going to attack phase.
-     *
-     * @param isAttackPhase true for going to attack phase otherwise, next player's turn
-     */
-    private void checkNextViewNeedChange(boolean isAttackPhase) {
-        if (isAttackPhase) {
-            setAttackPhaseViewObservable();
-
-            Main.phaseViewObservable.notifyObservers("reinforce to attack");
-        } else {
-            int nextPlayerIndex = (curPlayerIndex + 1) % Main.totalNumOfPlayers;
-
-            Main.phaseViewObservable.setAllParam("Reinforcement Phase", nextPlayerIndex, curActionString);
-            Main.phaseViewObservable.notifyObservers("continue reinforce");
-        }
-    }
-
-    /**
      * set phase view observable parameters for next step
+     * @param nextPlayerIndex
      */
-    private void setAttackPhaseViewObservable() {
+    private void setAttackPhaseViewObservable(int playerIndex) {
         String nextPhaseName = "Attack Phase";
-        int nextPlayerIndex = curRoundPlayerIndex;
+
         String nextActionString = "Action:\n" +
                 "\n1. Select one attacking country" +
                 "\n2. Select an adjacent empty country" +
@@ -372,7 +375,7 @@ public class ReinforceViewController implements Initializable {
                 "\n  4. Click \"Accept\" button for confirming army number selection" +
                 "\n  5. Click \"Attack\" button to use selected army number";
 
-        phaseViewObservable.setAllParam(nextPhaseName, nextPlayerIndex, nextActionString);
+        phaseViewObservable.setAllParam(nextPhaseName,playerIndex , nextActionString);
         phaseViewObservable.notifyObservers("From ReinforceView");
     }
 
@@ -434,7 +437,7 @@ public class ReinforceViewController implements Initializable {
      */
     private int getExchangedArmyNbr() {
         //get exchange time from card observer
-        return  5 * cardExchangeViewObserver.getExchangeTime();
+        return 5 * cardExchangeViewObserver.getExchangeTime();
     }
 
     /**
@@ -444,13 +447,13 @@ public class ReinforceViewController implements Initializable {
      * @return true for correct combination, false for incorrect combination
      */
     private boolean validateCardsCombination(ObservableList<Card> seletectedCardList) {
-        if (seletectedCardList.size() != 3){
+        if (seletectedCardList.size() != 3) {
             //set true for testing
             return true;
-        }else {
+        } else {
             int sum = 0;
-            for (Card card: seletectedCardList){
-                sum += card.ordinal()+1;
+            for (Card card : seletectedCardList) {
+                sum += card.ordinal() + 1;
             }
             return sum == 3 || sum == 6 || sum == 9;
         }
