@@ -1,12 +1,12 @@
 package riskgame.model.BasicClass;
 
 
+import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import riskgame.Main;
-import riskgame.model.Utils.AttackResultProcess;
+import riskgame.model.Utils.AttackProcess;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
 
 /**
@@ -168,154 +168,16 @@ public class Player extends Observable {
      * compare the best dice with both sides then compare the second best dicewdd
      * deduct army number from the losing side
      * </p>
-     *
-     * @param attackingCountry
+     *  @param attackingCountry
      * @param defendingCountry the defending country ojbect
+     * @param txa_attackInfoDisplay
      */
-    public void attckCountry(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr) {
-        int defenderIndex = defendingCountry.getCountryOwnerIndex();
-        int attackerIndex = attackingCountry.getCountryOwnerIndex();
-        String continentName = defendingCountry.getContinentName();
-        Continent curContinent = Main.worldContinentMap.get(continentName);
 
-        ArrayList<Integer> attackerDiceResultList = getDiceResultList(attackArmyNbr);
-        ArrayList<Integer> defenderDiceResultList = getDiceResultList(defendArmyNbr);
+    public void attackCountry(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr, TextArea txa_attackInfoDisplay) {
 
-        System.out.println("attackerDiceList: " + attackerDiceResultList);
-        System.out.println("defenderDiceResult:" + defenderDiceResultList);
-
-
-        int compareTimes = defenderDiceResultList.size() > 1 ? 2 : 1;
-
-        for (int i = 0; i < compareTimes; i++) {
-            int bestAttackerDice = attackerDiceResultList.remove(0);
-            int bestDefenderDice = defenderDiceResultList.remove(0);
-
-            System.out.println("\nattacker: " + attackingCountry.getCountryArmyNumber()
-                    + ", defender: " + defendingCountry.getCountryArmyNumber());
-
-            if (bestAttackerDice > bestDefenderDice) {
-                defendingCountry.reduceFromCountryArmyNumber(1);
-
-                System.out.println("Attacker win! attacker: " + attackingCountry.getCountryArmyNumber()
-                        + ", defender: " + defendingCountry.getCountryArmyNumber());
-
-            } else {
-                attackingCountry.reduceFromCountryArmyNumber(1);
-
-                System.out.println("Defender win! attacker: " + attackingCountry.getCountryArmyNumber()
-                        + ", defender: " + defendingCountry.getCountryArmyNumber());
-            }
-        }
-
-        if (AttackResultProcess.isCountryConquered(defendingCountry)) {
-            defendingCountry.setCountryOwnerIndex(attackingCountry.getCountryOwnerIndex());
-
-
-            if (AttackResultProcess.isContinentConquered(defenderIndex, continentName)) {
-                Player defenderPlayer = Main.playersList.get(defenderIndex);
-
-                int continentBonus = curContinent.getContinentBonusValue();
-
-                defenderPlayer.reduceContinentBonus(continentBonus);
-                curContinent.setContinentOwnerIndex(-1);
-
-                AttackResultProcess.updateContinentOwner(attackerIndex,continentName);
-
-            }
-            if (AttackResultProcess.isContinentConquered(attackerIndex, continentName)) {
-                curContinent.setContinentOwnerIndex(attackerIndex);
-                Player attackerPlayer=Main.playersList.get(attackerIndex);
-
-                int continentBonus = curContinent.getContinentBonusValue();
-
-                attackerPlayer.addContinentBonus(continentBonus);
-
-                updateWorldMapOwner(attackerIndex);
-            }
-
-        }
-
-
-        int defenderDiceNumber = 0;
-        int attackerBestDice = 0;
-        int defenderBestDice = 0;
-        int defenderSecondBestDice = 0;
-        int attackerSecondBestDice = 0;
-        List<Integer> attackerDiceList;
-        List<Integer> defenderDiceList;
-
-        /**
-         * if defendinf army number is less than 1 , attacker conquered the country
-         */
-
-        /*if(defendingArmyNbr < 1 ) {
-            return attackerIndex;
-        }
-
-        if (defendingArmyNbr >= 2 && attackerDiceNumber >= 2) {
-            defenderDiceNumber = 2;
-        } else {
-            defenderDiceNumber = 1;
-        }
-        *//**
-         * attacker select dice
-         *//*
-
-        attackerDiceList = getDiceList(attackerDiceNumber);
-        defenderDiceList = getDiceList(defenderDiceNumber);
-
-        attackerBestDice = attackerDiceList.get(0);
-        if (attackerDiceList.size() > 1) {
-            attackerSecondBestDice = attackerDiceList.get(1);
-        }
-        defenderBestDice = defenderDiceList.get(0);
-        if (defenderDiceList.size() > 1) {
-            defenderSecondBestDice = defenderDiceList.get(1);
-        }
-
-        switch (defenderDiceNumber) {
-            case 1:
-                if(attackerBestDice > defenderBestDice) {
-                    defendingArmyNbr--;
-                    return attackerIndex;
-                } else {
-                    attackingArmyNbr--;
-                    return  defenderIndex;
-                }
-
-            case 2:
-                if(attackerBestDice > defenderBestDice) {
-                    defendingArmyNbr--;
-                } else {
-                    attackingArmyNbr--;
-                }
-
-                if(attackerSecondBestDice > defenderSecondBestDice) {
-                    defendingArmyNbr--;
-                    return attackerIndex;
-                } else {
-                    attackingArmyNbr--;
-                    return  defenderIndex;
-                }
-        }
-        return 0;*/
+        AttackProcess.attackSimulate(attackingCountry, defendingCountry, attackArmyNbr,defendArmyNbr, txa_attackInfoDisplay);
     }
 
-
-    /**
-     * get the random dice result list
-     *
-     * @param diceTimes number of dicing rolls
-     * @return a new arrayList of Integer
-     */
-    private ArrayList<Integer> getDiceResultList(int diceTimes) {
-        ArrayList<Integer> result;
-        Dice dice = new Dice();
-        result = dice.rollNDice(diceTimes);
-
-        return result;
-    }
 
 
     /**
