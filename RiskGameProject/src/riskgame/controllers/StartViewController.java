@@ -282,9 +282,9 @@ public class StartViewController {
      * set player domination view for reinforce phase for displaying corresponding information
      */
     private void setPlayerWorldDominationView() {
-        playerDomiViewObservable.resetObservable();
+        playerDomiViewObservable.resetObservable(totalNumOfPlayers);
         playerDomiViewObservable.updateObservable();
-        playerDomiViewObservable.notifyObservers(playerDomiViewObservable);
+        playerDomiViewObservable.notifyObservers("Initialize obs from start view");
 
         System.out.println("\n>>>>>>domi view observer:" + playerDomiViewObserver.getControlRatioList());
     }

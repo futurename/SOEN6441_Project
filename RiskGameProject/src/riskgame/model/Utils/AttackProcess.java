@@ -236,6 +236,7 @@ public class AttackProcess {
     private static void updateConqueredCountry(Country attackingCountry, Country defendingCountry, int remainingArmyNbr, Player attackPlayer, Player defendPlayer) {
         String defendCountryName = defendingCountry.getCountryName();
         int attackerIndex = attackPlayer.getPlayerIndex();
+        System.out.printf("Before battle: attacker owned %d countries\n", attackPlayer.getOwnedCountryNameList().size());
 
         attackPlayer.getOwnedCountryNameList().add(defendCountryName);
         defendPlayer.getOwnedCountryNameList().remove(defendCountryName);
@@ -243,6 +244,9 @@ public class AttackProcess {
 
         defendingCountry.setCountryArmyNumber(remainingArmyNbr);
         attackingCountry.reduceFromCountryArmyNumber(remainingArmyNbr);
+        Main.playerDomiViewObservable.updateObservable();
+        Main.playerDomiViewObservable.notifyObservers("Battle Report...");
+        System.out.printf("After battle: attacker owned %d countries\n", attackPlayer.getOwnedCountryNameList().size());
     }
 
 
