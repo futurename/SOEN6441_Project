@@ -172,13 +172,16 @@ public class StartViewController {
         MapObject mapChecker = new MapObject();
         Alert alert = new Alert(Alert.AlertType.WARNING);
         mapPath = txf_mapPath.getText();
-        if (!mapChecker.checkCorrectness(mapPath)) {
-            alert.setContentText("Map reading error!");
+        mapChecker.checkCorrectness(mapPath);
+        System.out.println();
+        if (!mapChecker.errorMsg.toString().isEmpty()) {
+            alert.setContentText(mapChecker.errorMsg.toString());
             alert.showAndWait();
             return;
         }
+
         if (inputCounter > 0) {
-            if (!mapChecker.checkCorrectness(mapPath)) {
+            if (!mapChecker.errorMsg.toString().isEmpty()) {
                 alert.setContentText("Map file invalid, please select another one!\nCounter: " + inputCounter);
                 alert.showAndWait();
                 txf_mapPath.setText(DEFAULT_MAP_PATH);
@@ -189,7 +192,7 @@ public class StartViewController {
             alert.showAndWait();
             mapPath = DEFAULT_MAP_PATH;
         }
-        if (mapChecker.checkCorrectness(mapPath)) {
+        if (mapChecker.errorMsg.toString().isEmpty()) {
             buildWorldMapGraph(mapPath, graphSingleton);
 
             btn_confirmLoadFile.setVisible(false);
@@ -209,7 +212,7 @@ public class StartViewController {
             }
         }
 
-        System.out.println(txf_mapPath.getText() + ", " + mapChecker.checkCorrectness(mapPath));
+        //System.out.println(txf_mapPath.getText() + ", " + mapChecker.checkCorrectness(mapPath));
 
         inputCounter--;
     }
