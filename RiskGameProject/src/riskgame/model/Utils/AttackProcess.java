@@ -11,6 +11,12 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * This class calculates number of dice thrown
+ * compares the attacker's and defender's dice
+ * checks if country,than continent and then whole worldmap is conquered or not
+ */
+
 public class AttackProcess {
 
     public static void attackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr) {
