@@ -2,17 +2,16 @@ package mapeditor.model;
 
 import mapeditor.MEMain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class MECheckMapCorrectness{
 
     private boolean checkFlagCG = true;
     private boolean checkFlagCC = true;
     private boolean checkFlagCB = true;
+    private boolean checkFlagCCB = true;
 
+    private HashMap<String,Integer> countryCheckFlag = new HashMap<String,Integer>();
     /**
      * isCorrect method compare all the three test result and ruturn to the UI.
      * @param countryArr country list
@@ -23,6 +22,8 @@ public class MECheckMapCorrectness{
         boolean checkFlagCGResult = correctCheckConnectGraph(countryArr);
         boolean checkFlagCCResult = correctCheckContinentCountry(continentsArr,countryArr);
         boolean checkFlagCBResult = correctCheckCountryBelonging(continentsArr,countryArr);
+        boolean checkFlagCCBResult = correctCheckContinentCountryBelonging(continentsArr,countryArr);
+
         if(checkFlagCGResult == false){
             return "Unconnected Graph";
         }
@@ -31,6 +32,9 @@ public class MECheckMapCorrectness{
         }
         if(checkFlagCBResult == false){
             return "Country belongs to mutiple continent";
+        }
+        if (checkFlagCCBResult == false){
+            return "has country that doesn't connect with any country of its continent";
         }
         return "True";
     }
@@ -116,6 +120,39 @@ public class MECheckMapCorrectness{
         return checkFlagCC;
     }
 
+    public  boolean correctCheckContinentCountryBelonging(ArrayList<MEContinent> continents, ArrayList<MECountry> country){
+        checkFlagCCB = true;
+        for(int i = 0;i<continents.size();i++){
+            if(continents.get(i).getCountryNumber()>1){
+                countryCheckFlag.clear();
+                for(Iterator iter = continents.get(i).getCountryListName().iterator(); iter.hasNext();) {
+                    countryCheckFlag.put(iter.next().toString(),0);
+                }
+                for(int j = 0;j<continents.get(i).getCountryNumber();j++){
+                    String tempCountry = continents.get(i).getCountryListName().get(j);
+                    if(countryCheckFlag.get(tempCountry)==0) {
+                        for (int k = 0; k < country.size(); k++) {
+                            if (country.get(k).getCountryName().equals(tempCountry)) {
+                                for(Iterator iters = country.get(k).getNeighborName().iterator(); iters.hasNext();) {
+                                    if(countryCheckFlag.containsKey(iters.next().toString())) {
+                                        countryCheckFlag.put(tempCountry, 1);
+                                        countryCheckFlag.put(iters.next().toString(), 1);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                for (String key:countryCheckFlag.keySet()) {
+                    if(countryCheckFlag.get(key)==0){
+                        checkFlagCCB = false;
+                    }
+                }
+            }
+            countryCheckFlag.clear();
+        }
+        return checkFlagCCB;
+    }
     /**
      * third correct check
      * every country belongs to one and only one continent

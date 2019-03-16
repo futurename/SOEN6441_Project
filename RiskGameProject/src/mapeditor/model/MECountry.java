@@ -56,4 +56,11 @@ public class MECountry{
      */
     public String getNeighbor(){return neighbor.toString();}
 
+    /**
+     * gat all neighbors name for example"[A, B, C]"
+     * @return neighbor name in linkedlist format
+     */
+    public LinkedList<String> getNeighborName(){
+        return neighbor;
+    }
 }
