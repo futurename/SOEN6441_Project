@@ -186,6 +186,7 @@ public class MapEditorAddCountryController {
                 }
             }
         }
+        btn_addCountryApply.setVisible(false);
     }
 
     /**

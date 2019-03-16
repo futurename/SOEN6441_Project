@@ -68,6 +68,7 @@ public class MapEditorDeleteContinentController {
     public void clickToDeleteContinent(ActionEvent actionEvent) {
         selectedContinentName = cbb_deleteContinentName.getValue();
         MEMain.deleteContinent(selectedContinentName);
+        btn_deleteContinentApply.setVisible(false);
     }
 
     @FXML

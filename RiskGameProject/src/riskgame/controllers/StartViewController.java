@@ -102,6 +102,9 @@ public class StartViewController {
      */
     private boolean isMapInfoOn = false;
 
+    public static int firstRoundCounter;
+
+    public static int reinforceInitCounter;
 
 
     /**
@@ -172,13 +175,16 @@ public class StartViewController {
         MapObject mapChecker = new MapObject();
         Alert alert = new Alert(Alert.AlertType.WARNING);
         mapPath = txf_mapPath.getText();
-        if (!mapChecker.checkCorrectness(mapPath)) {
-            alert.setContentText("Map reading error!");
+        mapChecker.checkCorrectness(mapPath);
+        System.out.println();
+        if (!mapChecker.errorMsg.toString().isEmpty()) {
+            alert.setContentText(mapChecker.errorMsg.toString());
             alert.showAndWait();
             return;
         }
+
         if (inputCounter > 0) {
-            if (!mapChecker.checkCorrectness(mapPath)) {
+            if (!mapChecker.errorMsg.toString().isEmpty()) {
                 alert.setContentText("Map file invalid, please select another one!\nCounter: " + inputCounter);
                 alert.showAndWait();
                 txf_mapPath.setText(DEFAULT_MAP_PATH);
@@ -189,7 +195,7 @@ public class StartViewController {
             alert.showAndWait();
             mapPath = DEFAULT_MAP_PATH;
         }
-        if (mapChecker.checkCorrectness(mapPath)) {
+        if (mapChecker.errorMsg.toString().isEmpty()) {
             buildWorldMapGraph(mapPath, graphSingleton);
 
             btn_confirmLoadFile.setVisible(false);
@@ -209,7 +215,7 @@ public class StartViewController {
             }
         }
 
-        System.out.println(txf_mapPath.getText() + ", " + mapChecker.checkCorrectness(mapPath));
+        //System.out.println(txf_mapPath.getText() + ", " + mapChecker.checkCorrectness(mapPath));
 
         inputCounter--;
     }
@@ -287,7 +293,7 @@ public class StartViewController {
     /**
      * set phase view observable params for reinforce phase for displaying corresponding information
      */
-    private void setPhaseViewObservable(){
+    private void setPhaseViewObservable() {
         String nextPhaseName = "Reinforcement Phase";
         int nextPlayerIndex = curRoundPlayerIndex;
         String nextActionString = "Action:\nBegin reinforce phase, need deploy armies to your countries";
@@ -305,7 +311,9 @@ public class StartViewController {
      */
     @FXML
     public void clickConfirmPlayerNum(ActionEvent actionEvent) {
-        Main.totalNumOfPlayers = Integer.parseInt(txf_playerNumbers.getText());
+        totalNumOfPlayers = Integer.parseInt(txf_playerNumbers.getText());
+        firstRoundCounter = totalNumOfPlayers - 1;
+        reinforceInitCounter = totalNumOfPlayers;
 
         btn_reducePlayerNumber.setVisible(false);
         btn_plusPlayerNumber.setVisible(false);
@@ -324,7 +332,7 @@ public class StartViewController {
      */
     private void displayPlayerInfo() {
         isMapInfoOn = false;
-        if (Main.playersList.isEmpty()) {
+        if (playersList.isEmpty()) {
             InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton);
         }
         txf_mapPromptInfo.setText("Players Info");

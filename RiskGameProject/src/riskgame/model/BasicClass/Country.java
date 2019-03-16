@@ -128,6 +128,17 @@ public class Country {
         return result;
     }
 
+
+    /**
+     * Setter
+     *
+     * @param countryArmyNumber army number to be set to the country
+     */
+    public void setCountryArmyNumber(int countryArmyNumber) {
+        this.countryArmyNumber = countryArmyNumber;
+    }
+
+
     /**
      * string of country name and its army number
      *
