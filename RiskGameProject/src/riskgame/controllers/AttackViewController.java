@@ -81,10 +81,10 @@ public class AttackViewController implements Initializable {
     private String curPlayerName;
     private String curActionString;
 
-    private final int MIN_ATTACKING_ARMY_NUMBER = 1;
-    private final int MAX_ATTACKING_ARMY_NUMBER = 3;
-    private final int MAX_DEFENDING_ARMY_NUMBER = 2;
-    private final int MIN_DEFENDING_ARMY_NUMBER = 1;
+    public static final int MIN_ATTACKING_ARMY_NUMBER = 1;
+    public static final int MAX_ATTACKING_ARMY_NUMBER = 3;
+    public static final int MAX_DEFENDING_ARMY_NUMBER = 2;
+    public static final int MIN_DEFENDING_ARMY_NUMBER = 1;
 
 
     /**
@@ -334,27 +334,12 @@ public class AttackViewController implements Initializable {
             Country selectedAttackerCountry = (Country) lsv_ownedCountries.getSelectionModel().getSelectedItem();
             Country selectedDefenderCountry = (Country) lsv_adjacentCountries.getSelectionModel().getSelectedItem();
 
-            while (selectedAttackerCountry.getCountryArmyNumber() > 1
-                    && selectedDefenderCountry.getCountryArmyNumber() > 0) {
+            int avaliableForAttackNbr = selectedAttackerCountry.getCountryArmyNumber() -1;
+            int avaliableForDefendNbr = selectedDefenderCountry.getCountryArmyNumber();
 
-                int attackerCountryArmyNbr = selectedAttackerCountry.getCountryArmyNumber();
-                int defenderCountryArmyNbr = selectedDefenderCountry.getCountryArmyNumber();
+            curPlayer.alloutModeAttack(selectedAttackerCountry, selectedDefenderCountry, avaliableForAttackNbr, avaliableForDefendNbr, txa_attackInfoDisplay);
 
-                int attactableArmyNumber = attackerCountryArmyNbr - 1 > MAX_ATTACKING_ARMY_NUMBER
-                        ? MAX_ATTACKING_ARMY_NUMBER : attackerCountryArmyNbr - 1;
-                int defendableArmyNumber = defenderCountryArmyNbr > MAX_DEFENDING_ARMY_NUMBER
-                        ? MAX_DEFENDING_ARMY_NUMBER : defenderCountryArmyNbr;
-
-                curPlayer.attackCountry(selectedAttackerCountry, selectedDefenderCountry, attactableArmyNumber, defendableArmyNumber, txa_attackInfoDisplay);
-
-                System.out.println("\nALL-OUT mode >>> attackerCountry: " + attackerCountryArmyNbr + ", attackable: " + attactableArmyNumber
-                        + ", defenderCountry: " + defendableArmyNumber + ", defendable: " + ", defenderCountryArmyNbr");
-
-                refreshListView(selectedAttackerCountry);
-
-                System.out.println("\n\nattacker army:" + selectedAttackerCountry.getCountryArmyNumber() + ", defender army: "
-                        + selectedDefenderCountry.getCountryArmyNumber());
-            }
+            refreshListView(selectedAttackerCountry);
         }
     }
 
