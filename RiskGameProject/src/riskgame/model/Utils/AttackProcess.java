@@ -12,6 +12,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static riskgame.controllers.AttackViewController.MAX_ATTACKING_ARMY_NUMBER;
+import static riskgame.controllers.AttackViewController.MAX_DEFENDING_ARMY_NUMBER;
+
 /**
  * This class calculates number of dice thrown
  * compares the attacker's and defender's dice
@@ -21,16 +24,75 @@ import java.util.stream.IntStream;
 public class AttackProcess {
 
     public static void alloutAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr,
-                                            TextArea txa_attackInfoDisplay){
+                                            TextArea txa_attackInfoDisplay) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Attacker: ")
+                .append(attackingCountry.getCountryName())
+                .append(", Defender: ")
+                .append(defendingCountry.getCountryName())
+                .append("\n");
+
+        recursiveAttack(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, stringBuilder);
+
+        if (isCountryConquered(defendingCountry)) {
+            int undelopyedAttackerArmyNbr = attackingCountry.getCountryArmyNumber() - 1;
+            Player attacker = Main.playersList.get(attackingCountry.getCountryOwnerIndex());
+            Player defender = Main.playersList.get(defendingCountry.getCountryOwnerIndex());
+
+            updateConqueredCountry(attackingCountry, defendingCountry, undelopyedAttackerArmyNbr, attacker, defender);
+        }
+        txa_attackInfoDisplay.setText(stringBuilder.toString());
+    }
+
+    private static void recursiveAttack(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr, StringBuilder stringBuilder) {
+        if (attackArmyNbr == 0 || defendArmyNbr == 0) {
+            return;
+        }
+        int avaliableForAttackNbr = attackArmyNbr > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : attackArmyNbr;
+        int avaliableForDefendNbr = defendArmyNbr > MAX_DEFENDING_ARMY_NUMBER ? MAX_DEFENDING_ARMY_NUMBER : defendArmyNbr;
+
+        getOneAttackResult(attackingCountry, defendingCountry, avaliableForAttackNbr, avaliableForDefendNbr, stringBuilder);
+
+        attackArmyNbr = attackingCountry.getCountryArmyNumber() - 1;
+        defendArmyNbr = defendingCountry.getCountryArmyNumber();
+        stringBuilder.append("\n");
+        recursiveAttack(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, stringBuilder);
+    }
+
+    public static void oneAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr,
+                                         TextArea txa_attackInfoDisplay) {
+        int avaliableForAttackNbr = attackArmyNbr > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : attackArmyNbr;
+        int avaliableForDefendNbr = defendArmyNbr > MAX_DEFENDING_ARMY_NUMBER ? MAX_DEFENDING_ARMY_NUMBER : defendArmyNbr;
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Attacker: ")
+                .append(attackingCountry.getCountryName())
+                .append(", Defender: ")
+                .append(defendingCountry.getCountryName())
+                .append("\n\n");
+
+        int attackerRemainArmyNbr = getOneAttackResult(attackingCountry, defendingCountry, avaliableForAttackNbr, avaliableForDefendNbr, stringBuilder);
+
+        txa_attackInfoDisplay.setText(stringBuilder.toString());
+
+        attackResultProcess(attackingCountry, defendingCountry, attackerRemainArmyNbr);
 
     }
 
-    public static void attackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr,
-                                      TextArea txa_attackInfoDisplay) {
-        StringBuilder stringBuilder = new StringBuilder();
 
-        ArrayList<Integer> attackerDiceResultList = getDiceResultList(attackArmyNbr);
-        ArrayList<Integer> defenderDiceResultList = getDiceResultList(defendArmyNbr);
+    private static int getOneAttackResult(Country attackingCountry, Country defendingCountry, int attackableArmyNbr, int defendableArmyNbr,
+                                          StringBuilder stringBuilder) {
+        int result = 0;
+
+        ArrayList<Integer> attackerDiceResultList = getDiceResultList(attackableArmyNbr);
+        ArrayList<Integer> defenderDiceResultList = getDiceResultList(defendableArmyNbr);
+
+        stringBuilder
+                .append("attacker dices: ")
+                .append(attackerDiceResultList)
+                .append(", defender dices: ")
+                .append(defenderDiceResultList)
+                .append("\n\n");
 
         System.out.println("\nattackerDiceList: " + attackerDiceResultList);
         System.out.println("defenderDiceResult:" + defenderDiceResultList + "\n");
@@ -59,7 +121,7 @@ public class AttackProcess {
                 stringBuilder
                         .append("Round: ")
                         .append(i)
-                        .append(", >>>[ ")
+                        .append("\n>>>[ ")
                         .append(attackingCountry.getCountryName())
                         .append(" ]<<< wins ")
                         .append(">>>[ ")
@@ -85,7 +147,7 @@ public class AttackProcess {
                 stringBuilder
                         .append("Round: ")
                         .append(i)
-                        .append(", >>>[ ")
+                        .append("\n>>>[ ")
                         .append(attackingCountry.getCountryName())
                         .append(" ]<<< loses to ")
                         .append(">>>[ ")
@@ -102,13 +164,9 @@ public class AttackProcess {
                         .append("\n");
             }
         }
+        result = attackArmyCount;
 
-        txa_attackInfoDisplay.setText(stringBuilder.toString());
-
-        if (defendArmyCount == 0) {
-            attackResultProcess(attackingCountry, defendingCountry, attackArmyCount);
-        }
-
+        return result;
     }
 
     private static void attackResultProcess(Country attackingCountry, Country defendingCountry, int remainingArmyNbr) {
@@ -122,16 +180,9 @@ public class AttackProcess {
         Continent curContinent = Main.worldContinentMap.get(continentName);
 
         if (AttackProcess.isCountryConquered(defendingCountry)) {
-            defendingCountry.setCountryOwnerIndex(attackingCountry.getCountryOwnerIndex());
+            updateConqueredCountry(attackingCountry, defendingCountry, remainingArmyNbr, attackPlayer, defendPlayer);
 
             String defendCountryName = defendingCountry.getCountryName();
-            attackPlayer.getOwnedCountryNameList().add(defendCountryName);
-            defendPlayer.getOwnedCountryNameList().remove(defendCountryName);
-            defendingCountry.setCountryOwnerIndex(attackerIndex);
-
-            defendingCountry.setCountryArmyNumber(remainingArmyNbr);
-            attackingCountry.reduceFromCountryArmyNumber(remainingArmyNbr);
-
             int attackCountryArmyNbr = attackingCountry.getCountryArmyNumber();
 
             if (attackCountryArmyNbr > 1) {
@@ -180,6 +231,18 @@ public class AttackProcess {
             }
 
         }
+    }
+
+    private static void updateConqueredCountry(Country attackingCountry, Country defendingCountry, int remainingArmyNbr, Player attackPlayer, Player defendPlayer) {
+        String defendCountryName = defendingCountry.getCountryName();
+        int attackerIndex = attackPlayer.getPlayerIndex();
+
+        attackPlayer.getOwnedCountryNameList().add(defendCountryName);
+        defendPlayer.getOwnedCountryNameList().remove(defendCountryName);
+        defendingCountry.setCountryOwnerIndex(attackerIndex);
+
+        defendingCountry.setCountryArmyNumber(remainingArmyNbr);
+        attackingCountry.reduceFromCountryArmyNumber(remainingArmyNbr);
     }
 
 

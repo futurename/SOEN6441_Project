@@ -4,14 +4,12 @@ package mapeditor.Test;
 import mapeditor.MEMain;
 import mapeditor.model.MEContinent;
 import mapeditor.model.MECountry;
-import mapeditor.model.MapObject;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MapEditorTest {
@@ -69,29 +67,26 @@ public class MapEditorTest {
 
     /**
      * Test for checking whether all countries in map are connected
-     */
-    /*
+     *//*
     @Test public void testCheckConnectGraph(){
         MapObject mapObject = new MapObject();
         assertFalse(mapObject.checkCorrectness(firstmap));
     }
-*/
-    /**
+
+    *//**
      * Test for checking whether all countries in one continent are placed together
-     */
-    /*
+     *//*
     @Test public void testCheckContinentCountry(){
         MapObject mapObject = new MapObject();
         assertFalse(mapObject.checkCorrectness(secondmap));
     }
-*/
-    /**
+
+    *//**
      * Test for checking whether a country only belongs to one continent
-     */
-    /*
+     *//*
     @Test public void testCheckContinentBelonging(){
         MapObject mapObject = new MapObject();
         assertFalse(mapObject.checkCorrectness(thirdmap));
-    }
-*/
+    }*/
+
 }
