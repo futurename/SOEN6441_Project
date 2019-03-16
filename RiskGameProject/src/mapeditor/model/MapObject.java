@@ -14,7 +14,7 @@ public class MapObject {
     private boolean checkFlagCG = true;
     private boolean checkFlagCC = true;
     private boolean checkFlagCB = true;
-    private StringBuilder errorMsg = new StringBuilder("");
+    public StringBuilder errorMsg = new StringBuilder("") ;
 
     /**
      * arrContinent storage new continent
@@ -57,7 +57,7 @@ public class MapObject {
      * @param mapPath read map path
      * @return if the map is correct, return true, else return false
      */
-    public boolean checkCorrectness(String mapPath){
+    public void checkCorrectness(String mapPath){
         MapObject mapObj = new MapObject();
 
         ArrayList<String> fileRead = new ArrayList<String>();
@@ -72,7 +72,7 @@ public class MapObject {
                 }
                 read.close();
             }else{
-                errorMsg(0);
+                errorMsg.append(MEErrorMsg.FILE_NOT_EXIST.getMsg());
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -100,18 +100,14 @@ public class MapObject {
             }
         }
         if(correctCheckConnectGraph(mapObj.arrCountry) == false){
-            errorMsg(10);
-            return false;
+            errorMsg.append(MEErrorMsg.UNCONNECTED_GRAPH_ERROR.getMsg());
         }
         if(correctCheckContinentCountry(mapObj.arrContinent,mapObj.arrCountry) == false){
-            errorMsg(11);
-            return false;
+            errorMsg.append(MEErrorMsg.ERROR.getMsg());
         }
         if (correctCheckCountryBelonging(mapObj.arrContinent, mapObj.arrCountry) == false){
-            errorMsg(12);
-            return false;
+            errorMsg.append(MEErrorMsg.MULTIPLE_CONTINENT_ERROR.getMsg());
         }
-        return true;
     }
 
     /**
@@ -218,21 +214,6 @@ public class MapObject {
         return checkFlagCB;
     }
 
-    public void errorMsg(int errorNbr){
-        if(errorNbr == 0){
-            errorMsg.append("File not exist");
-        }
-        if(errorNbr == 10){
-            errorMsg.append("Graph not connected");
-        }
-        if(errorNbr == 11){
-            errorMsg.append("Disconnected neighbor");
-        }
-        if(errorNbr == 12){
-            errorMsg.append( "Country belongs to multiple continent");
-        }
-    }
-
     /**
      * check map format
      * @param mapPath map path
@@ -276,7 +257,4 @@ public class MapObject {
         return checkresult;
     }
 
-    public String getErrorMsg(){
-        return errorMsg.toString();
-    }
 }

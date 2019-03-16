@@ -261,6 +261,7 @@ public class MapEditorEditPageController {
     @FXML
     public void clickToCheck(ActionEvent actionEvent) throws Exception{
         MapObject check = new MapObject();
-        txt_check.setText(String.valueOf(check.checkCorrectness(path)));
+        check.checkCorrectness(path);
+        txt_check.setText(check.errorMsg.toString());
     }
 }
