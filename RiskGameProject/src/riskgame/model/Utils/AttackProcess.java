@@ -1,6 +1,7 @@
 package riskgame.model.Utils;
 
 import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.TextArea;
 import riskgame.Main;
 import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.Country;
@@ -13,7 +14,14 @@ import java.util.stream.IntStream;
 
 public class AttackProcess {
 
-    public static void attackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr) {
+    public static void alloutAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr,
+                                            TextArea txa_attackInfoDisplay){
+
+    }
+
+    public static void attackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr,
+                                      TextArea txa_attackInfoDisplay) {
+        StringBuilder stringBuilder = new StringBuilder();
 
         ArrayList<Integer> attackerDiceResultList = getDiceResultList(attackArmyNbr);
         ArrayList<Integer> defenderDiceResultList = getDiceResultList(defendArmyNbr);
@@ -24,7 +32,8 @@ public class AttackProcess {
         int attackArmyCount = attackerDiceResultList.size();
         int defendArmyCount = defenderDiceResultList.size();
 
-        int compareTimes = defenderDiceResultList.size() > 1 ? 2 : 1;
+        int compareTimes = defenderDiceResultList.size() < attackerDiceResultList.size() ? defenderDiceResultList.size() :
+                attackerDiceResultList.size();
 
         for (int i = 0; i < compareTimes; i++) {
             System.out.println("\nattacker: " + attackerDiceResultList.size()
@@ -41,6 +50,24 @@ public class AttackProcess {
 
                 defendArmyCount--;
 
+                stringBuilder
+                        .append("Round: ")
+                        .append(i)
+                        .append(", >>>[ ")
+                        .append(attackingCountry.getCountryName())
+                        .append(" ]<<< wins ")
+                        .append(">>>[ ")
+                        .append(defendingCountry.getCountryName())
+                        .append(" ]<<<\nattacker remaining army num: ")
+                        .append(attackingCountry.getCountryArmyNumber())
+                        .append(", defender remaining army num: ")
+                        .append(defendingCountry.getCountryArmyNumber())
+                        .append("\n")
+                        .append("defend army count after reduction: ")
+                        .append(defendArmyCount)
+                        .append(", attack army count: ")
+                        .append(attackArmyCount)
+                        .append("\n");
             } else {
                 attackingCountry.reduceFromCountryArmyNumber(1);
 
@@ -48,9 +75,29 @@ public class AttackProcess {
                         + ", defender: " + defendingCountry.getCountryArmyNumber() + "\n");
 
                 attackArmyCount--;
+
+                stringBuilder
+                        .append("Round: ")
+                        .append(i)
+                        .append(", >>>[ ")
+                        .append(attackingCountry.getCountryName())
+                        .append(" ]<<< loses to ")
+                        .append(">>>[ ")
+                        .append(defendingCountry.getCountryName())
+                        .append(" ]<<<\nattacker remaining army num: ")
+                        .append(attackingCountry.getCountryArmyNumber())
+                        .append(", defender remaining army num: ")
+                        .append(defendingCountry.getCountryArmyNumber())
+                        .append("\n")
+                        .append("attack army count after reduction: ")
+                        .append(attackArmyCount)
+                        .append(", defend army count: ")
+                        .append(defendArmyCount)
+                        .append("\n");
             }
         }
 
+        txa_attackInfoDisplay.setText(stringBuilder.toString());
 
         if (defendArmyCount == 0) {
             attackResultProcess(attackingCountry, defendingCountry, attackArmyCount);
@@ -82,7 +129,7 @@ public class AttackProcess {
             int attackCountryArmyNbr = attackingCountry.getCountryArmyNumber();
 
             if (attackCountryArmyNbr > 1) {
-                List<Integer> choices = IntStream.range(0, attackCountryArmyNbr - 1).boxed().collect(Collectors.toList());
+                List<Integer> choices = IntStream.range(0, attackCountryArmyNbr).boxed().collect(Collectors.toList());
 
                 System.out.println("attacking remaining army: " + attackCountryArmyNbr + ", remaining: " + remainingArmyNbr + ", choices: " + choices);
 

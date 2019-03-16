@@ -1,6 +1,7 @@
 package riskgame.model.BasicClass;
 
 
+import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import riskgame.Main;
 import riskgame.model.Utils.AttackProcess;
@@ -167,14 +168,14 @@ public class Player extends Observable {
      * compare the best dice with both sides then compare the second best dicewdd
      * deduct army number from the losing side
      * </p>
-     *
-     * @param attackingCountry
+     *  @param attackingCountry
      * @param defendingCountry the defending country ojbect
+     * @param txa_attackInfoDisplay
      */
 
-    public void attackCountry(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr) {
+    public void attackCountry(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr, TextArea txa_attackInfoDisplay) {
 
-        AttackProcess.attackSimulate(attackingCountry, defendingCountry, attackArmyNbr,defendArmyNbr);
+        AttackProcess.attackSimulate(attackingCountry, defendingCountry, attackArmyNbr,defendArmyNbr, txa_attackInfoDisplay);
     }
 
 
