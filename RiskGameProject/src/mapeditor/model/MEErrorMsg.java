@@ -6,7 +6,7 @@ public enum MEErrorMsg {
     LOST_KEY_INFORMATION_ERROR(1002, "Lost Key Information"),
 
     UNCONNECTED_GRAPH_ERROR(2001, "Unconnected Graph"),
-    ERROR(2002, "Error"),
+    COUNTRY_SEPARATE_COUNTINENT_ERROR(2002, "The country doesn't connect with any country that belongs to its continent"),
     MULTIPLE_CONTINENT_ERROR(2003, "Country Belongs To Multiple Continent");
 
     private String msg;

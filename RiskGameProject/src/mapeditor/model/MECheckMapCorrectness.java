@@ -7,7 +7,6 @@ import java.util.*;
 public class MECheckMapCorrectness{
 
     private boolean checkFlagCG = true;
-    private boolean checkFlagCC = true;
     private boolean checkFlagCB = true;
     private boolean checkFlagCCB = true;
 
@@ -20,27 +19,24 @@ public class MECheckMapCorrectness{
      */
     public String isCorrect(ArrayList< MECountry> countryArr, ArrayList<MEContinent> continentsArr){
         boolean checkFlagCGResult = correctCheckConnectGraph(countryArr);
-        boolean checkFlagCCResult = correctCheckContinentCountry(continentsArr,countryArr);
-        boolean checkFlagCBResult = correctCheckCountryBelonging(continentsArr,countryArr);
         boolean checkFlagCCBResult = correctCheckContinentCountryBelonging(continentsArr,countryArr);
+        boolean checkFlagCBResult = correctCheckCountryBelonging(continentsArr,countryArr);
 
         if(checkFlagCGResult == false){
             return "Unconnected Graph";
         }
-        if(checkFlagCCResult == false){
-            return "Unconnected Country in Continent";
+        if (checkFlagCCBResult == false){
+            return "has country that doesn't connect with any country of its continent";
         }
         if(checkFlagCBResult == false){
             return "Country belongs to mutiple continent";
         }
-        if (checkFlagCCBResult == false){
-            return "has country that doesn't connect with any country of its continent";
-        }
+
         return "True";
     }
 
     /**
-     * first correct checkCC
+     * first correct checkCG
      * check whether it is a connect graph or not
      * @param countryArr country list
      * @return true for correct, false for error
@@ -90,35 +86,12 @@ public class MECheckMapCorrectness{
     }
 
     /**
-     * second correct check
+     * second correct checkCCB
      * check whether a country is separate from other country in its continent
      * @param continents continent list
      * @param country country list
      * @return true for correct, false for error
      */
-    public  boolean correctCheckContinentCountry(ArrayList<MEContinent> continents, ArrayList<MECountry> country){
-        //If it is a empty map.
-        if(continents.isEmpty() && country.isEmpty()) {
-            return true;
-        }
-
-        for(int i=0 ;i<continents.size();i++){
-            if(continents.get(i).getCountryNumber() >= 1){
-                //
-                for(int j=0;j<country.size();j++){
-                    MECountry checkCountry = country.get(j);
-                    if(MEMain.arrMEContinent.get(i).getCountryNumber()>1) {
-                        if (checkCountry.getNeighbor().isEmpty()) {
-                            return checkFlagCC = false;
-                        }
-                    }
-                }
-            }else {
-                continue;
-            }
-        }
-        return checkFlagCC;
-    }
 
     public  boolean correctCheckContinentCountryBelonging(ArrayList<MEContinent> continents, ArrayList<MECountry> country){
         checkFlagCCB = true;
@@ -134,9 +107,10 @@ public class MECheckMapCorrectness{
                         for (int k = 0; k < country.size(); k++) {
                             if (country.get(k).getCountryName().equals(tempCountry)) {
                                 for(Iterator iters = country.get(k).getNeighborName().iterator(); iters.hasNext();) {
-                                    if(countryCheckFlag.containsKey(iters.next().toString())) {
+                                    String keyTemp = iters.next().toString();
+                                    if(countryCheckFlag.containsKey(keyTemp)) {
                                         countryCheckFlag.put(tempCountry, 1);
-                                        countryCheckFlag.put(iters.next().toString(), 1);
+                                        countryCheckFlag.put(keyTemp, 1);
                                     }
                                 }
                             }
@@ -154,7 +128,7 @@ public class MECheckMapCorrectness{
         return checkFlagCCB;
     }
     /**
-     * third correct check
+     * third correct checkCB
      * every country belongs to one and only one continent
      * @param continentsArr continent list
      * @param countryArr country list
