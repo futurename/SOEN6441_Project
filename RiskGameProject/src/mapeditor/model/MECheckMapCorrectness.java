@@ -67,7 +67,7 @@ public class MECheckMapCorrectness{
                     countryNeighbor = countryNeighbor.replaceAll("\\]","");
                     countryNeighbor = countryNeighbor.replaceAll(", ",",");
                     String[] countryNeighbors = countryNeighbor.split(",");
-                    for(int k = 1;k<countryNeighbors.length;k++){
+                    for(int k = 0;k<countryNeighbors.length;k++){
                         String readyToAddInQueue = countryNeighbors[k];
                         if(visited.get(readyToAddInQueue)==false){
                             queue.offer(readyToAddInQueue);
