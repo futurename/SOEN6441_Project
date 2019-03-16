@@ -4,17 +4,15 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class MapObject {
 
     private boolean checkFlagCG = true;
-    private boolean checkFlagCC = true;
+    private boolean checkFlagCCB = true;
     private boolean checkFlagCB = true;
     public StringBuilder errorMsg = new StringBuilder("") ;
+    private HashMap<String,Integer> countryCheckFlag = new HashMap<String,Integer>();
 
     /**
      * arrContinent storage new continent
@@ -102,8 +100,8 @@ public class MapObject {
         if(correctCheckConnectGraph(mapObj.arrCountry) == false){
             errorMsg.append(MEErrorMsg.UNCONNECTED_GRAPH_ERROR.getMsg());
         }
-        if(correctCheckContinentCountry(mapObj.arrContinent,mapObj.arrCountry) == false){
-            errorMsg.append(MEErrorMsg.ERROR.getMsg());
+        if(correctCheckContinentCountryBelonging(mapObj.arrContinent,mapObj.arrCountry) == false){
+            errorMsg.append(MEErrorMsg.COUNTRY_SEPARATE_COUNTINENT_ERROR.getMsg());
         }
         if (correctCheckCountryBelonging(mapObj.arrContinent, mapObj.arrCountry) == false){
             errorMsg.append(MEErrorMsg.MULTIPLE_CONTINENT_ERROR.getMsg());
@@ -161,36 +159,50 @@ public class MapObject {
     }
 
     /**
-     * second correct check
-     * check whether all countries in one continent are placed together
-     * @param continents continent object list
-     * @param country country object list
+     * second correct checkCCB
+     * check whether a country is separate from other country in its continent
+     * @param continents continent list
+     * @param country country list
      * @return true for correct, false for error
      */
-    public  boolean correctCheckContinentCountry(ArrayList<MEContinent> continents, ArrayList<MECountry> country){
-        //If it is a empty map.
-        if(continents.isEmpty() && country.isEmpty()) {
-            return true;
-        }
 
-        for(int i=0 ;i<continents.size();i++){
-            if(continents.get(i).getCountryNumber() >= 1){
-                //
-                for(int j=0;j<country.size();j++){
-                    MECountry checkCountry = country.get(j);
-                    if(checkCountry.getNeighbor().isEmpty()){
-                        return checkFlagCC = false;
+    public  boolean correctCheckContinentCountryBelonging(ArrayList<MEContinent> continents, ArrayList<MECountry> country){
+        checkFlagCCB = true;
+        for(int i = 0;i<continents.size();i++){
+            if(continents.get(i).getCountryNumber()>1){
+                countryCheckFlag.clear();
+                for(Iterator iter = continents.get(i).getCountryListName().iterator(); iter.hasNext();) {
+                    countryCheckFlag.put(iter.next().toString(),0);
+                }
+                for(int j = 0;j<continents.get(i).getCountryNumber();j++){
+                    String tempCountry = continents.get(i).getCountryListName().get(j);
+                    if(countryCheckFlag.get(tempCountry)==0) {
+                        for (int k = 0; k < country.size(); k++) {
+                            if (country.get(k).getCountryName().equals(tempCountry)) {
+                                for(Iterator iters = country.get(k).getNeighborName().iterator(); iters.hasNext();) {
+                                    String keyTemp = iters.next().toString();
+                                    if(countryCheckFlag.containsKey(keyTemp)) {
+                                        countryCheckFlag.put(tempCountry, 1);
+                                        countryCheckFlag.put(keyTemp, 1);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-            }else {
-                continue;
+                for (String key:countryCheckFlag.keySet()) {
+                    if(countryCheckFlag.get(key)==0){
+                        checkFlagCCB = false;
+                    }
+                }
             }
+            countryCheckFlag.clear();
         }
-        return checkFlagCC;
+        return checkFlagCCB;
     }
 
     /**
-     * third correct check
+     * third correct checkCB
      * every country belongs to one and only one continent
      * @param continentsArr continent object list
      * @param countryArr country ojbect list
