@@ -69,7 +69,7 @@ public class AttackProcess {
                 .append(attackingCountry.getCountryName())
                 .append(", Defender: ")
                 .append(defendingCountry.getCountryName())
-                .append("\n");
+                .append("\n\n");
 
         int attackerRemainArmyNbr = getOneAttackResult(attackingCountry, defendingCountry, avaliableForAttackNbr, avaliableForDefendNbr, stringBuilder);
 
@@ -92,7 +92,7 @@ public class AttackProcess {
                 .append(attackerDiceResultList)
                 .append(", defender dices: ")
                 .append(defenderDiceResultList)
-                .append("\n");
+                .append("\n\n");
 
         System.out.println("\nattackerDiceList: " + attackerDiceResultList);
         System.out.println("defenderDiceResult:" + defenderDiceResultList + "\n");
