@@ -30,7 +30,7 @@ public class AttackProcess {
                 .append(attackingCountry.getCountryName())
                 .append(", Defender: ")
                 .append(defendingCountry.getCountryName())
-                .append("\n");
+                .append("\n\n");
 
         recursiveAttack(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, stringBuilder);
 
@@ -92,7 +92,7 @@ public class AttackProcess {
                 .append(attackerDiceResultList)
                 .append(", defender dices: ")
                 .append(defenderDiceResultList)
-                .append("\n\n");
+                .append("\n");
 
         System.out.println("\nattackerDiceList: " + attackerDiceResultList);
         System.out.println("defenderDiceResult:" + defenderDiceResultList + "\n");
@@ -123,7 +123,7 @@ public class AttackProcess {
                         .append(i)
                         .append("\n>>>[ ")
                         .append(attackingCountry.getCountryName())
-                        .append(" ]<<< wins ")
+                        .append(" ]<<< WINS ")
                         .append(">>>[ ")
                         .append(defendingCountry.getCountryName())
                         .append(" ]<<<\nattacker remaining army num: ")
@@ -149,7 +149,7 @@ public class AttackProcess {
                         .append(i)
                         .append("\n>>>[ ")
                         .append(attackingCountry.getCountryName())
-                        .append(" ]<<< loses to ")
+                        .append(" ]<<< LOSES to ")
                         .append(">>>[ ")
                         .append(defendingCountry.getCountryName())
                         .append(" ]<<<\nattacker remaining army num: ")

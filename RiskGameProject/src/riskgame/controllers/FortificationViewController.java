@@ -59,6 +59,8 @@ public class FortificationViewController {
     private Label lbl_actionString;
 
 
+    private static int firstRoundCounter = Main.totalNumOfPlayers - 1;
+
     /**
      * fortification move counter
      */
@@ -226,25 +228,23 @@ public class FortificationViewController {
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-       /* if (curPlayerIndex == Main.totalNumOfPlayers - 1) {
-            notifyGameStageChanged("Reinforcement Phase");
+        if (firstRoundCounter > 0) {
+            firstRoundCounter--;
+            notifyGameStageChanged("Attack Phase");
+            Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Pane attackPane = new FXMLLoader(getClass().getResource("../view/AttackView.fxml")).load();
+            Scene attackScene = new Scene(attackPane, 1200, 900);
+            curStage.setScene(attackScene);
+            curStage.show();
+        } else {
+            notifyGameStageChanged("Reinforce Phase");
 
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
             Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
             curStage.setScene(reinforceScene);
             curStage.show();
-        } else {}*/
-
-        notifyGameStageChanged("Reinforce Phase");
-
-        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Pane nextPane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
-        Scene nextScene = new Scene(nextPane, 1200, 900);
-        curStage.setScene(nextScene);
-        curStage.show();
-
-
+        }
     }
 
     /**
@@ -252,7 +252,6 @@ public class FortificationViewController {
      *
      * @param actionEvent button is clicked
      */
-    @FXML
     public void clickConfirmMoveArmy(ActionEvent actionEvent) {
         counter--;
 
