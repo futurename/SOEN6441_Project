@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -18,7 +19,7 @@
       </Text>
       <TextField fx:id="txf_fileName" layoutX="520.0" layoutY="303.0" promptText="newmap.map" />
       <Button fx:id="btn_save" layoutX="579.0" layoutY="539.0" mnemonicParsing="false" onAction="#generateMap" text="save" />
-      <Text fx:id="txt_checkResult" layoutX="494.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Haven't check" wrappingWidth="211.70361328125">
+      <Text fx:id="txt_checkResult" layoutX="458.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Haven't check" wrappingWidth="479.70361328125">
          <font>
             <Font size="29.0" />
          </font>

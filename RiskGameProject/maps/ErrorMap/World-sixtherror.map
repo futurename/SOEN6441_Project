@@ -1,0 +1,22 @@
+[Map]
+author=Sean O'Connor
+image=world.bmp
+wrap=no
+scroll=horizontal
+warn=yes
+
+[Continents]
+AA=2
+BB=2
+
+[Territories]
+a,0,0,AA,b,c
+
+b,0,0,BB,a
+c,0,0,BB,a
+
+
+
+
+
+
