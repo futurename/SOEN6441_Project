@@ -11,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import riskgame.Main;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.Player;
@@ -20,6 +19,9 @@ import riskgame.model.Utils.ListviewRenderer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import static riskgame.Main.*;
+import static riskgame.controllers.StartViewController.firstRoundCounter;
 
 /**
  * controller class for FortificationView.fxml
@@ -59,7 +61,7 @@ public class FortificationViewController {
     private Label lbl_actionString;
 
 
-    private static int firstRoundCounter = Main.totalNumOfPlayers - 1;
+
 
     /**
      * fortification move counter
@@ -107,7 +109,7 @@ public class FortificationViewController {
     private void initPhaseView() {
         initObserver();
 
-        curPlayer = Main.playersList.get(curPlayerIndex);
+        curPlayer = playersList.get(curPlayerIndex);
         Color curPlayerColor = curPlayer.getPlayerColor();
 
         lbl_phaseViewName.setText(curGamePhase);
@@ -121,9 +123,9 @@ public class FortificationViewController {
     }
 
     private void initObserver() {
-        curGamePhase = Main.phaseViewObserver.getPhaseName();
-        curPlayerIndex = Main.phaseViewObserver.getPlayerIndex();
-        curActionString = Main.phaseViewObservable.getActionString();
+        curGamePhase = phaseViewObserver.getPhaseName();
+        curPlayerIndex = phaseViewObserver.getPlayerIndex();
+        curActionString = phaseViewObservable.getActionString();
         curPlayerName = "Player_" + curPlayerIndex;
     }
 
@@ -208,7 +210,7 @@ public class FortificationViewController {
         ArrayList<String> ownedCountryList = curPlayer.getOwnedCountryNameList();
         int playerIndex = curPlayer.getPlayerIndex();
         for (String countryName : ownedCountryList) {
-            GraphNode curGraphNode = Main.graphSingleton.get(countryName);
+            GraphNode curGraphNode = graphSingleton.get(countryName);
             Country curCountry = curGraphNode.getCountry();
             ArrayList<Country> tempCountryList = new ArrayList<>();
             curGraphNode.getReachableCountryListBFS(playerIndex, curCountry, tempCountryList);
@@ -228,8 +230,16 @@ public class FortificationViewController {
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
+
+        System.out.println("\n\nfirst round counter: " + firstRoundCounter + "\n\n");
+
         if (firstRoundCounter > 0) {
             firstRoundCounter--;
+
+            if(firstRoundCounter == 0){
+                curRoundPlayerIndex = -1;
+            }
+
             notifyGameStageChanged("Attack Phase");
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Pane attackPane = new FXMLLoader(getClass().getResource("../view/AttackView.fxml")).load();
@@ -238,7 +248,7 @@ public class FortificationViewController {
             curStage.show();
         } else {
             notifyGameStageChanged("Reinforce Phase");
-
+            curRoundPlayerIndex = (curRoundPlayerIndex + 1) % totalNumOfPlayers;
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
             Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
@@ -272,10 +282,10 @@ public class FortificationViewController {
             alert.showAndWait();
         } else {
             String selectedCountryName = countryObservableList.get(selectedOwnedCountryIndex).getCountryName();
-            Country selectedCountry = Main.graphSingleton.get(selectedCountryName).getCountry();
+            Country selectedCountry = graphSingleton.get(selectedCountryName).getCountry();
 
             String selectedTargetCountryName = adjacentCountryObservableList.get(selectedReachableCountryIndex).getCountryName();
-            Country selecctedTargetCountry = Main.graphSingleton.get(selectedTargetCountryName).getCountry();
+            Country selecctedTargetCountry = graphSingleton.get(selectedTargetCountryName).getCountry();
 
             System.out.println("before move, selected: " + selectedCountryName + ": " + selectedCountry.getCountryArmyNumber() + ", target: " + selectedTargetCountryName + ": " + selecctedTargetCountry.getCountryArmyNumber());
 
@@ -333,9 +343,9 @@ public class FortificationViewController {
     }
 
     private void notifyGameStageChanged(String phase) {
-        int nextPlayerIndex = (curPlayerIndex + 1) % Main.totalNumOfPlayers;
-        Main.phaseViewObservable.setAllParam(phase, nextPlayerIndex, "NO ACT");
-        Main.phaseViewObservable.notifyObservers(Main.phaseViewObservable);
+        int nextPlayerIndex = (curPlayerIndex + 1) % totalNumOfPlayers;
+        phaseViewObservable.setAllParam(phase, nextPlayerIndex, "NO ACT");
+        phaseViewObservable.notifyObservers(phaseViewObservable);
 
         System.out.printf("player %s finished fortification, player %s's turn\n", curPlayerIndex, nextPlayerIndex);
     }
