@@ -66,6 +66,7 @@ public class MapEditorDeleteCountryController {
     public void clickToDeleteCountry(ActionEvent actionEvent) {
         deleteCountryName = cbb_deleteCountryName.getValue();
         MEMain.deleteCountry(deleteCountryName);
+        btn_deleteCountryApply.setVisible(false);
     }
 
     /**

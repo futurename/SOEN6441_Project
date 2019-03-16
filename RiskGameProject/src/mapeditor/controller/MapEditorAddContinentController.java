@@ -76,6 +76,7 @@ public class MapEditorAddContinentController {
             }
         }
         MEMain.createContinent(newContinentName,newContinentBonus);
+        btn_addContinentApply.setVisible(false);
     }
 
     /**
