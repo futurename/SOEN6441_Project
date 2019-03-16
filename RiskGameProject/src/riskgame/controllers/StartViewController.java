@@ -176,12 +176,6 @@ public class StartViewController {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         mapPath = txf_mapPath.getText();
         mapChecker.checkCorrectness(mapPath);
-        System.out.println();
-        if (!mapChecker.errorMsg.toString().isEmpty()) {
-            alert.setContentText(mapChecker.errorMsg.toString());
-            alert.showAndWait();
-            return;
-        }
 
         if (inputCounter > 0) {
             if (!mapChecker.errorMsg.toString().isEmpty()) {

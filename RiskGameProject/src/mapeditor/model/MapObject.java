@@ -106,6 +106,9 @@ public class MapObject {
         if (correctCheckCountryBelonging(mapObj.arrContinent, mapObj.arrCountry) == false){
             errorMsg.append(MEErrorMsg.MULTIPLE_CONTINENT_ERROR.getMsg());
         }
+        if(mapFormatCheck(mapPath) == false){
+            errorMsg.append(MEErrorMsg.FILE_FORMAT_ERROR.getMsg());
+        }
     }
 
     /**
