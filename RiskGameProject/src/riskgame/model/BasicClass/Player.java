@@ -4,15 +4,19 @@ package riskgame.model.BasicClass;
 import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import riskgame.Main;
+import riskgame.model.BasicClass.ObserverPattern.CountryObservable;
+import riskgame.model.BasicClass.ObserverPattern.CountryObserver;
 import riskgame.model.Utils.AttackProcess;
 
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Observer;
 
 /**
  * This class includes attributes a player need and required methods
+ * Observer property of this class is updating changes triggered by countries
  **/
-public class Player extends Observable {
+public class Player extends Observable implements Observer {
     private static final int DEFAULT_DIVISION_FACTOR = 3;
 
     private final int playerIndex;
@@ -38,7 +42,6 @@ public class Player extends Observable {
         this.ownedCountryNbr = 0;
         this.continentBonus = 0;
         this.controlledContinents = new ArrayList<>();
-
 
         this.cardsList.add(Card.ARTILLERY);
         this.cardsList.add(Card.INFANTRY);
@@ -223,6 +226,14 @@ public class Player extends Observable {
             this.cardsList.remove(card);
         }
         setChanged();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        if (o instanceof CountryObservable){
+            this.armyNbr = ((CountryObservable)o).getArmy();
+            this.ownedCountryNameList.add(((CountryObservable)o).getName());
+        }
     }
 }
 
