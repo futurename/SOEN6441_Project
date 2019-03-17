@@ -345,7 +345,7 @@ public class FortificationViewController {
     private void notifyGameStageChanged(String phase) {
         int nextPlayerIndex = (curPlayerIndex + 1) % totalNumOfPlayers;
         phaseViewObservable.setAllParam(phase, nextPlayerIndex, "NO ACT");
-        phaseViewObservable.notifyObservers(phaseViewObservable);
+        phaseViewObservable.notifyObservers("from fortification view");
 
         System.out.printf("player %s finished fortification, player %s's turn\n", curPlayerIndex, nextPlayerIndex);
     }

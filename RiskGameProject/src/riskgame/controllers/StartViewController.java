@@ -282,10 +282,10 @@ public class StartViewController {
      */
     private void setPlayerWorldDominationView() {
         playerDomiViewObservable.resetObservable(totalNumOfPlayers);
-        playerDomiViewObservable.updateObservable();
-        playerDomiViewObservable.notifyObservers("Initialize obs from start view");
-
-        System.out.println("\n>>>>>>domi view observer:" + playerDomiViewObserver.getControlRatioList());
+//        playerDomiViewObservable.updateObservable();
+//        playerDomiViewObservable.notifyObservers("Initialize obs from start view");
+//
+//        System.out.println("\n>>>>>>domi view observer:" + playerDomiViewObserver.getControlRatioList());
     }
 
     /**

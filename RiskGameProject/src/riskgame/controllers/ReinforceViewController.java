@@ -164,6 +164,8 @@ public class ReinforceViewController implements Initializable {
      * Set contents to player domination the pane
      */
     private void initPlayerDominationView() {
+        playerDomiViewObservable.updateObservable();
+        playerDomiViewObservable.notifyObservers();
         ArrayList<Label> labelList = new ArrayList<>();
 
         for (int playerIndex = 0; playerIndex < totalNumOfPlayers; playerIndex++) {
