@@ -364,7 +364,7 @@ public class ReinforceViewController implements Initializable {
 
     /**
      * set phase view observable parameters for next step
-     * @param nextPlayerIndex
+     * @param playerIndex
      */
     private void setAttackPhaseViewObservable(int playerIndex) {
         String nextPhaseName = "Attack Phase";
@@ -408,6 +408,7 @@ public class ReinforceViewController implements Initializable {
             lbl_undeployedArmy.setText(Integer.toString(curUndeployedArmy));
             scb_armyNbrAdjustment.setMax(curUndeployedArmy);
             scb_armyNbrAdjustment.adjustValue(curUndeployedArmy);
+            lbl_deployArmyCount.setText(Integer.toString(curUndeployedArmy));
 
             btn_confirmDeployment.setVisible(true);
             btn_skipCardsExchange.setVisible(false);

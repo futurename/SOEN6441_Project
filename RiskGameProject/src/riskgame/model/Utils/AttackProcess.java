@@ -1,6 +1,7 @@
 package riskgame.model.Utils;
 
 import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TextArea;
 import riskgame.Main;
 import riskgame.model.BasicClass.Continent;
@@ -26,11 +27,11 @@ public class AttackProcess {
     public static void alloutAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr,
                                             TextArea txa_attackInfoDisplay) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Attacker: ")
+        stringBuilder.append("Attacker: [ ")
                 .append(attackingCountry.getCountryName())
-                .append(", Defender: ")
+                .append(" ], Defender: [ ")
                 .append(defendingCountry.getCountryName())
-                .append("\n\n");
+                .append(" ]\n\n");
 
         recursiveAttack(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, stringBuilder);
 
@@ -46,10 +47,11 @@ public class AttackProcess {
 
     /**
      * gets the results for attacks untill all the attackes are finished by attacker
+     *
      * @param attackingCountry country which is going to attack
      * @param defendingCountry country getting attacked
-     * @param attackArmyNbr army number of attacking country
-     * @param defendArmyNbr army number of defending country
+     * @param attackArmyNbr    army number of attacking country
+     * @param defendArmyNbr    army number of defending country
      * @param stringBuilder
      */
     private static void recursiveAttack(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr, StringBuilder stringBuilder) {
@@ -70,6 +72,7 @@ public class AttackProcess {
     /**
      * process the one attack procedure and calculates the results
      * process the results for remaining attacking army number
+     *
      * @param attackingCountry
      * @param defendingCountry
      * @param attackArmyNbr
@@ -82,11 +85,11 @@ public class AttackProcess {
         int avaliableForDefendNbr = defendArmyNbr > MAX_DEFENDING_ARMY_NUMBER ? MAX_DEFENDING_ARMY_NUMBER : defendArmyNbr;
 
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Attacker: ")
+        stringBuilder.append("Attacker: [ ")
                 .append(attackingCountry.getCountryName())
-                .append(", Defender: ")
+                .append(" ], Defender: [ ")
                 .append(defendingCountry.getCountryName())
-                .append("\n\n");
+                .append(" ]\n\n");
 
         int attackerRemainArmyNbr = getOneAttackResult(attackingCountry, defendingCountry, avaliableForAttackNbr, avaliableForDefendNbr, stringBuilder);
 
@@ -121,6 +124,7 @@ public class AttackProcess {
                 attackerDiceResultList.size();
 
         for (int i = 0; i < compareTimes; i++) {
+
             System.out.println("\nattacker: " + attackerDiceResultList.size()
                     + ", defender: " + defenderDiceResultList.size());
 
@@ -261,9 +265,22 @@ public class AttackProcess {
 
         defendingCountry.setCountryArmyNumber(remainingArmyNbr);
         attackingCountry.reduceFromCountryArmyNumber(remainingArmyNbr);
+
+        System.out.println("\n>>>>>>>>>>defender owned countries: " + defendPlayer.getOwnedCountryNameList() + "\n");
+
+        if(!isPlayerHasCountry(defendPlayer)){
+
+        }
+
+
 //        Main.playerDomiViewObservable.updateObservable();
 //        Main.playerDomiViewObservable.notifyObservers("Battle Report...");
+
         System.out.printf("After battle: attacker owned %d countries\n", attackPlayer.getOwnedCountryNameList().size());
+    }
+
+    private static boolean isPlayerHasCountry(Player defendPlayer) {
+
     }
 
 
@@ -307,8 +324,14 @@ public class AttackProcess {
                 break;
             }
         }
+        if (result == true) {
+            Dialog dialog = new Dialog();
+            dialog.setHeaderText("Contient conquered!");
+            dialog.setContentText("Contient [ " + continentName + " ] is conquered by Player [ " + playerIndex + " ]! "
+                    + ", Bonus: [ " + curContinent.getContinentBonusValue() + " ]");
 
-        System.out.println("continent conquered: " + result);
+            System.out.println("continent conquered: " + result);
+        }
 
         return result;
     }
