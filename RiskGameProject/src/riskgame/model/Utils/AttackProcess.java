@@ -44,6 +44,14 @@ public class AttackProcess {
         txa_attackInfoDisplay.setText(stringBuilder.toString());
     }
 
+    /**
+     * gets the results for attacks untill all the attackes are finished by attacker
+     * @param attackingCountry country which is going to attack
+     * @param defendingCountry country getting attacked
+     * @param attackArmyNbr army number of attacking country
+     * @param defendArmyNbr army number of defending country
+     * @param stringBuilder
+     */
     private static void recursiveAttack(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr, StringBuilder stringBuilder) {
         if (attackArmyNbr == 0 || defendArmyNbr == 0) {
             return;
@@ -59,6 +67,15 @@ public class AttackProcess {
         recursiveAttack(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, stringBuilder);
     }
 
+    /**
+     * process the one attack procedure and calculates the results
+     * process the results for remaining attacking army number
+     * @param attackingCountry
+     * @param defendingCountry
+     * @param attackArmyNbr
+     * @param defendArmyNbr
+     * @param txa_attackInfoDisplay
+     */
     public static void oneAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr,
                                          TextArea txa_attackInfoDisplay) {
         int avaliableForAttackNbr = attackArmyNbr > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : attackArmyNbr;
@@ -236,6 +253,7 @@ public class AttackProcess {
     private static void updateConqueredCountry(Country attackingCountry, Country defendingCountry, int remainingArmyNbr, Player attackPlayer, Player defendPlayer) {
         String defendCountryName = defendingCountry.getCountryName();
         int attackerIndex = attackPlayer.getPlayerIndex();
+        System.out.printf("Before battle: attacker owned %d countries\n", attackPlayer.getOwnedCountryNameList().size());
 
         attackPlayer.getOwnedCountryNameList().add(defendCountryName);
         defendPlayer.getOwnedCountryNameList().remove(defendCountryName);
@@ -243,6 +261,9 @@ public class AttackProcess {
 
         defendingCountry.setCountryArmyNumber(remainingArmyNbr);
         attackingCountry.reduceFromCountryArmyNumber(remainingArmyNbr);
+        Main.playerDomiViewObservable.updateObservable();
+        Main.playerDomiViewObservable.notifyObservers("Battle Report...");
+        System.out.printf("After battle: attacker owned %d countries\n", attackPlayer.getOwnedCountryNameList().size());
     }
 
 

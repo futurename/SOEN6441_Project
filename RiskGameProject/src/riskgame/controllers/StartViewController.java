@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import mapeditor.model.MapObject;
 import riskgame.Main;
 import riskgame.model.BasicClass.Continent;
+import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphSingleton;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InitPlayers;
@@ -260,15 +261,13 @@ public class StartViewController {
     @FXML
     public void clickNextToReinforcePhase(ActionEvent actionEvent) throws IOException {
         setPhaseViewObservable();
+        initContinentsOwner();
         setPlayerWorldDominationView();
 
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
         Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
         Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
-
         curStage.setScene(reinforceScene);
-
         curStage.show();
     }
 
@@ -276,11 +275,41 @@ public class StartViewController {
      * set player domination view for reinforce phase for displaying corresponding information
      */
     private void setPlayerWorldDominationView() {
-        playerDomiViewObservable.resetObservable();
+        playerDomiViewObservable.resetObservable(totalNumOfPlayers);
         playerDomiViewObservable.updateObservable();
-        playerDomiViewObservable.notifyObservers(playerDomiViewObservable);
+        playerDomiViewObservable.notifyObservers("Initialize obs from start view");
 
         System.out.println("\n>>>>>>domi view observer:" + playerDomiViewObserver.getControlRatioList());
+    }
+
+    /**
+     * initialize continents owner after countries allocated to players randomly
+     */
+    private void initContinentsOwner(){
+        for (Map.Entry<String, Continent> entry : Main.worldContinentMap.entrySet()) {
+            Continent continent = entry.getValue();
+            boolean isSameOwner = false;
+            int owner = -1;
+            for (int playerIndex=0; playerIndex<totalNumOfPlayers; playerIndex++){
+                int count = 0;
+                int max = continent.getContinentCountryGraph().values().size();
+                for (Country country: continent.getContinentCountryGraph().values()){
+                    if (country.getCountryOwnerIndex()!=playerIndex){
+                        break;
+                    }
+                    count++;
+                    if (count == max){
+                        System.out.println("find a owner! "+playerIndex);
+                        isSameOwner = true;
+                        owner = playerIndex;
+                    }
+                }
+            }
+            if (isSameOwner){
+                playersList.get(owner).addControlledContinent(continent.getContinentName());
+                continent.setContinentOwnerIndex(owner);
+            }
+        }
     }
 
 

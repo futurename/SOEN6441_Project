@@ -22,9 +22,10 @@ public class Player extends Observable {
     private Color playerColor;
     private int ownedCountryNbr;
     private int continentBonus;
+    private ArrayList<String> controlledContinents;
 
     /**
-     * class contructor
+     * class constructor
      *
      * @param playerIndex index of current player
      */
@@ -36,6 +37,7 @@ public class Player extends Observable {
         this.playerColor = PlayerColor.values()[playerIndex].colorValue;
         this.ownedCountryNbr = 0;
         this.continentBonus = 0;
+        this.controlledContinents = new ArrayList<>();
 
 
         this.cardsList.add(Card.ARTILLERY);
@@ -57,6 +59,17 @@ public class Player extends Observable {
     public void reduceContinentBonus(int bonus) {
         this.continentBonus -= bonus;
     }
+
+    public void addControlledContinent(String continent){
+        if (!controlledContinents.contains(continent)){
+            controlledContinents.add(continent);
+        }
+    }
+
+    public int getControlledContinentCount(){
+        return controlledContinents.size();
+    }
+
 
     /**
      * get the sum of army number in all owned countries

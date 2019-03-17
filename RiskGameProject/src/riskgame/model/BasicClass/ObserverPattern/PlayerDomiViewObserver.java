@@ -42,5 +42,6 @@ public class PlayerDomiViewObserver implements Observer {
         this.controlRatioList = ((PlayerDomiViewObservable)o).getControlRatioList();
         this.controlledContinentNbrList = ((PlayerDomiViewObservable)o).getControlledContinentNbrList();
         this.totalArmyNbrList = ((PlayerDomiViewObservable)o).getTotalArmyNbrList();
+        System.out.printf("PlayerDomiObserver updates: %s.\n",arg);
     }
 }

@@ -4,7 +4,6 @@ mapeditor.controller
 mapeditor.model
 riskgame
 riskgame.controllers
-riskgame.model
 riskgame.model.BasicClass
 riskgame.model.BasicClass.ObserverPattern
 riskgame.model.Utils

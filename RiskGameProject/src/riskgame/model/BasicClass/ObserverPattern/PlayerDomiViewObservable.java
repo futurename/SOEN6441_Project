@@ -5,6 +5,7 @@ import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Observable;
 
 /**
@@ -17,7 +18,6 @@ public class PlayerDomiViewObservable extends Observable {
     private ArrayList<Integer> totalArmyNbrList;
 
     public PlayerDomiViewObservable(){
-
         this.controlRatioList = new ArrayList<>();
         this.controlledContinentNbrList = new ArrayList<>();
         this.totalArmyNbrList = new ArrayList<>();
@@ -42,24 +42,23 @@ public class PlayerDomiViewObservable extends Observable {
         for(int playerIndex = 0; playerIndex < totalPlayerNbr; playerIndex++){
             Player curPlayer = Main.playersList.get(playerIndex);
             int ownedCountryNbr = curPlayer.getOwnedCountryNameList().size();
+            System.out.printf("update observable to: %d countries\n", ownedCountryNbr);
             float curControlRatio = (float)ownedCountryNbr / totalCountryNbr;
-            controlRatioList.add(curControlRatio);
+            controlRatioList.set(playerIndex, curControlRatio);
 
             int curControlContinentNbr = InfoRetriver.getConqueredContinentNbr(curPlayer);
-            controlledContinentNbrList.add(curControlContinentNbr);
+            controlledContinentNbrList.set(playerIndex, curControlContinentNbr);
 
             int curArmyNbr = curPlayer.getArmyNbr();
-            totalArmyNbrList.add(curArmyNbr);
+            totalArmyNbrList.set(playerIndex, curArmyNbr);
         }
         setChanged();
     }
 
-
-
-    public void resetObservable(){
-        this.controlRatioList = new ArrayList<>();
-        this.controlledContinentNbrList = new ArrayList<>();
-        this.totalArmyNbrList = new ArrayList<>();
+    public void resetObservable(int playerCount){
+        this.controlRatioList = new ArrayList(Collections.nCopies(playerCount,-1.0));
+        this.controlledContinentNbrList = new ArrayList<>(Collections.nCopies(playerCount,-1));
+        this.totalArmyNbrList = new ArrayList<>(Collections.nCopies(playerCount,-1));
     }
 
 }
