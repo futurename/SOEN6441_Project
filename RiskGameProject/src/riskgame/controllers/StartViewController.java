@@ -190,6 +190,7 @@ public class StartViewController {
             alert.showAndWait();
             mapPath = DEFAULT_MAP_PATH;
         }
+
         if (mapChecker.errorMsg.toString().isEmpty()) {
             buildWorldMapGraph(mapPath, graphSingleton);
 

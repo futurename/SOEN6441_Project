@@ -221,12 +221,17 @@ public class MapObject {
             return true;
         }
 
-        for(int i = 0; i<continentsArr.size();i++){
-
-            countryAddByContinent = continentsArr.get(i).getCountryNumber()+countryAddByContinent;
-        }
-        if(countryAddByContinent != countryArr.size()){
-            checkFlagCB = false;
+        for(int i = 0; i < countryArr.size();i++){
+            MECountry newCountry = countryArr.get(i);
+            for(int j =0; j < countryArr.size(); j++){
+                if(j == i){
+                    continue;
+                }
+                MECountry compareCountry = countryArr.get(j);
+                if(newCountry.getCountryName().equals(compareCountry.getCountryName())){
+                    checkFlagCB = false;
+                }
+            }
         }
         return checkFlagCB;
     }
