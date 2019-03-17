@@ -261,8 +261,8 @@ public class AttackProcess {
 
         defendingCountry.setCountryArmyNumber(remainingArmyNbr);
         attackingCountry.reduceFromCountryArmyNumber(remainingArmyNbr);
-        Main.playerDomiViewObservable.updateObservable();
-        Main.playerDomiViewObservable.notifyObservers("Battle Report...");
+//        Main.playerDomiViewObservable.updateObservable();
+//        Main.playerDomiViewObservable.notifyObservers("Battle Report...");
         System.out.printf("After battle: attacker owned %d countries\n", attackPlayer.getOwnedCountryNameList().size());
     }
 

@@ -17,24 +17,12 @@ public class PlayerDomiViewObserver implements Observer {
         return controlRatioList;
     }
 
-    public void setControlRatioList(ArrayList<Float> controlRatioList) {
-        this.controlRatioList = controlRatioList;
-    }
-
     public ArrayList<Integer> getControlledContinentNbrList() {
         return controlledContinentNbrList;
     }
 
-    public void setControlledContinentNbrList(ArrayList<Integer> controlledContinentNbrList) {
-        this.controlledContinentNbrList = controlledContinentNbrList;
-    }
-
     public ArrayList<Integer> getTotalArmyNbrList() {
         return totalArmyNbrList;
-    }
-
-    public void setTotalArmyNbrList(ArrayList<Integer> totalArmyNbrList) {
-        this.totalArmyNbrList = totalArmyNbrList;
     }
 
     @Override
