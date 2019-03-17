@@ -297,12 +297,18 @@ public class StartViewController {
             boolean isSameOwner = false;
             int owner = -1;
             for (int playerIndex=0; playerIndex<totalNumOfPlayers; playerIndex++){
+                int count = 0;
+                int max = continent.getContinentCountryGraph().values().size();
                 for (Country country: continent.getContinentCountryGraph().values()){
                     if (country.getCountryOwnerIndex()!=playerIndex){
                         break;
                     }
-                    isSameOwner = true;
-                    owner = playerIndex;
+                    count++;
+                    if (count == max){
+                        System.out.println("find a owner! "+playerIndex);
+                        isSameOwner = true;
+                        owner = playerIndex;
+                    }
                 }
             }
             if (isSameOwner){
