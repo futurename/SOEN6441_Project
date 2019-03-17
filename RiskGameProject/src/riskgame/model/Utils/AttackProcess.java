@@ -44,6 +44,14 @@ public class AttackProcess {
         txa_attackInfoDisplay.setText(stringBuilder.toString());
     }
 
+    /**
+     * gets the results for attacks untill all the attackes are finished by attacker
+     * @param attackingCountry country which is going to attack
+     * @param defendingCountry country getting attacked
+     * @param attackArmyNbr army number of attacking country
+     * @param defendArmyNbr army number of defending country
+     * @param stringBuilder
+     */
     private static void recursiveAttack(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr, StringBuilder stringBuilder) {
         if (attackArmyNbr == 0 || defendArmyNbr == 0) {
             return;
