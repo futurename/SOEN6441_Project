@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -57,12 +58,12 @@ public class InitWorldMap {
             if (curLine.contains(CONTINENT_HEADER_STRING)) {
                 while ((curLine = bufferedReader.readLine()).length() != 0) {
                     String[] curLineSplitArray = curLine.split("=");
-                    String curContinnentName = curLineSplitArray[0];
+                    String curContinentName = curLineSplitArray[0];
                     int curContinentBonusValue = Integer.parseInt(curLineSplitArray[1]);
 
                     //Initialize a new Continent object
-                    Continent oneContinent = new Continent(curContinnentName, curContinentBonusValue);
-                    Main.worldContinentMap.put(curContinnentName, oneContinent);
+                    Continent oneContinent = new Continent(curContinentName, curContinentBonusValue);
+                    Main.worldContinentMap.put(curContinentName, oneContinent);
                 }
             }
 
@@ -116,6 +117,7 @@ public class InitWorldMap {
         printGraph();
         printContinent();
         bufferedReader.close();
+
     }
 
     /**

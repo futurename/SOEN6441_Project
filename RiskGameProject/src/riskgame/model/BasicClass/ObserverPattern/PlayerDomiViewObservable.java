@@ -56,7 +56,7 @@ public class PlayerDomiViewObservable extends Observable {
     }
 
     public void resetObservable(int playerCount){
-        this.controlRatioList = new ArrayList(Collections.nCopies(playerCount,-1.0));;
+        this.controlRatioList = new ArrayList(Collections.nCopies(playerCount,-1.0));
         this.controlledContinentNbrList = new ArrayList<>(Collections.nCopies(playerCount,-1));
         this.totalArmyNbrList = new ArrayList<>(Collections.nCopies(playerCount,-1));
     }
