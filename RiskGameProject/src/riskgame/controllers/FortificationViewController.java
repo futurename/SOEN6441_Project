@@ -238,9 +238,9 @@ public class FortificationViewController {
         if (firstRoundCounter > 0) {
             firstRoundCounter--;
 
-            /*if(firstRoundCounter == 0){
+            if(firstRoundCounter == 0){
                 curRoundPlayerIndex = -1;
-            }*/
+            }
 
             notifyGameStageChanged("Attack Phase");
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -250,7 +250,6 @@ public class FortificationViewController {
             curStage.show();
         } else {
             notifyGameStageChanged("Reinforce Phase");
-
             curRoundPlayerIndex = getNextActivePlayer();
 
             System.out.println("\n\n<<<<<<<<<<<valid curRoundPlayerIndex: " + curRoundPlayerIndex + "\n\n");
@@ -363,7 +362,7 @@ public class FortificationViewController {
     }
 
     private void notifyGameStageChanged(String phase) {
-        int nextPlayerIndex = getNextActivePlayer();
+        int nextPlayerIndex = (curPlayerIndex + 1) % totalNumOfPlayers;
         phaseViewObservable.setAllParam(phase, nextPlayerIndex, "NO ACT");
         phaseViewObservable.notifyObservers("from fortification view");
 

@@ -284,7 +284,6 @@ public class ReinforceViewController implements Initializable {
             phaseViewObservable.notifyObservers("continue reinforce");
 
         } else {
-
             setAttackPhaseViewObservable(curRoundPlayerIndex);
             phaseViewObservable.notifyObservers("reinforce to attack");
         }
