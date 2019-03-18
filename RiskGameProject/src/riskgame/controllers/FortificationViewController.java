@@ -241,18 +241,16 @@ public class FortificationViewController {
             if(firstRoundCounter == 0){
                 curRoundPlayerIndex = -1;
             }
-
-            notifyGameStageChanged("Attack Phase");
+            int nextPlayerIndex = (curPlayerIndex + 1) % totalNumOfPlayers;
+            notifyGameStageChanged("Attack Phase", nextPlayerIndex);
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Pane attackPane = new FXMLLoader(getClass().getResource("../view/AttackView.fxml")).load();
             Scene attackScene = new Scene(attackPane, 1200, 900);
             curStage.setScene(attackScene);
             curStage.show();
         } else {
-            notifyGameStageChanged("Reinforce Phase");
             curRoundPlayerIndex = getNextActivePlayer();
-
-            System.out.println("\n\n<<<<<<<<<<<valid curRoundPlayerIndex: " + curRoundPlayerIndex + "\n\n");
+            notifyGameStageChanged("Reinforce Phase",curRoundPlayerIndex);
 
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
@@ -271,6 +269,9 @@ public class FortificationViewController {
                 break;
             }
         }
+
+        System.out.println("\n\n\nnext valid player: " + tempIndex + "\n\n\n");
+
         return tempIndex;
     }
 
@@ -361,8 +362,7 @@ public class FortificationViewController {
         btn_nextStep.setVisible(true);
     }
 
-    private void notifyGameStageChanged(String phase) {
-        int nextPlayerIndex = (curPlayerIndex + 1) % totalNumOfPlayers;
+    private void notifyGameStageChanged(String phase, int nextPlayerIndex) {
         phaseViewObservable.setAllParam(phase, nextPlayerIndex, "NO ACT");
         phaseViewObservable.notifyObservers("from fortification view");
 

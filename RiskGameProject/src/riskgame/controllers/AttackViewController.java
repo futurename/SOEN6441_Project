@@ -16,6 +16,7 @@ import riskgame.Main;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.Utils.AttackProcess;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
 
@@ -165,16 +166,28 @@ public class AttackViewController implements Initializable {
         System.out.println("\nAttack phase, player: " + selectedCountry.getCountryOwnerIndex() + ", selected country: "
                 + selectedCountry.getCountryName() + ", army nbr: " + selectedArmyNbr);
 
+        ObservableList<Country> datalist = InfoRetriver.getAttackableAdjacentCountryList(this.curPlayerIndex, selectedCountry);
+
+        lsv_adjacentCountries.setItems(datalist);
+        ListviewRenderer.renderCountryItems(lsv_adjacentCountries);
+
+        updateAttackerArmyAdjustment(selectedCountry);
+
         if (selectedArmyNbr <= MIN_ATTACKING_ARMY_NUMBER) {
             alert.setContentText("No enough army for attacking!");
             alert.showAndWait();
+            btn_alloutMode.setVisible(false);
+            btn_confirmAttack.setVisible(false);
         } else {
-            ObservableList<Country> datalist = InfoRetriver.getAttackableAdjacentCountryList(this.curPlayerIndex, selectedCountry);
+            btn_confirmAttack.setVisible(true);
+            btn_alloutMode.setVisible(true);
+
+           /* ObservableList<Country> datalist = InfoRetriver.getAttackableAdjacentCountryList(this.curPlayerIndex, selectedCountry);
 
             lsv_adjacentCountries.setItems(datalist);
             ListviewRenderer.renderCountryItems(lsv_adjacentCountries);
 
-            updateAttackerArmyAdjustment(selectedCountry);
+            updateAttackerArmyAdjustment(selectedCountry);*/
         }
     }
 
@@ -289,9 +302,9 @@ public class AttackViewController implements Initializable {
 
             refreshListView(attackingCountry);
 
-           /* if (AttackProcess.winnerPlayerIndex != -1){
+            if (AttackProcess.winnerPlayerIndex != -1){
                 callGameOverView();
-            }*/
+            }
         }
 
     }
@@ -345,9 +358,9 @@ public class AttackViewController implements Initializable {
 
             refreshListView(selectedAttackerCountry);
 
-           /* if (AttackProcess.winnerPlayerIndex != -1){
+            if (AttackProcess.winnerPlayerIndex != -1){
                 callGameOverView();
-            }*/
+            }
         }
     }
 

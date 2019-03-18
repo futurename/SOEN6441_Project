@@ -1,9 +1,8 @@
 package riskgame.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import riskgame.model.Utils.AttackProcess;
-
-import java.awt.*;
 
 /**
  * created on 2019/03/17_23:04
@@ -21,6 +20,8 @@ public class FinalViewController {
                 .append("Player <")
                 .append(AttackProcess.winnerPlayerIndex)
                 .append("> WINS!");
+
+        txa_gameOverInfo.setStyle("-fx-font-alignment: center");
         txa_gameOverInfo.setText(stringBuilder.toString());
     }
 }

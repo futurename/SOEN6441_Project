@@ -395,7 +395,7 @@ public class ReinforceViewController implements Initializable {
         if (selectedCardList.isEmpty()) {
             alert.setContentText("No card selected!");
             alert.showAndWait();
-        } else if (validateCardsCombination(selectedCardList)) {
+        } else if ( true ) {  //validateCardsCombination(selectedCardList)
             int exchangedArmyNbr = getExchangedArmyNbr();
             curUndeployedArmy += exchangedArmyNbr;
             curPlayer.addArmy(exchangedArmyNbr);

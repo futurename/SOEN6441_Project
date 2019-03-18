@@ -38,7 +38,7 @@ public class AttackProcess {
         recursiveAttack(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, stringBuilder);
 
         if (isCountryConquered(defendingCountry)) {
-            int undelopyedAttackerArmyNbr = attackingCountry.getCountryArmyNumber() - 1;
+            int nondeployedAttackerArmyNbr = attackingCountry.getCountryArmyNumber() - 1;
             Player attacker = Main.playersList.get(attackingCountry.getCountryOwnerIndex());
             Player defender = Main.playersList.get(defendingCountry.getCountryOwnerIndex());
 
@@ -48,10 +48,11 @@ public class AttackProcess {
             String continentName = defendingCountry.getContinentName();
             Continent curContinent = Main.worldContinentMap.get(continentName);
 
-            updateConqueredCountry(attackingCountry, defendingCountry, undelopyedAttackerArmyNbr, attacker, defender);
+            updateConqueredCountry(attackingCountry, defendingCountry, nondeployedAttackerArmyNbr, attacker, defender);
             updateContinentAndWorldStatus(attackerIndex, defenderIndex, curContinent);
         }
         txa_attackInfoDisplay.setText(stringBuilder.toString());
+
     }
 
     /**

@@ -433,6 +433,7 @@ public class StartViewController {
         Main.playersList = new ArrayList<>();
         Main.curRoundPlayerIndex = 0;
         Main.worldContinentMap = new LinkedHashMap<>();
+        GraphSingleton.INSTANCE.resetInstance();
         graphSingleton = GraphSingleton.INSTANCE.getInstance();
     }
 

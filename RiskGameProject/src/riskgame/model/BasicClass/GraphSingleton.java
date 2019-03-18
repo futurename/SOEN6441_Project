@@ -23,6 +23,10 @@ public enum GraphSingleton {
         return this.instance;
     }
 
+    public void resetInstance() {
+        this.instance = new LinkedHashMap<>();
+    }
+
     /**
      * reset visited indicator of all GraphNode to false
      */
