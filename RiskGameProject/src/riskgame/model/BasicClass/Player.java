@@ -246,8 +246,10 @@ public class Player extends Observable implements Observer {
             System.out.println("former: "+formerOwner.playerIndex);
             System.out.printf("player %d obs awake\n", this.playerIndex);
             formerOwner.ownedCountryNameList.remove(((Country)o).getCountryName());
+            formerOwner.updateArmyNbr();
             o.deleteObserver(this);
             newOwner.ownedCountryNameList.add(((Country)o).getCountryName());
+            newOwner.updateArmyNbr();
             o.addObserver(newOwner);
             System.out.printf("Player observer update: %s\n", arg);
         }
