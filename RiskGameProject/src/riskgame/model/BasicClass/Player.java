@@ -230,9 +230,14 @@ public class Player extends Observable implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        if (o instanceof CountryObservable){
-            this.armyNbr = ((CountryObservable)o).getArmy();
-            this.ownedCountryNameList.add(((CountryObservable)o).getName());
+        System.out.println("Doing update?");
+        if (o instanceof Country){
+            Player formerPlayer = Main.playersList.get(((Country)o).getFormerOwner());
+            formerPlayer.ownedCountryNameList.remove(((Country)o).getCountryName());
+            o.deleteObserver(formerPlayer);
+            this.ownedCountryNameList.add(((Country)o).getCountryName());
+            o.addObserver(this);
+            System.out.printf("Player observer update: %s\n", arg);
         }
     }
 }

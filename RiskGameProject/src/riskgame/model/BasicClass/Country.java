@@ -1,5 +1,6 @@
 package riskgame.model.BasicClass;
 
+import riskgame.Main;
 import riskgame.model.BasicClass.ObserverPattern.CountryObservable;
 
 import java.util.Observable;
@@ -7,14 +8,14 @@ import java.util.Observable;
 /**
  * This class includes attributes a country needs and required methods
  **/
-public class Country {
+public class Country extends Observable{
     private final String countryName;
     private String continentName;
     private String coordinateX;
     private String coordinateY;
     private int countryOwnerIndex;
     private int countryArmyNumber;
-    public CountryObservable countryObservable;
+    private int formerOwner;
 
     /**
      * constructor for class Country
@@ -28,7 +29,6 @@ public class Country {
         this.coordinateY = "";
         this.countryOwnerIndex = -1;
         this.countryArmyNumber = 1;
-        countryObservable = new CountryObservable(countryName, countryOwnerIndex, countryArmyNumber);
     }
 
     /**
@@ -92,7 +92,12 @@ public class Country {
      */
     public void setCountryOwnerIndex(int countryOwnerIndex) {
         this.countryOwnerIndex = countryOwnerIndex;
-        this.countryObservable.setOwner(countryOwnerIndex);
+    }
+
+    public void setObservableOwner(int countryOwnerIndex){
+        this.countryOwnerIndex = countryOwnerIndex;
+        formerOwner = countryOwnerIndex;
+        setChanged();
     }
 
     /**
@@ -102,6 +107,10 @@ public class Country {
      */
     public int getCountryArmyNumber() {
         return countryArmyNumber;
+    }
+
+    public int getFormerOwner() {
+        return formerOwner;
     }
 
     /**
@@ -144,6 +153,10 @@ public class Country {
         this.countryArmyNumber = countryArmyNumber;
     }
 
+    public void setObservableArmy(int countryArmyNumber) {
+        this.countryArmyNumber = countryArmyNumber;
+        setChanged();
+    }
 
     /**
      * string of country name and its army number

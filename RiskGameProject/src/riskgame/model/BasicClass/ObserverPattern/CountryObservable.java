@@ -4,6 +4,7 @@ import java.util.Observable;
 
 public class CountryObservable extends Observable {
     private int countryOwnerIndex;
+    private int formerOwner;
     private int countryArmyNumber;
     private String countryName;
 
@@ -11,14 +12,11 @@ public class CountryObservable extends Observable {
         countryOwnerIndex = id;
         countryArmyNumber = army;
         this.countryName = name;
-    }
-
-    public void setName(String countryName) {
-        this.countryName = countryName;
-        setChanged();
+        formerOwner = -1;
     }
 
     public void setOwner(int countryOwnerIndex) {
+        formerOwner = countryOwnerIndex;
         this.countryOwnerIndex = countryOwnerIndex;
         setChanged();
     }
@@ -38,5 +36,9 @@ public class CountryObservable extends Observable {
 
     public String getName() {
         return countryName;
+    }
+
+    public int getFormerOwner() {
+        return formerOwner;
     }
 }
