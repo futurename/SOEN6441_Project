@@ -15,7 +15,7 @@ public class Country extends Observable{
     private String coordinateY;
     private int countryOwnerIndex;
     private int countryArmyNumber;
-    private int formerOwner;
+//    private int formerOwner;
 
     /**
      * constructor for class Country
@@ -95,7 +95,7 @@ public class Country extends Observable{
     }
 
     public void setObservableOwner(int countryOwnerIndex){
-        formerOwner = this.countryOwnerIndex;
+//        formerOwner = this.countryOwnerIndex;
         this.countryOwnerIndex = countryOwnerIndex;
         setChanged();
     }
@@ -107,10 +107,6 @@ public class Country extends Observable{
      */
     public int getCountryArmyNumber() {
         return countryArmyNumber;
-    }
-
-    public int getFormerOwner() {
-        return formerOwner;
     }
 
     /**
