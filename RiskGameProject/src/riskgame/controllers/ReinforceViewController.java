@@ -128,7 +128,7 @@ public class ReinforceViewController implements Initializable {
 
         Color curPlayerColor = curPlayer.getPlayerColor();
         int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
-        curUndeployedArmy += getStandardReinforceArmyNum(ownedCountryNum);
+        curUndeployedArmy += getStandardReinforceArmyNum(ownedCountryNum) + curPlayer.getContinentBonus();
 
         lbl_countriesInfo.setTextFill(curPlayerColor);
         lbl_adjacentCountriesInfo.setTextFill(curPlayerColor);
@@ -198,6 +198,7 @@ public class ReinforceViewController implements Initializable {
         curPlayer = playersList.get(curPlayerIndex);
         Color curPlayerColor = curPlayer.getPlayerColor();
         lbl_phaseViewName.setText(curGamePhase);
+        lbl_phaseViewName.setTextFill(curPlayerColor);
         lbl_playerName.setText(curPlayerName);
         lbl_playerName.setTextFill(curPlayerColor);
         lbl_actionString.setText(curActionString);

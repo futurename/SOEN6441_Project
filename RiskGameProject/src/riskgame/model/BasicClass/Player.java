@@ -20,9 +20,10 @@ public class Player extends Observable {
     private ArrayList<Card> cardsList;
     private ArrayList<String> ownedCountryNameList;
     private Color playerColor;
-    private int ownedCountryNbr;
+    //private int ownedCountryNbr;
     private int continentBonus;
     private ArrayList<String> controlledContinents;
+    private boolean activeStatus;
 
     /**
      * class constructor
@@ -35,9 +36,10 @@ public class Player extends Observable {
         this.cardsList = new ArrayList<>();
         this.ownedCountryNameList = new ArrayList<>();
         this.playerColor = PlayerColor.values()[playerIndex].colorValue;
-        this.ownedCountryNbr = 0;
+        //this.ownedCountryNbr = 0;
         this.continentBonus = 0;
         this.controlledContinents = new ArrayList<>();
+        this.activeStatus = true;
 
 
         this.cardsList.add(Card.ARTILLERY);
@@ -71,6 +73,18 @@ public class Player extends Observable {
     }
 
 
+    public void setActiveStatus(boolean activeStatus) {
+        this.activeStatus = activeStatus;
+    }
+
+
+
+    public boolean getActiveStatus() {
+        return activeStatus;
+    }
+
+
+
     /**
      * get the sum of army number in all owned countries
      */
@@ -85,19 +99,7 @@ public class Player extends Observable {
         setArmyNbr(result);
     }
 
-    /**
-     * getter
-     *
-     * @return country number the player owns
-     */
-    public int getOwnedCountryNbr() {
-        ownedCountryNbr = ownedCountryNameList.size();
-        return ownedCountryNbr;
-    }
 
-    public void setOwnedCountryNbr(int ownedCountryNbr) {
-        this.ownedCountryNbr = ownedCountryNbr;
-    }
 
 
     /**

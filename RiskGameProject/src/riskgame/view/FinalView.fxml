@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="riskgame.controllers.FinalViewController">
+   <children>
+      <TextArea fx:id="txa_gameOverInfo" focusTraversable="false" layoutX="196.0" layoutY="155.0" prefHeight="446.0" prefWidth="808.0" wrapText="true">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </TextArea>
+   </children>
+</AnchorPane>

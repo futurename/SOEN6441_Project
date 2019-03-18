@@ -114,6 +114,7 @@ public class AttackViewController implements Initializable {
         lbl_playerName.setText(curPlayerName);
         lbl_playerName.setTextFill(curPlayerColor);
         lbl_phaseViewName.setText(curGamePhase);
+        lbl_phaseViewName.setTextFill(curPlayerColor);
         lbl_actionString.setText(curActionString);
         lbl_actionString.setWrapText(true);
 
@@ -269,7 +270,7 @@ public class AttackViewController implements Initializable {
      *
      * @param actionEvent button clicked
      */
-    public void clickAttack(ActionEvent actionEvent) {
+    public void clickAttack(ActionEvent actionEvent) throws IOException {
         if (isBothCountriesSelected()) {
             Country attackingCountry = (Country) lsv_ownedCountries
                     .getSelectionModel()
@@ -288,6 +289,9 @@ public class AttackViewController implements Initializable {
 
             refreshListView(attackingCountry);
 
+           /* if (AttackProcess.winnerPlayerIndex != -1){
+                callGameOverView();
+            }*/
         }
 
     }
@@ -329,18 +333,31 @@ public class AttackViewController implements Initializable {
      *
      * @param actionEvent mouse click
      */
-    public void clickAllOutMode(ActionEvent actionEvent) {
+    public void clickAllOutMode(ActionEvent actionEvent) throws IOException {
         if (isBothCountriesSelected()) {
             Country selectedAttackerCountry = (Country) lsv_ownedCountries.getSelectionModel().getSelectedItem();
             Country selectedDefenderCountry = (Country) lsv_adjacentCountries.getSelectionModel().getSelectedItem();
 
-            int avaliableForAttackNbr = selectedAttackerCountry.getCountryArmyNumber() -1;
+            int avaliableForAttackNbr = selectedAttackerCountry.getCountryArmyNumber() - 1;
             int avaliableForDefendNbr = selectedDefenderCountry.getCountryArmyNumber();
 
             curPlayer.alloutModeAttack(selectedAttackerCountry, selectedDefenderCountry, avaliableForAttackNbr, avaliableForDefendNbr, txa_attackInfoDisplay);
 
             refreshListView(selectedAttackerCountry);
+
+           /* if (AttackProcess.winnerPlayerIndex != -1){
+                callGameOverView();
+            }*/
         }
+    }
+
+    private void callGameOverView() throws IOException {
+        Stage curStage = (Stage) txa_attackInfoDisplay.getScene().getWindow();
+
+        Pane finalPane = new FXMLLoader(getClass().getResource("../view/FinalView.fxml")).load();
+        Scene finalScene = new Scene(finalPane, 1200, 900);
+        curStage.setScene(finalScene);
+        curStage.show();
     }
 
 
