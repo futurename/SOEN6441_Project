@@ -278,7 +278,7 @@ public class ReinforceViewController implements Initializable {
      */
     private void checkNextViewNeedChange(boolean isAttackPhase) {
         if (!isAttackPhase) {
-            int nextPlayerIndex = (curPlayerIndex + 1) % Main.totalNumOfPlayers;
+            int nextPlayerIndex = (curRoundPlayerIndex + 1) % Main.totalNumOfPlayers;
 
             phaseViewObservable.setAllParam("Reinforcement Phase", nextPlayerIndex, curActionString);
             phaseViewObservable.notifyObservers("continue reinforce");
