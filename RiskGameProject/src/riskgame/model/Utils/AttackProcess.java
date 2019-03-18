@@ -67,15 +67,6 @@ public class AttackProcess {
         recursiveAttack(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, stringBuilder);
     }
 
-    /**
-     * process the one attack procedure and calculates the results
-     * process the results for remaining attacking army number
-     * @param attackingCountry
-     * @param defendingCountry                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ZZ
-     * @param attackArmyNbr
-     * @param defendArmyNbr
-     * @param txa_attackInfoDisplay
-     */
     public static void oneAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr,
                                          TextArea txa_attackInfoDisplay) {
         int avaliableForAttackNbr = attackArmyNbr > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : attackArmyNbr;
