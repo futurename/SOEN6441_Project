@@ -15,6 +15,7 @@ import java.util.Observer;
 /**
  * This class includes attributes a player need and required methods
  * Observer property of this class is updating changes triggered by countries
+ * As a observable object, player is observed by CardExchangeViewObserver for cards' changes
  **/
 public class Player extends Observable implements Observer {
     private static final int DEFAULT_DIVISION_FACTOR = 3;

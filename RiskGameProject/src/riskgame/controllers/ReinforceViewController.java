@@ -165,7 +165,7 @@ public class ReinforceViewController implements Initializable {
      */
     private void initPlayerDominationView() {
         playerDomiViewObservable.updateObservable();
-        playerDomiViewObservable.notifyObservers();
+        playerDomiViewObservable.notifyObservers("From reinforcement initial");
         ArrayList<Label> labelList = new ArrayList<>();
 
         for (int playerIndex = 0; playerIndex < totalNumOfPlayers; playerIndex++) {
@@ -454,7 +454,7 @@ public class ReinforceViewController implements Initializable {
     private boolean validateCardsCombination(ObservableList<Card> seletectedCardList) {
         if (seletectedCardList.size() != 3) {
             //set true for testing
-            return true;
+            return false;
         } else {
             int sum = 0;
             for (Card card : seletectedCardList) {

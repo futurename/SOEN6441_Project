@@ -21,7 +21,6 @@ import static riskgame.controllers.AttackViewController.MAX_DEFENDING_ARMY_NUMBE
  * compares the attacker's and defender's dice
  * checks if country,than continent and then whole worldmap is conquered or not
  */
-
 public class AttackProcess {
 
     public static int winnerPlayerIndex = -1;

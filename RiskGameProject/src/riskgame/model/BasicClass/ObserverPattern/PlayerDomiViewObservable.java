@@ -42,7 +42,7 @@ public class PlayerDomiViewObservable extends Observable {
         for(int playerIndex = 0; playerIndex < totalPlayerNbr; playerIndex++){
             Player curPlayer = Main.playersList.get(playerIndex);
             int ownedCountryNbr = curPlayer.getOwnedCountryNameList().size();
-            System.out.printf("update observable to: %d countries\n", ownedCountryNbr);
+            System.out.printf("update Domi observable to: Own %d countries\n", ownedCountryNbr);
             float curControlRatio = (float)ownedCountryNbr / totalCountryNbr;
             controlRatioList.set(playerIndex, curControlRatio);
 
