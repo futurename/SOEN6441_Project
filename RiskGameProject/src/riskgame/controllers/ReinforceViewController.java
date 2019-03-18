@@ -229,9 +229,9 @@ public class ReinforceViewController implements Initializable {
             case "CardView":
                 this.cardExchangeViewObserver = new CardExchangeViewObserver();
                 curPlayer.addObserver(this.cardExchangeViewObserver);
+                //init cards if player already has some
                 curPlayer.initObservableCard();
-                curPlayer.notifyObservers("add new player!");
-//                this.playersCards = this.cardExchangeViewObserver.getPlayersCards();
+                curPlayer.notifyObservers("from reinf view: initial cards!");
                 this.playerCards = this.cardExchangeViewObserver.getPlayerCards();
                 phaseViewObservable.addObserver(this.cardExchangeViewObserver);
                 phaseViewObservable.initObservableExchangeTime();
@@ -285,13 +285,13 @@ public class ReinforceViewController implements Initializable {
      */
     private void checkNextViewNeedChange(boolean isAttackPhase) {
         if (!isAttackPhase) {
-            int nextPlayerIndex = (curRoundPlayerIndex + 1) % Main.totalNumOfPlayers;
+            int nextPlayerIndex = (curPlayerIndex + 1) % Main.totalNumOfPlayers;
 
             phaseViewObservable.setAllParam("Reinforcement Phase", nextPlayerIndex, curActionString);
             phaseViewObservable.notifyObservers("continue reinforce");
 
         } else {
-            setAttackPhaseViewObservable(curPlayerIndex);
+            setAttackPhaseViewObservable(curRoundPlayerIndex);
             phaseViewObservable.notifyObservers("reinforce to attack");
         }
     }

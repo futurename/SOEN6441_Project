@@ -48,7 +48,6 @@ public class Player extends Observable implements Observer {
 
         this.cardsList.add(Card.ARTILLERY);
         this.cardsList.add(Card.INFANTRY);
-        this.cardsList.add(Card.ARTILLERY);
         this.cardsList.add(Card.CAVALRY);
         this.cardsList.add(Card.INFANTRY);
     }
@@ -156,15 +155,6 @@ public class Player extends Observable implements Observer {
     }
 
     /**
-     * add a Card to the card list the player owns
-     *
-     * @param oneCard card object
-     */
-    public void addToCardsList(Card oneCard) {
-        this.cardsList.add(oneCard);
-    }
-
-    /**
      * getter
      *
      * @return arraylist of country names the player owns
@@ -246,11 +236,11 @@ public class Player extends Observable implements Observer {
      */
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("Doing update?");
         if (o instanceof Country){
             Player formerOwner = this;
             Player newOwner = Main.playersList.get(((Country)o).getCountryOwnerIndex());
-            System.out.println("former: "+formerOwner.playerIndex);
+            System.out.println("former: " + formerOwner.playerIndex);
+            System.out.println("now: " + newOwner.playerIndex);
             System.out.printf("player %d obs awake\n", this.playerIndex);
             formerOwner.ownedCountryNameList.remove(((Country)o).getCountryName());
             formerOwner.updateArmyNbr();
