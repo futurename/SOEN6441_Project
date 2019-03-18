@@ -130,6 +130,9 @@ public class ReinforceViewController implements Initializable {
         int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
         curUndeployedArmy += getStandardReinforceArmyNum(ownedCountryNum) + curPlayer.getContinentBonus();
 
+        if (curPlayer.getCardsList().size() > 4){
+            btn_skipCardsExchange.setVisible(false);
+        }
         lbl_countriesInfo.setTextFill(curPlayerColor);
         lbl_adjacentCountriesInfo.setTextFill(curPlayerColor);
         lbl_undeployedArmy.setText(Integer.toString(curUndeployedArmy));
