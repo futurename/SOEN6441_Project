@@ -67,8 +67,9 @@ public class InitPlayers {
             String oneCountryName = coutryNameList.remove(randomIndex);
 
             graphSingleton.get(oneCountryName).getCountry().setCountryOwnerIndex(curPlayer.getPlayerIndex());
-
+            graphSingleton.get(oneCountryName).getCountry().addObserver(curPlayer);
             curPlayer.addToOwnedCountryNameList(oneCountryName);
+
         }
         Main.playersList.add(curPlayer);
     }

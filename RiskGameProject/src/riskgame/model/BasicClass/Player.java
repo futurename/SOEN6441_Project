@@ -4,15 +4,19 @@ package riskgame.model.BasicClass;
 import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import riskgame.Main;
+import riskgame.model.BasicClass.ObserverPattern.CountryObservable;
+import riskgame.model.BasicClass.ObserverPattern.CountryObserver;
 import riskgame.model.Utils.AttackProcess;
 
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Observer;
 
 /**
  * This class includes attributes a player need and required methods
+ * Observer property of this class is updating changes triggered by countries
  **/
-public class Player extends Observable {
+public class Player extends Observable implements Observer {
     private static final int DEFAULT_DIVISION_FACTOR = 3;
 
     private final int playerIndex;
@@ -40,7 +44,6 @@ public class Player extends Observable {
         this.continentBonus = 0;
         this.controlledContinents = new ArrayList<>();
         this.activeStatus = true;
-
 
         this.cardsList.add(Card.ARTILLERY);
         this.cardsList.add(Card.INFANTRY);
@@ -225,6 +228,22 @@ public class Player extends Observable {
             this.cardsList.remove(card);
         }
         setChanged();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("Doing update?");
+        if (o instanceof Country){
+            Player formerOwner = this;
+            Player newOwner = Main.playersList.get(((Country)o).getCountryOwnerIndex());
+            System.out.println("former: "+formerOwner.playerIndex);
+            System.out.printf("player %d obs awake\n", this.playerIndex);
+            formerOwner.ownedCountryNameList.remove(((Country)o).getCountryName());
+            o.deleteObserver(this);
+            newOwner.ownedCountryNameList.add(((Country)o).getCountryName());
+            o.addObserver(newOwner);
+            System.out.printf("Player observer update: %s\n", arg);
+        }
     }
 }
 
