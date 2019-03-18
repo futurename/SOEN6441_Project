@@ -95,8 +95,8 @@ public class Country extends Observable{
     }
 
     public void setObservableOwner(int countryOwnerIndex){
+        formerOwner = this.countryOwnerIndex;
         this.countryOwnerIndex = countryOwnerIndex;
-        formerOwner = countryOwnerIndex;
         setChanged();
     }
 

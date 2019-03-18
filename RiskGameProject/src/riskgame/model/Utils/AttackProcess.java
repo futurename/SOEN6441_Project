@@ -255,16 +255,16 @@ public class AttackProcess {
         int attackerIndex = attackPlayer.getPlayerIndex();
 //        System.out.printf("Before battle: attacker owned %d countries\n", attackPlayer.getOwnedCountryNameList().size());
 
-        attackPlayer.getOwnedCountryNameList().add(defendCountryName);
-        defendPlayer.getOwnedCountryNameList().remove(defendCountryName);
-        defendingCountry.setCountryOwnerIndex(attackerIndex);
-        defendingCountry.setCountryArmyNumber(remainingArmyNbr);
-        attackingCountry.reduceFromCountryArmyNumber(remainingArmyNbr);
-
-//        defendingCountry.setObservableOwner(attackerIndex);
-//        defendingCountry.setObservableArmy(remainingArmyNbr);
-//        defendingCountry.notifyObservers("from update conquered country");
+//        attackPlayer.getOwnedCountryNameList().add(defendCountryName);
+//        defendPlayer.getOwnedCountryNameList().remove(defendCountryName);
+//        defendingCountry.setCountryOwnerIndex(attackerIndex);
+//        defendingCountry.setCountryArmyNumber(remainingArmyNbr);
 //        attackingCountry.reduceFromCountryArmyNumber(remainingArmyNbr);
+
+        defendingCountry.setObservableOwner(attackerIndex);
+        defendingCountry.setObservableArmy(remainingArmyNbr);
+        defendingCountry.notifyObservers("from update conquered country");
+        attackingCountry.reduceFromCountryArmyNumber(remainingArmyNbr);
 
 //        Main.playerDomiViewObservable.updateObservable();
 //        Main.playerDomiViewObservable.notifyObservers("Battle Report...");

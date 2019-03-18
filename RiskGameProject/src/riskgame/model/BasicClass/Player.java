@@ -232,11 +232,14 @@ public class Player extends Observable implements Observer {
     public void update(Observable o, Object arg) {
         System.out.println("Doing update?");
         if (o instanceof Country){
-            Player formerPlayer = Main.playersList.get(((Country)o).getFormerOwner());
-            formerPlayer.ownedCountryNameList.remove(((Country)o).getCountryName());
-            o.deleteObserver(formerPlayer);
-            this.ownedCountryNameList.add(((Country)o).getCountryName());
-            o.addObserver(this);
+            Player formerOwner = this;
+            Player newOwner = Main.playersList.get(((Country)o).getCountryOwnerIndex());
+            System.out.println("former: "+formerOwner.playerIndex);
+            System.out.printf("player %d obs awake\n", this.playerIndex);
+            formerOwner.ownedCountryNameList.remove(((Country)o).getCountryName());
+            o.deleteObserver(this);
+            newOwner.ownedCountryNameList.add(((Country)o).getCountryName());
+            o.addObserver(newOwner);
             System.out.printf("Player observer update: %s\n", arg);
         }
     }
