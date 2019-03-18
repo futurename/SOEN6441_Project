@@ -67,15 +67,6 @@ public class AttackProcess {
         recursiveAttack(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, stringBuilder);
     }
 
-    /**
-     * process the one attack procedure and calculates the results
-     * process the results for remaining attacking army number
-     * @param attackingCountry
-     * @param defendingCountry
-     * @param attackArmyNbr
-     * @param defendArmyNbr
-     * @param txa_attackInfoDisplay
-     */
     public static void oneAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr,
                                          TextArea txa_attackInfoDisplay) {
         int avaliableForAttackNbr = attackArmyNbr > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : attackArmyNbr;
@@ -185,6 +176,13 @@ public class AttackProcess {
 
         return result;
     }
+
+    /**
+     * Checks if country,continent or whole world is conquered
+     * @param attackingCountry
+     * @param defendingCountry
+     * @param remainingArmyNbr army number left after dice throw and attack process
+     */
 
     private static void attackResultProcess(Country attackingCountry, Country defendingCountry, int remainingArmyNbr) {
         int defenderIndex = defendingCountry.getCountryOwnerIndex();
