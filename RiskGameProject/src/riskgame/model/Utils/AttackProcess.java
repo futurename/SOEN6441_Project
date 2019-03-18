@@ -71,7 +71,7 @@ public class AttackProcess {
      * process the one attack procedure and calculates the results
      * process the results for remaining attacking army number
      * @param attackingCountry
-     * @param defendingCountry
+     * @param defendingCountry                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ZZ
      * @param attackArmyNbr
      * @param defendArmyNbr
      * @param txa_attackInfoDisplay
@@ -185,6 +185,13 @@ public class AttackProcess {
 
         return result;
     }
+
+    /**
+     * Checks if country,continent or whole world is conquered
+     * @param attackingCountry
+     * @param defendingCountry
+     * @param remainingArmyNbr army number left after dice throw and attack process
+     */
 
     private static void attackResultProcess(Country attackingCountry, Country defendingCountry, int remainingArmyNbr) {
         int defenderIndex = defendingCountry.getCountryOwnerIndex();
