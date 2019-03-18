@@ -123,7 +123,7 @@ public class ReinforceViewController implements Initializable {
      */
     private void reinforceViewInit() {
         initPhaseView();
-        initPlayerDominationView();
+        initPlayerDominationView("From reinforcement initial");
         initCurPlayerCardListView();
 
         Color curPlayerColor = curPlayer.getPlayerColor();
@@ -162,11 +162,18 @@ public class ReinforceViewController implements Initializable {
 
     /**
      * Set contents to player domination the pane
+     * method called when updating or initialization
+     * @param arg notification message
      */
-    private void initPlayerDominationView() {
+    private void initPlayerDominationView(String arg) {
         playerDomiViewObservable.updateObservable();
-        playerDomiViewObservable.notifyObservers("From reinforcement initial");
+        playerDomiViewObservable.notifyObservers(arg);
         ArrayList<Label> labelList = new ArrayList<>();
+
+        //empty the vBox before adding new contents
+        if (vbx_worldDomiView.getChildren().size() != 0){
+            vbx_worldDomiView.getChildren().remove(0, totalNumOfPlayers);
+        }
 
         for (int playerIndex = 0; playerIndex < totalNumOfPlayers; playerIndex++) {
             Color curPlayerColor = playersList.get(playerIndex).getPlayerColor();
@@ -390,7 +397,7 @@ public class ReinforceViewController implements Initializable {
         ObservableList<Card> selectedCardList =
                 FXCollections.observableArrayList(lsv_cardsListView.getSelectionModel().getSelectedItems());
 
-        System.out.println("seleted cards: " + selectedCardList);
+        System.out.println("selected cards: " + selectedCardList);
 
         if (selectedCardList.isEmpty()) {
             alert.setContentText("No card selected!");
@@ -398,7 +405,10 @@ public class ReinforceViewController implements Initializable {
         } else if ( true ) {  //validateCardsCombination(selectedCardList)
             int exchangedArmyNbr = getExchangedArmyNbr();
             curUndeployedArmy += exchangedArmyNbr;
+
             curPlayer.addArmy(exchangedArmyNbr);
+            initPlayerDominationView("Exchanging for new army");
+
             System.out.printf("GET NEW %d ARMY!\n", exchangedArmyNbr);
 
             removeCardsFromList(selectedCardList);
