@@ -352,7 +352,6 @@ public class ReinforceViewController implements Initializable {
                 lbl_deployArmyCount.setText(Integer.toString(remainUndeployedArmyCount));
             }
 
-
             System.out.println("\nfinish deployment to country " + selectedCountry.getCountryName() + ": " + selectedCountry.getCountryArmyNumber());
         }
     }
@@ -440,7 +439,6 @@ public class ReinforceViewController implements Initializable {
      * @param selectedCardList exchanged card list
      */
     private void removeCardsFromList(ObservableList<Card> selectedCardList) {
-
         curPlayer.removeObservableCards(selectedCardList);
     }
 

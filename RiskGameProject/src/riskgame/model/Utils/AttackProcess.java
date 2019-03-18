@@ -270,6 +270,17 @@ public class AttackProcess {
         }
     }
 
+    /**
+     * If successfully conquered, defending country will notify players for changes
+     * but attacking country would not, for its changes will not affect players.
+     * To see specific changes: see Player.java where player acts as a observer.
+     * @see Player#update(Observable, Object)
+     * @param attackingCountry
+     * @param defendingCountry
+     * @param remainingArmyNbr
+     * @param attackPlayer
+     * @param defendPlayer
+     */
     private static void updateConqueredCountry(Country attackingCountry, Country defendingCountry, int remainingArmyNbr, Player attackPlayer, Player defendPlayer) {
         String defendCountryName = defendingCountry.getCountryName();
         int attackerIndex = attackPlayer.getPlayerIndex();
@@ -365,7 +376,7 @@ public class AttackProcess {
         return result;
     }
 
-    public static void updateContinentOwner(int playerIndex, String continentName) {
+    private static void updateContinentOwner(int playerIndex, String continentName) {
         boolean result = true;
         Continent curContinent = Main.worldContinentMap.get(continentName);
         LinkedHashMap<String, Country> continentCountryGraph = curContinent.getContinentCountryGraph();

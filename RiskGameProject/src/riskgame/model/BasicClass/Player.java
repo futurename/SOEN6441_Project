@@ -205,8 +205,6 @@ public class Player extends Observable implements Observer {
         AttackProcess.alloutAttackSimulate(attackingCountry,defendingCountry,attackArmyNbr,defendArmyNbr,txa_attackInfoDisplay);
     }
 
-
-
     /**
      * public method for setting observable objects value.
      * Adding a new card to player
@@ -237,6 +235,15 @@ public class Player extends Observable implements Observer {
 //        setChanged();
     }
 
+    /**
+     * 1. update former owner's owned country name list & army nbr.
+     * 2. delete former owner(observer) from country(observable).
+     * 3. update new owner's owned country name list & army nbr.
+     * 4. new owner get a card.
+     * 5. add new owner(observer) to country(observable).
+     * @param o Country(Observable)
+     * @param arg update message
+     */
     @Override
     public void update(Observable o, Object arg) {
         System.out.println("Doing update?");
@@ -250,6 +257,7 @@ public class Player extends Observable implements Observer {
             o.deleteObserver(this);
             newOwner.ownedCountryNameList.add(((Country)o).getCountryName());
             newOwner.updateArmyNbr();
+            newOwner.setObservableCard(Card.ARTILLERY);
             o.addObserver(newOwner);
             System.out.printf("Player observer update: %s\n", arg);
         }
