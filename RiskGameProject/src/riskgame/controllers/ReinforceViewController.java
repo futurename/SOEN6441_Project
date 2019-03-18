@@ -399,6 +399,7 @@ public class ReinforceViewController implements Initializable {
         } else if (validateCardsCombination(selectedCardList)) {
             int exchangedArmyNbr = getExchangedArmyNbr();
             curUndeployedArmy += exchangedArmyNbr;
+            curPlayer.addArmy(exchangedArmyNbr);
             System.out.printf("GET NEW %d ARMY!\n", exchangedArmyNbr);
 
             removeCardsFromList(selectedCardList);

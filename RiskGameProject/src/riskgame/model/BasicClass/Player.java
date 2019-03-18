@@ -102,8 +102,12 @@ public class Player extends Observable implements Observer {
         setArmyNbr(result);
     }
 
-
-
+    /**
+     * this method will be called only when player exchanging card for army
+     */
+    public void addArmy(int newArmy){
+        this.armyNbr += newArmy;
+    }
 
     /**
      * getter
@@ -128,7 +132,7 @@ public class Player extends Observable implements Observer {
      *
      * @param armyNbr army number to be set
      */
-    public void setArmyNbr(int armyNbr) {
+    private void setArmyNbr(int armyNbr) {
         this.armyNbr = armyNbr;
     }
 
@@ -221,13 +225,15 @@ public class Player extends Observable implements Observer {
      * public method for setting observable objects value.
      * Removing a set of cards from player
      *
+     * Do not require setChanged because it will not notify any observer
+     * Observer will only update changes when rendering view
      * @param cards iterable cards, e.g. ObservableList
      */
     public void removeObservableCards(Iterable<Card> cards) {
         for (Card card : cards) {
             this.cardsList.remove(card);
         }
-        setChanged();
+//        setChanged();
     }
 
     @Override
