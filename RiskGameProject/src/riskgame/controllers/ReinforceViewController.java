@@ -284,7 +284,7 @@ public class ReinforceViewController implements Initializable {
             phaseViewObservable.notifyObservers("continue reinforce");
 
         } else {
-            setAttackPhaseViewObservable(curRoundPlayerIndex);
+            setAttackPhaseViewObservable(curPlayerIndex);
             phaseViewObservable.notifyObservers("reinforce to attack");
         }
     }
@@ -377,7 +377,7 @@ public class ReinforceViewController implements Initializable {
                 "\n  4. Click \"Accept\" button for confirming army number selection" +
                 "\n  5. Click \"Attack\" button to use selected army number";
 
-        phaseViewObservable.setAllParam(nextPhaseName,playerIndex , nextActionString);
+        phaseViewObservable.setAllParam(nextPhaseName, playerIndex, nextActionString);
         phaseViewObservable.notifyObservers("From ReinforceView");
     }
 
