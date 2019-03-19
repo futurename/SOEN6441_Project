@@ -69,7 +69,9 @@ public class MapEditorEditController {
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Map files(*.map)", "*.map");
         fileChooser.getExtensionFilters().add(extFilter);
         File file = fileChooser.showOpenDialog(fileStage);
-        txf_defaultMapPath.setText(file.getAbsolutePath());
+        if(file.getAbsolutePath()!=null) {
+            txf_defaultMapPath.setText(file.getAbsolutePath());
+        }
     }
 
     /**

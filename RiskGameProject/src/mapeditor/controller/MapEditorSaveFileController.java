@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import mapeditor.MEMain;
 import mapeditor.model.MECheckMapCorrectness;
@@ -27,7 +29,13 @@ public class MapEditorSaveFileController {
     private Button btn_check;
 
     @FXML
+    private Text txt_dotmap;
+
+    @FXML
     private Text txt_checkResult;
+
+    @FXML
+    private Button btn_selectPath;
 
     @FXML
     private AnchorPane txt_saveFiletitle;
@@ -36,7 +44,13 @@ public class MapEditorSaveFileController {
     private Text txt_fileName;
 
     @FXML
+    private Text txt_filePath;
+
+    @FXML
     private TextField txf_fileName;
+
+    @FXML
+    private TextField txf_filePath;
 
     @FXML
     private Button btn_save;
@@ -47,10 +61,13 @@ public class MapEditorSaveFileController {
     /**
      * Default output path
      */
-    private String DEFAULTPATH = ".\\newMap.map";
+    private String DEFAULTPATH = ".";
+
+    private String DEFAULTNAME = "newMap";
 
     public void initialize(){
-        txf_fileName.setText(DEFAULTPATH);
+        txf_filePath.setText(DEFAULTPATH);
+        txf_fileName.setText(DEFAULTNAME);
     }
 
     /**
@@ -71,6 +88,29 @@ public class MapEditorSaveFileController {
     }
 
     /**
+     * select save map file path
+     *
+     * @param actionEvent click button
+     * @throws Exception path not found
+     */
+    @FXML
+    public void selectPath(ActionEvent actionEvent) throws Exception {
+        Stage fileStage = null;
+
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Select map file");
+        directoryChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+
+        File file = directoryChooser.showDialog(fileStage);
+        if(file.getPath()!=null) {
+
+            txf_filePath.setText(file.getPath());
+
+        }
+    }
+
+
+    /**
      * clickToCheck check the map correctness in the save file page
      * @param actionEvent click button
      * @throws Exception file not found
@@ -88,7 +128,7 @@ public class MapEditorSaveFileController {
      * @throws Exception map file not found
      */
     public void generateMap(ActionEvent actionEvent) throws Exception{
-        File writename = new File(txf_fileName.getText());
+        File writename = new File(txf_filePath.getText()+"\\"+txf_fileName.getText()+".map");
         writename.createNewFile();
         BufferedWriter out = new BufferedWriter(new FileWriter(writename));
         out.write("[Map]\r\n");
