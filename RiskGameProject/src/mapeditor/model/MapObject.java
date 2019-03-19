@@ -14,6 +14,7 @@ public class MapObject {
     public StringBuilder errorMsg = new StringBuilder("") ;
     private HashMap<String,Integer> countryCheckFlag = new HashMap<String,Integer>();
 
+    private HashMap<String, Boolean> checkList = new HashMap<String, Boolean>();
     /**
      * arrContinent storage new continent
      */
@@ -246,7 +247,6 @@ public class MapObject {
      */
     public boolean unconnectedGraph(ArrayList<MEContinent> continentsArr, ArrayList<MECountry> countryArr){
 
-        HashMap<String, Boolean> checkList = null;
         Queue<String> checkQueue = new LinkedList<String>();
 
         //Check all the continent
@@ -275,7 +275,7 @@ public class MapObject {
 
                         while(!checkQueue.isEmpty()) {
                             String a = checkQueue.peek();
-                            MECountry b = null;
+                            MECountry b = new MECountry();
 
                             for(int z =0; z < countryArr.size(); z++){
                                 if(countryArr.get(z).getCountryName().equals(a)){
@@ -287,7 +287,7 @@ public class MapObject {
 
                             for(int r = 0; r < n.size(); r++) {
                                 for(int f = 0; f < newContinent.countryList.size(); f++){
-                                    if (checkList.get(n.get(r)) == false && newContinent.countryList.get(f).equals(n.get(r))) {
+                                    if (!checkList.get(n.get(r)) && newContinent.countryList.get(f).equals(n.get(r))) {
                                         checkList.replace(n.get(r), true);
                                         checkQueue.offer(n.get(r));
                                     }
