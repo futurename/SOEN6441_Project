@@ -50,15 +50,27 @@ public class Player extends Observable implements Observer {
         this.cardsList.add(Card.INFANTRY);
     }
 
+    /**
+     *
+     * @return get the bonus point of that continent
+     */
 
     public int getContinentBonus() {
         return continentBonus;
     }
 
+    /**
+     *
+     * @param bonus added
+     */
     public void addContinentBonus(int bonus) {
         this.continentBonus += bonus;
     }
 
+    /**
+     * reducing the bonus if loses
+     * @param bonus
+     */
     public void reduceContinentBonus(int bonus) {
         this.continentBonus -= bonus;
     }
