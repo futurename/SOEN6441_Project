@@ -108,7 +108,15 @@ public class AttackProcess {
 
     }
 
-
+    /**
+     * this functions calculates the result for every single attack and returns the attacker's army number
+     * @param attackingCountry
+     * @param defendingCountry
+     * @param attackableArmyNbr
+     * @param defendableArmyNbr
+     * @param stringBuilder
+     * @return
+     */
     private static int getOneAttackResult(Country attackingCountry, Country defendingCountry, int attackableArmyNbr, int defendableArmyNbr,
                                           StringBuilder stringBuilder) {
         int result = 0;
