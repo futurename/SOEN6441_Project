@@ -329,8 +329,7 @@ public class AttackViewController implements Initializable {
     }
 
     private void notifyGamePhaseChanged() {
-        Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "select one owned country from left and another country of the " +
-                "right as target");
+        Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "Fortification Action");
         Main.phaseViewObservable.notifyObservers(Main.phaseViewObservable);
 
         System.out.printf("player %s finished attack, player %s's turn\n", curPlayerIndex, curPlayerIndex);

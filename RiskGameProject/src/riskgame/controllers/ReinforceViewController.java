@@ -234,8 +234,9 @@ public class ReinforceViewController implements Initializable {
                 curPlayer.addObserver(this.cardExchangeViewObserver);
                 //init cards if player already has some
                 curPlayer.initObservableCard();
-                curPlayer.notifyObservers("from reinf view: initial cards!");
+                curPlayer.notifyObservers("from reinforce view: initial cards!");
                 this.playerCards = this.cardExchangeViewObserver.getPlayerCards();
+                //TODO: phaseViewObservable will keep adding new cardObserver without removing the old one!
                 phaseViewObservable.addObserver(this.cardExchangeViewObserver);
                 phaseViewObservable.initObservableExchangeTime();
                 phaseViewObservable.notifyObservers("keeping exchange time up to date.");
@@ -289,13 +290,12 @@ public class ReinforceViewController implements Initializable {
     private void checkNextViewNeedChange(boolean isAttackPhase) {
         if (!isAttackPhase) {
             int nextPlayerIndex = (curPlayerIndex + 1) % Main.totalNumOfPlayers;
-
             phaseViewObservable.setAllParam("Reinforcement Phase", nextPlayerIndex, curActionString);
             phaseViewObservable.notifyObservers("continue reinforce");
 
         } else {
-            setAttackPhaseViewObservable(curRoundPlayerIndex);
-            phaseViewObservable.notifyObservers("reinforce to attack");
+            phaseViewObservable.setAllParam("Attack Phase", curRoundPlayerIndex, "Attack Action");
+            phaseViewObservable.notifyObservers("From ReinforceView to AttackView");
         }
     }
 
@@ -370,26 +370,6 @@ public class ReinforceViewController implements Initializable {
         return calResult > DEFAULT_MIN_REINFORCE_ARMY_NBR ? calResult : DEFAULT_MIN_REINFORCE_ARMY_NBR;
     }
 
-
-    /**
-     * set phase view observable parameters for next step
-     * @param playerIndex
-     */
-    private void setAttackPhaseViewObservable(int playerIndex) {
-        String nextPhaseName = "Attack Phase";
-
-        String nextActionString = "Action:\n" +
-                "\n1. Select one attacking country" +
-                "\n2. Select an adjacent empty country" +
-                "\n3_1. Click \"All-Out\" button to use all army for attacking" +
-                "\n3_2. Select certain number of army for both attacker and defender" +
-                "\n  4. Click \"Accept\" button for confirming army number selection" +
-                "\n  5. Click \"Attack\" button to use selected army number";
-
-        phaseViewObservable.setAllParam(nextPhaseName, playerIndex, nextActionString);
-        phaseViewObservable.notifyObservers("From ReinforceView");
-    }
-
     /**
      * click button for confirming exchange cards
      *
@@ -458,16 +438,16 @@ public class ReinforceViewController implements Initializable {
     /**
      * selected cards list will be validated with game rules
      *
-     * @param seletectedCardList selected cards arraylist
+     * @param selectedCardList selected cards arraylist
      * @return true for correct combination, false for incorrect combination
      */
-    private boolean validateCardsCombination(ObservableList<Card> seletectedCardList) {
-        if (seletectedCardList.size() != 3) {
+    private boolean validateCardsCombination(ObservableList<Card> selectedCardList) {
+        if (selectedCardList.size() != 3) {
             //set true for testing
             return false;
         } else {
             int sum = 0;
-            for (Card card : seletectedCardList) {
+            for (Card card : selectedCardList) {
                 sum += card.ordinal() + 1;
             }
             return sum == 3 || sum == 6 || sum == 9;

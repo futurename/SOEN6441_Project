@@ -49,6 +49,7 @@ public class PlayerDomiViewObservable extends Observable {
             int curControlContinentNbr = InfoRetriver.getConqueredContinentNbr(curPlayer);
             controlledContinentNbrList.set(playerIndex, curControlContinentNbr);
 
+            curPlayer.updateArmyNbr();
             int curArmyNbr = curPlayer.getArmyNbr();
             totalArmyNbrList.set(playerIndex, curArmyNbr);
         }

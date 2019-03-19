@@ -10,6 +10,18 @@ import java.util.Observable;
  * @see CardExchangeViewObserver
  **/
 public class PhaseViewObservable extends Observable {
+    private final String attackActionStr = "Action:\n" +
+            "\n1. Select one attacking country" +
+            "\n2. Select an adjacent empty country" +
+            "\n3_1. Click \"All-Out\" button to use all army for attacking" +
+            "\n3_2. Select certain number of army for both attacker and defender" +
+            "\n  4. Click \"Accept\" button for confirming army number selection" +
+            "\n  5. Click \"Attack\" button to use selected army number";
+    private final String fortificationActionStr = "Action:\n" +
+            "\nselect one owned country from left and another country of the right as target";
+    private final String reinforcementActionStr = "Action:\n" +
+            "\nBegin reinforce phase, need deploy armies to your countries";
+
     private String phaseName;
     private int playerIndex;
     private String actionString;
@@ -26,7 +38,7 @@ public class PhaseViewObservable extends Observable {
         return phaseName;
     }
 
-    public void setPhaseName(String phaseName) {
+    private void setPhaseName(String phaseName) {
         this.phaseName = phaseName;
     }
 
@@ -34,7 +46,7 @@ public class PhaseViewObservable extends Observable {
         return playerIndex;
     }
 
-    public void setPlayerIndex(int playerIndex) {
+    private void setPlayerIndex(int playerIndex) {
         this.playerIndex = playerIndex;
     }
 
@@ -42,8 +54,21 @@ public class PhaseViewObservable extends Observable {
         return actionString;
     }
 
-    public void setActionString(String actionString) {
-        this.actionString = actionString;
+    private void setActionString(String actionType) {
+        switch (actionType){
+            case "Attack Action":
+                this.actionString = this.attackActionStr;
+                break;
+            case "Fortification Action":
+                this.actionString = this.fortificationActionStr;
+                break;
+            case "Reinforcement Action":
+                this.actionString = this.reinforcementActionStr;
+                break;
+            default:
+                this.actionString = actionType;
+        }
+
     }
 
     public void addOneExchangeTime() {
@@ -63,10 +88,10 @@ public class PhaseViewObservable extends Observable {
         setChanged();
     }
 
-    public void setAllParam(String phaseName, int playerIndex, String actionString){
+    public void setAllParam(String phaseName, int playerIndex, String actionType){
         setPhaseName(phaseName);
         setPlayerIndex(playerIndex);
-        setActionString(actionString);
+        setActionString(actionType);
         setChanged();
     }
 

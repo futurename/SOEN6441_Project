@@ -320,11 +320,10 @@ public class StartViewController {
     private void setPhaseViewObservable() {
         String nextPhaseName = "Reinforcement Phase";
         int nextPlayerIndex = curRoundPlayerIndex;
-        String nextActionString = "Action:\nBegin reinforce phase, need deploy armies to your countries";
 
         phaseViewObservable.resetObservable();
-        phaseViewObservable.setAllParam(nextPhaseName, nextPlayerIndex, nextActionString);
-        phaseViewObservable.notifyObservers("message_null");
+        phaseViewObservable.setAllParam(nextPhaseName, nextPlayerIndex, "Reinforcement Action");
+        phaseViewObservable.notifyObservers("from startView to reinforceView");
     }
 
 

@@ -231,6 +231,8 @@ public class Player extends Observable implements Observer {
      * 3. update new owner's owned country name list & army nbr.
      * 4. new owner get a card.
      * 5. add new owner(observer) to country(observable).
+     * army nbr can also update later in ReinforceViewController
+     * since it does not need display until reinforcement phase
      * @param o Country(Observable)
      * @param arg update message
      */
