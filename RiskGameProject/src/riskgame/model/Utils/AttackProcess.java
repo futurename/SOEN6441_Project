@@ -81,9 +81,7 @@ public class AttackProcess {
     }
 
     /**
-     * process the one attack procedure and calculates the results
-     * process the results for remaining attacking army number
-     *
+     *this functions calculates that how many armies defender or attacker have after the attack
      * @param attackingCountry
      * @param defendingCountry
      * @param attackArmyNbr
