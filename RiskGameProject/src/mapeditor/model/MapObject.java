@@ -97,6 +97,10 @@ public class MapObject {
                 }
             }
         }
+        if(unconnectedGraph(mapObj.arrContinent, mapObj.arrCountry) == false){
+            errorMsg.append(MEErrorMsg.UNCONNECTED_GRAPH_ERROR.getMsg());
+        }
+        /*
         if(correctCheckConnectGraph(mapObj.arrCountry) == false){
             errorMsg.append(MEErrorMsg.UNCONNECTED_GRAPH_ERROR.getMsg());
         }
@@ -109,6 +113,7 @@ public class MapObject {
         if(mapFormatCheck(mapPath) == false){
             errorMsg.append(MEErrorMsg.FILE_FORMAT_ERROR.getMsg());
         }
+        */
     }
 
     /**
