@@ -17,9 +17,10 @@ import static riskgame.controllers.AttackViewController.MAX_ATTACKING_ARMY_NUMBE
 import static riskgame.controllers.AttackViewController.MAX_DEFENDING_ARMY_NUMBER;
 
 /**
- * This class calculates number of dice thrown
- * compares the attacker's and defender's dice
- * checks if country,than continent and then whole worldmap is conquered or not
+ * This class processes the attack
+ * checks that how many dice can be tron and how many dice user want to throw
+ * checks if defender wins or attacker
+ * checks if country,continent or whole map is conquered or not
  */
 public class AttackProcess {
 
