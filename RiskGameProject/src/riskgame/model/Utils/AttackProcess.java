@@ -257,6 +257,12 @@ public class AttackProcess {
         }
     }
 
+    /**
+     * this method updates the status of country and world if these are conqured and changes the owner
+     * @param attackerIndex
+     * @param defenderIndex
+     * @param curContinent
+     */
     private static void updateContinentAndWorldStatus(int attackerIndex, int defenderIndex, Continent curContinent) {
         String continentName = curContinent.getContinentName();
         if (isContinentConquered(defenderIndex, continentName)) {
