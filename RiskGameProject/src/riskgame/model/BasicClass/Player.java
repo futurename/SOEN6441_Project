@@ -4,8 +4,6 @@ package riskgame.model.BasicClass;
 import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import riskgame.Main;
-import riskgame.model.BasicClass.ObserverPattern.CountryObservable;
-import riskgame.model.BasicClass.ObserverPattern.CountryObserver;
 import riskgame.model.Utils.AttackProcess;
 
 import java.util.ArrayList;
@@ -121,7 +119,7 @@ public class Player extends Observable implements Observer {
     /**
      * getter
      *
-     * @return player index
+     * @return the index of player
      */
     public int getPlayerIndex() {
         return playerIndex;
@@ -130,7 +128,7 @@ public class Player extends Observable implements Observer {
     /**
      * setter
      *
-     * @param armyNbr army number to be set
+     * @param armyNbr setting the army number
      */
     private void setArmyNbr(int armyNbr) {
         this.armyNbr = armyNbr;
@@ -139,7 +137,7 @@ public class Player extends Observable implements Observer {
     /**
      * getter
      *
-     * @return army number the player has
+     * @return the army number of player
      */
     public int getArmyNbr() {
         return armyNbr;
