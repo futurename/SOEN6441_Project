@@ -237,6 +237,78 @@ public class MapObject {
     }
 
     /**
+     * New error
+     */
+    public boolean unconnectedGraph(ArrayList<MEContinent> continentsArr, ArrayList<MECountry> countryArr){
+
+        HashMap<String, Boolean> checkList = null;
+        Queue<String> checkQueue = new LinkedList<String>();
+
+        //Check all the continent
+        for(int i=0;i< continentsArr.size();i++){
+            MEContinent newContinent = continentsArr.get(i);
+
+            if(newContinent.countryList.size() <= 1){
+                continue;
+            }
+
+            String newCountryName = newContinent.countryList.getFirst();
+
+            for(int j=0;j< newContinent.countryList.size(); j++) {
+                checkList.put(newContinent.countryList.get(j), false);
+            }
+
+            for(int j=0;j< countryArr.size(); j++){
+
+                MECountry newCountry = countryArr.get(j);
+
+                //If find the right country
+                if(newCountry.getCountryName().equals(newCountryName)){
+                    for(int k=0; k< newCountry.getNeighborSize(); k++){
+
+                        checkQueue.offer(newCountry.getCountryName());
+
+                        while(!checkQueue.isEmpty()) {
+                            String a = checkQueue.peek();
+                            MECountry b = null;
+
+                            for(int z =0; z < countryArr.size(); z++){
+                                if(countryArr.get(z).getCountryName().equals(a)){
+                                    b = countryArr.get(z);
+                                }
+                            }
+
+                            LinkedList<String> n = b.getNeighborName();
+
+                            for(int r = 0; r < n.size(); r++) {
+                                for(int f = 0; f < newContinent.countryList.size(); f++){
+                                    if (checkList.get(n.get(r)) == false && newContinent.countryList.get(f).equals(n.get(r))) {
+                                        checkList.replace(n.get(r), true);
+                                        checkQueue.offer(n.get(r));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            Iterator<String> iter = checkList.keySet().iterator();
+            while (iter.hasNext()) {
+                boolean value = checkList.get(iter.next());
+
+                if (value == false) {
+                    return false;
+                }
+            }
+            checkList.clear();
+        }
+        return true;
+    }
+
+
+
+    /**
      * check map format
      * @param mapPath map path
      * @return if map format is true then return true, else return false
@@ -278,5 +350,4 @@ public class MapObject {
         checkresult = checkresult1&&checkresult2&&checkresult3;
         return checkresult;
     }
-
 }

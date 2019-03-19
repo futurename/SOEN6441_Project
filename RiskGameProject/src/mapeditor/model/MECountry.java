@@ -63,4 +63,8 @@ public class MECountry{
     public LinkedList<String> getNeighborName(){
         return neighbor;
     }
+
+    public int getNeighborSize(){
+        return neighbor.size();
+    }
 }
