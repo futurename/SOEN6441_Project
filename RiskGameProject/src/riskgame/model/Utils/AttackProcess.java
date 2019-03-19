@@ -207,6 +207,12 @@ public class AttackProcess {
         return result;
     }
 
+    /**
+     * overall attack process result and it checks if country ,continent or whole map is conquered
+     * @param attackingCountry
+     * @param defendingCountry
+     * @param remainingArmyNbr
+     */
     private static void attackResultProcess(Country attackingCountry, Country defendingCountry, int remainingArmyNbr) {
         int defenderIndex = defendingCountry.getCountryOwnerIndex();
         int attackerIndex = attackingCountry.getCountryOwnerIndex();
