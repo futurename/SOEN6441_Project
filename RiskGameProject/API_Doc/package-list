@@ -8,3 +8,4 @@ riskgame.model.BasicClass
 riskgame.model.BasicClass.ObserverPattern
 riskgame.model.Utils
 test
+test.riskgame.model.Utils

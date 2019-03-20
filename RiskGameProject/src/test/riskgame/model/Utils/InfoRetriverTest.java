@@ -7,7 +7,7 @@ import org.junit.Test;
 /** 
 * InfoRetriver Tester. 
 * 
-* @author <Authors name> 
+* @author <Authors name>
 * @since <pre>Mar 19, 2019</pre> 
 * @version 1.0 
 */ 
