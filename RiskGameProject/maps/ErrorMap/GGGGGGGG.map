@@ -11,7 +11,7 @@ Northwest U.S.=3
 
 [Territories]
 Baja California,105,385,Mexico,Washington,Western Mexico
-Western Mexico,175,385,Mexico,Baja California,Arizona,Montana
+Western Mexico,175,385,Mexico,Baja California,Montana
 
 Washington,80,50,Northwest U.S.,Baja California,Oregon
 Oregon,65,105,Northwest U.S.,Washington
