@@ -252,15 +252,16 @@ public class MapObject {
         //Check all the continent
         for(int i=0;i< continentsArr.size();i++){
             MEContinent newContinent = continentsArr.get(i);
+            String newCountryName = "";
 
             if(newContinent.countryList.size() <= 1){
                 continue;
             }
 
-            String newCountryName = newContinent.countryList.getFirst();
-
             for(int j=0;j< newContinent.countryList.size(); j++) {
-                checkList.put(newContinent.countryList.get(j), false);
+                newCountryName = newContinent.countryList.get(j);
+                System.out.println(newCountryName);
+                checkList.put(newCountryName, false);
             }
 
             for(int j=0;j< countryArr.size(); j++){
@@ -274,7 +275,7 @@ public class MapObject {
                         checkQueue.offer(newCountry.getCountryName());
 
                         while(!checkQueue.isEmpty()) {
-                            String a = checkQueue.peek();
+                            String a = checkQueue.poll();
                             MECountry b = new MECountry();
 
                             for(int z =0; z < countryArr.size(); z++){
@@ -287,9 +288,17 @@ public class MapObject {
 
                             for(int r = 0; r < n.size(); r++) {
                                 for(int f = 0; f < newContinent.countryList.size(); f++){
-                                    if (!checkList.get(n.get(r)) && newContinent.countryList.get(f).equals(n.get(r))) {
-                                        checkList.replace(n.get(r), true);
-                                        checkQueue.offer(n.get(r));
+
+                                    System.out.println("1" + n.get(r));
+                                    //System.out.println("m " +  checkList.get("Washington"));
+                                    System.out.println("2" + checkList.get(n.get(r)));
+                                    System.out.println("3" + newContinent.countryList.get(f));
+
+                                    if(newContinent.countryList.get(f).equals(n.get(r))) {
+                                        if(!checkList.get(n.get(r))){
+                                            checkList.replace(n.get(r), true);
+                                            checkQueue.offer(n.get(r));
+                                        }
                                     }
                                 }
                             }
