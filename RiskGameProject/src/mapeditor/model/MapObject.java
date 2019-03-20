@@ -52,9 +52,8 @@ public class MapObject {
     }
 
     /**
-     * check map correctness interface
+     * check map correctness interface and append error message into the StringBuilder
      * @param mapPath read map path
-     * @return if the map is correct, return true, else return false
      */
     public void checkCorrectness(String mapPath){
         MapObject mapObj = new MapObject();
@@ -98,15 +97,11 @@ public class MapObject {
                 }
             }
         }
-        if(unconnectedGraph(mapObj.arrContinent, mapObj.arrCountry) == false){
-            errorMsg.append(MEErrorMsg.UNCONNECTED_GRAPH_ERROR.getMsg());
+        if(correctCheckConnectContinent(mapObj.arrContinent, mapObj.arrCountry) == false){
+            errorMsg.append(MEErrorMsg.UNCONNECTED_CONTINENT.getMsg());
         }
-        /*
         if(correctCheckConnectGraph(mapObj.arrCountry) == false){
             errorMsg.append(MEErrorMsg.UNCONNECTED_GRAPH_ERROR.getMsg());
-        }
-        if(correctCheckContinentCountryBelonging(mapObj.arrContinent,mapObj.arrCountry) == false){
-            errorMsg.append(MEErrorMsg.COUNTRY_SEPARATE_COUNTINENT_ERROR.getMsg());
         }
         if (correctCheckCountryBelonging(mapObj.arrContinent, mapObj.arrCountry) == false){
             errorMsg.append(MEErrorMsg.MULTIPLE_CONTINENT_ERROR.getMsg());
@@ -114,7 +109,6 @@ public class MapObject {
         if(mapFormatCheck(mapPath) == false){
             errorMsg.append(MEErrorMsg.FILE_FORMAT_ERROR.getMsg());
         }
-        */
     }
 
     /**
@@ -171,45 +165,74 @@ public class MapObject {
 
     /**
      * second correct checkCCB
-     * check whether a country is separate from other country in its continent
-     * @param continents continent list
-     * @param country country list
+     * check whether countries in a continent is unconnected
+     * @param continentsArr continent array
+     * @param countryArr country array
      * @return true for correct, false for error
      */
+    public boolean correctCheckConnectContinent(ArrayList<MEContinent> continentsArr, ArrayList<MECountry> countryArr){
+        Queue<String> checkQueue = new LinkedList<String>();
 
-    public  boolean correctCheckContinentCountryBelonging(ArrayList<MEContinent> continents, ArrayList<MECountry> country){
-        checkFlagCCB = true;
-        for(int i = 0;i<continents.size();i++){
-            if(continents.get(i).getCountryNumber()>1){
-                countryCheckFlag.clear();
-                for(Iterator iter = continents.get(i).getCountryListName().iterator(); iter.hasNext();) {
-                    countryCheckFlag.put(iter.next().toString(),0);
-                }
-                for(int j = 0;j<continents.get(i).getCountryNumber();j++){
-                    String tempCountry = continents.get(i).getCountryListName().get(j);
-                    if(countryCheckFlag.get(tempCountry)==0) {
-                        for (int k = 0; k < country.size(); k++) {
-                            if (country.get(k).getCountryName().equals(tempCountry)) {
-                                for(Iterator iters = country.get(k).getNeighborName().iterator(); iters.hasNext();) {
-                                    String keyTemp = iters.next().toString();
-                                    if(countryCheckFlag.containsKey(keyTemp)) {
-                                        countryCheckFlag.put(tempCountry, 1);
-                                        countryCheckFlag.put(keyTemp, 1);
+        //Check all the continent
+        for(int i=0;i< continentsArr.size();i++){
+            MEContinent newContinent = continentsArr.get(i);
+            String newCountryName = "";
+
+            //If there is no country or a single country
+            if(newContinent.countryList.size() <= 1){
+                continue;
+            }
+
+            for(int j=0;j< newContinent.countryList.size(); j++) {
+                newCountryName = newContinent.countryList.get(j);
+                checkList.put(newCountryName, false);
+            }
+            for(int j=0;j< countryArr.size(); j++){
+                MECountry newCountry = countryArr.get(j);
+
+                //If find the right country that in the current continent
+                if(newCountry.getCountryName().equals(newCountryName)){
+                    for(int k=0; k< newCountry.getNeighborSize(); k++){
+                        checkQueue.offer(newCountry.getCountryName());
+
+                        while(!checkQueue.isEmpty()){
+                            String curCountryName = checkQueue.poll();
+                            MECountry countryObj = new MECountry();
+
+                            for(int m =0; m < countryArr.size(); m++){
+                                if(countryArr.get(m).getCountryName().equals(curCountryName)){
+                                    countryObj = countryArr.get(m);
+                                }
+                            }
+                            LinkedList<String> neighbors = countryObj.getNeighborName();
+
+                            for(int n = 0; n < neighbors.size(); n++) {
+                                for(int f = 0; f < newContinent.countryList.size(); f++){
+
+                                    if(newContinent.countryList.get(f).equals(neighbors.get(n))) {
+                                        if(!checkList.get(neighbors.get(n))){
+                                            checkList.replace(neighbors.get(n), true);
+                                            checkQueue.offer(neighbors.get(n));
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
-                for (String key:countryCheckFlag.keySet()) {
-                    if(countryCheckFlag.get(key)==0){
-                        checkFlagCCB = false;
-                    }
+            }
+            //After bfs all the country in that continent
+            Iterator<String> countrySet = checkList.keySet().iterator();
+            while (countrySet.hasNext()) {
+                boolean value = checkList.get(countrySet.next());
+
+                if (value == false) {
+                    return false;
                 }
             }
-            countryCheckFlag.clear();
+            checkList.clear();
         }
-        return checkFlagCCB;
+        return true;
     }
 
     /**
@@ -241,86 +264,6 @@ public class MapObject {
         }
         return checkFlagCB;
     }
-
-    /**
-     * New error
-     */
-    public boolean unconnectedGraph(ArrayList<MEContinent> continentsArr, ArrayList<MECountry> countryArr){
-
-        Queue<String> checkQueue = new LinkedList<String>();
-
-        //Check all the continent
-        for(int i=0;i< continentsArr.size();i++){
-            MEContinent newContinent = continentsArr.get(i);
-            String newCountryName = "";
-
-            if(newContinent.countryList.size() <= 1){
-                continue;
-            }
-
-            for(int j=0;j< newContinent.countryList.size(); j++) {
-                newCountryName = newContinent.countryList.get(j);
-                System.out.println(newCountryName);
-                checkList.put(newCountryName, false);
-            }
-
-            for(int j=0;j< countryArr.size(); j++){
-
-                MECountry newCountry = countryArr.get(j);
-
-                //If find the right country
-                if(newCountry.getCountryName().equals(newCountryName)){
-                    for(int k=0; k< newCountry.getNeighborSize(); k++){
-
-                        checkQueue.offer(newCountry.getCountryName());
-
-                        while(!checkQueue.isEmpty()) {
-                            String a = checkQueue.poll();
-                            MECountry b = new MECountry();
-
-                            for(int z =0; z < countryArr.size(); z++){
-                                if(countryArr.get(z).getCountryName().equals(a)){
-                                    b = countryArr.get(z);
-                                }
-                            }
-
-                            LinkedList<String> n = b.getNeighborName();
-
-                            for(int r = 0; r < n.size(); r++) {
-                                for(int f = 0; f < newContinent.countryList.size(); f++){
-
-                                    System.out.println("1" + n.get(r));
-                                    //System.out.println("m " +  checkList.get("Washington"));
-                                    System.out.println("2" + checkList.get(n.get(r)));
-                                    System.out.println("3" + newContinent.countryList.get(f));
-
-                                    if(newContinent.countryList.get(f).equals(n.get(r))) {
-                                        if(!checkList.get(n.get(r))){
-                                            checkList.replace(n.get(r), true);
-                                            checkQueue.offer(n.get(r));
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            Iterator<String> iter = checkList.keySet().iterator();
-            while (iter.hasNext()) {
-                boolean value = checkList.get(iter.next());
-
-                if (value == false) {
-                    return false;
-                }
-            }
-            checkList.clear();
-        }
-        return true;
-    }
-
-
 
     /**
      * check map format
