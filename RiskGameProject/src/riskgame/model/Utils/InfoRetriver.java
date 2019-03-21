@@ -2,6 +2,11 @@ package riskgame.model.Utils;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import riskgame.Main;
 import riskgame.model.BasicClass.*;
 
@@ -9,7 +14,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static riskgame.Main.playersList;
+import static riskgame.Main.*;
+import static riskgame.Main.playerDomiViewObserver;
 
 /**
  * This class includes methods for processing and organizing different type of data required for display in ListView
@@ -133,6 +139,37 @@ public class InfoRetriver {
             }
         }
         return result;
+    }
+
+    public static <V extends VBox> void updateDominationView(String arg, V view){
+        playerDomiViewObservable.updateObservable();
+        playerDomiViewObservable.notifyObservers(arg);
+        ArrayList<Label> labelList = new ArrayList<>();
+
+        //empty the vBox before adding new contents
+        if (view.getChildren().size() != 0) {
+            view.getChildren().remove(0, totalNumOfPlayers);
+        }
+
+        for (int playerIndex = 0; playerIndex < totalNumOfPlayers; playerIndex++) {
+            Color curPlayerColor = playersList.get(playerIndex).getPlayerColor();
+            Label oneLabel = new Label();
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Player: ").append(playerIndex)
+                    .append("\n").append("Control ratio: ")
+                    .append(playerDomiViewObserver.getControlRatioList().get(playerIndex))
+                    .append("\n").append("Controlled continents: ")
+                    .append(playerDomiViewObserver.getControlledContinentNbrList().get(playerIndex))
+                    .append("\n").append("Total army: ")
+                    .append(playerDomiViewObserver.getTotalArmyNbrList().get(playerIndex))
+                    .append("\n\n");
+            oneLabel.setText(stringBuilder.toString());
+            oneLabel.setTextFill(curPlayerColor);
+            oneLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
+            labelList.add(oneLabel);
+        }
+
+        view.getChildren().addAll(labelList);
     }
 }
 

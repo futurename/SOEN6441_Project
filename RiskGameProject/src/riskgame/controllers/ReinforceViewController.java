@@ -125,7 +125,7 @@ public class ReinforceViewController implements Initializable {
         initPhaseView();
         initCurPlayerCardListView();
         addUndeployedArmy();
-        initPlayerDominationView("From reinforcement initial");
+        InfoRetriver.updateDominationView("From reinforcement initial", vbx_worldDomiView);
         btn_confirmDeployment.setVisible(false);
 
         int cardsNbr = curPlayer.getCardsList().size();

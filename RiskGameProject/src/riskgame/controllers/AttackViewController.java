@@ -333,6 +333,7 @@ public class AttackViewController implements Initializable {
             curPlayer.attackCountry(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, txa_attackInfoDisplay);
 
             refreshListView(attackingCountry);
+            InfoRetriver.updateDominationView("??", vbx_worldDomiView);
 
             if (AttackProcess.winnerPlayerIndex != -1){
                 callGameOverView();
@@ -388,6 +389,7 @@ public class AttackViewController implements Initializable {
             curPlayer.alloutModeAttack(selectedAttackerCountry, selectedDefenderCountry, avaliableForAttackNbr, avaliableForDefendNbr, txa_attackInfoDisplay);
 
             refreshListView(selectedAttackerCountry);
+            InfoRetriver.updateDominationView("???", vbx_worldDomiView);
 
             if (AttackProcess.winnerPlayerIndex != -1){
                 callGameOverView();
