@@ -47,10 +47,10 @@ public class Player extends Observable implements Observer {
         this.controlledContinents = new ArrayList<>();
         this.activeStatus = true;
 
-       /* this.cardsList.add(Card.ARTILLERY);
+        this.cardsList.add(Card.ARTILLERY);
         this.cardsList.add(Card.INFANTRY);
         this.cardsList.add(Card.CAVALRY);
-        this.cardsList.add(Card.INFANTRY);*/
+        this.cardsList.add(Card.INFANTRY);
     }
 
     /**

@@ -1,8 +1,5 @@
 package riskgame.model.BasicClass;
 
-import riskgame.Main;
-import riskgame.model.BasicClass.ObserverPattern.CountryObservable;
-
 import java.util.Observable;
 
 /**

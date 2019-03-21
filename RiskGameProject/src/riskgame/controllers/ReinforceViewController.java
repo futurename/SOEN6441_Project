@@ -366,6 +366,7 @@ public class ReinforceViewController implements Initializable {
 
             System.out.println("\nfinish deployment to country " + selectedCountry.getCountryName() + ": " + selectedCountry.getCountryArmyNumber());
         }
+        initPlayerDominationView("deploy new army");
     }
 
     /**
@@ -397,7 +398,9 @@ public class ReinforceViewController implements Initializable {
             int exchangedArmyNbr = getExchangedArmyNbr();
             addUndeployedArmyAfterExchangeCards(exchangedArmyNbr);
 
-            initPlayerDominationView("Exchanging for new army");
+            //no need to init player domi view cuz new army will add to undeployed army
+            //only those deployed will be counted.
+//            initPlayerDominationView("Exchanging for new army");
 
             System.out.printf("GET NEW %d ARMY!\n", exchangedArmyNbr);
 
@@ -433,7 +436,7 @@ public class ReinforceViewController implements Initializable {
         int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
         int newArmyPerRound = getStandardReinforceArmyNum(ownedCountryNum) + curPlayer.getContinentBonus();
         curUndeployedArmy += newArmyPerRound;
-        curPlayer.addArmy(newArmyPerRound);
+//        curPlayer.addArmy(newArmyPerRound);
 
     }
 
