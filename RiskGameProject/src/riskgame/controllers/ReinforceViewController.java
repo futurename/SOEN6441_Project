@@ -128,9 +128,9 @@ public class ReinforceViewController implements Initializable {
 
         Color curPlayerColor = curPlayer.getPlayerColor();
         int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
-        curUndeployedArmy += getStandardReinforceArmyNum(ownedCountryNum) + curPlayer.getContinentBonus();
+        getUndeployedArmyNbrAfterExchangeCards(getStandardReinforceArmyNum(ownedCountryNum) + curPlayer.getContinentBonus());
 
-        if (curPlayer.getCardsList().size() > 4){
+        if (curPlayer.getCardsList().size() > 4) {
             btn_skipCardsExchange.setVisible(false);
         }
         lbl_countriesInfo.setTextFill(curPlayerColor);
@@ -166,6 +166,7 @@ public class ReinforceViewController implements Initializable {
     /**
      * Set contents to player domination the pane
      * method called when updating or initialization
+     *
      * @param arg notification message
      */
     private void initPlayerDominationView(String arg) {
@@ -174,7 +175,7 @@ public class ReinforceViewController implements Initializable {
         ArrayList<Label> labelList = new ArrayList<>();
 
         //empty the vBox before adding new contents
-        if (vbx_worldDomiView.getChildren().size() != 0){
+        if (vbx_worldDomiView.getChildren().size() != 0) {
             vbx_worldDomiView.getChildren().remove(0, totalNumOfPlayers);
         }
 
@@ -384,9 +385,9 @@ public class ReinforceViewController implements Initializable {
         if (selectedCardList.isEmpty()) {
             alert.setContentText("No card selected!");
             alert.showAndWait();
-        } else if ( true ) {  //validateCardsCombination(selectedCardList)
+        } else if (validateCardsCombination(selectedCardList)) {  //validateCardsCombination(selectedCardList)
             int exchangedArmyNbr = getExchangedArmyNbr();
-            curUndeployedArmy += exchangedArmyNbr;
+            getUndeployedArmyNbrAfterExchangeCards(exchangedArmyNbr);
 
             curPlayer.addArmy(exchangedArmyNbr);
             initPlayerDominationView("Exchanging for new army");
@@ -410,10 +411,14 @@ public class ReinforceViewController implements Initializable {
             phaseViewObservable.addOneExchangeTime();
             phaseViewObservable.notifyObservers("Add Exchange Time");
 
-        } else {
+        } else{
             alert.setContentText("Wrong cards combination, please try again!");
             alert.showAndWait();
         }
+    }
+
+    private void getUndeployedArmyNbrAfterExchangeCards(int exchangedArmyNbr) {
+        curUndeployedArmy += exchangedArmyNbr;
     }
 
     /**
