@@ -123,14 +123,9 @@ public class ReinforceViewController implements Initializable {
      */
     private void reinforceViewInit() {
         initPhaseView();
-        initPlayerDominationView("From reinforcement initial");
         initCurPlayerCardListView();
-
-        Color curPlayerColor = curPlayer.getPlayerColor();
-        int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
-
-        curUndeployedArmy += getStandardReinforceArmyNum(ownedCountryNum) + curPlayer.getContinentBonus();
-
+        addUndeployedArmy();
+        initPlayerDominationView("From reinforcement initial");
         btn_confirmDeployment.setVisible(false);
 
         int cardsNbr = curPlayer.getCardsList().size();
@@ -145,6 +140,7 @@ public class ReinforceViewController implements Initializable {
         if (cardsNbr >= 5) {
             btn_skipCardsExchange.setVisible(false);
         }
+        Color curPlayerColor = curPlayer.getPlayerColor();
         lbl_countriesInfo.setTextFill(curPlayerColor);
         lbl_adjacentCountriesInfo.setTextFill(curPlayerColor);
         lbl_undeployedArmy.setText(Integer.toString(curUndeployedArmy));
@@ -399,9 +395,8 @@ public class ReinforceViewController implements Initializable {
             alert.showAndWait();
         } else if (validateCardsCombination(selectedCardList)) {  //validateCardsCombination(selectedCardList)
             int exchangedArmyNbr = getExchangedArmyNbr();
-            getUndeployedArmyNbrAfterExchangeCards(exchangedArmyNbr);
+            addUndeployedArmyAfterExchangeCards(exchangedArmyNbr);
 
-            curPlayer.addArmy(exchangedArmyNbr);
             initPlayerDominationView("Exchanging for new army");
 
             System.out.printf("GET NEW %d ARMY!\n", exchangedArmyNbr);
@@ -429,8 +424,17 @@ public class ReinforceViewController implements Initializable {
         }
     }
 
-    private void getUndeployedArmyNbrAfterExchangeCards(int exchangedArmyNbr) {
+    private void addUndeployedArmyAfterExchangeCards(int exchangedArmyNbr) {
         curUndeployedArmy += exchangedArmyNbr;
+        curPlayer.addArmy(exchangedArmyNbr);
+    }
+
+    private void addUndeployedArmy(){
+        int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
+        int newArmyPerRound = getStandardReinforceArmyNum(ownedCountryNum) + curPlayer.getContinentBonus();
+        curUndeployedArmy += newArmyPerRound;
+        curPlayer.addArmy(newArmyPerRound);
+
     }
 
     /**

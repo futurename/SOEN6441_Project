@@ -10,7 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Card;
@@ -22,7 +25,11 @@ import riskgame.model.Utils.ListviewRenderer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import static riskgame.Main.*;
+import static riskgame.Main.playerDomiViewObserver;
 
 /**
  * controller class for AttackView.fxml
@@ -71,6 +78,8 @@ public class AttackViewController implements Initializable {
     private Button btn_alloutMode;
     @FXML
     private TextArea txa_attackInfoDisplay;
+    @FXML
+    private VBox vbx_worldDomiView;
 
 
     /**
@@ -102,7 +111,7 @@ public class AttackViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initPhaseView();
-
+        initPlayerDominationView("From attackView init");
         initCountryListviewDisplay(curPlayer);
     }
 
@@ -123,14 +132,6 @@ public class AttackViewController implements Initializable {
         lbl_adjacentCountries.setTextFill(curPlayerColor);
         lbl_attackerArmyPrompt.setTextFill(curPlayerColor);
         lbl_attackerArmyNbr.setTextFill(curPlayerColor);
-
-        initPlayerDominationView();
-    }
-
-    /**
-     * initialize player domination information
-     */
-    private void initPlayerDominationView() {
     }
 
     private void initObserver() {
@@ -138,6 +139,37 @@ public class AttackViewController implements Initializable {
         curGamePhase = Main.phaseViewObserver.getPhaseName();
         curPlayerName = "Player_" + curPlayerIndex;
         curActionString = Main.phaseViewObservable.getActionString();
+    }
+
+    private void initPlayerDominationView(String arg) {
+        playerDomiViewObservable.updateObservable();
+        playerDomiViewObservable.notifyObservers(arg);
+        ArrayList<Label> labelList = new ArrayList<>();
+
+        //empty the vBox before adding new contents
+        if (vbx_worldDomiView.getChildren().size() != 0) {
+            vbx_worldDomiView.getChildren().remove(0, totalNumOfPlayers);
+        }
+
+        for (int playerIndex = 0; playerIndex < totalNumOfPlayers; playerIndex++) {
+            Color curPlayerColor = playersList.get(playerIndex).getPlayerColor();
+            Label oneLabel = new Label();
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Player: ").append(playerIndex)
+                    .append("\n").append("Control ratio: ")
+                    .append(playerDomiViewObserver.getControlRatioList().get(playerIndex))
+                    .append("\n").append("Controlled continents: ")
+                    .append(playerDomiViewObserver.getControlledContinentNbrList().get(playerIndex))
+                    .append("\n").append("Total army: ")
+                    .append(playerDomiViewObserver.getTotalArmyNbrList().get(playerIndex))
+                    .append("\n\n");
+            oneLabel.setText(stringBuilder.toString());
+            oneLabel.setTextFill(curPlayerColor);
+            oneLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
+            labelList.add(oneLabel);
+        }
+
+        vbx_worldDomiView.getChildren().addAll(labelList);
     }
 
     /**
