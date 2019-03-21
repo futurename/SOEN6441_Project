@@ -1,6 +1,7 @@
 package test.riskgame.model.Utils;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import riskgame.model.BasicClass.Continent;
@@ -76,9 +77,12 @@ public void testUpdateConqueredCountry() throws Exception {
 @Test
 public void testIsPlayerHasCountry() throws Exception {
     Player player=new Player(5);
-    boolean result=AttackProcess.isPlayerHasCountry(player);
-    assert true;
-} 
+    Assert.assertFalse(AttackProcess.isPlayerHasCountry(player));
+
+    player.getOwnedCountryNameList().add("demo country");
+    Assert.assertTrue(AttackProcess.isPlayerHasCountry(player));
+}
+
 
 /** 
 * 
@@ -87,7 +91,7 @@ public void testIsPlayerHasCountry() throws Exception {
 */ 
 @Test
 public void testGetDiceResultList() throws Exception { 
-//TODO: Test goes here... 
+
 } 
 
 /** 
