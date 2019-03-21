@@ -128,9 +128,21 @@ public class ReinforceViewController implements Initializable {
 
         Color curPlayerColor = curPlayer.getPlayerColor();
         int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
-        getUndeployedArmyNbrAfterExchangeCards(getStandardReinforceArmyNum(ownedCountryNum) + curPlayer.getContinentBonus());
 
-        if (curPlayer.getCardsList().size() > 4) {
+        curUndeployedArmy += getStandardReinforceArmyNum(ownedCountryNum) + curPlayer.getContinentBonus();
+
+        btn_confirmDeployment.setVisible(false);
+
+        int cardsNbr = curPlayer.getCardsList().size();
+
+        System.out.println("\n\ncards number: " + cardsNbr);
+
+        if (cardsNbr == 0) {
+            btn_confirmExchangeCards.setVisible(false);
+            btn_skipCardsExchange.setVisible(false);
+            btn_confirmDeployment.setVisible(true);
+        }
+        if (cardsNbr >= 5) {
             btn_skipCardsExchange.setVisible(false);
         }
         lbl_countriesInfo.setTextFill(curPlayerColor);
@@ -149,7 +161,7 @@ public class ReinforceViewController implements Initializable {
 
         scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue) -> lbl_deployArmyCount.setText(Integer.toString(newValue.intValue())));
 
-        btn_confirmDeployment.setVisible(false);
+       // btn_confirmDeployment.setVisible(false);
     }
 
     private void initCurPlayerCardListView() {
@@ -411,7 +423,7 @@ public class ReinforceViewController implements Initializable {
             phaseViewObservable.addOneExchangeTime();
             phaseViewObservable.notifyObservers("Add Exchange Time");
 
-        } else{
+        } else {
             alert.setContentText("Wrong cards combination, please try again!");
             alert.showAndWait();
         }

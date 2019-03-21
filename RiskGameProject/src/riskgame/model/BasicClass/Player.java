@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import static riskgame.controllers.AttackViewController.MAX_ATTACKING_ARMY_NUMBER;
+import static riskgame.controllers.AttackViewController.MAX_DEFENDING_ARMY_NUMBER;
+
 /**
  * This class includes attributes a player need and required methods
  * Observer property of this class is updating changes triggered by countries
@@ -44,10 +47,10 @@ public class Player extends Observable implements Observer {
         this.controlledContinents = new ArrayList<>();
         this.activeStatus = true;
 
-        this.cardsList.add(Card.ARTILLERY);
+       /* this.cardsList.add(Card.ARTILLERY);
         this.cardsList.add(Card.INFANTRY);
         this.cardsList.add(Card.CAVALRY);
-        this.cardsList.add(Card.INFANTRY);
+        this.cardsList.add(Card.INFANTRY);*/
     }
 
     /**
@@ -198,12 +201,196 @@ public class Player extends Observable implements Observer {
 
     public void attackCountry(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr, TextArea txa_attackInfoDisplay) {
 
-        AttackProcess.oneAttackSimulate(attackingCountry, defendingCountry, attackArmyNbr,defendArmyNbr, txa_attackInfoDisplay);
+        oneAttackSimulate(attackingCountry, defendingCountry, attackArmyNbr,defendArmyNbr, txa_attackInfoDisplay);
     }
 
     public void alloutModeAttack(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr, TextArea txa_attackInfoDisplay){
-        AttackProcess.alloutAttackSimulate(attackingCountry,defendingCountry,attackArmyNbr,defendArmyNbr,txa_attackInfoDisplay);
+        alloutAttackSimulate(attackingCountry,defendingCountry,attackArmyNbr,defendArmyNbr,txa_attackInfoDisplay);
     }
+
+
+    public void alloutAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr,
+                                            TextArea txa_attackInfoDisplay) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Attacker: [ ")
+                .append(attackingCountry.getCountryName())
+                .append(" ], Defender: [ ")
+                .append(defendingCountry.getCountryName())
+                .append(" ]\n\n");
+
+        recursiveAttack(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, stringBuilder);
+
+        if (AttackProcess.isCountryConquered(defendingCountry)) {
+            int nondeployedAttackerArmyNbr = attackingCountry.getCountryArmyNumber() - 1;
+            Player attacker = Main.playersList.get(attackingCountry.getCountryOwnerIndex());
+            Player defender = Main.playersList.get(defendingCountry.getCountryOwnerIndex());
+
+            int attackerIndex = attacker.getPlayerIndex();
+            int defenderIndex = defender.getPlayerIndex();
+
+            String continentName = defendingCountry.getContinentName();
+            Continent curContinent = Main.worldContinentMap.get(continentName);
+
+            AttackProcess.updateConqueredCountry(attackingCountry, defendingCountry, nondeployedAttackerArmyNbr, attacker, defender);
+            AttackProcess.updateContinentAndWorldStatus(attackerIndex, defenderIndex, curContinent);
+        }
+        txa_attackInfoDisplay.setText(stringBuilder.toString());
+
+    }
+
+    /**
+     * this function defines that wheather the attacker or defender is available to attack
+     * cheks if both have enough armies to attack.
+     * @param attackingCountry
+     * @param defendingCountry
+     * @param attackArmyNbr
+     * @param defendArmyNbr
+     * @param stringBuilder
+     */
+    private void recursiveAttack(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr, StringBuilder stringBuilder) {
+        if (attackArmyNbr == 0 || defendArmyNbr == 0) {
+            return;
+        }
+        int avaliableForAttackNbr = attackArmyNbr > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : attackArmyNbr;
+        int avaliableForDefendNbr = defendArmyNbr > MAX_DEFENDING_ARMY_NUMBER ? MAX_DEFENDING_ARMY_NUMBER : defendArmyNbr;
+
+        getOneAttackResult(attackingCountry, defendingCountry, avaliableForAttackNbr, avaliableForDefendNbr, stringBuilder);
+
+        attackArmyNbr = attackingCountry.getCountryArmyNumber() - 1;
+        defendArmyNbr = defendingCountry.getCountryArmyNumber();
+        stringBuilder.append("\n");
+        recursiveAttack(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, stringBuilder);
+    }
+
+    /**
+     *this functions calculates that how many armies defender or attacker have after the attack
+     * @param attackingCountry
+     * @param defendingCountry
+     * @param attackArmyNbr
+     * @param defendArmyNbr
+     * @param txa_attackInfoDisplay
+     */
+    public  void oneAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr,
+                                         TextArea txa_attackInfoDisplay) {
+        int avaliableForAttackNbr = attackArmyNbr > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : attackArmyNbr;
+        int avaliableForDefendNbr = defendArmyNbr > MAX_DEFENDING_ARMY_NUMBER ? MAX_DEFENDING_ARMY_NUMBER : defendArmyNbr;
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Attacker: [ ")
+                .append(attackingCountry.getCountryName())
+                .append(" ], Defender: [ ")
+                .append(defendingCountry.getCountryName())
+                .append(" ]\n\n");
+
+        int attackerRemainArmyNbr = getOneAttackResult(attackingCountry, defendingCountry, avaliableForAttackNbr, avaliableForDefendNbr, stringBuilder);
+
+        txa_attackInfoDisplay.setText(stringBuilder.toString());
+
+        AttackProcess.attackResultProcess(attackingCountry, defendingCountry, attackerRemainArmyNbr);
+
+    }
+
+    /**
+     * this functions calculates the result for every single attack and returns the attacker's army number
+     * @param attackingCountry
+     * @param defendingCountry
+     * @param attackableArmyNbr
+     * @param defendableArmyNbr
+     * @param stringBuilder
+     * @return
+     */
+    private static int getOneAttackResult(Country attackingCountry, Country defendingCountry, int attackableArmyNbr, int defendableArmyNbr,
+                                          StringBuilder stringBuilder) {
+        int result = 0;
+
+        ArrayList<Integer> attackerDiceResultList = AttackProcess.getDiceResultList(attackableArmyNbr);
+        ArrayList<Integer> defenderDiceResultList = AttackProcess.getDiceResultList(defendableArmyNbr);
+
+        stringBuilder
+                .append("attacker dices: ")
+                .append(attackerDiceResultList)
+                .append(", defender dices: ")
+                .append(defenderDiceResultList)
+                .append("\n");
+
+        System.out.println("\nattackerDiceList: " + attackerDiceResultList);
+        System.out.println("defenderDiceResult:" + defenderDiceResultList + "\n");
+
+        int attackArmyCount = attackerDiceResultList.size();
+        int defendArmyCount = defenderDiceResultList.size();
+
+        int compareTimes = defenderDiceResultList.size() < attackerDiceResultList.size() ? defenderDiceResultList.size() :
+                attackerDiceResultList.size();
+
+        for (int i = 0; i < compareTimes; i++) {
+
+            System.out.println("\nattacker: " + attackerDiceResultList.size()
+                    + ", defender: " + defenderDiceResultList.size());
+
+            int bestAttackerDice = attackerDiceResultList.remove(0);
+            int bestDefenderDice = defenderDiceResultList.remove(0);
+
+            if (bestAttackerDice > bestDefenderDice) {
+                defendingCountry.reduceFromCountryArmyNumber(1);
+
+                System.out.println("Round: " + i + ", >>>Attacker win! attacker: " + attackingCountry.getCountryArmyNumber()
+                        + ", defender: " + defendingCountry.getCountryArmyNumber() + "\n");
+
+                defendArmyCount--;
+
+                stringBuilder
+                        .append("Round: ")
+                        .append(i)
+                        .append("\n>>>[ ")
+                        .append(attackingCountry.getCountryName())
+                        .append(" ]<<< WINS ")
+                        .append(">>>[ ")
+                        .append(defendingCountry.getCountryName())
+                        .append(" ]<<<\nattacker remaining army num: ")
+                        .append(attackingCountry.getCountryArmyNumber())
+                        .append(", defender remaining army num: ")
+                        .append(defendingCountry.getCountryArmyNumber())
+                        .append("\n")
+                        .append("defend army count after reduction: ")
+                        .append(defendArmyCount)
+                        .append(", attack army count: ")
+                        .append(attackArmyCount)
+                        .append("\n");
+            } else {
+                attackingCountry.reduceFromCountryArmyNumber(1);
+
+                System.out.println("Round: " + i + ", >>>Defender win! attacker: " + attackingCountry.getCountryArmyNumber()
+                        + ", defender: " + defendingCountry.getCountryArmyNumber() + "\n");
+
+                attackArmyCount--;
+
+                stringBuilder
+                        .append("Round: ")
+                        .append(i)
+                        .append("\n>>>[ ")
+                        .append(attackingCountry.getCountryName())
+                        .append(" ]<<< LOSES to ")
+                        .append(">>>[ ")
+                        .append(defendingCountry.getCountryName())
+                        .append(" ]<<<\nattacker remaining army num: ")
+                        .append(attackingCountry.getCountryArmyNumber())
+                        .append(", defender remaining army num: ")
+                        .append(defendingCountry.getCountryArmyNumber())
+                        .append("\n")
+                        .append("attack army count after reduction: ")
+                        .append(attackArmyCount)
+                        .append(", defend army count: ")
+                        .append(defendArmyCount)
+                        .append("\n");
+            }
+        }
+        result = attackArmyCount;
+
+        return result;
+    }
+
+
+
 
     /**
      * public method for setting observable objects value.
