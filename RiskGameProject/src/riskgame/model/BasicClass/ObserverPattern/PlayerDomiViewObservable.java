@@ -5,6 +5,7 @@ import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Observable;
 

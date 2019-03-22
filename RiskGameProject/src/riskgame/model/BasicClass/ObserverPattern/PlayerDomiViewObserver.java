@@ -7,7 +7,6 @@ import java.util.Observer;
 /**
  * created on 2019/03/08_23:53
  **/
-
 public class PlayerDomiViewObserver implements Observer {
     private ArrayList<Float> controlRatioList;
     private ArrayList<Integer> controlledContinentNbrList;

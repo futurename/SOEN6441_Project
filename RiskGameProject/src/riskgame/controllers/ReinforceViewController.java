@@ -162,7 +162,6 @@ public class ReinforceViewController implements Initializable {
 
     private void initCurPlayerCardListView() {
         initObserver("CardView");
-//        ArrayList<Card> cardsList = playersCards.get(String.valueOf(curPlayerIndex));
         ArrayList<Card> cardsList = playerCards;
         cardsList.sort(Collections.reverseOrder());
         ObservableList<Card> cardObservableList = FXCollections.observableList(cardsList);
@@ -209,6 +208,7 @@ public class ReinforceViewController implements Initializable {
                 curPlayer.notifyObservers("from reinforce view: initial cards!");
                 this.playerCards = this.cardExchangeViewObserver.getPlayerCards();
                 //TODO: phaseViewObservable will keep adding new cardObserver without removing the old one!
+                phaseViewObservable.deleteObserver(cardExchangeViewObserver);
                 phaseViewObservable.addObserver(this.cardExchangeViewObserver);
                 phaseViewObservable.initObservableExchangeTime();
                 phaseViewObservable.notifyObservers("keeping exchange time up to date.");
