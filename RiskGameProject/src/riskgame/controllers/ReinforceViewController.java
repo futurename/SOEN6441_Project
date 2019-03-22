@@ -172,43 +172,6 @@ public class ReinforceViewController implements Initializable {
     }
 
     /**
-     * Set contents to player domination the pane
-     * method called when updating or initialization
-     *
-     * @param arg notification message
-     */
-    private void initPlayerDominationView(String arg) {
-        playerDomiViewObservable.updateObservable();
-        playerDomiViewObservable.notifyObservers(arg);
-        ArrayList<Label> labelList = new ArrayList<>();
-
-        //empty the vBox before adding new contents
-        if (vbx_worldDomiView.getChildren().size() != 0) {
-            vbx_worldDomiView.getChildren().remove(0, totalNumOfPlayers);
-        }
-
-        for (int playerIndex = 0; playerIndex < totalNumOfPlayers; playerIndex++) {
-            Color curPlayerColor = playersList.get(playerIndex).getPlayerColor();
-            Label oneLabel = new Label();
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Player: ").append(playerIndex)
-                    .append("\n").append("Control ratio: ")
-                    .append(playerDomiViewObserver.getControlRatioList().get(playerIndex))
-                    .append("\n").append("Controlled continents: ")
-                    .append(playerDomiViewObserver.getControlledContinentNbrList().get(playerIndex))
-                    .append("\n").append("Total army: ")
-                    .append(playerDomiViewObserver.getTotalArmyNbrList().get(playerIndex))
-                    .append("\n\n");
-            oneLabel.setText(stringBuilder.toString());
-            oneLabel.setTextFill(curPlayerColor);
-            oneLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
-            labelList.add(oneLabel);
-        }
-
-        vbx_worldDomiView.getChildren().addAll(labelList);
-    }
-
-    /**
      * set contents to phase view labels
      * contents are obtained via phaseViewObserver
      */
@@ -366,7 +329,7 @@ public class ReinforceViewController implements Initializable {
 
             System.out.println("\nfinish deployment to country " + selectedCountry.getCountryName() + ": " + selectedCountry.getCountryArmyNumber());
         }
-        initPlayerDominationView("deploy new army");
+        InfoRetriver.updateDominationView("deploy new army", vbx_worldDomiView);
     }
 
     /**

@@ -111,7 +111,7 @@ public class AttackViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initPhaseView();
-        initPlayerDominationView("From attackView init");
+        InfoRetriver.updateDominationView("From attackView init", vbx_worldDomiView);
         initCountryListviewDisplay(curPlayer);
     }
 
@@ -139,37 +139,6 @@ public class AttackViewController implements Initializable {
         curGamePhase = Main.phaseViewObserver.getPhaseName();
         curPlayerName = "Player_" + curPlayerIndex;
         curActionString = Main.phaseViewObservable.getActionString();
-    }
-
-    private void initPlayerDominationView(String arg) {
-        playerDomiViewObservable.updateObservable();
-        playerDomiViewObservable.notifyObservers(arg);
-        ArrayList<Label> labelList = new ArrayList<>();
-
-        //empty the vBox before adding new contents
-        if (vbx_worldDomiView.getChildren().size() != 0) {
-            vbx_worldDomiView.getChildren().remove(0, totalNumOfPlayers);
-        }
-
-        for (int playerIndex = 0; playerIndex < totalNumOfPlayers; playerIndex++) {
-            Color curPlayerColor = playersList.get(playerIndex).getPlayerColor();
-            Label oneLabel = new Label();
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Player: ").append(playerIndex)
-                    .append("\n").append("Control ratio: ")
-                    .append(playerDomiViewObserver.getControlRatioList().get(playerIndex))
-                    .append("\n").append("Controlled continents: ")
-                    .append(playerDomiViewObserver.getControlledContinentNbrList().get(playerIndex))
-                    .append("\n").append("Total army: ")
-                    .append(playerDomiViewObserver.getTotalArmyNbrList().get(playerIndex))
-                    .append("\n\n");
-            oneLabel.setText(stringBuilder.toString());
-            oneLabel.setTextFill(curPlayerColor);
-            oneLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
-            labelList.add(oneLabel);
-        }
-
-        vbx_worldDomiView.getChildren().addAll(labelList);
     }
 
     /**
