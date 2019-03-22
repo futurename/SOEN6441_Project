@@ -113,23 +113,11 @@ public class InfoRetriver {
             Country country = Main.graphSingleton.get(name).getCountry();
             countryList.add(country);
         }
-
-        sortListByArmyNumbers(countryList);
-
-
         result = FXCollections.observableArrayList(countryList);
         return result;
     }
 
-    /**
-     * Sort the country list by their army numbers in descending order
-     *
-     * @param countryList arraylist of country objects.
-     */
-    private static void sortListByArmyNumbers(ArrayList<Country> countryList) {
 
-
-    }
 
     public static int getPlayerControlPecentage(Player curPlayer){
         int result = 0;

@@ -13,8 +13,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Card;
@@ -132,7 +130,7 @@ public class ReinforceViewController implements Initializable {
 
         System.out.println("\n\ncards number: " + cardsNbr);
 
-        if (cardsNbr == 0) {
+        if (cardsNbr <= 2) {
             btn_confirmExchangeCards.setVisible(false);
             btn_skipCardsExchange.setVisible(false);
             btn_confirmDeployment.setVisible(true);
@@ -157,8 +155,8 @@ public class ReinforceViewController implements Initializable {
 
         scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue) -> lbl_deployArmyCount.setText(Integer.toString(newValue.intValue())));
 
-       // btn_confirmDeployment.setVisible(false);
     }
+
 
     private void initCurPlayerCardListView() {
         initObserver("CardView");
@@ -168,6 +166,7 @@ public class ReinforceViewController implements Initializable {
         lsv_cardsListView.setItems(cardObservableList);
         ListviewRenderer.renderCardsListView(lsv_cardsListView, curPlayer);
         lsv_cardsListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
     }
 
     /**
