@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static riskgame.Main.*;
-import static riskgame.Main.playerDomiViewObserver;
 
 /**
  * This class includes methods for processing and organizing different type of data required for display in ListView
@@ -114,8 +113,22 @@ public class InfoRetriver {
             Country country = Main.graphSingleton.get(name).getCountry();
             countryList.add(country);
         }
+
+        sortListByArmyNumbers(countryList);
+
+
         result = FXCollections.observableArrayList(countryList);
         return result;
+    }
+
+    /**
+     * Sort the country list by their army numbers in descending order
+     *
+     * @param countryList arraylist of country objects.
+     */
+    private static void sortListByArmyNumbers(ArrayList<Country> countryList) {
+
+
     }
 
     public static int getPlayerControlPecentage(Player curPlayer){
@@ -162,13 +175,17 @@ public class InfoRetriver {
             Color curPlayerColor = playersList.get(playerIndex).getPlayerColor();
             Label oneLabel = new Label();
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Player: ").append(playerIndex)
-                    .append("\n").append("Control ratio: ")
-                    .append(playerDomiViewObserver.getControlRatioList().get(playerIndex))
-                    .append("\n").append("Controlled continents: ")
+            stringBuilder.append("Player:  ").append(playerIndex)
+                    .append("\nControl countries:  ")
+                    .append(playerDomiViewObserver.getControlledCountryNbrList().get(playerIndex))
+                    .append("\nControl ratio:  ")
+                    .append(String.format("%,.2f%%",(playerDomiViewObserver.getControlRatioList().get(playerIndex)*100)))
+                    .append("\nControlled continents:  ")
                     .append(playerDomiViewObserver.getControlledContinentNbrList().get(playerIndex))
-                    .append("\n").append("Total army: ")
+                    .append("\nTotal army:  ")
                     .append(playerDomiViewObserver.getTotalArmyNbrList().get(playerIndex))
+                    .append("\nContinent bonus:  ")
+                    .append(playerDomiViewObserver.getContinentBonusList().get(playerIndex))
                     .append("\n\n");
             oneLabel.setText(stringBuilder.toString());
             oneLabel.setTextFill(curPlayerColor);

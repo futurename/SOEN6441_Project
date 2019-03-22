@@ -11,3 +11,6 @@
     -fx-background-color: transparent, white, transparent, white;
 }
 
+.text-area *.text {
+    -fx-text-alignment: center;
+}

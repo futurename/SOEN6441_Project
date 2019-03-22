@@ -21,7 +21,6 @@ public class FinalViewController {
                 .append(AttackProcess.winnerPlayerIndex)
                 .append("> WINS!");
 
-        txa_gameOverInfo.setStyle("-fx-font-alignment: center");
         txa_gameOverInfo.setText(stringBuilder.toString());
     }
 }
