@@ -14,7 +14,6 @@ public class MapObject {
     public StringBuilder errorMsg = new StringBuilder("") ;
     private HashMap<String,Integer> countryCheckFlag = new HashMap<String,Integer>();
 
-    private HashMap<String, Boolean> checkList = new HashMap<String, Boolean>();
     /**
      * arrContinent storage new continent
      */
@@ -172,6 +171,7 @@ public class MapObject {
      */
     public boolean correctCheckConnectContinent(ArrayList<MEContinent> continentsArr, ArrayList<MECountry> countryArr){
         Queue<String> checkQueue = new LinkedList<String>();
+        HashMap<String, Boolean> checkList = new HashMap<String, Boolean>();
 
         //Check all the continent
         for(int i=0;i< continentsArr.size();i++){

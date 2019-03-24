@@ -82,7 +82,7 @@ public class MapEditorTest {
     @Test public void testF() throws Exception{
         testMEMain.arrMEContinent.clear();
         testMEMain.arrMECountry.clear();
-        readMap("maps/ErrorMap/World-sixtherror.map");
+        readMap("maps/ErrorMap/World-seconderror.map");
         MECheckMapCorrectness mapCheck = new  MECheckMapCorrectness();
         assertEquals( "Country doesn't connect with any country of its continent",mapCheck.isCorrect(testMEMain.arrMECountry, testMEMain.arrMEContinent));
     }

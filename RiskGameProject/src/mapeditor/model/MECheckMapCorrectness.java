@@ -17,9 +17,9 @@ public class MECheckMapCorrectness{
      * @param continentsArr continent list
      * @return error information error string
      */
-    public String isCorrect(ArrayList< MECountry> countryArr, ArrayList<MEContinent> continentsArr){
+    public String isCorrect(ArrayList<MECountry> countryArr, ArrayList<MEContinent> continentsArr){
         boolean checkFlagCGResult = correctCheckConnectGraph(countryArr);
-        boolean checkFlagCCBResult = correctCheckContinentCountryBelonging(continentsArr,countryArr);
+        boolean checkFlagCCBResult = correctCheckConnectContinent(continentsArr,countryArr);
         boolean checkFlagCBResult = correctCheckCountryBelonging(continentsArr,countryArr);
 
         if(checkFlagCGResult == false){
@@ -89,46 +89,76 @@ public class MECheckMapCorrectness{
 
     /**
      * second correct checkCCB
-     * check whether a country is separate from other country in its continent
-     * @param continents continent list
-     * @param country country list
+     * check whether countries in a continent is unconnected
+     * @param continentsArr continent array
+     * @param countryArr country array
      * @return true for correct, false for error
      */
+    public boolean correctCheckConnectContinent(ArrayList<MEContinent> continentsArr, ArrayList<MECountry> countryArr){
+        Queue<String> checkQueue = new LinkedList<String>();
+        HashMap<String, Boolean> checkList = new HashMap<String, Boolean>();
+        //Check all the continent
+        for(int i=0;i< continentsArr.size();i++){
+            MEContinent newContinent = continentsArr.get(i);
+            String newCountryName = "";
 
-    public  boolean correctCheckContinentCountryBelonging(ArrayList<MEContinent> continents, ArrayList<MECountry> country){
-        checkFlagCCB = true;
-        for(int i = 0;i<continents.size();i++){
-            if(continents.get(i).getCountryNumber()>1){
-                countryCheckFlag.clear();
-                for(Iterator iter = continents.get(i).getCountryListName().iterator(); iter.hasNext();) {
-                    countryCheckFlag.put(iter.next().toString(),0);
-                }
-                for(int j = 0;j<continents.get(i).getCountryNumber();j++){
-                    String tempCountry = continents.get(i).getCountryListName().get(j);
-                    if(countryCheckFlag.get(tempCountry)==0) {
-                        for (int k = 0; k < country.size(); k++) {
-                            if (country.get(k).getCountryName().equals(tempCountry)) {
-                                for(Iterator iters = country.get(k).getNeighborName().iterator(); iters.hasNext();) {
-                                    String keyTemp = iters.next().toString();
-                                    if(countryCheckFlag.containsKey(keyTemp)) {
-                                        countryCheckFlag.put(tempCountry, 1);
-                                        countryCheckFlag.put(keyTemp, 1);
+            //If there is no country or a single country
+            if(newContinent.countryList.size() <= 1){
+                continue;
+            }
+
+            for(int j=0;j< newContinent.countryList.size(); j++) {
+                newCountryName = newContinent.countryList.get(j);
+                checkList.put(newCountryName, false);
+            }
+            for(int j=0;j< countryArr.size(); j++){
+                MECountry newCountry = countryArr.get(j);
+
+                //If find the right country that in the current continent
+                if(newCountry.getCountryName().equals(newCountryName)){
+                    for(int k=0; k< newCountry.getNeighborSize(); k++){
+                        checkQueue.offer(newCountry.getCountryName());
+
+                        while(!checkQueue.isEmpty()){
+                            String curCountryName = checkQueue.poll();
+                            MECountry countryObj = new MECountry();
+
+                            for(int m =0; m < countryArr.size(); m++){
+                                if(countryArr.get(m).getCountryName().equals(curCountryName)){
+                                    countryObj = countryArr.get(m);
+                                }
+                            }
+                            LinkedList<String> neighbors = countryObj.getNeighborName();
+
+                            for(int n = 0; n < neighbors.size(); n++) {
+                                for(int f = 0; f < newContinent.countryList.size(); f++){
+
+                                    if(newContinent.countryList.get(f).equals(neighbors.get(n))) {
+                                        if(!checkList.get(neighbors.get(n))){
+                                            checkList.replace(neighbors.get(n), true);
+                                            checkQueue.offer(neighbors.get(n));
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
-                for (String key:countryCheckFlag.keySet()) {
-                    if(countryCheckFlag.get(key)==0){
-                        checkFlagCCB = false;
-                    }
+            }
+            //After bfs all the country in that continent
+            Iterator<String> countrySet = checkList.keySet().iterator();
+            while (countrySet.hasNext()) {
+                boolean value = checkList.get(countrySet.next());
+
+                if (value == false) {
+                    return false;
                 }
             }
-            countryCheckFlag.clear();
+            checkList.clear();
         }
-        return checkFlagCCB;
+        return true;
     }
+
     /**
      * third correct checkCB
      * every country belongs to one and only one continent
