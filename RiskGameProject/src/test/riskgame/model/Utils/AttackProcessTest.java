@@ -9,8 +9,6 @@ import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.AttackProcess;
 
-import java.util.ArrayList;
-
 /** 
 * AttackProcess Tester. 
 * 
@@ -93,12 +91,7 @@ public void testIsPlayerHasCountry() throws Exception {
 */ 
 @Test
 public void testGetDiceResultList() throws Exception {
-    ArrayList<Integer> result;
-    AttackProcess process = new AttackProcess();
-    int diceTimes=5;
-    result= AttackProcess.getDiceResultList(diceTimes);
-    Assert.assertEquals(AttackProcess.getDiceResultList(diceTimes),diceTimes);
-} 
+    }
 
 /** 
 * 
