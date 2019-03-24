@@ -10,6 +10,7 @@ import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.AttackProcess;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /** 
 * AttackProcess Tester. 
@@ -125,7 +126,20 @@ public void testIsCountryConquered() throws Exception {
 * 
 */ 
 @Test
-public void testIsContinentConquered() throws Exception { 
+public void testIsContinentConquered() throws Exception {
+    Player player=new Player(5);
+    int playerIndex = player.getPlayerIndex();
+    Continent continent=new Continent("demo continent",7);
+
+    Assert.assertFalse(AttackProcess.isContinentConquered(player.getPlayerIndex(),"demo continent"));
+
+    String curContinent=continent.getContinentName();
+
+    for (Map.Entry<String, Country> entry : continent.getContinentCountryGraph().entrySet()) {
+        entry.getValue().setCountryOwnerIndex(playerIndex);
+    }
+        Assert.assertTrue(AttackProcess.isContinentConquered(playerIndex,curContinent));
+
 //TODO: Test goes here... 
 } 
 
