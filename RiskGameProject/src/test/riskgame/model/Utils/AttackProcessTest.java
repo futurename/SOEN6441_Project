@@ -9,6 +9,8 @@ import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.AttackProcess;
 
+import java.util.ArrayList;
+
 /** 
 * AttackProcess Tester. 
 * 
@@ -91,6 +93,13 @@ public void testIsPlayerHasCountry() throws Exception {
 */ 
 @Test
 public void testGetDiceResultList() throws Exception {
+    ArrayList<Integer> result=new ArrayList<>();
+    int diceTimes=3;
+    for(int i=0;i<=diceTimes;i++) {
+        result = AttackProcess.getDiceResultList(diceTimes);
+
+    }
+    Assert.assertEquals(AttackProcess.getDiceResultList(diceTimes),result);
 
 }
 
@@ -100,7 +109,13 @@ public void testGetDiceResultList() throws Exception {
 * 
 */ 
 @Test
-public void testIsCountryConquered() throws Exception { 
+public void testIsCountryConquered() throws Exception {
+    Country country=new Country("demo country");
+    Assert.assertFalse(AttackProcess.isCountryConquered(country));
+    country.setCountryArmyNumber(0);
+    Assert.assertTrue(AttackProcess.isCountryConquered(country));
+
+
 //TODO: Test goes here... 
 } 
 
