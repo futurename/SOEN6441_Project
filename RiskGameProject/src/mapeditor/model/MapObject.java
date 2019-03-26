@@ -359,8 +359,6 @@ public class MapObject {
                         String[] countryData = reader.get(k).split(",");
                         flag = false;
                         for(int z=0; z < loadContinent.size();z++) {
-                            System.out.println("in:" + loadContinent.get(z));
-                            System.out.println(countryData[3]);
                             if(loadContinent.get(z).equals(countryData[3])){
                                 flag = true;
                                 break;
