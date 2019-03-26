@@ -23,6 +23,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.LinkedList;
 
+/**
+ * @author TX
+ * @since build1
+ **/
 public class MapEditorSaveFileController {
 
     @FXML

@@ -25,8 +25,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * edit page class
- */
+ * @author TX
+ * @since build1
+ **/
 public class MapEditorEditPageController {
 
 

@@ -22,7 +22,9 @@ import java.io.IOException;
 
 /**
  * this class is to select old map from folder
- */
+ * @author YW
+ * @since build1
+ **/
 public class MapEditorEditController {
 
     @FXML

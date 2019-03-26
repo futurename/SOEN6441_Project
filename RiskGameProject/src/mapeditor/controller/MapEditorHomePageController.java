@@ -16,8 +16,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * home page class
- */
+ * @author TX
+ * @since build1
+ **/
 public class MapEditorHomePageController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader

@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import mapeditor.MEMain;
 
 /**
- * @author YQW
+ * @author YW
  * @since build1
  **/
 public class MapEditorDeleteCountryController {
