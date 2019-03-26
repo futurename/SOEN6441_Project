@@ -109,7 +109,7 @@ public class MapObject {
         if(correctCheckCountryBelonging(mapObj.arrContinent, mapObj.arrCountry) == false){
             errorMsg.append(MEErrorMsg.MULTIPLE_CONTINENT_ERROR.getMsg());
         }
-        if(mapContinentCheck(mapPath) == false){
+        if(mapContentCheck(mapPath) == false){
             errorMsg.append(MEErrorMsg.FILE_CONTINENT_ERROR.getMsg());
         }
         if(mapFormatCheck(mapPath) == false){
@@ -320,7 +320,7 @@ public class MapObject {
      * @param mapPath map file path
      * @throws Exception map file not found
      */
-    private boolean mapContinentCheck(String mapPath){
+    public boolean mapContentCheck(String mapPath){
         ArrayList<String> reader = new ArrayList<>();
         ArrayList<String> loadContinent = new ArrayList<>();
 
@@ -366,6 +366,6 @@ public class MapObject {
                 }
             }
         }
-        return checkFlagCB;
+        return checkFlagCCB;
     }
 }
