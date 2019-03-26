@@ -157,8 +157,13 @@ public class AttackProcessTest {
     */
     @Test
     public void testIsContinentConquered() throws Exception {
+        Player player=new Player(5);
+        Continent continent=new Continent("demo continent",2);
+        Assert.assertFalse(AttackProcess.isContinentConquered(player.getPlayerIndex(),continent.getContinentName()));
+        continent.setContinentOwnerIndex(player.getPlayerIndex());
+        Assert.assertTrue(AttackProcess.isContinentConquered(player.getPlayerIndex(),continent.getContinentName()));
 
-    //TODO: Test goes here...
+        //TODO: Test goes here...
     }
 
     /**
@@ -168,6 +173,7 @@ public class AttackProcessTest {
     */
     @Test
     public void testUpdateContinentOwner() throws Exception {
+
     //TODO: Test goes here...
     }
 
