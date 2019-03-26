@@ -16,6 +16,10 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * @author TX
+ * @since build1
+ **/
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MapEditorTest {
 

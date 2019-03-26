@@ -4,6 +4,10 @@ import mapeditor.MEMain;
 
 import java.util.*;
 
+/**
+ * @author TX
+ * @since build1
+ **/
 public class MECheckMapCorrectness{
 
     private boolean checkFlagCG = true;

@@ -12,7 +12,9 @@ import java.util.ArrayList;
 
 /**
  * The class init map editor
- */
+ * @author YQW
+ * @since build1
+ **/
 public class MEMain extends Application {
 
     public static ArrayList<MEContinent> arrMEContinent = new ArrayList<MEContinent>();

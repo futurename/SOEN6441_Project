@@ -1,5 +1,9 @@
 package mapeditor.model;
 
+/**
+ * @author TX
+ * @since build1
+ **/
 public enum MEErrorMsg {
     FILE_NOT_EXIST(1000, "FILE NOT EXIST\n"),
     FILE_FORMAT_ERROR(1001, "INVALID FORMAT\n"),

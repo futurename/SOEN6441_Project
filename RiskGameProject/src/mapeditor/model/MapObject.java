@@ -6,6 +6,10 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.*;
 
+/**
+ * @author YW TX
+ * @since build1
+ **/
 public class MapObject {
 
     private boolean checkFlagCG = true;

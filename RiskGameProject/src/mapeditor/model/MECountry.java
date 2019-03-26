@@ -5,7 +5,9 @@ import java.util.LinkedList;
 
 /**
  * country class
- */
+ * @author YQW
+ * @since build1
+ **/
 public class MECountry{
 
     /**

@@ -7,7 +7,9 @@ import java.util.LinkedList;
 
 /**
  * class continent
- */
+ * @author TX
+ * @since build1
+ **/
 public class MEContinent{
     /**
      * Continent name attribute
