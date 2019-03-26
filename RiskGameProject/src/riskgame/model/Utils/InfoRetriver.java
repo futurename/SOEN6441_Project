@@ -17,6 +17,7 @@ import static riskgame.Main.*;
 
 /**
  * This class includes methods for processing and organizing different type of data required for display in ListView
+ * @author WW
  **/
 public class InfoRetriver {
 

@@ -34,7 +34,7 @@ import static riskgame.controllers.StartViewController.reinforceInitCounter;
 /**
  * controller class for ReinforceView.fxml
  *
- * @author WW
+ * @author WW, Zhanfan
  * @since build1
  **/
 public class ReinforceViewController implements Initializable {

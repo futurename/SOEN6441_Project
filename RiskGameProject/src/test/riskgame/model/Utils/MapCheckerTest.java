@@ -12,6 +12,7 @@ import static org.junit.Assert.assertFalse;
 
 /**
  * MapChecker tester.
+ * @author Zhanfan
  */
 
 public class MapCheckerTest {

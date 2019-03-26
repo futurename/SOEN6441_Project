@@ -14,6 +14,7 @@ import java.util.LinkedHashMap;
 
 /**
  * Fortification phase tester
+ * @author WW
  */
 
 public class FortificationPhaseTest {
