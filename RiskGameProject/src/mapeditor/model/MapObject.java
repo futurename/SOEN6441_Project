@@ -106,8 +106,11 @@ public class MapObject {
         if(correctCheckConnectGraph(mapObj.arrCountry) == false){
             errorMsg.append(MEErrorMsg.UNCONNECTED_GRAPH_ERROR.getMsg());
         }
-        if (correctCheckCountryBelonging(mapObj.arrContinent, mapObj.arrCountry) == false){
+        if(correctCheckCountryBelonging(mapObj.arrContinent, mapObj.arrCountry) == false){
             errorMsg.append(MEErrorMsg.MULTIPLE_CONTINENT_ERROR.getMsg());
+        }
+        if(mapContinentCheck(mapPath) == false){
+            errorMsg.append(MEErrorMsg.FILE_CONTINENT_ERROR.getMsg());
         }
         if(mapFormatCheck(mapPath) == false){
             errorMsg.append(MEErrorMsg.FILE_FORMAT_ERROR.getMsg());
@@ -317,8 +320,8 @@ public class MapObject {
      * @param mapPath map file path
      * @throws Exception map file not found
      */
-    private boolean mapContinentCheck(String mapPath)throws Exception{
-        ArrayList<String> reader = new ArrayList<String>();
+    private boolean mapContinentCheck(String mapPath){
+        ArrayList<String> reader = new ArrayList<>();
         ArrayList<String> loadContinent = new ArrayList<>();
 
         try {
