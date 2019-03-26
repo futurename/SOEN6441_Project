@@ -311,4 +311,58 @@ public class MapObject {
         checkresult = checkresult1&&checkresult2&&checkresult3;
         return checkresult;
     }
+
+    /**
+     * read map from the given valid map path
+     * @param mapPath map file path
+     * @throws Exception map file not found
+     */
+    private boolean mapContinentCheck(String mapPath)throws Exception{
+        ArrayList<String> reader = new ArrayList<String>();
+        ArrayList<String> loadContinent = new ArrayList<>();
+
+        try {
+            File file=new File(mapPath);
+            if(file.isFile()&&file.exists()){
+                InputStreamReader read = new InputStreamReader(new FileInputStream(file));
+                BufferedReader bufferedReader=new BufferedReader(read);
+                String lineTxt=null;
+                while((lineTxt=bufferedReader.readLine())!=null){
+                    reader.add(lineTxt);
+                }
+                read.close();
+            }else{
+                System.out.println("cannot find file");
+            }
+        } catch (Exception e){
+            System.out.println("wrong");
+            e.printStackTrace();
+        }
+
+        for(int i = 0;i<reader.size();i++){
+            if(reader.get(i).equals("[Continents]")){
+                for(int j=i+1;j<reader.size();j++){
+                    if(!reader.get(j).equals("")){
+                        loadContinent.add(reader.get(j).split("=")[0]);
+                    }
+                    else{
+                        break;
+                    }
+                }
+            }
+            else if(reader.get(i).equals("[Territories]")){
+                for(int k=i+1;k<reader.size();k++){
+                    if(!reader.get(k).equals("")){
+                        String[] countrydata = reader.get(k).split(",");
+                        for(int z=0; z<loadContinent.size();z++) {
+                            if(!loadContinent.get(z).equals(countrydata[3])){
+                                checkFlagCCB = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return checkFlagCB;
+    }
 }
