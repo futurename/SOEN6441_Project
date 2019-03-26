@@ -25,8 +25,9 @@ import static riskgame.controllers.StartViewController.firstRoundCounter;
 
 /**
  * controller class for FortificationView.fxml
+ * @author WW
+ * @since build1
  **/
-
 public class FortificationViewController {
 
     @FXML

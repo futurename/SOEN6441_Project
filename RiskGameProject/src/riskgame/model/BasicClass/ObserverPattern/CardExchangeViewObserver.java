@@ -13,6 +13,8 @@ import java.util.Observer;
  * This class is not a static observer.
  * It will instantiate in ReinforceViewController.java as a private observer.
  * The observable object is Player and phaseViewObservable.
+ * @author zhanfan
+ * @since build2
  */
 public class CardExchangeViewObserver implements Observer {
     private HashMap<String, ArrayList<Card>> playersCards = new HashMap<>();

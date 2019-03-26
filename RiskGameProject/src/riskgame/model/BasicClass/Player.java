@@ -17,6 +17,8 @@ import static riskgame.controllers.AttackViewController.MAX_DEFENDING_ARMY_NUMBE
  * This class includes attributes a player need and required methods
  * Observer property of this class is updating changes triggered by countries
  * As a observable object, player is observed by CardExchangeViewObserver for cards' changes
+ * @author WW
+ * @since build1
  **/
 public class Player extends Observable implements Observer {
     private static final int DEFAULT_DIVISION_FACTOR = 3;
@@ -88,18 +90,13 @@ public class Player extends Observable implements Observer {
         return controlledContinents.size();
     }
 
-
     public void setActiveStatus(boolean activeStatus) {
         this.activeStatus = activeStatus;
     }
 
-
-
     public boolean getActiveStatus() {
         return activeStatus;
     }
-
-
 
     /**
      * get the sum of army number in all owned countries
@@ -241,11 +238,11 @@ public class Player extends Observable implements Observer {
     /**
      * this function defines that wheather the attacker or defender is available to attack
      * cheks if both have enough armies to attack.
-     * @param attackingCountry
-     * @param defendingCountry
-     * @param attackArmyNbr
-     * @param defendArmyNbr
-     * @param stringBuilder
+     * @param attackingCountry class Country
+     * @param defendingCountry class Country
+     * @param attackArmyNbr men engaged
+     * @param defendArmyNbr men engaged
+     * @param stringBuilder display battle report
      */
     private void recursiveAttack(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr, StringBuilder stringBuilder) {
         if (attackArmyNbr == 0 || defendArmyNbr == 0) {

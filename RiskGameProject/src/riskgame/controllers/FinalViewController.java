@@ -6,8 +6,9 @@ import riskgame.model.Utils.AttackProcess;
 
 /**
  * created on 2019/03/17_23:04
+ * @author WW
+ * @since build2
  **/
-
 public class FinalViewController {
     @FXML
     private TextArea txa_gameOverInfo;

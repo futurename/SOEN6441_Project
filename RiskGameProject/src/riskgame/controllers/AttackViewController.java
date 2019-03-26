@@ -33,6 +33,8 @@ import static riskgame.Main.playerDomiViewObserver;
 
 /**
  * controller class for AttackView.fxml
+ * @author WW
+ * @since build1
  **/
 public class AttackViewController implements Initializable {
 

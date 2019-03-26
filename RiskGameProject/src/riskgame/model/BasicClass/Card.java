@@ -4,8 +4,9 @@ import java.util.Random;
 
 /**
  * Card class
+ * @author zhanfan
+ * @since build1
  **/
-
 public enum Card {
     INFANTRY("Infantry"),
     CAVALRY("Cavalry"),

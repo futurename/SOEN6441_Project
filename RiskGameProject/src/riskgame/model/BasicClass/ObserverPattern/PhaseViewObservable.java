@@ -8,6 +8,8 @@ import java.util.Observable;
  * It is observed by PhaseViewObserver and cardExchangeViewObserver who only look at exchange time.
  * @see PhaseViewObserver
  * @see CardExchangeViewObserver
+ * @author zhanfan
+ * @since build2
  **/
 public class PhaseViewObservable extends Observable {
     private final String attackActionStr = "Action:\n" +

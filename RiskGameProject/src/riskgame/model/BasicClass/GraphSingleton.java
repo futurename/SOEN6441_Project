@@ -5,7 +5,9 @@ import java.util.Map;
 
 
 /**
- * This class represnets a singleton pattern graph for storing world map information
+ * This class represents a singleton pattern graph for storing world map information
+ * @author WW
+ * @since build1
  **/
 public enum GraphSingleton {
     /**

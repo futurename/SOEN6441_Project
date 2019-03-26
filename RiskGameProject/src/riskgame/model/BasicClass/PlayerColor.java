@@ -4,6 +4,8 @@ import javafx.scene.paint.Color;
 
 /**
  * This class enumates colors used for assigning to each player
+ * @author WW
+ * @since build1
  **/
 public enum PlayerColor {
     GREEN(Color.GREEN),

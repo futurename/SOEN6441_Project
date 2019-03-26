@@ -33,8 +33,9 @@ import static riskgame.controllers.StartViewController.reinforceInitCounter;
 
 /**
  * controller class for ReinforceView.fxml
+ * @author WW
+ * @since build1
  **/
-
 public class ReinforceViewController implements Initializable {
     @FXML
     private Button btn_nextStep;

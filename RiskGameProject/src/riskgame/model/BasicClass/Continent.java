@@ -7,6 +7,8 @@ import java.util.Map;
 /**
  * This class includes attributes a continent need and required methods. Countries inside a continent object is stored in graph with
  * LinkedHashMap.
+ * @author WW
+ * @since build1
  **/
 public class Continent {
     private final String continentName;

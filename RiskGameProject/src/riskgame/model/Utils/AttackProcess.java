@@ -17,6 +17,8 @@ import java.util.stream.IntStream;
  * checks that how many dice can be tron and how many dice user want to throw
  * checks if defender wins or attacker
  * checks if country,continent or whole map is conquered or not
+ * @author Karamveer
+ * @since build2
  */
 public class AttackProcess {
 

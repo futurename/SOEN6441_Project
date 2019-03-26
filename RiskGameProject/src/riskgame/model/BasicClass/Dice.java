@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+/**
+ * base class for dice
+ * @author Karamveer
+ * @since build2
+ */
 public class Dice {
     private Random r;
     private final int NUMBER_RANGE = 6;

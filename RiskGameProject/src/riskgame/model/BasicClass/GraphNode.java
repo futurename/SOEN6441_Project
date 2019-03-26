@@ -9,8 +9,9 @@ import java.util.LinkedList;
  * This class represents a node in world map graph data structure, including a country object, its adjacent country objects and an
  * indicator for traversal usage. It also include traversal methods of depth first and breadth first search for acquiring all reachable countries
  * from a selected country.
+ * @author WW
+ * @since build1
  **/
-
 public class GraphNode {
     private Country country;
     private ArrayList<Country> adjacentCountryList;

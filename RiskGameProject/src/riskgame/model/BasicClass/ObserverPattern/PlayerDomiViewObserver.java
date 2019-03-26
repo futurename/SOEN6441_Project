@@ -10,7 +10,10 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
+ * Observer class for player domination view
  * created on 2019/03/08_23:53
+ * @author WW
+ * @since build2
  **/
 public class PlayerDomiViewObserver implements Observer {
     private ArrayList<Integer> controlledCountryNbrList;

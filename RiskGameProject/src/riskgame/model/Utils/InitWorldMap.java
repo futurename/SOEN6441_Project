@@ -15,6 +15,10 @@ import java.util.Map;
 
 import static riskgame.Main.graphSingleton;
 
+/**
+ * @author WW
+ * @since build1
+ */
 public class InitWorldMap {
     /**
      * default string value for marking continent section in map file

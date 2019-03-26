@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 /**
  * Map checker examines the map format before display it.
+ * @author zhanfan
+ * @since build1
  */
 public class MapChecker {
     private static final int NO_ERROR = 9527;

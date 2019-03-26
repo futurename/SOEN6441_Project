@@ -15,6 +15,8 @@ import riskgame.model.BasicClass.Player;
 
 /**
  * This class includes methods for rendering itmes displayed in ListViews
+ * @author WW
+ * @since build1
  **/
 public class ListviewRenderer {
 

@@ -4,6 +4,9 @@ import java.util.Observable;
 
 /**
  * This class includes attributes a country needs and required methods
+ * as a observable, country is observed by player
+ * @author WW
+ * @since build1
  **/
 public class Country extends Observable{
     private final String countryName;

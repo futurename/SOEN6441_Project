@@ -37,8 +37,9 @@ import static riskgame.model.Utils.InitWorldMap.buildWorldMapGraph;
 
 /**
  * controller class for StartView.fxml
+ * @author WW
+ * @since build1
  **/
-
 public class StartViewController {
     @FXML
     private TextField txf_mapPath;

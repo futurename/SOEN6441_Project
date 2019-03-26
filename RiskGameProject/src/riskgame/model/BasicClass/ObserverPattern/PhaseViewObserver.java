@@ -4,9 +4,13 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
+ * observer class for phase information
+ * observing PhaseViewObservable
  * created on 2019/03/08_15:11
+ * @see PhaseViewObservable
+ * @author zhanfan
+ * @since build2
  **/
-
 public class PhaseViewObserver implements Observer {
     private String phaseName;
     private int playerIndex;
