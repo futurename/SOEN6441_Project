@@ -102,30 +102,19 @@ public class AttackProcessTest {
     public void testUpdateContinentAndWorldStatus() throws Exception {
         initGameSimulator();
         attackingCountry.setCountryOwnerIndex(playerDefender.getPlayerIndex());
-
-        try {
-            AttackProcess.updateContinentAndWorldStatus(playerDefender, playerAttacker, demoContinent);
-        } catch (ExceptionInInitializerError e) {
-            System.out.println("ignore popup alert window");
-        } finally {
-            Assert.assertTrue(playerDefender.getContinentBonus() == demoContinent.getContinentBonusValue());
-
-            System.out.println("\nattacker bonus: " + playerAttacker.getContinentBonus() + ", defender bonus: " + playerDefender.getContinentBonus()
-                    + ", continent owner: " + demoContinent.getContinentOwnerIndex() + "\n");
-        }
+        AttackProcess.updateContinentAndWorldStatus(playerDefender, playerAttacker, demoContinent);
+        Assert.assertEquals(playerDefender.getContinentBonus(), demoContinent.getContinentBonusValue());
+        System.out.println("\nattacker bonus: " + playerAttacker.getContinentBonus() + ", defender bonus: " + playerDefender.getContinentBonus()
+                + ", continent owner: " + demoContinent.getContinentOwnerIndex() + "\n");
 
         attackingCountry.setCountryOwnerIndex(playerAttacker.getPlayerIndex());
         defendingCountry.setCountryOwnerIndex(playerAttacker.getPlayerIndex());
-        try {
-            AttackProcess.updateContinentAndWorldStatus(playerAttacker, playerDefender, demoContinent);
-        } catch (ExceptionInInitializerError e) {
-            System.out.println("ignore popup alert window");
-        } finally {
-            Assert.assertTrue(playerAttacker.getContinentBonus() == demoContinent.getContinentBonusValue());
 
-            System.out.println("\nattacker bonus: " + playerAttacker.getContinentBonus() + ", defender bonus: " + playerDefender.getContinentBonus()
-                    + ", continent owner: " + demoContinent.getContinentOwnerIndex() + "\n");
-        }
+        AttackProcess.updateContinentAndWorldStatus(playerAttacker, playerDefender, demoContinent);
+
+        Assert.assertTrue(playerAttacker.getContinentBonus() == demoContinent.getContinentBonusValue());
+        System.out.println("\nattacker bonus: " + playerAttacker.getContinentBonus() + ", defender bonus: " + playerDefender.getContinentBonus()
+                + ", continent owner: " + demoContinent.getContinentOwnerIndex() + "\n");
 
     }
 
@@ -136,20 +125,15 @@ public class AttackProcessTest {
     public void testUpdateConqueredCountry() {
         int armyNbrBeforeAttack = attackingCountry.getCountryArmyNumber();
         int assumedRemainingArmyNbr = 3;
-        try {
-            AttackProcess.updateConqueredCountry(attackingCountry, defendingCountry, assumedRemainingArmyNbr, playerAttacker, playerDefender);
-        } catch (Error e) {
-            System.out.println("No alert window!");
-        } finally {
-            boolean attackerConquered = playerAttacker.getOwnedCountryNameList().contains("defending country");
-            assertTrue(attackerConquered);
-            boolean defenderLoss = playerDefender.getOwnedCountryNameList().contains("defending country");
-            assertFalse(defenderLoss);
-            int attackingCountryArmy = attackingCountry.getCountryArmyNumber();
-            assertEquals(armyNbrBeforeAttack - assumedRemainingArmyNbr, attackingCountryArmy);
-            int defendingCountryArmy = defendingCountry.getCountryArmyNumber();
-            assertEquals(3, defendingCountryArmy);
-        }
+        AttackProcess.updateConqueredCountry(attackingCountry, defendingCountry, assumedRemainingArmyNbr, playerAttacker, playerDefender);
+        boolean attackerConquered = playerAttacker.getOwnedCountryNameList().contains("defending country");
+        assertTrue(attackerConquered);
+        boolean defenderLoss = playerDefender.getOwnedCountryNameList().contains("defending country");
+        assertFalse(defenderLoss);
+        int attackingCountryArmy = attackingCountry.getCountryArmyNumber();
+        assertEquals(armyNbrBeforeAttack - assumedRemainingArmyNbr, attackingCountryArmy);
+        int defendingCountryArmy = defendingCountry.getCountryArmyNumber();
+        assertEquals(3, defendingCountryArmy);
     }
 
     /**
