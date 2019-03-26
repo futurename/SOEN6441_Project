@@ -105,7 +105,7 @@ public class AttackProcessTest {
 
         try {
             AttackProcess.updateContinentAndWorldStatus(playerDefender, playerAttacker, demoContinent);
-        } catch (Error e) {
+        } catch (NumberFormatException e) {
             System.out.println("ignore popup alert window");
         } finally {
             Assert.assertTrue(playerDefender.getContinentBonus() == demoContinent.getContinentBonusValue());
@@ -118,7 +118,7 @@ public class AttackProcessTest {
         defendingCountry.setCountryOwnerIndex(playerAttacker.getPlayerIndex());
         try {
             AttackProcess.updateContinentAndWorldStatus(playerAttacker, playerDefender, demoContinent);
-        } catch (Error e) {
+        } catch (ExceptionInInitializerError e) {
             System.out.println("ignore popup alert window");
         } finally {
             Assert.assertTrue(playerAttacker.getContinentBonus() == demoContinent.getContinentBonusValue());

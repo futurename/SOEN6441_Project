@@ -203,8 +203,8 @@ public class AttackProcess {
 
     private static void popupContinentConqueredAlert(int playerIndex, String continentName, Continent curContinent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText("Contient conquered!");
-        alert.setContentText("Contient [ " + continentName + " ] is conquered by Player [ " + playerIndex + " ]! "
+        alert.setHeaderText("Continent conquered!");
+        alert.setContentText("Continent [ " + continentName + " ] is conquered by Player [ " + playerIndex + " ]! "
                 + "  Bonus: [" + curContinent.getContinentBonusValue() + "]");
         alert.showAndWait();
 
@@ -225,7 +225,7 @@ public class AttackProcess {
             }
         }
 
-        if (result == true) {
+        if (result) {
             curContinent.setContinentOwnerIndex(playerIndex);
             try {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -243,7 +243,7 @@ public class AttackProcess {
 
     public static void updateWorldOwner(int playerIndex) {
         boolean result = isWorldConquered(playerIndex);
-        if (result == true) {
+        if (result) {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Game Over!");
