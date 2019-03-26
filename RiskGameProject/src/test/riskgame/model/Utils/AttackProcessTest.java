@@ -105,7 +105,7 @@ public class AttackProcessTest {
 
         try {
             AttackProcess.updateContinentAndWorldStatus(playerDefender, playerAttacker, demoContinent);
-        } catch (NumberFormatException e) {
+        } catch (ExceptionInInitializerError e) {
             System.out.println("ignore popup alert window");
         } finally {
             Assert.assertTrue(playerDefender.getContinentBonus() == demoContinent.getContinentBonusValue());
