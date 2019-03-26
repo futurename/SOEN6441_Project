@@ -11,6 +11,7 @@ import java.util.Random;
 
 /**
  * This class includes methods for initlizing all players and allocating countries to each player randomly
+ * @author WW
  **/
 public class InitPlayers {
     /**

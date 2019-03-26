@@ -11,6 +11,10 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Player class test cases
+ * @author  Karamveer
+ */
 public class PlayerTest {
     private Country attackerCountry;
     private Country defenderCountry;

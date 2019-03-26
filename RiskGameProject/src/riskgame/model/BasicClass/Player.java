@@ -18,7 +18,7 @@ import static riskgame.controllers.AttackViewController.MAX_DEFENDING_ARMY_NUMBE
  * Observer property of this class is updating changes triggered by countries
  * As a observable object, player is observed by CardExchangeViewObserver for cards' changes
  *
- * @author Wei Wang, Zhanfan Zhou, Karamveer
+ * @author Zhanfan Zhou, Karamveer, Wei Wang
  * @since build1
  **/
 public class Player extends Observable implements Observer {
