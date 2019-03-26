@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.GraphSingleton;
@@ -93,6 +94,7 @@ public class Main extends Application {
      * @throws IOException launch fails
      */
     public static void main(String[] args) throws IOException {
+        StartViewController.resetStaticVariables();
         launch(args);
     }
 }

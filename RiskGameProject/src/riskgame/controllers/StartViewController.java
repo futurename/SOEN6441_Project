@@ -430,7 +430,7 @@ public class StartViewController {
     /**
      * reset all variables to original values
      */
-    private void resetStaticVariables() {
+    public static void resetStaticVariables() {
         Main.totalNumOfPlayers = -1;
         Main.playersList = new ArrayList<>();
         Main.curRoundPlayerIndex = 0;
