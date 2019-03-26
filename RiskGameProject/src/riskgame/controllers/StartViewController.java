@@ -37,7 +37,7 @@ import static riskgame.model.Utils.InitWorldMap.buildWorldMapGraph;
 
 /**
  * controller class for StartView.fxml
- * @author WW
+ * @author Zhanfan, WW
  * @since build1
  **/
 public class StartViewController {

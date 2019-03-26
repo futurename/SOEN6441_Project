@@ -12,8 +12,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Card;
@@ -25,15 +23,11 @@ import riskgame.model.Utils.ListviewRenderer;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import static riskgame.Main.*;
-import static riskgame.Main.playerDomiViewObserver;
 
 /**
  * controller class for AttackView.fxml
- * @author WW
+ * @author WW, Zhanfan, Karamveer
  * @since build1
  **/
 public class AttackViewController implements Initializable {
