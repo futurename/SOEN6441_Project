@@ -54,7 +54,7 @@ public class MapEditorAddContinentController {
     /**
      * Continent bonus input
      */
-    private int newContinentBonus = -1;
+    private int newContinentBonus;
 
     BooleanBinding booleanBindingName ;
 

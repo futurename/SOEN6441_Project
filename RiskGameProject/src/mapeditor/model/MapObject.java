@@ -13,7 +13,6 @@ import java.util.*;
 public class MapObject {
 
     private boolean checkFlagCG = true;
-    private boolean checkFlagCCB = true;
     private boolean checkFlagCB = true;
     public StringBuilder errorMsg = new StringBuilder() ;
     private HashMap<String,Integer> countryCheckFlag = new HashMap<String,Integer>();
@@ -316,11 +315,12 @@ public class MapObject {
     }
 
     /**
-     * read map from the given valid map path
+     * check if there is any country in continent which is not exist
      * @param mapPath map file path
      * @return  false for failure and true for success
      */
     public boolean mapContentCheck(String mapPath){
+        boolean flag = false;
         ArrayList<String> reader = new ArrayList<>();
         ArrayList<String> loadContinent = new ArrayList<>();
 
@@ -356,16 +356,18 @@ public class MapObject {
             else if(reader.get(i).equals("[Territories]")){
                 for(int k=i+1;k<reader.size();k++){
                     if(!reader.get(k).equals("")){
-                        String[] countrydata = reader.get(k).split(",");
-                        for(int z=0; z<loadContinent.size();z++) {
-                            if(!loadContinent.get(z).equals(countrydata[3])){
-                                checkFlagCCB = false;
+                        String[] countryData = reader.get(k).split(",");
+                        for(int z=0; z < loadContinent.size();z++) {
+                            System.out.println("in:" + loadContinent.get(z));
+                            System.out.println(countryData[3]);
+                            if(!loadContinent.get(z).equals(countryData[3])){
+                                flag = true;
                             }
                         }
                     }
                 }
             }
         }
-        return checkFlagCCB;
+        return flag;
     }
 }
