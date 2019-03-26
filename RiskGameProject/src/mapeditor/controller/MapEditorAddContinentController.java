@@ -14,7 +14,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mapeditor.MEMain;
 
-
+/**
+ * @author YQW
+ * @since build1
+ **/
 public class MapEditorAddContinentController {
 
     @FXML

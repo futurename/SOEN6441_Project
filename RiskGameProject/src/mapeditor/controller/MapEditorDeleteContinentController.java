@@ -14,7 +14,10 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import mapeditor.MEMain;
 
-
+/**
+ * @author YQW
+ * @since build1
+ **/
 public class MapEditorDeleteContinentController {
 
     @FXML
