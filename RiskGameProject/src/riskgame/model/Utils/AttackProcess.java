@@ -27,9 +27,9 @@ public class AttackProcess {
 
     /**
      * overall attack process result and it checks if country ,continent or whole map is conquered
-     * @param attackingCountry
-     * @param defendingCountry
-     * @param remainingArmyNbr
+     * @param attackingCountry attacking country
+     * @param defendingCountry defending country
+     * @param remainingArmyNbr army number ramained after attacking
      */
     public static void attackResultProcess(Country attackingCountry, Country defendingCountry, int remainingArmyNbr) {
         int defenderIndex = defendingCountry.getCountryOwnerIndex();
@@ -77,9 +77,9 @@ public class AttackProcess {
 
     /**
      * this method updates the status of country and world if these are conqured and changes the owner
-     * @param attacker
-     * @param defender
-     * @param curContinent
+     * @param attacker attacking player
+     * @param defender defending player
+     * @param curContinent current continent the country locates
      */
     public static void updateContinentAndWorldStatus(Player attacker, Player defender, Continent curContinent) {
         int attackerIndex = attacker.getPlayerIndex();
@@ -115,11 +115,11 @@ public class AttackProcess {
      * but attacking country would not, for its changes will not affect players.
      * To see specific changes: see Player.java where player acts as a observer.
      * @see Player#update(Observable, Object)
-     * @param attackingCountry
-     * @param defendingCountry
-     * @param remainingArmyNbr
-     * @param attackPlayer
-     * @param defendPlayer
+     * @param attackingCountry attacking country
+     * @param defendingCountry defending country
+     * @param remainingArmyNbr remaining army number of the attacker after attack
+     * @param attackPlayer attacker
+     * @param defendPlayer defender
      */
     public static void updateConqueredCountry(Country attackingCountry, Country defendingCountry, int remainingArmyNbr, Player attackPlayer, Player defendPlayer) {
         String defendCountryName = defendingCountry.getCountryName();

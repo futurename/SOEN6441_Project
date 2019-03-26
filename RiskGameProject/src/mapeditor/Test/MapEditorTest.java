@@ -5,7 +5,9 @@ import mapeditor.MEMain;
 import mapeditor.model.MECheckMapCorrectness;
 import mapeditor.model.MEContinent;
 import mapeditor.model.MECountry;
-import org.junit.*;
+import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.io.BufferedReader;
@@ -28,10 +30,10 @@ public class MapEditorTest {
 
     @BeforeClass
     public static void before(){
-        testMEMain.createContinent("testFirstContinent",1);
-        testMEMain.createsSoloCountry("testFirstCountry");
-        testMEMain.arrMEContinent.get(0).addCountry("testFirstCountry");
-        testMEMain.createsSoloCountry("testSecondCountry");
+        MEMain.createContinent("testFirstContinent",1);
+        MEMain.createsSoloCountry("testFirstCountry");
+        MEMain.arrMEContinent.get(0).addCountry("testFirstCountry");
+        MEMain.createsSoloCountry("testSecondCountry");
         System.out.println("Test map editor");
     }
 
@@ -39,7 +41,7 @@ public class MapEditorTest {
      * Check add continent function
      */
     @Test public void testA(){
-        MEContinent newContinent =  testMEMain.arrMEContinent.get(0);
+        MEContinent newContinent =  MEMain.arrMEContinent.get(0);
         assertEquals("testFirstContinent",newContinent.getContinentName());
         assertEquals(1,newContinent.getBonus());
     }
@@ -48,7 +50,7 @@ public class MapEditorTest {
      * Check add country function
      */
     @Test public void testB(){
-        MECountry newCountry =  testMEMain.arrMECountry.get(0);
+        MECountry newCountry =  MEMain.arrMECountry.get(0);
         assertEquals("testFirstCountry",newCountry.getCountryName());
     }
 
@@ -56,53 +58,53 @@ public class MapEditorTest {
      * Check delete continent function
      */
     @Test public void testC() {
-        testMEMain.deleteContinent("testFirstContinent");
-        assertEquals(0, testMEMain.arrMEContinent.size());
-        assertEquals(1, testMEMain.arrMECountry.size());
+        MEMain.deleteContinent("testFirstContinent");
+        assertEquals(0, MEMain.arrMEContinent.size());
+        assertEquals(1, MEMain.arrMECountry.size());
     }
 
     /**
      * Check delete country function
      */
     @Test public void testD() {
-        testMEMain.deleteCountry("testSecondCountry");
-        assertEquals(0, testMEMain.arrMECountry.size());
+        MEMain.deleteCountry("testSecondCountry");
+        assertEquals(0, MEMain.arrMECountry.size());
     }
 
     /**
      * Test for checking whether all countries in map are connected
      */
-    @Test public void testE() throws Exception{
-        testMEMain.arrMEContinent.clear();
-        testMEMain.arrMECountry.clear();
+    @Test public void testE() {
+        MEMain.arrMEContinent.clear();
+        MEMain.arrMECountry.clear();
         readMap("maps/ErrorMap/World-firsterror.map");
         MECheckMapCorrectness mapCheck = new  MECheckMapCorrectness();
-        assertEquals( "Unconnected Graph",mapCheck.isCorrect(testMEMain.arrMECountry, testMEMain.arrMEContinent));
+        assertEquals( "Unconnected Graph",mapCheck.isCorrect(MEMain.arrMECountry, MEMain.arrMEContinent));
     }
 
     /**
      * Test for checking whether all countries in one continent are placed together
      */
-    @Test public void testF() throws Exception{
-        testMEMain.arrMEContinent.clear();
-        testMEMain.arrMECountry.clear();
+    @Test public void testF() {
+        MEMain.arrMEContinent.clear();
+        MEMain.arrMECountry.clear();
         readMap("maps/ErrorMap/World-seconderror.map");
         MECheckMapCorrectness mapCheck = new  MECheckMapCorrectness();
-        assertEquals( "Country doesn't connect with any country of its continent",mapCheck.isCorrect(testMEMain.arrMECountry, testMEMain.arrMEContinent));
+        assertEquals( "Country doesn't connect with any country of its continent",mapCheck.isCorrect(MEMain.arrMECountry, MEMain.arrMEContinent));
     }
 
     /**
      * Test for checking whether a country only belongs to one continent
      */
-    @Test public void testG() throws Exception{
-        testMEMain.arrMEContinent.clear();
-        testMEMain.arrMECountry.clear();
+    @Test public void testG() {
+        MEMain.arrMEContinent.clear();
+        MEMain.arrMECountry.clear();
         readMap("maps/ErrorMap/World-thirderror.map");
         MECheckMapCorrectness mapCheck = new  MECheckMapCorrectness();
-        assertEquals( "Country belongs to mutiple continent",mapCheck.isCorrect(testMEMain.arrMECountry, testMEMain.arrMEContinent));
+        assertEquals( "Country belongs to mutiple continent",mapCheck.isCorrect(MEMain.arrMECountry, MEMain.arrMEContinent));
     }
 
-    private void readMap(String path)throws Exception{
+    private void readMap(String path){
         ArrayList<String> fileRead = new ArrayList<String>();
         try {
             File file=new File(path);
@@ -125,7 +127,7 @@ public class MapEditorTest {
             if(fileRead.get(i).equals("[Continents]")){
                 for(int j=i+1;j<fileRead.size();j++){
                     if(!fileRead.get(j).equals("")){
-                        testMEMain.createContinent(fileRead.get(j).split("=")[0],Integer.parseInt(fileRead.get(j).split("=")[1]));
+                        MEMain.createContinent(fileRead.get(j).split("=")[0],Integer.parseInt(fileRead.get(j).split("=")[1]));
                     }
                     else{
                         break;
@@ -136,10 +138,10 @@ public class MapEditorTest {
                 for(int k=i+1;k<fileRead.size();k++){
                     if(!fileRead.get(k).equals("")){
                         String[] countrydata = fileRead.get(k).split(",");
-                        testMEMain.createCountry(countrydata[0],countrydata);
-                        for(int z=0; z<testMEMain.arrMEContinent.size();z++) {
-                            if(testMEMain.arrMEContinent.get(z).getContinentName().equals(countrydata[3]))
-                                testMEMain.arrMEContinent.get(z).addCountry(countrydata[0]);
+                        MEMain.createCountry(countrydata[0],countrydata);
+                        for(int z = 0; z< MEMain.arrMEContinent.size(); z++) {
+                            if(MEMain.arrMEContinent.get(z).getContinentName().equals(countrydata[3]))
+                                MEMain.arrMEContinent.get(z).addCountry(countrydata[0]);
                         }
                     }
 

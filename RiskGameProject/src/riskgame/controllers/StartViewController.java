@@ -37,10 +37,35 @@ import static riskgame.model.Utils.InitWorldMap.buildWorldMapGraph;
 
 /**
  * controller class for StartView.fxml
+ *
  * @author Zhanfan, WW
  * @since build1
  **/
 public class StartViewController {
+    /**
+     * default number of players
+     */
+    private static final int DEFAULT_NUM_OF_PLAYERS = 3;
+    /**
+     * defalut maximum player number supported in the program
+     */
+    private static final int MAX_NUM_OF_PLAYERS = 8;
+    /**
+     * default minimum player number supported in the program
+     */
+    private static final int MIN_NUM_OF_PLAYERS = 2;
+    /**
+     * default path of map file
+     */
+    private static final String DEFAULT_MAP_PATH = "maps/World.map";
+    /**
+     * first round counter
+     */
+    public static int firstRoundCounter;
+    /**
+     * reinforce round counter
+     */
+    public static int reinforceInitCounter;
     @FXML
     private TextField txf_mapPath;
     @FXML
@@ -63,51 +88,34 @@ public class StartViewController {
     private TextField txf_mapPromptInfo;
     @FXML
     private Button btn_infoSwitcher;
-
-    /**
-     * default number of players
-     */
-    private static final int DEFAULT_NUM_OF_PLAYERS = 3;
-
-    /**
-     * defalut maximum player number supported in the program
-     */
-    private static final int MAX_NUM_OF_PLAYERS = 8;
-
-    /**
-     * default minimum player number supported in the program
-     */
-    private static final int MIN_NUM_OF_PLAYERS = 2;
-
-    /**
-     * default path of map file
-     */
-    private static final String DEFAULT_MAP_PATH = "maps/World.map";
-
     /**
      * variable for storing map file path
      */
     private String mapPath;
-
     /**
      * player number bean
      */
     private IntegerProperty numOfPlayersProperty;
-
     /**
      * counter for recording times of error selection of map file
      */
     private int inputCounter = 3;
-
     /**
      * indicator for marking whether world map file has been read and initialized
      */
     private boolean isMapInfoOn = false;
 
-    public static int firstRoundCounter;
-
-    public static int reinforceInitCounter;
-
+    /**
+     * reset all variables to original values
+     */
+    public static void resetStaticVariables() {
+        Main.totalNumOfPlayers = -1;
+        Main.playersList = new ArrayList<>();
+        Main.curRoundPlayerIndex = 0;
+        Main.worldContinentMap = new LinkedHashMap<>();
+        GraphSingleton.INSTANCE.resetInstance();
+        graphSingleton = GraphSingleton.INSTANCE.getInstance();
+    }
 
     /**
      * set default map path, default number of players and its range, constrain the range of number of player with UI controls
@@ -125,7 +133,6 @@ public class StartViewController {
             btn_plusPlayerNumber.setVisible(false);
         }
     }
-
 
     /**
      * onClick event for modifying UI controls and their values
@@ -279,43 +286,42 @@ public class StartViewController {
     private void setPlayerWorldDominationView() {
         playerDomiViewObserver.resetObservable(totalNumOfPlayers);
 
-       // playerDomiViewObservable.resetObservable(totalNumOfPlayers);
-//        playerDomiViewObservable.updateObservable();
-//        playerDomiViewObservable.notifyObservers("Initialize obs from start view");
-//
-//        System.out.println("\n>>>>>>domi view observer:" + playerDomiViewObserver.getControlRatioList());
+/*        playerDomiViewObservable.resetObservable(totalNumOfPlayers);
+        playerDomiViewObservable.updateObservable();
+        playerDomiViewObservable.notifyObservers("Initialize obs from start view");
+
+        System.out.println("\n>>>>>>domi view observer:" + playerDomiViewObserver.getControlRatioList());*/
     }
 
     /**
      * initialize continents owner after countries allocated to players randomly
      */
-    private void initContinentsOwner(){
+    private void initContinentsOwner() {
         for (Map.Entry<String, Continent> entry : Main.worldContinentMap.entrySet()) {
             Continent continent = entry.getValue();
             boolean isSameOwner = false;
             int owner = -1;
-            for (int playerIndex=0; playerIndex<totalNumOfPlayers; playerIndex++){
+            for (int playerIndex = 0; playerIndex < totalNumOfPlayers; playerIndex++) {
                 int count = 0;
                 int max = continent.getContinentCountryGraph().values().size();
-                for (Country country: continent.getContinentCountryGraph().values()){
-                    if (country.getCountryOwnerIndex()!=playerIndex){
+                for (Country country : continent.getContinentCountryGraph().values()) {
+                    if (country.getCountryOwnerIndex() != playerIndex) {
                         break;
                     }
                     count++;
-                    if (count == max){
-                        System.out.println("find a owner! "+playerIndex);
+                    if (count == max) {
+                        System.out.println("find a owner! " + playerIndex);
                         isSameOwner = true;
                         owner = playerIndex;
                     }
                 }
             }
-            if (isSameOwner){
+            if (isSameOwner) {
                 playersList.get(owner).addControlledContinent(continent.getContinentName());
                 continent.setContinentOwnerIndex(owner);
             }
         }
     }
-
 
     /**
      * set phase view observable params for reinforce phase for displaying corresponding information
@@ -328,7 +334,6 @@ public class StartViewController {
         phaseViewObservable.setAllParam(nextPhaseName, nextPlayerIndex, "Reinforcement Action");
         phaseViewObservable.notifyObservers("from startView to reinforceView");
     }
-
 
     /**
      * onClick event for confirming the total number of players
@@ -426,19 +431,6 @@ public class StartViewController {
         startviewStage.setResizable(false);
         startviewStage.show();
     }
-
-    /**
-     * reset all variables to original values
-     */
-    public static void resetStaticVariables() {
-        Main.totalNumOfPlayers = -1;
-        Main.playersList = new ArrayList<>();
-        Main.curRoundPlayerIndex = 0;
-        Main.worldContinentMap = new LinkedHashMap<>();
-        GraphSingleton.INSTANCE.resetInstance();
-        graphSingleton = GraphSingleton.INSTANCE.getInstance();
-    }
-
 
     /**
      * onClick event for confirming the map file selection

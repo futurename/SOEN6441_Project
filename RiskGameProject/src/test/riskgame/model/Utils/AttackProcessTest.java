@@ -70,7 +70,7 @@ public class AttackProcessTest {
     }
 
     @After
-    public void after() throws Exception {
+    public void after()  {
         StartViewController.resetStaticVariables();
     }
 
@@ -78,7 +78,7 @@ public class AttackProcessTest {
      * Method: attackResultProcess(Country attackingCountry, Country defendingCountry, int remainingArmyNbr)
      */
     @Test
-    public void testAttackResultProcess() throws Exception {
+    public void testAttackResultProcess()  {
         initGameSimulator();
         defendingCountry.setCountryArmyNumber(0);
         int remainingArmyNbr = 5;
@@ -99,7 +99,7 @@ public class AttackProcessTest {
      * Method: updateContinentAndWorldStatus(int attackerIndex, int defenderIndex, Continent curContinent)
      */
     @Test
-    public void testUpdateContinentAndWorldStatus() throws Exception {
+    public void testUpdateContinentAndWorldStatus()  {
         initGameSimulator();
         attackingCountry.setCountryOwnerIndex(playerDefender.getPlayerIndex());
         AttackProcess.updateContinentAndWorldStatus(playerDefender, playerAttacker, demoContinent);
@@ -140,7 +140,7 @@ public class AttackProcessTest {
      * Method: isPlayerHasCountry(Player player)
      */
     @Test
-    public void testIsPlayerHasCountry() throws Exception {
+    public void testIsPlayerHasCountry(){
         Player player = new Player(5);
         Assert.assertFalse(AttackProcess.isPlayerHasCountry(player));
 
@@ -153,7 +153,7 @@ public class AttackProcessTest {
      * Method: getDiceResultList(int diceTimes)
      */
     @Test
-    public void testGetDiceResultList() throws Exception {
+    public void testGetDiceResultList()  {
         int max = 6;
         int min = 1;
 
@@ -173,7 +173,7 @@ public class AttackProcessTest {
      * Method: isCountryConquered(Country country)
      */
     @Test
-    public void testIsCountryConquered() throws Exception {
+    public void testIsCountryConquered()  {
         Country country = new Country("demo country");
         Assert.assertFalse(AttackProcess.isCountryConquered(country));
         country.setCountryArmyNumber(0);
@@ -184,7 +184,7 @@ public class AttackProcessTest {
      * Method: isContinentConquered(int playerIndex, String continentName)
      */
     @Test
-    public void testIsContinentConquered() throws Exception {
+    public void testIsContinentConquered(){
         initGameSimulator();
 
         Player player = new Player(1);
@@ -207,7 +207,7 @@ public class AttackProcessTest {
      * Method: updateContinentOwner(int playerIndex, String continentName)
      */
     @Test
-    public void testUpdateContinentOwner() throws Exception {
+    public void testUpdateContinentOwner()  {
         initGameSimulator();
         Assert.assertFalse(AttackProcess.isContinentConquered(playerAttacker, demoContinent));
         defendingCountry.setCountryOwnerIndex(playerAttacker.getPlayerIndex());
@@ -218,7 +218,7 @@ public class AttackProcessTest {
      * Method: isWorldConquered(int playerIndex)
      */
     @Test
-    public void testIsWorldConquered() throws Exception {
+    public void testIsWorldConquered()  {
         Assert.assertFalse(AttackProcess.isWorldConquered(playerAttacker.getPlayerIndex()));
         demoContinent.setContinentOwnerIndex(playerAttacker.getPlayerIndex());
         Assert.assertTrue(AttackProcess.isWorldConquered(playerAttacker.getPlayerIndex()));

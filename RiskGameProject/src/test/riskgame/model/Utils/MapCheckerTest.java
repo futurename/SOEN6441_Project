@@ -33,6 +33,10 @@ public class MapCheckerTest {
         error_path = "./maps/World";
     }
 
+    /**
+     * check map format is valid or not
+     * @throws IOException map file not found
+     */
     @Test
     public void checkMapValidity() throws IOException {
         for (int i=0;i<loadableMaps.size();i++){
@@ -40,6 +44,10 @@ public class MapCheckerTest {
         }
     }
 
+    /**
+     * check map file exists or not
+     * @throws IOException map file not found
+     */
     @Test
     public void isMapValid() throws IOException {
         for (int i=0;i<errorMaps.size();i++){
@@ -47,6 +55,9 @@ public class MapCheckerTest {
         }
     }
 
+    /**
+     * check map path is valid or not
+     */
     @Test
     public void isMapPathValid() {
         assertFalse(MapChecker.isMapPathValid(this.error_path));

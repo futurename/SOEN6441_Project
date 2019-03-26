@@ -15,7 +15,7 @@ public class MapObject {
     private boolean checkFlagCG = true;
     private boolean checkFlagCCB = true;
     private boolean checkFlagCB = true;
-    public StringBuilder errorMsg = new StringBuilder("") ;
+    public StringBuilder errorMsg = new StringBuilder() ;
     private HashMap<String,Integer> countryCheckFlag = new HashMap<String,Integer>();
 
     /**
@@ -318,7 +318,7 @@ public class MapObject {
     /**
      * read map from the given valid map path
      * @param mapPath map file path
-     * @throws Exception map file not found
+     * @return  false for failure and true for success
      */
     public boolean mapContentCheck(String mapPath){
         ArrayList<String> reader = new ArrayList<>();

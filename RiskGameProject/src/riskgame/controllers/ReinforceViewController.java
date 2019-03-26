@@ -191,6 +191,9 @@ public class ReinforceViewController implements Initializable {
 
     }
 
+    /**
+     * init card obserser pattern
+     */
     private void initCurPlayerCardListView() {
         initObserver("CardView");
         ArrayList<Card> cardsList = playerCards;
@@ -257,7 +260,7 @@ public class ReinforceViewController implements Initializable {
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-//        curRoundPlayerIndex = (curRoundPlayerIndex + 1) % totalNumOfPlayers;
+//      curRoundPlayerIndex = (curRoundPlayerIndex + 1) % totalNumOfPlayers;
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
         System.out.println("\n???????????????????????????" + reinforceInitCounter);
@@ -407,7 +410,7 @@ public class ReinforceViewController implements Initializable {
     }
 
     /**
-     * @param exchangedArmyNbr
+     * @param exchangedArmyNbr army number exchanged to be added to the player
      */
     private void addUndeployedArmyAfterExchangeCards(int exchangedArmyNbr) {
         curUndeployedArmy += exchangedArmyNbr;

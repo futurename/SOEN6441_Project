@@ -25,11 +25,16 @@ import static riskgame.controllers.StartViewController.firstRoundCounter;
 
 /**
  * controller class for FortificationView.fxml
+ *
  * @author WW
  * @since build1
  **/
 public class FortificationViewController {
 
+    /**
+     * default minimum army number in a country
+     */
+    private static final int MIN_ARMY_NUMBER_IN_COUNTRY = 1;
     @FXML
     private Label lbl_maxArmyNumber;
     @FXML
@@ -60,29 +65,37 @@ public class FortificationViewController {
     private Label lbl_deployCountPrompt;
     @FXML
     private Label lbl_actionString;
-
-
-
-
     /**
      * fortification move counter
      */
     private int counter = 1;
 
     /**
-     * default minimum army number in a country
-     */
-    private static final int MIN_ARMY_NUMBER_IN_COUNTRY = 1;
-
-    /**
      * current player in this phase
      */
-
+    /**
+     * index of current player
+     */
     private int curPlayerIndex;
+
+    /**
+     * current game phase string
+     */
     private String curGamePhase;
+
+    /**
+     * current player name for display
+     */
     private String curPlayerName;
+
+    /**
+     * current action string for display
+     */
     private String curActionString;
 
+    /**
+     * current player object
+     */
     private Player curPlayer;
 
     /**
@@ -107,6 +120,9 @@ public class FortificationViewController {
         }*/
     }
 
+    /**
+     * init phaseview observer pattern
+     */
     private void initPhaseView() {
         initObserver();
 
@@ -124,6 +140,9 @@ public class FortificationViewController {
         lbl_rechanble_countries.setTextFill(curPlayerColor);
     }
 
+    /**
+     * init phaseview observer value
+     */
     private void initObserver() {
         curGamePhase = phaseViewObserver.getPhaseName();
         curPlayerIndex = phaseViewObserver.getPlayerIndex();
@@ -239,7 +258,7 @@ public class FortificationViewController {
         if (firstRoundCounter > 0) {
             firstRoundCounter--;
 
-            if(firstRoundCounter == 0){
+            if (firstRoundCounter == 0) {
                 curRoundPlayerIndex = -1;
             }
             int nextPlayerIndex = (curPlayerIndex + 1) % totalNumOfPlayers;
@@ -251,7 +270,7 @@ public class FortificationViewController {
             curStage.show();
         } else {
             curRoundPlayerIndex = getNextActivePlayer();
-            notifyGameStageChanged("Reinforce Phase",curRoundPlayerIndex, "Reinforce Action");
+            notifyGameStageChanged("Reinforce Phase", curRoundPlayerIndex, "Reinforce Action");
 
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
@@ -261,12 +280,17 @@ public class FortificationViewController {
         }
     }
 
+    /**
+     * check next player is still in the game and return index of next valid player
+     *
+     * @return valid player index
+     */
     private int getNextActivePlayer() {
         int tempIndex = curRoundPlayerIndex;
-        while(true){
+        while (true) {
             tempIndex = (tempIndex + 1) % totalNumOfPlayers;
             Player tempPlayer = playersList.get(tempIndex);
-            if(tempPlayer.getActiveStatus()){
+            if (tempPlayer.getActiveStatus()) {
                 break;
             }
         }
@@ -363,6 +387,13 @@ public class FortificationViewController {
         btn_nextStep.setVisible(true);
     }
 
+    /**
+     * phaseview observable notify its observers.
+     *
+     * @param phase           phase name string
+     * @param nextPlayerIndex next valid player index
+     * @param actionType      action string
+     */
     private void notifyGameStageChanged(String phase, int nextPlayerIndex, String actionType) {
         phaseViewObservable.setAllParam(phase, nextPlayerIndex, actionType);
         phaseViewObservable.notifyObservers("from fortification view");

@@ -14,7 +14,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import riskgame.Main;
-import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.AttackProcess;
@@ -27,11 +26,16 @@ import java.util.ResourceBundle;
 
 /**
  * controller class for AttackView.fxml
+ *
  * @author WW, Zhanfan, Karamveer
  * @since build1
  **/
 public class AttackViewController implements Initializable {
 
+    public static final int MIN_ATTACKING_ARMY_NUMBER = 1;
+    public static final int MAX_ATTACKING_ARMY_NUMBER = 3;
+    public static final int MAX_DEFENDING_ARMY_NUMBER = 2;
+    public static final int MIN_DEFENDING_ARMY_NUMBER = 1;
     @FXML
     private ListView lsv_adjacentCountries;
     @FXML
@@ -76,8 +80,6 @@ public class AttackViewController implements Initializable {
     private TextArea txa_attackInfoDisplay;
     @FXML
     private VBox vbx_worldDomiView;
-
-
     /**
      * curent player index
      */
@@ -86,13 +88,6 @@ public class AttackViewController implements Initializable {
     private String curGamePhase;
     private String curPlayerName;
     private String curActionString;
-
-    public static final int MIN_ATTACKING_ARMY_NUMBER = 1;
-    public static final int MAX_ATTACKING_ARMY_NUMBER = 3;
-    public static final int MAX_DEFENDING_ARMY_NUMBER = 2;
-    public static final int MIN_DEFENDING_ARMY_NUMBER = 1;
-
-
     /**
      * Alert object
      */
@@ -130,6 +125,9 @@ public class AttackViewController implements Initializable {
         lbl_attackerArmyNbr.setTextFill(curPlayerColor);
     }
 
+    /**
+     * init Observer object
+     */
     private void initObserver() {
         curPlayerIndex = Main.phaseViewObserver.getPlayerIndex();
         curGamePhase = Main.phaseViewObserver.getPhaseName();
@@ -188,6 +186,11 @@ public class AttackViewController implements Initializable {
         }
     }
 
+    /**
+     * Update army number information when select a country for attacking
+     *
+     * @param selectedAttackCountry the country selected for attacking
+     */
     private void updateAttackerArmyAdjustment(Country selectedAttackCountry) {
         int attackableArmyNbr = selectedAttackCountry.getCountryArmyNumber() - 1;
         int attackArmyNbr = attackableArmyNbr > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : attackableArmyNbr;
@@ -230,6 +233,11 @@ public class AttackViewController implements Initializable {
         }
     }
 
+    /**
+     * update defending country inforamtion when defending country is selected
+     *
+     * @param selectedDefenderCountry the country selected for defending
+     */
     private void updateDefenderArmyAdjustment(Country selectedDefenderCountry) {
         int defenderArmyNbr = selectedDefenderCountry.getCountryArmyNumber();
         int defendArmyNbr = defenderArmyNbr > MAX_DEFENDING_ARMY_NUMBER ? MAX_DEFENDING_ARMY_NUMBER : defenderArmyNbr;
@@ -245,7 +253,7 @@ public class AttackViewController implements Initializable {
 
     /**
      * Check whether the selected item contains country object
-     *
+     * @param listVIew the listview of displaying country information
      * @return true for not empty, false for empty selection
      */
     private boolean isSelectedItemEmpty(ListView listVIew) {
@@ -279,6 +287,7 @@ public class AttackViewController implements Initializable {
      * onClick event for confirming attack
      *
      * @param actionEvent button clicked
+     * @exception IOException gameover view file not found
      */
     public void clickAttack(ActionEvent actionEvent) throws IOException {
         if (isBothCountriesSelected()) {
@@ -300,13 +309,18 @@ public class AttackViewController implements Initializable {
             refreshListView(attackingCountry);
             InfoRetriver.updateDominationView("from attack view attack", vbx_worldDomiView);
 
-            if (AttackProcess.winnerPlayerIndex != -1){
+            if (AttackProcess.winnerPlayerIndex != -1) {
                 callGameOverView();
             }
         }
 
     }
 
+    /**
+     * refresh data display in Listviews
+     *
+     * @param attackingCountry the country for attacking
+     */
     private void refreshListView(Country attackingCountry) {
         lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
         lsv_ownedCountries.refresh();
@@ -319,6 +333,9 @@ public class AttackViewController implements Initializable {
         lsv_adjacentCountries.getSelectionModel().select(-1);
     }
 
+    /**
+     * reset army number to default value
+     */
     private void resetArmyAdjustment() {
         lbl_defenderMaxArmyNbr.setText("0");
         lbl_defenderArmyNbr.setText("0");
@@ -326,6 +343,9 @@ public class AttackViewController implements Initializable {
         lbl_attackerMaxArmyNbr.setText("0");
     }
 
+    /**
+     * notify phaserview observers
+     */
     private void notifyGamePhaseChanged() {
         Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "Fortification Action");
         Main.phaseViewObservable.notifyObservers(Main.phaseViewObservable);
@@ -333,15 +353,12 @@ public class AttackViewController implements Initializable {
         System.out.printf("player %s finished attack, player %s's turn\n", curPlayerIndex, curPlayerIndex);
     }
 
-    private void notifyCardChanged() {
-        Main.playersList.get(curPlayerIndex).setObservableCard(Card.ARTILLERY);
-        Main.playersList.get(curPlayerIndex).notifyObservers("from attack view: get a new card");
-    }
 
     /**
      * Use all-out mode for attacking, it will result in either attacker wins or defender wins
      *
      * @param actionEvent mouse click
+     * @exception IOException next view file not found
      */
     public void clickAllOutMode(ActionEvent actionEvent) throws IOException {
         if (isBothCountriesSelected()) {
@@ -356,12 +373,17 @@ public class AttackViewController implements Initializable {
             refreshListView(selectedAttackerCountry);
             InfoRetriver.updateDominationView("from attack all out mode", vbx_worldDomiView);
 
-            if (AttackProcess.winnerPlayerIndex != -1){
+            if (AttackProcess.winnerPlayerIndex != -1) {
                 callGameOverView();
             }
         }
     }
 
+    /**
+     * call game over view
+     *
+     * @throws IOException FinalView.fxml not found
+     */
     private void callGameOverView() throws IOException {
         Stage curStage = (Stage) txa_attackInfoDisplay.getScene().getWindow();
 

@@ -112,11 +112,12 @@ public class InfoRetriver {
     }
 
     /**
-     * Set contents to player domination the pane
+     Set contents to player domination the pane
      * method called when updating or initialization
      *
      * @param arg notification message
      * @param view domination view
+     * @param <V> Vbox UI control
      */
     public static <V extends VBox> void updateDominationView(String arg, V view){
         playerDomiViewObservable.updateObservable();

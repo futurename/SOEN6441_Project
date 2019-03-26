@@ -7,6 +7,7 @@ import test.riskgame.controller.ControllerSuiteTest;
 import test.riskgame.model.Utils.UtilSuiteTest;
 
 /**
+ * Suite tests for project test classes
  * @author Wei Wang
  * @version 1.0
  * @since 2019/03/26
