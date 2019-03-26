@@ -70,41 +70,41 @@ public class AttackProcess {
                 }
             }
 
-            updateContinentAndWorldStatus(attackerIndex, defenderIndex, curContinent);
+            updateContinentAndWorldStatus(attackPlayer, defendPlayer, curContinent);
 
         }
     }
 
     /**
      * this method updates the status of country and world if these are conqured and changes the owner
-     * @param attackerIndex
-     * @param defenderIndex
+     * @param attacker
+     * @param defender
      * @param curContinent
      */
-    public static void updateContinentAndWorldStatus(int attackerIndex, int defenderIndex, Continent curContinent) {
+    public static void updateContinentAndWorldStatus(Player attacker, Player defender, Continent curContinent) {
+        int attackerIndex = attacker.getPlayerIndex();
+        int defenderIndex = defender.getPlayerIndex();
         String continentName = curContinent.getContinentName();
-        if (isContinentConquered(defenderIndex, continentName)) {
-            Player defenderPlayer = Main.playersList.get(defenderIndex);
 
+        System.out.println("\n\nContinent owner: " + curContinent.getContinentOwnerIndex() + " before evaluating!\n\n");
+
+        if (curContinent.getContinentOwnerIndex() == defenderIndex) {
             int continentBonus = curContinent.getContinentBonusValue();
 
-            defenderPlayer.reduceContinentBonus(continentBonus);
+            defender.reduceContinentBonus(continentBonus);
             curContinent.setContinentOwnerIndex(-1);
 
             updateContinentOwner(attackerIndex, continentName);
         }
-        if (isContinentConquered(attackerIndex, continentName)) {
-
-            popusContinentConqueredAlert(attackerIndex, continentName, curContinent);
-
-            curContinent.setContinentOwnerIndex(attackerIndex);
-            Player attackerPlayer = Main.playersList.get(attackerIndex);
-
+        if (isContinentConquered(attacker, curContinent)) {
+           // curContinent.setContinentOwnerIndex(attackerIndex);
             int continentBonus = curContinent.getContinentBonusValue();
 
-            attackerPlayer.addContinentBonus(continentBonus);
+            attacker.addContinentBonus(continentBonus);
 
-            System.out.println("player: " + attackerIndex + " added continent bonus: " + continentBonus + ", total now: " + attackerPlayer.getContinentBonus());
+            System.out.println("player: " + attackerIndex + " added continent bonus: " + continentBonus + ", total now: " + attacker.getContinentBonus());
+
+            popupContinentConqueredAlert(attackerIndex, continentName, curContinent);
 
             updateWorldOwner(attackerIndex);
         }
@@ -126,8 +126,6 @@ public class AttackProcess {
         int attackerIndex = attackPlayer.getPlayerIndex();
         System.out.printf("Before battle: attacker owned %d countries\n", attackPlayer.getOwnedCountryNameList().size());
 
-//        attackPlayer.getOwnedCountryNameList().add(defendCountryName);
-//        defendPlayer.getOwnedCountryNameList().remove(defendCountryName);
         defendingCountry.setObservableOwner(attackerIndex);
         defendingCountry.setObservableArmy(remainingArmyNbr);
         defendingCountry.notifyObservers("Conquered a country");
@@ -144,9 +142,6 @@ public class AttackProcess {
 
             defendPlayer.setActiveStatus(false);
         }
-
-//        Main.playerDomiViewObservable.updateObservable();
-//        Main.playerDomiViewObservable.notifyObservers("Battle Report...");
 
         System.out.printf("After battle: attacker owned %d countries\n", attackPlayer.getOwnedCountryNameList().size());
     }
@@ -188,9 +183,9 @@ public class AttackProcess {
         return result;
     }
 
-    public static boolean isContinentConquered(int playerIndex, String continentName) {
+    public static boolean isContinentConquered(Player player, Continent curContinent) {
         boolean result = true;
-        Continent curContinent = Main.worldContinentMap.get(continentName);
+        int playerIndex = player.getPlayerIndex();
 
         System.out.println("inside isContinentConquered, current owner: " + curContinent.getContinentOwnerIndex() + " - "
                 + curContinent.getContinentCountryNameList());
@@ -201,12 +196,12 @@ public class AttackProcess {
                 break;
             }
         }
-        System.out.println("result: " + result);
+        System.out.println("continent conquered? result: " + result);
 
         return result;
     }
 
-    private static void popusContinentConqueredAlert(int playerIndex, String continentName, Continent curContinent) {
+    private static void popupContinentConqueredAlert(int playerIndex, String continentName, Continent curContinent) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Contient conquered!");
         alert.setContentText("Contient [ " + continentName + " ] is conquered by Player [ " + playerIndex + " ]! "
@@ -238,6 +233,8 @@ public class AttackProcess {
             alert.setContentText("Contient [ " + continentName + " ] is conquered by Player [ " + playerIndex + " ]!  "
                     + " Bonus: [" + curContinent.getContinentBonusValue() + "]");
             alert.showAndWait();
+        }else{
+            curContinent.setContinentOwnerIndex(-1);
         }
     }
 

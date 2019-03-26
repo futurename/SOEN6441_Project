@@ -50,7 +50,7 @@ public class AttackProcessTest {
         demoContinent = new Continent(demoContinentName, 4);
         demoContinent.getContinentCountryGraph().put(attackingCountry.getCountryName(), attackingCountry);
         demoContinent.getContinentCountryGraph().put(defendingCountry.getCountryName(), defendingCountry);
-        Main.worldContinentMap.put(demoContinentName,demoContinent);
+        Main.worldContinentMap.put(demoContinentName, demoContinent);
 
         defendingCountry.setContinentName(demoContinent.getContinentName());
         attackingCountry.setContinentName(demoContinent.getContinentName());
@@ -67,9 +67,6 @@ public class AttackProcessTest {
         GraphNode defGraphNode = new GraphNode(defendingCountry);
         Main.graphSingleton.put("defending country", defGraphNode);
         Main.graphSingleton.put("attacking country", atkGraphNode);
-
-
-
     }
 
     @After
@@ -103,6 +100,32 @@ public class AttackProcessTest {
      */
     @Test
     public void testUpdateContinentAndWorldStatus() throws Exception {
+        initGameSimulator();
+        attackingCountry.setCountryOwnerIndex(playerDefender.getPlayerIndex());
+
+        try {
+            AttackProcess.updateContinentAndWorldStatus(playerDefender, playerAttacker, demoContinent);
+        } catch (Error e) {
+            System.out.println("ignore popup alert window");
+        } finally {
+            Assert.assertTrue(playerDefender.getContinentBonus() == demoContinent.getContinentBonusValue());
+
+            System.out.println("\nattacker bonus: " + playerAttacker.getContinentBonus() + ", defender bonus: " + playerDefender.getContinentBonus()
+                    + ", continent owner: " + demoContinent.getContinentOwnerIndex() + "\n");
+        }
+
+        attackingCountry.setCountryOwnerIndex(playerAttacker.getPlayerIndex());
+        defendingCountry.setCountryOwnerIndex(playerAttacker.getPlayerIndex());
+        try {
+            AttackProcess.updateContinentAndWorldStatus(playerAttacker, playerDefender, demoContinent);
+        } catch (Error e) {
+            System.out.println("ignore popup alert window");
+        } finally {
+            Assert.assertTrue(playerAttacker.getContinentBonus() == demoContinent.getContinentBonusValue());
+
+            System.out.println("\nattacker bonus: " + playerAttacker.getContinentBonus() + ", defender bonus: " + playerDefender.getContinentBonus()
+                    + ", continent owner: " + demoContinent.getContinentOwnerIndex() + "\n");
+        }
 
     }
 
@@ -111,7 +134,6 @@ public class AttackProcessTest {
      */
     @Test
     public void testUpdateConqueredCountry() {
-
         int armyNbrBeforeAttack = attackingCountry.getCountryArmyNumber();
         int assumedRemainingArmyNbr = 3;
         try {
@@ -190,10 +212,10 @@ public class AttackProcessTest {
         Country country = new Country("demoCountry");
         continent.getContinentCountryGraph().put("demoCountry", country);
 
-        Assert.assertFalse(AttackProcess.isContinentConquered(player.getPlayerIndex(), continent.getContinentName()));
+        Assert.assertFalse(AttackProcess.isContinentConquered(player, continent));
         continent.setContinentOwnerIndex(player.getPlayerIndex());
         country.setCountryOwnerIndex(player.getPlayerIndex());
-        Assert.assertTrue(AttackProcess.isContinentConquered(player.getPlayerIndex(), continent.getContinentName()));
+        Assert.assertTrue(AttackProcess.isContinentConquered(player, continent));
         StartViewController.resetStaticVariables();
     }
 
@@ -203,10 +225,9 @@ public class AttackProcessTest {
     @Test
     public void testUpdateContinentOwner() throws Exception {
         initGameSimulator();
-        Assert.assertFalse(AttackProcess.isContinentConquered(playerAttacker.getPlayerIndex(), demoContinent.getContinentName()));
+        Assert.assertFalse(AttackProcess.isContinentConquered(playerAttacker, demoContinent));
         defendingCountry.setCountryOwnerIndex(playerAttacker.getPlayerIndex());
-        Assert.assertTrue(AttackProcess.isContinentConquered(playerAttacker.getPlayerIndex(),demoContinent.getContinentName()));
-
+        Assert.assertTrue(AttackProcess.isContinentConquered(playerAttacker, demoContinent));
     }
 
     /**
