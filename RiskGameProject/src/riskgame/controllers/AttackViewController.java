@@ -302,8 +302,6 @@ public class AttackViewController implements Initializable {
             int attackArmyNbr = Integer.parseInt(lbl_attackerArmyNbr.getText());
             int defendArmyNbr = Integer.parseInt(lbl_defenderArmyNbr.getText());
 
-            System.out.println("!!!!!!!!!!!attacking!!!!!!!!!!!!!!!!");
-
             curPlayer.attackCountry(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, txa_attackInfoDisplay);
 
             refreshListView(attackingCountry);

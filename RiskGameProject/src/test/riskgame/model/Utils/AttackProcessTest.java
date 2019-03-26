@@ -123,6 +123,7 @@ public class AttackProcessTest {
      */
     @Test
     public void testUpdateConqueredCountry() {
+        initGameSimulator();
         int armyNbrBeforeAttack = attackingCountry.getCountryArmyNumber();
         int assumedRemainingArmyNbr = 3;
         AttackProcess.updateConqueredCountry(attackingCountry, defendingCountry, assumedRemainingArmyNbr, playerAttacker, playerDefender);
