@@ -1,4 +1,4 @@
-package test;
+package test.riskgame.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -1,4 +1,4 @@
-package test;
+package test.riskgame.controller;
 
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
