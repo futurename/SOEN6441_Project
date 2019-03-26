@@ -5,6 +5,7 @@ import mapeditor.MEMain;
 import mapeditor.model.MECheckMapCorrectness;
 import mapeditor.model.MEContinent;
 import mapeditor.model.MECountry;
+import mapeditor.model.MapObject;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -104,6 +105,24 @@ public class MapEditorTest {
         assertEquals( "Country belongs to mutiple continent",mapCheck.isCorrect(MEMain.arrMECountry, MEMain.arrMEContinent));
     }
 
+    /**
+     *Test for invalid map format
+     */
+    @Test public void testH() {
+        String readPath = "maps/ErrorMap/World-fourtherror.map";
+        MapObject mapCheck = new  MapObject();
+        assertEquals( false ,mapCheck.mapFormatCheck(readPath));
+    }
+
+    /**
+     *Test for invalid map content
+     */
+    @Test public void testI() {
+        String readPath = "maps/ErrorMap/World-seventherror.map";
+        MapObject mapCheck = new  MapObject();
+        assertEquals( false, mapCheck.mapContentCheck(readPath));
+    }
+
     private void readMap(String path){
         ArrayList<String> fileRead = new ArrayList<String>();
         try {
@@ -144,7 +163,6 @@ public class MapEditorTest {
                                 MEMain.arrMEContinent.get(z).addCountry(countrydata[0]);
                         }
                     }
-
                 }
             }
         }

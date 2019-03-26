@@ -320,7 +320,7 @@ public class MapObject {
      * @return  false for failure and true for success
      */
     public boolean mapContentCheck(String mapPath){
-        boolean flag = false;
+        boolean flag;
         ArrayList<String> reader = new ArrayList<>();
         ArrayList<String> loadContinent = new ArrayList<>();
 
@@ -357,17 +357,20 @@ public class MapObject {
                 for(int k=i+1;k<reader.size();k++){
                     if(!reader.get(k).equals("")){
                         String[] countryData = reader.get(k).split(",");
+                        flag = false;
                         for(int z=0; z < loadContinent.size();z++) {
-                            System.out.println("in:" + loadContinent.get(z));
-                            System.out.println(countryData[3]);
-                            if(!loadContinent.get(z).equals(countryData[3])){
+                            if(loadContinent.get(z).equals(countryData[3])){
                                 flag = true;
+                                break;
                             }
+                        }
+                        if(flag == false){
+                            return flag;
                         }
                     }
                 }
             }
         }
-        return flag;
+        return true;
     }
 }
