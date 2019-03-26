@@ -103,10 +103,19 @@ public class MapEditorEditController {
         MEMain.OLDMAPPATH = txf_defaultMapPath.getText();
         MapObject mapObject = new MapObject();
         boolean checkmapformatresult = mapObject.mapFormatCheck(MEMain.OLDMAPPATH);
+        boolean checkmapcontentresult = mapObject.mapContentCheck(MEMain.OLDMAPPATH);
+
         if(checkmapformatresult == false) {
             System.out.println(checkmapformatresult);
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("format error");
+            alert.showAndWait();
+            return;
+        }
+        if(checkmapcontentresult == false) {
+            System.out.println(checkmapformatresult);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("content error");
             alert.showAndWait();
             return;
         }
