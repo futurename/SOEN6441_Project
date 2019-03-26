@@ -11,7 +11,6 @@ import riskgame.Main;
 import riskgame.model.BasicClass.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import static riskgame.Main.*;
@@ -20,24 +19,6 @@ import static riskgame.Main.*;
  * This class includes methods for processing and organizing different type of data required for display in ListView
  **/
 public class InfoRetriver {
-
-    /**
-     * acquire number of countries in each continent
-     *
-     * @param countryList country name arraylist of a player
-     * @return a new hashmap that presents each continent name and number of countries in it
-     */
-    public static HashMap<String, Integer> getCountryDistributionMap(ArrayList<String> countryList) {
-        HashMap<String, Integer> countryDistributionMap = new HashMap<>();
-        for (String curCountryName : countryList) {
-            String curContinentName = Main.graphSingleton.get(curCountryName).getCountry().getContinentName();
-            int countOfCountry;
-            countOfCountry = countryDistributionMap.getOrDefault(curContinentName, 0);
-            countOfCountry++;
-            countryDistributionMap.put(curContinentName, countOfCountry);
-        }
-        return countryDistributionMap;
-    }
 
     /**
      * acquire adjacent country list for a selected country and player
@@ -116,19 +97,6 @@ public class InfoRetriver {
         result = FXCollections.observableArrayList(countryList);
         return result;
     }
-
-
-
-    public static int getPlayerControlPecentage(Player curPlayer){
-        int result = 0;
-        int ownedCountryNbr = curPlayer.getOwnedCountryNameList().size();
-        int totalCountryNbr = Main.graphSingleton.size();
-        float tmpRatio = (float)totalCountryNbr / ownedCountryNbr;
-        result = Math.round(tmpRatio * 100);
-
-        return result;
-    }
-
 
     public static int getConqueredContinentNbr(Player curPlayer) {
         int playerIndex = curPlayer.getPlayerIndex();

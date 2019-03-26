@@ -21,7 +21,7 @@ public class FortificationPhaseTest {
 
     @Before
     public void before() throws Exception {
-        graphTester = new test.GraphTester();
+        graphTester = new GraphTester();
     }
 
     @After

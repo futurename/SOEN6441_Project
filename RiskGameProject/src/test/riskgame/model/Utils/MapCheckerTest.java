@@ -1,4 +1,4 @@
-package test;
+package test.riskgame.model.Utils;
 
 import org.junit.Before;
 import org.junit.Test;

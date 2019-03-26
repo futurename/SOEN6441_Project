@@ -33,10 +33,19 @@ import static riskgame.controllers.StartViewController.reinforceInitCounter;
 
 /**
  * controller class for ReinforceView.fxml
+ *
  * @author WW
  * @since build1
  **/
 public class ReinforceViewController implements Initializable {
+    /**
+     * default factor for calculting standard number of army used for reinforce phase
+     */
+    private static final int DEFAULT_DIVISION_FACTOR = 3;
+    /**
+     * minimun army number that is assigned to each player
+     */
+    private static final int DEFAULT_MIN_REINFORCE_ARMY_NBR = 3;
     @FXML
     private Button btn_nextStep;
     @FXML
@@ -73,36 +82,60 @@ public class ReinforceViewController implements Initializable {
     private Button btn_skipCardsExchange;
     @FXML
     private Button btn_confirmExchangeCards;
-
     /**
      * current player in this phase
      */
     private int curPlayerIndex;
-
     private String curGamePhase;
     private String curActionString;
     private String curPlayerName;
-
     private Player curPlayer;
-
     private CardExchangeViewObserver cardExchangeViewObserver;
     private ArrayList<Card> playerCards;
-
     private int curUndeployedArmy = 0;
-
-
     private Alert alert = new Alert(Alert.AlertType.WARNING);
 
     /**
-     * default factor for calculting standard number of army used for reinforce phase
+     * calculate army number for reinforcement with default value
+     *
+     * @param countryNum number of all countries a player owns
+     * @return calculated number of army for reinforcement phase
      */
-    private static final int DEFAULT_DIVISION_FACTOR = 3;
+    public static int getStandardReinforceArmyNum(int countryNum) {
+        int calResult = countryNum / DEFAULT_DIVISION_FACTOR;
+        return calResult > DEFAULT_MIN_REINFORCE_ARMY_NBR ? calResult : DEFAULT_MIN_REINFORCE_ARMY_NBR;
+    }
 
     /**
-     * minimun army number that is assigned to each player
+     * selected cards list will be validated with game rules
+     *
+     * @param selectedCardList selected cards arraylist
+     * @return true for correct combination, false for incorrect combination
      */
-    private static final int DEFAULT_MIN_REINFORCE_ARMY_NBR = 3;
+    public static boolean validateCardsCombination(ObservableList<Card> selectedCardList) {
+        boolean result = true;
+        if (selectedCardList.size() < 3) {
+            result = false;
+        } else if (selectedCardList.size() < 5) {
+            boolean isCombinationMatched =
+                    selectedCardList.contains(Card.INFANTRY) && selectedCardList.contains(Card.CAVALRY) && selectedCardList.contains(Card.ARTILLERY);
 
+            int[] cardsArray = new int[Card.values().length];
+            for (Card card : selectedCardList) {
+                int sequence = card.ordinal();
+                cardsArray[sequence]++;
+            }
+            boolean isCountGreaterThanThree = false;
+            for (int count : cardsArray) {
+                if (count >= 3) {
+                    isCountGreaterThanThree = true;
+                    break;
+                }
+            }
+            result = isCombinationMatched || isCountGreaterThanThree;
+        }
+        return result;
+    }
 
     /**
      * init method for reinforce phase view
@@ -157,7 +190,6 @@ public class ReinforceViewController implements Initializable {
         scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue) -> lbl_deployArmyCount.setText(Integer.toString(newValue.intValue())));
 
     }
-
 
     private void initCurPlayerCardListView() {
         initObserver("CardView");
@@ -252,7 +284,6 @@ public class ReinforceViewController implements Initializable {
         }
     }
 
-
     /**
      * notify all phase view observer that game stage changed.
      * Changes can be next player's reinforcement or going to attack phase.
@@ -333,17 +364,6 @@ public class ReinforceViewController implements Initializable {
     }
 
     /**
-     * calculate army number for reinforcement with default value
-     *
-     * @param countryNum number of all countries a player owns
-     * @return calculated number of army for reinforcement phase
-     */
-    public static int getStandardReinforceArmyNum(int countryNum) {
-        int calResult = countryNum / DEFAULT_DIVISION_FACTOR;
-        return calResult > DEFAULT_MIN_REINFORCE_ARMY_NBR ? calResult : DEFAULT_MIN_REINFORCE_ARMY_NBR;
-    }
-
-    /**
      * click button for confirming exchange cards
      *
      * @param actionEvent click this button
@@ -357,13 +377,9 @@ public class ReinforceViewController implements Initializable {
         if (selectedCardList.isEmpty()) {
             alert.setContentText("No card selected!");
             alert.showAndWait();
-        } else if (validateCardsCombination(selectedCardList)) {  //validateCardsCombination(selectedCardList)
+        } else if (validateCardsCombination(selectedCardList)) {
             int exchangedArmyNbr = getExchangedArmyNbr();
             addUndeployedArmyAfterExchangeCards(exchangedArmyNbr);
-
-            //no need to init player domi view cuz new army will add to undeployed army
-            //only those deployed will be counted.
-//            initPlayerDominationView("Exchanging for new army");
 
             System.out.printf("GET NEW %d ARMY!\n", exchangedArmyNbr);
 
@@ -390,17 +406,18 @@ public class ReinforceViewController implements Initializable {
         }
     }
 
+    /**
+     * @param exchangedArmyNbr
+     */
     private void addUndeployedArmyAfterExchangeCards(int exchangedArmyNbr) {
         curUndeployedArmy += exchangedArmyNbr;
         curPlayer.addArmy(exchangedArmyNbr);
     }
 
-    private void addUndeployedArmy(){
+    private void addUndeployedArmy() {
         int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
         int newArmyPerRound = getStandardReinforceArmyNum(ownedCountryNum) + curPlayer.getContinentBonus();
         curUndeployedArmy += newArmyPerRound;
-//        curPlayer.addArmy(newArmyPerRound);
-
     }
 
     /**
@@ -420,25 +437,6 @@ public class ReinforceViewController implements Initializable {
     private int getExchangedArmyNbr() {
         //get exchange time from card observer
         return 5 * cardExchangeViewObserver.getExchangeTime();
-    }
-
-    /**
-     * selected cards list will be validated with game rules
-     *
-     * @param selectedCardList selected cards arraylist
-     * @return true for correct combination, false for incorrect combination
-     */
-    private boolean validateCardsCombination(ObservableList<Card> selectedCardList) {
-        if (selectedCardList.size() != 3) {
-            //set true for testing
-            return false;
-        } else {
-            int sum = 0;
-            for (Card card : selectedCardList) {
-                sum += card.ordinal() + 1;
-            }
-            return sum == 3 || sum == 6 || sum == 9;
-        }
     }
 
     /**

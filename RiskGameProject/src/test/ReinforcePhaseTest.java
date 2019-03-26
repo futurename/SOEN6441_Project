@@ -1,10 +1,13 @@
 package test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import riskgame.controllers.ReinforceViewController;
+import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
 
 /**
@@ -12,6 +15,7 @@ import riskgame.model.BasicClass.Country;
  */
 public class ReinforcePhaseTest {
     private Country countryTester;
+    ObservableList<Card> cardArrayList;
 
     @Before
     public void before() {
@@ -39,5 +43,27 @@ public class ReinforcePhaseTest {
         Assert.assertEquals(3, ReinforceViewController.getStandardReinforceArmyNum(0));
         Assert.assertEquals(3, ReinforceViewController.getStandardReinforceArmyNum(-1));
     }
+
+    @Test
+    public void testValidateCardsCombination(){
+        cardArrayList = FXCollections.observableArrayList();
+        cardArrayList.add(Card.INFANTRY);
+        cardArrayList.add(Card.INFANTRY);
+        Assert.assertFalse(ReinforceViewController.validateCardsCombination(cardArrayList));
+
+        cardArrayList.add(Card.ARTILLERY);
+        Assert.assertFalse(ReinforceViewController.validateCardsCombination(cardArrayList));
+
+        cardArrayList.add(Card.INFANTRY);
+        Assert.assertTrue(ReinforceViewController.validateCardsCombination(cardArrayList));
+
+        cardArrayList.remove(Card.INFANTRY);
+        cardArrayList.add(Card.CAVALRY);
+        Assert.assertTrue(ReinforceViewController.validateCardsCombination(cardArrayList));
+
+        cardArrayList.add(Card.INFANTRY);
+        Assert.assertTrue(ReinforceViewController.validateCardsCombination(cardArrayList));
+    }
+
 
 } 
