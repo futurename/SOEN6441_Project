@@ -176,13 +176,6 @@ public class AttackViewController implements Initializable {
         } else {
             btn_confirmAttack.setVisible(true);
             btn_alloutMode.setVisible(true);
-
-           /* ObservableList<Country> datalist = InfoRetriver.getAttackableAdjacentCountryList(this.curPlayerIndex, selectedCountry);
-
-            lsv_adjacentCountries.setItems(datalist);
-            ListviewRenderer.renderCountryItems(lsv_adjacentCountries);
-
-            updateAttackerArmyAdjustment(selectedCountry);*/
         }
     }
 

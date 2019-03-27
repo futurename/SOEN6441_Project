@@ -14,7 +14,7 @@ import java.util.Observable;
 public class PhaseViewObservable extends Observable {
     private final String attackActionStr = "Action:\n" +
             "\n1. Select one attacking country" +
-            "\n2. Select an adjacent empty country" +
+            "\n2. Select an adjacent enemy country" +
             "\n3_1. Click \"All-Out\" button to use all army for attacking" +
             "\n3_2. Select certain number of army for both attacker and defender" +
             "\n  4. Click \"Accept\" button for confirming army number selection" +
