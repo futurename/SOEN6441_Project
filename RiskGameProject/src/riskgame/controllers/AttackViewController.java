@@ -111,6 +111,7 @@ public class AttackViewController implements Initializable {
 
         curPlayer = Main.playersList.get(curPlayerIndex);
         Color curPlayerColor = curPlayer.getPlayerColor();
+        curPlayer.setCardPermission(false);
 
         lbl_playerName.setText(curPlayerName);
         lbl_playerName.setTextFill(curPlayerColor);

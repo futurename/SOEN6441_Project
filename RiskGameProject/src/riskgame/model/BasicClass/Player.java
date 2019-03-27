@@ -33,6 +33,7 @@ public class Player extends Observable implements Observer {
     private int continentBonus;
     private ArrayList<String> controlledContinents;
     private boolean activeStatus;
+    private boolean cardObtained;
 
     /**
      * class constructor
@@ -49,6 +50,7 @@ public class Player extends Observable implements Observer {
         this.continentBonus = 0;
         this.controlledContinents = new ArrayList<>();
         this.activeStatus = true;
+        this.cardObtained = false;
     }
 
     /**
@@ -151,10 +153,13 @@ public class Player extends Observable implements Observer {
         return result;
     }
 
+    public void setCardPermission(boolean b){
+        this.cardObtained = b;
+    }
+
     /**
      * @return get the bonus point of that continent
      */
-
     public int getContinentBonus() {
         return continentBonus;
     }
@@ -463,7 +468,10 @@ public class Player extends Observable implements Observer {
             o.deleteObserver(this);
             newOwner.ownedCountryNameList.add(((Country) o).getCountryName());
             newOwner.updateArmyNbr();
-            newOwner.setObservableCard(Card.getCard(Card.class));
+            if (!cardObtained){
+                newOwner.setObservableCard(Card.getCard(Card.class));
+                newOwner.setCardPermission(true);
+            }
             o.addObserver(newOwner);
             System.out.printf("Player observer update: %s\n", arg);
         }
