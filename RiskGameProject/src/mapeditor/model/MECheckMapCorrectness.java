@@ -14,7 +14,7 @@ public class MECheckMapCorrectness{
     private boolean checkFlagCB = true;
     private boolean checkFlagCCB = true;
 
-    private HashMap<String,Integer> countryCheckFlag = new HashMap<String,Integer>();
+    private HashMap<String,Integer> countryCheckFlag = new HashMap<>();
     /**
      * isCorrect method compare all the three test result and ruturn to the UI.
      * @param countryArr country list
@@ -26,13 +26,13 @@ public class MECheckMapCorrectness{
         boolean checkFlagCCBResult = correctCheckConnectContinent(continentsArr,countryArr);
         boolean checkFlagCBResult = correctCheckCountryBelonging(continentsArr,countryArr);
 
-        if(checkFlagCGResult == false){
+        if(!checkFlagCGResult){
             return "Unconnected Graph";
         }
-        if (checkFlagCCBResult == false){
+        if (!checkFlagCCBResult){
             return "Country doesn't connect with any country of its continent";
         }
-        if(checkFlagCBResult == false){
+        if(!checkFlagCBResult){
             return "Country belongs to mutiple continent";
         }
 
@@ -46,14 +46,14 @@ public class MECheckMapCorrectness{
      * @return true for correct, false for error
      */
     public boolean correctCheckConnectGraph(ArrayList<MECountry> countryArr){
-        Queue<String> queue = new LinkedList<String>();
+        Queue<String> queue = new LinkedList<>();
 
         //If it is a empty map.
         if(countryArr.isEmpty()){
             return true;
         }
 
-        HashMap<String,Boolean> visited = new HashMap<String,Boolean>();
+        HashMap<String,Boolean> visited = new HashMap<>();
         for(int i=0 ; i<countryArr.size(); i++ ){
             String countryTemp = countryArr.get(i).getCountryName();
             visited.put(countryTemp,false);
@@ -74,7 +74,7 @@ public class MECheckMapCorrectness{
                     if(!countryNeighbor.equals("")){
                         for (int k = 0; k < countryNeighbors.length; k++) {
                             String readyToAddInQueue = countryNeighbors[k];
-                            if (visited.get(readyToAddInQueue) == false) {
+                            if (!visited.get(readyToAddInQueue)) {
                                 queue.offer(readyToAddInQueue);
                             }
                         }
@@ -99,8 +99,8 @@ public class MECheckMapCorrectness{
      * @return true for correct, false for error
      */
     public boolean correctCheckConnectContinent(ArrayList<MEContinent> continentsArr, ArrayList<MECountry> countryArr){
-        Queue<String> checkQueue = new LinkedList<String>();
-        HashMap<String, Boolean> checkList = new HashMap<String, Boolean>();
+        Queue<String> checkQueue = new LinkedList<>();
+        HashMap<String, Boolean> checkList = new HashMap<>();
         //Check all the continent
         for(int i=0;i< continentsArr.size();i++){
             MEContinent newContinent = continentsArr.get(i);
@@ -171,7 +171,6 @@ public class MECheckMapCorrectness{
      * @return ture for correct, false for error
      */
     public  boolean correctCheckCountryBelonging(ArrayList<MEContinent> continentsArr, ArrayList<MECountry> countryArr){
-        int countryAddByContinent = 0;
 
         //If the map is empty.
         if(continentsArr.isEmpty() && countryArr.isEmpty()){

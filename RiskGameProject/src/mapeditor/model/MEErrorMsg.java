@@ -15,18 +15,12 @@ public enum MEErrorMsg {
     MULTIPLE_CONTINENT_ERROR(2004, "COUNTRY BELONGS TO MULTIPLE CONTINENT\n");
 
     private String msg;
-    private int errorCode;
 
     private MEErrorMsg(int code, String msg) {
-        this.errorCode = code;
         this.msg = msg;
     }
 
     public String getMsg() {
         return this.msg;
-    }
-
-    public int getErrorCode() {
-        return this.errorCode;
     }
 }

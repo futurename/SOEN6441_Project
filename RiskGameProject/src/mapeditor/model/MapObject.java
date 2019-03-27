@@ -15,7 +15,6 @@ public class MapObject {
     private boolean checkFlagCG = true;
     private boolean checkFlagCB = true;
     public StringBuilder errorMsg = new StringBuilder() ;
-    private HashMap<String,Integer> countryCheckFlag = new HashMap<String,Integer>();
 
     /**
      * arrContinent storage new continent
@@ -60,13 +59,13 @@ public class MapObject {
     public void checkCorrectness(String mapPath){
         MapObject mapObj = new MapObject();
 
-        ArrayList<String> fileRead = new ArrayList<String>();
+        ArrayList<String> fileRead = new ArrayList<>();
         try {
             File file=new File(mapPath);
             if(file.isFile()&&file.exists()){
                 InputStreamReader read = new InputStreamReader(new FileInputStream(file));
                 BufferedReader bufferedReader=new BufferedReader(read);
-                String lineTxt=null;
+                String lineTxt;
                 while((lineTxt=bufferedReader.readLine())!=null){
                     fileRead.add(lineTxt);
                 }
@@ -99,19 +98,19 @@ public class MapObject {
                 }
             }
         }
-        if(correctCheckConnectContinent(mapObj.arrContinent, mapObj.arrCountry) == false){
+        if(!correctCheckConnectContinent(mapObj.arrContinent, mapObj.arrCountry)){
             errorMsg.append(MEErrorMsg.UNCONNECTED_CONTINENT.getMsg());
         }
-        if(correctCheckConnectGraph(mapObj.arrCountry) == false){
+        if(!correctCheckConnectGraph(mapObj.arrCountry)){
             errorMsg.append(MEErrorMsg.UNCONNECTED_GRAPH_ERROR.getMsg());
         }
-        if(correctCheckCountryBelonging(mapObj.arrContinent, mapObj.arrCountry) == false){
+        if(!correctCheckCountryBelonging(mapObj.arrContinent, mapObj.arrCountry)){
             errorMsg.append(MEErrorMsg.MULTIPLE_CONTINENT_ERROR.getMsg());
         }
-        if(mapContentCheck(mapPath) == false){
+        if(!mapContentCheck(mapPath)){
             errorMsg.append(MEErrorMsg.FILE_CONTINENT_ERROR.getMsg());
         }
-        if(mapFormatCheck(mapPath) == false){
+        if(!mapFormatCheck(mapPath)){
             errorMsg.append(MEErrorMsg.FILE_FORMAT_ERROR.getMsg());
         }
     }
@@ -122,7 +121,7 @@ public class MapObject {
      * @param countryArr country object list
      * @return true for correct, false for error
      */
-    public boolean correctCheckConnectGraph(ArrayList<MECountry> countryArr){
+    private boolean correctCheckConnectGraph(ArrayList<MECountry> countryArr){
         Queue<String> queue = new LinkedList<String>();
 
         //If it is a empty map.
@@ -151,7 +150,7 @@ public class MapObject {
                     if(!countryNeighbor.equals("")){
                         for (int k = 0; k < countryNeighbors.length; k++) {
                             String readyToAddInQueue = countryNeighbors[k];
-                            if (visited.get(readyToAddInQueue) == false) {
+                            if (!visited.get(readyToAddInQueue)) {
                                 queue.offer(readyToAddInQueue);
                             }
                         }
@@ -177,7 +176,7 @@ public class MapObject {
      */
     public boolean correctCheckConnectContinent(ArrayList<MEContinent> continentsArr, ArrayList<MECountry> countryArr){
         Queue<String> checkQueue = new LinkedList<String>();
-        HashMap<String, Boolean> checkList = new HashMap<String, Boolean>();
+        HashMap<String, Boolean> checkList = new HashMap<>();
 
         //Check all the continent
         for(int i=0;i< continentsArr.size();i++){
@@ -232,7 +231,7 @@ public class MapObject {
             while (countrySet.hasNext()) {
                 boolean value = checkList.get(countrySet.next());
 
-                if (value == false) {
+                if (!value) {
                     return false;
                 }
             }
@@ -249,7 +248,6 @@ public class MapObject {
      * @return true for correct, false for not correct
      */
     public  boolean correctCheckCountryBelonging(ArrayList<MEContinent> continentsArr, ArrayList<MECountry> countryArr){
-        int countryAddByContinent = 0;
 
         //If the map is empty.
         if(continentsArr.isEmpty() && countryArr.isEmpty()){
@@ -277,7 +275,7 @@ public class MapObject {
      * @return if map format is true then return true, else return false
      */
     public boolean mapFormatCheck(String mapPath){
-        boolean checkresult = true;
+        boolean checkresult;
         boolean checkresult1 = false;
         boolean checkresult2 = false;
         boolean checkresult3 = false;
@@ -287,7 +285,7 @@ public class MapObject {
             if(file.isFile()&&file.exists()){
                 InputStreamReader read = new InputStreamReader(new FileInputStream(file));
                 BufferedReader bufferedReader=new BufferedReader(read);
-                String lineTxt=null;
+                String lineTxt;
                 while((lineTxt=bufferedReader.readLine())!=null){
                     fileRead.add(lineTxt);
                 }
@@ -329,7 +327,7 @@ public class MapObject {
             if(file.isFile()&&file.exists()){
                 InputStreamReader read = new InputStreamReader(new FileInputStream(file));
                 BufferedReader bufferedReader=new BufferedReader(read);
-                String lineTxt=null;
+                String lineTxt;
                 while((lineTxt=bufferedReader.readLine())!=null){
                     reader.add(lineTxt);
                 }
@@ -364,7 +362,7 @@ public class MapObject {
                                 break;
                             }
                         }
-                        if(flag == false){
+                        if(!flag){
                             return flag;
                         }
                     }
