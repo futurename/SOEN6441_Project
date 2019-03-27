@@ -76,7 +76,7 @@ public class Main extends Application {
     /**
      * create new instances for static phaseobservable and phaseobserver
      */
-    private void initObserveInstance() {
+    public static void initObserveInstance() {
         phaseViewObservable = new PhaseViewObservable();
         phaseViewObserver = new PhaseViewObserver();
         phaseViewObservable.addObserver(phaseViewObserver);

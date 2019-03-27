@@ -10,6 +10,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import mapeditor.MEMain;
+import riskgame.Main;
+import riskgame.controllers.StartViewController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -74,6 +76,7 @@ public class MapEditorHomePageController {
     @FXML
     public void clickToCreate(ActionEvent actionEvent) throws Exception{
         MEMain.EDITPAGEFLAG = true;
+        Main.initObserveInstance();
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
         Pane mapEditorEditPagePane = new FXMLLoader(getClass().getResource("../views/MapEditorEditPageView.fxml")).load();
@@ -90,7 +93,10 @@ public class MapEditorHomePageController {
      * @throws IOException StartView.fxml not found
      */
     public void clickPlayGame(ActionEvent actionEvent) throws IOException {
-        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        StartViewController.resetStaticVariables();
+        Main.initObserveInstance();
+
+        Stage curStage = new Stage(); //(Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
         Pane startViewPane = FXMLLoader.load(getClass().getResource("../../riskGame/view/StartView.fxml"));
         Scene startViewScene = new Scene(startViewPane,1200,900);
