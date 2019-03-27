@@ -166,12 +166,29 @@ public class MapEditorAddCountryController {
 
         for(int i = 0;i<MEMain.arrMECountry.size();i++){
             if(MEMain.arrMECountry.get(i).getCountryName().equals(newNeighborName)){
-                MEMain.arrMECountry.get(i).setNeighbor(newCountryName);
+                boolean alreadyHaveRelationship1 = false;
+                for(int j=0;j<MEMain.arrMECountry.get(i).getNeighborName().size();j++){
+                    if(MEMain.arrMECountry.get(i).getNeighborName().get(j).equals(newCountryName)){
+                        alreadyHaveRelationship1=true;
+                        break;
+                    }
+                }
+                if(alreadyHaveRelationship1==false) {
+                    MEMain.arrMECountry.get(i).setNeighbor(newCountryName);
+                }
             }
             if(newCountryName.equals(MEMain.arrMECountry.get(i).getCountryName())) {
+
+                boolean alreadyHaveRelationship2 = false;
+                for(int k = 0;k<MEMain.arrMECountry.get(i).getNeighborName().size();k++){
+                    if(MEMain.arrMECountry.get(i).getNeighborName().get(k).equals(newNeighborName)){
+                        alreadyHaveRelationship2 = true;
+                    }
+                }
+                if(alreadyHaveRelationship2==false){
+                    MEMain.arrMECountry.get(i).setNeighbor(newNeighborName);
+                }
                 ISNOTANEWCOUNTRY = true;
-                MEMain.arrMECountry.get(i).setNeighbor(newNeighborName);
-                break;
             }
         }
         if(ISNOTANEWCOUNTRY==false){
