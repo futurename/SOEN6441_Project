@@ -468,7 +468,7 @@ public class Player extends Observable implements Observer {
             o.deleteObserver(this);
             newOwner.ownedCountryNameList.add(((Country) o).getCountryName());
             newOwner.updateArmyNbr();
-            if (!cardObtained){
+            if (!newOwner.cardObtained){
                 newOwner.setObservableCard(Card.getCard(Card.class));
                 newOwner.setCardPermission(true);
             }
