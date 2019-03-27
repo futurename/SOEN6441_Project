@@ -270,7 +270,7 @@ public class FortificationViewController {
             curStage.show();
         } else {
             curRoundPlayerIndex = getNextActivePlayer();
-            notifyGameStageChanged("Reinforce Phase", curRoundPlayerIndex, "Reinforce Action");
+            notifyGameStageChanged("Reinforce Phase", curRoundPlayerIndex, "Reinforcement Action");
 
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();

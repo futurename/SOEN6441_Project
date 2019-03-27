@@ -138,7 +138,7 @@ public class AttackProcess {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setContentText("Player [" + defendPlayer.getPlayerIndex() + "] has no country, QUIT!");
                 alert.showAndWait();
-            }catch (ExceptionInInitializerError e){
+            }catch (Error e){
                 System.out.println("Mute Alert");
             }
             System.out.println("Player: " + defendPlayer.getPlayerIndex() + " fails, QUIT!");

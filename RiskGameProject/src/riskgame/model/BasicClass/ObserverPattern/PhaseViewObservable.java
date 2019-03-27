@@ -22,7 +22,10 @@ public class PhaseViewObservable extends Observable {
     private final String fortificationActionStr = "Action:\n" +
             "\nselect one owned country from left and another country of the right as target";
     private final String reinforcementActionStr = "Action:\n" +
-            "\nBegin reinforce phase, need deploy armies to your countries";
+            "\nBegin reinforcement phase, you have to deploy armies to your countries." +
+            "\nYou have to exchange for forces if you five cards or more." +
+            "\nThree different types of cards or three identical type of card is a valid combo.\n" +
+            "\nSelect the country before you are ready to deploy army.";
 
     private String phaseName;
     private int playerIndex;

@@ -10,3 +10,4 @@ riskgame.model.Utils
 test
 test.riskgame.controller
 test.riskgame.model.Utils
+test.util

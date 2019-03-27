@@ -40,6 +40,12 @@ public class InfoRetriver {
         return result;
     }
 
+    /**
+     * Acquire all adjacent enemy countries of the selected country
+     * @param curPlayerIndex index of current player
+     * @param selectedCountry selected country by the user
+     * @return Observablelist of enemy country list
+     */
     public static ObservableList<Country> getAttackableAdjacentCountryList(int curPlayerIndex, Country selectedCountry){
         ObservableList<Country> result;
 
@@ -99,6 +105,11 @@ public class InfoRetriver {
         return result;
     }
 
+    /**
+     * get count of conquered continents by the specified player
+     * @param curPlayer current player
+     * @return number of conquered continents
+     */
     public static int getConqueredContinentNbr(Player curPlayer) {
         int playerIndex = curPlayer.getPlayerIndex();
         int result = 0;

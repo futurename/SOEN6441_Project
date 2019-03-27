@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
+import test.util.GraphTester;
 
 import java.util.ArrayList;
 import java.util.Collections;

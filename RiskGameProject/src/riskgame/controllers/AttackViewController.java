@@ -111,6 +111,7 @@ public class AttackViewController implements Initializable {
 
         curPlayer = Main.playersList.get(curPlayerIndex);
         Color curPlayerColor = curPlayer.getPlayerColor();
+        curPlayer.setCardPermission(false);
 
         lbl_playerName.setText(curPlayerName);
         lbl_playerName.setTextFill(curPlayerColor);
@@ -301,8 +302,6 @@ public class AttackViewController implements Initializable {
 
             int attackArmyNbr = Integer.parseInt(lbl_attackerArmyNbr.getText());
             int defendArmyNbr = Integer.parseInt(lbl_defenderArmyNbr.getText());
-
-            System.out.println("!!!!!!!!!!!attacking!!!!!!!!!!!!!!!!");
 
             curPlayer.attackCountry(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, txa_attackInfoDisplay);
 
