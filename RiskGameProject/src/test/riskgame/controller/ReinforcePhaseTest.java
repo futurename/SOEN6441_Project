@@ -46,7 +46,7 @@ public class ReinforcePhaseTest {
     }
 
     @Test
-    public void testValidateCardsCombination(){
+    public void testValidateCardsCombination() {
         cardArrayList = FXCollections.observableArrayList();
         cardArrayList.add(Card.INFANTRY);
         cardArrayList.add(Card.INFANTRY);
@@ -56,15 +56,13 @@ public class ReinforcePhaseTest {
         Assert.assertFalse(ReinforceViewController.validateCardsCombination(cardArrayList));
 
         cardArrayList.add(Card.INFANTRY);
-        Assert.assertTrue(ReinforceViewController.validateCardsCombination(cardArrayList));
+        Assert.assertFalse(ReinforceViewController.validateCardsCombination(cardArrayList));
 
         cardArrayList.remove(Card.INFANTRY);
-        cardArrayList.add(Card.CAVALRY);
-        Assert.assertTrue(ReinforceViewController.validateCardsCombination(cardArrayList));
+        Assert.assertFalse(ReinforceViewController.validateCardsCombination(cardArrayList));
 
+        cardArrayList.remove(Card.ARTILLERY);
         cardArrayList.add(Card.INFANTRY);
         Assert.assertTrue(ReinforceViewController.validateCardsCombination(cardArrayList));
     }
-
-
 } 
