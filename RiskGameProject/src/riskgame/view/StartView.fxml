@@ -3,8 +3,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
-
 <AnchorPane fx:id="acp_startView" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="riskgame.controllers.StartViewController">
    <children>
       <TextField fx:id="txf_mapPath" layoutX="730.0" layoutY="110.0" prefHeight="35.0" prefWidth="277.0" text="maps/World.map">
@@ -15,9 +13,9 @@
             <Tooltip autoHide="true" text="Relative path in project" />
          </tooltip>
       </TextField>
-      <Label alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="379.0" layoutY="14.0" mouseTransparent="true" prefHeight="81.0" prefWidth="407.0" text="Risk Game Projece: Group15" AnchorPane.leftAnchor="379.0" AnchorPane.topAnchor="14.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="379.0" layoutY="14.0" mouseTransparent="true" prefHeight="81.0" prefWidth="407.0" text="Risk Game Project: Group15" AnchorPane.leftAnchor="379.0" AnchorPane.topAnchor="14.0">
          <font>
-            <Font name="System Bold" size="30.0" />
+            <Font name="System Bold" size="26.0" />
          </font>
       </Label>
       <Label alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="562.0" layoutY="107.0" mouseTransparent="true" prefHeight="35.0" prefWidth="137.0" text="Map path:">

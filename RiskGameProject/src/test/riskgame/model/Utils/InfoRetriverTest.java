@@ -44,7 +44,7 @@ public class InfoRetriverTest {
         int selectedCountryIndex = 2;
 
         ObservableList<Country> acturalList = InfoRetriver.getAdjacentCountryObservablelist(playerIndex, selectedCountryIndex);
-        Collections.sort(acturalList, (o1, o2) -> ((Country) o1).getCountryName().compareTo(((Country) o2).getCountryName()));
+        Collections.sort(acturalList, (o1, o2) -> o1.getCountryName().compareTo(o2.getCountryName()));
 
         ObservableList<Country> expectedList = graphTester.getAdjacentCountryObservablelisFromPlayerOneCountryTwo();
         Assert.assertEquals(expectedList, acturalList);
@@ -61,7 +61,7 @@ public class InfoRetriverTest {
         Country selectedCountry = graphTester.getDemoGraph().get(selectedCountryName).getCountry();
 
         ObservableList<Country> acturalList = InfoRetriver.getAttackableAdjacentCountryList(playerIndex, selectedCountry);
-        Collections.sort(acturalList, (o1, o2) -> ((Country) o1).getCountryName().compareTo(((Country) o2).getCountryName()));
+        Collections.sort(acturalList, (o1, o2) -> o1.getCountryName().compareTo(o2.getCountryName()));
 
         ObservableList<Country> expectedList = graphTester.getAttackableAdjacentCountryListFromPlayerTwoCountryZero();
         Assert.assertEquals(expectedList, acturalList);
@@ -77,7 +77,7 @@ public class InfoRetriverTest {
         String selectedCountryName = Main.playersList.get(playerIndex).getOwnedCountryNameList().get(selectedCountryIndex);
 
         ObservableList<Country> acturalList = InfoRetriver.getReachableCountryObservableList(playerIndex, selectedCountryName);
-        Collections.sort(acturalList, (o1, o2) -> ((Country) o1).getCountryName().compareTo(((Country) o2).getCountryName()));
+        Collections.sort(acturalList, (o1, o2) -> o1.getCountryName().compareTo(o2.getCountryName()));
 
         ObservableList<Country> expectedList = graphTester.getReachableCountryObservableListFromPlayerZeroCountryThree();
         Assert.assertEquals(expectedList, acturalList);
@@ -92,10 +92,12 @@ public class InfoRetriverTest {
         Player player = Main.playersList.get(playerIndex);
 
         ObservableList<Country> acturalList = InfoRetriver.getObservableCountryList(player);
-        Collections.sort(acturalList, (o1, o2) -> ((Country) o1).getCountryName().compareTo(((Country) o2).getCountryName()));
+        Collections.sort(acturalList, (o1, o2) -> o1.getCountryName().compareTo(o2.getCountryName()));
 
         ObservableList<Country> expectedList = graphTester.getObservableCountryList(player);
         Assert.assertEquals(expectedList, acturalList);
     }
+
+
 
 } 

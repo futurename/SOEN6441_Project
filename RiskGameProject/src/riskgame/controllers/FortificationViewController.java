@@ -112,12 +112,34 @@ public class FortificationViewController {
         lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
         ListviewRenderer.renderCountryItems(lsv_ownedCountries);
 
-        /*if (isAllReachableCountryEmpty(curPlayer)) {
+        boolean isOneCountryCanFortificate = isExistFortificationCountry(lsv_ownedCountries.getItems());
+        if (!isOneCountryCanFortificate) {
+            btn_nextStep.setVisible(true);
             btn_confirmMoveArmy.setVisible(false);
             btn_skipFortification.setVisible(false);
-            btn_nextStep.setVisible(true);
-            setListViewsTransparent();
-        }*/
+        }
+    }
+
+    /**
+     * validate whether exists a country which can fortificate to other countries.
+     *
+     * @param countryObservableList country object list
+     * @return true for valid, false for none
+     */
+    private boolean isExistFortificationCountry(ObservableList<Country> countryObservableList) {
+        boolean result = false;
+        for (Country country : countryObservableList) {
+            int armyNbr = country.getCountryArmyNumber();
+            if (armyNbr > 1) {
+                ObservableList<Country> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayerIndex,
+                        country.getCountryName());
+                if (!reachableCountryList.isEmpty()) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+        return result;
     }
 
     /**

@@ -303,10 +303,18 @@ public class AttackViewController implements Initializable {
 
             if (AttackProcess.winnerPlayerIndex != -1) {
                 callGameOverView();
+            }else{
+                boolean isOneCountryCanAttack = InfoRetriver.validateAttackerStatus(curPlayerIndex, lsv_ownedCountries.getItems());
+                if(!isOneCountryCanAttack){
+                    btn_nextStep.setVisible(true);
+                    btn_confirmAttack.setVisible(false);
+                    btn_alloutMode.setVisible(false);
+                }
             }
         }
-
     }
+
+
 
     /**
      * refresh data display in Listviews
@@ -367,6 +375,13 @@ public class AttackViewController implements Initializable {
 
             if (AttackProcess.winnerPlayerIndex != -1) {
                 callGameOverView();
+            }else{
+                boolean isOneCountryCanAttack = InfoRetriver.validateAttackerStatus(curPlayerIndex, lsv_ownedCountries.getItems());
+                if(!isOneCountryCanAttack){
+                    btn_nextStep.setVisible(true);
+                    btn_confirmAttack.setVisible(false);
+                    btn_alloutMode.setVisible(false);
+                }
             }
         }
     }

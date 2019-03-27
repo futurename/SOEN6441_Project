@@ -164,6 +164,32 @@ public class InfoRetriver {
 
         view.getChildren().addAll(labelList);
     }
+
+    /**
+     * valid whether the attacker has an attackable country, if not, move to next phase.
+     * @param curPlayerIndex index of current player
+     * @param ownedCountryList country object list
+     * @return true for valid, false for none
+     */
+    public static boolean validateAttackerStatus(int curPlayerIndex, ObservableList<Country> ownedCountryList) {
+
+        boolean isOneCountryHasAttackableCountry = false;
+
+        for(Country country: ownedCountryList){
+            if(country.getCountryArmyNumber() > 1){
+                ObservableList<Country> attackableCountryList = InfoRetriver.getAttackableAdjacentCountryList(curPlayerIndex, country);
+
+                System.out.println("\nattackable country list: " + attackableCountryList + "\n");
+
+                if(!attackableCountryList.isEmpty()){
+                    isOneCountryHasAttackableCountry = true;
+                    break;
+                }
+            }
+        }
+        return isOneCountryHasAttackableCountry;
+    }
+
 }
 
 
