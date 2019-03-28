@@ -155,6 +155,7 @@ public class AttackViewController implements Initializable {
     @FXML
     public void selectAttackingCountry(MouseEvent mouseEvent) {
         lsv_adjacentCountries.getSelectionModel().select(-1);
+
         Country selectedCountry = (Country) lsv_ownedCountries.getSelectionModel().getSelectedItem();
 
         int selectedArmyNbr = selectedCountry.getCountryArmyNumber();
@@ -178,6 +179,7 @@ public class AttackViewController implements Initializable {
             btn_confirmAttack.setVisible(true);
             btn_alloutMode.setVisible(true);
         }
+
     }
 
     /**
@@ -247,6 +249,7 @@ public class AttackViewController implements Initializable {
 
     /**
      * Check whether the selected item contains country object
+     *
      * @param listVIew the listview of displaying country information
      * @return true for not empty, false for empty selection
      */
@@ -281,7 +284,7 @@ public class AttackViewController implements Initializable {
      * onClick event for confirming attack
      *
      * @param actionEvent button clicked
-     * @exception IOException gameover view file not found
+     * @throws IOException gameover view file not found
      */
     public void clickAttack(ActionEvent actionEvent) throws IOException {
         if (isBothCountriesSelected()) {
@@ -303,17 +306,28 @@ public class AttackViewController implements Initializable {
 
             if (AttackProcess.winnerPlayerIndex != -1) {
                 callGameOverView();
-            }else{
+            } else {
                 boolean isOneCountryCanAttack = InfoRetriver.validateAttackerStatus(curPlayerIndex, lsv_ownedCountries.getItems());
-                if(!isOneCountryCanAttack){
-                    btn_nextStep.setVisible(true);
-                    btn_confirmAttack.setVisible(false);
-                    btn_alloutMode.setVisible(false);
+                if (!isOneCountryCanAttack) {
+                    setPhaseFinish();
                 }
             }
         }
     }
 
+    /**
+     * Current phase finishes, set buttons status.
+     */
+    private void setPhaseFinish() {
+        btn_nextStep.setVisible(true);
+        btn_confirmAttack.setVisible(false);
+        btn_alloutMode.setVisible(false);
+        lsv_ownedCountries.getSelectionModel().select(-1);
+        int lastIndex = lsv_ownedCountries.getItems().size() - 1;
+        lsv_ownedCountries.getSelectionModel().select(lastIndex);
+        lsv_ownedCountries.setMouseTransparent(true);
+        lsv_adjacentCountries.setMouseTransparent(true);
+    }
 
 
     /**
@@ -353,12 +367,11 @@ public class AttackViewController implements Initializable {
         System.out.printf("player %s finished attack, player %s's turn\n", curPlayerIndex, curPlayerIndex);
     }
 
-
     /**
      * Use all-out mode for attacking, it will result in either attacker wins or defender wins
      *
      * @param actionEvent mouse click
-     * @exception IOException next view file not found
+     * @throws IOException next view file not found
      */
     public void clickAllOutMode(ActionEvent actionEvent) throws IOException {
         if (isBothCountriesSelected()) {
@@ -375,12 +388,10 @@ public class AttackViewController implements Initializable {
 
             if (AttackProcess.winnerPlayerIndex != -1) {
                 callGameOverView();
-            }else{
+            } else {
                 boolean isOneCountryCanAttack = InfoRetriver.validateAttackerStatus(curPlayerIndex, lsv_ownedCountries.getItems());
-                if(!isOneCountryCanAttack){
-                    btn_nextStep.setVisible(true);
-                    btn_confirmAttack.setVisible(false);
-                    btn_alloutMode.setVisible(false);
+                if (!isOneCountryCanAttack) {
+                    setPhaseFinish();
                 }
             }
         }
