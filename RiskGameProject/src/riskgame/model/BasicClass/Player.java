@@ -56,11 +56,11 @@ public class Player extends Observable implements Observer {
     /**
      * this functions calculates the result for every single attack and returns the attacker's army number
      *
-     * @param attackingCountry attacking country
-     * @param defendingCountry defending country
+     * @param attackingCountry  attacking country
+     * @param defendingCountry  defending country
      * @param attackableArmyNbr army number of attacking country
      * @param defendableArmyNbr army number of defending country
-     * @param stringBuilder stringbuilder for storing combat information
+     * @param stringBuilder     stringbuilder for storing combat information
      * @return remaining army number of the attacker
      */
     private static int getOneAttackResult(Country attackingCountry, Country defendingCountry, int attackableArmyNbr, int defendableArmyNbr,
@@ -153,7 +153,7 @@ public class Player extends Observable implements Observer {
         return result;
     }
 
-    public void setCardPermission(boolean b){
+    public void setCardPermission(boolean b) {
         this.cardObtained = b;
     }
 
@@ -188,6 +188,7 @@ public class Player extends Observable implements Observer {
 
     /**
      * get whether this player is still in the game
+     *
      * @return true for valid and false for quit
      */
     public boolean getActiveStatus() {
@@ -196,6 +197,7 @@ public class Player extends Observable implements Observer {
 
     /**
      * set active status for the player
+     *
      * @param activeStatus true for valid and false for quit
      */
     public void setActiveStatus(boolean activeStatus) {
@@ -218,6 +220,7 @@ public class Player extends Observable implements Observer {
 
     /**
      * this method will be called only when player exchanging card for army
+     *
      * @param newArmy army number to be added
      */
     public void addArmy(int newArmy) {
@@ -299,21 +302,21 @@ public class Player extends Observable implements Observer {
      *
      * @param attackingCountry      attacking country
      * @param defendingCountry      defending country
-     * @param attackArmyNbr army number of attacking country
-     * @param defendArmyNbr army number of defending country
+     * @param attackArmyNbr         army number of attacking country
+     * @param defendArmyNbr         army number of defending country
      * @param txa_attackInfoDisplay UI control for displaying information
      */
     public void attackCountry(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr, TextArea txa_attackInfoDisplay) {
-
         oneAttackSimulate(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, txa_attackInfoDisplay);
     }
 
     /**
      * allout attack mode, which results in either attacker wins or defender wins.
-     * @param attackingCountry attakcing country
-     * @param defendingCountry defending country
-     * @param attackArmyNbr army number of attacking country
-     * @param defendArmyNbr army number of defending country
+     *
+     * @param attackingCountry      attakcing country
+     * @param defendingCountry      defending country
+     * @param attackArmyNbr         army number of attacking country
+     * @param defendArmyNbr         army number of defending country
      * @param txa_attackInfoDisplay UI control for display information
      */
     public void alloutModeAttack(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr, TextArea txa_attackInfoDisplay) {
@@ -322,10 +325,11 @@ public class Player extends Observable implements Observer {
 
     /**
      * Util method for recursive attacks
-     * @param attackingCountry attacking country
-     * @param defendingCountry defending country
-     * @param attackArmyNbr army number of attacking country
-     * @param defendArmyNbr army number of defending country
+     *
+     * @param attackingCountry      attacking country
+     * @param defendingCountry      defending country
+     * @param attackArmyNbr         army number of attacking country
+     * @param defendArmyNbr         army number of defending country
      * @param txa_attackInfoDisplay UI control for displaying information
      */
     public void alloutAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr,
@@ -468,7 +472,7 @@ public class Player extends Observable implements Observer {
             o.deleteObserver(this);
             newOwner.ownedCountryNameList.add(((Country) o).getCountryName());
             newOwner.updateArmyNbr();
-            if (!newOwner.cardObtained){
+            if (!newOwner.cardObtained) {
                 newOwner.setObservableCard(Card.getCard(Card.class));
                 newOwner.setCardPermission(true);
             }
