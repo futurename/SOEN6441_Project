@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapeditor.controller.MapEditorEditPageController">
+   <children>
+      <Label fx:id="lab_EditPagetitle" layoutX="61.0" layoutY="41.0" text="Edit">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Button fx:id="btn_AddCountry" layoutX="332.0" layoutY="667.0" mnemonicParsing="false" onAction="#clickToAddCountry" text="AddCountry" />
+      <Button fx:id="btn_DeleteContinent" layoutX="478.0" layoutY="667.0" mnemonicParsing="false" onAction="#clickToDeleteContinent" text="DeleteContinent" />
+      <Button fx:id="btn_AddContinent" layoutX="162.0" layoutY="667.0" mnemonicParsing="false" onAction="#clickToAddContinent" text="AddContinent" />
+      <Button fx:id="btn_DeleteCountry" layoutX="652.0" layoutY="667.0" mnemonicParsing="false" onAction="#clickToDeleteCountry" text="DeleteCountry" />
+      <Button fx:id="btn_Save" layoutX="830.0" layoutY="667.0" mnemonicParsing="false" onAction="#clickToSave" text="Save" />
+      <TabPane layoutX="258.0" layoutY="242.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" />
+      <TableView fx:id="ContinentTable" layoutX="162.0" layoutY="142.0" prefHeight="500.0" prefWidth="856.0">
+        <columns>
+          <TableColumn fx:id="ContinentNameCol" prefWidth="100.0" text="Name" />
+          <TableColumn fx:id="ContinentBonusCol" prefWidth="75.0" text="Bonus" />
+            <TableColumn fx:id="CountryCol" prefWidth="800.0" text="Country" />
+        </columns>
+      </TableView>
+      <Text fx:id="txt_check" layoutX="320.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="check correctness of loading file" wrappingWidth="276.0" />
+      <Button fx:id="btn_check" layoutX="683.0" layoutY="48.0" mnemonicParsing="false" onAction="#clickToCheck" text="check" />
+      <Button fx:id="btn_returnToHomePage" layoutX="933.0" layoutY="667.0" mnemonicParsing="false" onAction="#clickToReturn" text="Return" />
+   </children>
+</AnchorPane>

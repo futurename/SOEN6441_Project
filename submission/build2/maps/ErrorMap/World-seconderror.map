@@ -1,0 +1,19 @@
+[Map]
+author=alex
+warn=yes
+image=USA.bmp
+wrap=no
+scroll=horizontal
+
+[Continents]
+Mexico=2
+Northwest U.S.=3
+
+[Territories]
+Baja California,105,385,Mexico,Washington,Western Mexico
+Western Mexico,175,385,Mexico,Baja California,Montana
+
+Washington,80,50,Northwest U.S.,Baja California,Oregon
+Oregon,65,105,Northwest U.S.,Washington
+Idaho,135,125,Northwest U.S.,Montana
+Montana,200,80,Northwest U.S.,Western Mexico,Idaho
