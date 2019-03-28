@@ -1,7 +1,5 @@
 package riskgame.model.Utils;
 
-import riskgame.controllers.StartViewController;
-
 import java.io.*;
 import java.util.ArrayList;
 
@@ -29,7 +27,7 @@ public class MapChecker {
         try {
             new FileReader(path);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return false;
         }
         return true;
