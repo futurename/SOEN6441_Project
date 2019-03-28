@@ -161,26 +161,33 @@ public class ReinforceViewController implements Initializable {
             if (cardsNbr >= 5) {
                 btn_skipCardsExchange.setVisible(false);
             }
-            Color curPlayerColor = curPlayer.getPlayerColor();
-            lbl_countriesInfo.setTextFill(curPlayerColor);
-            lbl_adjacentCountriesInfo.setTextFill(curPlayerColor);
-            lbl_undeployedArmy.setText(Integer.toString(curUndeployedArmy));
-            lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
-
-            System.out.println("country display index: " + curPlayer.getPlayerIndex());
-
-            ListviewRenderer.renderCountryItems(lsv_ownedCountries);
-
-            scb_armyNbrAdjustment.setMax(curUndeployedArmy);
-            scb_armyNbrAdjustment.setMin(1);
-            scb_armyNbrAdjustment.adjustValue(curUndeployedArmy);
-            lbl_deployArmyCount.setText(Integer.toString(curUndeployedArmy));
-
-            scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue) -> lbl_deployArmyCount.setText(Integer.toString(newValue.intValue())));
+            setUIInitStatus();
 
         }
 
-        /**
+    /**
+     * set UI init status
+     */
+    private void setUIInitStatus() {
+        Color curPlayerColor = curPlayer.getPlayerColor();
+        lbl_countriesInfo.setTextFill(curPlayerColor);
+        lbl_adjacentCountriesInfo.setTextFill(curPlayerColor);
+        lbl_undeployedArmy.setText(Integer.toString(curUndeployedArmy));
+        lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
+
+        System.out.println("country display index: " + curPlayer.getPlayerIndex());
+
+        ListviewRenderer.renderCountryItems(lsv_ownedCountries);
+
+        scb_armyNbrAdjustment.setMax(curUndeployedArmy);
+        scb_armyNbrAdjustment.setMin(1);
+        scb_armyNbrAdjustment.adjustValue(curUndeployedArmy);
+        lbl_deployArmyCount.setText(Integer.toString(curUndeployedArmy));
+
+        scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue) -> lbl_deployArmyCount.setText(Integer.toString(newValue.intValue())));
+    }
+
+    /**
          * init card obserser pattern
          */
         private void initCurPlayerCardListView () {

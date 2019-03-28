@@ -1,0 +1,17 @@
+[Map]
+author=Sean O'Connor
+image=world.bmp
+wrap=no
+scroll=horizontal
+warn=yes
+
+[Continents]
+North America=5
+South America=2
+
+[Territories]
+Alaska,70,126,North America,Northwest Territory
+Northwest Territory,148,127,North America,Alaska
+
+Venezuala,259,303,South America,Peru
+Peru,262,349,South America,Venezuala

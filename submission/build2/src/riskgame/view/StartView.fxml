@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane fx:id="acp_startView" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="riskgame.controllers.StartViewController">
+   <children>
+      <TextField fx:id="txf_mapPath" layoutX="730.0" layoutY="110.0" prefHeight="35.0" prefWidth="277.0" text="maps/World.map">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <tooltip>
+            <Tooltip autoHide="true" text="Relative path in project" />
+         </tooltip>
+      </TextField>
+      <Label alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="379.0" layoutY="14.0" mouseTransparent="true" prefHeight="81.0" prefWidth="407.0" text="Risk Game Project: Group15" AnchorPane.leftAnchor="379.0" AnchorPane.topAnchor="14.0">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="562.0" layoutY="107.0" mouseTransparent="true" prefHeight="35.0" prefWidth="137.0" text="Map path:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="24.0" layoutY="109.0" mouseTransparent="true" prefHeight="35.0" prefWidth="137.0" text="No. of Players" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="109.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txf_playerNumbers" alignment="CENTER" editable="false" focusTraversable="false" layoutX="245.0" layoutY="108.0" mouseTransparent="true" prefHeight="25.0" prefWidth="50.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </TextField>
+      <Button fx:id="btn_reducePlayerNumber" contentDisplay="CENTER" layoutX="179.0" layoutY="107.0" mnemonicParsing="false" onAction="#clickReducePlayerNumber" prefHeight="39.0" prefWidth="37.0" text="-" textAlignment="CENTER" textFill="#fc0101" AnchorPane.leftAnchor="179.0" AnchorPane.topAnchor="107.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <tooltip>
+            <Tooltip text="minimun 2 players" />
+         </tooltip>
+      </Button>
+      <Button fx:id="btn_plusPlayerNumber" contentDisplay="CENTER" layoutX="323.0" layoutY="108.0" mnemonicParsing="false" onAction="#clickIncreasePlayerNumber" prefHeight="25.0" prefWidth="25.0" text="+" textAlignment="CENTER" textFill="#fc0505">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <tooltip>
+            <Tooltip text="maximum 6 players" />
+         </tooltip>
+      </Button>
+      <Button fx:id="btn_confirmLoadFile" contentDisplay="CENTER" layoutX="1097.0" layoutY="107.0" mnemonicParsing="false" onAction="#clickConfirmLoadMap" prefHeight="39.0" prefWidth="69.0" text="OK" textAlignment="CENTER" textFill="#f70707">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_nextStep" layoutX="998.0" layoutY="717.0" mnemonicParsing="false" onAction="#clickNextToReinforcePhase" prefHeight="35.0" prefWidth="127.0" text="NEXT" textFill="#fc0303" underline="true" visible="false" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="57.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <BorderPane layoutX="110.0" layoutY="171.0" prefHeight="634.0" prefWidth="980.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="110.0">
+         <top>
+            <VBox alignment="TOP_CENTER" prefHeight="55.0" prefWidth="980.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="txf_mapPromptInfo" alignment="CENTER" editable="false" focusTraversable="false" mouseTransparent="true" prefHeight="58.0" prefWidth="910.0" visible="false">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </VBox>
+         </top>
+         <left>
+            <HBox fx:id="hbx_infoDisplayHbox" prefHeight="482.0" prefWidth="980.0" BorderPane.alignment="CENTER" />
+         </left>
+      </BorderPane>
+      <Button fx:id="btn_confirmPlayerNum" contentDisplay="CENTER" layoutX="409.0" layoutY="107.0" mnemonicParsing="false" onAction="#clickConfirmPlayerNum" prefHeight="39.0" prefWidth="82.0" text="Set" textAlignment="CENTER" textFill="#f20404">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_infoSwitcher" contentDisplay="CENTER" layoutX="761.0" layoutY="823.0" mnemonicParsing="false" onAction="#clickInfoDisplaySwitcher" prefHeight="39.0" prefWidth="127.0" textAlignment="CENTER" textFill="#0135f2" visible="false">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_reset" alignment="CENTER" layoutX="47.0" layoutY="823.0" mnemonicParsing="false" onAction="#clickReset" prefHeight="39.0" prefWidth="127.0" text="RESET" textAlignment="CENTER" textFill="#0135f2">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_loadFile" contentDisplay="CENTER" layoutX="1021.0" layoutY="107.0" mnemonicParsing="false" onAction="#clickLoadMap" prefHeight="39.0" prefWidth="69.0" text="Load" textAlignment="CENTER" textFill="#5302f7">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
