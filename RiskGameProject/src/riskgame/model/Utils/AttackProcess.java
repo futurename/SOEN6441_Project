@@ -13,10 +13,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
- * This class processes the attack
- * checks that how many dice can be tron and how many dice user want to throw
- * checks if defender wins or attacker
- * checks if country,continent or whole map is conquered or not
+ * This class simulates the attack
+ * calculates the dice thrown by defender
+ * checks who wins
+ * checks country is owned or continent is owned or world map is owned
  * @author Karamveer
  * @since build2
  */
@@ -76,7 +76,7 @@ public class AttackProcess {
     }
 
     /**
-     * this method updates the status of country and world if these are conqured and changes the owner
+     * this method sets the status of owner of country if these are won by owner
      * @param attacker attacking player
      * @param defender defending player
      * @param curContinent current continent the country locates
