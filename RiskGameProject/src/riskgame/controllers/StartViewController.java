@@ -286,11 +286,6 @@ public class StartViewController {
     private void setPlayerWorldDominationView() {
         playerDomiViewObserver.resetObservable(totalNumOfPlayers);
 
-/*        playerDomiViewObservable.resetObservable(totalNumOfPlayers);
-        playerDomiViewObservable.updateObservable();
-        playerDomiViewObservable.notifyObservers("Initialize obs from start view");
-
-        System.out.println("\n>>>>>>domi view observer:" + playerDomiViewObserver.getControlRatioList());*/
     }
 
     /**
@@ -319,6 +314,9 @@ public class StartViewController {
             if (isSameOwner) {
                 playersList.get(owner).addControlledContinent(continent.getContinentName());
                 continent.setContinentOwnerIndex(owner);
+                Player curPlayer = playersList.get(owner);
+                curPlayer.addContinentBonus(continent.getContinentBonusValue());
+
             }
         }
     }

@@ -1,4 +1,22 @@
-**Build1:**
+**Build1**
+
+**Constants put in StartViewController.java**
+
+![1553809669841](C:\Users\WW\AppData\Roaming\Typora\typora-user-images\1553809669841.png)
+
+**Build2**
+
+**move to InitWorldMap.java**
+
+**![1553809615663](C:\Users\WW\AppData\Roaming\Typora\typora-user-images\1553809615663.png)**
+
+
+
+
+
+
+
+Build1:**
 
 **initialize map function: in buildWorldMapGraph()**
 
@@ -39,3 +57,28 @@
 **put it in a new method**
 
 ![1553808043340](C:\Users\WW\AppData\Roaming\Typora\typora-user-images\1553808043340.png)
+
+
+
+**Build1**
+
+**Alert created inside a method every time needed**
+
+![1553808883103](C:\Users\WW\AppData\Roaming\Typora\typora-user-images\1553808883103.png)
+
+**Build2**
+
+![1553809328444](C:\Users\WW\AppData\Roaming\Typora\typora-user-images\1553809328444.png)
+
+
+
+![1553809392033](C:\Users\WW\AppData\Roaming\Typora\typora-user-images\1553809392033.png)
+
+
+
+![1553809406351](C:\Users\WW\AppData\Roaming\Typora\typora-user-images\1553809406351.png)
+
+
+
+
+

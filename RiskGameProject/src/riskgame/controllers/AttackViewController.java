@@ -104,6 +104,17 @@ public class AttackViewController implements Initializable {
         initPhaseView();
         InfoRetriver.updateDominationView("From attackView init", vbx_worldDomiView);
         initCountryListviewDisplay(curPlayer);
+        validateExistAttackableCountry();
+    }
+
+    /**
+     * valide whether there exists attackable country
+     */
+    private void validateExistAttackableCountry() {
+        boolean isOneCountryCanAttack = InfoRetriver.validateAttackerStatus(curPlayerIndex, lsv_ownedCountries.getItems());
+        if (!isOneCountryCanAttack) {
+            setPhaseFinish();
+        }
     }
 
     private void initPhaseView() {
@@ -124,6 +135,9 @@ public class AttackViewController implements Initializable {
         lbl_adjacentCountries.setTextFill(curPlayerColor);
         lbl_attackerArmyPrompt.setTextFill(curPlayerColor);
         lbl_attackerArmyNbr.setTextFill(curPlayerColor);
+
+        txa_attackInfoDisplay.setEditable(false);
+
     }
 
     /**
@@ -307,10 +321,7 @@ public class AttackViewController implements Initializable {
             if (AttackProcess.winnerPlayerIndex != -1) {
                 callGameOverView();
             } else {
-                boolean isOneCountryCanAttack = InfoRetriver.validateAttackerStatus(curPlayerIndex, lsv_ownedCountries.getItems());
-                if (!isOneCountryCanAttack) {
-                    setPhaseFinish();
-                }
+                validateExistAttackableCountry();
             }
         }
     }
@@ -323,8 +334,7 @@ public class AttackViewController implements Initializable {
         btn_confirmAttack.setVisible(false);
         btn_alloutMode.setVisible(false);
         lsv_ownedCountries.getSelectionModel().select(-1);
-        int lastIndex = lsv_ownedCountries.getItems().size() - 1;
-        lsv_ownedCountries.getSelectionModel().select(lastIndex);
+        lsv_adjacentCountries.setItems(null);
         lsv_ownedCountries.setMouseTransparent(true);
         lsv_adjacentCountries.setMouseTransparent(true);
     }
@@ -389,10 +399,7 @@ public class AttackViewController implements Initializable {
             if (AttackProcess.winnerPlayerIndex != -1) {
                 callGameOverView();
             } else {
-                boolean isOneCountryCanAttack = InfoRetriver.validateAttackerStatus(curPlayerIndex, lsv_ownedCountries.getItems());
-                if (!isOneCountryCanAttack) {
-                    setPhaseFinish();
-                }
+                validateExistAttackableCountry();
             }
         }
     }
