@@ -1,20 +1,21 @@
 package riskgame.model.BasicClass.StrategyPattern;
 
 import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.Player;
 
 public class StrategyAggressive implements Strategy {
     @Override
-    public void doReinforcement() {
+    public void doReinforcement(Player player) {
 
     }
 
     @Override
-    public void doAttack() {
+    public void doAttack(Player player) {
 
     }
 
     @Override
-    public void doFortification() {
+    public void doFortification(Player player) {
 
     }
 }

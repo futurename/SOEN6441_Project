@@ -443,11 +443,11 @@ public class Player extends Observable implements Observer {
     }
 
     public void executeAttack(){
-        this.strategy.doAttack();
+        this.strategy.doAttack(this);
     }
 
     public void executeReinforcement(){
-        this.strategy.doReinforcement();
+        this.strategy.doReinforcement(this);
     }
 
     public void executeReinforcement(Country country, int army){
@@ -455,7 +455,7 @@ public class Player extends Observable implements Observer {
     }
 
     public void exeFortification(){
-        this.strategy.doFortification();
+        this.strategy.doFortification(this);
     }
 
     /**
