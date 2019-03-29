@@ -15,7 +15,8 @@ public class StrategyHuman implements Strategy {
     }
 
     @Override
-    public void doFortification(Player player) {
-
+    public void doFortification(Country from, Country to, int army) {
+        from.reduceFromCountryArmyNumber(army);
+        to.addToCountryArmyNumber(army);
     }
 }

@@ -105,6 +105,7 @@ public class AttackViewController implements Initializable {
         InfoRetriver.updateDominationView("From attackView init", vbx_worldDomiView);
         initCountryListviewDisplay(curPlayer);
         validateExistAttackableCountry();
+        curPlayer.executeAttack();
     }
 
     /**

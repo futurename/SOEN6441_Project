@@ -92,17 +92,20 @@ public class InfoRetriver {
      * @return ObservableList of owned countries
      */
     public static ObservableList<Country> getObservableCountryList(Player player) {
-        ArrayList<String> ownedCountryNameList = player.getOwnedCountryNameList();
-
         ObservableList<Country> result;
-        ArrayList<Country> countryList = new ArrayList<>();
+        ArrayList<Country> countryList = getCountryList(player);
+        result = FXCollections.observableArrayList(countryList);
+        return result;
+    }
 
+    public static ArrayList<Country> getCountryList(Player player) {
+        ArrayList<String> ownedCountryNameList = player.getOwnedCountryNameList();
+        ArrayList<Country> countryList = new ArrayList<>();
         for (String name : ownedCountryNameList) {
             Country country = Main.graphSingleton.get(name).getCountry();
             countryList.add(country);
         }
-        result = FXCollections.observableArrayList(countryList);
-        return result;
+        return countryList;
     }
 
     /**

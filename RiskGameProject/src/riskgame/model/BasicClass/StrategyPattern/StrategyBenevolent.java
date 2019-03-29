@@ -2,7 +2,7 @@ package riskgame.model.BasicClass.StrategyPattern;
 
 import riskgame.model.BasicClass.Player;
 
-public class StrategyAggressive implements Strategy {
+public class StrategyBenevolent implements Strategy {
     @Override
     public void doReinforcement(Player player) {
 

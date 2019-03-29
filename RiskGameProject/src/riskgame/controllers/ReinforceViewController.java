@@ -92,8 +92,6 @@ public class ReinforceViewController implements Initializable {
     private Player curPlayer;
     private CardExchangeViewObserver cardExchangeViewObserver;
     private ArrayList<Card> playerCards;
-//    private int curUndeployedArm = 0;
-
 
     private Alert alert = new Alert(Alert.AlertType.WARNING);
 

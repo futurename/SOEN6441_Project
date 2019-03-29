@@ -454,8 +454,12 @@ public class Player extends Observable implements Observer {
         this.strategy.doReinforcement(country, army);
     }
 
-    public void exeFortification(){
+    public void executeFortification(){
         this.strategy.doFortification(this);
+    }
+
+    public void executeFortification(Country from, Country to, int army){
+        this.strategy.doFortification(from, to, army);
     }
 
     /**

@@ -118,6 +118,7 @@ public class FortificationViewController {
             btn_confirmMoveArmy.setVisible(false);
             btn_skipFortification.setVisible(false);
         }
+        curPlayer.executeFortification();
     }
 
     /**
@@ -350,20 +351,21 @@ public class FortificationViewController {
             Country selectedCountry = graphSingleton.get(selectedCountryName).getCountry();
 
             String selectedTargetCountryName = adjacentCountryObservableList.get(selectedReachableCountryIndex).getCountryName();
-            Country selecctedTargetCountry = graphSingleton.get(selectedTargetCountryName).getCountry();
+            Country selectedTargetCountry = graphSingleton.get(selectedTargetCountryName).getCountry();
 
             System.out.println("before move, selected: " + selectedCountryName + ": " + selectedCountry.getCountryArmyNumber() + ", target: "
-                    + selectedTargetCountryName + ": " + selecctedTargetCountry.getCountryArmyNumber());
+                    + selectedTargetCountryName + ": " + selectedTargetCountry.getCountryArmyNumber());
 
             int deployArmyNumber = Integer.parseInt(lbl_deployArmyNumber.getText());
 
             System.out.println("deploy number: " + deployArmyNumber);
 
-            selectedCountry.reduceFromCountryArmyNumber(deployArmyNumber);
-            selecctedTargetCountry.addToCountryArmyNumber(deployArmyNumber);
+            curPlayer.executeFortification(selectedCountry, selectedTargetCountry, deployArmyNumber);
+//            selectedCountry.reduceFromCountryArmyNumber(deployArmyNumber);
+//            selectedTargetCountry.addToCountryArmyNumber(deployArmyNumber);
 
             System.out.println("after move, selected: " + selectedCountryName + ": " + selectedCountry.getCountryArmyNumber() + ", target: "
-                    + selectedTargetCountryName + ": " + selecctedTargetCountry.getCountryArmyNumber());
+                    + selectedTargetCountryName + ": " + selectedTargetCountry.getCountryArmyNumber());
 
             lsv_ownedCountries.refresh();
             lsv_reachableCountry.refresh();

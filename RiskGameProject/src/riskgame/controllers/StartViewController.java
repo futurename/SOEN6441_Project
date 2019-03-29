@@ -27,6 +27,7 @@ import riskgame.model.BasicClass.GraphSingleton;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
 import riskgame.model.BasicClass.StrategyPattern.StrategyHuman;
+import riskgame.model.BasicClass.StrategyPattern.StrategyRandom;
 import riskgame.model.Utils.InitPlayers;
 import riskgame.model.Utils.ListviewRenderer;
 
@@ -437,6 +438,7 @@ public class StartViewController {
         for (int playerIndex = 0; playerIndex < Main.totalNumOfPlayers; playerIndex++) {
             strategies.add(new StrategyHuman());
         }
+        strategies.set(1, new StrategyRandom());
     }
 
     /**
