@@ -137,6 +137,7 @@ public class ReinforceViewController implements Initializable {
         @Override
         public void initialize (URL location, ResourceBundle resources){
             reinforceViewInit();
+            curPlayer.executeReinforcement();
         }
 
         /**
@@ -336,7 +337,9 @@ public class ReinforceViewController implements Initializable {
                 alert.showAndWait();
             } else {
                 int deployArmyCount = Integer.parseInt(lbl_deployArmyCount.getText());
-                selectedCountry.addToCountryArmyNumber(deployArmyCount);
+//                selectedCountry.addToCountryArmyNumber(deployArmyCount);
+
+                curPlayer.executeReinforcement(selectedCountry, deployArmyCount);
 
                 int remainUndeployedArmyCount = undeloyedArmyCount - deployArmyCount;
                 lbl_undeployedArmy.setText(Integer.toString(remainUndeployedArmyCount));

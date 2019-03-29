@@ -1,14 +1,16 @@
 package riskgame.model.BasicClass.StrategyPattern;
 
+import riskgame.model.BasicClass.Country;
+
 public class StrategyHuman implements Strategy {
     @Override
-    public void doReinforcement() {
+    public void doAttack() {
 
     }
 
     @Override
-    public void doAttack() {
-
+    public void doReinforcement(Country country, int army) {
+        country.addToCountryArmyNumber(army);
     }
 
     @Override
