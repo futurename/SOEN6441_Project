@@ -42,7 +42,7 @@ public class Player extends Observable implements Observer {
      *
      * @param playerIndex index of current player
      */
-    public Player(int playerIndex, Strategy type) {
+    public Player(int playerIndex) {
         this.playerIndex = playerIndex;
         this.armyNbr = 0;
         this.cardsList = new ArrayList<>();
@@ -53,7 +53,7 @@ public class Player extends Observable implements Observer {
         this.controlledContinents = new ArrayList<>();
         this.activeStatus = true;
         this.cardObtained = false;
-        this.strategy = type;
+//        this.strategy = type;
     }
 
     /**
@@ -417,7 +417,6 @@ public class Player extends Observable implements Observer {
     }
 
     public void executeAttack(){
-
     }
 
     public void executeReinforcement(){
