@@ -13,17 +13,17 @@
             <Tooltip autoHide="true" text="Relative path in project" />
          </tooltip>
       </TextField>
-      <Label alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="379.0" layoutY="14.0" mouseTransparent="true" prefHeight="81.0" prefWidth="407.0" text="Risk Game Project: Group15" AnchorPane.leftAnchor="379.0" AnchorPane.topAnchor="14.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="24.0" layoutY="14.0" mouseTransparent="true" prefHeight="81.0" prefWidth="407.0" text="Risk Game Project: Group15" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="14.0">
          <font>
             <Font name="System Bold" size="26.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="562.0" layoutY="107.0" mouseTransparent="true" prefHeight="35.0" prefWidth="137.0" text="Map path:">
+      <Label fx:id="lbl_disMapPath" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="562.0" layoutY="107.0" mouseTransparent="true" prefHeight="35.0" prefWidth="137.0" text="Map path:">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="24.0" layoutY="109.0" mouseTransparent="true" prefHeight="35.0" prefWidth="137.0" text="No. of Players" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="109.0">
+      <Label fx:id="lbl_disNumOfPlayer" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="24.0" layoutY="109.0" mouseTransparent="true" prefHeight="35.0" prefWidth="137.0" text="No. of Players" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="109.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -95,5 +95,20 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
+      <Button fx:id="btn_loadGame" layoutX="999.0" layoutY="36.0" mnemonicParsing="false" onAction="#clickLoadGame" prefHeight="51.0" prefWidth="162.0" text="Load Game" textFill="#fc0303" underline="true">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <RadioButton fx:id="rbn_singleMode" layoutX="519.0" layoutY="46.0" mnemonicParsing="false" onAction="#clickSingleMode" text="SingleMode" textFill="RED">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="rbn_tournamentMode" layoutX="713.0" layoutY="46.0" mnemonicParsing="false" onAction="#clickTournamentMode" text="TournamentMode" textFill="RED">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </RadioButton>
    </children>
 </AnchorPane>

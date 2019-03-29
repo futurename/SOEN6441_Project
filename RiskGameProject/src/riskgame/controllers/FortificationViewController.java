@@ -421,4 +421,7 @@ public class FortificationViewController {
         phaseViewObservable.notifyObservers("from fortification view");
         System.out.printf("player %s finished fortification, player %s's turn\n", curPlayerIndex, nextPlayerIndex);
     }
+
+    public void clickLoadGame(ActionEvent actionEvent) {
+    }
 }
