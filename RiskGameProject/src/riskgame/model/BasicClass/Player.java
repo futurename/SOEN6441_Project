@@ -55,6 +55,7 @@ public class Player extends Observable implements Observer {
         this.cardObtained = false;
         this.undeployedArmy = 0;
         this.strategy = new StrategyHuman();
+
     }
 
     public Player(int playerIndex, Strategy type) {
@@ -69,6 +70,8 @@ public class Player extends Observable implements Observer {
         this.cardObtained = false;
         this.undeployedArmy = 0;
         this.strategy = type;
+
+
     }
 
     /**

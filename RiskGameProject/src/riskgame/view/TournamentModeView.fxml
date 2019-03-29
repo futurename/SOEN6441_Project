@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="riskgame.controllers.TournamentModeViewController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="TOP" layoutX="149.0" layoutY="35.0" prefHeight="32.0" prefWidth="303.0" text="Tournament Mode Setting" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tbv_mapSelectionView" layoutX="42.0" layoutY="100.0" prefHeight="200.0" prefWidth="175.0">
+         <columns>
+            <TableColumn fx:id="tbc_mapSlectionColumn" prefWidth="174.0" text="Map Selection" />
+         </columns></TableView>
+      <TableView fx:id="tbv_playerSelectionView" layoutX="240.0" layoutY="100.0" prefHeight="200.0" prefWidth="141.0">
+        <columns>
+          <TableColumn fx:id="tbc_playerTypeColumn" prefWidth="140.0" text="Player Types" />
+        </columns>
+      </TableView>
+      <Label alignment="CENTER" layoutX="473.0" layoutY="100.0" prefHeight="21.0" prefWidth="63.0" text="Games : ">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="chb_gamesRounds" layoutX="429.0" layoutY="128.0" onMousePressed="#clickGameRounds" prefWidth="150.0" />
+      <Label alignment="CENTER" layoutX="447.0" layoutY="200.0" prefHeight="21.0" prefWidth="115.0" text="Max Rounds : ">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="chb_maxRounds" layoutX="430.0" layoutY="224.0" onMousePressed="#clickMaxRounds" prefWidth="150.0" />
+      <Button fx:id="btn_confirmSetting" layoutX="453.0" layoutY="306.0" mnemonicParsing="false" onAction="#clickConfirmSetting" text="Confirm" textFill="#ee0606">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

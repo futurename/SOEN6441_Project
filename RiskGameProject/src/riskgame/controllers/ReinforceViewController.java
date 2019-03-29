@@ -455,5 +455,8 @@ public class ReinforceViewController implements Initializable {
             btn_confirmExchangeCards.setVisible(false);
             btn_confirmDeployment.setVisible(true);
         }
+
+    public void clickLoadGame(ActionEvent actionEvent) {
     }
+}
 

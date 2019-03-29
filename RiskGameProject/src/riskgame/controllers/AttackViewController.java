@@ -443,4 +443,6 @@ public class AttackViewController implements Initializable {
     }
 
 
+    public void clickLoadGame(ActionEvent actionEvent) {
+    }
 }

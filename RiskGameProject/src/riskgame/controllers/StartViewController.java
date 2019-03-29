@@ -2,6 +2,8 @@ package riskgame.controllers;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,13 +11,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mapeditor.model.MapObject;
 import riskgame.Main;
@@ -90,6 +90,17 @@ public class StartViewController {
     private TextField txf_mapPromptInfo;
     @FXML
     private Button btn_infoSwitcher;
+    @FXML
+    private ToggleButton rbn_singleMode;
+    @FXML
+    private ToggleButton rbn_tournamentMode;
+    @FXML
+    private Button btn_loadGame;
+    @FXML
+    private Label lbl_disNumOfPlayer;
+    @FXML
+    private Label lbl_disMapPath;
+
     /**
      * variable for storing map file path
      */
@@ -124,6 +135,9 @@ public class StartViewController {
      * set default map path, default number of players and its range, constrain the range of number of player with UI controls
      */
     public void initialize() {
+        setUIStatus(false);
+
+        initToggleButtons();
 
         txf_playerNumbers.setText(Integer.toString(DEFAULT_NUM_OF_PLAYERS));
 
@@ -135,6 +149,62 @@ public class StartViewController {
         if (numOfPlayersProperty.get() >= MAX_NUM_OF_PLAYERS) {
             btn_plusPlayerNumber.setVisible(false);
         }
+    }
+
+    private void setUIStatus(boolean visibility) {
+        lbl_disNumOfPlayer.setVisible(visibility);
+        btn_reducePlayerNumber.setVisible(visibility);
+        btn_plusPlayerNumber.setVisible(visibility);
+        txf_playerNumbers.setVisible(visibility);
+        btn_confirmPlayerNum.setVisible(visibility);
+        lbl_disMapPath.setVisible(visibility);
+        txf_mapPath.setVisible(visibility);
+        btn_loadFile.setVisible(visibility);
+        btn_confirmLoadFile.setVisible(visibility);
+    }
+
+    private void initToggleButtons() {
+        ToggleGroup toggleGroup = new ToggleGroup();
+        rbn_singleMode.setUserData(0);
+        rbn_singleMode.setToggleGroup(toggleGroup);
+        rbn_tournamentMode.setUserData(1);
+        rbn_tournamentMode.setToggleGroup(toggleGroup);
+        toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+
+               int selectedToggleIndex = (int) newValue.getUserData();
+
+                System.out.println("\ntoggle user data: " + newValue.getUserData() + "\n");
+
+                if(selectedToggleIndex == 0){
+
+                    System.out.println("\nsingle mode selected");
+
+                    setUIStatus(true);
+                    rbn_tournamentMode.setVisible(false);
+                }
+                if(selectedToggleIndex == 1){
+                    setUIStatus(false);
+                    rbn_singleMode.setVisible(false);
+
+                    Stage mainStage = (Stage)rbn_tournamentMode.getScene().getWindow();
+                    Stage curStage = new Stage();
+                    try {
+                        Pane tournamentModePane = new FXMLLoader(getClass().getResource("../view/TournamentModeView.fxml")).load();
+
+                    Scene tournamentScene = new Scene(tournamentModePane, 600, 400);
+                    curStage.setScene(tournamentScene);
+                    curStage.initOwner(mainStage);
+                    curStage.initModality(Modality.WINDOW_MODAL);
+                    curStage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
     }
 
     /**
@@ -221,9 +291,6 @@ public class StartViewController {
                 }
             }
         }
-
-        //System.out.println(txf_mapPath.getText() + ", " + mapChecker.checkCorrectness(mapPath));
-
         inputCounter--;
     }
 
@@ -457,4 +524,12 @@ public class StartViewController {
     }
 
 
+    public void clickLoadGame(ActionEvent actionEvent) {
+    }
+
+    public void clickSingleMode(ActionEvent actionEvent) {
+    }
+
+    public void clickTournamentMode(ActionEvent actionEvent) {
+    }
 }
