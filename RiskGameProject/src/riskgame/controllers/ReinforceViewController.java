@@ -127,7 +127,6 @@ public class ReinforceViewController implements Initializable {
         }
     }
 
-
         /**
          * init method for reinforce phase view
          *

@@ -1,10 +1,11 @@
 package riskgame.model.BasicClass.StrategyPattern;
 
 import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.Player;
 
 public class StrategyHuman implements Strategy {
     @Override
-    public void doAttack() {
+    public void doAttack(Player player) {
 
     }
 
@@ -14,7 +15,7 @@ public class StrategyHuman implements Strategy {
     }
 
     @Override
-    public void doFortification() {
+    public void doFortification(Player player) {
 
     }
 }

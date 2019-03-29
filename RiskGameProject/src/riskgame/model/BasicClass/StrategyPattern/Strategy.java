@@ -1,11 +1,12 @@
 package riskgame.model.BasicClass.StrategyPattern;
 
 import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.Player;
 
 public interface Strategy {
-    default void doReinforcement(){};
+    default void doReinforcement(Player player){};
     default void doReinforcement(Country country ,int army){};
-    void doAttack();
-    void doFortification();
+    default void doAttack(Player player){};
+    default void doFortification(Player player){};
 
 }
