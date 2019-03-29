@@ -3,6 +3,8 @@ package riskgame.model.Utils;
 import riskgame.Main;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.BasicClass.StrategyPattern.Strategy;
+import riskgame.model.BasicClass.StrategyPattern.StrategyAggressive;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -24,7 +26,7 @@ public class InitPlayers {
         ArrayList<String> forAllocatesCountryNameList = generateUnallocatedNameList();
 
         for (int playerIndex = 0; playerIndex < numOfPlayers; playerIndex++) {
-            Player onePlayer = new Player(playerIndex);
+            Player onePlayer = new Player(playerIndex, new StrategyAggressive());
             getInitCountryNameList(onePlayer, forAllocatesCountryNameList, numOfPlayers, graphSingleton);
             onePlayer.updateArmyNbr();
 

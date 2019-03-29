@@ -4,6 +4,7 @@ package riskgame.model.BasicClass;
 import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import riskgame.Main;
+import riskgame.model.BasicClass.StrategyPattern.Strategy;
 import riskgame.model.Utils.AttackProcess;
 
 import java.util.ArrayList;
@@ -34,13 +35,14 @@ public class Player extends Observable implements Observer {
     private ArrayList<String> controlledContinents;
     private boolean activeStatus;
     private boolean cardObtained;
+    private Strategy strategy;
 
     /**
      * class constructor
      *
      * @param playerIndex index of current player
      */
-    public Player(int playerIndex) {
+    public Player(int playerIndex, Strategy type) {
         this.playerIndex = playerIndex;
         this.armyNbr = 0;
         this.cardsList = new ArrayList<>();
@@ -51,6 +53,7 @@ public class Player extends Observable implements Observer {
         this.controlledContinents = new ArrayList<>();
         this.activeStatus = true;
         this.cardObtained = false;
+        this.strategy = type;
     }
 
     /**
@@ -411,6 +414,18 @@ public class Player extends Observable implements Observer {
         txa_attackInfoDisplay.setText(stringBuilder.toString());
 
         AttackProcess.attackResultProcess(attackingCountry, defendingCountry, attackerRemainArmyNbr);
+    }
+
+    public void executeAttack(){
+
+    }
+
+    public void executeReinforcement(){
+
+    }
+
+    public void exeFortification(){
+
     }
 
     /**
