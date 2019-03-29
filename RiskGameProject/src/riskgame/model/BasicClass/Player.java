@@ -5,6 +5,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import riskgame.Main;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
+import riskgame.model.BasicClass.StrategyPattern.StrategyHuman;
 import riskgame.model.Utils.AttackProcess;
 
 import java.util.ArrayList;
@@ -38,17 +39,28 @@ public class Player extends Observable implements Observer {
     private Strategy strategy;
 
     /**
-     * class constructor
-     *
+     * class constructor, player takes human strategy by default
      * @param playerIndex index of current player
      */
+    public Player(int playerIndex) {
+        this.playerIndex = playerIndex;
+        this.armyNbr = 0;
+        this.cardsList = new ArrayList<>();
+        this.ownedCountryNameList = new ArrayList<>();
+        this.playerColor = PlayerColor.values()[playerIndex].colorValue;
+        this.continentBonus = 0;
+        this.controlledContinents = new ArrayList<>();
+        this.activeStatus = true;
+        this.cardObtained = false;
+        this.strategy = new StrategyHuman();
+    }
+
     public Player(int playerIndex, Strategy type) {
         this.playerIndex = playerIndex;
         this.armyNbr = 0;
         this.cardsList = new ArrayList<>();
         this.ownedCountryNameList = new ArrayList<>();
         this.playerColor = PlayerColor.values()[playerIndex].colorValue;
-        //this.ownedCountryNbr = 0;
         this.continentBonus = 0;
         this.controlledContinents = new ArrayList<>();
         this.activeStatus = true;

@@ -45,7 +45,7 @@ public class GraphTester {
         InitWorldMap.buildWorldMapGraph(TEST_MAP_FILE_PATH, demoGraph);
 
         for (int i = 0; i <= 2; i++) {
-            Player player = new Player(i, new StrategyHuman());
+            Player player = new Player(i);
             Main.playersList.add(player);
         }
 

@@ -42,8 +42,8 @@ public class AttackProcessTest {
 
         defendingCountry = new Country("defending country");
         attackingCountry = new Country("attacking country");
-        playerAttacker = new Player(0, new StrategyHuman());
-        playerDefender = new Player(1, new StrategyHuman());
+        playerAttacker = new Player(0);
+        playerDefender = new Player(1);
 
         defendingCountry.setCountryOwnerIndex(playerDefender.getPlayerIndex());
         attackingCountry.setCountryOwnerIndex(playerAttacker.getPlayerIndex());
@@ -144,7 +144,7 @@ public class AttackProcessTest {
      */
     @Test
     public void testIsPlayerHasCountry(){
-        Player player = new Player(5, new StrategyHuman());
+        Player player = new Player(5);
         Assert.assertFalse(AttackProcess.isPlayerHasCountry(player));
 
         player.getOwnedCountryNameList().add("demo country");
@@ -190,7 +190,7 @@ public class AttackProcessTest {
     public void testIsContinentConquered(){
         initGameSimulator();
 
-        Player player = new Player(1, new StrategyHuman());
+        Player player = new Player(1);
         Main.playersList.add(player);
         String continentName = "demo continent";
         Continent continent = new Continent(continentName, 2);

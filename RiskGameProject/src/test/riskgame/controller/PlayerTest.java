@@ -29,7 +29,7 @@ public class PlayerTest {
         defenderCountry = new Country("defender country");
         attackArmyNbr = 3;
         defnderArmyNbr = 2;
-        playerTester = new Player(2, new StrategyHuman());
+        playerTester = new Player(2);
     }
 
     @After
