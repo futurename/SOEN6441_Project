@@ -7,6 +7,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,6 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import mapeditor.model.MapObject;
 import riskgame.Main;
 import riskgame.model.BasicClass.Continent;
@@ -173,31 +175,38 @@ public class StartViewController {
             @Override
             public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
 
-               int selectedToggleIndex = (int) newValue.getUserData();
+                int selectedToggleIndex = (int) newValue.getUserData();
 
                 System.out.println("\ntoggle user data: " + newValue.getUserData() + "\n");
 
-                if(selectedToggleIndex == 0){
+                if (selectedToggleIndex == 0) {
 
                     System.out.println("\nsingle mode selected");
 
                     setUIStatus(true);
                     rbn_tournamentMode.setVisible(false);
                 }
-                if(selectedToggleIndex == 1){
+                if (selectedToggleIndex == 1) {
                     setUIStatus(false);
                     rbn_singleMode.setVisible(false);
 
-                    Stage mainStage = (Stage)rbn_tournamentMode.getScene().getWindow();
+                    Stage mainStage = (Stage) rbn_tournamentMode.getScene().getWindow();
                     Stage curStage = new Stage();
                     try {
                         Pane tournamentModePane = new FXMLLoader(getClass().getResource("../view/TournamentModeView.fxml")).load();
 
-                    Scene tournamentScene = new Scene(tournamentModePane, 600, 400);
-                    curStage.setScene(tournamentScene);
-                    curStage.initOwner(mainStage);
-                    curStage.initModality(Modality.WINDOW_MODAL);
-                    curStage.show();
+                        Scene tournamentScene = new Scene(tournamentModePane, 600, 400);
+                        curStage.setScene(tournamentScene);
+                        curStage.initOwner(mainStage);
+                        curStage.initModality(Modality.WINDOW_MODAL);
+                        curStage.setResizable(false);
+                        curStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                            @Override
+                            public void handle(WindowEvent event) {
+                                event.consume();
+                            }
+                        });
+                        curStage.show();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

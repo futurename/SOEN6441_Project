@@ -1,12 +1,20 @@
 package riskgame.controllers;
 
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @author Wei Wang
@@ -25,10 +33,38 @@ public class TournamentModeViewController {
     @FXML
     private TableColumn<String, String> tbc_playerTypeColumn;
     @FXML
-    private TableColumn<String, String> tbc_mapSlectionColumn;
+    private TableColumn<File, ObservableList> tbc_mapSlectionColumn;
+    @FXML
+    private TableView tbv_mapSelectionView;
+
+    private final String DEFAULT_MAPS_FOLDER_PATH = "maps/TournamentModeMaps/";
 
     public void initialize(){
+        ArrayList<File> mapFileList = getMapFiles(DEFAULT_MAPS_FOLDER_PATH);
+        setMapSelectionTableView(mapFileList);
 
+    }
+
+    private void setMapSelectionTableView(ArrayList<File> mapFileList) {
+        ObservableList<File> mapFileObservableList = FXCollections.observableList(mapFileList);
+
+        ComboBox<File> comboBox = new ComboBox<>();
+        comboBox.getItems().addAll(mapFileObservableList);
+
+    }
+
+    private ArrayList<File> getMapFiles(String default_maps_folder_path) {
+
+        File folder = new File(default_maps_folder_path);
+        File[] files = folder.listFiles();
+
+        ArrayList<File> result = new ArrayList<File>(Arrays.asList(files));
+
+        for(File file: result ){
+            System.out.println(file.toString());
+        }
+
+        return result;
     }
 
 
