@@ -178,6 +178,10 @@ public class Player extends Observable implements Observer {
         this.undeployedArmy += undeployedArmy;
     }
 
+    public int getUndeployedArmy() {
+        return undeployedArmy;
+    }
+
     public void setCardPermission(boolean b) {
         this.cardObtained = b;
     }
