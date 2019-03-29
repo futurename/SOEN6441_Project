@@ -417,15 +417,15 @@ public class Player extends Observable implements Observer {
     }
 
     public void executeAttack(){
-
+        this.strategy.doAttack();
     }
 
     public void executeReinforcement(){
-
+        this.strategy.doReinforcement();
     }
 
     public void exeFortification(){
-
+        this.strategy.doFortification();
     }
 
     /**
