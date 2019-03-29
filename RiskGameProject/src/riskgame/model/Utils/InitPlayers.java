@@ -22,11 +22,11 @@ public class InitPlayers {
      * @param numOfPlayers number of players this round
      * @param graphSingleton world map singleton
      */
-    public static void initPlayers(int numOfPlayers, LinkedHashMap<String, GraphNode> graphSingleton) {
+    public static void initPlayers(int numOfPlayers, LinkedHashMap<String, GraphNode> graphSingleton, ArrayList<Strategy> strategies) {
         ArrayList<String> forAllocatesCountryNameList = generateUnallocatedNameList();
 
         for (int playerIndex = 0; playerIndex < numOfPlayers; playerIndex++) {
-            Player onePlayer = new Player(playerIndex);
+            Player onePlayer = new Player(playerIndex, strategies.get(playerIndex));
             getInitCountryNameList(onePlayer, forAllocatesCountryNameList, numOfPlayers, graphSingleton);
             onePlayer.updateArmyNbr();
 

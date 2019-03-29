@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.BasicClass.StrategyPattern.StrategyHuman;
 import riskgame.model.Utils.AttackProcess;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class PlayerTest {
         defenderCountry = new Country("defender country");
         attackArmyNbr = 3;
         defnderArmyNbr = 2;
-        playerTester = new Player(2);
+        playerTester = new Player(2, new StrategyHuman());
     }
 
     @After

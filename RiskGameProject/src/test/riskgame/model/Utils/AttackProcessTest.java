@@ -11,6 +11,7 @@ import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.BasicClass.StrategyPattern.StrategyAggressive;
+import riskgame.model.BasicClass.StrategyPattern.StrategyHuman;
 import riskgame.model.Utils.AttackProcess;
 
 import java.util.ArrayList;
@@ -41,8 +42,8 @@ public class AttackProcessTest {
 
         defendingCountry = new Country("defending country");
         attackingCountry = new Country("attacking country");
-        playerAttacker = new Player(0);
-        playerDefender = new Player(1);
+        playerAttacker = new Player(0, new StrategyHuman());
+        playerDefender = new Player(1, new StrategyHuman());
 
         defendingCountry.setCountryOwnerIndex(playerDefender.getPlayerIndex());
         attackingCountry.setCountryOwnerIndex(playerAttacker.getPlayerIndex());
@@ -143,7 +144,7 @@ public class AttackProcessTest {
      */
     @Test
     public void testIsPlayerHasCountry(){
-        Player player = new Player(5);
+        Player player = new Player(5, new StrategyHuman());
         Assert.assertFalse(AttackProcess.isPlayerHasCountry(player));
 
         player.getOwnedCountryNameList().add("demo country");
@@ -189,7 +190,7 @@ public class AttackProcessTest {
     public void testIsContinentConquered(){
         initGameSimulator();
 
-        Player player = new Player(1);
+        Player player = new Player(1, new StrategyHuman());
         Main.playersList.add(player);
         String continentName = "demo continent";
         Continent continent = new Continent(continentName, 2);

@@ -23,6 +23,8 @@ import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphSingleton;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.BasicClass.StrategyPattern.Strategy;
+import riskgame.model.BasicClass.StrategyPattern.StrategyHuman;
 import riskgame.model.Utils.InitPlayers;
 import riskgame.model.Utils.ListviewRenderer;
 
@@ -104,6 +106,7 @@ public class StartViewController {
      * indicator for marking whether world map file has been read and initialized
      */
     private boolean isMapInfoOn = false;
+    private ArrayList<Strategy> strategies = new ArrayList<Strategy>();
 
     /**
      * reset all variables to original values
@@ -214,7 +217,7 @@ public class StartViewController {
                 btn_nextStep.setVisible(true);
 
                 if (Main.playersList.isEmpty()) {
-                    InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton);
+                    InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton, strategies);
                 }
             }
         }
@@ -354,6 +357,10 @@ public class StartViewController {
             displayPlayerInfo();
             btn_nextStep.setVisible(true);
         }
+        //set strategies for every player
+        for (int playerIndex = 0; playerIndex < Main.totalNumOfPlayers; playerIndex++) {
+            strategies.add(new StrategyHuman());
+        }
     }
 
     /**
@@ -362,7 +369,7 @@ public class StartViewController {
     private void displayPlayerInfo() {
         isMapInfoOn = false;
         if (playersList.isEmpty()) {
-            InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton);
+            InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton, strategies);
         }
         txf_mapPromptInfo.setText("Players Info");
 

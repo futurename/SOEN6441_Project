@@ -7,6 +7,7 @@ import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.GraphSingleton;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.BasicClass.StrategyPattern.StrategyHuman;
 import riskgame.model.Utils.InitWorldMap;
 
 import java.io.IOException;
@@ -44,7 +45,7 @@ public class GraphTester {
         InitWorldMap.buildWorldMapGraph(TEST_MAP_FILE_PATH, demoGraph);
 
         for (int i = 0; i <= 2; i++) {
-            Player player = new Player(i);
+            Player player = new Player(i, new StrategyHuman());
             Main.playersList.add(player);
         }
 
