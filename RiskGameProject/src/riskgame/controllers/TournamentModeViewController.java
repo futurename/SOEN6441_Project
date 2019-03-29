@@ -3,7 +3,7 @@ package riskgame.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -17,9 +17,9 @@ import javafx.stage.Stage;
 public class TournamentModeViewController {
 
     @FXML
-    private ChoiceBox chb_maxRounds;
+    private ComboBox cbb_gamesCount;
     @FXML
-    private ChoiceBox chb_gamesRounds;
+    private ComboBox cbb_gameMaxRounds;
     @FXML
     private Button btn_confirmSetting;
     @FXML
@@ -31,14 +31,15 @@ public class TournamentModeViewController {
 
     }
 
-    public void clickGameRounds(MouseEvent mouseEvent) {
-    }
-
-    public void clickMaxRounds(MouseEvent mouseEvent) {
-    }
 
     public void clickConfirmSetting(ActionEvent actionEvent) {
         Stage curStage = (Stage)btn_confirmSetting.getScene().getWindow();
         curStage.close();
+    }
+
+    public void clickGamesCount(MouseEvent mouseEvent) {
+    }
+
+    public void clickGameMaxRounds(MouseEvent mouseEvent) {
     }
 }

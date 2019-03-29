@@ -24,17 +24,17 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="chb_gamesRounds" layoutX="429.0" layoutY="128.0" onMousePressed="#clickGameRounds" prefWidth="150.0" />
       <Label alignment="CENTER" layoutX="447.0" layoutY="200.0" prefHeight="21.0" prefWidth="115.0" text="Max Rounds : ">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="chb_maxRounds" layoutX="430.0" layoutY="224.0" onMousePressed="#clickMaxRounds" prefWidth="150.0" />
       <Button fx:id="btn_confirmSetting" layoutX="453.0" layoutY="306.0" mnemonicParsing="false" onAction="#clickConfirmSetting" text="Confirm" textFill="#ee0606">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
+      <ComboBox fx:id="cbb_gamesCount" layoutX="430.0" layoutY="125.0" onMousePressed="#clickGamesCount" prefWidth="150.0" />
+      <ComboBox fx:id="cbb_gameMaxRounds" layoutX="430.0" layoutY="225.0" onMousePressed="#clickGameMaxRounds" prefWidth="150.0" />
    </children>
 </AnchorPane>
