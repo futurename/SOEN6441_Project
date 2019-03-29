@@ -36,6 +36,7 @@ public class Player extends Observable implements Observer {
     private ArrayList<String> controlledContinents;
     private boolean activeStatus;
     private boolean cardObtained;
+    private int undeployedArmy;
     private Strategy strategy;
 
     /**
@@ -52,6 +53,7 @@ public class Player extends Observable implements Observer {
         this.controlledContinents = new ArrayList<>();
         this.activeStatus = true;
         this.cardObtained = false;
+        this.undeployedArmy = 0;
         this.strategy = new StrategyHuman();
     }
 
@@ -65,6 +67,7 @@ public class Player extends Observable implements Observer {
         this.controlledContinents = new ArrayList<>();
         this.activeStatus = true;
         this.cardObtained = false;
+        this.undeployedArmy = 0;
         this.strategy = type;
     }
 
@@ -166,6 +169,10 @@ public class Player extends Observable implements Observer {
         result = attackArmyCount;
 
         return result;
+    }
+
+    public void addUndeployedArmy(int undeployedArmy) {
+        this.undeployedArmy += undeployedArmy;
     }
 
     public void setCardPermission(boolean b) {

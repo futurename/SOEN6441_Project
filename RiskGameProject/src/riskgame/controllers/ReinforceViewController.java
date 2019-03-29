@@ -415,6 +415,7 @@ public class ReinforceViewController implements Initializable {
          */
         private void addUndeployedArmyAfterExchangeCards ( int exchangedArmyNbr){
             curUndeployedArmy += exchangedArmyNbr;
+            curPlayer.addUndeployedArmy(exchangedArmyNbr);
             curPlayer.addArmy(exchangedArmyNbr);
         }
 
@@ -422,6 +423,7 @@ public class ReinforceViewController implements Initializable {
             int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
             int newArmyPerRound = getStandardReinforceArmyNum(ownedCountryNum) + curPlayer.getContinentBonus();
             curUndeployedArmy += newArmyPerRound;
+            curPlayer.addUndeployedArmy(curUndeployedArmy);
         }
 
         /**
