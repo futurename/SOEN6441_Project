@@ -3,13 +3,13 @@ package riskgame.model.BasicClass;
 
 import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
 import riskgame.model.BasicClass.StrategyPattern.StrategyHuman;
 import riskgame.model.Utils.AttackProcess;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -39,6 +39,7 @@ public class Player extends Observable implements Observer {
     private boolean cardObtained;
     private int undeployedArmy;
     private Strategy strategy;
+    private LinkedHashMap<String, GraphNode> worldMapInstance;
 
     /**
      * class constructor, player takes human strategy by default
@@ -56,10 +57,11 @@ public class Player extends Observable implements Observer {
         this.cardObtained = false;
         this.undeployedArmy = 0;
         this.strategy = new StrategyHuman();
+        this.worldMapInstance = Main.graphSingleton;
 
     }
 
-    public Player(int playerIndex, Strategy type) {
+    public Player(int playerIndex, Strategy type, LinkedHashMap<String, GraphNode> worldMapInstance) {
         this.playerIndex = playerIndex;
         this.armyNbr = 0;
         this.cardsList = new ArrayList<>();
@@ -71,8 +73,7 @@ public class Player extends Observable implements Observer {
         this.cardObtained = false;
         this.undeployedArmy = 0;
         this.strategy = type;
-
-
+        this.worldMapInstance = worldMapInstance;
     }
 
     /**
@@ -175,6 +176,14 @@ public class Player extends Observable implements Observer {
         return result;
     }
 
+    public Strategy getStrategy() {
+        return strategy;
+    }
+
+    public LinkedHashMap<String, GraphNode> getWorldMapInstance() {
+        return worldMapInstance;
+    }
+
     public void addUndeployedArmy(int undeployedArmy) {
         this.undeployedArmy += undeployedArmy;
     }
@@ -237,10 +246,10 @@ public class Player extends Observable implements Observer {
     /**
      * get the sum of army number in all owned countries
      */
-    public void updateArmyNbr() {
+    public void updateArmyNbr(LinkedHashMap<String, GraphNode> linkedHashMap) {
         int result = 0;
         for (String countryName : ownedCountryNameList) {
-            Country country = Main.graphSingleton
+            Country country = linkedHashMap
                     .get(countryName)
                     .getCountry();
             result += country.getCountryArmyNumber();
@@ -518,10 +527,10 @@ public class Player extends Observable implements Observer {
             System.out.println("now: " + newOwner.playerIndex);
             System.out.printf("player %d obs awake\n", this.playerIndex);
             formerOwner.ownedCountryNameList.remove(((Country) o).getCountryName());
-            formerOwner.updateArmyNbr();
+            formerOwner.updateArmyNbr(worldMapInstance);
             o.deleteObserver(this);
             newOwner.ownedCountryNameList.add(((Country) o).getCountryName());
-            newOwner.updateArmyNbr();
+            newOwner.updateArmyNbr(worldMapInstance);
             if (!newOwner.cardObtained) {
                 newOwner.setObservableCard(Card.getCard(Card.class));
                 newOwner.setCardPermission(true);

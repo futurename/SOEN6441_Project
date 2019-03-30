@@ -3,6 +3,7 @@ package riskgame.model.Utils;
 import riskgame.Main;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.BasicClass.StrategyPattern.Strategy;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -18,16 +19,16 @@ public class InitPlayers {
      * create and initialize all the player instances
      *
      * @param numOfPlayers number of players this round
-     * @param graphSingleton world map singleton
+     * @param linkedHashMap world map singleton
      */
-    public static void initPlayers(int numOfPlayers, LinkedHashMap<String, GraphNode> graphSingleton) {
-        ArrayList<String> forAllocatesCountryNameList = generateUnallocatedNameList();
+    public static void initPlayers(int numOfPlayers, LinkedHashMap<String, GraphNode> linkedHashMap, ArrayList<Strategy> strategyList) {
+        ArrayList<String> forAllocatesCountryNameList = generateUnallocatedNameList(linkedHashMap);
 
         for (int playerIndex = 0; playerIndex < numOfPlayers; playerIndex++) {
-//            Player onePlayer = new Player(playerIndex, strategies.get(playerIndex));
-            Player onePlayer = new Player(playerIndex);
-            getInitCountryNameList(onePlayer, forAllocatesCountryNameList, numOfPlayers, graphSingleton);
-            onePlayer.updateArmyNbr();
+            Strategy curStrategy = strategyList.get(playerIndex);
+            Player onePlayer = new Player(playerIndex, curStrategy, linkedHashMap);
+            getInitCountryNameList(onePlayer, forAllocatesCountryNameList, numOfPlayers, linkedHashMap);
+            onePlayer.updateArmyNbr(linkedHashMap);
 
             System.out.println("init player: " + playerIndex + ", army nbr: " + onePlayer.getArmyNbr());
         }
@@ -37,10 +38,11 @@ public class InitPlayers {
      * this method acquires all unallocated country names
      *
      * @return an arraylist of all country names
+     * @param graphSingleton
      */
-    private static ArrayList<String> generateUnallocatedNameList() {
+    private static ArrayList<String> generateUnallocatedNameList(LinkedHashMap<String, GraphNode> linkedHashMap) {
         ArrayList<String> result = new ArrayList<>();
-        for (Map.Entry<String, GraphNode> entry : Main.graphSingleton.entrySet()) {
+        for (Map.Entry<String, GraphNode> entry : linkedHashMap.entrySet()) {
             GraphNode curNode = entry.getValue();
             String curCountryName = entry.getKey();
             result.add(curCountryName);

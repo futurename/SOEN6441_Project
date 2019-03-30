@@ -9,7 +9,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -140,7 +139,7 @@ public class InitWorldMap {
     /**
      * this method prints world map graph in console
      */
-    private static void printGraph() {
+    public static void printGraph() {
         for (Map.Entry<String, GraphNode> entry : graphSingleton.entrySet()) {
             String countryName = entry.getKey();
             GraphNode node = entry.getValue();
@@ -157,7 +156,7 @@ public class InitWorldMap {
     private static void printGraphNode(GraphNode node) {
         for (Country country : node.getAdjacentCountryList()) {
             String countryName = country.getCountryName();
-            System.out.printf("%s, ", countryName);
+            System.out.printf("%s: Player: %d", countryName, country.getCountryOwnerIndex());
         }
         System.out.println("\n");
     }
