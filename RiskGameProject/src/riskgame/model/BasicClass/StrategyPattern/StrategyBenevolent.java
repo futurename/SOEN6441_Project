@@ -17,4 +17,9 @@ public class StrategyBenevolent implements Strategy {
     public void doFortification(Player player) {
 
     }
+
+    @Override
+    public String toString(){
+        return "Benevolent";
+    }
 }

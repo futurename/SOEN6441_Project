@@ -3,11 +3,7 @@ package test.util;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import riskgame.Main;
-import riskgame.model.BasicClass.Country;
-import riskgame.model.BasicClass.GraphNode;
-import riskgame.model.BasicClass.GraphSingleton;
-import riskgame.model.BasicClass.Player;
-import riskgame.model.BasicClass.StrategyPattern.StrategyHuman;
+import riskgame.model.BasicClass.*;
 import riskgame.model.Utils.InitWorldMap;
 
 import java.io.IOException;
@@ -33,6 +29,8 @@ public class GraphTester {
      */
     private LinkedHashMap<String, GraphNode> demoGraph;
 
+    private LinkedHashMap<String, Continent> demoContinentGraph;
+
 
 
     /**
@@ -42,7 +40,8 @@ public class GraphTester {
      */
     public GraphTester() throws IOException {
         demoGraph = GraphSingleton.INSTANCE.getInstance();
-        InitWorldMap.buildWorldMapGraph(TEST_MAP_FILE_PATH, demoGraph);
+        demoContinentGraph = new LinkedHashMap<>();
+        InitWorldMap.buildWorldMapGraph(TEST_MAP_FILE_PATH, demoGraph, demoContinentGraph);
 
         for (int i = 0; i <= 2; i++) {
             Player player = new Player(i);

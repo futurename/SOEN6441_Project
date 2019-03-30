@@ -12,8 +12,6 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static riskgame.Main.graphSingleton;
-
 /**
  * @author WW
  * @since build1
@@ -48,10 +46,10 @@ public class InitWorldMap {
      * this method read and initialize world map
      *
      * @param path path of map file
-     * @param graphSingleton world map graph singleton
+     * @param linkedHashMap world map graph singleton
      * @throws IOException map file not found
      */
-    public static void buildWorldMapGraph(String path, LinkedHashMap<String, GraphNode> graphSingleton) throws IOException {
+    public static void buildWorldMapGraph(String path, LinkedHashMap<String, GraphNode> linkedHashMap, LinkedHashMap<String, Continent> continentLinkedHashMap) throws IOException {
         System.out.println(new File(path).getAbsolutePath());
 
         BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
@@ -78,15 +76,15 @@ public class InitWorldMap {
                         String curCountryName = curLineSplitArray[0];
                         Country curCountry;
                         GraphNode curGraphNode;
-                        if (!graphSingleton.containsKey(curCountryName)) {
+                        if (!linkedHashMap.containsKey(curCountryName)) {
                             curCountry = new Country(curCountryName);
                             curGraphNode = new GraphNode(curCountry);
                         } else {
-                            curGraphNode = graphSingleton.get(curCountryName);
+                            curGraphNode = linkedHashMap.get(curCountryName);
                             curCountry = curGraphNode.getCountry();
                         }
 
-                        graphSingleton.put(curCountryName, curGraphNode);
+                        linkedHashMap.put(curCountryName, curGraphNode);
 
                         String curCoordinateX = curLineSplitArray[COORDINATE_X_POSITION];
                         String curCoordinateY = curLineSplitArray[COORDINATE_Y_POSITION];
@@ -102,23 +100,23 @@ public class InitWorldMap {
                             GraphNode oneGraphNode;
                             String adjacentCountryName = curLineSplitArray[i];
 
-                            if (!graphSingleton.containsKey(adjacentCountryName)) {
+                            if (!linkedHashMap.containsKey(adjacentCountryName)) {
                                 oneCountry = new Country(adjacentCountryName);
                                 oneGraphNode = new GraphNode(oneCountry);
                             } else {
-                                oneGraphNode = graphSingleton.get(adjacentCountryName);
+                                oneGraphNode = linkedHashMap.get(adjacentCountryName);
                                 oneCountry = oneGraphNode.getCountry();
                             }
 
                             curGraphNode.addAdjacentCountry(oneCountry);
-                            graphSingleton.put(adjacentCountryName, oneGraphNode);
+                            linkedHashMap.put(adjacentCountryName, oneGraphNode);
                         }
                     }
                 }
             }
         }
-        printGraph();
-        printContinent();
+        printGraph(linkedHashMap);
+        printContinent(continentLinkedHashMap);
         bufferedReader.close();
 
     }
@@ -126,8 +124,8 @@ public class InitWorldMap {
     /**
      * this method prints continents and their countries in console
      */
-    private static void printContinent() {
-        for (Map.Entry<String, Continent> entry : Main.worldContinentMap.entrySet()) {
+    private static void printContinent(LinkedHashMap<String, Continent> continentLinkedHashMap) {
+        for (Map.Entry<String, Continent> entry : continentLinkedHashMap.entrySet()) {
             Continent curContinent = entry.getValue();
             String curContinentName = entry.getKey();
 
@@ -139,8 +137,8 @@ public class InitWorldMap {
     /**
      * this method prints world map graph in console
      */
-    public static void printGraph() {
-        for (Map.Entry<String, GraphNode> entry : graphSingleton.entrySet()) {
+    public static void printGraph(LinkedHashMap<String, GraphNode> worldHashMap) {
+        for (Map.Entry<String, GraphNode> entry : worldHashMap.entrySet()) {
             String countryName = entry.getKey();
             GraphNode node = entry.getValue();
             System.out.println(">>>>>>>>>>>> country: " + countryName + ", continent: " + node.getCountry().getContinentName() + " <<<<<<<<<<<<<<<");
@@ -156,7 +154,8 @@ public class InitWorldMap {
     private static void printGraphNode(GraphNode node) {
         for (Country country : node.getAdjacentCountryList()) {
             String countryName = country.getCountryName();
-            System.out.printf("%s: Player: %d", countryName, country.getCountryOwnerIndex());
+
+            System.out.printf("%s: Player: %d\n", countryName, country.getCountryOwnerIndex());
         }
         System.out.println("\n");
     }

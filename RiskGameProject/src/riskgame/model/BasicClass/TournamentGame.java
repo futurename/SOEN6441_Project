@@ -22,6 +22,7 @@ public class TournamentGame {
     private int gameRoundVale;
 
     private static LinkedHashMap<String, GraphNode> worldMapInstance;
+    private static LinkedHashMap<String, Continent> continentLinkedHashMap;
 
     public TournamentGame(String mapFile, ArrayList<Strategy> playerStrategyList, int gameValue, int gameRoundVale) {
         this.mapFile = mapFile;
@@ -37,12 +38,13 @@ public class TournamentGame {
     private void initMapAndPlayers() throws IOException {
         GraphNormal worldGraphNormal = new GraphNormal();
         worldMapInstance = worldGraphNormal.getWorldHashMap();
+        continentLinkedHashMap = new LinkedHashMap<>();
 
-        InitWorldMap.buildWorldMapGraph(mapFile, worldMapInstance);
+        InitWorldMap.buildWorldMapGraph(mapFile, worldMapInstance, continentLinkedHashMap);
         int numOfplayers = playerStrategyList.size();
 
         InitPlayers.initPlayers(numOfplayers, worldMapInstance,playerStrategyList);
 
-        InitWorldMap.printGraph();
+        InitWorldMap.printGraph(worldMapInstance);
     }
 }

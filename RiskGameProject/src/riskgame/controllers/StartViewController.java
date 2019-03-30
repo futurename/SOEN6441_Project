@@ -283,7 +283,7 @@ public class StartViewController {
         }
 
         if (mapChecker.errorMsg.toString().isEmpty()) {
-            buildWorldMapGraph(mapPath, graphSingleton);
+            buildWorldMapGraph(mapPath, graphSingleton, worldContinentMap);
 
             btn_confirmLoadFile.setVisible(false);
             btn_loadFile.setVisible(false);
@@ -312,7 +312,7 @@ public class StartViewController {
      */
     private void displayWorldMap(String path) throws IOException {
         if (graphSingleton.isEmpty()) {
-            buildWorldMapGraph(path, graphSingleton);
+            buildWorldMapGraph(path, graphSingleton, worldContinentMap);
         }
 
         hbx_infoDisplayHbox.getChildren().clear();

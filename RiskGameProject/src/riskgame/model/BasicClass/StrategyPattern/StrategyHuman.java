@@ -19,4 +19,9 @@ public class StrategyHuman implements Strategy {
         from.reduceFromCountryArmyNumber(army);
         to.addToCountryArmyNumber(army);
     }
+
+    @Override
+    public String toString(){
+        return "Human";
+    }
 }

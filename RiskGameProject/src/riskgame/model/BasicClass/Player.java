@@ -28,6 +28,7 @@ public class Player extends Observable implements Observer {
     private static final int DEFAULT_DIVISION_FACTOR = 3;
 
     private final int playerIndex;
+    private final String playerName;
     private int armyNbr;
     private ArrayList<Card> cardsList;
     private ArrayList<String> ownedCountryNameList;
@@ -47,6 +48,7 @@ public class Player extends Observable implements Observer {
      */
     public Player(int playerIndex) {
         this.playerIndex = playerIndex;
+        this.playerName = "Player_" + playerIndex;
         this.armyNbr = 0;
         this.cardsList = new ArrayList<>();
         this.ownedCountryNameList = new ArrayList<>();
@@ -59,10 +61,13 @@ public class Player extends Observable implements Observer {
         this.strategy = new StrategyHuman();
         this.worldMapInstance = Main.graphSingleton;
 
+        System.out.println("\nPlayer constructor, player name: " + playerName + "\n\n");
+
     }
 
     public Player(int playerIndex, Strategy type, LinkedHashMap<String, GraphNode> worldMapInstance) {
         this.playerIndex = playerIndex;
+        this.playerName = type.toString();
         this.armyNbr = 0;
         this.cardsList = new ArrayList<>();
         this.ownedCountryNameList = new ArrayList<>();
@@ -74,7 +79,11 @@ public class Player extends Observable implements Observer {
         this.undeployedArmy = 0;
         this.strategy = type;
         this.worldMapInstance = worldMapInstance;
+
+        System.out.println("\nPlayer constructor, player name: " + playerName + "\n\n");
     }
+
+
 
     /**
      * this functions calculates the result for every single attack and returns the attacker's army number
