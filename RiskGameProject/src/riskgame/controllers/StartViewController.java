@@ -100,6 +100,8 @@ public class StartViewController {
     @FXML
     private Button btn_loadGame;
     @FXML
+    private Button btn_saveGame;
+    @FXML
     private Label lbl_disNumOfPlayer;
     @FXML
     private Label lbl_disMapPath;
@@ -536,6 +538,9 @@ public class StartViewController {
 
 
     public void clickLoadGame(ActionEvent actionEvent) {
+    }
+
+    public void clickSaveGame(ActionEvent actionEvent) {
     }
 
     public void clickSingleMode(ActionEvent actionEvent) {

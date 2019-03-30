@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+
 <AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="riskgame.controllers.FortificationViewController">
     <children>
         <ListView fx:id="lsv_ownedCountries" focusTraversable="false" layoutX="571.0" layoutY="125.0" onMouseClicked="#selectOneCountry" prefHeight="697.0" prefWidth="283.0" stylesheets="@css/listviewStyle.css" />
@@ -73,9 +75,9 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="btn_loadGame" layoutX="1022.0" layoutY="822.0" mnemonicParsing="false" onAction="#clickLoadGame" prefHeight="51.0" prefWidth="162.0" text="Load Game" textFill="#fc0303" underline="true">
+      <Button fx:id="btn_saveGame" layoutX="1022.0" layoutY="822.0" mnemonicParsing="false" onAction="#clickSaveGame" prefHeight="51.0" prefWidth="162.0" text="Save Game" textFill="#fc0303" underline="true">
          <font>
-             <Font name = "System Bold" size = "20.0"/>
+             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
     </children>

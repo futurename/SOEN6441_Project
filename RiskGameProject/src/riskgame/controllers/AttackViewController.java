@@ -80,6 +80,9 @@ public class AttackViewController implements Initializable {
     private TextArea txa_attackInfoDisplay;
     @FXML
     private VBox vbx_worldDomiView;
+    @FXML
+    private Button btn_saveGame;
+
     /**
      * curent player index
      */
@@ -444,6 +447,6 @@ public class AttackViewController implements Initializable {
     }
 
 
-    public void clickLoadGame(ActionEvent actionEvent) {
+    public void clickSaveGame(ActionEvent actionEvent) {
     }
 }

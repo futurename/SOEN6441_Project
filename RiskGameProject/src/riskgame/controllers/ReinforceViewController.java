@@ -82,6 +82,8 @@ public class ReinforceViewController implements Initializable {
     private Button btn_skipCardsExchange;
     @FXML
     private Button btn_confirmExchangeCards;
+    @FXML
+    private Button btn_saveGame;
     /**
      * current player in this phase
      */
@@ -456,7 +458,7 @@ public class ReinforceViewController implements Initializable {
             btn_confirmDeployment.setVisible(true);
         }
 
-    public void clickLoadGame(ActionEvent actionEvent) {
+    public void clickSaveGame(ActionEvent actionEvent) {
     }
 }
 

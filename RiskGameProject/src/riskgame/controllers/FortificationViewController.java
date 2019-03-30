@@ -52,6 +52,8 @@ public class FortificationViewController {
     @FXML
     private Button btn_skipFortification;
     @FXML
+    private Button btn_saveGame;
+    @FXML
     private Label lbl_phaseViewName;
     @FXML
     private Label lbl_rechanble_countries;
@@ -65,6 +67,7 @@ public class FortificationViewController {
     private Label lbl_deployCountPrompt;
     @FXML
     private Label lbl_actionString;
+
     /**
      * fortification move counter
      */
@@ -425,6 +428,6 @@ public class FortificationViewController {
         System.out.printf("player %s finished fortification, player %s's turn\n", curPlayerIndex, nextPlayerIndex);
     }
 
-    public void clickLoadGame(ActionEvent actionEvent) {
+    public void clickSaveGame(ActionEvent actionEvent) {
     }
 }
