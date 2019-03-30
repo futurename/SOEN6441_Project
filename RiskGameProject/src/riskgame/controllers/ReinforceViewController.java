@@ -141,7 +141,7 @@ public class ReinforceViewController implements Initializable {
             if (isHuman == 0){
                 MouseEvent rightClick = new MouseEvent(MouseEvent.MOUSE_CLICKED, btn_nextStep.getLayoutX(), btn_nextStep.getLayoutY(), 0, 0, MouseButton.PRIMARY,
                         1, false, false, false, false, true, false, false, false, true, false, null);
-                btn_nextStep.getOnMouseClicked().handle(rightClick);
+                //btn_nextStep.getOnMouseClicked().handle(rightClick);
             }
         }
 

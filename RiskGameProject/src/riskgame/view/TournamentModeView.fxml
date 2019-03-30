@@ -13,17 +13,17 @@
                 <Font name = "System Bold" size = "22.0"/>
             </font>
         </Label>
-        <Label alignment = "CENTER" layoutX = "655.0" layoutY = "100.0" prefHeight = "21.0" prefWidth = "63.0" text = "Games : ">
+        <Label alignment = "CENTER" layoutX = "620.0" layoutY = "101.0" prefHeight = "21.0" prefWidth = "134.0" text = "Running Games">
             <font>
                 <Font name = "System Bold" size = "15.0"/>
             </font>
         </Label>
-        <Label alignment = "CENTER" layoutX = "629.0" layoutY = "200.0" prefHeight = "21.0" prefWidth = "115.0" text = "Max Rounds : ">
+        <Label alignment = "CENTER" layoutX = "629.0" layoutY = "200.0" prefHeight = "21.0" prefWidth = "115.0" text = "Rounds">
             <font>
                 <Font name = "System Bold" size = "15.0"/>
             </font>
         </Label>
-        <Button fx:id = "btn_confirmSetting" layoutX = "635.0" layoutY = "306.0" mnemonicParsing = "false" onAction = "#clickConfirmSetting"
+        <Button fx:id = "btn_confirmSetting" layoutX = "657.0" layoutY = "328.0" mnemonicParsing = "false" onAction = "#clickConfirmSetting"
                 text = "Confirm" textFill = "#ee0606">
             <font>
                 <Font name = "System Bold" size = "20.0"/>
@@ -78,14 +78,14 @@
                         <Font name = "System Bold" size = "15.0"/>
                     </font>
                 </Label>
-                <ComboBox fx:id = "cbx_mapFileTwo" onAction = "#selectMapFileTwo" prefHeight = "39.0" prefWidth = "194.0" GridPane.columnIndex = "1"
-                          GridPane.rowIndex = "1" stylesheets = "@css/combobox.css"/>
+                <ComboBox fx:id = "cbx_mapFileTwo" onAction = "#selectMapFileTwo" prefHeight = "39.0" prefWidth = "194.0"
+                          stylesheets = "@css/combobox.css" GridPane.columnIndex = "1" GridPane.rowIndex = "1"/>
                 <ComboBox fx:id = "cbx_mapFileThree" onAction = "#selectMapFileThree" prefHeight = "39.0" prefWidth = "196.0"
-                          GridPane.columnIndex = "1" GridPane.rowIndex = "2" stylesheets = "@css/combobox.css"/>
-                <ComboBox fx:id = "cbx_mapFileFour" onAction = "#selectMapFileFour" prefHeight = "39.0" prefWidth = "194.0" GridPane.columnIndex = "1"
-                          GridPane.rowIndex = "3" stylesheets = "@css/combobox.css"/>
-                <ComboBox fx:id = "cbx_mapFileFive" onAction = "#selectMapFileFive" prefHeight = "39.0" prefWidth = "197.0" GridPane.columnIndex = "1"
-                          GridPane.rowIndex = "4" stylesheets = "@css/combobox.css"/>
+                          stylesheets = "@css/combobox.css" GridPane.columnIndex = "1" GridPane.rowIndex = "2"/>
+                <ComboBox fx:id = "cbx_mapFileFour" onAction = "#selectMapFileFour" prefHeight = "39.0" prefWidth = "194.0"
+                          stylesheets = "@css/combobox.css" GridPane.columnIndex = "1" GridPane.rowIndex = "3"/>
+                <ComboBox fx:id = "cbx_mapFileFive" onAction = "#selectMapFileFive" prefHeight = "39.0" prefWidth = "197.0"
+                          stylesheets = "@css/combobox.css" GridPane.columnIndex = "1" GridPane.rowIndex = "4"/>
             </children>
         </GridPane>
         <Label alignment = "CENTER" contentDisplay = "CENTER" layoutX = "147.0" layoutY = "67.0" prefHeight = "44.0" prefWidth = "127.0"
@@ -118,7 +118,7 @@
                     </font>
                 </Label>
                 <CheckBox fx:id = "ckb_aggressivePlayer" mnemonicParsing = "false" onAction = "#selectAggressivePlayer" prefHeight = "32.0"
-                          prefWidth = "56.0" GridPane.columnIndex = "1" stylesheets = "@css/checkbox.css">
+                          prefWidth = "56.0" stylesheets = "@css/checkbox.css" GridPane.columnIndex = "1">
                     <font>
                         <Font name = "System Bold" size = "18.0"/>
                     </font>
@@ -142,24 +142,30 @@
                     </font>
                 </Label>
                 <CheckBox fx:id = "ckb_benevolentPlayer" mnemonicParsing = "false" onAction = "#selectbenevolent" prefHeight = "32.0"
-                          prefWidth = "56.0" GridPane.columnIndex = "1" GridPane.rowIndex = "1" stylesheets = "@css/checkbox.css">
+                          prefWidth = "56.0" stylesheets = "@css/checkbox.css" GridPane.columnIndex = "1" GridPane.rowIndex = "1">
                     <font>
                         <Font name = "System Bold" size = "18.0"/>
                     </font>
                 </CheckBox>
                 <CheckBox fx:id = "ckb_randomPlayer" mnemonicParsing = "false" onAction = "#selectRandomPlayer" prefHeight = "32.0" prefWidth = "56.0"
-                          GridPane.columnIndex = "1" GridPane.rowIndex = "2" stylesheets = "@css/checkbox.css">
+                          stylesheets = "@css/checkbox.css" GridPane.columnIndex = "1" GridPane.rowIndex = "2">
                     <font>
                         <Font name = "System Bold" size = "18.0"/>
                     </font>
                 </CheckBox>
                 <CheckBox fx:id = "ckb_cheaterPlayer" mnemonicParsing = "false" onAction = "#selectCheaterPlayer" prefHeight = "32.0"
-                          prefWidth = "56.0" GridPane.columnIndex = "1" GridPane.rowIndex = "3" stylesheets = "@css/checkbox.css">
+                          prefWidth = "56.0" stylesheets = "@css/checkbox.css" GridPane.columnIndex = "1" GridPane.rowIndex = "3">
                     <font>
                         <Font name = "System Bold" size = "18.0"/>
                     </font>
                 </CheckBox>
             </children>
         </GridPane>
+        <Button fx:id = "btn_reset" layoutX = "512.0" layoutY = "328.0" mnemonicParsing = "false" onAction = "#clickResetSetting" text = "Reset"
+                textFill = "#070fed">
+            <font>
+                <Font name = "System Bold" size = "20.0"/>
+            </font>
+        </Button>
     </children>
 </AnchorPane>
