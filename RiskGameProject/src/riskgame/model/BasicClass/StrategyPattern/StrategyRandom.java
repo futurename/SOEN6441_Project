@@ -20,7 +20,11 @@ public class StrategyRandom implements Strategy {
     private Random r = new Random();
 
     @Override
-    public int doReinforcement(Player player) {
+    public void doReinforcement(Player player) {
+//        exchangeCard(player);
+//        randomPlayerGetDeployCountry(player);
+
+
         ArrayList<Card> cards = player.getCardsList();
         if (cards.size()>=5){
             int code = availableCombo(cards);
@@ -45,7 +49,7 @@ public class StrategyRandom implements Strategy {
         }
         player.addUndeployedArmy(-player.getUndeployedArmy());
         //TODO go to next step
-        return 0;
+
     }
 
     /**
@@ -131,6 +135,7 @@ public class StrategyRandom implements Strategy {
 
     @Override
     public void doAttack(Player player) {
+//        randomPlayAttack(Player);
 
     }
 

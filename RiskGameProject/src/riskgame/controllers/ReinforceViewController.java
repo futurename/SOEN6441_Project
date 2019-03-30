@@ -135,14 +135,9 @@ public class ReinforceViewController implements Initializable {
         @Override
         public void initialize (URL location, ResourceBundle resources){
             reinforceViewInit();
-            int isHuman = curPlayer.executeReinforcement();
+            curPlayer.executeReinforcement();
             setUIInitStatus();
-            //robot's turn
-            if (isHuman == 0){
-                MouseEvent rightClick = new MouseEvent(MouseEvent.MOUSE_CLICKED, btn_nextStep.getLayoutX(), btn_nextStep.getLayoutY(), 0, 0, MouseButton.PRIMARY,
-                        1, false, false, false, false, true, false, false, false, true, false, null);
-                btn_nextStep.getOnMouseClicked().handle(rightClick);
-            }
+
         }
 
         /**
