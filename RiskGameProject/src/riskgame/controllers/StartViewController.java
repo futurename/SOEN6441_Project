@@ -297,7 +297,7 @@ public class StartViewController {
                 btn_nextStep.setVisible(true);
 
                 if (Main.playersList.isEmpty()) {
-                    InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton, strategies);
+                    InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton);
                 }
             }
         }
@@ -447,7 +447,7 @@ public class StartViewController {
     private void displayPlayerInfo() {
         isMapInfoOn = false;
         if (playersList.isEmpty()) {
-            InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton, strategies);
+            InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton);
         }
         txf_mapPromptInfo.setText("Players Info");
 

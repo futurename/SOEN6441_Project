@@ -1,9 +1,11 @@
 package riskgame.model.BasicClass;
 
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
+import riskgame.model.Utils.InitWorldMap;
 
-import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 /**
  * @author Wei Wang
@@ -13,15 +15,26 @@ import java.util.ArrayList;
 
 public class TournamentGame {
 
-    private File mapFile;
-    private int games;
+    private String mapFile;
     private ArrayList<Strategy> playerStrategyList;
-    private int maxRound;
+    private int gameVale;
+    private int gameRoundVale;
 
-    public TournamentGame(File mapFile, int games, ArrayList<Strategy> playerStrategyList, int maxRound) {
+    private static LinkedHashMap<String, GraphNode> worldMapSingleton = GraphSingleton.INSTANCE.getInstance();
+
+    public TournamentGame(String mapFile, ArrayList<Strategy> playerStrategyList, int gameVale, int gameRoundVale) {
         this.mapFile = mapFile;
-        this.games = games;
         this.playerStrategyList = playerStrategyList;
-        this.maxRound = maxRound;
+        this.gameVale = gameVale;
+        this.gameRoundVale = gameRoundVale;
+    }
+
+    public void gameStart() throws IOException {
+        initMapAndPlayers();
+    }
+
+    private void initMapAndPlayers() throws IOException {
+        InitWorldMap.buildWorldMapGraph(mapFile, worldMapSingleton);
+
     }
 }

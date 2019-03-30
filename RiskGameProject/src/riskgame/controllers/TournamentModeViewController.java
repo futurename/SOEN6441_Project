@@ -11,10 +11,11 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import riskgame.model.BasicClass.StrategyPattern.*;
+import riskgame.model.Utils.ProcessRobotGaming;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -26,12 +27,6 @@ import java.util.stream.IntStream;
 
 public class TournamentModeViewController {
 
-    private static ObservableList<String> mapFileNameList;
-    private final String DEFAULT_MAPS_FOLDER_PATH = "maps/TournamentModeMaps/";
-    private final int MAX_GAMES_TO_BE_PLAYED = 5;
-    private final int MIN_GAME_ROUND = 10;
-    private final int MAX_GAME_ROUND = 50;
-    private ArrayList<String> robotPlayerList = new ArrayList<>();
 
     @FXML
     private ComboBox cbb_gamesCount;
@@ -58,8 +53,19 @@ public class TournamentModeViewController {
     @FXML
     private CheckBox ckb_cheaterPlayer;
 
+
+    private static ObservableList<String> mapFileNameList;
+    private final String DEFAULT_MAPS_FOLDER_PATH = "maps/TournamentModeMaps/";
+    private final int MAX_GAMES_TO_BE_PLAYED = 5;
+    private final int MIN_GAME_ROUND = 10;
+    private final int MAX_GAME_ROUND = 50;
+    private ArrayList<Strategy> robotPlayerList = new ArrayList<>();
+    private ArrayList<String> mapFileList;
+    private int gamesValue;
+    private int gameRoundValue;
+
     public void initialize() {
-        ArrayList<File> mapFileList = getMapFiles(DEFAULT_MAPS_FOLDER_PATH);
+        mapFileList = getMapFiles(DEFAULT_MAPS_FOLDER_PATH);
         mapFileNameList = getShortFileNameList(mapFileList);
         setOnlyFirstComboxVisible(mapFileNameList);
         initGamesCombobox(MAX_GAMES_TO_BE_PLAYED);
@@ -80,10 +86,10 @@ public class TournamentModeViewController {
         cbb_gamesCount.setItems(observableSequenceList);
     }
 
-    private ObservableList<String> getShortFileNameList(ArrayList<File> mapFileList) {
+    private ObservableList<String> getShortFileNameList(ArrayList<String> mapFileList) {
         ArrayList<String> shortNameList = new ArrayList<>();
-        for (File file : mapFileList) {
-            String[] splitStrings = file.toString().split("\\\\");
+        for (String fileName : mapFileList) {
+            String[] splitStrings = fileName.split("\\\\");
             String shortFileName = splitStrings[splitStrings.length - 1];
             shortNameList.add(shortFileName);
         }
@@ -101,15 +107,15 @@ public class TournamentModeViewController {
     }
 
 
-    private ArrayList<File> getMapFiles(String default_maps_folder_path) {
+    private ArrayList<String> getMapFiles(String default_maps_folder_path) {
 
         File folder = new File(default_maps_folder_path);
         File[] files = folder.listFiles();
 
-        ArrayList<File> result = new ArrayList<File>(Arrays.asList(files));
+        ArrayList<String> result = new ArrayList<>();
 
-        for (File file : result) {
-            System.out.println(file.toString());
+        for (File file : files) {
+            result.add(file.toString());
         }
 
         return result;
@@ -121,14 +127,22 @@ public class TournamentModeViewController {
 
         if (isEnoughPlayerTypes() && isMapSelected() && isGamesSelected() && isRoundNumberSelected()) {
             Stage curStage = (Stage) btn_confirmSetting.getScene().getWindow();
+/*
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(""))
+            TournamentGame controller = loader.<TournamentGame>getController();
+            */
+
             curStage.close();
+
+            ProcessRobotGaming.initRobotGaming(mapFileList,robotPlayerList,gamesValue,gameRoundValue);
 
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Error, please check selections!");
+            alert.setContentText("Error, selection not completed!");
             alert.showAndWait();
         }
     }
+
 
     private boolean isRoundNumberSelected() {
         return cbb_gameMaxRounds.getSelectionModel().getSelectedIndex() != -1;
@@ -160,10 +174,12 @@ public class TournamentModeViewController {
     }
 
     public void clickGamesCount(MouseEvent mouseEvent) {
+        gamesValue = (int) cbb_gamesCount.getSelectionModel().getSelectedItem();
 
     }
 
     public void clickGameMaxRounds(MouseEvent mouseEvent) {
+        gameRoundValue = (int) cbb_gameMaxRounds.getSelectionModel().getSelectedItem();
     }
 
     public void selectMapFileOne(ActionEvent actionEvent) {
@@ -219,22 +235,25 @@ public class TournamentModeViewController {
     }
 
     public void selectAggressivePlayer(ActionEvent actionEvent) {
-        robotPlayerList.add("aggressive");
+        Strategy aggressivePlayer = new StrategyAggressive();
+        robotPlayerList.add(aggressivePlayer);
 
     }
 
     public void selectbenevolent(ActionEvent actionEvent) {
-        robotPlayerList.add("benevolent");
-
+        Strategy benevolentPlayer = new StrategyBenevolent();
+        robotPlayerList.add(benevolentPlayer);
     }
 
     public void selectRandomPlayer(ActionEvent actionEvent) {
-        robotPlayerList.add("random");
+        Strategy randomPlayer = new StrategyRandom();
+        robotPlayerList.add(randomPlayer);
 
     }
 
     public void selectCheaterPlayer(ActionEvent actionEvent) {
-        robotPlayerList.add("cheater");
+        Strategy cheaterPlayer = new StrategyCheater();
+        robotPlayerList.add(cheaterPlayer);
 
     }
 
