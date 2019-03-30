@@ -1,0 +1,74 @@
+[Map]
+author=Sean O'Connor
+warn=yes
+image=Europe.bmp
+wrap=no
+scroll=horizontal
+
+[Continents]
+UK and Ireland=3
+Scandanavia=4
+Russia=6
+Western Europe=5
+Balkans=7
+Central Europe=7
+Italy=3
+
+[Territories]
+Ireland,81,320,UK and Ireland,Northern Ireland,Wales
+Northern Ireland,98,295,UK and Ireland,Ireland,Scotland
+Scotland,133,266,UK and Ireland,Northern Ireland,Northern England,Norway
+Northern England,147,321,UK and Ireland,Scotland,Southern England,Wales
+Southern England,152,362,UK and Ireland,Wales,Northern England,Netherlands,Eastern France,Belgium
+Wales,127,345,UK and Ireland,Ireland,Northern England,Southern England
+
+Norway,294,121,Scandanavia,Scotland,Southern Sweden,Northern Sweden,Northern Finland,Northern Russia
+Southern Sweden,314,234,Scandanavia,Denmark,Poland,Northern Sweden,Norway,Southern Finland
+Northern Sweden,333,120,Scandanavia,Southern Sweden,Norway,Northern Finland,Southern Finland
+Northern Finland,386,77,Scandanavia,Northern Sweden,Norway,Northern Russia,Southern Finland
+Southern Finland,398,164,Scandanavia,Estonia,Northern Russia,Northern Finland,Southern Sweden,Northern Sweden
+Denmark,263,295,Scandanavia,Southern Sweden,West Germany
+
+Northern Russia,489,124,Russia,Norway,Northern Finland,Southern Finland,Southern Russia
+Southern Russia,503,245,Russia,Northern Russia,Estonia,Latvia,Belarus,Ukraine
+Estonia,410,229,Russia,Southern Finland,Latvia,Southern Russia
+Latvia,414,263,Russia,Estonia,Lithuania,Belarus,Southern Russia
+Lithuania,398,295,Russia,Poland,Belarus,Latvia
+Belarus,452,320,Russia,Latvia,Lithuania,Poland,Ukraine,Southern Russia
+Ukraine,495,374,Russia,Romania,Moldova,Hungary,Slovakia,Poland,Belarus,Southern Russia,Turkey
+Moldova,492,424,Russia,Romania,Ukraine
+
+Netherlands,221,357,Western Europe,Southern England,Belgium,West Germany
+Belgium,213,385,Western Europe,Southern England,Netherlands,West Germany,Eastern France
+Eastern France,199,422,Western Europe,Belgium,Southern England,Western France,Switzerland,West Germany,Northern Italy,Corsica
+Western France,164,475,Western Europe,Northern Spain,Eastern France
+Northern Spain,92,527,Western Europe,Portugal,Southern Spain,Western France,Sardinia
+Southern Spain,74,582,Western Europe,Portugal,Northern Spain
+Portugal,27,547,Western Europe,Southern Spain,Northern Spain
+
+Northern Italy,290,506,Italy,Corsica,Croatia,Slovenia,Austria,Switzerland,Eastern France,Southern Italy
+Southern Italy,342,554,Italy,Sicily,Albania,Northern Italy
+Sicily,327,611,Italy,Sardinia,Southern Italy
+Corsica,259,533,Italy,Northern Italy,Sardinia,Eastern France
+Sardinia,258,569,Italy,Corsica,Sicily,Northern Spain
+
+East Germany,298,355,Central Europe,Poland,Czech Republic,West Germany
+West Germany,256,385,Central Europe,Denmark,Netherlands,Belgium,Eastern France,Switzerland,Austria,Czech Republic,East Germany
+Switzerland,249,450,Central Europe,Eastern France,Northern Italy,Austria,West Germany
+Austria,320,441,Central Europe,West Germany,Switzerland,Northern Italy,Slovenia,Hungary,Slovakia,Czech Republic
+Czech Republic,325,399,Central Europe,East Germany,West Germany,Austria,Slovakia,Poland
+Poland,363,352,Central Europe,Southern Sweden,East Germany,Czech Republic,Slovakia,Ukraine,Belarus,Lithuania
+Slovakia,376,415,Central Europe,Poland,Czech Republic,Austria,Hungary,Ukraine
+Hungary,382,444,Central Europe,Austria,Slovenia,Croatia,Yugoslavia,Romania,Ukraine,Slovakia
+
+Slovenia,328,464,Balkans,Northern Italy,Croatia,Hungary,Austria
+Croatia,336,485,Balkans,Slovenia,Northern Italy,Bosnia,Yugoslavia,Hungary
+Bosnia,369,490,Balkans,Croatia,Yugoslavia
+Yugoslavia,406,495,Balkans,Hungary,Croatia,Bosnia,Albania,Macedonia,Bulgaria,Romania
+Albania,402,543,Balkans,Greece,Macedonia,Yugoslavia,Southern Italy
+Macedonia,422,534,Balkans,Albania,Yugoslavia,Bulgaria,Greece
+Romania,445,454,Balkans,Moldova,Ukraine,Hungary,Yugoslavia,Bulgaria
+Bulgaria,458,510,Balkans,Turkey,Greece,Macedonia,Yugoslavia,Romania
+Greece,432,574,Balkans,Albania,Macedonia,Bulgaria,Turkey
+Turkey,521,553,Balkans,Ukraine,Bulgaria,Greece
+

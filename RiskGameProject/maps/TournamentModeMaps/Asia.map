@@ -1,0 +1,73 @@
+[Map]
+author=Rustin Terry
+image=Asia.bmp
+wrap=yes
+scroll=horizontal
+warn=yes
+
+
+[Continents]
+North Asia=3
+Asia Minor=4
+Arabian Peninsula=2
+Indian Sub-Continent=2
+South East Asia=4
+Oceania=4
+Persia=8
+
+
+[Territories]
+Saudi Arabia,77,295,Arabian Peninsula,Yemen,Omen,United Arab Emigrants,Qatar,Buhrain,Kuwait,Iraq,Jordan
+Kuwait,105,251,Arabian Peninsula,Saudi Arabia,Iraq,Iran
+Buhrain,120,277,Arabian Peninsula,Saudi Arabia,Qatar
+Qatar,119,301,Arabian Peninsula,Buhrain,Saudi Arabia,United Arab Emigrants
+United Arab Emigrants,146,311,Arabian Peninsula,Qatar,Saudi Arabia,Omen
+Omen,157,343,Arabian Peninsula,United Arab Emigrants,Saudi Arabia,Yemen
+Yemen,89,361,Arabian Peninsula,Saudi Arabia,Omen
+
+Turkey,60,155,Asia Minor,Cyprus,Syria,Iraq,Iran,Armenia,Georgia
+Cyprus,27,191,Asia Minor,Turkey,Syria,Israel,Lebanon
+Syria,71,197,Asia Minor,Turkey,Iraq,Jordan,Israel,Lebanon,Cyprus
+Iraq,93,223,Asia Minor,Iran,Kuwait,Saudi Arabia,Jordan,Syria,Turkey
+Jordan,48,225,Asia Minor,Israel,Syria,Iraq,Saudi Arabia
+Lebanon,42,200,Asia Minor,Cyprus,Syria,Israel
+Israel,33,219,Asia Minor,Cyprus,Lebanon,Jordan,Syria
+
+Russia,363,81,North Asia,Japan,North Korea,China,Mongolia,Kazakhstan,Georgia,Azerbaijan
+Japan,678,141,North Asia,Russia,North Korea,South Korea
+North Korea,593,152,North Asia,China,Russia,Japan,South Korea
+South Korea,618,181,North Asia,North Korea,Japan
+China,463,236,North Asia,Philippines,North Korea,Russia,Mongolia,Kazakhstan,India,Myanmar,Vietnam
+Mongolia,448,144,North Asia,Russia,China,Kazakhstan
+Kazakhstan,273,136,North Asia,Russia,Mongolia,China,Uzbekistan,Kyrgyzstan,Turkmenistan
+
+Georgia,110,152,Persia,Russia,Azerbaijan,Armenia,Turkey
+Armenia,122,177,Persia,Georgia,Azerbaijan,Iran,Turkey
+Azerbaijan,143,181,Persia,Georgia,Armenia,Iran,Russia
+Iran,163,252,Persia,Armenia,Azerbaijan,Turkey,Iraq,Kuwait,Turkmenistan,Afghanistan,Pakistan
+Turkmenistan,184,194,Persia,Kazakhstan,Uzbekistan,Afghanistan,Iran
+Uzbekistan,227,180,Persia,Kazakhstan,Turkmenistan,Kyrgyzstan,Tajikistan,Afghanistan
+Kyrgyzstan,301,192,Persia,Kazakhstan,Uzbekistan,Tajikistan
+Tajikistan,278,216,Persia,Uzbekistan,Kyrgyzstan,Afghanistan
+Afghanistan,225,253,Persia,Iran,Turkmenistan,Uzbekistan,Tajikistan,Pakistan
+Pakistan,264,277,Persia,Iran,Afghanistan,India
+
+India,314,339,Indian Sub-Continent,Pakistan,China,Nepal,Bhuntan,Myanmar,Bangladesh,Maldives,Sri Lanka
+Nepal,347,293,Indian Sub-Continent,India
+Bhuntan,396,296,Indian Sub-Continent,India
+Bangladesh,394,332,Indian Sub-Continent,India,Myanmar
+Sri Lanka,330,457,Indian Sub-Continent,India
+Maldives,273,493,Indian Sub-Continent,India
+
+Myanmar,440,338,South East Asia,China,India,Bangladesh,Thailand,Laos
+Thailand,484,371,South East Asia,Myanmar,Laos,Cambodia,West Malaysia
+Laos,487,344,South East Asia,Myanmar,Vietnam,Cambodia,Thailand
+Vietnam,540,386,South East Asia,China,Laos,Brunei,East Malaysia,Cambodia
+Cambodia,509,395,South East Asia,Thailand,Laos,Vietnam
+West Malaysia,491,459,South East Asia,Thailand,East Malaysia,Singapore
+Singapore,502,498,South East Asia,West Malaysia,Indonesia
+
+Indonesia,620,461,Oceania,Singapore,East Malaysia,Philippines
+East Malaysia,572,452,Oceania,Brunei,Vietnam,West Malaysia,Indonesia,Philippines
+Brunei,589,437,Oceania,Vietnam,East Malaysia
+Philippines,627,360,Oceania,China,East Malaysia,Indonesia
