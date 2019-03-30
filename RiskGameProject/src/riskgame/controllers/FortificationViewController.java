@@ -293,7 +293,7 @@ public class FortificationViewController {
             curStage.setScene(attackScene);
             curStage.show();
         } else {
-            curRoundPlayerIndex = getNextActivePlayer();
+            curRoundPlayerIndex = InfoRetriver.getNextActivePlayer(curPlayerIndex);
             notifyGameStageChanged("Reinforce Phase", curRoundPlayerIndex, "Reinforcement Action");
 
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -302,26 +302,6 @@ public class FortificationViewController {
             curStage.setScene(reinforceScene);
             curStage.show();
         }
-    }
-
-    /**
-     * check next player is still in the game and return index of next valid player
-     *
-     * @return valid player index
-     */
-    private int getNextActivePlayer() {
-        int tempIndex = curPlayerIndex;
-        while (true) {
-            tempIndex = (tempIndex + 1) % totalNumOfPlayers;
-            Player tempPlayer = playersList.get(tempIndex);
-            if (tempPlayer.getActiveStatus()) {
-                break;
-            }
-        }
-
-        System.out.println("\n\n\nnext valid player: " + tempIndex + "\n\n\n");
-
-        return tempIndex;
     }
 
     /**

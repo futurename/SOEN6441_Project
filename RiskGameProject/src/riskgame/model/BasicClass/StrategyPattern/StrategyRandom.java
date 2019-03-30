@@ -1,5 +1,7 @@
 package riskgame.model.BasicClass.StrategyPattern;
 
+import riskgame.Main;
+import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
@@ -8,6 +10,9 @@ import riskgame.model.Utils.InfoRetriver;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static riskgame.Main.*;
+import static riskgame.controllers.StartViewController.firstRoundCounter;
+
 public class StrategyRandom implements Strategy {
     private Random r = new Random();
 
@@ -15,6 +20,7 @@ public class StrategyRandom implements Strategy {
     public void doReinforcement(Player player) {
         randomlyExchangeCard(player);
         randomlyDeployArmy(player);
+        UtilMethods.endReinforcement(player);
     }
 
     private void randomlyDeployArmy(Player player) {
@@ -22,11 +28,15 @@ public class StrategyRandom implements Strategy {
         ArrayList<Country> countries = InfoRetriver.getCountryList(player);
         while (availableArmy > 0) {
             int randomArmy = r.nextInt(availableArmy) + 1;
-            int randomIndex = r.nextInt(countries.size());
-            countries.get(randomIndex).addToCountryArmyNumber(randomArmy);
+            randomlyPickCountryFrom(countries).addToCountryArmyNumber(randomArmy);
             availableArmy -= randomArmy;
         }
         player.addUndeployedArmy(-player.getUndeployedArmy());
+    }
+
+    private Country randomlyPickCountryFrom(ArrayList<Country> from){
+        int randomIndex = r.nextInt(from.size());
+        return from.get(randomIndex);
     }
 
     private void randomlyExchangeCard(Player player) {
@@ -54,9 +64,18 @@ public class StrategyRandom implements Strategy {
 
     @Override
     public void doFortification(Player player) {
-
+        randomlyFortify(player);
+        UtilMethods.endFortification(player);
     }
 
+    private void randomlyFortify(Player player){
+        Country from = randomlyPickCountryFrom(InfoRetriver.getCountryList(player));
+        ArrayList<Country> reachableCountries = InfoRetriver.getReachableCountry(player.getPlayerIndex(), from.getCountryName());
+        Country target = randomlyPickCountryFrom(reachableCountries);
+        int army = from.getCountryArmyNumber();
+        from.reduceFromCountryArmyNumber(army);
+        target.addToCountryArmyNumber(army);
+    }
 
     @Override
     public String toString(){
