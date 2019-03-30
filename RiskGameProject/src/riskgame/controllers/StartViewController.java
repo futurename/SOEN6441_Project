@@ -196,7 +196,7 @@ public class StartViewController {
                     try {
                         Pane tournamentModePane = new FXMLLoader(getClass().getResource("../view/TournamentModeView.fxml")).load();
 
-                        Scene tournamentScene = new Scene(tournamentModePane, 600, 400);
+                        Scene tournamentScene = new Scene(tournamentModePane, 800, 400);
                         curStage.setScene(tournamentScene);
                         curStage.initOwner(mainStage);
                         curStage.initModality(Modality.WINDOW_MODAL);

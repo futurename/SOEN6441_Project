@@ -1,40 +1,165 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="riskgame.controllers.TournamentModeViewController">
-   <children>
-      <Label alignment="CENTER" contentDisplay="TOP" layoutX="149.0" layoutY="35.0" prefHeight="32.0" prefWidth="303.0" text="Tournament Mode Setting" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="22.0" />
-         </font>
-      </Label>
-      <TableView fx:id="tbv_mapSelectionView" layoutX="42.0" layoutY="100.0" prefHeight="200.0" prefWidth="175.0">
-         <columns>
-            <TableColumn fx:id="tbc_mapSlectionColumn" prefWidth="174.0" text="Map Selection" />
-         </columns></TableView>
-      <TableView fx:id="tbv_playerSelectionView" layoutX="240.0" layoutY="100.0" prefHeight="200.0" prefWidth="141.0">
-        <columns>
-          <TableColumn fx:id="tbc_playerTypeColumn" prefWidth="140.0" text="Player Types" />
-        </columns>
-      </TableView>
-      <Label alignment="CENTER" layoutX="473.0" layoutY="100.0" prefHeight="21.0" prefWidth="63.0" text="Games : ">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="447.0" layoutY="200.0" prefHeight="21.0" prefWidth="115.0" text="Max Rounds : ">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Label>
-      <Button fx:id="btn_confirmSetting" layoutX="453.0" layoutY="306.0" mnemonicParsing="false" onAction="#clickConfirmSetting" text="Confirm" textFill="#ee0606">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Button>
-      <ComboBox fx:id="cbb_gamesCount" layoutX="430.0" layoutY="125.0" onMousePressed="#clickGamesCount" prefWidth="150.0" />
-      <ComboBox fx:id="cbb_gameMaxRounds" layoutX="430.0" layoutY="225.0" onMousePressed="#clickGameMaxRounds" prefWidth="150.0" />
-   </children>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane maxHeight = "-Infinity" maxWidth = "-Infinity" minHeight = "-Infinity" minWidth = "-Infinity" prefHeight = "400.0" prefWidth = "800.0"
+            xmlns = "http://javafx.com/javafx/8" xmlns:fx = "http://javafx.com/fxml/1"
+            fx:controller = "riskgame.controllers.TournamentModeViewController">
+    <children>
+        <Label alignment = "CENTER" contentDisplay = "TOP" layoutX = "249.0" layoutY = "25.0" prefHeight = "32.0" prefWidth = "303.0"
+               text = "Tournament Mode Setting" textAlignment = "CENTER">
+            <font>
+                <Font name = "System Bold" size = "22.0"/>
+            </font>
+        </Label>
+        <Label alignment = "CENTER" layoutX = "655.0" layoutY = "100.0" prefHeight = "21.0" prefWidth = "63.0" text = "Games : ">
+            <font>
+                <Font name = "System Bold" size = "15.0"/>
+            </font>
+        </Label>
+        <Label alignment = "CENTER" layoutX = "629.0" layoutY = "200.0" prefHeight = "21.0" prefWidth = "115.0" text = "Max Rounds : ">
+            <font>
+                <Font name = "System Bold" size = "15.0"/>
+            </font>
+        </Label>
+        <Button fx:id = "btn_confirmSetting" layoutX = "635.0" layoutY = "306.0" mnemonicParsing = "false" onAction = "#clickConfirmSetting"
+                text = "Confirm" textFill = "#ee0606">
+            <font>
+                <Font name = "System Bold" size = "20.0"/>
+            </font>
+        </Button>
+        <ComboBox fx:id = "cbb_gamesCount" layoutX = "612.0" layoutY = "125.0" onMousePressed = "#clickGamesCount" prefWidth = "150.0"
+                  stylesheets = "@css/combobox.css"/>
+        <ComboBox fx:id = "cbb_gameMaxRounds" layoutX = "612.0" layoutY = "225.0" onMousePressed = "#clickGameMaxRounds" prefWidth = "150.0"
+                  stylesheets = "@css/combobox.css"/>
+        <GridPane layoutX = "70.0" layoutY = "125.0" prefHeight = "244.0" prefWidth = "248.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow = "SOMETIMES" maxWidth = "102.0" minWidth = "10.0" prefWidth = "55.0"/>
+                <ColumnConstraints hgrow = "SOMETIMES" maxWidth = "193.0" minWidth = "10.0" prefWidth = "193.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight = "10.0" prefHeight = "30.0" vgrow = "SOMETIMES"/>
+                <RowConstraints minHeight = "10.0" prefHeight = "30.0" vgrow = "SOMETIMES"/>
+                <RowConstraints minHeight = "10.0" prefHeight = "30.0" vgrow = "SOMETIMES"/>
+                <RowConstraints minHeight = "10.0" prefHeight = "30.0" vgrow = "SOMETIMES"/>
+                <RowConstraints minHeight = "10.0" prefHeight = "30.0" vgrow = "SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Label alignment = "CENTER" contentDisplay = "CENTER" focusTraversable = "false" prefHeight = "39.0" prefWidth = "36.0" text = "1"
+                       textAlignment = "CENTER">
+                    <font>
+                        <Font name = "System Bold" size = "15.0"/>
+                    </font>
+                </Label>
+                <ComboBox fx:id = "cbx_mapFileOne" onAction = "#selectMapFileOne" prefHeight = "39.0" prefWidth = "195.0"
+                          stylesheets = "@css/combobox.css" GridPane.columnIndex = "1"/>
+                <Label alignment = "CENTER" contentDisplay = "CENTER" focusTraversable = "false" prefHeight = "39.0" prefWidth = "36.0" text = "2"
+                       textAlignment = "CENTER" GridPane.rowIndex = "1">
+                    <font>
+                        <Font name = "System Bold" size = "15.0"/>
+                    </font>
+                </Label>
+                <Label alignment = "CENTER" contentDisplay = "CENTER" focusTraversable = "false" prefHeight = "39.0" prefWidth = "36.0" text = "3"
+                       textAlignment = "CENTER" GridPane.rowIndex = "2">
+                    <font>
+                        <Font name = "System Bold" size = "15.0"/>
+                    </font>
+                </Label>
+                <Label alignment = "CENTER" contentDisplay = "CENTER" focusTraversable = "false" prefHeight = "39.0" prefWidth = "36.0" text = "4"
+                       textAlignment = "CENTER" GridPane.rowIndex = "3">
+                    <font>
+                        <Font name = "System Bold" size = "15.0"/>
+                    </font>
+                </Label>
+                <Label alignment = "CENTER" contentDisplay = "CENTER" focusTraversable = "false" prefHeight = "39.0" prefWidth = "36.0" text = "5"
+                       textAlignment = "CENTER" GridPane.rowIndex = "4">
+                    <font>
+                        <Font name = "System Bold" size = "15.0"/>
+                    </font>
+                </Label>
+                <ComboBox fx:id = "cbx_mapFileTwo" onAction = "#selectMapFileTwo" prefHeight = "39.0" prefWidth = "194.0" GridPane.columnIndex = "1"
+                          GridPane.rowIndex = "1" stylesheets = "@css/combobox.css"/>
+                <ComboBox fx:id = "cbx_mapFileThree" onAction = "#selectMapFileThree" prefHeight = "39.0" prefWidth = "196.0"
+                          GridPane.columnIndex = "1" GridPane.rowIndex = "2" stylesheets = "@css/combobox.css"/>
+                <ComboBox fx:id = "cbx_mapFileFour" onAction = "#selectMapFileFour" prefHeight = "39.0" prefWidth = "194.0" GridPane.columnIndex = "1"
+                          GridPane.rowIndex = "3" stylesheets = "@css/combobox.css"/>
+                <ComboBox fx:id = "cbx_mapFileFive" onAction = "#selectMapFileFive" prefHeight = "39.0" prefWidth = "197.0" GridPane.columnIndex = "1"
+                          GridPane.rowIndex = "4" stylesheets = "@css/combobox.css"/>
+            </children>
+        </GridPane>
+        <Label alignment = "CENTER" contentDisplay = "CENTER" layoutX = "147.0" layoutY = "67.0" prefHeight = "44.0" prefWidth = "127.0"
+               text = "Maps Selection   (1-5)" textAlignment = "CENTER" textOverrun = "CENTER_ELLIPSIS" wrapText = "true">
+            <font>
+                <Font name = "System Bold" size = "15.0"/>
+            </font>
+        </Label>
+        <Label alignment = "CENTER" contentDisplay = "CENTER" layoutX = "370.0" layoutY = "67.0" prefHeight = "44.0" prefWidth = "160.0"
+               text = "Player Type Selection   (2-4)" textAlignment = "CENTER" textOverrun = "CENTER_ELLIPSIS" wrapText = "true">
+            <font>
+                <Font name = "System Bold" size = "15.0"/>
+            </font>
+        </Label>
+        <GridPane layoutX = "350.0" layoutY = "140.0" prefHeight = "152.0" prefWidth = "220.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow = "SOMETIMES" maxWidth = "162.0" minWidth = "10.0" prefWidth = "162.0"/>
+                <ColumnConstraints hgrow = "SOMETIMES" maxWidth = "94.0" minWidth = "10.0" prefWidth = "38.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight = "10.0" prefHeight = "30.0" vgrow = "SOMETIMES"/>
+                <RowConstraints minHeight = "10.0" prefHeight = "30.0" vgrow = "SOMETIMES"/>
+                <RowConstraints minHeight = "10.0" prefHeight = "30.0" vgrow = "SOMETIMES"/>
+                <RowConstraints minHeight = "10.0" prefHeight = "30.0" vgrow = "SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Label prefHeight = "29.0" prefWidth = "145.0" text = "Aggressive Player" textAlignment = "CENTER" textOverrun = "CENTER_ELLIPSIS">
+                    <font>
+                        <Font name = "System Bold" size = "15.0"/>
+                    </font>
+                </Label>
+                <CheckBox fx:id = "ckb_aggressivePlayer" mnemonicParsing = "false" onAction = "#selectAggressivePlayer" prefHeight = "32.0"
+                          prefWidth = "56.0" GridPane.columnIndex = "1" stylesheets = "@css/checkbox.css">
+                    <font>
+                        <Font name = "System Bold" size = "18.0"/>
+                    </font>
+                </CheckBox>
+                <Label prefHeight = "29.0" prefWidth = "145.0" text = "Benevolent Player" textAlignment = "CENTER" textOverrun = "CENTER_ELLIPSIS"
+                       GridPane.rowIndex = "1">
+                    <font>
+                        <Font name = "System Bold" size = "15.0"/>
+                    </font>
+                </Label>
+                <Label prefHeight = "29.0" prefWidth = "145.0" text = "Random Player" textAlignment = "CENTER" textOverrun = "CENTER_ELLIPSIS"
+                       GridPane.rowIndex = "2">
+                    <font>
+                        <Font name = "System Bold" size = "15.0"/>
+                    </font>
+                </Label>
+                <Label prefHeight = "29.0" prefWidth = "145.0" text = "Cheater Player" textAlignment = "CENTER" textOverrun = "CENTER_ELLIPSIS"
+                       GridPane.rowIndex = "3">
+                    <font>
+                        <Font name = "System Bold" size = "15.0"/>
+                    </font>
+                </Label>
+                <CheckBox fx:id = "ckb_benevolentPlayer" mnemonicParsing = "false" onAction = "#selectbenevolent" prefHeight = "32.0"
+                          prefWidth = "56.0" GridPane.columnIndex = "1" GridPane.rowIndex = "1" stylesheets = "@css/checkbox.css">
+                    <font>
+                        <Font name = "System Bold" size = "18.0"/>
+                    </font>
+                </CheckBox>
+                <CheckBox fx:id = "ckb_randomPlayer" mnemonicParsing = "false" onAction = "#selectRandomPlayer" prefHeight = "32.0" prefWidth = "56.0"
+                          GridPane.columnIndex = "1" GridPane.rowIndex = "2" stylesheets = "@css/checkbox.css">
+                    <font>
+                        <Font name = "System Bold" size = "18.0"/>
+                    </font>
+                </CheckBox>
+                <CheckBox fx:id = "ckb_cheaterPlayer" mnemonicParsing = "false" onAction = "#selectCheaterPlayer" prefHeight = "32.0"
+                          prefWidth = "56.0" GridPane.columnIndex = "1" GridPane.rowIndex = "3" stylesheets = "@css/checkbox.css">
+                    <font>
+                        <Font name = "System Bold" size = "18.0"/>
+                    </font>
+                </CheckBox>
+            </children>
+        </GridPane>
+    </children>
 </AnchorPane>
