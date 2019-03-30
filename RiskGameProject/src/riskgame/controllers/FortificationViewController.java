@@ -286,6 +286,7 @@ public class FortificationViewController {
             }
             int nextPlayerIndex = (curPlayerIndex + 1) % totalNumOfPlayers;
             notifyGameStageChanged("Attack Phase", nextPlayerIndex, "Attack Action");
+
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Pane attackPane = new FXMLLoader(getClass().getResource("../view/AttackView.fxml")).load();
             Scene attackScene = new Scene(attackPane, 1200, 900);
@@ -309,7 +310,7 @@ public class FortificationViewController {
      * @return valid player index
      */
     private int getNextActivePlayer() {
-        int tempIndex = curRoundPlayerIndex;
+        int tempIndex = curPlayerIndex;
         while (true) {
             tempIndex = (tempIndex + 1) % totalNumOfPlayers;
             Player tempPlayer = playersList.get(tempIndex);
