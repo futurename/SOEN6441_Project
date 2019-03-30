@@ -293,6 +293,11 @@ public class Player extends Observable implements Observer {
         return playerIndex;
     }
 
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
     /**
      * getter
      *

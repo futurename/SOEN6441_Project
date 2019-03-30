@@ -21,14 +21,18 @@ public class TournamentGame {
     private int gameVale;
     private int gameRoundVale;
 
-    private static LinkedHashMap<String, GraphNode> worldMapInstance;
-    private static LinkedHashMap<String, Continent> continentLinkedHashMap;
+    private LinkedHashMap<String, GraphNode> worldMapInstance;
+    private LinkedHashMap<String, Continent> continentLinkedHashMap;
+    private ArrayList<Player> playerArrayList;
 
     public TournamentGame(String mapFile, ArrayList<Strategy> playerStrategyList, int gameValue, int gameRoundVale) {
         this.mapFile = mapFile;
         this.playerStrategyList = playerStrategyList;
         this.gameVale = gameValue;
         this.gameRoundVale = gameRoundVale;
+        this.worldMapInstance = new LinkedHashMap<>();
+        this.continentLinkedHashMap = new LinkedHashMap<>();
+        this.playerArrayList = new ArrayList<>();
     }
 
     public void gameStart() throws IOException {
@@ -40,11 +44,11 @@ public class TournamentGame {
         worldMapInstance = worldGraphNormal.getWorldHashMap();
         continentLinkedHashMap = new LinkedHashMap<>();
 
-        InitWorldMap.buildWorldMapGraph(mapFile, worldMapInstance, continentLinkedHashMap);
+        InitWorldMap.buildWorldMapGraph(mapFile, worldMapInstance, continentLinkedHashMap, playerArrayList);
         int numOfplayers = playerStrategyList.size();
 
-        InitPlayers.initPlayers(numOfplayers, worldMapInstance,playerStrategyList);
+        InitPlayers.initPlayers(numOfplayers, worldMapInstance,playerStrategyList, playerArrayList);
 
-        InitWorldMap.printGraph(worldMapInstance);
+        InitWorldMap.printGraph(worldMapInstance, playerArrayList);
     }
 }

@@ -31,6 +31,8 @@ public class GraphTester {
 
     private LinkedHashMap<String, Continent> demoContinentGraph;
 
+    private ArrayList<Player> demoPlayerArrayList;
+
 
 
     /**
@@ -41,7 +43,8 @@ public class GraphTester {
     public GraphTester() throws IOException {
         demoGraph = GraphSingleton.INSTANCE.getInstance();
         demoContinentGraph = new LinkedHashMap<>();
-        InitWorldMap.buildWorldMapGraph(TEST_MAP_FILE_PATH, demoGraph, demoContinentGraph);
+        demoPlayerArrayList = new ArrayList<>();
+        InitWorldMap.buildWorldMapGraph(TEST_MAP_FILE_PATH, demoGraph, demoContinentGraph, demoPlayerArrayList);
 
         for (int i = 0; i <= 2; i++) {
             Player player = new Player(i);

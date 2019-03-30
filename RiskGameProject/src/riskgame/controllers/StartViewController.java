@@ -283,7 +283,7 @@ public class StartViewController {
         }
 
         if (mapChecker.errorMsg.toString().isEmpty()) {
-            buildWorldMapGraph(mapPath, graphSingleton, worldContinentMap);
+            buildWorldMapGraph(mapPath, graphSingleton, worldContinentMap,playersList);
 
             btn_confirmLoadFile.setVisible(false);
             btn_loadFile.setVisible(false);
@@ -297,7 +297,7 @@ public class StartViewController {
                 btn_nextStep.setVisible(true);
 
                 if (Main.playersList.isEmpty()) {
-                    InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton, strategyArrayList);
+                    InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton, strategyArrayList, playersList);
                 }
             }
         }
@@ -312,7 +312,7 @@ public class StartViewController {
      */
     private void displayWorldMap(String path) throws IOException {
         if (graphSingleton.isEmpty()) {
-            buildWorldMapGraph(path, graphSingleton, worldContinentMap);
+            buildWorldMapGraph(path, graphSingleton, worldContinentMap, playersList);
         }
 
         hbx_infoDisplayHbox.getChildren().clear();
@@ -447,7 +447,7 @@ public class StartViewController {
     private void displayPlayerInfo() {
         isMapInfoOn = false;
         if (playersList.isEmpty()) {
-            InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton, strategyArrayList);
+            InitPlayers.initPlayers(totalNumOfPlayers, graphSingleton, strategyArrayList, playersList);
         }
         txf_mapPromptInfo.setText("Players Info");
 

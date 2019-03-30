@@ -1,6 +1,5 @@
 package riskgame.model.Utils;
 
-import riskgame.Main;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
@@ -12,22 +11,23 @@ import java.util.Random;
 
 /**
  * This class includes methods for initlizing all players and allocating countries to each player randomly
+ *
  * @author WW
  **/
 public class InitPlayers {
     /**
      * create and initialize all the player instances
      *
-     * @param numOfPlayers number of players this round
+     * @param numOfPlayers  number of players this round
      * @param linkedHashMap world map singleton
      */
-    public static void initPlayers(int numOfPlayers, LinkedHashMap<String, GraphNode> linkedHashMap, ArrayList<Strategy> strategyList) {
+    public static void initPlayers(int numOfPlayers, LinkedHashMap<String, GraphNode> linkedHashMap, ArrayList<Strategy> strategyList, ArrayList<Player> playerArrayList) {
         ArrayList<String> forAllocatesCountryNameList = generateUnallocatedNameList(linkedHashMap);
 
         for (int playerIndex = 0; playerIndex < numOfPlayers; playerIndex++) {
             Strategy curStrategy = strategyList.get(playerIndex);
             Player onePlayer = new Player(playerIndex, curStrategy, linkedHashMap);
-            getInitCountryNameList(onePlayer, forAllocatesCountryNameList, numOfPlayers, linkedHashMap);
+            getInitCountryNameList(onePlayer, forAllocatesCountryNameList, numOfPlayers, linkedHashMap, playerArrayList);
             onePlayer.updateArmyNbr(linkedHashMap);
 
             System.out.println("init player: " + playerIndex + ", army nbr: " + onePlayer.getArmyNbr());
@@ -37,8 +37,8 @@ public class InitPlayers {
     /**
      * this method acquires all unallocated country names
      *
-     * @return an arraylist of all country names
      * @param graphSingleton
+     * @return an arraylist of all country names
      */
     private static ArrayList<String> generateUnallocatedNameList(LinkedHashMap<String, GraphNode> linkedHashMap) {
         ArrayList<String> result = new ArrayList<>();
@@ -53,13 +53,13 @@ public class InitPlayers {
     /**
      * This method allocates all countries to a player randomly
      *
-     * @param curPlayer current player
+     * @param curPlayer      current player
      * @param coutryNameList unallocated country names
-     * @param numOfPlayers number of players
+     * @param numOfPlayers   number of players
      * @param graphSingleton world map singleton
      */
     private static void getInitCountryNameList(Player curPlayer, ArrayList<String> coutryNameList, int numOfPlayers, LinkedHashMap<String,
-            GraphNode> graphSingleton) {
+            GraphNode> graphSingleton, ArrayList<Player> playerArrayList) {
 
         int avgCountryCount = graphSingleton.size() / numOfPlayers;
         int allocatsCountryNum = (curPlayer.getPlayerIndex() != (numOfPlayers - 1)) ? avgCountryCount : coutryNameList.size();
@@ -74,7 +74,7 @@ public class InitPlayers {
             curPlayer.addToOwnedCountryNameList(oneCountryName);
 
         }
-        Main.playersList.add(curPlayer);
+        playerArrayList.add(curPlayer);
     }
 
 }
