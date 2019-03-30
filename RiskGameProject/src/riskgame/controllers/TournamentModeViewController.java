@@ -179,7 +179,9 @@ public class TournamentModeViewController {
     }
 
     public void clickGameMaxRounds(MouseEvent mouseEvent) {
-        gameRoundValue = (int) cbb_gameMaxRounds.getSelectionModel().getSelectedItem();
+        gameRoundValue = (int) cbb_gameMaxRounds.getValue();
+
+        System.out.println("\ngameRoundValue: " + gameRoundValue + "\n");
     }
 
     public void selectMapFileOne(ActionEvent actionEvent) {

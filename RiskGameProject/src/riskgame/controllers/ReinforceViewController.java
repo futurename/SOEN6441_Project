@@ -460,5 +460,8 @@ public class ReinforceViewController implements Initializable {
 
     public void clickSaveGame(ActionEvent actionEvent) {
     }
+
+    public void clickLoadGame(ActionEvent actionEvent) {
+    }
 }
 

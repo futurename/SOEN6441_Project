@@ -410,4 +410,7 @@ public class FortificationViewController {
 
     public void clickSaveGame(ActionEvent actionEvent) {
     }
+
+    public void clickLoadGame(ActionEvent actionEvent) {
+    }
 }

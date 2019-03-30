@@ -449,4 +449,7 @@ public class AttackViewController implements Initializable {
 
     public void clickSaveGame(ActionEvent actionEvent) {
     }
+
+    public void clickLoadGame(ActionEvent actionEvent) {
+    }
 }
