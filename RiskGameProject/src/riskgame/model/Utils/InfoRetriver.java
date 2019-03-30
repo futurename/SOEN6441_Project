@@ -73,16 +73,25 @@ public class InfoRetriver {
      */
     public static ObservableList<Country> getReachableCountryObservableList(int playerIndex, String selectedCountryName) {
         ObservableList<Country> result;
-        ArrayList<Country> countryList = new ArrayList<>();
+        ArrayList<Country> countryList = getReachableCountry(playerIndex, selectedCountryName);
+        result = FXCollections.observableArrayList(countryList);
+        return result;
+    }
 
+    /**
+     * acquire ObservableList of all reachable countries from a selected country and player
+     *
+     * @param playerIndex         current player index
+     * @param selectedCountryName selected country name
+     * @return ObservableList of all reachable countries
+     */
+    public static ArrayList<Country> getReachableCountry(int playerIndex, String selectedCountryName) {
+        ArrayList<Country> countryList = new ArrayList<>();
         GraphNode selectedGraphNode = Main.graphSingleton.get(selectedCountryName);
         GraphSingleton.INSTANCE.resetGraphVisitedFlag();
         Country selectedCountry = selectedGraphNode.getCountry();
-
         selectedGraphNode.getReachableCountryListBFS(playerIndex, selectedCountry, countryList);
-
-        result = FXCollections.observableArrayList(countryList);
-        return result;
+        return countryList;
     }
 
     /**
@@ -191,6 +200,23 @@ public class InfoRetriver {
             }
         }
         return isOneCountryHasAttackableCountry;
+    }
+
+    /**
+     * check next player is still in the game and return index of next valid player
+     *
+     * @return valid player index
+     */
+    public static int getNextActivePlayer(int fromPlayer) {
+        int tempIndex = fromPlayer;
+        while (true) {
+            tempIndex = (tempIndex + 1) % totalNumOfPlayers;
+            Player tempPlayer = playersList.get(tempIndex);
+            if (tempPlayer.getActiveStatus()) {
+                break;
+            }
+        }
+        return tempIndex;
     }
 
 }

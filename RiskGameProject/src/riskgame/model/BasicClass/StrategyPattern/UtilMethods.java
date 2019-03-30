@@ -4,12 +4,14 @@ import riskgame.Main;
 import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.Utils.InfoRetriver;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static riskgame.Main.curRoundPlayerIndex;
-import static riskgame.Main.phaseViewObservable;
+import static riskgame.Main.*;
+import static riskgame.Main.totalNumOfPlayers;
+import static riskgame.controllers.StartViewController.firstRoundCounter;
 
 public class UtilMethods {
 
@@ -75,31 +77,57 @@ public class UtilMethods {
         }else return -2;
     }
 
-    public void gotoNextStep(Player player){
+    public static void endReinforcement(Player player){
         if (StartViewController.reinforceInitCounter > 1) {
-            checkNextViewNeedChange(false, player);
+            notifyReinforcementEnd(false, player);
             StartViewController.reinforceInitCounter--;
-
         } else {
-            checkNextViewNeedChange(true, player);
+            notifyReinforcementEnd(true, player);
         }
     }
 
     /**
-     * notify all phase view observer that game stage changed.
+     * Notify all phase view observer that game stage changed.
      * Changes can be next player's reinforcement or going to attack phase.
      *
      * @param isAttackPhase true for going to attack phase otherwise, next player's turn
      */
-    private void checkNextViewNeedChange(boolean isAttackPhase, Player player){
+    private static void notifyReinforcementEnd(boolean isAttackPhase, Player player){
         if (!isAttackPhase) {
-            int nextPlayerIndex = (player.getPlayerIndex() + 1) % Main.totalNumOfPlayers;
+            int nextPlayerIndex = (player.getPlayerIndex() + 1) % totalNumOfPlayers;
             phaseViewObservable.setAllParam("Reinforcement Phase", nextPlayerIndex, "Reinforcement Action");
             phaseViewObservable.notifyObservers("continue reinforce");
-
         } else {
             phaseViewObservable.setAllParam("Attack Phase", curRoundPlayerIndex, "Attack Action");
             phaseViewObservable.notifyObservers("From ReinforceView to AttackView");
         }
+    }
+
+    public static void endFortification(Player player){
+        if (firstRoundCounter > 0) {
+            firstRoundCounter--;
+            if (firstRoundCounter == 0) {
+                curRoundPlayerIndex = -1;
+            }
+            int nextPlayerIndex = (player.getPlayerIndex() + 1) % totalNumOfPlayers;
+            notifyFortificationEnd("Attack Phase", nextPlayerIndex, "Attack Action");
+
+        } else {
+            curRoundPlayerIndex = InfoRetriver.getNextActivePlayer(player.getPlayerIndex());
+            notifyFortificationEnd("Reinforce Phase", curRoundPlayerIndex, "Reinforcement Action");
+        }
+    }
+
+    /**
+     * Call phase view observable notify its observers.
+     *
+     * @param phase           phase name string
+     * @param nextPlayerIndex next valid player index
+     * @param actionType      action string
+     */
+    private static void notifyFortificationEnd(String phase, int nextPlayerIndex, String actionType) {
+        phaseViewObservable.setAllParam(phase, nextPlayerIndex, actionType);
+        phaseViewObservable.notifyObservers("from fortification view");
+        System.out.printf("A player finished fortification, player %s's turn\n", nextPlayerIndex);
     }
 }
