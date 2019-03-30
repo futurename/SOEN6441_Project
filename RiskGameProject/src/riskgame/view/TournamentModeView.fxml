@@ -29,9 +29,9 @@
                 <Font name = "System Bold" size = "20.0"/>
             </font>
         </Button>
-        <ComboBox fx:id = "cbb_gamesCount" layoutX = "612.0" layoutY = "125.0" onMousePressed = "#clickGamesCount" prefWidth = "150.0"
+        <ComboBox fx:id = "cbb_gamesCount" layoutX = "612.0" layoutY = "125.0" prefWidth = "150.0"
                   stylesheets = "@css/combobox.css"/>
-        <ComboBox fx:id = "cbb_gameMaxRounds" layoutX = "612.0" layoutY = "225.0" onMousePressed = "#clickGameMaxRounds" prefWidth = "150.0"
+        <ComboBox fx:id = "cbb_gameMaxRounds" layoutX = "612.0" layoutY = "225.0" prefWidth = "150.0"
                   stylesheets = "@css/combobox.css"/>
         <GridPane layoutX = "70.0" layoutY = "125.0" prefHeight = "244.0" prefWidth = "248.0">
             <columnConstraints>

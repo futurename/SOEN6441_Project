@@ -15,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -28,6 +27,7 @@ import riskgame.model.BasicClass.Player;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
 import riskgame.model.BasicClass.StrategyPattern.StrategyHuman;
 import riskgame.model.BasicClass.StrategyPattern.StrategyRandom;
+import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.InitPlayers;
 import riskgame.model.Utils.ListviewRenderer;
 
@@ -285,7 +285,7 @@ public class StartViewController {
         }
 
         if (mapChecker.errorMsg.toString().isEmpty()) {
-            buildWorldMapGraph(mapPath, graphSingleton, worldContinentMap,playersList);
+            buildWorldMapGraph(mapPath, graphSingleton, worldContinentMap, playersList);
 
             btn_confirmLoadFile.setVisible(false);
             btn_loadFile.setVisible(false);
@@ -398,7 +398,6 @@ public class StartViewController {
                 continent.setContinentOwnerIndex(owner);
                 Player curPlayer = playersList.get(owner);
                 curPlayer.addContinentBonus(continent.getContinentBonusValue());
-
             }
         }
     }
@@ -524,28 +523,20 @@ public class StartViewController {
      * @throws IOException map file not found
      */
     public void clickLoadMap(ActionEvent actionEvent) throws IOException {
-        Stage fileStage = null;
-
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select map file");
-
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Map files(*.map)", "*.map");
-        fileChooser.getExtensionFilters().add(extFilter);
-        File file = fileChooser.showOpenDialog(fileStage);
+        String titleString = "Select Map File:";
+        File file = InfoRetriver.showFileChooser(titleString);
         txf_mapPath.setText(file.getAbsolutePath());
     }
 
 
     public void clickLoadGame(ActionEvent actionEvent) {
+        String titleString = "Select Saved Map File:";
+        InfoRetriver.showFileChooser(titleString);
     }
 
     public void clickSaveGame(ActionEvent actionEvent) {
+        String titleString = "Select Location to Save Game:";
+        InfoRetriver.showFileChooser(titleString);
     }
 
-    public void clickSingleMode(ActionEvent actionEvent) {
-    }
-
-    public void clickTournamentMode(ActionEvent actionEvent) {
-    }
 }

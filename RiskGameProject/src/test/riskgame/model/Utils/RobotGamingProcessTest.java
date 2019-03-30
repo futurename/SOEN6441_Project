@@ -4,14 +4,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-/** 
-* ProcessRobotGaming Tester. 
+/**
+ * RobotGamingProcess Tester.
 * 
 * @author <Authors name> 
 * @since <pre>Mar 30, 2019</pre> 
 * @version 1.0 
-*/ 
-public class ProcessRobotGamingTest { 
+*/
+public class RobotGamingProcessTest {
 
 @Before
 public void before() throws Exception { 
@@ -42,7 +42,7 @@ public void testStartAllGames() throws Exception {
 //TODO: Test goes here... 
 /* 
 try { 
-   Method method = ProcessRobotGaming.getClass().getMethod("startAllGames"); 
+   Method method = RobotGamingProcess.getClass().getMethod("startAllGames");
    method.setAccessible(true); 
    method.invoke(<Object>, <Parameters>); 
 } catch(NoSuchMethodException e) { 

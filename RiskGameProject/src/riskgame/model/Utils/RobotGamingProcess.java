@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Created on 2019-03-30 030
  */
-public class ProcessRobotGaming {
+public class RobotGamingProcess {
     private static ArrayList<TournamentGame> tournamentGameArrayList = new ArrayList<>();
 
 

@@ -18,7 +18,7 @@ public class TournamentGame {
 
     private String mapFile;
     private ArrayList<Strategy> playerStrategyList;
-    private int gameVale;
+    private int gameValue;
     private int gameRoundVale;
 
     private LinkedHashMap<String, GraphNode> worldMapInstance;
@@ -28,7 +28,7 @@ public class TournamentGame {
     public TournamentGame(String mapFile, ArrayList<Strategy> playerStrategyList, int gameValue, int gameRoundVale) {
         this.mapFile = mapFile;
         this.playerStrategyList = playerStrategyList;
-        this.gameVale = gameValue;
+        this.gameValue = gameValue;
         this.gameRoundVale = gameRoundVale;
         this.worldMapInstance = new LinkedHashMap<>();
         this.continentLinkedHashMap = new LinkedHashMap<>();

@@ -1,6 +1,8 @@
 package riskgame.controllers;
 
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,10 +11,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import riskgame.model.BasicClass.StrategyPattern.*;
-import riskgame.model.Utils.ProcessRobotGaming;
+import riskgame.model.Utils.RobotGamingProcess;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -69,21 +70,39 @@ public class TournamentModeViewController {
         mapFileNameList = getShortFileNameList(mapFileList);
         setOnlyFirstComboxVisible(mapFileNameList);
         initGamesCombobox(MAX_GAMES_TO_BE_PLAYED);
-        initMaxGameRound(MIN_GAME_ROUND, MAX_GAME_ROUND);
+        initMaxGameRoundCombobox(MIN_GAME_ROUND, MAX_GAME_ROUND);
 
     }
 
-    private void initMaxGameRound(int min_game_round, int max_game_round) {
+    private void initMaxGameRoundCombobox(int min_game_round, int max_game_round) {
         ArrayList<Integer> gameRoundSequenceList = (ArrayList<Integer>) IntStream.rangeClosed(min_game_round, max_game_round)
                 .boxed().collect(Collectors.toList());
         ObservableList<Integer> observableGameRoundSeqList = FXCollections.observableArrayList(gameRoundSequenceList);
         cbb_gameMaxRounds.setItems(observableGameRoundSeqList);
+
+        cbb_gameMaxRounds.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                gameRoundValue = Integer.parseInt(newValue.toString());
+
+                System.out.println("\ngameRoundValue: " + gameRoundValue + "\n");
+            }
+        });
     }
 
     private void initGamesCombobox(int max_games_to_be_played) {
         ArrayList<Integer> sequenceNumberList = (ArrayList<Integer>) IntStream.rangeClosed(1, max_games_to_be_played).boxed().collect(Collectors.toList());
         ObservableList<Integer> observableSequenceList = FXCollections.observableArrayList(sequenceNumberList);
         cbb_gamesCount.setItems(observableSequenceList);
+
+        cbb_gamesCount.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                gamesValue = Integer.parseInt(newValue.toString());
+
+                System.out.println("\ngameValue:: " + gamesValue + "\n");
+            }
+        });
     }
 
     private ObservableList<String> getShortFileNameList(ArrayList<String> mapFileList) {
@@ -108,7 +127,6 @@ public class TournamentModeViewController {
 
 
     private ArrayList<String> getMapFiles(String default_maps_folder_path) {
-
         File folder = new File(default_maps_folder_path);
         File[] files = folder.listFiles();
 
@@ -117,14 +135,10 @@ public class TournamentModeViewController {
         for (File file : files) {
             result.add(file.toString());
         }
-
         return result;
     }
 
-
     public void clickConfirmSetting(ActionEvent actionEvent) {
-
-
         if (isEnoughPlayerTypes() && isMapSelected() && isGamesSelected() && isRoundNumberSelected()) {
             Stage curStage = (Stage) btn_confirmSetting.getScene().getWindow();
 /*
@@ -133,16 +147,13 @@ public class TournamentModeViewController {
             */
 
             curStage.close();
-
-            ProcessRobotGaming.initRobotGaming(mapFileList,robotPlayerList,gamesValue,gameRoundValue);
-
+            RobotGamingProcess.initRobotGaming(mapFileList, robotPlayerList, gamesValue, gameRoundValue);
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Error, selection not completed!");
             alert.showAndWait();
         }
     }
-
 
     private boolean isRoundNumberSelected() {
         return cbb_gameMaxRounds.getSelectionModel().getSelectedIndex() != -1;
@@ -171,17 +182,6 @@ public class TournamentModeViewController {
             counter++;
         }
         return counter >= 2;
-    }
-
-    public void clickGamesCount(MouseEvent mouseEvent) {
-        gamesValue = (int) cbb_gamesCount.getSelectionModel().getSelectedItem();
-
-    }
-
-    public void clickGameMaxRounds(MouseEvent mouseEvent) {
-        gameRoundValue = (int) cbb_gameMaxRounds.getValue();
-
-        System.out.println("\ngameRoundValue: " + gameRoundValue + "\n");
     }
 
     public void selectMapFileOne(ActionEvent actionEvent) {

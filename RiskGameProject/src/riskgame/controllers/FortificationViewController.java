@@ -409,8 +409,12 @@ public class FortificationViewController {
     }
 
     public void clickSaveGame(ActionEvent actionEvent) {
+        String titleString = "Select Location to Save Game:";
+        InfoRetriver.showFileChooser(titleString);
     }
 
     public void clickLoadGame(ActionEvent actionEvent) {
+        String titleString = "Select Saved Map File:";
+        InfoRetriver.showFileChooser(titleString);
     }
 }

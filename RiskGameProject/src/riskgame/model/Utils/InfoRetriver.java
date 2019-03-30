@@ -7,9 +7,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -232,6 +235,18 @@ public class InfoRetriver {
             }
         }
         return tempIndex;
+    }
+
+    public static File showFileChooser(String titleString) {
+        Stage fileStage = null;
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle(titleString);
+
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Map files(*.map)", "*.map");
+        fileChooser.getExtensionFilters().add(extFilter);
+        return fileChooser.showOpenDialog(fileStage);
     }
 
 }
