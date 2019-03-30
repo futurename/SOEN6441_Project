@@ -4,8 +4,8 @@ import riskgame.model.BasicClass.Player;
 
 public class StrategyCheater implements Strategy {
     @Override
-    public void doReinforcement(Player player) {
-
+    public int doReinforcement(Player player) {
+        return 0;
     }
 
     @Override

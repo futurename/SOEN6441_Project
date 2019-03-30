@@ -1,5 +1,7 @@
 package riskgame.model.BasicClass.StrategyPattern;
 
+import javafx.scene.Node;
+import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Card;
@@ -18,7 +20,7 @@ public class StrategyRandom implements Strategy {
     private Random r = new Random();
 
     @Override
-    public void doReinforcement(Player player) {
+    public int doReinforcement(Player player) {
         ArrayList<Card> cards = player.getCardsList();
         if (cards.size()>=5){
             int code = availableCombo(cards);
@@ -43,7 +45,7 @@ public class StrategyRandom implements Strategy {
         }
         player.addUndeployedArmy(-player.getUndeployedArmy());
         //TODO go to next step
-
+        return 0;
     }
 
     /**
