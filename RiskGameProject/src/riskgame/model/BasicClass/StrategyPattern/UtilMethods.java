@@ -3,6 +3,7 @@ package riskgame.model.BasicClass.StrategyPattern;
 import riskgame.Main;
 import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Card;
+import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 

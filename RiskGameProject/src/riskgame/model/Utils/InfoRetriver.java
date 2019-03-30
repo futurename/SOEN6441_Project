@@ -30,13 +30,10 @@ public class InfoRetriver {
      */
     public static ObservableList<Country> getAdjacentCountryObservablelist(int curPlayerIndex, int selectedCountryIndex) {
         ObservableList<Country> result;
-
         ArrayList<String> countryList = playersList.get(curPlayerIndex).getOwnedCountryNameList();
         String selectedCountryName = countryList.get(selectedCountryIndex);
         ArrayList<Country> adjacentCountryList = Main.graphSingleton.get(selectedCountryName).getAdjacentCountryList();
-
         result = FXCollections.observableArrayList(adjacentCountryList);
-
         return result;
     }
 
@@ -49,6 +46,14 @@ public class InfoRetriver {
     public static ObservableList<Country> getAttackableAdjacentCountryList(int curPlayerIndex, Country selectedCountry){
         ObservableList<Country> result;
 
+        ArrayList<Country> attackableAdjacentCountryList = getAdjacentEnemy(curPlayerIndex, selectedCountry);
+
+        result = FXCollections.observableArrayList(attackableAdjacentCountryList);
+
+        return result;
+    }
+
+    public static ArrayList<Country> getAdjacentEnemy(int curPlayerIndex, Country selectedCountry) {
         String selectedCountryName = selectedCountry.getCountryName();
         ArrayList<Country> adjacentCountryList = Main.graphSingleton.get(selectedCountryName).getAdjacentCountryList();
 
@@ -58,10 +63,7 @@ public class InfoRetriver {
                 attackableAdjacentCountryList.add(country);
             }
         }
-
-        result = FXCollections.observableArrayList(attackableAdjacentCountryList);
-
-        return result;
+        return attackableAdjacentCountryList;
     }
 
     /**
@@ -183,7 +185,7 @@ public class InfoRetriver {
      * @param ownedCountryList country object list
      * @return true for valid, false for none
      */
-    public static boolean validateAttackerStatus(int curPlayerIndex, ObservableList<Country> ownedCountryList) {
+    public static boolean validateAttackerStatus(int curPlayerIndex, Iterable<Country> ownedCountryList) {
 
         boolean isOneCountryHasAttackableCountry = false;
 
@@ -200,6 +202,19 @@ public class InfoRetriver {
             }
         }
         return isOneCountryHasAttackableCountry;
+    }
+
+    public static ArrayList<Country> getAttackableCountry(Player player){
+        ArrayList<Country> attackable = new ArrayList<>();
+        ArrayList<Country> owned = InfoRetriver.getCountryList(player);
+        for(Country country: owned){
+            if(country.getCountryArmyNumber() > 1){
+                if (!InfoRetriver.getAdjacentEnemy(player.getPlayerIndex(), country).isEmpty()){
+                    attackable.add(country);
+                }
+            }
+        }
+        return attackable;
     }
 
     /**

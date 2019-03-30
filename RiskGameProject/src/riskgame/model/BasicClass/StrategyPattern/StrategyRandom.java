@@ -58,7 +58,19 @@ public class StrategyRandom implements Strategy {
 
     @Override
     public void doAttack(Player player) {
-//        randomPlayAttack(Player);
+
+
+    }
+
+    private void randomlyAttack(Player player){
+        //pick a country that can attack
+        ArrayList<Country> attackable = InfoRetriver.getAttackableCountry(player);
+        Country attacker = randomlyPickCountryFrom(attackable);
+        //pick an enemy
+        ArrayList<Country> enemies = InfoRetriver.getAdjacentEnemy(player.getPlayerIndex(), attacker);
+        Country enemy = randomlyPickCountryFrom(enemies);
+        //send armies
+
 
     }
 

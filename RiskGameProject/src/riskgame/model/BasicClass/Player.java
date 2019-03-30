@@ -385,7 +385,7 @@ public class Player extends Observable implements Observer {
      * @param defendArmyNbr         army number of defending country
      * @param txa_attackInfoDisplay UI control for displaying information
      */
-    public void alloutAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr,
+    private void alloutAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr,
                                      TextArea txa_attackInfoDisplay) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Attacker: [ ")
@@ -447,7 +447,7 @@ public class Player extends Observable implements Observer {
      * @param defendArmyNbr         army number of defending country
      * @param txa_attackInfoDisplay UI control for display information
      */
-    public void oneAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr,
+    private void oneAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr,
                                   TextArea txa_attackInfoDisplay) {
         int avaliableForAttackNbr = attackArmyNbr > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : attackArmyNbr;
         int avaliableForDefendNbr = defendArmyNbr > MAX_DEFENDING_ARMY_NUMBER ? MAX_DEFENDING_ARMY_NUMBER : defendArmyNbr;
