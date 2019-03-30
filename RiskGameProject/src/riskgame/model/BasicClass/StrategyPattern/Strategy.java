@@ -5,7 +5,7 @@ import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
 
 public interface Strategy {
-    default int doReinforcement(Player player){return -1;};
+    default void doReinforcement(Player player){};
     default void doReinforcement(Country country ,int army){};
     default void doAttack(Player player){};
     default void doFortification(Player player){};

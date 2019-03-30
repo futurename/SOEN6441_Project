@@ -4,8 +4,8 @@ import riskgame.model.BasicClass.Player;
 
 public class StrategyAggressive implements Strategy {
     @Override
-    public int doReinforcement(Player player) {
-        return 0;
+    public void doReinforcement(Player player) {
+
     }
 
     @Override
