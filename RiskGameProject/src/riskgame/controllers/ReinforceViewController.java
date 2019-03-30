@@ -135,6 +135,7 @@ public class ReinforceViewController implements Initializable {
         public void initialize (URL location, ResourceBundle resources){
             reinforceViewInit();
             curPlayer.executeReinforcement();
+            setUIInitStatus();
         }
 
         /**
@@ -147,28 +148,27 @@ public class ReinforceViewController implements Initializable {
             initCurPlayerCardListView();
             addUndeployedArmy();
             InfoRetriver.updateDominationView("From reinforcement initial", vbx_worldDomiView);
-            btn_confirmDeployment.setVisible(false);
-
-            int cardsNbr = curPlayer.getCardsList().size();
-
-            System.out.println("\n\ncards number: " + cardsNbr);
-
-            if (cardsNbr <= 2) {
-                btn_confirmExchangeCards.setVisible(false);
-                btn_skipCardsExchange.setVisible(false);
-                btn_confirmDeployment.setVisible(true);
-            }
-            if (cardsNbr >= 5) {
-                btn_skipCardsExchange.setVisible(false);
-            }
-            setUIInitStatus();
-
         }
 
     /**
      * set UI init status
      */
     private void setUIInitStatus() {
+        btn_confirmDeployment.setVisible(false);
+
+        int cardsNbr = curPlayer.getCardsList().size();
+
+        System.out.println("\n\ncards number: " + cardsNbr);
+
+        if (cardsNbr <= 2) {
+            btn_confirmExchangeCards.setVisible(false);
+            btn_skipCardsExchange.setVisible(false);
+            btn_confirmDeployment.setVisible(true);
+        }
+        if (cardsNbr >= 5) {
+            btn_skipCardsExchange.setVisible(false);
+        }
+
         Color curPlayerColor = curPlayer.getPlayerColor();
         int undeployed = curPlayer.getUndeployedArmy();
         lbl_countriesInfo.setTextFill(curPlayerColor);
@@ -239,7 +239,7 @@ public class ReinforceViewController implements Initializable {
                     curPlayer.initObservableCard();
                     curPlayer.notifyObservers("from reinforce view: initial cards!");
                     this.playerCards = this.cardExchangeViewObserver.getPlayerCards();
-                    //TODO: phaseViewObservable will keep adding new cardObserver without removing the old one!
+                    //phaseViewObservable will keep adding new cardObserver without removing the old one!
                     phaseViewObservable.deleteObserver(cardExchangeViewObserver);
                     phaseViewObservable.addObserver(this.cardExchangeViewObserver);
                     phaseViewObservable.initObservableExchangeTime();
@@ -290,10 +290,10 @@ public class ReinforceViewController implements Initializable {
          *
          * @param isAttackPhase true for going to attack phase otherwise, next player's turn
          */
-        private void checkNextViewNeedChange ( boolean isAttackPhase){
+        private void checkNextViewNeedChange (boolean isAttackPhase){
             if (!isAttackPhase) {
                 int nextPlayerIndex = (curPlayerIndex + 1) % Main.totalNumOfPlayers;
-                phaseViewObservable.setAllParam("Reinforcement Phase", nextPlayerIndex, curActionString);
+                phaseViewObservable.setAllParam("Reinforcement Phase", nextPlayerIndex, "Reinforcement Action");
                 phaseViewObservable.notifyObservers("continue reinforce");
 
             } else {
@@ -327,8 +327,6 @@ public class ReinforceViewController implements Initializable {
         public void clickConfirmDeployment (ActionEvent actionEvent){
             Country selectedCountry = lsv_ownedCountries.getSelectionModel().getSelectedItem();
             int selectedCountryIndex = lsv_ownedCountries.getSelectionModel().getSelectedIndex();
-//            int undeloyedArmyCount = Integer.parseInt(lbl_undeployedArmy.getText());
-            int undeloyedArmyCount = curPlayer.getUndeployedArmy();
 
             if (selectedCountryIndex == -1) {
                 alert.setHeaderText(null);
@@ -336,13 +334,10 @@ public class ReinforceViewController implements Initializable {
                 alert.showAndWait();
             } else {
                 int deployArmyCount = Integer.parseInt(lbl_deployArmyCount.getText());
-//                selectedCountry.addToCountryArmyNumber(deployArmyCount);
-
                 curPlayer.executeReinforcement(selectedCountry, deployArmyCount);
-
-//                int remainUndeployedArmyCount = undeloyedArmyCount - deployArmyCount;
                 curPlayer.addUndeployedArmy(-deployArmyCount);
                 int remainUndeployedArmyCount = curPlayer.getUndeployedArmy();
+
                 lbl_undeployedArmy.setText(Integer.toString(remainUndeployedArmyCount));
 
                 lsv_ownedCountries.refresh();
@@ -354,7 +349,6 @@ public class ReinforceViewController implements Initializable {
                     lbl_deployCountPrompt.setVisible(false);
                     scb_armyNbrAdjustment.setVisible(false);
                     lbl_undeployArmyPrompt.setVisible(false);
-
                     btn_nextStep.setVisible(true);
                     lsv_ownedCountries.getSelectionModel().select(-1);
                 } else {
