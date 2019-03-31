@@ -251,7 +251,6 @@ public class TournamentModeViewController {
     }
 
     public void selectMapFileFive(ActionEvent actionEvent) {
-        String selectedFileName = (String) cbx_mapFileFive.getSelectionModel().getSelectedItem();
         cbx_mapFileFive.setMouseTransparent(true);
 
         int mapFileIndex = cbx_mapFileFive.getSelectionModel().getSelectedIndex();

@@ -69,6 +69,7 @@ public class StartViewController {
      * reinforce round counter
      */
     public static int reinforceInitCounter;
+    private static ArrayList<Strategy> playerStrategyList;
     @FXML
     private TextField txf_mapPath;
     @FXML
@@ -103,7 +104,6 @@ public class StartViewController {
     private Label lbl_disNumOfPlayer;
     @FXML
     private Label lbl_disMapPath;
-
     /**
      * variable for storing map file path
      */
@@ -120,7 +120,6 @@ public class StartViewController {
      * indicator for marking whether world map file has been read and initialized
      */
     private boolean isMapInfoOn = false;
-    private ArrayList<Strategy> strategyArrayList = new ArrayList<Strategy>();
 
     /**
      * reset all variables to original values
@@ -132,6 +131,10 @@ public class StartViewController {
         Main.worldContinentMap = new LinkedHashMap<>();
         GraphSingleton.INSTANCE.resetInstance();
         graphSingleton = GraphSingleton.INSTANCE.getInstance();
+    }
+
+    public static void setStrategyTypeList(ArrayList<Strategy> strategyArrayList) {
+        playerStrategyList = strategyArrayList;
     }
 
     /**
@@ -297,7 +300,7 @@ public class StartViewController {
                 btn_nextStep.setVisible(true);
 
                 if (Main.playersList.isEmpty()) {
-                    InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton, strategyArrayList, playersList);
+                    InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton, playerStrategyList, playersList);
                 }
             }
         }
@@ -435,9 +438,9 @@ public class StartViewController {
         }
         /*//set strategies for every player
         for (int playerIndex = 0; playerIndex < Main.totalNumOfPlayers; playerIndex++) {
-            strategyArrayList.add(new StrategyHuman());
+            playerStrategyList.add(new StrategyHuman());
         }
-        strategyArrayList.set(1, new StrategyRandom());*/
+        playerStrategyList.set(1, new StrategyRandom());*/
 
         loadPlayerTypeSelectionView();
 
@@ -478,7 +481,7 @@ public class StartViewController {
     private void displayPlayerInfo() {
         isMapInfoOn = false;
         if (playersList.isEmpty()) {
-            InitPlayers.initPlayers(totalNumOfPlayers, graphSingleton, strategyArrayList, playersList);
+            InitPlayers.initPlayers(totalNumOfPlayers, graphSingleton, playerStrategyList, playersList);
         }
         txf_mapPromptInfo.setText("Players Info");
 
@@ -558,7 +561,6 @@ public class StartViewController {
         txf_mapPath.setText(file.getAbsolutePath());
     }
 
-
     public void clickLoadGame(ActionEvent actionEvent) {
         String titleString = "Select Saved Map File:";
         InfoRetriver.showFileChooser(titleString);
@@ -568,5 +570,4 @@ public class StartViewController {
         String titleString = "Select Location to Save Game:";
         InfoRetriver.showFileChooser(titleString);
     }
-
 }

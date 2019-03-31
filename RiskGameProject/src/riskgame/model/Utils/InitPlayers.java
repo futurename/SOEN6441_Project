@@ -22,6 +22,10 @@ public class InitPlayers {
      * @param worldHashMap world map
      */
     public static void initPlayers(int numOfPlayers, LinkedHashMap<String, GraphNode> worldHashMap, ArrayList<Strategy> strategyList, ArrayList<Player> playerArrayList) {
+
+        System.out.println("strategy list: " + strategyList + ", playerlist: " + playerArrayList);
+
+
         ArrayList<String> forAllocatesCountryNameList = generateUnallocatedNameList(worldHashMap);
 
         for (int playerIndex = 0; playerIndex < numOfPlayers; playerIndex++) {

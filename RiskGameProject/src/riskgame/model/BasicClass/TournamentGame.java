@@ -59,9 +59,9 @@ public class TournamentGame implements Runnable {
         while (gameRoundLeft > 0 || gameWinner != -1) {
             for (int playerIndex = 0; playerIndex < robotPlayerList.size(); playerIndex++) {
                 Player curRobot = robotPlayerList.get(playerIndex);
-                curRobot.getStrategy().doReinforcement(curRobot);
-                curRobot.getStrategy().doAttack(curRobot);
-                curRobot.getStrategy().doFortification(curRobot);
+                curRobot.executeReinforcement();
+                curRobot.executeAttack();
+                curRobot.executeFortification();
 
                 System.out.println("robot " + playerIndex + ": regular gaming!  Round left: " + gameRoundLeft);
             }
@@ -75,8 +75,8 @@ public class TournamentGame implements Runnable {
     private void doAllPlayerAttackAndFortification(ArrayList<Player> robotPlayerList) {
         for (int playerIndex = 0; playerIndex < robotPlayerList.size(); playerIndex++) {
             Player curRobot = robotPlayerList.get(playerIndex);
-            curRobot.getStrategy().doAttack(curRobot);
-            curRobot.getStrategy().doFortification(curRobot);
+            curRobot.executeAttack();
+            curRobot.executeFortification();
 
             System.out.println("robot " + playerIndex + ": doAllPlayerAttackAndFortification");
         }
@@ -85,7 +85,7 @@ public class TournamentGame implements Runnable {
     private void doAllPlayerReinforcement(ArrayList<Player> robotPlayerList) {
         for (int playerIndex = 0; playerIndex < robotPlayerList.size(); playerIndex++) {
             Player curRobot = robotPlayerList.get(playerIndex);
-            curRobot.getStrategy().doReinforcement(curRobot);
+            curRobot.executeReinforcement();
 
             System.out.println("robot " + playerIndex + ": doAllPlayerReinforcement");
         }

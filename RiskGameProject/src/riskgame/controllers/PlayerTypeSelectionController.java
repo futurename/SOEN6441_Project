@@ -72,12 +72,15 @@ public class PlayerTypeSelectionController {
         Strategy benevolent = new StrategyBenevolent();
         Strategy cheater = new StrategyCheater();
         Strategy random = new StrategyRandom();
+        Strategy human = new StrategyHuman();
 
         ArrayList<Strategy> strategyArrayList = new ArrayList<>();
         strategyArrayList.add(aggressive);
         strategyArrayList.add(benevolent);
         strategyArrayList.add(cheater);
         strategyArrayList.add(random);
+        strategyArrayList.add(human);
+
 
         ObservableList<Strategy> result = FXCollections.observableArrayList(strategyArrayList);
         return result;
@@ -93,6 +96,7 @@ public class PlayerTypeSelectionController {
 
     public void clickConfirmSelection(ActionEvent actionEvent) {
         if (isAllComboboxSelected()) {
+            StartViewController.setStrategyTypeList(strategySelectionList);
 
             Stage curStage = (Stage) btn_confirmSelection.getScene().getWindow();
             curStage.close();
@@ -121,9 +125,6 @@ public class PlayerTypeSelectionController {
     public void clickResetSelection(ActionEvent actionEvent) {
     }
 
-    private void initPlayerTypeSelectionGridPane() {
-
-    }
 
 
 }
