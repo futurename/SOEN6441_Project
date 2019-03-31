@@ -14,29 +14,23 @@ import java.util.LinkedHashMap;
  * @since 2019/03/29
  **/
 
-public class TournamentGame {
+public class TournamentGame implements Runnable {
 
     private String mapFile;
     private ArrayList<Strategy> playerStrategyList;
-    private int gameValue;
-    private int gameRoundVale;
+    private int gameRoundValue;
 
     private LinkedHashMap<String, GraphNode> worldMapInstance;
     private LinkedHashMap<String, Continent> continentLinkedHashMap;
     private ArrayList<Player> playerArrayList;
 
-    public TournamentGame(String mapFile, ArrayList<Strategy> playerStrategyList, int gameValue, int gameRoundVale) {
+    public TournamentGame(String mapFile, ArrayList<Strategy> playerStrategyList, int gameRoundValue) {
         this.mapFile = mapFile;
         this.playerStrategyList = playerStrategyList;
-        this.gameValue = gameValue;
-        this.gameRoundVale = gameRoundVale;
+        this.gameRoundValue = gameRoundValue;
         this.worldMapInstance = new LinkedHashMap<>();
         this.continentLinkedHashMap = new LinkedHashMap<>();
         this.playerArrayList = new ArrayList<>();
-    }
-
-    public void gameStart() throws IOException {
-        initMapAndPlayers();
     }
 
     private void initMapAndPlayers() throws IOException {
@@ -51,6 +45,23 @@ public class TournamentGame {
 
         System.out.println("\n\n\n" + playerArrayList + "\n\n\n");
 
-        InitWorldMap.printGraph(worldMapInstance, playerArrayList);
+        //InitWorldMap.printGraph(worldMapInstance, playerArrayList);
+
+
+    }
+
+    @Override
+    public void run() {
+        try {
+            System.out.println("\n\n!!!!!!!!!!!!!!!tournamentGame instance start!!!");
+            System.out.println("map: " + mapFile);
+            System.out.println("gameRoundValue: " + gameRoundValue);
+            System.out.println("playerlist: " + playerArrayList + "\n\n");
+
+            initMapAndPlayers();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
