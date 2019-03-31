@@ -558,7 +558,7 @@ public class Player extends Observable implements Observer {
 
     @Override
     public String toString() {
-        return getPlayerName();
+        return this.getPlayerName();
     }
 }
 

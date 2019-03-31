@@ -25,6 +25,16 @@ import static riskgame.Main.*;
 public class InfoRetriver {
 
     /**
+     * default factor for calculting standard number of army used for reinforce phase
+     */
+    private static final int DEFAULT_DIVISION_FACTOR = 3;
+
+    /**
+     * minimun army number that is assigned to each player
+     */
+    private static final int DEFAULT_MIN_REINFORCE_ARMY_NBR = 3;
+
+    /**
      * acquire adjacent country list for a selected country and player
      *
      * @param curPlayerIndex player index number
@@ -116,11 +126,12 @@ public class InfoRetriver {
         ArrayList<String> ownedCountryNameList = player.getOwnedCountryNameList();
         ArrayList<Country> countryList = new ArrayList<>();
         for (String name : ownedCountryNameList) {
-            Country country = Main.graphSingleton.get(name).getCountry();
+            Country country = graphSingleton.get(name).getCountry();
             countryList.add(country);
         }
         return countryList;
     }
+
 
     /**
      * get count of conquered continents by the specified player
@@ -247,6 +258,18 @@ public class InfoRetriver {
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Map files(*.map)", "*.map");
         fileChooser.getExtensionFilters().add(extFilter);
         return fileChooser.showOpenDialog(fileStage);
+    }
+
+
+    /**
+     * calculate army number for reinforcement with default value
+     *
+     * @param countryNum number of all countries a player owns
+     * @return calculated number of army for reinforcement phase
+     */
+    public static int getStandardReinforceArmyNum(int countryNum) {
+        int calResult = countryNum / DEFAULT_DIVISION_FACTOR;
+        return calResult > DEFAULT_MIN_REINFORCE_ARMY_NBR ? calResult : DEFAULT_MIN_REINFORCE_ARMY_NBR;
     }
 
 }

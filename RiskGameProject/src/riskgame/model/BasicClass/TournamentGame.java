@@ -22,7 +22,8 @@ public class TournamentGame implements Runnable {
 
     private LinkedHashMap<String, GraphNode> worldMapInstance;
     private LinkedHashMap<String, Continent> continentLinkedHashMap;
-    private ArrayList<Player> playerArrayList;
+    private ArrayList<Player> robotPlayerList;
+    private int gameWinner;
 
     public TournamentGame(String mapFile, ArrayList<Strategy> playerStrategyList, int gameRoundValue) {
         this.mapFile = mapFile;
@@ -30,7 +31,8 @@ public class TournamentGame implements Runnable {
         this.gameRoundValue = gameRoundValue;
         this.worldMapInstance = new LinkedHashMap<>();
         this.continentLinkedHashMap = new LinkedHashMap<>();
-        this.playerArrayList = new ArrayList<>();
+        this.robotPlayerList = new ArrayList<>();
+        this.gameWinner = -1;
     }
 
     private void initMapAndPlayers() throws IOException {
@@ -40,24 +42,60 @@ public class TournamentGame implements Runnable {
 
         InitWorldMap.buildWorldMapGraph(mapFile, worldMapInstance, continentLinkedHashMap);
         int numOfplayers = playerStrategyList.size();
+        InitPlayers.initPlayers(numOfplayers, worldMapInstance, playerStrategyList, robotPlayerList);
 
-        InitPlayers.initPlayers(numOfplayers, worldMapInstance,playerStrategyList, playerArrayList);
+        System.out.println("map: " + mapFile);
+        System.out.println("gameRoundValue: " + gameRoundValue);
+        System.out.println("playerlist: " + robotPlayerList + "\n\n");
 
-        System.out.println("\n\n\n" + playerArrayList + "\n\n\n");
+        InitWorldMap.printGraph(worldMapInstance, robotPlayerList);
 
-        //InitWorldMap.printGraph(worldMapInstance, playerArrayList);
+        doAllPlayerReinforcement(robotPlayerList);
 
+        doAllPlayerAttackAndFortification(robotPlayerList);
 
+        int gameRoundLeft = gameRoundValue - 1;
+
+        while (gameRoundLeft > 0 || gameWinner != -1) {
+            for (int playerIndex = 0; playerIndex < robotPlayerList.size(); playerIndex++) {
+                Player curRobot = robotPlayerList.get(playerIndex);
+                curRobot.getStrategy().doReinforcement(curRobot);
+                curRobot.getStrategy().doAttack(curRobot);
+                curRobot.getStrategy().doFortification(curRobot);
+
+                System.out.println("robot " + playerIndex + ": regular gaming!  Round left: " + gameRoundLeft);
+            }
+            gameRoundLeft--;
+        }
+
+        System.out.println("\n>>>>> Final winner: " + gameWinner + ", map: " + mapFile + "\n\n");
+
+    }
+
+    private void doAllPlayerAttackAndFortification(ArrayList<Player> robotPlayerList) {
+        for (int playerIndex = 0; playerIndex < robotPlayerList.size(); playerIndex++) {
+            Player curRobot = robotPlayerList.get(playerIndex);
+            curRobot.getStrategy().doAttack(curRobot);
+            curRobot.getStrategy().doFortification(curRobot);
+
+            System.out.println("robot " + playerIndex + ": doAllPlayerAttackAndFortification");
+        }
+    }
+
+    private void doAllPlayerReinforcement(ArrayList<Player> robotPlayerList) {
+        for (int playerIndex = 0; playerIndex < robotPlayerList.size(); playerIndex++) {
+            Player curRobot = robotPlayerList.get(playerIndex);
+            curRobot.getStrategy().doReinforcement(curRobot);
+
+            System.out.println("robot " + playerIndex + ": doAllPlayerReinforcement");
+        }
     }
 
     @Override
     public void run() {
         try {
-            System.out.println("\n\n!!!!!!!!!!!!!!!tournamentGame instance start!!!");
-            System.out.println("map: " + mapFile);
-            System.out.println("gameRoundValue: " + gameRoundValue);
-            System.out.println("playerlist: " + playerArrayList + "\n\n");
 
+            System.out.println("\n\n!!!!!!!!!!!!!!!tournamentGame instance start!!!");
             initMapAndPlayers();
 
         } catch (IOException e) {
