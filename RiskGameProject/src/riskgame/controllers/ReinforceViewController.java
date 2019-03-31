@@ -253,24 +253,16 @@ public class ReinforceViewController implements Initializable {
         if (reinforceInitCounter > 1) {
             checkNextViewNeedChange(false);
             reinforceInitCounter--;
-
-//            UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
-
-            Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
-            Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
-
-            curStage.setScene(reinforceScene);
-            curStage.show();
-
         } else {
             checkNextViewNeedChange(true);
-
-            Pane attackPane = new FXMLLoader(getClass().getResource("../view/AttackView.fxml")).load();
-            Scene attackScene = new Scene(attackPane, 1200, 900);
-
-            curStage.setScene(attackScene);
-            curStage.show();
         }
+        Player nextPlayer = Main.playersList.get(phaseViewObserver.getPlayerIndex());
+        if (!nextPlayer.getStrategy().toString().equals("Human")){
+            UtilMethods.callNextPhase(nextPlayer, phaseViewObserver.getPhaseName());
+        }
+        Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
+        curStage.setScene(scene);
+        curStage.show();
     }
 
     /**

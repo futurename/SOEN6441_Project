@@ -86,7 +86,7 @@ public class UtilMethods {
         }else return -2;
     }
 
-    private static void callNextPhase(Player nextPlayer, String nextPhase){
+    public static void callNextPhase(Player nextPlayer, String nextPhase){
         switch (nextPhase){
             case "Reinforcement Phase":
                 nextPlayer.executeReinforcement();
@@ -109,7 +109,9 @@ public class UtilMethods {
         }
         Player nextPlayer = playersList.get(Main.phaseViewObserver.getPlayerIndex());
         String nextPhase = Main.phaseViewObserver.getPhaseName();
-        callNextPhase(nextPlayer, nextPhase);
+        if (!nextPlayer.getStrategy().toString().equals("Human")){
+            callNextPhase(nextPlayer, nextPhase);
+        }
     }
 
     /**
@@ -174,7 +176,7 @@ public class UtilMethods {
         System.out.printf("player %s finished attack, player %s's turn\n", curPlayerIndex, curPlayerIndex);
     }
 
-    public static <T extends Initializable> void startView(String phase, T controller){
+    public static <T extends Initializable> Scene startView(String phase, T controller){
         String resourceLocation;
         switch (phase){
             case "Reinforcement Phase":
@@ -191,9 +193,10 @@ public class UtilMethods {
         }
         try {
             Pane nextPane = new FXMLLoader(controller.getClass().getResource(resourceLocation)).load();
-            Scene nextScene = new Scene(nextPane, 1200, 900);
+            return new Scene(nextPane, 1200, 900);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
