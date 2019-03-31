@@ -56,29 +56,37 @@ public class TournamentGame implements Runnable {
 
         int gameRoundLeft = gameRoundValue - 1;
 
-        while (gameRoundLeft > 0 || gameWinner != -1) {
-            for (int playerIndex = 0; playerIndex < robotPlayerList.size(); playerIndex++) {
-                Player curRobot = robotPlayerList.get(playerIndex);
-                curRobot.executeReinforcement();
-                curRobot.executeAttack();
-                curRobot.executeFortification();
-
-                System.out.println("robot " + playerIndex + ": regular gaming!  Round left: " + gameRoundLeft);
-            }
-            gameRoundLeft--;
-        }
+        doRegularGaming(gameRoundLeft);
 
         System.out.println("\n>>>>> Final winner: " + gameWinner + ", map: " + mapFile + "\n\n");
 
     }
 
+    private void doRegularGaming(int gameRoundLeft) {
+        while (gameRoundLeft > 0 || gameWinner != -1) {
+            for (int playerIndex = 0; playerIndex < robotPlayerList.size(); playerIndex++) {
+                Player curRobot = robotPlayerList.get(playerIndex);
+                if (curRobot.getActiveStatus()) {
+                    curRobot.executeReinforcement();
+                    curRobot.executeAttack();
+                    curRobot.executeFortification();
+
+                    System.out.println("robot " + playerIndex + ": regular gaming!  Round left: " + gameRoundLeft);
+                }
+            }
+            gameRoundLeft--;
+        }
+    }
+
     private void doAllPlayerAttackAndFortification(ArrayList<Player> robotPlayerList) {
         for (int playerIndex = 0; playerIndex < robotPlayerList.size(); playerIndex++) {
             Player curRobot = robotPlayerList.get(playerIndex);
-            curRobot.executeAttack();
-            curRobot.executeFortification();
+            if (curRobot.getActiveStatus()) {
+                curRobot.executeAttack();
+                curRobot.executeFortification();
 
-            System.out.println("robot " + playerIndex + ": doAllPlayerAttackAndFortification");
+                System.out.println("robot " + playerIndex + ": doAllPlayerAttackAndFortification");
+            }
         }
     }
 

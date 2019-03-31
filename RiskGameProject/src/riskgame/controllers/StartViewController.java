@@ -467,9 +467,7 @@ public class StartViewController {
 
         PlayerTypeSelectionController playerTypeSelectionController = loader.getController();
 
-        int needSelectPlayerNumber = totalNumOfPlayers - 1;
-
-        playerTypeSelectionController.setNumOfPlayers(needSelectPlayerNumber);
+        playerTypeSelectionController.setNumOfPlayers(totalNumOfPlayers);
         playerTypeSelectionController.InitViewSettings();
 
         curStage.show();

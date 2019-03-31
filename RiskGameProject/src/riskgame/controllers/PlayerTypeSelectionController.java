@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -40,7 +41,7 @@ public class PlayerTypeSelectionController {
     public void initialize() {
         strategySelectionList = new ArrayList<>();
         Strategy human = new StrategyHuman();
-        strategySelectionList.add(human);
+        // strategySelectionList.add(human);
     }
 
     public void InitViewSettings() {
@@ -75,12 +76,11 @@ public class PlayerTypeSelectionController {
         Strategy human = new StrategyHuman();
 
         ArrayList<Strategy> strategyArrayList = new ArrayList<>();
+        strategyArrayList.add(human);
         strategyArrayList.add(aggressive);
         strategyArrayList.add(benevolent);
         strategyArrayList.add(cheater);
         strategyArrayList.add(random);
-        strategyArrayList.add(human);
-
 
         ObservableList<Strategy> result = FXCollections.observableArrayList(strategyArrayList);
         return result;
@@ -123,6 +123,10 @@ public class PlayerTypeSelectionController {
     }
 
     public void clickResetSelection(ActionEvent actionEvent) {
+        for (Node node : grp_playerTypeSelection.getChildren()) {
+            ((ComboBox) node).getSelectionModel().select(-1);
+        }
+        strategySelectionList.clear();
     }
 
 
