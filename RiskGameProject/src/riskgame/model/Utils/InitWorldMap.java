@@ -51,8 +51,8 @@ public class InitWorldMap {
      * @param linkedHashMap world map graph singleton
      * @throws IOException map file not found
      */
-    public static void buildWorldMapGraph(String path, LinkedHashMap<String, GraphNode> linkedHashMap, LinkedHashMap<String, Continent> continentLinkedHashMap,
-                                          ArrayList<Player> playerArrayList) throws IOException {
+    public static void buildWorldMapGraph(String path, LinkedHashMap<String, GraphNode> linkedHashMap, LinkedHashMap<String, Continent> continentLinkedHashMap
+    ) throws IOException {
         System.out.println(new File(path).getAbsolutePath());
 
         BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
@@ -118,7 +118,7 @@ public class InitWorldMap {
                 }
             }
         }
-        printGraph(linkedHashMap, playerArrayList);
+        printGraph(linkedHashMap);
         printContinent(continentLinkedHashMap);
         bufferedReader.close();
 
@@ -144,8 +144,23 @@ public class InitWorldMap {
         for (Map.Entry<String, GraphNode> entry : worldHashMap.entrySet()) {
             String countryName = entry.getKey();
             GraphNode node = entry.getValue();
-            System.out.println(">>>>>>>>>>>> country: " + countryName + ", continent: " + node.getCountry().getContinentName() + " <<<<<<<<<<<<<<<");
+            int ownerIndex = entry.getValue().getCountry().getCountryOwnerIndex();
+            Player owner = playerArrayList.get(ownerIndex);
+
+            System.out.println(">>>>>>>>>>>> country: " + countryName + ", continent: " + node.getCountry().getContinentName()
+                    + ", Owner: " + owner.getPlayerName() + "<<<<<<<<<<<<<<<");
             printGraphNode(node, playerArrayList);
+        }
+    }
+
+    public static void printGraph(LinkedHashMap<String, GraphNode> worldHashMap) {
+        for (Map.Entry<String, GraphNode> entry : worldHashMap.entrySet()) {
+            String countryName = entry.getKey();
+            GraphNode node = entry.getValue();
+
+            System.out.println(">>>>>>>>>>>> country: " + countryName + ", continent: " + node.getCountry().getContinentName()
+                    + "<<<<<<<<<<<<<<<");
+            printGraphNode(node);
         }
     }
 
@@ -165,6 +180,16 @@ public class InitWorldMap {
                 curPlayerName = curPlayer.getPlayerName();
             }
             System.out.printf("[%s] : %s\n", countryName, curPlayerName);
+        }
+        System.out.println("\n");
+    }
+
+    private static void printGraphNode(GraphNode node) {
+        for (Country country : node.getAdjacentCountryList()) {
+            String countryName = country.getCountryName();
+            String curPlayerName;
+
+            System.out.printf("[%s] : %d\n", countryName, country.getCountryOwnerIndex());
         }
         System.out.println("\n");
     }

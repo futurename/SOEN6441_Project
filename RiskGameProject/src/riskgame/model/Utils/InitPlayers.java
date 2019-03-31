@@ -19,16 +19,16 @@ public class InitPlayers {
      * create and initialize all the player instances
      *
      * @param numOfPlayers  number of players this round
-     * @param linkedHashMap world map singleton
+     * @param worldHashMap world map
      */
-    public static void initPlayers(int numOfPlayers, LinkedHashMap<String, GraphNode> linkedHashMap, ArrayList<Strategy> strategyList, ArrayList<Player> playerArrayList) {
-        ArrayList<String> forAllocatesCountryNameList = generateUnallocatedNameList(linkedHashMap);
+    public static void initPlayers(int numOfPlayers, LinkedHashMap<String, GraphNode> worldHashMap, ArrayList<Strategy> strategyList, ArrayList<Player> playerArrayList) {
+        ArrayList<String> forAllocatesCountryNameList = generateUnallocatedNameList(worldHashMap);
 
         for (int playerIndex = 0; playerIndex < numOfPlayers; playerIndex++) {
             Strategy curStrategy = strategyList.get(playerIndex);
-            Player onePlayer = new Player(playerIndex, curStrategy, linkedHashMap);
-            getInitCountryNameList(onePlayer, forAllocatesCountryNameList, numOfPlayers, linkedHashMap, playerArrayList);
-            onePlayer.updateArmyNbr(linkedHashMap);
+            Player onePlayer = new Player(playerIndex, curStrategy, worldHashMap);
+            getInitCountryNameList(onePlayer, forAllocatesCountryNameList, numOfPlayers, worldHashMap, playerArrayList);
+            onePlayer.updateArmyNbr(worldHashMap);
 
             System.out.println("init player: " + playerIndex + ", army nbr: " + onePlayer.getArmyNbr());
         }
@@ -37,12 +37,12 @@ public class InitPlayers {
     /**
      * this method acquires all unallocated country names
      *
-     * @param graphSingleton
+     * @param worldHashMap
      * @return an arraylist of all country names
      */
-    private static ArrayList<String> generateUnallocatedNameList(LinkedHashMap<String, GraphNode> linkedHashMap) {
+    private static ArrayList<String> generateUnallocatedNameList(LinkedHashMap<String, GraphNode> worldHashMap) {
         ArrayList<String> result = new ArrayList<>();
-        for (Map.Entry<String, GraphNode> entry : linkedHashMap.entrySet()) {
+        for (Map.Entry<String, GraphNode> entry : worldHashMap.entrySet()) {
             GraphNode curNode = entry.getValue();
             String curCountryName = entry.getKey();
             result.add(curCountryName);

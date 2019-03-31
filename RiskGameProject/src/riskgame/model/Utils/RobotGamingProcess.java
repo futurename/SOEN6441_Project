@@ -9,16 +9,16 @@ import java.util.ArrayList;
  * Created on 2019-03-30 030
  */
 public class RobotGamingProcess {
-    private static ArrayList<TournamentGame> tournamentGameArrayList = new ArrayList<>();
 
+    public static void initRobotGaming(ArrayList<String> mapFileList, ArrayList<Strategy> robotPlayerList, int gamesValue, int gameRoundValue) {
+        System.out.println(mapFileList);
 
-    public static void initRobotGaming(ArrayList<String> mapFileList, ArrayList<Strategy> robotPlayerList, int gamesValue, int gameRoundValue){
         for (String fileName : mapFileList) {
-            TournamentGame oneTournamentGame = new TournamentGame(fileName, robotPlayerList, gamesValue,gameRoundValue);
-            tournamentGameArrayList.add(oneTournamentGame);
+            for (int gameIndex = 0; gameIndex < gamesValue; gameIndex++) {
+                TournamentGame oneTournamentGame = new TournamentGame(fileName, robotPlayerList, gameRoundValue);
+                oneTournamentGame.run();
+            }
         }
-
-        startAllGames();
     }
 
     private static void startAllGames() {

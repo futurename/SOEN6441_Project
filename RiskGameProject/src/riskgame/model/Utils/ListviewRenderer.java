@@ -38,8 +38,6 @@ public class ListviewRenderer {
                     int armyNumber = item.getCountryArmyNumber();
                     int playerIndex = item.getCountryOwnerIndex();
 
-                    //System.out.println(">>>in renderer, player:  " + playerIndex + ", countryname: " + countryName + ", army: " + armyNumber);
-
                     Color curPlayerColor = Main.playersList.get(playerIndex).getPlayerColor();
 
                     text = new Text(item.getCountryName() + " : " + armyNumber);
