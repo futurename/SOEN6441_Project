@@ -104,7 +104,7 @@ public class AttackProcessTest {
     public void testUpdateContinentAndWorldStatus()  {
         initGameSimulator();
         attackingCountry.setCountryOwnerIndex(playerDefender.getPlayerIndex());
-        AttackProcess.updateContinentAndWorldStatus(playerDefender, playerAttacker, demoContinent);
+        AttackProcess.updateContinentAndWorldStatus(playerDefender, playerAttacker, demoContinent, true);
         Assert.assertEquals(playerDefender.getContinentBonus(), demoContinent.getContinentBonusValue());
         System.out.println("\nattacker bonus: " + playerAttacker.getContinentBonus() + ", defender bonus: " + playerDefender.getContinentBonus()
                 + ", continent owner: " + demoContinent.getContinentOwnerIndex() + "\n");
@@ -112,7 +112,7 @@ public class AttackProcessTest {
         attackingCountry.setCountryOwnerIndex(playerAttacker.getPlayerIndex());
         defendingCountry.setCountryOwnerIndex(playerAttacker.getPlayerIndex());
 
-        AttackProcess.updateContinentAndWorldStatus(playerAttacker, playerDefender, demoContinent);
+        AttackProcess.updateContinentAndWorldStatus(playerAttacker, playerDefender, demoContinent, true);
 
         Assert.assertTrue(playerAttacker.getContinentBonus() == demoContinent.getContinentBonusValue());
         System.out.println("\nattacker bonus: " + playerAttacker.getContinentBonus() + ", defender bonus: " + playerDefender.getContinentBonus()
@@ -128,7 +128,7 @@ public class AttackProcessTest {
         initGameSimulator();
         int armyNbrBeforeAttack = attackingCountry.getCountryArmyNumber();
         int assumedRemainingArmyNbr = 3;
-        AttackProcess.updateConqueredCountry(attackingCountry, defendingCountry, assumedRemainingArmyNbr, playerAttacker, playerDefender);
+        AttackProcess.updateConqueredCountry(attackingCountry, defendingCountry, assumedRemainingArmyNbr, playerAttacker, playerDefender, true);
         boolean attackerConquered = playerAttacker.getOwnedCountryNameList().contains("defending country");
         assertTrue(attackerConquered);
         boolean defenderLoss = playerDefender.getOwnedCountryNameList().contains("defending country");
