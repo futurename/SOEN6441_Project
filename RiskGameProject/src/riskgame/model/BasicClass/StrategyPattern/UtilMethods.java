@@ -1,5 +1,11 @@
 package riskgame.model.BasicClass.StrategyPattern;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Card;
@@ -7,6 +13,7 @@ import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -130,5 +137,22 @@ public class UtilMethods {
         phaseViewObservable.setAllParam(phase, nextPlayerIndex, actionType);
         phaseViewObservable.notifyObservers("from fortification view");
         System.out.printf("A player finished fortification, player %s's turn\n", nextPlayerIndex);
+    }
+
+    /**
+     * onClick event for moving to fortification phase of the game
+     */
+    public static void endAttack(Player player) {
+        notifyAttackEnd(player.getPlayerIndex());
+    }
+
+    /**
+     * notify phase view observers
+     */
+    private static void notifyAttackEnd(int curPlayerIndex) {
+        Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "Fortification Action");
+        Main.phaseViewObservable.notifyObservers(Main.phaseViewObservable);
+
+        System.out.printf("player %s finished attack, player %s's turn\n", curPlayerIndex, curPlayerIndex);
     }
 }

@@ -5,13 +5,17 @@ import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.Utils.AttackProcess;
 import riskgame.model.Utils.InfoRetriver;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 import static riskgame.Main.*;
+import static riskgame.controllers.AttackViewController.MAX_ATTACKING_ARMY_NUMBER;
+import static riskgame.controllers.AttackViewController.MAX_DEFENDING_ARMY_NUMBER;
 import static riskgame.controllers.StartViewController.firstRoundCounter;
+import static riskgame.model.BasicClass.Player.getOneAttackResult;
 
 public class StrategyRandom implements Strategy {
     private Random r = new Random();
@@ -58,8 +62,8 @@ public class StrategyRandom implements Strategy {
 
     @Override
     public void doAttack(Player player) {
-
-
+        randomlyAttack(player);
+        UtilMethods.endAttack(player);
     }
 
     private void randomlyAttack(Player player){
@@ -69,9 +73,17 @@ public class StrategyRandom implements Strategy {
         //pick an enemy
         ArrayList<Country> enemies = InfoRetriver.getAdjacentEnemy(player.getPlayerIndex(), attacker);
         Country enemy = randomlyPickCountryFrom(enemies);
-        //send armies
-
-
+        int defenceArmy = enemy.getCountryArmyNumber() > MAX_DEFENDING_ARMY_NUMBER ? MAX_DEFENDING_ARMY_NUMBER : enemy.getCountryArmyNumber();
+        //attack a country a number of times as grading sheet
+        int randomAttackTime = r.nextInt(attacker.getCountryArmyNumber()-1)+1;
+        for (int time = 0; time < randomAttackTime; time++){
+            //randomly send army
+            int randomArmy = r.nextInt(attacker.getCountryArmyNumber()-1)+1;
+            int actualArmy = randomArmy > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : randomArmy;
+            //Attack
+            int armyLeft = getOneAttackResult(attacker, enemy, actualArmy, defenceArmy, new StringBuilder());
+            AttackProcess.autoResultProcess(attacker, enemy, armyLeft);
+        }
     }
 
     @Override

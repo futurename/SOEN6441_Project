@@ -95,8 +95,14 @@ public class Player extends Observable implements Observer {
      * @param stringBuilder     stringbuilder for storing combat information
      * @return remaining army number of the attacker
      */
-    private static int getOneAttackResult(Country attackingCountry, Country defendingCountry, int attackableArmyNbr, int defendableArmyNbr,
+    public static int getOneAttackResult(Country attackingCountry, Country defendingCountry, int attackableArmyNbr, int defendableArmyNbr,
                                           StringBuilder stringBuilder) {
+        stringBuilder.append("Attacker: [ ")
+                .append(attackingCountry.getCountryName())
+                .append(" ], Defender: [ ")
+                .append(defendingCountry.getCountryName())
+                .append(" ]\n\n");
+
         int result = 0;
 
         ArrayList<Integer> attackerDiceResultList = AttackProcess.getDiceResultList(attackableArmyNbr);
@@ -407,8 +413,8 @@ public class Player extends Observable implements Observer {
             String continentName = defendingCountry.getContinentName();
             Continent curContinent = Main.worldContinentMap.get(continentName);
 
-            AttackProcess.updateConqueredCountry(attackingCountry, defendingCountry, nondeployedAttackerArmyNbr, attacker, defender);
-            AttackProcess.updateContinentAndWorldStatus(attacker, defender, curContinent);
+            AttackProcess.updateConqueredCountry(attackingCountry, defendingCountry, nondeployedAttackerArmyNbr, attacker, defender, true);
+            AttackProcess.updateContinentAndWorldStatus(attacker, defender, curContinent, true);
         }
         txa_attackInfoDisplay.setText(stringBuilder.toString());
     }
@@ -453,11 +459,7 @@ public class Player extends Observable implements Observer {
         int avaliableForDefendNbr = defendArmyNbr > MAX_DEFENDING_ARMY_NUMBER ? MAX_DEFENDING_ARMY_NUMBER : defendArmyNbr;
 
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Attacker: [ ")
-                .append(attackingCountry.getCountryName())
-                .append(" ], Defender: [ ")
-                .append(defendingCountry.getCountryName())
-                .append(" ]\n\n");
+
 
         int attackerRemainArmyNbr = getOneAttackResult(attackingCountry, defendingCountry, avaliableForAttackNbr, avaliableForDefendNbr, stringBuilder);
 
