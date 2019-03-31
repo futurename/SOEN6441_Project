@@ -25,8 +25,6 @@ import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphSingleton;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
-import riskgame.model.BasicClass.StrategyPattern.StrategyHuman;
-import riskgame.model.BasicClass.StrategyPattern.StrategyRandom;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.InitPlayers;
 import riskgame.model.Utils.ListviewRenderer;
@@ -285,7 +283,7 @@ public class StartViewController {
         }
 
         if (mapChecker.errorMsg.toString().isEmpty()) {
-            buildWorldMapGraph(mapPath, graphSingleton, worldContinentMap, playersList);
+            buildWorldMapGraph(mapPath, graphSingleton, worldContinentMap);
 
             btn_confirmLoadFile.setVisible(false);
             btn_loadFile.setVisible(false);
@@ -314,7 +312,7 @@ public class StartViewController {
      */
     private void displayWorldMap(String path) throws IOException {
         if (graphSingleton.isEmpty()) {
-            buildWorldMapGraph(path, graphSingleton, worldContinentMap, playersList);
+            buildWorldMapGraph(path, graphSingleton, worldContinentMap);
         }
 
         hbx_infoDisplayHbox.getChildren().clear();
@@ -420,7 +418,7 @@ public class StartViewController {
      * @param actionEvent confirm the number of players
      */
     @FXML
-    public void clickConfirmPlayerNum(ActionEvent actionEvent) {
+    public void clickConfirmPlayerNum(ActionEvent actionEvent) throws IOException {
         totalNumOfPlayers = Integer.parseInt(txf_playerNumbers.getText());
         firstRoundCounter = totalNumOfPlayers - 1;
         reinforceInitCounter = totalNumOfPlayers;
@@ -435,11 +433,43 @@ public class StartViewController {
             displayPlayerInfo();
             btn_nextStep.setVisible(true);
         }
-        //set strategies for every player
+        /*//set strategies for every player
         for (int playerIndex = 0; playerIndex < Main.totalNumOfPlayers; playerIndex++) {
             strategyArrayList.add(new StrategyHuman());
         }
-        strategyArrayList.set(1, new StrategyRandom());
+        strategyArrayList.set(1, new StrategyRandom());*/
+
+        loadPlayerTypeSelectionView();
+
+    }
+
+    private void loadPlayerTypeSelectionView() throws IOException {
+
+        Stage mainStage = (Stage) btn_confirmPlayerNum.getScene().getWindow();
+        Stage curStage = new Stage();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/PlayerTypeSelection.fxml"));
+        Pane playerSelectionPane = loader.load();
+        Scene playerSelectionScene = new Scene(playerSelectionPane, 400, 600);
+        curStage.setScene(playerSelectionScene);
+        curStage.initOwner(mainStage);
+        curStage.initModality(Modality.WINDOW_MODAL);
+        curStage.setResizable(false);
+        curStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                event.consume();
+            }
+        });
+
+        PlayerTypeSelectionController playerTypeSelectionController = loader.getController();
+
+        int needSelectPlayerNumber = totalNumOfPlayers - 1;
+
+        playerTypeSelectionController.setNumOfPlayers(needSelectPlayerNumber);
+        playerTypeSelectionController.InitViewSettings();
+
+        curStage.show();
     }
 
     /**

@@ -44,7 +44,7 @@ public class GraphTester {
         demoGraph = GraphSingleton.INSTANCE.getInstance();
         demoContinentGraph = new LinkedHashMap<>();
         demoPlayerArrayList = new ArrayList<>();
-        InitWorldMap.buildWorldMapGraph(TEST_MAP_FILE_PATH, demoGraph, demoContinentGraph, demoPlayerArrayList);
+        InitWorldMap.buildWorldMapGraph(TEST_MAP_FILE_PATH, demoGraph, demoContinentGraph);
 
         for (int i = 0; i <= 2; i++) {
             Player player = new Player(i);

@@ -553,6 +553,11 @@ public class Player extends Observable implements Observer {
             System.out.printf("Player observer update: %s\n", arg);
         }
     }
+
+    @Override
+    public String toString() {
+        return getPlayerName();
+    }
 }
 
 

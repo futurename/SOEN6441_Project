@@ -44,10 +44,12 @@ public class TournamentGame {
         worldMapInstance = worldGraphNormal.getWorldHashMap();
         continentLinkedHashMap = new LinkedHashMap<>();
 
-        InitWorldMap.buildWorldMapGraph(mapFile, worldMapInstance, continentLinkedHashMap, playerArrayList);
+        InitWorldMap.buildWorldMapGraph(mapFile, worldMapInstance, continentLinkedHashMap);
         int numOfplayers = playerStrategyList.size();
 
         InitPlayers.initPlayers(numOfplayers, worldMapInstance,playerStrategyList, playerArrayList);
+
+        System.out.println("\n\n\n" + playerArrayList + "\n\n\n");
 
         InitWorldMap.printGraph(worldMapInstance, playerArrayList);
     }
