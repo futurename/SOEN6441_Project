@@ -19,6 +19,7 @@ import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
 
@@ -119,7 +120,7 @@ public class ReinforceViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         reinforceViewInit();
-
+        curPlayer.executeReinforcement();
         setUIInitStatus();
 
     }
@@ -251,8 +252,9 @@ public class ReinforceViewController implements Initializable {
 
         if (reinforceInitCounter > 1) {
             checkNextViewNeedChange(false);
-
             reinforceInitCounter--;
+
+//            UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
 
             Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
             Scene reinforceScene = new Scene(reinforcePane, 1200, 900);

@@ -2,6 +2,7 @@ package riskgame.model.BasicClass.StrategyPattern;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -85,6 +86,20 @@ public class UtilMethods {
         }else return -2;
     }
 
+    private static void callNextPhase(Player nextPlayer, String nextPhase){
+        switch (nextPhase){
+            case "Reinforcement Phase":
+                nextPlayer.executeReinforcement();
+                break;
+            case "Attack Phase":
+                nextPlayer.executeAttack();
+                break;
+            case "Fortification Phase":
+                nextPlayer.executeFortification();
+                break;
+        }
+    }
+
     public static void endReinforcement(Player player){
         if (StartViewController.reinforceInitCounter > 1) {
             notifyReinforcementEnd(false, player);
@@ -92,6 +107,9 @@ public class UtilMethods {
         } else {
             notifyReinforcementEnd(true, player);
         }
+        Player nextPlayer = playersList.get(Main.phaseViewObserver.getPlayerIndex());
+        String nextPhase = Main.phaseViewObserver.getPhaseName();
+        callNextPhase(nextPlayer, nextPhase);
     }
 
     /**
@@ -154,5 +172,28 @@ public class UtilMethods {
         Main.phaseViewObservable.notifyObservers(Main.phaseViewObservable);
 
         System.out.printf("player %s finished attack, player %s's turn\n", curPlayerIndex, curPlayerIndex);
+    }
+
+    public static <T extends Initializable> void startView(String phase, T controller){
+        String resourceLocation;
+        switch (phase){
+            case "Reinforcement Phase":
+                resourceLocation = "../view/ReinforceView.fxml";
+                break;
+            case "Attack Phase":
+                resourceLocation = "../view/AttackView.fxml";
+                break;
+            case "Fortification Phase":
+                resourceLocation = "../view/FortificationView.fxml";
+                break;
+             default:
+                 resourceLocation = "";
+        }
+        try {
+            Pane nextPane = new FXMLLoader(controller.getClass().getResource(resourceLocation)).load();
+            Scene nextScene = new Scene(nextPane, 1200, 900);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
