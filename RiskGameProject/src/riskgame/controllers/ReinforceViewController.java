@@ -122,7 +122,6 @@ public class ReinforceViewController implements Initializable {
         reinforceViewInit();
         curPlayer.executeReinforcement();
         setUIInitStatus();
-
     }
 
     /**
