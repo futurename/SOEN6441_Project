@@ -219,31 +219,22 @@ public class ReinforceViewController implements Initializable {
                 curActionString = phaseViewObserver.getActionString();
                 break;
             case "CardView":
-                this.cardExchangeViewObserver = new CardExchangeViewObserver();
-                curPlayer.addObserver(this.cardExchangeViewObserver);
-                //init cards if player already had some
-                curPlayer.initObservableCard();
-                curPlayer.notifyObservers("Get players cards from observer.");
-                this.playerCards = this.cardExchangeViewObserver.getPlayerCards();
-                phaseViewObservable.addObserver(this.cardExchangeViewObserver);
-                phaseViewObservable.initObservableExchangeTime();
-                //Although it will notify other phase view observer, but it won't change the its value.
-                phaseViewObservable.notifyObservers("keeping exchange time up to date.");
+                this.cardExchangeViewObserver = UtilMethods.initCardObserver(curPlayer);
                 break;
         }
-
     }
 
     /**
      * onClick event for moving to next player if reinforcement phase is not finished or attack view from the first player
+     *
      * Removing the cardExchangeViewObserver first,
-     *if not, phaseViewObservable will keep adding new cardObserver without removing the old one!
+     * if not, phaseViewObservable will keep adding new cardObserver without removing the old one!
      * cardObserver is not a static observer.
      * @param actionEvent next player's turn or proceed to attackView if all players finish reinforcement
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) {
-        phaseViewObservable.deleteObserver(cardExchangeViewObserver);
+        UtilMethods.deregisterCardObserver(curPlayer, cardExchangeViewObserver);
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         System.out.println("\n???????????????????????????" + reinforceInitCounter);
 

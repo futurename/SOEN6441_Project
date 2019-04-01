@@ -25,18 +25,31 @@ public class UtilMethods {
      * Although card list can be get directly from player, doing this is to unify the usage
      * Observer will be deleted before next phase.
      * @see CardExchangeViewObserver
+     * @see UtilMethods#deregisterCardObserver(Player, CardExchangeViewObserver)
      * @param player player who will attach to the observer/ongoing player
      */
     public static CardExchangeViewObserver initCardObserver(Player player){
         CardExchangeViewObserver cardObserver = new CardExchangeViewObserver();
         player.addObserver(cardObserver);
+        //init cards if player already had some
         player.initObservableCard();
         player.notifyObservers("Get players cards from observer.");
         //get current exchange time.
         phaseViewObservable.addObserver(cardObserver);
         phaseViewObservable.initObservableExchangeTime();
+        //Although it will notify other phase view observer, but it won't change the its value.
         phaseViewObservable.notifyObservers("keeping exchange time up to date.");
         return cardObserver;
+    }
+
+    /**
+     * cardObserver deleted from two observable
+     * @param player current player
+     * @param cardObserver observer been removed
+     */
+    public static void deregisterCardObserver(Player player, CardExchangeViewObserver cardObserver) {
+        phaseViewObservable.deleteObserver(cardObserver);
+        player.deleteObserver(cardObserver);
     }
 
     /**

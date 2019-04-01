@@ -83,8 +83,6 @@ public class Player extends Observable implements Observer {
         System.out.println("\nPlayer constructor, player name: " + playerName + "\n\n");
     }
 
-
-
     /**
      * this functions calculates the result for every single attack and returns the attacker's army number
      *
@@ -92,7 +90,7 @@ public class Player extends Observable implements Observer {
      * @param defendingCountry  defending country
      * @param attackableArmyNbr army number of attacking country
      * @param defendableArmyNbr army number of defending country
-     * @param stringBuilder     stringbuilder for storing combat information
+     * @param stringBuilder     stringBuilder for storing combat information
      * @return remaining army number of the attacker
      */
     public static int getOneAttackResult(Country attackingCountry, Country defendingCountry, int attackableArmyNbr, int defendableArmyNbr,
@@ -350,26 +348,6 @@ public class Player extends Observable implements Observer {
     }
 
     /**
-     * Processing attack with following the game rules:
-     * <p>
-     * if attacker army number is equal or greater than three, attacker will roll three dices
-     * if defender army number is equal or greater than two, defender will roll two dices
-     * if army number is less than above requirements, it will roll the dices as many times as the remaining army number
-     * compare the best dice with both sides then compare the second best dicewdd
-     * deduct army number from the losing side
-     * </p>
-     *
-     * @param attackingCountry      attacking country
-     * @param defendingCountry      defending country
-     * @param attackArmyNbr         army number of attacking country
-     * @param defendArmyNbr         army number of defending country
-     * @param txa_attackInfoDisplay UI control for displaying information
-     */
-    public void attackCountry(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr, TextArea txa_attackInfoDisplay) {
-        oneAttackSimulate(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, txa_attackInfoDisplay);
-    }
-
-    /**
      * allout attack mode, which results in either attacker wins or defender wins.
      *
      * @param attackingCountry      attakcing country
@@ -451,25 +429,46 @@ public class Player extends Observable implements Observer {
      * @param defendingCountry      defending country
      * @param attackArmyNbr         army number of attacking country
      * @param defendArmyNbr         army number of defending country
-     * @param txa_attackInfoDisplay UI control for display information
+     * @return battle info
      */
-    private void oneAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr,
-                                  TextArea txa_attackInfoDisplay) {
+    public StringBuilder oneAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr) {
         int avaliableForAttackNbr = attackArmyNbr > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : attackArmyNbr;
         int avaliableForDefendNbr = defendArmyNbr > MAX_DEFENDING_ARMY_NUMBER ? MAX_DEFENDING_ARMY_NUMBER : defendArmyNbr;
 
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder battleReport = new StringBuilder();
 
 
-        int attackerRemainArmyNbr = getOneAttackResult(attackingCountry, defendingCountry, avaliableForAttackNbr, avaliableForDefendNbr, stringBuilder);
+        int attackerRemainArmyNbr = getOneAttackResult(attackingCountry, defendingCountry, avaliableForAttackNbr, avaliableForDefendNbr, battleReport);
 
-        txa_attackInfoDisplay.setText(stringBuilder.toString());
+//        txa_attackInfoDisplay.setText(battleReport.toString());
 
         AttackProcess.attackResultProcess(attackingCountry, defendingCountry, attackerRemainArmyNbr);
+
+        return battleReport;
     }
 
     public void executeAttack(){
         this.strategy.doAttack(this);
+    }
+
+    /**
+     * Processing attack with following the game rules:
+     * <p>
+     * if attacker army number is equal or greater than three, attacker will roll three dices
+     * if defender army number is equal or greater than two, defender will roll two dices
+     * if army number is less than above requirements, it will roll the dices as many times as the remaining army number
+     * compare the best dice with both sides then compare the second best dicewdd
+     * deduct army number from the losing side
+     * </p>
+     *
+     * @param attackingCountry      attacking country
+     * @param defendingCountry      defending country
+     * @param attackArmyNbr         army number of attacking country
+     * @param defendArmyNbr         army number of defending country
+     * @return battle info
+     */
+    public String executeAttack(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr) {
+        return this.strategy.doAttack(this, attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr);
     }
 
     public void executeReinforcement(){
@@ -477,6 +476,7 @@ public class Player extends Observable implements Observer {
     }
 
     /**
+     * Human method.
      * Three steps:
      * 1. Add army to country.
      * 2. Add army to player.

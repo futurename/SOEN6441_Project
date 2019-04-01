@@ -320,7 +320,8 @@ public class AttackViewController implements Initializable {
             int attackArmyNbr = Integer.parseInt(lbl_attackerArmyNbr.getText());
             int defendArmyNbr = Integer.parseInt(lbl_defenderArmyNbr.getText());
 
-            curPlayer.attackCountry(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, txa_attackInfoDisplay);
+            String battleReport = curPlayer.executeAttack(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr);
+            txa_attackInfoDisplay.setText(battleReport);
 
             refreshListView(attackingCountry);
             InfoRetriver.updateDominationView("from attack view attack", vbx_worldDomiView);

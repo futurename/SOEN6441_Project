@@ -62,6 +62,7 @@ public class StrategyRandom implements Strategy {
                 }
             }
         }
+        UtilMethods.deregisterCardObserver(player, cardObserver);
     }
 
     @Override

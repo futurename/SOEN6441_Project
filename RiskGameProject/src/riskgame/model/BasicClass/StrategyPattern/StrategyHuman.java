@@ -5,8 +5,8 @@ import riskgame.model.BasicClass.Player;
 
 public class StrategyHuman implements Strategy {
     @Override
-    public void doAttack(Player player) {
-
+    public String doAttack(Player humanPlayer, Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr) {
+        return humanPlayer.oneAttackSimulate(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr).toString();
     }
 
     @Override
