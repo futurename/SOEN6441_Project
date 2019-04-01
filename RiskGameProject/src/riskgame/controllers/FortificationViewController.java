@@ -108,15 +108,10 @@ public class FortificationViewController implements Initializable {
      */
     private Alert alert = new Alert(Alert.AlertType.WARNING);
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        initialize();
-    }
-
     /**
      * init method for fortification phase view
      */
-    public void initialize() {
+    public void initialize(URL location, ResourceBundle resources) {
         initPhaseView();
 
         lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
