@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import riskgame.Main;
 import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Card;
+import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 
@@ -20,34 +21,60 @@ import static riskgame.controllers.StartViewController.firstRoundCounter;
 public class UtilMethods {
 
     /**
+     * init a cardObserver for this player to get "exchange time" and player card list
+     * Although card list can be get directly from player, doing this is to unify the usage
+     * Observer will be deleted before next phase.
+     * @see CardExchangeViewObserver
+     * @param player player who will attach to the observer/ongoing player
+     */
+    public static CardExchangeViewObserver initCardObserver(Player player){
+        CardExchangeViewObserver cardObserver = new CardExchangeViewObserver();
+        player.addObserver(cardObserver);
+        player.initObservableCard();
+        player.notifyObservers("Get players cards from observer.");
+        //get current exchange time.
+        phaseViewObservable.addObserver(cardObserver);
+        phaseViewObservable.initObservableExchangeTime();
+        phaseViewObservable.notifyObservers("keeping exchange time up to date.");
+        return cardObserver;
+    }
+
+    /**
      * Making exchange in "code" way.
      * Then notify the observable to update exchange time.
+     * The armies obtained through exchanging is set to player.undeployedArmy first.
+     * Then added to army only when they are deployed.
      * @param player player
      * @param code combo type
      */
-    public static void exchangeCard(Player player, int code) {
+    public static void exchangeCard(Player player, int code, int exchangeTime) {
+        int newArmy = getExchangedArmy(exchangeTime);
         if (code == -1){
             ArrayList<Card> removes = new ArrayList<>();
             removes.add(Card.ARTILLERY);
             removes.add(Card.CAVALRY);
             removes.add(Card.INFANTRY);
             player.removeObservableCards(removes);
-            phaseViewObservable.addOneExchangeTime();
-            phaseViewObservable.notifyObservers("Add Exchange Time");
         }else if(code == Card.INFANTRY.ordinal()){
             player.removeObservableCards(new ArrayList<>(Collections.nCopies(3,Card.INFANTRY)));
-//            addUndeployedArmyAfterExchangeCards(player, 5*cardExchangeViewObserver.getExchangeTime());
-            phaseViewObservable.addOneExchangeTime();
-            phaseViewObservable.notifyObservers("Add Exchange Time");
         }else if (code == Card.CAVALRY.ordinal()){
             player.removeObservableCards(new ArrayList<>(Collections.nCopies(3,Card.CAVALRY)));
-            phaseViewObservable.addOneExchangeTime();
-            phaseViewObservable.notifyObservers("Add Exchange Time");
         }else if (code == Card.ARTILLERY.ordinal()){
             player.removeObservableCards(new ArrayList<>(Collections.nCopies(3,Card.ARTILLERY)));
-            phaseViewObservable.addOneExchangeTime();
-            phaseViewObservable.notifyObservers("Add Exchange Time");
         }
+        UtilMethods.addUndeployedArmyAfterExchanging(player, newArmy);
+        phaseViewObservable.addOneExchangeTime();
+        phaseViewObservable.notifyObservers("Add Exchange Time");
+    }
+
+    /**
+     * if the selected cards list satisfies the game rule, this method it will return the exact nbr of exchanged army.
+     *
+     * @return exchanged army number
+     */
+    public static int getExchangedArmy(int curExchangeTime) {
+        //get exchange time from card observer
+        return 5 * curExchangeTime;
     }
 
     /**
@@ -82,6 +109,12 @@ public class UtilMethods {
         }else return -2;
     }
 
+    /**
+     * New army will be added to player's undeployed army.
+     * Same logic as exchanging card for new Army.
+     * Never add new army directly.
+     * @param player current player
+     */
     public static void getNewArmyPerRound(Player player) {
         int ownedCountryNum = player.getOwnedCountryNameList().size();
         int newArmyPerRound =
@@ -90,11 +123,13 @@ public class UtilMethods {
     }
 
     /**
+     * The armies obtained through exchanging is set to player.undeployedArmy first.
+     * Same logic as getting new army per round.
+     * Never add new army directly.
      * @param exchangedArmyNbr army number exchanged to be added to the player
      */
-    public static int addUndeployedArmyAfterExchangeCards(Player player, int exchangedArmyNbr) {
+    public static int addUndeployedArmyAfterExchanging(Player player, int exchangedArmyNbr) {
         player.addUndeployedArmy(exchangedArmyNbr);
-//        player.addArmy(exchangedArmyNbr);
         return player.getUndeployedArmy();
     }
 

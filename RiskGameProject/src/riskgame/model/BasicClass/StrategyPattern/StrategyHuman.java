@@ -10,8 +10,10 @@ public class StrategyHuman implements Strategy {
     }
 
     @Override
-    public void doReinforcement(Country country, int army) {
+    public void doReinforcement(Player humanPlayer, Country country, int army) {
         country.addToCountryArmyNumber(army);
+        humanPlayer.addArmy(army);
+        humanPlayer.addUndeployedArmy(-army);
     }
 
     @Override

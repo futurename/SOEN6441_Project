@@ -4,6 +4,7 @@ import riskgame.Main;
 import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.AttackProcess;
 import riskgame.model.Utils.InfoRetriver;
@@ -34,6 +35,7 @@ public class StrategyRandom implements Strategy {
         while (availableArmy > 0) {
             int randomArmy = r.nextInt(availableArmy) + 1;
             randomlyPickCountryFrom(countries).addToCountryArmyNumber(randomArmy);
+            player.addArmy(randomArmy);
             availableArmy -= randomArmy;
         }
         player.addUndeployedArmy(-player.getUndeployedArmy());
@@ -45,16 +47,18 @@ public class StrategyRandom implements Strategy {
     }
 
     private void randomlyExchangeCard(Player player) {
-        ArrayList<Card> cards = player.getCardsList();
+        CardExchangeViewObserver cardObserver = UtilMethods.initCardObserver(player);
+        int curExchangeTime = cardObserver.getExchangeTime();
+        ArrayList<Card> cards = cardObserver.getPlayerCards();
         if (cards.size() >= 5) {
             int code = UtilMethods.availableCombo(cards);
-            UtilMethods.exchangeCard(player, code);
+            UtilMethods.exchangeCard(player, code, curExchangeTime);
         } else if (cards.size() >= 3) {
             int code = UtilMethods.availableCombo(cards);
             if (code != -2) {
                 //50% probability
                 if (r.nextInt(2) == 0) {
-                    UtilMethods.exchangeCard(player, code);
+                    UtilMethods.exchangeCard(player, code, curExchangeTime);
                 }
             }
         }
@@ -96,16 +100,15 @@ public class StrategyRandom implements Strategy {
         UtilMethods.endFortification(player);
     }
 
-    private void randomlyFortify(Player player){
+    private void randomlyFortify(Player player) {
         Country from = randomlyPickCountryFrom(InfoRetriver.getCountryList(player));
         ArrayList<Country> reachableCountries = InfoRetriver.getReachableCountry(player.getPlayerIndex(), from.getCountryName());
-        if (reachableCountries.isEmpty()){
-            return;
+        if (!reachableCountries.isEmpty()) {
+            Country target = randomlyPickCountryFrom(reachableCountries);
+            int army = from.getCountryArmyNumber();
+            from.reduceFromCountryArmyNumber(army);
+            target.addToCountryArmyNumber(army);
         }
-        Country target = randomlyPickCountryFrom(reachableCountries);
-        int army = from.getCountryArmyNumber();
-        from.reduceFromCountryArmyNumber(army);
-        target.addToCountryArmyNumber(army);
     }
 
     @Override

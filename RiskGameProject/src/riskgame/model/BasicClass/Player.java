@@ -476,8 +476,16 @@ public class Player extends Observable implements Observer {
         this.strategy.doReinforcement(this);
     }
 
+    /**
+     * Three steps:
+     * 1. Add army to country.
+     * 2. Add army to player.
+     * 3. Subtract undeployed army from player.
+     * @param country deploying country
+     * @param army army count
+     */
     public void executeReinforcement(Country country, int army){
-        this.strategy.doReinforcement(country, army);
+        this.strategy.doReinforcement(this, country, army);
     }
 
     public void executeFortification(){
@@ -491,7 +499,6 @@ public class Player extends Observable implements Observer {
     /**
      * public method for setting observable objects value.
      * Adding a new card to player
-     *
      * @param newCard card
      */
     public void setObservableCard(Card newCard) {
@@ -519,7 +526,6 @@ public class Player extends Observable implements Observer {
         for (Card card : cards) {
             this.cardsList.remove(card);
         }
-//        setChanged();
     }
 
     /**

@@ -221,14 +221,13 @@ public class ReinforceViewController implements Initializable {
             case "CardView":
                 this.cardExchangeViewObserver = new CardExchangeViewObserver();
                 curPlayer.addObserver(this.cardExchangeViewObserver);
-                //init cards if player already has some
+                //init cards if player already had some
                 curPlayer.initObservableCard();
-                curPlayer.notifyObservers("from reinforce view: initial cards!");
+                curPlayer.notifyObservers("Get players cards from observer.");
                 this.playerCards = this.cardExchangeViewObserver.getPlayerCards();
-                //phaseViewObservable will keep adding new cardObserver without removing the old one!
-                phaseViewObservable.deleteObserver(cardExchangeViewObserver);
                 phaseViewObservable.addObserver(this.cardExchangeViewObserver);
                 phaseViewObservable.initObservableExchangeTime();
+                //Although it will notify other phase view observer, but it won't change the its value.
                 phaseViewObservable.notifyObservers("keeping exchange time up to date.");
                 break;
         }
@@ -237,12 +236,14 @@ public class ReinforceViewController implements Initializable {
 
     /**
      * onClick event for moving to next player if reinforcement phase is not finished or attack view from the first player
-     *
-     * @param actionEvent next player's turn or proceed to attackview if all players finish reinforcement
-     * @throws IOException reinforcement.fxml or attakview.fxml are not found
+     * Removing the cardExchangeViewObserver first,
+     *if not, phaseViewObservable will keep adding new cardObserver without removing the old one!
+     * cardObserver is not a static observer.
+     * @param actionEvent next player's turn or proceed to attackView if all players finish reinforcement
      */
     @FXML
-    public void clickNextStep(ActionEvent actionEvent) throws IOException {
+    public void clickNextStep(ActionEvent actionEvent) {
+        phaseViewObservable.deleteObserver(cardExchangeViewObserver);
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         System.out.println("\n???????????????????????????" + reinforceInitCounter);
 
@@ -310,7 +311,6 @@ public class ReinforceViewController implements Initializable {
         } else {
             int deployArmyCount = Integer.parseInt(lbl_deployArmyCount.getText());
             curPlayer.executeReinforcement(selectedCountry, deployArmyCount);
-            curPlayer.addUndeployedArmy(-deployArmyCount);
             int remainUndeployedArmyCount = curPlayer.getUndeployedArmy();
 
             lbl_undeployedArmy.setText(Integer.toString(remainUndeployedArmyCount));
@@ -352,8 +352,8 @@ public class ReinforceViewController implements Initializable {
             alert.setContentText("No card selected!");
             alert.showAndWait();
         } else if (validateCardsCombination(selectedCardList)) {
-            int exchangedArmyNbr = getExchangedArmyNbr();
-            int undeployed = UtilMethods.addUndeployedArmyAfterExchangeCards(curPlayer, exchangedArmyNbr);
+            int exchangedArmyNbr = UtilMethods.getExchangedArmy(cardExchangeViewObserver.getExchangeTime());
+            int undeployed = UtilMethods.addUndeployedArmyAfterExchanging(curPlayer, exchangedArmyNbr);
 
             System.out.printf("GET NEW %d ARMY!\n", exchangedArmyNbr);
 
@@ -388,16 +388,6 @@ public class ReinforceViewController implements Initializable {
      */
     private void removeCardsFromList(ObservableList<Card> selectedCardList) {
         curPlayer.removeObservableCards(selectedCardList);
-    }
-
-    /**
-     * if the selected cards list satisfies the game rule, in this method it will be calculated to army number the player can exchange.
-     *
-     * @return exchanged army number
-     */
-    private int getExchangedArmyNbr() {
-        //get exchange time from card observer
-        return 5 * cardExchangeViewObserver.getExchangeTime();
     }
 
     /**
