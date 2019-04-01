@@ -132,7 +132,7 @@ public class ReinforceViewController implements Initializable {
     private void reinforceViewInit() {
         initPhaseView();
         initCurPlayerCardListView();
-        addUndeployedArmy();
+        UtilMethods.getNewArmyPerRound(curPlayer);
         InfoRetriver.updateDominationView("From reinforcement initial", vbx_worldDomiView);
     }
 
@@ -353,7 +353,7 @@ public class ReinforceViewController implements Initializable {
             alert.showAndWait();
         } else if (validateCardsCombination(selectedCardList)) {
             int exchangedArmyNbr = getExchangedArmyNbr();
-            int undeployed = addUndeployedArmyAfterExchangeCards(exchangedArmyNbr);
+            int undeployed = UtilMethods.addUndeployedArmyAfterExchangeCards(curPlayer, exchangedArmyNbr);
 
             System.out.printf("GET NEW %d ARMY!\n", exchangedArmyNbr);
 
@@ -379,25 +379,6 @@ public class ReinforceViewController implements Initializable {
             alert.setContentText("Wrong cards combination, please try again!");
             alert.showAndWait();
         }
-    }
-
-    /**
-     * @param exchangedArmyNbr army number exchanged to be added to the player
-     */
-    private int addUndeployedArmyAfterExchangeCards(int exchangedArmyNbr) {
-//            curUndeployedArmy += exchangedArmyNbr;
-        curPlayer.addUndeployedArmy(exchangedArmyNbr);
-        curPlayer.addArmy(exchangedArmyNbr);
-        return curPlayer.getUndeployedArmy();
-    }
-
-    private void addUndeployedArmy() {
-        int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
-        int newArmyPerRound =
-                InfoRetriver.getStandardReinforceArmyNum(ownedCountryNum) + curPlayer.getContinentBonus();
-//            curUndeployedArmy += newArmyPerRound;
-        curPlayer.addUndeployedArmy(newArmyPerRound);
-
     }
 
     /**

@@ -23,6 +23,7 @@ public class StrategyRandom implements Strategy {
     @Override
     public void doReinforcement(Player player) {
         randomlyExchangeCard(player);
+        UtilMethods.getNewArmyPerRound(player);
         randomlyDeployArmy(player);
         UtilMethods.endReinforcement(player);
     }

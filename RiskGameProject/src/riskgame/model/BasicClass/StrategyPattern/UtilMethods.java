@@ -81,6 +81,22 @@ public class UtilMethods {
         }else return -2;
     }
 
+    public static void getNewArmyPerRound(Player player) {
+        int ownedCountryNum = player.getOwnedCountryNameList().size();
+        int newArmyPerRound =
+                InfoRetriver.getStandardReinforceArmyNum(ownedCountryNum) + player.getContinentBonus();
+        player.addUndeployedArmy(newArmyPerRound);
+    }
+
+    /**
+     * @param exchangedArmyNbr army number exchanged to be added to the player
+     */
+    public static int addUndeployedArmyAfterExchangeCards(Player player, int exchangedArmyNbr) {
+        player.addUndeployedArmy(exchangedArmyNbr);
+        player.addArmy(exchangedArmyNbr);
+        return player.getUndeployedArmy();
+    }
+
     public static void callNextRobotPhase(){
         Player nextPlayer = playersList.get(Main.phaseViewObserver.getPlayerIndex());
         String nextPhase = Main.phaseViewObserver.getPhaseName();

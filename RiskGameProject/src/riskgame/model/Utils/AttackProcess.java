@@ -154,7 +154,6 @@ public class AttackProcess {
      * @param defendPlayer defender
      */
     public static void updateConqueredCountry(Country attackingCountry, Country defendingCountry, int remainingArmyNbr, Player attackPlayer, Player defendPlayer, boolean UIOption) {
-        String defendCountryName = defendingCountry.getCountryName();
         int attackerIndex = attackPlayer.getPlayerIndex();
         System.out.printf("Before battle: attacker owned %d countries\n", attackPlayer.getOwnedCountryNameList().size());
 
