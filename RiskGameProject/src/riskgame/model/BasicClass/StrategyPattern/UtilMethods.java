@@ -86,17 +86,21 @@ public class UtilMethods {
         }else return -2;
     }
 
-    public static void callNextPhase(Player nextPlayer, String nextPhase){
-        switch (nextPhase){
-            case "Reinforcement Phase":
-                nextPlayer.executeReinforcement();
-                break;
-            case "Attack Phase":
-                nextPlayer.executeAttack();
-                break;
-            case "Fortification Phase":
-                nextPlayer.executeFortification();
-                break;
+    public static void callNextRobotPhase(){
+        Player nextPlayer = playersList.get(Main.phaseViewObserver.getPlayerIndex());
+        String nextPhase = Main.phaseViewObserver.getPhaseName();
+        if (!nextPlayer.getStrategy().toString().equals("Human")) {
+            switch (nextPhase) {
+                case "Reinforcement Phase":
+                    nextPlayer.executeReinforcement();
+                    break;
+                case "Attack Phase":
+                    nextPlayer.executeAttack();
+                    break;
+                case "Fortification Phase":
+                    nextPlayer.executeFortification();
+                    break;
+            }
         }
     }
 
@@ -107,11 +111,7 @@ public class UtilMethods {
         } else {
             notifyReinforcementEnd(true, player);
         }
-        Player nextPlayer = playersList.get(Main.phaseViewObserver.getPlayerIndex());
-        String nextPhase = Main.phaseViewObserver.getPhaseName();
-        if (!nextPlayer.getStrategy().toString().equals("Human")){
-            callNextPhase(nextPlayer, nextPhase);
-        }
+        callNextRobotPhase();
     }
 
     /**
@@ -144,6 +144,7 @@ public class UtilMethods {
             curRoundPlayerIndex = InfoRetriver.getNextActivePlayer(player.getPlayerIndex());
             notifyFortificationEnd("Reinforce Phase", curRoundPlayerIndex, "Reinforcement Action");
         }
+        callNextRobotPhase();
     }
 
     /**
@@ -164,6 +165,7 @@ public class UtilMethods {
      */
     public static void endAttack(Player player) {
         notifyAttackEnd(player.getPlayerIndex());
+        callNextRobotPhase();
     }
 
     /**

@@ -16,13 +16,17 @@ import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
 import riskgame.model.Utils.AttackProcess;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
 
+import javax.rmi.CORBA.Util;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static riskgame.Main.phaseViewObserver;
 
 /**
  * controller class for AttackView.fxml
@@ -291,10 +295,9 @@ public class AttackViewController implements Initializable {
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
         notifyGamePhaseChanged();
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Pane fortificationPane = new FXMLLoader(getClass().getResource("../view/FortificationView.fxml")).load();
-        Scene fortificationScene = new Scene(fortificationPane, 1200, 900);
-
-        curStage.setScene(fortificationScene);
+        UtilMethods.callNextRobotPhase();
+        Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
+        curStage.setScene(scene);
         curStage.show();
     }
 

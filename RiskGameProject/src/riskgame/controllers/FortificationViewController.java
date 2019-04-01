@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -14,11 +15,14 @@ import javafx.stage.Stage;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import static riskgame.Main.*;
 import static riskgame.controllers.StartViewController.firstRoundCounter;
@@ -29,7 +33,7 @@ import static riskgame.controllers.StartViewController.firstRoundCounter;
  * @author WW
  * @since build1
  **/
-public class FortificationViewController {
+public class FortificationViewController implements Initializable {
 
     /**
      * default minimum army number in a country
@@ -105,6 +109,11 @@ public class FortificationViewController {
      * warning alert used for notification
      */
     private Alert alert = new Alert(Alert.AlertType.WARNING);
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        initialize();
+    }
 
     /**
      * init method for fortification phase view
@@ -278,7 +287,7 @@ public class FortificationViewController {
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-
+        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         System.out.println("\n\nfirst round counter: " + firstRoundCounter + "\n\n");
 
         if (firstRoundCounter > 0) {
@@ -289,22 +298,14 @@ public class FortificationViewController {
             }
             int nextPlayerIndex = (curPlayerIndex + 1) % totalNumOfPlayers;
             notifyGameStageChanged("Attack Phase", nextPlayerIndex, "Attack Action");
-
-            Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Pane attackPane = new FXMLLoader(getClass().getResource("../view/AttackView.fxml")).load();
-            Scene attackScene = new Scene(attackPane, 1200, 900);
-            curStage.setScene(attackScene);
-            curStage.show();
         } else {
             curRoundPlayerIndex = InfoRetriver.getNextActivePlayer(curPlayerIndex);
             notifyGameStageChanged("Reinforce Phase", curRoundPlayerIndex, "Reinforcement Action");
-
-            Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
-            Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
-            curStage.setScene(reinforceScene);
-            curStage.show();
         }
+        UtilMethods.callNextRobotPhase();
+        Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
+        curStage.setScene(scene);
+        curStage.show();
     }
 
     /**

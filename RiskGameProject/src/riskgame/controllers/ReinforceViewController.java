@@ -244,10 +244,7 @@ public class ReinforceViewController implements Initializable {
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-//      curRoundPlayerIndex = (curRoundPlayerIndex + 1) % totalNumOfPlayers;
-
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
         System.out.println("\n???????????????????????????" + reinforceInitCounter);
 
         if (reinforceInitCounter > 1) {
@@ -256,10 +253,8 @@ public class ReinforceViewController implements Initializable {
         } else {
             checkNextViewNeedChange(true);
         }
-        Player nextPlayer = Main.playersList.get(phaseViewObserver.getPlayerIndex());
-        if (!nextPlayer.getStrategy().toString().equals("Human")){
-            UtilMethods.callNextPhase(nextPlayer, phaseViewObserver.getPhaseName());
-        }
+        //if not robot phase, method does nothing
+        UtilMethods.callNextRobotPhase();
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
         curStage.show();
