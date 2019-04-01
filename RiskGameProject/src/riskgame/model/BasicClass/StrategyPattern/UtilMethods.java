@@ -36,6 +36,7 @@ public class UtilMethods {
             phaseViewObservable.notifyObservers("Add Exchange Time");
         }else if(code == Card.INFANTRY.ordinal()){
             player.removeObservableCards(new ArrayList<>(Collections.nCopies(3,Card.INFANTRY)));
+//            addUndeployedArmyAfterExchangeCards(player, 5*cardExchangeViewObserver.getExchangeTime());
             phaseViewObservable.addOneExchangeTime();
             phaseViewObservable.notifyObservers("Add Exchange Time");
         }else if (code == Card.CAVALRY.ordinal()){
@@ -93,7 +94,7 @@ public class UtilMethods {
      */
     public static int addUndeployedArmyAfterExchangeCards(Player player, int exchangedArmyNbr) {
         player.addUndeployedArmy(exchangedArmyNbr);
-        player.addArmy(exchangedArmyNbr);
+//        player.addArmy(exchangedArmyNbr);
         return player.getUndeployedArmy();
     }
 

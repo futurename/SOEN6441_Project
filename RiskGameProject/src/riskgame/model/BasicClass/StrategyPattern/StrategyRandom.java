@@ -23,12 +23,12 @@ public class StrategyRandom implements Strategy {
     @Override
     public void doReinforcement(Player player) {
         randomlyExchangeCard(player);
-        UtilMethods.getNewArmyPerRound(player);
         randomlyDeployArmy(player);
         UtilMethods.endReinforcement(player);
     }
 
     private void randomlyDeployArmy(Player player) {
+        UtilMethods.getNewArmyPerRound(player);
         int availableArmy = player.getUndeployedArmy();
         ArrayList<Country> countries = InfoRetriver.getCountryList(player);
         while (availableArmy > 0) {
@@ -49,7 +49,6 @@ public class StrategyRandom implements Strategy {
         if (cards.size() >= 5) {
             int code = UtilMethods.availableCombo(cards);
             UtilMethods.exchangeCard(player, code);
-
         } else if (cards.size() >= 3) {
             int code = UtilMethods.availableCombo(cards);
             if (code != -2) {
