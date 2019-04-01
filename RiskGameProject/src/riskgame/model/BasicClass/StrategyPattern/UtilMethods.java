@@ -1,16 +1,12 @@
 package riskgame.model.BasicClass.StrategyPattern;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Card;
-import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 
@@ -19,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import static riskgame.Main.*;
-import static riskgame.Main.totalNumOfPlayers;
 import static riskgame.controllers.StartViewController.firstRoundCounter;
 
 public class UtilMethods {
@@ -142,7 +137,7 @@ public class UtilMethods {
 
         } else {
             curRoundPlayerIndex = InfoRetriver.getNextActivePlayer(player.getPlayerIndex());
-            notifyFortificationEnd("Reinforce Phase", curRoundPlayerIndex, "Reinforcement Action");
+            notifyFortificationEnd("Reinforcement Phase", curRoundPlayerIndex, "Reinforcement Action");
         }
         callNextRobotPhase();
     }
