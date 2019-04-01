@@ -494,7 +494,7 @@ public class StartViewController implements Initializable {
 
         for (int playerIndex = 0; playerIndex < Main.totalNumOfPlayers; playerIndex++) {
             Player curPlayer = Main.playersList.get(playerIndex);
-            String playerString = "Player : " + playerIndex;
+            String playerString = curPlayer.getPlayerName();
 
             ObservableList<String> datalist = FXCollections.observableArrayList();
             datalist.add(playerString);
