@@ -98,6 +98,9 @@ public class StrategyRandom implements Strategy {
     private void randomlyFortify(Player player){
         Country from = randomlyPickCountryFrom(InfoRetriver.getCountryList(player));
         ArrayList<Country> reachableCountries = InfoRetriver.getReachableCountry(player.getPlayerIndex(), from.getCountryName());
+        if (reachableCountries.isEmpty()){
+            return;
+        }
         Country target = randomlyPickCountryFrom(reachableCountries);
         int army = from.getCountryArmyNumber();
         from.reduceFromCountryArmyNumber(army);
