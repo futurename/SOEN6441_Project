@@ -3,13 +3,11 @@ package riskgame.controllers;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import riskgame.model.BasicClass.Country;
@@ -300,7 +298,7 @@ public class FortificationViewController implements Initializable {
             notifyGameStageChanged("Attack Phase", nextPlayerIndex, "Attack Action");
         } else {
             curRoundPlayerIndex = InfoRetriver.getNextActivePlayer(curPlayerIndex);
-            notifyGameStageChanged("Reinforce Phase", curRoundPlayerIndex, "Reinforcement Action");
+            notifyGameStageChanged("Reinforcement Phase", curRoundPlayerIndex, "Reinforcement Action");
         }
         UtilMethods.callNextRobotPhase();
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
