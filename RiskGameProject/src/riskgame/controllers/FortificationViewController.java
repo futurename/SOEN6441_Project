@@ -290,10 +290,10 @@ public class FortificationViewController implements Initializable {
                 curRoundPlayerIndex = -1;
             }
             int nextPlayerIndex = (curPlayerIndex + 1) % totalNumOfPlayers;
-            notifyGameStageChanged("Attack Phase", nextPlayerIndex, "Attack Action");
+            notifyPhaseChanged("Attack Phase", nextPlayerIndex, "Attack Action");
         } else {
             curRoundPlayerIndex = InfoRetriver.getNextActivePlayer(curPlayerIndex);
-            notifyGameStageChanged("Reinforcement Phase", curRoundPlayerIndex, "Reinforcement Action");
+            notifyPhaseChanged("Reinforcement Phase", curRoundPlayerIndex, "Reinforcement Action");
         }
         UtilMethods.callNextRobotPhase();
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
@@ -396,7 +396,7 @@ public class FortificationViewController implements Initializable {
      * @param nextPlayerIndex next valid player index
      * @param actionType      action string
      */
-    private void notifyGameStageChanged(String phase, int nextPlayerIndex, String actionType) {
+    private void notifyPhaseChanged(String phase, int nextPlayerIndex, String actionType) {
         phaseViewObservable.setAllParam(phase, nextPlayerIndex, actionType);
         phaseViewObservable.notifyObservers("from fortification view");
         System.out.printf("player %s finished fortification, player %s's turn\n", curPlayerIndex, nextPlayerIndex);

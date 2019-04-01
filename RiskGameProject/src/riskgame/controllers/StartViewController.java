@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -25,15 +26,18 @@ import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphSingleton;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
+import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.InitPlayers;
 import riskgame.model.Utils.ListviewRenderer;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import static riskgame.Main.*;
 import static riskgame.model.Utils.InitWorldMap.buildWorldMapGraph;
@@ -44,7 +48,7 @@ import static riskgame.model.Utils.InitWorldMap.buildWorldMapGraph;
  * @author Zhanfan, WW
  * @since build1
  **/
-public class StartViewController {
+public class StartViewController implements Initializable {
     /**
      * default number of players
      */
@@ -140,7 +144,7 @@ public class StartViewController {
     /**
      * set default map path, default number of players and its range, constrain the range of number of player with UI controls
      */
-    public void initialize() {
+    public void initialize(URL location, ResourceBundle resources) {
         setUIStatus(false);
 
         initToggleButtons();
@@ -348,18 +352,18 @@ public class StartViewController {
      * onClick event for moving to reinforce phase view
      *
      * @param actionEvent proceed to reinforcement phase
-     * @throws IOException reinforcview.fxml not found
+     * @throws IOException reinforceView.fxml not found
      */
     @FXML
     public void clickNextToReinforcePhase(ActionEvent actionEvent) throws IOException {
-        setPhaseViewObservable();
+        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        notifyPhaseChanged();
         initContinentsOwner();
         setPlayerWorldDominationView();
 
-        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
-        Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
-        curStage.setScene(reinforceScene);
+        UtilMethods.callNextRobotPhase();
+        Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
+        curStage.setScene(scene);
         curStage.show();
     }
 
@@ -406,12 +410,10 @@ public class StartViewController {
     /**
      * set phase view observable params for reinforce phase for displaying corresponding information
      */
-    private void setPhaseViewObservable() {
-        String nextPhaseName = "Reinforcement Phase";
+    private void notifyPhaseChanged() {
         int nextPlayerIndex = curRoundPlayerIndex;
-
         phaseViewObservable.resetObservable();
-        phaseViewObservable.setAllParam(nextPhaseName, nextPlayerIndex, "Reinforcement Action");
+        phaseViewObservable.setAllParam("Reinforcement Phase", nextPlayerIndex, "Reinforcement Action");
         phaseViewObservable.notifyObservers("from startView to reinforceView");
     }
 

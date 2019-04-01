@@ -293,8 +293,8 @@ public class AttackViewController implements Initializable {
      * @throws IOException FotificationView.fxml is not found
      */
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-        notifyGamePhaseChanged();
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        notifyGamePhaseChanged();
         UtilMethods.callNextRobotPhase();
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
