@@ -190,10 +190,11 @@ public class UtilMethods {
             case "Fortification Phase":
                 resourceLocation = "../view/FortificationView.fxml";
                 break;
-             default:
-                 resourceLocation = "";
+            default:
+                resourceLocation = "";
         }
         try {
+            System.out.println("LOADING......"+phase);
             Pane nextPane = new FXMLLoader(controller.getClass().getResource(resourceLocation)).load();
             return new Scene(nextPane, 1200, 900);
         } catch (IOException e) {
