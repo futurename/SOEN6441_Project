@@ -27,6 +27,7 @@ public class Main extends Application {
      * Static arraylist of players for storing all player objects
      */
     public static ArrayList<Player> playersList = new ArrayList<>();
+    public static ArrayList<Player> robotPlayerList = new ArrayList<>();
 
     /**
      * Indicating the index of current player in gaming

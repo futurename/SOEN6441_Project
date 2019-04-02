@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+import static riskgame.Main.robotPlayerList;
+
 /**
  * @author Wei Wang
  * @version 1.0
@@ -22,7 +24,7 @@ public class TournamentGame implements Runnable {
 
     private LinkedHashMap<String, GraphNode> worldMapInstance;
     private LinkedHashMap<String, Continent> continentLinkedHashMap;
-    private ArrayList<Player> robotPlayerList;
+
     private int gameWinner;
 
     public TournamentGame(String mapFile, ArrayList<Strategy> playerStrategyList, int gameRoundValue) {
@@ -31,7 +33,6 @@ public class TournamentGame implements Runnable {
         this.gameRoundValue = gameRoundValue;
         this.worldMapInstance = new LinkedHashMap<>();
         this.continentLinkedHashMap = new LinkedHashMap<>();
-        this.robotPlayerList = new ArrayList<>();
         this.gameWinner = -1;
     }
 

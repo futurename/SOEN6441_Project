@@ -6,10 +6,12 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import riskgame.Main;
 import riskgame.controllers.StartViewController;
+import riskgame.controllers.TournamentModeViewController;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.BasicClass.TournamentGame;
 import riskgame.model.Utils.InfoRetriver;
 
 import java.io.IOException;
@@ -173,14 +175,17 @@ public class UtilMethods {
      * @param player current player
      */
     public static void endReinforcement(Player player) {
-        if (StartViewController.reinforceInitCounter > 1) {
-            notifyReinforcementEnd(false, player);
-            StartViewController.reinforceInitCounter--;
-        } else {
-            notifyReinforcementEnd(true, player);
+        //If single game mode
+        if (robotPlayerList.isEmpty()){
+            if (StartViewController.reinforceInitCounter > 1) {
+                notifyReinforcementEnd(false, player);
+                StartViewController.reinforceInitCounter--;
+            } else {
+                notifyReinforcementEnd(true, player);
+            }
+            //if not robot phase, method does nothing
+            callNextRobotPhase();
         }
-        //if not robot phase, method does nothing
-        callNextRobotPhase();
     }
 
     /**
@@ -209,17 +214,20 @@ public class UtilMethods {
      * @param player current player
      */
     public static void endFortification(Player player) {
-        if (firstRoundCounter > 0) {
-            firstRoundCounter--;
-            if (firstRoundCounter == 0) {
-                curRoundPlayerIndex = -1;
+        //If single game mode
+        if (robotPlayerList.isEmpty()) {
+            if (firstRoundCounter > 0) {
+                firstRoundCounter--;
+                if (firstRoundCounter == 0) {
+                    curRoundPlayerIndex = -1;
+                }
+                notifyFortificationEnd(true, player);
+            } else {
+                notifyFortificationEnd(false, player);
             }
-            notifyFortificationEnd(true, player);
-        } else {
-            notifyFortificationEnd(false, player);
+            //if not robot phase, method does nothing
+            callNextRobotPhase();
         }
-        //if not robot phase, method does nothing
-        callNextRobotPhase();
     }
 
     /**
@@ -247,9 +255,12 @@ public class UtilMethods {
      * @param player current player
      */
     public static void endAttack(Player player) {
-        notifyAttackEnd(player);
-        //if not robot phase, method does nothing
-        callNextRobotPhase();
+        //If single game mode
+        if (robotPlayerList.isEmpty()) {
+            notifyAttackEnd(player);
+            //if not robot phase, method does nothing
+            callNextRobotPhase();
+        }
     }
 
     /**
