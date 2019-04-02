@@ -80,7 +80,7 @@ public class StrategyRandom implements Strategy {
         if (!attackable.isEmpty()) {
             Country attacker = randomlyPickCountryFrom(attackable);
             //pick an enemy
-            ArrayList<Country> enemies = InfoRetriver.getAdjacentEnemy(player.getPlayerIndex(), attacker);
+            ArrayList<Country> enemies = InfoRetriver.getAdjacentEnemy(player, attacker);
             Country enemy = randomlyPickCountryFrom(enemies);
             int defenceArmy = enemy.getCountryArmyNumber() > MAX_DEFENDING_ARMY_NUMBER ? MAX_DEFENDING_ARMY_NUMBER : enemy.getCountryArmyNumber();
             //attack a country a number of times as grading sheet
@@ -91,7 +91,8 @@ public class StrategyRandom implements Strategy {
                 int actualArmy = randomArmy > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : randomArmy;
                 //Attack
                 int armyLeft = getOneAttackResult(attacker, enemy, actualArmy, defenceArmy, new StringBuilder());
-                AttackProcess.autoResultProcess(attacker, enemy, armyLeft);
+                //TODO
+//                AttackProcess.autoResultProcess(attacker, enemy, armyLeft);
                 randomAttackTime = attacker.getCountryArmyNumber() - 1;
             }
         }
@@ -105,7 +106,7 @@ public class StrategyRandom implements Strategy {
 
     private void randomlyFortify(Player player) {
         Country from = randomlyPickCountryFrom(InfoRetriver.getCountryList(player));
-        ArrayList<Country> reachableCountries = InfoRetriver.getReachableCountry(player.getPlayerIndex(), from.getCountryName());
+        ArrayList<Country> reachableCountries = InfoRetriver.getReachableCountry(player, from.getCountryName());
         if (!reachableCountries.isEmpty()) {
             Country target = randomlyPickCountryFrom(reachableCountries);
             int army = from.getCountryArmyNumber();

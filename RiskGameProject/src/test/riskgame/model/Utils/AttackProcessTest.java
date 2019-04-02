@@ -86,7 +86,7 @@ public class AttackProcessTest {
         int remainingArmyNbr = 5;
         try {
 
-            AttackProcess.attackResultProcess(attackingCountry, defendingCountry, remainingArmyNbr);
+            AttackProcess.attackResultProcess(attackingCountry, playerAttacker, defendingCountry, playerDefender, remainingArmyNbr);
 
         } catch (Error e) {
             System.out.println("ignore alert window");

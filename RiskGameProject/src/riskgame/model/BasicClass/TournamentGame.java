@@ -61,7 +61,7 @@ public class TournamentGame implements Runnable {
 
         InitWorldMap.buildWorldMapGraph(mapFile, worldMapInstance, continentLinkedHashMap);
         int numOfplayers = playerStrategyList.size();
-        InitPlayers.initPlayers(numOfplayers, worldMapInstance, playerStrategyList, robotPlayerList);
+        InitPlayers.initPlayers(numOfplayers, worldMapInstance, continentLinkedHashMap, playerStrategyList, robotPlayerList);
 
         System.out.println("map: " + mapFile);
         System.out.println("gameRoundValue: " + gameRoundValue);

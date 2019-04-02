@@ -311,7 +311,7 @@ public class StartViewController implements Initializable {
                 btn_nextStep.setVisible(true);
 
                 if (Main.playersList.isEmpty()) {
-                    InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton, playerStrategyList, playersList);
+                    InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton, worldContinentMap, playerStrategyList, playersList);
                 }
             }
         }
@@ -488,7 +488,7 @@ public class StartViewController implements Initializable {
     private void displayPlayerInfo() {
         isMapInfoOn = false;
         if (playersList.isEmpty()) {
-            InitPlayers.initPlayers(totalNumOfPlayers, graphSingleton, playerStrategyList, playersList);
+            InitPlayers.initPlayers(totalNumOfPlayers, graphSingleton, worldContinentMap, playerStrategyList, playersList);
         }
         txf_mapPromptInfo.setText("Players Info");
 

@@ -28,21 +28,17 @@ public class AttackProcess {
     /**
      * overall attack process result and it checks if country ,continent or whole map is conquered
      * @param attackingCountry attacking country
+     * @param attacker attack player
      * @param defendingCountry defending country
      * @param remainingArmyNbr army number ramained after attacking
      */
-    public static void attackResultProcess(Country attackingCountry, Country defendingCountry, int remainingArmyNbr) {
-        int defenderIndex = defendingCountry.getCountryOwnerIndex();
-        int attackerIndex = attackingCountry.getCountryOwnerIndex();
-
-        Player attackPlayer = Main.playersList.get(attackerIndex);
-        Player defendPlayer = Main.playersList.get(defenderIndex);
+    public static void attackResultProcess(Country attackingCountry, Player attacker, Country defendingCountry, Player defender, int remainingArmyNbr) {
 
         String continentName = defendingCountry.getContinentName();
         Continent curContinent = Main.worldContinentMap.get(continentName);
 
         if (isCountryConquered(defendingCountry)) {
-            updateConqueredCountry(attackingCountry, defendingCountry, remainingArmyNbr, attackPlayer, defendPlayer, true);
+            updateConqueredCountry(attackingCountry, defendingCountry, remainingArmyNbr, attacker, defender, true);
 
             String defendCountryName = defendingCountry.getCountryName();
             int attackCountryArmyNbr = attackingCountry.getCountryArmyNumber();
@@ -70,7 +66,7 @@ public class AttackProcess {
                 }
             }
 
-            updateContinentAndWorldStatus(attackPlayer, defendPlayer, curContinent, true);
+            updateContinentAndWorldStatus(attacker, defender, curContinent, true);
 
         }
     }
@@ -79,18 +75,13 @@ public class AttackProcess {
      * Same function as attackResultProcess but eliminate UI.
      * @see AttackProcess#attackResultProcess
      */
-    public static void autoResultProcess(Country attackingCountry, Country defendingCountry, int remainingArmyNbr){
-        int defenderIndex = defendingCountry.getCountryOwnerIndex();
-        int attackerIndex = attackingCountry.getCountryOwnerIndex();
-
-        Player attackPlayer = Main.playersList.get(attackerIndex);
-        Player defendPlayer = Main.playersList.get(defenderIndex);
+    public static void autoResultProcess(Country attackingCountry, Player attacker, Country defendingCountry, Player defender, int remainingArmyNbr){
 
         String continentName = defendingCountry.getContinentName();
         Continent curContinent = Main.worldContinentMap.get(continentName);
 
         if (isCountryConquered(defendingCountry)) {
-            updateConqueredCountry(attackingCountry, defendingCountry, remainingArmyNbr, attackPlayer, defendPlayer, false);
+            updateConqueredCountry(attackingCountry, defendingCountry, remainingArmyNbr, attacker, defender, false);
 
             int attackCountryArmyNbr = attackingCountry.getCountryArmyNumber();
 
@@ -98,7 +89,7 @@ public class AttackProcess {
                 attackingCountry.reduceFromCountryArmyNumber(attackCountryArmyNbr-1);
                 defendingCountry.addToCountryArmyNumber(attackCountryArmyNbr-1);
             }
-            updateContinentAndWorldStatus(attackPlayer, defendPlayer, curContinent, false);
+            updateContinentAndWorldStatus(attacker, defender, curContinent, false);
         }
     }
 

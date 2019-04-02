@@ -53,23 +53,22 @@ public class InfoRetriver {
 
     /**
      * Acquire all adjacent enemy countries of the selected country
-     * @param curPlayerIndex index of current player
+     * @param player index of current player
      * @param selectedCountry selected country by the user
      * @return Observablelist of enemy country list
      */
-    public static ObservableList<Country> getAttackableAdjacentCountryList(int curPlayerIndex, Country selectedCountry){
+    public static ObservableList<Country> getAttackableAdjacentCountryList(Player player, Country selectedCountry){
         ObservableList<Country> result;
-
-        ArrayList<Country> attackableAdjacentCountryList = getAdjacentEnemy(curPlayerIndex, selectedCountry);
-
+        ArrayList<Country> attackableAdjacentCountryList = getAdjacentEnemy(player, selectedCountry);
         result = FXCollections.observableArrayList(attackableAdjacentCountryList);
 
         return result;
     }
 
-    public static ArrayList<Country> getAdjacentEnemy(int curPlayerIndex, Country selectedCountry) {
+    public static ArrayList<Country> getAdjacentEnemy(Player player, Country selectedCountry) {
+        int curPlayerIndex = player.getPlayerIndex();
         String selectedCountryName = selectedCountry.getCountryName();
-        ArrayList<Country> adjacentCountryList = Main.graphSingleton.get(selectedCountryName).getAdjacentCountryList();
+        ArrayList<Country> adjacentCountryList = player.getWorldMapInstance().get(selectedCountryName).getAdjacentCountryList();
 
         ArrayList<Country> attackableAdjacentCountryList = new ArrayList<>();
         for(Country country: adjacentCountryList){
@@ -83,13 +82,13 @@ public class InfoRetriver {
     /**
      * acquire ObservableList of all reachable countries from a selected country and player
      *
-     * @param playerIndex         current player index
+     * @param player         current player index
      * @param selectedCountryName selected country name
      * @return ObservableList of all reachable countries
      */
-    public static ObservableList<Country> getReachableCountryObservableList(int playerIndex, String selectedCountryName) {
+    public static ObservableList<Country> getReachableCountryObservableList(Player player, String selectedCountryName) {
         ObservableList<Country> result;
-        ArrayList<Country> countryList = getReachableCountry(playerIndex, selectedCountryName);
+        ArrayList<Country> countryList = getReachableCountry(player, selectedCountryName);
         result = FXCollections.observableArrayList(countryList);
         return result;
     }
@@ -97,16 +96,17 @@ public class InfoRetriver {
     /**
      * acquire ObservableList of all reachable countries from a selected country and player
      *
-     * @param playerIndex         current player index
+     * @param player         current player
      * @param selectedCountryName selected country name
      * @return ObservableList of all reachable countries
      */
-    public static ArrayList<Country> getReachableCountry(int playerIndex, String selectedCountryName) {
+    public static ArrayList<Country> getReachableCountry(Player player, String selectedCountryName) {
+        int curPlayerIndex = player.getPlayerIndex();
         ArrayList<Country> countryList = new ArrayList<>();
         GraphNode selectedGraphNode = Main.graphSingleton.get(selectedCountryName);
         GraphSingleton.INSTANCE.resetGraphVisitedFlag();
         Country selectedCountry = selectedGraphNode.getCountry();
-        selectedGraphNode.getReachableCountryListBFS(playerIndex, selectedCountry, countryList);
+        selectedGraphNode.getReachableCountryListBFS(curPlayerIndex, selectedCountry, countryList);
         return countryList;
     }
 
@@ -196,17 +196,17 @@ public class InfoRetriver {
 
     /**
      * valid whether the attacker has an attackable country, if not, move to next phase.
-     * @param curPlayerIndex index of current player
+     * @param player index of current player
      * @param ownedCountryList country object list
      * @return true for valid, false for none
      */
-    public static boolean validateAttackerStatus(int curPlayerIndex, Iterable<Country> ownedCountryList) {
+    public static boolean validateAttackerStatus(Player player, Iterable<Country> ownedCountryList) {
 
         boolean isOneCountryHasAttackableCountry = false;
 
         for(Country country: ownedCountryList){
             if(country.getCountryArmyNumber() > 1){
-                ObservableList<Country> attackableCountryList = InfoRetriver.getAttackableAdjacentCountryList(curPlayerIndex, country);
+                ObservableList<Country> attackableCountryList = InfoRetriver.getAttackableAdjacentCountryList(player, country);
 
                 System.out.println("\nattackable country list: " + attackableCountryList + "\n");
 
@@ -224,7 +224,7 @@ public class InfoRetriver {
         ArrayList<Country> owned = InfoRetriver.getCountryList(player);
         for(Country country: owned){
             if(country.getCountryArmyNumber() > 1){
-                if (!InfoRetriver.getAdjacentEnemy(player.getPlayerIndex(), country).isEmpty()){
+                if (!InfoRetriver.getAdjacentEnemy(player, country).isEmpty()){
                     attackable.add(country);
                 }
             }

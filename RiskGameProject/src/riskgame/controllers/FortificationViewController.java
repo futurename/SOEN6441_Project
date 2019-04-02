@@ -136,7 +136,7 @@ public class FortificationViewController implements Initializable {
         for (Country country : countryObservableList) {
             int armyNbr = country.getCountryArmyNumber();
             if (armyNbr > 1) {
-                ObservableList<Country> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayerIndex,
+                ObservableList<Country> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayer,
                         country.getCountryName());
                 if (!reachableCountryList.isEmpty()) {
                     result = true;
@@ -211,7 +211,7 @@ public class FortificationViewController implements Initializable {
                 alert.setContentText("No enough army for fortification!");
                 alert.showAndWait();
             } else {
-                ObservableList<Country> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayer.getPlayerIndex(),
+                ObservableList<Country> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayer,
                         selectedCountryName);
                 if (reachableCountryList.isEmpty()) {
                     btn_confirmMoveArmy.setVisible(false);

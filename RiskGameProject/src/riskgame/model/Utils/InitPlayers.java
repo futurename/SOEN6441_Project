@@ -1,5 +1,6 @@
 package riskgame.model.Utils;
 
+import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
@@ -21,7 +22,8 @@ public class InitPlayers {
      * @param numOfPlayers  number of players this round
      * @param worldHashMap world map
      */
-    public static void initPlayers(int numOfPlayers, LinkedHashMap<String, GraphNode> worldHashMap, ArrayList<Strategy> strategyList, ArrayList<Player> playerArrayList) {
+    public static void initPlayers(int numOfPlayers, LinkedHashMap<String, GraphNode> worldHashMap,
+                                   LinkedHashMap<String, Continent> continentMapInstance, ArrayList<Strategy> strategyList, ArrayList<Player> playerArrayList) {
 
         System.out.println("strategy list: " + strategyList + ", playerlist: " + playerArrayList);
 
@@ -30,7 +32,7 @@ public class InitPlayers {
 
         for (int playerIndex = 0; playerIndex < numOfPlayers; playerIndex++) {
             Strategy curStrategy = strategyList.get(playerIndex);
-            Player onePlayer = new Player(playerIndex, curStrategy, worldHashMap);
+            Player onePlayer = new Player(playerIndex, curStrategy, worldHashMap, continentMapInstance);
             getInitCountryNameList(onePlayer, forAllocatesCountryNameList, numOfPlayers, worldHashMap, playerArrayList);
             onePlayer.updateArmyNbr();
 

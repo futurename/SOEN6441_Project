@@ -66,13 +66,13 @@ public class ListviewRenderer {
                 if (item != null) {
                     String countryName = item.getCountryName();
                     int armyNumber = item.getCountryArmyNumber();
-                    int playerIndex = item.getCountryOwnerIndex();
+                    Player player = Main.playersList.get(item.getCountryOwnerIndex());
 
-                    Color curPlayerColor = Main.playersList.get(playerIndex).getPlayerColor();
+                    Color curPlayerColor = player.getPlayerColor();
 
                     text = new Text();
 
-                    ArrayList<Country> emptyList = InfoRetriver.getAdjacentEnemy(playerIndex, item);
+                    ArrayList<Country> emptyList = InfoRetriver.getAdjacentEnemy(player, item);
                     int totalEmptyArmyNbr = 0;
 
                     if (!emptyList.isEmpty()) {

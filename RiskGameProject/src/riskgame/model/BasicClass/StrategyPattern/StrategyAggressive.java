@@ -64,7 +64,7 @@ public class StrategyAggressive implements Strategy {
         if (!attackable.isEmpty()) {
             //The list should contain a country base on aggressive rule
             for (Country attacker: attackable){
-                ArrayList<Country> enemies = InfoRetriver.getAdjacentEnemy(player.getPlayerIndex(), attacker);
+                ArrayList<Country> enemies = InfoRetriver.getAdjacentEnemy(player, attacker);
                 Collections.shuffle(enemies);
                 //keep attacking util all armies are fucked up
                 for (Country enemy: enemies){
@@ -74,7 +74,9 @@ public class StrategyAggressive implements Strategy {
                     }
                     int attackArmy = attacker.getCountryArmyNumber() - 1;
                     int defenceArmy = enemy.getCountryArmyNumber();
-                    player.alloutAttackSimulate(attacker, enemy, attackArmy, defenceArmy, false);
+//                    Player defender = enemy.getCountryOwnerIndex();
+                    //TODO GET PLAYER
+                    player.alloutAttackSimulate(attacker, player, enemy, player, attackArmy, defenceArmy, false);
                 }
             }
         }
