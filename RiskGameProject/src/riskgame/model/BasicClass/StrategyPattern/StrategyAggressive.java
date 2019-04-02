@@ -27,7 +27,7 @@ public class StrategyAggressive implements Strategy {
         if (code != -2){
             UtilMethods.exchangeCard(player, code, curExchangeTime);
         }
-        UtilMethods.deregisterCardObserver(player, cardObserver);
+        UtilMethods.deregisterCardObserver(player, observable, cardObserver);
     }
 
     private void aggressivelyDeployArmy(Player player) {

@@ -30,7 +30,7 @@ public class UtilMethods {
      * Although card list can be get directly from player, doing this is to unify the usage
      * Observer will be deleted before next phase.
      * @see CardExchangeViewObserver
-     * @see UtilMethods#deregisterCardObserver(Player, CardExchangeViewObserver)
+     * @see UtilMethods#deregisterCardObserver(Player, PhaseViewObservable, CardExchangeViewObserver)
      * @param player player who will attach to the observer/ongoing player
      */
     public static CardExchangeViewObserver initCardObserver(Player player, PhaseViewObservable observable){
@@ -52,8 +52,8 @@ public class UtilMethods {
      * @param player current player
      * @param cardObserver observer been removed
      */
-    public static void deregisterCardObserver(Player player, CardExchangeViewObserver cardObserver) {
-        phaseViewObservable.deleteObserver(cardObserver);
+    public static void deregisterCardObserver(Player player, PhaseViewObservable observable, CardExchangeViewObserver cardObserver) {
+        observable.deleteObserver(cardObserver);
         player.deleteObserver(cardObserver);
     }
 

@@ -231,7 +231,7 @@ public class ReinforceViewController implements Initializable {
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) {
-        UtilMethods.deregisterCardObserver(curPlayer, cardExchangeViewObserver);
+        UtilMethods.deregisterCardObserver(curPlayer, phaseViewObservable, cardExchangeViewObserver);
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         System.out.println("\n???????????????????????????" + reinforceInitCounter);
 

@@ -63,7 +63,7 @@ public class StrategyRandom implements Strategy {
                 }
             }
         }
-        UtilMethods.deregisterCardObserver(player, cardObserver);
+        UtilMethods.deregisterCardObserver(player, observable, cardObserver);
 
         System.out.println("Random robot randomly exchange cards!\n");
     }
