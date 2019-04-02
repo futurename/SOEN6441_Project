@@ -180,7 +180,7 @@ public class AttackViewController implements Initializable {
 
         int selectedArmyNbr = selectedCountry.getCountryArmyNumber();
 
-        System.out.println("\nAttack phase, player: " + selectedCountry.getCountryOwnerIndex() + ", selected country: "
+        System.out.println("\nAttack phase, player: " + selectedCountry.getOwnerIndex() + ", selected country: "
                 + selectedCountry.getCountryName() + ", army nbr: " + selectedArmyNbr);
 
         ObservableList<Country> datalist = InfoRetriver.getAttackableAdjacentCountryList(curPlayer, selectedCountry);
@@ -230,7 +230,8 @@ public class AttackViewController implements Initializable {
     public void selectDefendingCountry(MouseEvent mouseEvent) {
         if (!isSelectedItemEmpty(lsv_adjacentCountries)) {
             Country selectedDefenderCountry = (Country) lsv_adjacentCountries.getSelectionModel().getSelectedItem();
-            Player defenderPlayer = Main.playersList.get(selectedDefenderCountry.getCountryOwnerIndex());
+//            Player defenderPlayer = Main.playersList.get(selectedDefenderCountry.getCountryOwnerIndex());
+            Player defenderPlayer = selectedDefenderCountry.getOwner();
             Color defenderColor = defenderPlayer.getPlayerColor();
 
             lbl_defenderMaxArmyPrompt.setVisible(true);
@@ -308,18 +309,14 @@ public class AttackViewController implements Initializable {
             Country attackingCountry = (Country) lsv_ownedCountries
                     .getSelectionModel()
                     .getSelectedItem();
-            Player attacker = Main.playersList.get(attackingCountry.getCountryOwnerIndex());
-
             Country defendingCountry = (Country) lsv_adjacentCountries
                     .getSelectionModel()
                     .getSelectedItem();
-            Player defender = Main.playersList.get(defendingCountry.getCountryOwnerIndex());
 
             int attackArmyNbr = Integer.parseInt(lbl_attackerArmyNbr.getText());
             int defendArmyNbr = Integer.parseInt(lbl_defenderArmyNbr.getText());
 
-            String battleReport = curPlayer.executeAttack(attackingCountry, attacker, defendingCountry, defender, attackArmyNbr,
-                    defendArmyNbr, false);
+            String battleReport = curPlayer.executeAttack(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, false);
             txa_attackInfoDisplay.setText(battleReport);
 
             refreshListView(attackingCountry);
@@ -383,14 +380,11 @@ public class AttackViewController implements Initializable {
         if (isBothCountriesSelected()) {
             Country selectedAttackerCountry = (Country) lsv_ownedCountries.getSelectionModel().getSelectedItem();
             Country selectedDefenderCountry = (Country) lsv_adjacentCountries.getSelectionModel().getSelectedItem();
-            Player attacker = Main.playersList.get(selectedAttackerCountry.getCountryOwnerIndex());
-            Player defender = Main.playersList.get(selectedDefenderCountry.getCountryOwnerIndex());
 
             int availableForAttackNbr = selectedAttackerCountry.getCountryArmyNumber() - 1;
             int availableForDefendNbr = selectedDefenderCountry.getCountryArmyNumber();
 
-            String battleReport = curPlayer.executeAttack(selectedAttackerCountry, attacker, selectedDefenderCountry,
-                    defender, availableForAttackNbr, availableForDefendNbr, true);
+            String battleReport = curPlayer.executeAttack(selectedAttackerCountry, selectedDefenderCountry, availableForAttackNbr, availableForDefendNbr, true);
             txa_attackInfoDisplay.setText(battleReport);
             refreshListView(selectedAttackerCountry);
             InfoRetriver.updateDominationView("from attack all out mode", vbx_worldDomiView);

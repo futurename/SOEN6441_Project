@@ -45,8 +45,8 @@ public class AttackProcessTest {
         playerAttacker = new Player(0);
         playerDefender = new Player(1);
 
-        defendingCountry.setCountryOwnerIndex(playerDefender.getPlayerIndex());
-        attackingCountry.setCountryOwnerIndex(playerAttacker.getPlayerIndex());
+        defendingCountry.setCountryOwner(playerDefender);
+        attackingCountry.setCountryOwner(playerAttacker);
 
         String demoContinentName = "DemoContinent";
         demoContinent = new Continent(demoContinentName, 4);
@@ -86,7 +86,7 @@ public class AttackProcessTest {
         int remainingArmyNbr = 5;
         try {
 
-            AttackProcess.attackResultProcess(attackingCountry, playerAttacker, defendingCountry, playerDefender, remainingArmyNbr);
+            AttackProcess.attackResultProcess(attackingCountry, defendingCountry, remainingArmyNbr);
 
         } catch (Error e) {
             System.out.println("ignore alert window");
@@ -103,14 +103,14 @@ public class AttackProcessTest {
     @Test
     public void testUpdateContinentAndWorldStatus()  {
         initGameSimulator();
-        attackingCountry.setCountryOwnerIndex(playerDefender.getPlayerIndex());
+        attackingCountry.setCountryOwner(playerDefender);
         AttackProcess.updateContinentAndWorldStatus(playerDefender, playerAttacker, demoContinent, true);
         Assert.assertEquals(playerDefender.getContinentBonus(), demoContinent.getContinentBonusValue());
         System.out.println("\nattacker bonus: " + playerAttacker.getContinentBonus() + ", defender bonus: " + playerDefender.getContinentBonus()
                 + ", continent owner: " + demoContinent.getContinentOwnerIndex() + "\n");
 
-        attackingCountry.setCountryOwnerIndex(playerAttacker.getPlayerIndex());
-        defendingCountry.setCountryOwnerIndex(playerAttacker.getPlayerIndex());
+        attackingCountry.setCountryOwner(playerAttacker);
+        defendingCountry.setCountryOwner(playerAttacker);
 
         AttackProcess.updateContinentAndWorldStatus(playerAttacker, playerDefender, demoContinent, true);
 
@@ -128,7 +128,7 @@ public class AttackProcessTest {
         initGameSimulator();
         int armyNbrBeforeAttack = attackingCountry.getCountryArmyNumber();
         int assumedRemainingArmyNbr = 3;
-        AttackProcess.updateConqueredCountry(attackingCountry, defendingCountry, assumedRemainingArmyNbr, playerAttacker, playerDefender, true);
+        AttackProcess.updateConqueredCountry(attackingCountry, defendingCountry, assumedRemainingArmyNbr, true);
         boolean attackerConquered = playerAttacker.getOwnedCountryNameList().contains("defending country");
         assertTrue(attackerConquered);
         boolean defenderLoss = playerDefender.getOwnedCountryNameList().contains("defending country");
@@ -201,7 +201,7 @@ public class AttackProcessTest {
 
         Assert.assertFalse(AttackProcess.isContinentConquered(player, continent));
         continent.setContinentOwnerIndex(player.getPlayerIndex());
-        country.setCountryOwnerIndex(player.getPlayerIndex());
+        country.setCountryOwner(player);
         Assert.assertTrue(AttackProcess.isContinentConquered(player, continent));
         StartViewController.resetStaticVariables();
     }
@@ -213,7 +213,7 @@ public class AttackProcessTest {
     public void testUpdateContinentOwner()  {
         initGameSimulator();
         Assert.assertFalse(AttackProcess.isContinentConquered(playerAttacker, demoContinent));
-        defendingCountry.setCountryOwnerIndex(playerAttacker.getPlayerIndex());
+        defendingCountry.setCountryOwner(playerAttacker);
         Assert.assertTrue(AttackProcess.isContinentConquered(playerAttacker, demoContinent));
     }
 

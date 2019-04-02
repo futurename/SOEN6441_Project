@@ -5,12 +5,12 @@ import riskgame.model.BasicClass.Player;
 
 public class StrategyHuman implements Strategy {
     @Override
-    public String doAttack(Player humanPlayer, Country attackingCountry, Player attacker, Country defendingCountry,
-                           Player defender, int attackArmyNbr, int defendArmyNbr, boolean allout) {
+    public String doAttack(Player humanPlayer, Country attackingCountry, Country defendingCountry,
+                           int attackArmyNbr, int defendArmyNbr, boolean allout) {
         if (allout){
-            return humanPlayer.alloutAttackSimulate(attackingCountry, attacker, defendingCountry, defender, attackArmyNbr, defendArmyNbr, true);
+            return humanPlayer.alloutAttackSimulate(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, true);
         }
-        return humanPlayer.oneAttackSimulate(attackingCountry, attacker, defendingCountry, defender, attackArmyNbr, defendArmyNbr).toString();
+        return humanPlayer.oneAttackSimulate(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr).toString();
     }
 
     @Override

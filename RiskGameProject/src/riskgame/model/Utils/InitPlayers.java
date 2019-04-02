@@ -60,22 +60,22 @@ public class InitPlayers {
      * This method allocates all countries to a player randomly
      *
      * @param curPlayer      current player
-     * @param coutryNameList unallocated country names
+     * @param countryNameList unallocated country names
      * @param numOfPlayers   number of players
      * @param graphSingleton world map singleton
      */
-    private static void getInitCountryNameList(Player curPlayer, ArrayList<String> coutryNameList, int numOfPlayers, LinkedHashMap<String,
+    private static void getInitCountryNameList(Player curPlayer, ArrayList<String> countryNameList, int numOfPlayers, LinkedHashMap<String,
             GraphNode> graphSingleton, ArrayList<Player> playerArrayList) {
 
         int avgCountryCount = graphSingleton.size() / numOfPlayers;
-        int allocatsCountryNum = (curPlayer.getPlayerIndex() != (numOfPlayers - 1)) ? avgCountryCount : coutryNameList.size();
+        int allocatsCountryNum = (curPlayer.getPlayerIndex() != (numOfPlayers - 1)) ? avgCountryCount : countryNameList.size();
 
         for (int count = 0; count < allocatsCountryNum; count++) {
-            int randomIndex = new Random().nextInt(coutryNameList.size());
+            int randomIndex = new Random().nextInt(countryNameList.size());
 
-            String oneCountryName = coutryNameList.remove(randomIndex);
+            String oneCountryName = countryNameList.remove(randomIndex);
 
-            graphSingleton.get(oneCountryName).getCountry().setCountryOwnerIndex(curPlayer.getPlayerIndex());
+            graphSingleton.get(oneCountryName).getCountry().setCountryOwner(curPlayer);
             graphSingleton.get(oneCountryName).getCountry().addObserver(curPlayer);
             curPlayer.addToOwnedCountryNameList(oneCountryName);
 

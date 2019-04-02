@@ -52,41 +52,41 @@ public class GraphTester {
         }
 
         Player player_0 = Main.playersList.get(0);
-        demoGraph.get("Middle East").getCountry().setCountryOwnerIndex(0);
+        demoGraph.get("Middle East").getCountry().setCountryOwner(player_0);
         player_0.getOwnedCountryNameList().add("Middle East");
-        demoGraph.get("Ural").getCountry().setCountryOwnerIndex(0);
+        demoGraph.get("Ural").getCountry().setCountryOwner(player_0);
         player_0.getOwnedCountryNameList().add("Ural");
-        demoGraph.get("Afghanistan").getCountry().setCountryOwnerIndex(0);
+        demoGraph.get("Afghanistan").getCountry().setCountryOwner(player_0);
         player_0.getOwnedCountryNameList().add("Afghanistan");
-        demoGraph.get("India").getCountry().setCountryOwnerIndex(0);
+        demoGraph.get("India").getCountry().setCountryOwner(player_0);
         player_0.getOwnedCountryNameList().add("India");
-        demoGraph.get("Siberia").getCountry().setCountryOwnerIndex(0);
+        demoGraph.get("Siberia").getCountry().setCountryOwner(player_0);
         player_0.getOwnedCountryNameList().add("Siberia");
 
         Player player_1 = Main.playersList.get(1);
-        demoGraph.get("China").getCountry().setCountryOwnerIndex(1);
+        demoGraph.get("China").getCountry().setCountryOwner(player_1);
         player_1.getOwnedCountryNameList().add("China");
-        demoGraph.get("Siam").getCountry().setCountryOwnerIndex(1);
+        demoGraph.get("Siam").getCountry().setCountryOwner(player_1);
         player_1.getOwnedCountryNameList().add("Siam");
-        demoGraph.get("Mongolia").getCountry().setCountryOwnerIndex(1);
+        demoGraph.get("Mongolia").getCountry().setCountryOwner(player_1);
         player_1.getOwnedCountryNameList().add("Mongolia");
-        demoGraph.get("Irkutsk").getCountry().setCountryOwnerIndex(1);
+        demoGraph.get("Irkutsk").getCountry().setCountryOwner(player_1);
         player_1.getOwnedCountryNameList().add("Irkutsk");
-        demoGraph.get("Yatusk").getCountry().setCountryOwnerIndex(1);
+        demoGraph.get("Yatusk").getCountry().setCountryOwner(player_1);
         player_1.getOwnedCountryNameList().add("Yatusk");
 
         Player player_2 = Main.playersList.get(2);
-        demoGraph.get("Kamchatka").getCountry().setCountryOwnerIndex(2);
+        demoGraph.get("Kamchatka").getCountry().setCountryOwner(player_2);
         player_2.getOwnedCountryNameList().add("Kamchatka");
-        demoGraph.get("Japan").getCountry().setCountryOwnerIndex(2);
+        demoGraph.get("Japan").getCountry().setCountryOwner(player_2);
         player_2.getOwnedCountryNameList().add("Japan");
-        demoGraph.get("Indonesia").getCountry().setCountryOwnerIndex(2);
+        demoGraph.get("Indonesia").getCountry().setCountryOwner(player_2);
         player_2.getOwnedCountryNameList().add("Indonesia");
-        demoGraph.get("New Guinea").getCountry().setCountryOwnerIndex(2);
+        demoGraph.get("New Guinea").getCountry().setCountryOwner(player_2);
         player_2.getOwnedCountryNameList().add("New Guinea");
-        demoGraph.get("Western Australia").getCountry().setCountryOwnerIndex(2);
+        demoGraph.get("Western Australia").getCountry().setCountryOwner(player_2);
         player_2.getOwnedCountryNameList().add("Western Australia");
-        demoGraph.get("Eastern Australia").getCountry().setCountryOwnerIndex(2);
+        demoGraph.get("Eastern Australia").getCountry().setCountryOwner(player_2);
         player_2.getOwnedCountryNameList().add("Eastern Australia");
 
 
@@ -95,15 +95,15 @@ public class GraphTester {
     /**
      * get player's owned country list
      *
-     * @param playerIndex current player index
+     * @param player current player
      * @return arraylist of owned country names
      */
-    public ArrayList<String> getOwnedCountryNames(int playerIndex) {
+    public ArrayList<String> getOwnedCountryNames(Player player) {
         ArrayList<String> result = new ArrayList<>();
-
+        int playerIndex = player.getPlayerIndex();
         for (Map.Entry<String, GraphNode> entry : demoGraph.entrySet()) {
             String curCountryName = entry.getKey();
-            int curPlayerIndex = entry.getValue().getCountry().getCountryOwnerIndex();
+            int curPlayerIndex = entry.getValue().getCountry().getOwnerIndex();
             if (playerIndex == curPlayerIndex) {
                 result.add(curCountryName);
             }
