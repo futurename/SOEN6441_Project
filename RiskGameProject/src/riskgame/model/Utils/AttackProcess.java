@@ -28,17 +28,16 @@ public class AttackProcess {
     /**
      * overall attack process result and it checks if country ,continent or whole map is conquered
      * @param attackingCountry attacking country
-     * @param attacker attack player
      * @param defendingCountry defending country
      * @param remainingArmyNbr army number ramained after attacking
      */
-    public static void attackResultProcess(Country attackingCountry, Player attacker, Country defendingCountry, Player defender, int remainingArmyNbr) {
+    public static void attackResultProcess(Country attackingCountry, Country defendingCountry, int remainingArmyNbr) {
 
         String continentName = defendingCountry.getContinentName();
         Continent curContinent = Main.worldContinentMap.get(continentName);
 
         if (isCountryConquered(defendingCountry)) {
-            updateConqueredCountry(attackingCountry, defendingCountry, remainingArmyNbr, attacker, defender, true);
+            updateConqueredCountry(attackingCountry, defendingCountry, remainingArmyNbr, true);
 
             String defendCountryName = defendingCountry.getCountryName();
             int attackCountryArmyNbr = attackingCountry.getCountryArmyNumber();
@@ -66,7 +65,7 @@ public class AttackProcess {
                 }
             }
 
-            updateContinentAndWorldStatus(attacker, defender, curContinent, true);
+            updateContinentAndWorldStatus(attackingCountry.getOwner(), defendingCountry.getOwner(), curContinent, true);
 
         }
     }
@@ -75,13 +74,13 @@ public class AttackProcess {
      * Same function as attackResultProcess but eliminate UI.
      * @see AttackProcess#attackResultProcess
      */
-    public static void autoResultProcess(Country attackingCountry, Player attacker, Country defendingCountry, Player defender, int remainingArmyNbr){
+    public static void autoResultProcess(Country attackingCountry, Country defendingCountry, int remainingArmyNbr){
 
         String continentName = defendingCountry.getContinentName();
         Continent curContinent = Main.worldContinentMap.get(continentName);
 
         if (isCountryConquered(defendingCountry)) {
-            updateConqueredCountry(attackingCountry, defendingCountry, remainingArmyNbr, attacker, defender, false);
+            updateConqueredCountry(attackingCountry, defendingCountry, remainingArmyNbr, false);
 
             int attackCountryArmyNbr = attackingCountry.getCountryArmyNumber();
 
@@ -89,7 +88,7 @@ public class AttackProcess {
                 attackingCountry.reduceFromCountryArmyNumber(attackCountryArmyNbr-1);
                 defendingCountry.addToCountryArmyNumber(attackCountryArmyNbr-1);
             }
-            updateContinentAndWorldStatus(attacker, defender, curContinent, false);
+            updateContinentAndWorldStatus(attackingCountry.getOwner(), defendingCountry.getOwner(), curContinent, false);
         }
     }
 
@@ -141,36 +140,33 @@ public class AttackProcess {
      * @param attackingCountry attacking country
      * @param defendingCountry defending country
      * @param remainingArmyNbr remaining army number of the attacker after attack
-     * @param attackPlayer attacker
-     * @param defendPlayer defender
      */
-    public static void updateConqueredCountry(Country attackingCountry, Country defendingCountry, int remainingArmyNbr,
-                                              Player attackPlayer, Player defendPlayer, boolean UIOption) {
-        int attackerIndex = attackPlayer.getPlayerIndex();
-        System.out.printf("Before battle: attacker owned %d countries\n", attackPlayer.getOwnedCountryNameList().size());
-
+    public static void updateConqueredCountry(Country attackingCountry, Country defendingCountry, int remainingArmyNbr, boolean UIOption) {
+        Player attacker = attackingCountry.getOwner();
+        Player defender = defendingCountry.getOwner();
+        System.out.printf("Before battle: attacker owned %d countries\n", attacker.getOwnedCountryNameList().size());
 //        defendingCountry.setObservableOwner(attackerIndex);
-        defendingCountry.setObservableArmyWhenOwnerChanged(attackPlayer, remainingArmyNbr);
+        defendingCountry.setObservableArmyWhenOwnerChanged(attacker, remainingArmyNbr);
 //        defendingCountry.setObservableArmy(remainingArmyNbr);
         defendingCountry.notifyObservers("Conquered a country");
         attackingCountry.reduceFromCountryArmyNumber(remainingArmyNbr);
 
-        System.out.println("\n>>>>>>>>>>defender owned countries: " + defendPlayer.getOwnedCountryNameList() + "\n");
+        System.out.println("\n>>>>>>>>>>defender owned countries: " + defender.getOwnedCountryNameList() + "\n");
 
-        if (!isPlayerHasCountry(defendPlayer)) {
+        if (!isPlayerHasCountry(defender)) {
             if (UIOption){
                 try {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setContentText("Player [" + defendPlayer.getPlayerIndex() + "] has no country, QUIT!");
+                    alert.setContentText("Player [" + defender.getPlayerIndex() + "] has no country, QUIT!");
                     alert.showAndWait();
                 }catch (Error e){
                     System.out.println("Mute Alert");
                 }
             }
-            System.out.println("Player: " + defendPlayer.getPlayerIndex() + " fails, QUIT!");
-            defendPlayer.setActiveStatus(false);
+            System.out.println("Player: " + defender.getPlayerIndex() + " fails, QUIT!");
+            defender.setActiveStatus(false);
         }
-        System.out.printf("After battle: attacker owned %d countries\n", attackPlayer.getOwnedCountryNameList().size());
+        System.out.printf("After battle: attacker owned %d countries\n", attacker.getOwnedCountryNameList().size());
     }
 
 

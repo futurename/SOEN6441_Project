@@ -86,7 +86,7 @@ public class AttackProcessTest {
         int remainingArmyNbr = 5;
         try {
 
-            AttackProcess.attackResultProcess(attackingCountry, playerAttacker, defendingCountry, playerDefender, remainingArmyNbr);
+            AttackProcess.attackResultProcess(attackingCountry, defendingCountry, remainingArmyNbr);
 
         } catch (Error e) {
             System.out.println("ignore alert window");
@@ -128,7 +128,7 @@ public class AttackProcessTest {
         initGameSimulator();
         int armyNbrBeforeAttack = attackingCountry.getCountryArmyNumber();
         int assumedRemainingArmyNbr = 3;
-        AttackProcess.updateConqueredCountry(attackingCountry, defendingCountry, assumedRemainingArmyNbr, playerAttacker, playerDefender, true);
+        AttackProcess.updateConqueredCountry(attackingCountry, defendingCountry, assumedRemainingArmyNbr, true);
         boolean attackerConquered = playerAttacker.getOwnedCountryNameList().contains("defending country");
         assertTrue(attackerConquered);
         boolean defenderLoss = playerDefender.getOwnedCountryNameList().contains("defending country");

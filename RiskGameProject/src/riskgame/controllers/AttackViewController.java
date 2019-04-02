@@ -309,19 +309,14 @@ public class AttackViewController implements Initializable {
             Country attackingCountry = (Country) lsv_ownedCountries
                     .getSelectionModel()
                     .getSelectedItem();
-            //TODO zhezhong fangshi de hua ke yi qu diao 2 ge param, tong li allout mode
-            Player attacker = attackingCountry.getOwner();
-
             Country defendingCountry = (Country) lsv_adjacentCountries
                     .getSelectionModel()
                     .getSelectedItem();
-            Player defender = defendingCountry.getOwner();
 
             int attackArmyNbr = Integer.parseInt(lbl_attackerArmyNbr.getText());
             int defendArmyNbr = Integer.parseInt(lbl_defenderArmyNbr.getText());
 
-            String battleReport = curPlayer.executeAttack(attackingCountry, attacker, defendingCountry, defender, attackArmyNbr,
-                    defendArmyNbr, false);
+            String battleReport = curPlayer.executeAttack(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, false);
             txa_attackInfoDisplay.setText(battleReport);
 
             refreshListView(attackingCountry);
@@ -385,15 +380,11 @@ public class AttackViewController implements Initializable {
         if (isBothCountriesSelected()) {
             Country selectedAttackerCountry = (Country) lsv_ownedCountries.getSelectionModel().getSelectedItem();
             Country selectedDefenderCountry = (Country) lsv_adjacentCountries.getSelectionModel().getSelectedItem();
-            //TODO
-            Player attacker = selectedAttackerCountry.getOwner();
-            Player defender = selectedDefenderCountry.getOwner();
 
             int availableForAttackNbr = selectedAttackerCountry.getCountryArmyNumber() - 1;
             int availableForDefendNbr = selectedDefenderCountry.getCountryArmyNumber();
 
-            String battleReport = curPlayer.executeAttack(selectedAttackerCountry, attacker, selectedDefenderCountry,
-                    defender, availableForAttackNbr, availableForDefendNbr, true);
+            String battleReport = curPlayer.executeAttack(selectedAttackerCountry, selectedDefenderCountry, availableForAttackNbr, availableForDefendNbr, true);
             txa_attackInfoDisplay.setText(battleReport);
             refreshListView(selectedAttackerCountry);
             InfoRetriver.updateDominationView("from attack all out mode", vbx_worldDomiView);

@@ -91,7 +91,7 @@ public class StrategyRandom implements Strategy {
                 int actualArmy = randomArmy > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : randomArmy;
                 //Attack
                 int armyLeft = getOneAttackResult(attacker, enemy, actualArmy, defenceArmy, new StringBuilder());
-                AttackProcess.autoResultProcess(attacker, player, enemy, enemy.getOwner(), armyLeft);
+                AttackProcess.autoResultProcess(attacker, enemy, armyLeft);
                 randomAttackTime = attacker.getCountryArmyNumber() - 1;
             }
         }
