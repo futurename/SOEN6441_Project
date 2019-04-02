@@ -118,8 +118,8 @@ public class InitWorldMap {
                 }
             }
         }
-        printGraph(linkedHashMap);
-        printContinent(continentLinkedHashMap);
+        //printGraph(linkedHashMap);
+        //printContinent(continentLinkedHashMap);
         bufferedReader.close();
 
     }

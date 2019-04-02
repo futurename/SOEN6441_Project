@@ -3,7 +3,6 @@ package riskgame.model.BasicClass;
 import riskgame.Main;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 /**
  * This class represents a node in world map graph data structure, including a country object, its adjacent country objects and an
@@ -92,12 +91,12 @@ public class GraphNode {
     public void getReachableCountryListBFS(Player player, Country curCountry, ArrayList<Country> list) {
         int playerIndex = player.getPlayerIndex();
         String curCountryName = curCountry.getCountryName();
-        GraphNode curGraphNode = Main.graphSingleton.get(curCountryName);
+        GraphNode curGraphNode = player.getWorldMapInstance().get(curCountryName);
         ArrayList<Country> adjacentList = curGraphNode.getAdjacentCountryList();
         curGraphNode.setVisited(true);
         ArrayList<Country> queue = new ArrayList<>();
         for (Country country : adjacentList) {
-            GraphNode graphNode = Main.graphSingleton.get(country.getCountryName());
+            GraphNode graphNode = player.getWorldMapInstance().get(country.getCountryName());
             if (graphNode.getCountry().getOwnerIndex() == playerIndex && !graphNode.isVisited) {
                 list.add(graphNode.getCountry());
                 graphNode.setVisited(true);
