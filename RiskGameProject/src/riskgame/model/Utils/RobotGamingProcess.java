@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class RobotGamingProcess {
 
     public static void initRobotGaming(ArrayList<String> mapFileList, ArrayList<Strategy> robotPlayerList, int gamesValue, int gameRoundValue) {
-        System.out.println(mapFileList);
+        System.out.println(mapFileList + "\n");
 
         for (String fileName : mapFileList) {
             for (int gameIndex = 0; gameIndex < gamesValue; gameIndex++) {

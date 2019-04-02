@@ -224,7 +224,7 @@ public class FortificationViewController implements Initializable {
                     btn_confirmMoveArmy.setVisible(true);
                     btn_skipFortification.setVisible(true);
                     lsv_reachableCountry.setItems(reachableCountryList);
-                    ListviewRenderer.renderCountryItems(lsv_reachableCountry);
+                    ListviewRenderer.renderReachableCountryItems(lsv_reachableCountry);
                     updateDeploymentInfo(selectedCountry);
                     scb_armyNbrAdjustment.valueProperty()
                             .addListener((observable, oldValue, newValue) -> lbl_deployArmyNumber.setText(Integer.toString(newValue.intValue())));

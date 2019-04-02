@@ -29,6 +29,7 @@ public void before() throws Exception {
     mapPath = "maps/World.map";
 
     strategyArrayList = new ArrayList<>();
+
     strategyArrayList.add(new StrategyCheater());
     strategyArrayList.add(new StrategyRandom());
     strategyArrayList.add(new StrategyAggressive());
