@@ -262,7 +262,7 @@ public class FortificationViewController implements Initializable {
             GraphNode curGraphNode = graphSingleton.get(countryName);
             Country curCountry = curGraphNode.getCountry();
             ArrayList<Country> tempCountryList = new ArrayList<>();
-            curGraphNode.getReachableCountryListBFS(playerIndex, curCountry, tempCountryList);
+            curGraphNode.getReachableCountryListBFS(curPlayer, curCountry, tempCountryList);
             if (!tempCountryList.isEmpty()) {
                 result = false;
                 break;

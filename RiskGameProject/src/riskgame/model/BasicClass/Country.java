@@ -14,8 +14,8 @@ public class Country extends Observable{
     private String coordinateX;
     private String coordinateY;
     private int countryOwnerIndex;
+//    private Player owner;
     private int countryArmyNumber;
-//    private int formerOwner;
 
     /**
      * constructor for class Country

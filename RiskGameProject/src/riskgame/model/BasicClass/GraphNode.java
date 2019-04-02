@@ -60,7 +60,7 @@ public class GraphNode {
      *
      * @param visited true for visited and false for not visited
      */
-    void setVisited(boolean visited) {
+    public void setVisited(boolean visited) {
         isVisited = visited;
     }
 
@@ -85,11 +85,12 @@ public class GraphNode {
     /**
      * Breath first search for getting all reachable countries the player owns from the selected country
      *
-     * @param playerIndex current player index
+     * @param player    current player
      * @param curCountry  selected country starting for traverse
      * @param list        countries that are reachable from selected country
      */
-    public void getReachableCountryListBFS(int playerIndex, Country curCountry, ArrayList<Country> list) {
+    public void getReachableCountryListBFS(Player player, Country curCountry, ArrayList<Country> list) {
+        int playerIndex = player.getPlayerIndex();
         String curCountryName = curCountry.getCountryName();
         GraphNode curGraphNode = Main.graphSingleton.get(curCountryName);
         ArrayList<Country> adjacentList = curGraphNode.getAdjacentCountryList();
@@ -105,7 +106,7 @@ public class GraphNode {
         }
 
         while (!queue.isEmpty()) {
-            getReachableCountryListBFS(playerIndex, queue.remove(0), list);
+            getReachableCountryListBFS(player, queue.remove(0), list);
         }
     }
 
@@ -132,6 +133,7 @@ public class GraphNode {
             }
         }
     }
+
 
 
 }

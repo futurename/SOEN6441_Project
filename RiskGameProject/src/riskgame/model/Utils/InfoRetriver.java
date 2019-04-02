@@ -103,11 +103,18 @@ public class InfoRetriver {
     public static ArrayList<Country> getReachableCountry(Player player, String selectedCountryName) {
         int curPlayerIndex = player.getPlayerIndex();
         ArrayList<Country> countryList = new ArrayList<>();
-        GraphNode selectedGraphNode = Main.graphSingleton.get(selectedCountryName);
-        GraphSingleton.INSTANCE.resetGraphVisitedFlag();
+        GraphNode selectedGraphNode = player.getWorldMapInstance().get(selectedCountryName);
+        resetCountryVisitFlag(player);
         Country selectedCountry = selectedGraphNode.getCountry();
-        selectedGraphNode.getReachableCountryListBFS(curPlayerIndex, selectedCountry, countryList);
+        selectedGraphNode.getReachableCountryListBFS(player, selectedCountry, countryList);
         return countryList;
+    }
+
+    private static void resetCountryVisitFlag(Player player) {
+        LinkedHashMap<String, GraphNode> worldHashMap = player.getWorldMapInstance();
+        for(Map.Entry<String, GraphNode> node: worldHashMap.entrySet()){
+            node.getValue().setVisited(false);
+        }
     }
 
     /**
@@ -272,7 +279,6 @@ public class InfoRetriver {
         int calResult = countryNum / DEFAULT_DIVISION_FACTOR;
         return calResult > DEFAULT_MIN_REINFORCE_ARMY_NBR ? calResult : DEFAULT_MIN_REINFORCE_ARMY_NBR;
     }
-
 }
 
 

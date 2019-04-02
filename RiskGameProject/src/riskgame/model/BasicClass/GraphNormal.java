@@ -1,6 +1,7 @@
 package riskgame.model.BasicClass;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * @author WW
@@ -17,6 +18,5 @@ public class GraphNormal {
     public LinkedHashMap<String, GraphNode> getWorldHashMap() {
         return worldHashMap;
     }
-
 
 }
