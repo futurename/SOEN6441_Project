@@ -248,7 +248,6 @@ public class ReinforceViewController implements Initializable {
 //        UtilMethods.callNextRobotPhase();
 
         UtilMethods.endReinforcement(curPlayer);
-
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
         curStage.show();

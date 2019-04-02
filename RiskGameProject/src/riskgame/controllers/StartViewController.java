@@ -352,15 +352,15 @@ public class StartViewController implements Initializable {
      * onClick event for moving to reinforce phase view
      *
      * @param actionEvent proceed to reinforcement phase
-     * @throws IOException reinforceView.fxml not found
      */
     @FXML
-    public void clickNextToReinforcePhase(ActionEvent actionEvent) throws IOException {
+    public void clickNextToReinforcePhase(ActionEvent actionEvent) {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        notifyPhaseChanged();
+        //if continent is conquered at the beginning
         initContinentsOwner();
-        setPlayerWorldDominationView();
-
+        //allocate memory for all players
+        initPlayerDominationObserver();
+        notifyPhaseChanged();
         UtilMethods.callNextRobotPhase();
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
@@ -368,11 +368,11 @@ public class StartViewController implements Initializable {
     }
 
     /**
-     * set player domination view for reinforce phase for displaying corresponding information
+     * Allocate memory for all players.
+     * Set player domination view for reinforce phase for displaying corresponding information.
      */
-    private void setPlayerWorldDominationView() {
+    private void initPlayerDominationObserver() {
         playerDomiViewObserver.resetObservable(totalNumOfPlayers);
-
     }
 
     /**

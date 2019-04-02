@@ -295,7 +295,6 @@ public class FortificationViewController implements Initializable {
 //        UtilMethods.callNextRobotPhase();
 
         UtilMethods.endFortification(curPlayer);
-
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
         curStage.show();

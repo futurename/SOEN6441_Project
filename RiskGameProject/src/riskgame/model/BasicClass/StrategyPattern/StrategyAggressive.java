@@ -7,6 +7,7 @@ import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class StrategyAggressive implements Strategy {
@@ -53,12 +54,39 @@ public class StrategyAggressive implements Strategy {
 
     @Override
     public void doAttack(Player player) {
+        aggressivelyAttack(player);
+        UtilMethods.endAttack(player);
+    }
 
+    private void aggressivelyAttack(Player player) {
+        ArrayList<Country> attackable = InfoRetriver.getAttackableCountry(player);
+        if (!attackable.isEmpty()) {
+            //The list should contain a country base on aggressive rule
+            for (Country attacker: attackable){
+                ArrayList<Country> enemies = InfoRetriver.getAdjacentEnemy(player.getPlayerIndex(), attacker);
+                Collections.shuffle(enemies);
+                //keep attacking util all armies are fucked up
+                for (Country enemy: enemies){
+                    //cannot attack any more
+                    if (attacker.getCountryArmyNumber() < 2){
+                        break;
+                    }
+                    int attackArmy = attacker.getCountryArmyNumber() - 1;
+                    int defenceArmy = enemy.getCountryArmyNumber();
+                    player.alloutAttackSimulate(attacker, enemy, attackArmy, defenceArmy, false);
+                }
+            }
+        }
     }
 
     @Override
     public void doFortification(Player player) {
+        aggressivelyFortify();
+        UtilMethods.endFortification(player);
+    }
 
+    private void aggressivelyFortify(){
+        //do nothing
     }
 
     @Override
