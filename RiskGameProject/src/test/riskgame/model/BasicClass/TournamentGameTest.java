@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
 import riskgame.model.BasicClass.StrategyPattern.StrategyAggressive;
-import riskgame.model.BasicClass.StrategyPattern.StrategyCheater;
 import riskgame.model.BasicClass.StrategyPattern.StrategyRandom;
 import riskgame.model.BasicClass.TournamentGame;
 
@@ -30,12 +29,12 @@ public void before() throws Exception {
 
     strategyArrayList = new ArrayList<>();
 
-    strategyArrayList.add(new StrategyCheater());
+
     strategyArrayList.add(new StrategyRandom());
     strategyArrayList.add(new StrategyAggressive());
 
     gamesvalue = 3;
-    gameRoundValue = 30;
+    gameRoundValue = 10;
 } 
 
 @After

@@ -1,10 +1,7 @@
-package test;
-
 import mapeditor.Test.MapEditorTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import test.riskgame.controller.ControllerSuiteTest;
-import test.riskgame.model.Utils.UtilSuiteTest;
+
 
 /**
  * Suite tests for project test classes
@@ -14,8 +11,8 @@ import test.riskgame.model.Utils.UtilSuiteTest;
  **/
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        UtilSuiteTest.class,
-        ControllerSuiteTest.class,
+
+        test.riskgame.controller.ControllerSuiteTest.class,
         MapEditorTest.class
 })
 public class GameSuiteTest {
