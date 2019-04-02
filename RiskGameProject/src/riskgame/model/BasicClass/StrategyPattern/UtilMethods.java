@@ -164,7 +164,7 @@ public class UtilMethods {
         }
     }
 
-    public static void endReinforcement(Player player){
+    static void endReinforcement(Player player){
         if (StartViewController.reinforceInitCounter > 1) {
             notifyReinforcementEnd(false, player);
             StartViewController.reinforceInitCounter--;
@@ -180,62 +180,66 @@ public class UtilMethods {
      *
      * @param isAttackPhase true for going to attack phase otherwise, next player's turn
      */
-    private static void notifyReinforcementEnd(boolean isAttackPhase, Player player){
-        if (!isAttackPhase) {
-            int nextPlayerIndex = (player.getPlayerIndex() + 1) % totalNumOfPlayers;
-            phaseViewObservable.setAllParam("Reinforcement Phase", nextPlayerIndex, "Reinforcement Action");
-            phaseViewObservable.notifyObservers("continue reinforce");
-        } else {
+    public static void notifyReinforcementEnd(boolean isAttackPhase, Player player){
+        if (isAttackPhase) {
             phaseViewObservable.setAllParam("Attack Phase", curRoundPlayerIndex, "Attack Action");
             phaseViewObservable.notifyObservers("From ReinforceView to AttackView");
+            System.out.printf("%s player finished reinforcement, player %s's turn.\n", player.getPlayerIndex(), curRoundPlayerIndex);
+        } else {
+            int nextPlayerIndex = (player.getPlayerIndex() + 1) % totalNumOfPlayers;
+            phaseViewObservable.setAllParam("Reinforcement Phase", nextPlayerIndex, "Reinforcement Action");
+            phaseViewObservable.notifyObservers("Continue reinforcement");
+            System.out.printf("%s player finished reinforcement, player %s's turn.\n", player.getPlayerIndex(), nextPlayerIndex);
         }
     }
 
-    public static void endFortification(Player player){
+    static void endFortification(Player player){
         if (firstRoundCounter > 0) {
             firstRoundCounter--;
             if (firstRoundCounter == 0) {
                 curRoundPlayerIndex = -1;
             }
-            int nextPlayerIndex = (player.getPlayerIndex() + 1) % totalNumOfPlayers;
-            notifyFortificationEnd("Attack Phase", nextPlayerIndex, "Attack Action");
-
+            notifyFortificationEnd(true, player);
         } else {
-            curRoundPlayerIndex = InfoRetriver.getNextActivePlayer(player.getPlayerIndex());
-            notifyFortificationEnd("Reinforcement Phase", curRoundPlayerIndex, "Reinforcement Action");
+            notifyFortificationEnd(false, player);
         }
         callNextRobotPhase();
     }
 
     /**
      * Call phase view observable notify its observers.
-     *
-     * @param phase           phase name string
-     * @param nextPlayerIndex next valid player index
-     * @param actionType      action string
+     * @param player current player
      */
-    private static void notifyFortificationEnd(String phase, int nextPlayerIndex, String actionType) {
-        phaseViewObservable.setAllParam(phase, nextPlayerIndex, actionType);
-        phaseViewObservable.notifyObservers("from fortification view");
-        System.out.printf("A player finished fortification, player %s's turn\n", nextPlayerIndex);
+    public static void notifyFortificationEnd(boolean isAttackView, Player player) {
+        if (isAttackView){
+            int nextPlayerIndex = (player.getPlayerIndex()+1) % totalNumOfPlayers;
+            phaseViewObservable.setAllParam("Attack Phase", nextPlayerIndex, "Attack Action");
+            phaseViewObservable.notifyObservers("From fortification to attack");
+            System.out.printf("%s player finished fortification, player %s's turn.\n", player.getPlayerIndex(), nextPlayerIndex);
+        } else{
+            curRoundPlayerIndex = InfoRetriver.getNextActivePlayer(player.getPlayerIndex());
+            phaseViewObservable.setAllParam("Reinforcement Phase", curRoundPlayerIndex, "Reinforcement Action");
+            phaseViewObservable.notifyObservers("From fortification to reinforcement");
+            System.out.printf("%s player finished fortification, player %s's turn.\n", player.getPlayerIndex(), curRoundPlayerIndex);
+        }
     }
 
     /**
      * onClick event for moving to fortification phase of the game
      */
-    public static void endAttack(Player player) {
-        notifyAttackEnd(player.getPlayerIndex());
+    static void endAttack(Player player) {
+        notifyAttackEnd(player);
         callNextRobotPhase();
     }
 
     /**
      * notify phase view observers
      */
-    private static void notifyAttackEnd(int curPlayerIndex) {
+    public static void notifyAttackEnd(Player player) {
+        int curPlayerIndex = player.getPlayerIndex();
         Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "Fortification Action");
-        Main.phaseViewObservable.notifyObservers(Main.phaseViewObservable);
-
-        System.out.printf("player %s finished attack, player %s's turn\n", curPlayerIndex, curPlayerIndex);
+        Main.phaseViewObservable.notifyObservers("From attack to fortification");
+        System.out.printf("player %s finished attack, player %s's turn.\n", curPlayerIndex, curPlayerIndex);
     }
 
     public static <T extends Initializable> Scene startView(String phase, T controller){

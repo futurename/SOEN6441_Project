@@ -239,34 +239,16 @@ public class ReinforceViewController implements Initializable {
         System.out.println("\n???????????????????????????" + reinforceInitCounter);
 
         if (reinforceInitCounter > 1) {
-            checkNextViewNeedChange(false);
+            UtilMethods.notifyReinforcementEnd(false, curPlayer);
             reinforceInitCounter--;
         } else {
-            checkNextViewNeedChange(true);
+            UtilMethods.notifyReinforcementEnd(true, curPlayer);
         }
         //if not robot phase, method does nothing
         UtilMethods.callNextRobotPhase();
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
         curStage.show();
-    }
-
-    /**
-     * notify all phase view observer that game stage changed.
-     * Changes can be next player's reinforcement or going to attack phase.
-     *
-     * @param isAttackPhase true for going to attack phase otherwise, next player's turn
-     */
-    private void checkNextViewNeedChange(boolean isAttackPhase) {
-        if (!isAttackPhase) {
-            int nextPlayerIndex = (curPlayerIndex + 1) % Main.totalNumOfPlayers;
-            phaseViewObservable.setAllParam("Reinforcement Phase", nextPlayerIndex, "Reinforcement Action");
-            phaseViewObservable.notifyObservers("continue reinforce");
-
-        } else {
-            phaseViewObservable.setAllParam("Attack Phase", curRoundPlayerIndex, "Attack Action");
-            phaseViewObservable.notifyObservers("From ReinforceView to AttackView");
-        }
     }
 
     /**

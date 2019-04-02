@@ -290,11 +290,10 @@ public class AttackViewController implements Initializable {
      * onClick event for moving to fortification phase of the game
      *
      * @param actionEvent button is clicked
-     * @throws IOException FotificationView.fxml is not found
      */
-    public void clickNextStep(ActionEvent actionEvent) throws IOException {
+    public void clickNextStep(ActionEvent actionEvent) {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        notifyGamePhaseChanged();
+        UtilMethods.notifyAttackEnd(curPlayer);
         UtilMethods.callNextRobotPhase();
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
@@ -373,16 +372,6 @@ public class AttackViewController implements Initializable {
         lbl_defenderArmyNbr.setText("0");
         lbl_attackerArmyNbr.setText("0");
         lbl_attackerMaxArmyNbr.setText("0");
-    }
-
-    /**
-     * notify phaserview observers
-     */
-    private void notifyGamePhaseChanged() {
-        Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "Fortification Action");
-        Main.phaseViewObservable.notifyObservers(Main.phaseViewObservable);
-
-        System.out.printf("player %s finished attack, player %s's turn\n", curPlayerIndex, curPlayerIndex);
     }
 
     /**
