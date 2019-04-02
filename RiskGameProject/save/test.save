@@ -1,14 +1,14 @@
 [Map]
-author=Zworg2
+author=Athrun
 warn=yes
 image=london.bmp
 wrap=no
 scroll=horizontal
 
 [Players]
-Player_0,card1,card2,card3
-Player_0,card1,card2,card3
-Player_0,card1,card2,card3
+Player_0,player_type,card1,card2,card3
+Player_0,player_type,card1,card2,card3
+Player_0,player_type,card1,card2,card3
 
 [Continents]
 South Central London=3
