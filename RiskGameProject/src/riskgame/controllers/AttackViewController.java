@@ -293,9 +293,7 @@ public class AttackViewController implements Initializable {
      */
     public void clickNextStep(ActionEvent actionEvent) {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
         UtilMethods.endAttack(curPlayer);
-
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
         curStage.show();
@@ -320,7 +318,8 @@ public class AttackViewController implements Initializable {
             int attackArmyNbr = Integer.parseInt(lbl_attackerArmyNbr.getText());
             int defendArmyNbr = Integer.parseInt(lbl_defenderArmyNbr.getText());
 
-            String battleReport = curPlayer.executeAttack(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr);
+            String battleReport = curPlayer.executeAttack(attackingCountry, defendingCountry, attackArmyNbr,
+                    defendArmyNbr, false);
             txa_attackInfoDisplay.setText(battleReport);
 
             refreshListView(attackingCountry);
@@ -356,8 +355,7 @@ public class AttackViewController implements Initializable {
     private void refreshListView(Country attackingCountry) {
         lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
         lsv_ownedCountries.refresh();
-        lsv_adjacentCountries
-                .setItems(InfoRetriver.getAttackableAdjacentCountryList(curPlayerIndex, attackingCountry));
+        lsv_adjacentCountries.setItems(InfoRetriver.getAttackableAdjacentCountryList(curPlayerIndex, attackingCountry));
         lsv_adjacentCountries.refresh();
 
         resetArmyAdjustment();
@@ -386,11 +384,12 @@ public class AttackViewController implements Initializable {
             Country selectedAttackerCountry = (Country) lsv_ownedCountries.getSelectionModel().getSelectedItem();
             Country selectedDefenderCountry = (Country) lsv_adjacentCountries.getSelectionModel().getSelectedItem();
 
-            int avaliableForAttackNbr = selectedAttackerCountry.getCountryArmyNumber() - 1;
-            int avaliableForDefendNbr = selectedDefenderCountry.getCountryArmyNumber();
+            int availableForAttackNbr = selectedAttackerCountry.getCountryArmyNumber() - 1;
+            int availableForDefendNbr = selectedDefenderCountry.getCountryArmyNumber();
 
-            curPlayer.alloutModeAttack(selectedAttackerCountry, selectedDefenderCountry, avaliableForAttackNbr, avaliableForDefendNbr, txa_attackInfoDisplay);
-
+            String battleReport = curPlayer.executeAttack(selectedAttackerCountry, selectedDefenderCountry, availableForAttackNbr,
+                    availableForDefendNbr, true);
+            txa_attackInfoDisplay.setText(battleReport);
             refreshListView(selectedAttackerCountry);
             InfoRetriver.updateDominationView("from attack all out mode", vbx_worldDomiView);
 

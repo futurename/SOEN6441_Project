@@ -7,7 +7,8 @@ public interface Strategy {
     default void doReinforcement(Player player){};
     default void doReinforcement(Player humanPlayer, Country country ,int army){};
     default void doAttack(Player player){};
-    default String doAttack(Player humanPlayer, Country attackingCountry, Country defendingCountry, int attackArmy, int defendArmy){return "";};
+    default String doAttack(Player humanPlayer, Country attackingCountry, Country defendingCountry, int attackArmy,
+                            int defendArmy, boolean isAllout){return "";};
     default void doFortification(Player player){};
     default void doFortification(Country from, Country to ,int army){};
 

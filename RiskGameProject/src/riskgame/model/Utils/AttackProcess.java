@@ -153,7 +153,8 @@ public class AttackProcess {
      * @param attackPlayer attacker
      * @param defendPlayer defender
      */
-    public static void updateConqueredCountry(Country attackingCountry, Country defendingCountry, int remainingArmyNbr, Player attackPlayer, Player defendPlayer, boolean UIOption) {
+    public static void updateConqueredCountry(Country attackingCountry, Country defendingCountry, int remainingArmyNbr,
+                                              Player attackPlayer, Player defendPlayer, boolean UIOption) {
         int attackerIndex = attackPlayer.getPlayerIndex();
         System.out.printf("Before battle: attacker owned %d countries\n", attackPlayer.getOwnedCountryNameList().size());
 
@@ -177,7 +178,6 @@ public class AttackProcess {
             System.out.println("Player: " + defendPlayer.getPlayerIndex() + " fails, QUIT!");
             defendPlayer.setActiveStatus(false);
         }
-
         System.out.printf("After battle: attacker owned %d countries\n", attackPlayer.getOwnedCountryNameList().size());
     }
 

@@ -348,29 +348,16 @@ public class Player extends Observable implements Observer {
     }
 
     /**
-     * allout attack mode, which results in either attacker wins or defender wins.
-     *
-     * @param attackingCountry      attakcing country
-     * @param defendingCountry      defending country
-     * @param attackArmyNbr         army number of attacking country
-     * @param defendArmyNbr         army number of defending country
-     * @param txa_attackInfoDisplay UI control for display information
-     */
-    public void alloutModeAttack(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr, TextArea txa_attackInfoDisplay) {
-        alloutAttackSimulate(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, txa_attackInfoDisplay);
-    }
-
-    /**
      * Util method for recursive attacks
-     *
+     * allout attack mode, which results in either attacker wins or defender wins.
      * @param attackingCountry      attacking country
      * @param defendingCountry      defending country
      * @param attackArmyNbr         army number of attacking country
      * @param defendArmyNbr         army number of defending country
-     * @param txa_attackInfoDisplay UI control for displaying information
+     * @return battle info
      */
-    private void alloutAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr,
-                                     TextArea txa_attackInfoDisplay) {
+    public String alloutAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr,
+                                        int defendArmyNbr, boolean UIOption) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Attacker: [ ")
                 .append(attackingCountry.getCountryName())
@@ -385,16 +372,13 @@ public class Player extends Observable implements Observer {
             Player attacker = Main.playersList.get(attackingCountry.getCountryOwnerIndex());
             Player defender = Main.playersList.get(defendingCountry.getCountryOwnerIndex());
 
-            int attackerIndex = attacker.getPlayerIndex();
-            int defenderIndex = defender.getPlayerIndex();
-
             String continentName = defendingCountry.getContinentName();
             Continent curContinent = Main.worldContinentMap.get(continentName);
 
-            AttackProcess.updateConqueredCountry(attackingCountry, defendingCountry, nondeployedAttackerArmyNbr, attacker, defender, true);
-            AttackProcess.updateContinentAndWorldStatus(attacker, defender, curContinent, true);
+            AttackProcess.updateConqueredCountry(attackingCountry, defendingCountry, nondeployedAttackerArmyNbr, attacker, defender, UIOption);
+            AttackProcess.updateContinentAndWorldStatus(attacker, defender, curContinent, UIOption);
         }
-        txa_attackInfoDisplay.setText(stringBuilder.toString());
+        return stringBuilder.toString();
     }
 
     /**
@@ -467,8 +451,9 @@ public class Player extends Observable implements Observer {
      * @param defendArmyNbr         army number of defending country
      * @return battle info
      */
-    public String executeAttack(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr) {
-        return this.strategy.doAttack(this, attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr);
+    public String executeAttack(Country attackingCountry, Country defendingCountry, int attackArmyNbr,
+                                int defendArmyNbr, boolean isAllout) {
+        return this.strategy.doAttack(this, attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, isAllout);
     }
 
     public void executeReinforcement(){
