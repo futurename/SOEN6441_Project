@@ -163,7 +163,7 @@ public class AttackViewController implements Initializable {
      * @param curPlayer display all country names of the current player
      */
     private void initCountryListviewDisplay(Player curPlayer) {
-        ObservableList<Country> ownedObservevableCountryList = InfoRetriver.getObservableCountryList(curPlayer, Main.graphSingleton);
+        ObservableList<Country> ownedObservevableCountryList = InfoRetriver.getObservableCountryList(curPlayer);
         lsv_ownedCountries.setItems(ownedObservevableCountryList);
         ListviewRenderer.renderCountryItems(lsv_ownedCountries);
     }
@@ -292,7 +292,7 @@ public class AttackViewController implements Initializable {
      */
     public void clickNextStep(ActionEvent actionEvent) {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        UtilMethods.endAttack(curPlayer, Main.graphSingleton);
+        UtilMethods.endAttack(curPlayer);
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
         curStage.show();
@@ -352,7 +352,7 @@ public class AttackViewController implements Initializable {
      * @param attackingCountry the country for attacking
      */
     private void refreshListView(Country attackingCountry) {
-        lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer, Main.graphSingleton));
+        lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
         lsv_ownedCountries.refresh();
         lsv_adjacentCountries.setItems(InfoRetriver.getAttackableAdjacentCountryList(curPlayerIndex, attackingCountry));
         lsv_adjacentCountries.refresh();

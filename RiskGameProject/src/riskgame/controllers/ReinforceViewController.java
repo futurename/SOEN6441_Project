@@ -156,7 +156,7 @@ public class ReinforceViewController implements Initializable {
         lbl_countriesInfo.setTextFill(curPlayerColor);
         lbl_adjacentCountriesInfo.setTextFill(curPlayerColor);
         lbl_undeployedArmy.setText(Integer.toString(undeployed));
-        lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer, graphSingleton));
+        lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
 
         System.out.println("country display index: " + curPlayer.getPlayerIndex());
 
@@ -243,7 +243,7 @@ public class ReinforceViewController implements Initializable {
 //        }
 //        UtilMethods.callNextRobotPhase();
 
-        UtilMethods.endReinforcement(curPlayer, graphSingleton);
+        UtilMethods.endReinforcement(curPlayer);
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
         curStage.show();

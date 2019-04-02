@@ -431,7 +431,7 @@ public class Player extends Observable implements Observer {
     }
 
     public void executeAttack(){
-        this.strategy.doAttack(this, this.worldMapInstance);
+        this.strategy.doAttack(this);
     }
 
     /**
@@ -456,7 +456,7 @@ public class Player extends Observable implements Observer {
     }
 
     public void executeReinforcement(){
-        this.strategy.doReinforcement(this, this.worldMapInstance);
+        this.strategy.doReinforcement(this);
     }
 
     /**
@@ -473,7 +473,7 @@ public class Player extends Observable implements Observer {
     }
 
     public void executeFortification(){
-        this.strategy.doFortification(this, this.worldMapInstance);
+        this.strategy.doFortification(this);
     }
 
     public void executeFortification(Country from, Country to, int army){

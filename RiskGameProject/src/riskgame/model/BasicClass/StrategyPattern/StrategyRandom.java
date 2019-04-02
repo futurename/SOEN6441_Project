@@ -20,16 +20,16 @@ public class StrategyRandom implements Strategy {
     private Random r = new Random();
 
     @Override
-    public void doReinforcement(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
+    public void doReinforcement(Player player) {
         randomlyExchangeCard(player);
-        randomlyDeployArmy(player, worldHashMap);
-        UtilMethods.endReinforcement(player, worldHashMap);
+        randomlyDeployArmy(player);
+        UtilMethods.endReinforcement(player);
     }
 
-    private void randomlyDeployArmy(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
+    private void randomlyDeployArmy(Player player) {
         UtilMethods.getNewArmyPerRound(player);
         int availableArmy = player.getUndeployedArmy();
-        ArrayList<Country> countries = InfoRetriver.getCountryList(player, worldHashMap);
+        ArrayList<Country> countries = InfoRetriver.getCountryList(player);
         while (availableArmy > 0) {
             int randomArmy = r.nextInt(availableArmy) + 1;
             randomlyPickCountryFrom(countries).addToCountryArmyNumber(randomArmy);
@@ -68,14 +68,14 @@ public class StrategyRandom implements Strategy {
     }
 
     @Override
-    public void doAttack(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
-        randomlyAttack(player, worldHashMap);
-        UtilMethods.endAttack(player, worldHashMap);
+    public void doAttack(Player player) {
+        randomlyAttack(player);
+        UtilMethods.endAttack(player);
     }
 
-    private void randomlyAttack(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
+    private void randomlyAttack(Player player) {
         //pick a country that can attack
-        ArrayList<Country> attackable = InfoRetriver.getAttackableCountry(player, worldHashMap);
+        ArrayList<Country> attackable = InfoRetriver.getAttackableCountry(player);
         if (!attackable.isEmpty()) {
             Country attacker = randomlyPickCountryFrom(attackable);
             //pick an enemy
@@ -97,13 +97,13 @@ public class StrategyRandom implements Strategy {
     }
 
     @Override
-    public void doFortification(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
-        randomlyFortify(player, worldHashMap);
-        UtilMethods.endFortification(player, worldHashMap);
+    public void doFortification(Player player) {
+        randomlyFortify(player);
+        UtilMethods.endFortification(player);
     }
 
-    private void randomlyFortify(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
-        Country from = randomlyPickCountryFrom(InfoRetriver.getCountryList(player, worldHashMap));
+    private void randomlyFortify(Player player) {
+        Country from = randomlyPickCountryFrom(InfoRetriver.getCountryList(player));
         ArrayList<Country> reachableCountries = InfoRetriver.getReachableCountry(player.getPlayerIndex(), from.getCountryName());
         if (!reachableCountries.isEmpty()) {
             Country target = randomlyPickCountryFrom(reachableCountries);

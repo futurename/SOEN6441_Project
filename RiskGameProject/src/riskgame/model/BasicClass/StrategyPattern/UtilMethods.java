@@ -148,7 +148,7 @@ public class UtilMethods {
         return player.getUndeployedArmy();
     }
 
-    public static void callNextRobotPhase(LinkedHashMap<String, GraphNode> worldHashMap) {
+    public static void callNextRobotPhase() {
         Player nextPlayer = playersList.get(Main.phaseViewObserver.getPlayerIndex());
         String nextPhase = Main.phaseViewObserver.getPhaseName();
         if (!nextPlayer.getStrategy().toString().equals("Human")) {
@@ -172,7 +172,7 @@ public class UtilMethods {
      * Notify observer and auto call robots move until a human's turn.
      * @param player current player
      */
-    public static void endReinforcement(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
+    public static void endReinforcement(Player player) {
         if (StartViewController.reinforceInitCounter > 1) {
             notifyReinforcementEnd(false, player);
             StartViewController.reinforceInitCounter--;
@@ -180,7 +180,7 @@ public class UtilMethods {
             notifyReinforcementEnd(true, player);
         }
         //if not robot phase, method does nothing
-        callNextRobotPhase(worldHashMap);
+        callNextRobotPhase();
     }
 
     /**
@@ -208,7 +208,7 @@ public class UtilMethods {
      * Notify observer and auto call robots move until a human's turn.
      * @param player current player
      */
-    public static void endFortification(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
+    public static void endFortification(Player player) {
         if (firstRoundCounter > 0) {
             firstRoundCounter--;
             if (firstRoundCounter == 0) {
@@ -219,7 +219,7 @@ public class UtilMethods {
             notifyFortificationEnd(false, player);
         }
         //if not robot phase, method does nothing
-        callNextRobotPhase(worldHashMap);
+        callNextRobotPhase();
     }
 
     /**
@@ -246,10 +246,10 @@ public class UtilMethods {
      * Notify observer and auto call robots move until a human's turn.
      * @param player current player
      */
-    public static void endAttack(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
+    public static void endAttack(Player player) {
         notifyAttackEnd(player);
         //if not robot phase, method does nothing
-        callNextRobotPhase(worldHashMap);
+        callNextRobotPhase();
     }
 
     /**

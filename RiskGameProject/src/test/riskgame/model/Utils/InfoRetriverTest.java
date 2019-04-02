@@ -1,4 +1,4 @@
-package riskgame.model.Utils;
+package test.riskgame.model.Utils;
 
 import javafx.collections.ObservableList;
 import org.junit.After;
@@ -9,6 +9,7 @@ import riskgame.Main;
 import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.Utils.InfoRetriver;
 import test.util.GraphTester;
 
 import java.util.Collections;
@@ -91,7 +92,7 @@ public class InfoRetriverTest {
         int playerIndex = 1;
         Player player = Main.playersList.get(playerIndex);
 
-        ObservableList<Country> acturalList = InfoRetriver.getObservableCountryList(player, graphTester.getDemoGraph());
+        ObservableList<Country> acturalList = InfoRetriver.getObservableCountryList(player);
         Collections.sort(acturalList, (o1, o2) -> o1.getCountryName().compareTo(o2.getCountryName()));
 
         ObservableList<Country> expectedList = graphTester.getObservableCountryList(player);

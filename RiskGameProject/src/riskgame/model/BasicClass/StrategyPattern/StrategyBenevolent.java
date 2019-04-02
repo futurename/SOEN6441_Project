@@ -7,17 +7,17 @@ import java.util.LinkedHashMap;
 
 public class StrategyBenevolent implements Strategy {
     @Override
-    public void doReinforcement(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
+    public void doReinforcement(Player player) {
 
     }
 
     @Override
-    public void doAttack(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
+    public void doAttack(Player player) {
 
     }
 
     @Override
-    public void doFortification(Player player, LinkedHashMap<String, GraphNode> worldhashMap) {
+    public void doFortification(Player player) {
 
     }
 

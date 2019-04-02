@@ -116,18 +116,18 @@ public class InfoRetriver {
      * @param player current player
      * @return ObservableList of owned countries
      */
-    public static ObservableList<Country> getObservableCountryList(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
+    public static ObservableList<Country> getObservableCountryList(Player player) {
         ObservableList<Country> result;
-        ArrayList<Country> countryList = getCountryList(player, worldHashMap);
+        ArrayList<Country> countryList = getCountryList(player);
         result = FXCollections.observableArrayList(countryList);
         return result;
     }
 
-    public static ArrayList<Country> getCountryList(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
+    public static ArrayList<Country> getCountryList(Player player) {
         ArrayList<String> ownedCountryNameList = player.getOwnedCountryNameList();
         ArrayList<Country> countryList = new ArrayList<>();
         for (String name : ownedCountryNameList) {
-            Country country = worldHashMap.get(name).getCountry();
+            Country country = player.getWorldMapInstance().get(name).getCountry();
             countryList.add(country);
         }
         return countryList;
@@ -219,9 +219,9 @@ public class InfoRetriver {
         return isOneCountryHasAttackableCountry;
     }
 
-    public static ArrayList<Country> getAttackableCountry(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
+    public static ArrayList<Country> getAttackableCountry(Player player) {
         ArrayList<Country> attackable = new ArrayList<>();
-        ArrayList<Country> owned = InfoRetriver.getCountryList(player, worldHashMap);
+        ArrayList<Country> owned = InfoRetriver.getCountryList(player);
         for(Country country: owned){
             if(country.getCountryArmyNumber() > 1){
                 if (!InfoRetriver.getAdjacentEnemy(player.getPlayerIndex(), country).isEmpty()){
