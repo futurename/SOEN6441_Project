@@ -10,8 +10,6 @@ import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.Player;
-import riskgame.model.BasicClass.StrategyPattern.StrategyAggressive;
-import riskgame.model.BasicClass.StrategyPattern.StrategyHuman;
 import riskgame.model.Utils.AttackProcess;
 
 import java.util.ArrayList;
@@ -222,9 +220,9 @@ public class AttackProcessTest {
      */
     @Test
     public void testIsWorldConquered()  {
-        Assert.assertFalse(AttackProcess.isWorldConquered(playerAttacker.getPlayerIndex()));
+        Assert.assertFalse(AttackProcess.isWorldConquered(playerAttacker));
         demoContinent.setContinentOwnerIndex(playerAttacker.getPlayerIndex());
-        Assert.assertTrue(AttackProcess.isWorldConquered(playerAttacker.getPlayerIndex()));
+        Assert.assertTrue(AttackProcess.isWorldConquered(playerAttacker));
     }
 
 

@@ -73,7 +73,7 @@ public class TournamentGame implements Runnable {
 
 
     private void doRegularGaming(int gameRoundLeft) {
-        while (gameRoundLeft > 0 || gameWinner != -1) {
+        while (gameRoundLeft > 0 && gameWinner == -1) {
             for (int playerIndex = 0; playerIndex < robotPlayerList.size(); playerIndex++) {
                 Player curRobot = robotPlayerList.get(playerIndex);
                 if (curRobot.getActiveStatus()) {
@@ -113,7 +113,7 @@ public class TournamentGame implements Runnable {
     public void run() {
         try {
 
-            System.out.println("\n\n!!!!!!!!!!!!!!!tournamentGame instance start!!!");
+            System.out.println("\n\n!!!!!!!!tournamentGame instance start!!! map: " + mapFile + "\n\n");
 
             mainGamingLogic();
 
