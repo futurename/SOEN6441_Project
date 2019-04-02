@@ -1,4 +1,4 @@
-package test.riskgame.model.Utils;
+package riskgame.model.Utils;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -12,9 +12,9 @@ import org.junit.runners.Suite;
  **/
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        AttackProcessTest.class,
-        MapCheckerTest.class,
-        InfoRetriverTest.class
+        test.riskgame.model.Utils.AttackProcessTest.class,
+        test.riskgame.model.Utils.MapCheckerTest.class,
+        test.riskgame.model.Utils.InfoRetriverTest.class
 })
 public class UtilSuiteTest {
 }
