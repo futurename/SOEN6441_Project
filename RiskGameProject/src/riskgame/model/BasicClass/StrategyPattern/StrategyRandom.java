@@ -74,24 +74,23 @@ public class StrategyRandom implements Strategy {
     private void randomlyAttack(Player player){
         //pick a country that can attack
         ArrayList<Country> attackable = InfoRetriver.getAttackableCountry(player);
-        if (attackable.isEmpty()){
-            return;
-        }
-        Country attacker = randomlyPickCountryFrom(attackable);
-        //pick an enemy
-        ArrayList<Country> enemies = InfoRetriver.getAdjacentEnemy(player.getPlayerIndex(), attacker);
-        Country enemy = randomlyPickCountryFrom(enemies);
-        int defenceArmy = enemy.getCountryArmyNumber() > MAX_DEFENDING_ARMY_NUMBER ? MAX_DEFENDING_ARMY_NUMBER : enemy.getCountryArmyNumber();
-        //attack a country a number of times as grading sheet
-        int randomAttackTime = r.nextInt(attacker.getCountryArmyNumber()-1)+1;
-        for (int time = 0; time < randomAttackTime; time++){
-            //randomly send army
-            int randomArmy = r.nextInt(attacker.getCountryArmyNumber()-1)+1;
-            int actualArmy = randomArmy > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : randomArmy;
-            //Attack
-            int armyLeft = getOneAttackResult(attacker, enemy, actualArmy, defenceArmy, new StringBuilder());
-            AttackProcess.autoResultProcess(attacker, enemy, armyLeft);
-            randomAttackTime = attacker.getCountryArmyNumber()-1;
+        if (!attackable.isEmpty()) {
+            Country attacker = randomlyPickCountryFrom(attackable);
+            //pick an enemy
+            ArrayList<Country> enemies = InfoRetriver.getAdjacentEnemy(player.getPlayerIndex(), attacker);
+            Country enemy = randomlyPickCountryFrom(enemies);
+            int defenceArmy = enemy.getCountryArmyNumber() > MAX_DEFENDING_ARMY_NUMBER ? MAX_DEFENDING_ARMY_NUMBER : enemy.getCountryArmyNumber();
+            //attack a country a number of times as grading sheet
+            int randomAttackTime = r.nextInt(attacker.getCountryArmyNumber() - 1) + 1;
+            for (int time = 0; time < randomAttackTime; time++) {
+                //randomly send army
+                int randomArmy = r.nextInt(attacker.getCountryArmyNumber() - 1) + 1;
+                int actualArmy = randomArmy > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : randomArmy;
+                //Attack
+                int armyLeft = getOneAttackResult(attacker, enemy, actualArmy, defenceArmy, new StringBuilder());
+                AttackProcess.autoResultProcess(attacker, enemy, armyLeft);
+                randomAttackTime = attacker.getCountryArmyNumber() - 1;
+            }
         }
     }
 
