@@ -24,7 +24,7 @@ public class RobotGamingProcessTest {
     private int gameRoundValue;
 
 @Before
-public void before() throws Exception {
+public void before() {
     strategyArrayList = new ArrayList<>();
     strategyArrayList.add(new StrategyAggressive());
     strategyArrayList.add(new StrategyRandom());
