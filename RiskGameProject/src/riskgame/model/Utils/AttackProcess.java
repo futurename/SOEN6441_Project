@@ -123,9 +123,9 @@ public class AttackProcess {
 
             if (UIOption){
                 popupContinentConqueredAlert(attackerIndex, continentName, curContinent);
-                updateWorldOwner(attackerIndex);
+                updateWorldOwner(attacker);
             }else {
-                if (isWorldConquered(attackerIndex)){
+                if (isWorldConquered(attacker)){
                     winnerPlayerIndex = attackerIndex;
                 }
             }
@@ -269,26 +269,26 @@ public class AttackProcess {
         }
     }
 
-    private static void updateWorldOwner(int playerIndex) {
-        boolean result = isWorldConquered(playerIndex);
+    private static void updateWorldOwner(Player player) {
+        boolean result = isWorldConquered(player);
         if (result) {
             try {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("Game Over!");
-                alert.setContentText("Player [" + playerIndex + "] conquers the world! Game Over!");
+                alert.setContentText("Player [" + player.getPlayerIndex() + "] conquers the world! Game Over!");
                 alert.showAndWait();
             }catch (Error e){
                 System.out.println("Mute alter in updateWorldOwner");
             }
-            winnerPlayerIndex = playerIndex;
+            winnerPlayerIndex = player.getPlayerIndex();
         }
     }
 
-    public static boolean isWorldConquered(int playerIndex) {
+    public static boolean isWorldConquered(Player player) {
         boolean result = true;
-        for (Map.Entry<String, Continent> entry : Main.worldContinentMap.entrySet()) {
+        for (Map.Entry<String, Continent> entry : player.getContinentMapInstance().entrySet()) {
             int curOwnerIndex = entry.getValue().getContinentOwnerIndex();
-            if (curOwnerIndex != playerIndex) {
+            if (curOwnerIndex != player.getPlayerIndex()) {
                 result = false;
                 break;
             }

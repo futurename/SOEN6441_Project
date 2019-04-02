@@ -193,6 +193,10 @@ public class Player extends Observable implements Observer {
         return result;
     }
 
+    public LinkedHashMap<String, Continent> getContinentMapInstance() {
+        return continentMapInstance;
+    }
+
     public Strategy getStrategy() {
         return strategy;
     }
