@@ -34,7 +34,7 @@ public class AttackProcess {
     public static void attackResultProcess(Country attackingCountry, Country defendingCountry, int remainingArmyNbr) {
 
         String continentName = defendingCountry.getContinentName();
-        Continent curContinent = Main.worldContinentMap.get(continentName);
+        Continent curContinent = attackingCountry.getOwner().getContinentMapInstance().get(continentName);
 
         if (isCountryConquered(defendingCountry)) {
             updateConqueredCountry(attackingCountry, defendingCountry, remainingArmyNbr, true);
@@ -77,7 +77,7 @@ public class AttackProcess {
     public static void autoResultProcess(Country attackingCountry, Country defendingCountry, int remainingArmyNbr){
 
         String continentName = defendingCountry.getContinentName();
-        Continent curContinent = Main.worldContinentMap.get(continentName);
+        Continent curContinent = attackingCountry.getOwner().getContinentMapInstance().get(continentName);
 
         if (isCountryConquered(defendingCountry)) {
             updateConqueredCountry(attackingCountry, defendingCountry, remainingArmyNbr, false);
