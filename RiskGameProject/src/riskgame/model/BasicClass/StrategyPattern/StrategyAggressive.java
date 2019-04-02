@@ -3,6 +3,7 @@ package riskgame.model.BasicClass.StrategyPattern;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 
@@ -12,14 +13,14 @@ import java.util.Random;
 
 public class StrategyAggressive implements Strategy {
     @Override
-    public void doReinforcement(Player player) {
-        aggressivelyExchangeCard(player);
+    public void doReinforcement(Player player, PhaseViewObservable observable) {
+        aggressivelyExchangeCard(player, observable);
         aggressivelyDeployArmy(player);
         UtilMethods.endReinforcement(player);
     }
 
-    private void aggressivelyExchangeCard(Player player){
-        CardExchangeViewObserver cardObserver = UtilMethods.initCardObserver(player);
+    private void aggressivelyExchangeCard(Player player, PhaseViewObservable observable){
+        CardExchangeViewObserver cardObserver = UtilMethods.initCardObserver(player, observable);
         int curExchangeTime = cardObserver.getExchangeTime();
         ArrayList<Card> cards = cardObserver.getPlayerCards();
         int code = UtilMethods.availableCombo(cards);

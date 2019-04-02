@@ -10,6 +10,7 @@ import riskgame.controllers.TournamentModeViewController;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.BasicClass.TournamentGame;
 import riskgame.model.Utils.InfoRetriver;
@@ -32,17 +33,17 @@ public class UtilMethods {
      * @see UtilMethods#deregisterCardObserver(Player, CardExchangeViewObserver)
      * @param player player who will attach to the observer/ongoing player
      */
-    public static CardExchangeViewObserver initCardObserver(Player player){
+    public static CardExchangeViewObserver initCardObserver(Player player, PhaseViewObservable observable){
         CardExchangeViewObserver cardObserver = new CardExchangeViewObserver();
         player.addObserver(cardObserver);
         //init cards if player already had some
         player.initObservableCard();
         player.notifyObservers("Get players cards from observer.");
         //get current exchange time.
-        phaseViewObservable.addObserver(cardObserver);
-        phaseViewObservable.initObservableExchangeTime();
+        observable.addObserver(cardObserver);
+        observable.initObservableExchangeTime();
         //Although it will notify other phase view observer, but it won't change the its value.
-        phaseViewObservable.notifyObservers("keeping exchange time up to date.");
+        observable.notifyObservers("keeping exchange time up to date.");
         return cardObserver;
     }
 
@@ -156,7 +157,7 @@ public class UtilMethods {
         if (!nextPlayer.getStrategy().toString().equals("Human")) {
             switch (nextPhase) {
                 case "Reinforcement Phase":
-                    nextPlayer.executeReinforcement();
+                    nextPlayer.executeReinforcement(phaseViewObservable);
                     break;
                 case "Attack Phase":
                     nextPlayer.executeAttack();

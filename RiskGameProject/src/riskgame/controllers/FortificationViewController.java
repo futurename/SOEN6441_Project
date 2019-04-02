@@ -123,7 +123,6 @@ public class FortificationViewController implements Initializable {
             btn_confirmMoveArmy.setVisible(false);
             btn_skipFortification.setVisible(false);
         }
-        curPlayer.executeFortification();
     }
 
     /**

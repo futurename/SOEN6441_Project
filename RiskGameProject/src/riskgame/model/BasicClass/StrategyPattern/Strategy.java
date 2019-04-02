@@ -1,10 +1,11 @@
 package riskgame.model.BasicClass.StrategyPattern;
 
 import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.Player;
 
 public interface Strategy {
-    default void doReinforcement(Player player) {
+    default void doReinforcement(Player player, PhaseViewObservable observable) {
     }
 
     default void doReinforcement(Player humanPlayer, Country country, int army) {

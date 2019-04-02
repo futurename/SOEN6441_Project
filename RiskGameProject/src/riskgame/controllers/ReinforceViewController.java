@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import riskgame.Main;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
@@ -116,7 +117,6 @@ public class ReinforceViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         reinforceViewInit();
-        curPlayer.executeReinforcement();
         setUIInitStatus();
     }
 
@@ -215,7 +215,7 @@ public class ReinforceViewController implements Initializable {
                 curActionString = phaseViewObserver.getActionString();
                 break;
             case "CardView":
-                cardExchangeViewObserver = UtilMethods.initCardObserver(curPlayer);
+                cardExchangeViewObserver = UtilMethods.initCardObserver(curPlayer, phaseViewObservable);
                 playerCards = cardExchangeViewObserver.getPlayerCards();
                 break;
         }

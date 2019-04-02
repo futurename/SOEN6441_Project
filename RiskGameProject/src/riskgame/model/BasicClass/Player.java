@@ -3,6 +3,7 @@ package riskgame.model.BasicClass;
 
 import javafx.scene.paint.Color;
 import riskgame.Main;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
 import riskgame.model.BasicClass.StrategyPattern.StrategyHuman;
 import riskgame.model.Utils.AttackProcess;
@@ -455,8 +456,8 @@ public class Player extends Observable implements Observer {
         return this.strategy.doAttack(this, attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, isAllout);
     }
 
-    public void executeReinforcement(){
-        this.strategy.doReinforcement(this);
+    public void executeReinforcement(PhaseViewObservable observable){
+        this.strategy.doReinforcement(this, observable);
     }
 
     /**

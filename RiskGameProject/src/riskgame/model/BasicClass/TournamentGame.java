@@ -1,5 +1,6 @@
 package riskgame.model.BasicClass;
 
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
 import riskgame.model.Utils.InitPlayers;
 import riskgame.model.Utils.InitWorldMap;
@@ -25,6 +26,7 @@ public class TournamentGame implements Runnable {
     private LinkedHashMap<String, Continent> continentLinkedHashMap;
     private ArrayList<Player> robotPlayerList;
     private int gameWinner;
+    private PhaseViewObservable tournamentObservable;
 
     public TournamentGame(String mapFile, ArrayList<Strategy> playerStrategyList, int gameRoundValue) {
         this.mapFile = mapFile;
@@ -34,12 +36,14 @@ public class TournamentGame implements Runnable {
         this.continentLinkedHashMap = new LinkedHashMap<>();
         this.gameWinner = -1;
         this.robotPlayerList = new ArrayList<>();
+        this.tournamentObservable = new PhaseViewObservable();
+
     }
 
     private void mainGamingLogic() throws IOException {
         initMapAndPlayers();
 
-        doAllPlayerReinforcement(robotPlayerList);
+        doAllPlayerReinforcement(robotPlayerList, tournamentObservable);
 
         doAllPlayerAttackAndFortification(robotPlayerList);
 
@@ -73,7 +77,7 @@ public class TournamentGame implements Runnable {
             for (int playerIndex = 0; playerIndex < robotPlayerList.size(); playerIndex++) {
                 Player curRobot = robotPlayerList.get(playerIndex);
                 if (curRobot.getActiveStatus()) {
-                    curRobot.executeReinforcement();
+                    curRobot.executeReinforcement(tournamentObservable);
                     curRobot.executeAttack();
                     curRobot.executeFortification();
 
@@ -96,10 +100,10 @@ public class TournamentGame implements Runnable {
         }
     }
 
-    private void doAllPlayerReinforcement(ArrayList<Player> robotPlayerList) {
+    private void doAllPlayerReinforcement(ArrayList<Player> robotPlayerList, PhaseViewObservable tournamentObservable) {
         for (int playerIndex = 0; playerIndex < robotPlayerList.size(); playerIndex++) {
             Player curRobot = robotPlayerList.get(playerIndex);
-            curRobot.executeReinforcement();
+            curRobot.executeReinforcement(tournamentObservable);
 
             System.out.println("robot " + playerIndex + ": doAllPlayerReinforcement");
         }

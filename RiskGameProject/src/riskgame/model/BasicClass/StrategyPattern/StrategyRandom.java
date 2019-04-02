@@ -4,6 +4,7 @@ import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.AttackProcess;
 import riskgame.model.Utils.InfoRetriver;
@@ -20,8 +21,8 @@ public class StrategyRandom implements Strategy {
     private Random r = new Random();
 
     @Override
-    public void doReinforcement(Player player) {
-        randomlyExchangeCard(player);
+    public void doReinforcement(Player player, PhaseViewObservable observable) {
+        randomlyExchangeCard(player, observable);
         randomlyDeployArmy(player);
         UtilMethods.endReinforcement(player);
     }
@@ -46,8 +47,8 @@ public class StrategyRandom implements Strategy {
         return from.get(randomIndex);
     }
 
-    private void randomlyExchangeCard(Player player) {
-        CardExchangeViewObserver cardObserver = UtilMethods.initCardObserver(player);
+    private void randomlyExchangeCard(Player player, PhaseViewObservable observable) {
+        CardExchangeViewObserver cardObserver = UtilMethods.initCardObserver(player, observable);
         int curExchangeTime = cardObserver.getExchangeTime();
         ArrayList<Card> cards = cardObserver.getPlayerCards();
         if (cards.size() >= 5) {
