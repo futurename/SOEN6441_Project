@@ -379,7 +379,7 @@ public class Player extends Observable implements Observer {
             int nondeployedAttackerArmyNbr = attackingCountry.getCountryArmyNumber() - 1;
 
             String continentName = defendingCountry.getContinentName();
-            Continent curContinent = Main.worldContinentMap.get(continentName);
+            Continent curContinent = attackingCountry.getOwner().getContinentMapInstance().get(continentName);
 
             AttackProcess.updateConqueredCountry(attackingCountry, defendingCountry, nondeployedAttackerArmyNbr, UIOption);
             AttackProcess.updateContinentAndWorldStatus(attackingCountry.getOwner(), defendingCountry.getOwner(), curContinent, UIOption);

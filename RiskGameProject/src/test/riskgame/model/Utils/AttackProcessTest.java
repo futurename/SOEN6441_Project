@@ -222,9 +222,9 @@ public class AttackProcessTest {
      */
     @Test
     public void testIsWorldConquered()  {
-        Assert.assertFalse(AttackProcess.isWorldConquered(playerAttacker.getPlayerIndex()));
+        Assert.assertFalse(AttackProcess.isWorldConquered(playerAttacker));
         demoContinent.setContinentOwnerIndex(playerAttacker.getPlayerIndex());
-        Assert.assertTrue(AttackProcess.isWorldConquered(playerAttacker.getPlayerIndex()));
+        Assert.assertTrue(AttackProcess.isWorldConquered(playerAttacker));
     }
 
 
