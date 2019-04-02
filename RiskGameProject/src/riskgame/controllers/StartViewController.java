@@ -108,6 +108,9 @@ public class StartViewController implements Initializable {
     private Label lbl_disNumOfPlayer;
     @FXML
     private Label lbl_disMapPath;
+    @FXML
+    private Button btn_reset;
+
     /**
      * variable for storing map file path
      */
@@ -144,6 +147,7 @@ public class StartViewController implements Initializable {
     /**
      * set default map path, default number of players and its range, constrain the range of number of player with UI controls
      */
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
         setUIStatus(false);
 
@@ -215,6 +219,9 @@ public class StartViewController implements Initializable {
                             }
                         });
                         curStage.show();
+
+                        btn_reset.setVisible(false);
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -570,4 +577,5 @@ public class StartViewController implements Initializable {
         String titleString = "Select Location to Save Game:";
         InfoRetriver.showFileChooser(titleString);
     }
+
 }
