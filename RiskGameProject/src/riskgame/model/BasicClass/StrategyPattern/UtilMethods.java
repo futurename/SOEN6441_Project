@@ -164,13 +164,20 @@ public class UtilMethods {
         }
     }
 
-    static void endReinforcement(Player player){
+    /**
+     * Must be Called at end of reinforcement phase.
+     * Work out a proper phase to go.
+     * Notify observer and auto call robots move until a human's turn.
+     * @param player current player
+     */
+    public static void endReinforcement(Player player){
         if (StartViewController.reinforceInitCounter > 1) {
             notifyReinforcementEnd(false, player);
             StartViewController.reinforceInitCounter--;
         } else {
             notifyReinforcementEnd(true, player);
         }
+        //if not robot phase, method does nothing
         callNextRobotPhase();
     }
 
@@ -180,7 +187,7 @@ public class UtilMethods {
      *
      * @param isAttackPhase true for going to attack phase otherwise, next player's turn
      */
-    public static void notifyReinforcementEnd(boolean isAttackPhase, Player player){
+    private static void notifyReinforcementEnd(boolean isAttackPhase, Player player){
         if (isAttackPhase) {
             phaseViewObservable.setAllParam("Attack Phase", curRoundPlayerIndex, "Attack Action");
             phaseViewObservable.notifyObservers("From ReinforceView to AttackView");
@@ -193,7 +200,13 @@ public class UtilMethods {
         }
     }
 
-    static void endFortification(Player player){
+    /**
+     * Must be Called at end of fortification phase.
+     * Work out a proper phase to go.
+     * Notify observer and auto call robots move until a human's turn.
+     * @param player current player
+     */
+    public static void endFortification(Player player){
         if (firstRoundCounter > 0) {
             firstRoundCounter--;
             if (firstRoundCounter == 0) {
@@ -203,6 +216,7 @@ public class UtilMethods {
         } else {
             notifyFortificationEnd(false, player);
         }
+        //if not robot phase, method does nothing
         callNextRobotPhase();
     }
 
@@ -210,7 +224,7 @@ public class UtilMethods {
      * Call phase view observable notify its observers.
      * @param player current player
      */
-    public static void notifyFortificationEnd(boolean isAttackView, Player player) {
+    private static void notifyFortificationEnd(boolean isAttackView, Player player) {
         if (isAttackView){
             int nextPlayerIndex = (player.getPlayerIndex()+1) % totalNumOfPlayers;
             phaseViewObservable.setAllParam("Attack Phase", nextPlayerIndex, "Attack Action");
@@ -225,17 +239,21 @@ public class UtilMethods {
     }
 
     /**
-     * onClick event for moving to fortification phase of the game
+     * Must be Called at end of attack phase.
+     * Work out a proper phase to go
+     * Notify observer and auto call robots move until a human's turn.
+     * @param player current player
      */
-    static void endAttack(Player player) {
+    public static void endAttack(Player player) {
         notifyAttackEnd(player);
+        //if not robot phase, method does nothing
         callNextRobotPhase();
     }
 
     /**
      * notify phase view observers
      */
-    public static void notifyAttackEnd(Player player) {
+    private static void notifyAttackEnd(Player player) {
         int curPlayerIndex = player.getPlayerIndex();
         Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "Fortification Action");
         Main.phaseViewObservable.notifyObservers("From attack to fortification");

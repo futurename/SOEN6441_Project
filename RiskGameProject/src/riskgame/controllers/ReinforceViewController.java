@@ -219,7 +219,8 @@ public class ReinforceViewController implements Initializable {
                 curActionString = phaseViewObserver.getActionString();
                 break;
             case "CardView":
-                this.cardExchangeViewObserver = UtilMethods.initCardObserver(curPlayer);
+                cardExchangeViewObserver = UtilMethods.initCardObserver(curPlayer);
+                playerCards = cardExchangeViewObserver.getPlayerCards();
                 break;
         }
     }
@@ -238,14 +239,16 @@ public class ReinforceViewController implements Initializable {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         System.out.println("\n???????????????????????????" + reinforceInitCounter);
 
-        if (reinforceInitCounter > 1) {
-            UtilMethods.notifyReinforcementEnd(false, curPlayer);
-            reinforceInitCounter--;
-        } else {
-            UtilMethods.notifyReinforcementEnd(true, curPlayer);
-        }
-        //if not robot phase, method does nothing
-        UtilMethods.callNextRobotPhase();
+//        if (reinforceInitCounter > 1) {
+//            UtilMethods.notifyReinforcementEnd(false, curPlayer);
+//            reinforceInitCounter--;
+//        } else {
+//            UtilMethods.notifyReinforcementEnd(true, curPlayer);
+//        }
+//        UtilMethods.callNextRobotPhase();
+
+        UtilMethods.endReinforcement(curPlayer);
+
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
         curStage.show();

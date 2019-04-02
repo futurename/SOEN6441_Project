@@ -283,16 +283,19 @@ public class FortificationViewController implements Initializable {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         System.out.println("\n\nfirst round counter: " + firstRoundCounter + "\n\n");
 
-        if (firstRoundCounter > 0) {
-            firstRoundCounter--;
-            if (firstRoundCounter == 0) {
-                curRoundPlayerIndex = -1;
-            }
-            UtilMethods.notifyFortificationEnd(true, curPlayer);
-        } else {
-            UtilMethods.notifyFortificationEnd(false, curPlayer);
-        }
-        UtilMethods.callNextRobotPhase();
+//        if (firstRoundCounter > 0) {
+//            firstRoundCounter--;
+//            if (firstRoundCounter == 0) {
+//                curRoundPlayerIndex = -1;
+//            }
+//            UtilMethods.notifyFortificationEnd(true, curPlayer);
+//        } else {
+//            UtilMethods.notifyFortificationEnd(false, curPlayer);
+//        }
+//        UtilMethods.callNextRobotPhase();
+
+        UtilMethods.endFortification(curPlayer);
+
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
         curStage.show();

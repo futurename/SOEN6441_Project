@@ -293,8 +293,9 @@ public class AttackViewController implements Initializable {
      */
     public void clickNextStep(ActionEvent actionEvent) {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        UtilMethods.notifyAttackEnd(curPlayer);
-        UtilMethods.callNextRobotPhase();
+
+        UtilMethods.endAttack(curPlayer);
+
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
         curStage.show();
