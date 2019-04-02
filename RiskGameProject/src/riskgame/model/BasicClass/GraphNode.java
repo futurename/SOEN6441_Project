@@ -98,7 +98,7 @@ public class GraphNode {
         ArrayList<Country> queue = new ArrayList<>();
         for (Country country : adjacentList) {
             GraphNode graphNode = Main.graphSingleton.get(country.getCountryName());
-            if (graphNode.getCountry().getCountryOwnerIndex() == playerIndex && !graphNode.isVisited) {
+            if (graphNode.getCountry().getOwnerIndex() == playerIndex && !graphNode.isVisited) {
                 list.add(graphNode.getCountry());
                 graphNode.setVisited(true);
                 queue.add(country);
@@ -126,7 +126,7 @@ public class GraphNode {
 
         for (Country country : adjacentList) {
             GraphNode graphNode = Main.graphSingleton.get(country.getCountryName());
-            if (graphNode.getCountry().getCountryOwnerIndex() == playerIndex && !graphNode.isVisited) {
+            if (graphNode.getCountry().getOwnerIndex() == playerIndex && !graphNode.isVisited) {
                 list.add(graphNode.getCountry());
                 graphNode.setVisited(true);
                 getReachableCountryListDFS(playerIndex, country, list);

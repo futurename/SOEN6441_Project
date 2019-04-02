@@ -39,7 +39,7 @@ public class ListviewRenderer {
                 if (item != null) {
                     String countryName = item.getCountryName();
                     int armyNumber = item.getCountryArmyNumber();
-                    int playerIndex = item.getCountryOwnerIndex();
+                    int playerIndex = item.getOwnerIndex();
 
                     Color curPlayerColor = Main.playersList.get(playerIndex).getPlayerColor();
 
@@ -66,8 +66,8 @@ public class ListviewRenderer {
                 if (item != null) {
                     String countryName = item.getCountryName();
                     int armyNumber = item.getCountryArmyNumber();
-                    Player player = Main.playersList.get(item.getCountryOwnerIndex());
-
+//                    Player player = Main.playersList.get(item.getCountryOwnerIndex());
+                    Player player = item.getOwner();
                     Color curPlayerColor = player.getPlayerColor();
 
                     text = new Text();
@@ -129,7 +129,7 @@ public class ListviewRenderer {
                                 String curCountryName = text.toString().split("\"")[1];
 
                                 Country curCountry = Main.graphSingleton.get(curCountryName).getCountry();
-                                int curCountryOwnerIndex = curCountry.getCountryOwnerIndex();
+                                int curCountryOwnerIndex = curCountry.getOwnerIndex();
 
                                 Color curCountryColor = Main.playersList.get(curCountryOwnerIndex).getPlayerColor();
                                 text.setFill(curCountryColor);

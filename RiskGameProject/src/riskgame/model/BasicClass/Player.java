@@ -529,7 +529,7 @@ public class Player extends Observable implements Observer {
     public void update(Observable o, Object arg) {
         if (o instanceof Country) {
             Player formerOwner = this;
-            Player newOwner = Main.playersList.get(((Country) o).getCountryOwnerIndex());
+            Player newOwner = ((Country) o).getOwner();
             System.out.println("former: " + formerOwner.playerIndex);
             System.out.println("now: " + newOwner.playerIndex);
             System.out.printf("player %d obs awake\n", this.playerIndex);

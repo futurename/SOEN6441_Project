@@ -72,7 +72,7 @@ public class InfoRetriver {
 
         ArrayList<Country> attackableAdjacentCountryList = new ArrayList<>();
         for(Country country: adjacentCountryList){
-            if(country.getCountryOwnerIndex() != curPlayerIndex){
+            if(country.getOwnerIndex() != curPlayerIndex){
                 attackableAdjacentCountryList.add(country);
             }
         }

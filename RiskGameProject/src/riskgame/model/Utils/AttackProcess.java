@@ -149,7 +149,8 @@ public class AttackProcess {
         int attackerIndex = attackPlayer.getPlayerIndex();
         System.out.printf("Before battle: attacker owned %d countries\n", attackPlayer.getOwnedCountryNameList().size());
 
-        defendingCountry.setObservableOwner(attackerIndex);
+//        defendingCountry.setObservableOwner(attackerIndex);
+        defendingCountry.setObservableOwner(attackPlayer);
         defendingCountry.setObservableArmy(remainingArmyNbr);
         defendingCountry.notifyObservers("Conquered a country");
         attackingCountry.reduceFromCountryArmyNumber(remainingArmyNbr);
@@ -217,7 +218,7 @@ public class AttackProcess {
                 + curContinent.getContinentCountryNameList());
 
         for (Map.Entry<String, Country> entry : curContinent.getContinentCountryGraph().entrySet()) {
-            if (entry.getValue().getCountryOwnerIndex() != playerIndex) {
+            if (entry.getValue().getOwnerIndex() != playerIndex) {
                 result = false;
                 break;
             }
@@ -247,7 +248,7 @@ public class AttackProcess {
         LinkedHashMap<String, Country> continentCountryGraph = curContinent.getContinentCountryGraph();
 
         for (Map.Entry<String, Country> entry : continentCountryGraph.entrySet()) {
-            int curOwnerIndex = entry.getValue().getCountryOwnerIndex();
+            int curOwnerIndex = entry.getValue().getOwnerIndex();
             if (curOwnerIndex != playerIndex) {
                 result = false;
                 break;
@@ -259,8 +260,8 @@ public class AttackProcess {
             if (UIOption){
                 try {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setHeaderText("Contient conquered!");
-                    alert.setContentText("Contient [ " + curContinent.getContinentName() + " ] is conquered by Player [ " + playerIndex + " ]!  "
+                    alert.setHeaderText("Continent conquered!");
+                    alert.setContentText("Continent [ " + curContinent.getContinentName() + " ] is conquered by Player [ " + playerIndex + " ]!  "
                             + " Bonus: [" + curContinent.getContinentBonusValue() + "]");
                     alert.showAndWait();
                 }catch (Error e){

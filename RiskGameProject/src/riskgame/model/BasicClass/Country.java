@@ -13,8 +13,8 @@ public class Country extends Observable{
     private String continentName;
     private String coordinateX;
     private String coordinateY;
-    private int countryOwnerIndex;
-//    private Player owner;
+//    private int countryOwnerIndex;
+    private Player owner;
     private int countryArmyNumber;
 
     /**
@@ -27,7 +27,8 @@ public class Country extends Observable{
         this.continentName = null;
         this.coordinateX = "";
         this.coordinateY = "";
-        this.countryOwnerIndex = -1;
+//        this.countryOwnerIndex = -1;
+        this.owner = null;
         this.countryArmyNumber = 1;
     }
 
@@ -81,22 +82,34 @@ public class Country extends Observable{
      *
      * @return player index of the country owner
      */
-    public int getCountryOwnerIndex() {
-        return countryOwnerIndex;
+    public int getOwnerIndex() {
+        return owner.getPlayerIndex();
+    }
+
+    public Player getOwner() {
+        return owner;
     }
 
     /**
      * setter
      *
-     * @param countryOwnerIndex player index of the country owner
+     * @param newOwner player index of the country owner
      */
-    public void setCountryOwnerIndex(int countryOwnerIndex) {
-        this.countryOwnerIndex = countryOwnerIndex;
+//    public void setCountryOwnerIndex(int countryOwnerIndex) {
+//        this.countryOwnerIndex = countryOwnerIndex;
+//    }
+
+    public void setCountryOwner(Player newOwner) {
+        this.owner = newOwner;
     }
 
-    public void setObservableOwner(int countryOwnerIndex){
-//        formerOwner = this.countryOwnerIndex;
-        this.countryOwnerIndex = countryOwnerIndex;
+//    public void setObservableOwner(int countryOwnerIndex){
+//        this.countryOwnerIndex = countryOwnerIndex;
+//        setChanged();
+//    }
+
+    public void setObservableOwner(Player newOwner){
+        this.owner = newOwner;
         setChanged();
     }
 
