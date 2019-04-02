@@ -14,6 +14,7 @@ import riskgame.model.BasicClass.*;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static riskgame.Main.*;
@@ -115,18 +116,18 @@ public class InfoRetriver {
      * @param player current player
      * @return ObservableList of owned countries
      */
-    public static ObservableList<Country> getObservableCountryList(Player player) {
+    public static ObservableList<Country> getObservableCountryList(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
         ObservableList<Country> result;
-        ArrayList<Country> countryList = getCountryList(player);
+        ArrayList<Country> countryList = getCountryList(player, worldHashMap);
         result = FXCollections.observableArrayList(countryList);
         return result;
     }
 
-    public static ArrayList<Country> getCountryList(Player player) {
+    public static ArrayList<Country> getCountryList(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
         ArrayList<String> ownedCountryNameList = player.getOwnedCountryNameList();
         ArrayList<Country> countryList = new ArrayList<>();
         for (String name : ownedCountryNameList) {
-            Country country = graphSingleton.get(name).getCountry();
+            Country country = worldHashMap.get(name).getCountry();
             countryList.add(country);
         }
         return countryList;
@@ -218,9 +219,9 @@ public class InfoRetriver {
         return isOneCountryHasAttackableCountry;
     }
 
-    public static ArrayList<Country> getAttackableCountry(Player player){
+    public static ArrayList<Country> getAttackableCountry(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
         ArrayList<Country> attackable = new ArrayList<>();
-        ArrayList<Country> owned = InfoRetriver.getCountryList(player);
+        ArrayList<Country> owned = InfoRetriver.getCountryList(player, worldHashMap);
         for(Country country: owned){
             if(country.getCountryArmyNumber() > 1){
                 if (!InfoRetriver.getAdjacentEnemy(player.getPlayerIndex(), country).isEmpty()){

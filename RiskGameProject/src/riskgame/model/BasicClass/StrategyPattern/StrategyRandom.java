@@ -1,44 +1,44 @@
 package riskgame.model.BasicClass.StrategyPattern;
 
-import riskgame.Main;
-import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.AttackProcess;
 import riskgame.model.Utils.InfoRetriver;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Random;
 
-import static riskgame.Main.*;
 import static riskgame.controllers.AttackViewController.MAX_ATTACKING_ARMY_NUMBER;
 import static riskgame.controllers.AttackViewController.MAX_DEFENDING_ARMY_NUMBER;
-import static riskgame.controllers.StartViewController.firstRoundCounter;
 import static riskgame.model.BasicClass.Player.getOneAttackResult;
 
 public class StrategyRandom implements Strategy {
     private Random r = new Random();
 
     @Override
-    public void doReinforcement(Player player) {
+    public void doReinforcement(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
         randomlyExchangeCard(player);
-        randomlyDeployArmy(player);
-        UtilMethods.endReinforcement(player);
+        randomlyDeployArmy(player, worldHashMap);
+        UtilMethods.endReinforcement(player, worldHashMap);
     }
 
-    private void randomlyDeployArmy(Player player) {
+    private void randomlyDeployArmy(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
         UtilMethods.getNewArmyPerRound(player);
         int availableArmy = player.getUndeployedArmy();
-        ArrayList<Country> countries = InfoRetriver.getCountryList(player);
+        ArrayList<Country> countries = InfoRetriver.getCountryList(player, worldHashMap);
         while (availableArmy > 0) {
             int randomArmy = r.nextInt(availableArmy) + 1;
             randomlyPickCountryFrom(countries).addToCountryArmyNumber(randomArmy);
             player.addArmy(randomArmy);
             availableArmy -= randomArmy;
         }
-        player.addUndeployedArmy(-player.getUndeployedArmy());
+        player.addUndeployedArmy(player.getUndeployedArmy());
+
+        System.out.println("Random robot randomly deploy army\n");
     }
 
     private Country randomlyPickCountryFrom(ArrayList<Country> from){
@@ -63,17 +63,19 @@ public class StrategyRandom implements Strategy {
             }
         }
         UtilMethods.deregisterCardObserver(player, cardObserver);
+
+        System.out.println("Random robot randomly exchange cards!\n");
     }
 
     @Override
-    public void doAttack(Player player) {
-        randomlyAttack(player);
-        UtilMethods.endAttack(player);
+    public void doAttack(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
+        randomlyAttack(player, worldHashMap);
+        UtilMethods.endAttack(player, worldHashMap);
     }
 
-    private void randomlyAttack(Player player){
+    private void randomlyAttack(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
         //pick a country that can attack
-        ArrayList<Country> attackable = InfoRetriver.getAttackableCountry(player);
+        ArrayList<Country> attackable = InfoRetriver.getAttackableCountry(player, worldHashMap);
         if (!attackable.isEmpty()) {
             Country attacker = randomlyPickCountryFrom(attackable);
             //pick an enemy
@@ -95,13 +97,13 @@ public class StrategyRandom implements Strategy {
     }
 
     @Override
-    public void doFortification(Player player) {
-        randomlyFortify(player);
-        UtilMethods.endFortification(player);
+    public void doFortification(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
+        randomlyFortify(player, worldHashMap);
+        UtilMethods.endFortification(player, worldHashMap);
     }
 
-    private void randomlyFortify(Player player) {
-        Country from = randomlyPickCountryFrom(InfoRetriver.getCountryList(player));
+    private void randomlyFortify(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
+        Country from = randomlyPickCountryFrom(InfoRetriver.getCountryList(player, worldHashMap));
         ArrayList<Country> reachableCountries = InfoRetriver.getReachableCountry(player.getPlayerIndex(), from.getCountryName());
         if (!reachableCountries.isEmpty()) {
             Country target = randomlyPickCountryFrom(reachableCountries);

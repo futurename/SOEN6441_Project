@@ -32,7 +32,7 @@ public class InitPlayers {
             Strategy curStrategy = strategyList.get(playerIndex);
             Player onePlayer = new Player(playerIndex, curStrategy, worldHashMap);
             getInitCountryNameList(onePlayer, forAllocatesCountryNameList, numOfPlayers, worldHashMap, playerArrayList);
-            onePlayer.updateArmyNbr(worldHashMap);
+            onePlayer.updateArmyNbr();
 
             System.out.println("init player: " + playerIndex + ", army nbr: " + onePlayer.getArmyNbr());
         }

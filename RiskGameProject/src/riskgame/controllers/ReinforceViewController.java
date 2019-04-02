@@ -4,17 +4,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import riskgame.Main;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
@@ -23,7 +20,6 @@ import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -160,7 +156,7 @@ public class ReinforceViewController implements Initializable {
         lbl_countriesInfo.setTextFill(curPlayerColor);
         lbl_adjacentCountriesInfo.setTextFill(curPlayerColor);
         lbl_undeployedArmy.setText(Integer.toString(undeployed));
-        lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
+        lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer, graphSingleton));
 
         System.out.println("country display index: " + curPlayer.getPlayerIndex());
 
@@ -247,7 +243,7 @@ public class ReinforceViewController implements Initializable {
 //        }
 //        UtilMethods.callNextRobotPhase();
 
-        UtilMethods.endReinforcement(curPlayer);
+        UtilMethods.endReinforcement(curPlayer, graphSingleton);
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
         curStage.show();

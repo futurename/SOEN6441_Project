@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import riskgame.Main;
 import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Card;
+import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
@@ -14,6 +15,7 @@ import riskgame.model.Utils.InfoRetriver;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 
 import static riskgame.Main.*;
 import static riskgame.controllers.StartViewController.firstRoundCounter;
@@ -146,7 +148,7 @@ public class UtilMethods {
         return player.getUndeployedArmy();
     }
 
-    public static void callNextRobotPhase(){
+    public static void callNextRobotPhase(LinkedHashMap<String, GraphNode> worldHashMap) {
         Player nextPlayer = playersList.get(Main.phaseViewObserver.getPlayerIndex());
         String nextPhase = Main.phaseViewObserver.getPhaseName();
         if (!nextPlayer.getStrategy().toString().equals("Human")) {
@@ -170,7 +172,7 @@ public class UtilMethods {
      * Notify observer and auto call robots move until a human's turn.
      * @param player current player
      */
-    public static void endReinforcement(Player player){
+    public static void endReinforcement(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
         if (StartViewController.reinforceInitCounter > 1) {
             notifyReinforcementEnd(false, player);
             StartViewController.reinforceInitCounter--;
@@ -178,7 +180,7 @@ public class UtilMethods {
             notifyReinforcementEnd(true, player);
         }
         //if not robot phase, method does nothing
-        callNextRobotPhase();
+        callNextRobotPhase(worldHashMap);
     }
 
     /**
@@ -206,7 +208,7 @@ public class UtilMethods {
      * Notify observer and auto call robots move until a human's turn.
      * @param player current player
      */
-    public static void endFortification(Player player){
+    public static void endFortification(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
         if (firstRoundCounter > 0) {
             firstRoundCounter--;
             if (firstRoundCounter == 0) {
@@ -217,7 +219,7 @@ public class UtilMethods {
             notifyFortificationEnd(false, player);
         }
         //if not robot phase, method does nothing
-        callNextRobotPhase();
+        callNextRobotPhase(worldHashMap);
     }
 
     /**
@@ -244,10 +246,10 @@ public class UtilMethods {
      * Notify observer and auto call robots move until a human's turn.
      * @param player current player
      */
-    public static void endAttack(Player player) {
+    public static void endAttack(Player player, LinkedHashMap<String, GraphNode> worldHashMap) {
         notifyAttackEnd(player);
         //if not robot phase, method does nothing
-        callNextRobotPhase();
+        callNextRobotPhase(worldHashMap);
     }
 
     /**

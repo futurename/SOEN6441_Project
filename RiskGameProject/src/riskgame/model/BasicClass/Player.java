@@ -1,7 +1,6 @@
 package riskgame.model.BasicClass;
 
 
-import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import riskgame.Main;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
@@ -259,10 +258,10 @@ public class Player extends Observable implements Observer {
     /**
      * get the sum of army number in all owned countries
      */
-    public void updateArmyNbr(LinkedHashMap<String, GraphNode> linkedHashMap) {
+    public void updateArmyNbr() {
         int result = 0;
         for (String countryName : ownedCountryNameList) {
-            Country country = linkedHashMap
+            Country country = worldMapInstance
                     .get(countryName)
                     .getCountry();
             result += country.getCountryArmyNumber();
@@ -432,7 +431,7 @@ public class Player extends Observable implements Observer {
     }
 
     public void executeAttack(){
-        this.strategy.doAttack(this);
+        this.strategy.doAttack(this, this.worldMapInstance);
     }
 
     /**
@@ -457,7 +456,7 @@ public class Player extends Observable implements Observer {
     }
 
     public void executeReinforcement(){
-        this.strategy.doReinforcement(this);
+        this.strategy.doReinforcement(this, this.worldMapInstance);
     }
 
     /**
@@ -474,7 +473,7 @@ public class Player extends Observable implements Observer {
     }
 
     public void executeFortification(){
-        this.strategy.doFortification(this);
+        this.strategy.doFortification(this, this.worldMapInstance);
     }
 
     public void executeFortification(Country from, Country to, int army){
@@ -534,10 +533,10 @@ public class Player extends Observable implements Observer {
             System.out.println("now: " + newOwner.playerIndex);
             System.out.printf("player %d obs awake\n", this.playerIndex);
             formerOwner.ownedCountryNameList.remove(((Country) o).getCountryName());
-            formerOwner.updateArmyNbr(worldMapInstance);
+            formerOwner.updateArmyNbr();
             o.deleteObserver(this);
             newOwner.ownedCountryNameList.add(((Country) o).getCountryName());
-            newOwner.updateArmyNbr(worldMapInstance);
+            newOwner.updateArmyNbr();
             if (!newOwner.cardObtained) {
                 newOwner.setObservableCard(Card.getCard(Card.class));
                 newOwner.setCardPermission(true);

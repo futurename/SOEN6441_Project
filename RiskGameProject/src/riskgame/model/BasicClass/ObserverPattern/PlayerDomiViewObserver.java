@@ -62,7 +62,7 @@ public class PlayerDomiViewObserver implements Observer {
             int curControlContinentNbr = InfoRetriver.getConqueredContinentNbr(curPlayer);
             controlledContinentNbrList.set(playerIndex, curControlContinentNbr);
 
-            curPlayer.updateArmyNbr(curPlayer.getWorldMapInstance());
+            curPlayer.updateArmyNbr();
             int curArmyNbr = curPlayer.getArmyNbr();
             totalArmyNbrList.set(playerIndex, curArmyNbr);
 

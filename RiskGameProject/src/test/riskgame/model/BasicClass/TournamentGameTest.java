@@ -51,6 +51,8 @@ public void after() throws Exception {
 public void testGameStart() throws Exception {
     TournamentGame tournamentGameTester = new TournamentGame(mapPath, strategyArrayList, gameRoundValue);
 
+    System.out.println("test winner: " + tournamentGameTester.getGameWinner());
+
 } 
 
 

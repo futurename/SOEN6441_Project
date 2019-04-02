@@ -114,7 +114,7 @@ public class FortificationViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         initPhaseView();
 
-        lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
+        lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer, graphSingleton));
         ListviewRenderer.renderCountryItems(lsv_ownedCountries);
 
         boolean isOneCountryCanFortificate = isExistFortificationCountry(lsv_ownedCountries.getItems());
@@ -294,7 +294,7 @@ public class FortificationViewController implements Initializable {
 //        }
 //        UtilMethods.callNextRobotPhase();
 
-        UtilMethods.endFortification(curPlayer);
+        UtilMethods.endFortification(curPlayer, graphSingleton);
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
         curStage.show();

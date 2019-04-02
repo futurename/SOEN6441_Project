@@ -35,6 +35,20 @@ public class TournamentGame implements Runnable {
         this.gameWinner = -1;
     }
 
+    private void mainGamingLogic() throws IOException {
+        initMapAndPlayers();
+
+        doAllPlayerReinforcement(robotPlayerList);
+
+        doAllPlayerAttackAndFortification(robotPlayerList);
+
+        int gameRoundLeft = gameRoundValue - 1;
+
+        doRegularGaming(gameRoundLeft);
+
+        System.out.println("\n>>>>> Final winner: " + gameWinner + ", map: " + mapFile + "\n\n");
+    }
+
     private void initMapAndPlayers() throws IOException {
         GraphNormal worldGraphNormal = new GraphNormal();
         worldMapInstance = worldGraphNormal.getWorldHashMap();
@@ -48,19 +62,10 @@ public class TournamentGame implements Runnable {
         System.out.println("gameRoundValue: " + gameRoundValue);
         System.out.println("playerlist: " + robotPlayerList + "\n\n");
 
-        InitWorldMap.printGraph(worldMapInstance, robotPlayerList);
-
-        doAllPlayerReinforcement(robotPlayerList);
-
-        doAllPlayerAttackAndFortification(robotPlayerList);
-
-        int gameRoundLeft = gameRoundValue - 1;
-
-        doRegularGaming(gameRoundLeft);
-
-        System.out.println("\n>>>>> Final winner: " + gameWinner + ", map: " + mapFile + "\n\n");
+        //InitWorldMap.printGraph(worldMapInstance, robotPlayerList);
 
     }
+
 
     private void doRegularGaming(int gameRoundLeft) {
         while (gameRoundLeft > 0 || gameWinner != -1) {
@@ -104,10 +109,20 @@ public class TournamentGame implements Runnable {
         try {
 
             System.out.println("\n\n!!!!!!!!!!!!!!!tournamentGame instance start!!!");
-            initMapAndPlayers();
+
+            mainGamingLogic();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getGameWinner() {
+        String result = "Draw";
+
+        if (gameWinner != -1) {
+            result = robotPlayerList.get(gameWinner).getPlayerName();
+        }
+        return result;
     }
 }

@@ -91,7 +91,7 @@ public class InfoRetriverTest {
         int playerIndex = 1;
         Player player = Main.playersList.get(playerIndex);
 
-        ObservableList<Country> acturalList = InfoRetriver.getObservableCountryList(player);
+        ObservableList<Country> acturalList = InfoRetriver.getObservableCountryList(player, graphTester.getDemoGraph());
         Collections.sort(acturalList, (o1, o2) -> o1.getCountryName().compareTo(o2.getCountryName()));
 
         ObservableList<Country> expectedList = graphTester.getObservableCountryList(player);

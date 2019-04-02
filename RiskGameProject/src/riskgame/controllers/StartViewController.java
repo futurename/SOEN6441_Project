@@ -361,7 +361,7 @@ public class StartViewController implements Initializable {
         //allocate memory for all players
         initPlayerDominationObserver();
         notifyPhaseChanged();
-        UtilMethods.callNextRobotPhase();
+        UtilMethods.callNextRobotPhase(graphSingleton);
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
         curStage.show();
