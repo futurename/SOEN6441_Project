@@ -150,8 +150,8 @@ public class AttackProcess {
         System.out.printf("Before battle: attacker owned %d countries\n", attackPlayer.getOwnedCountryNameList().size());
 
 //        defendingCountry.setObservableOwner(attackerIndex);
-        defendingCountry.setObservableOwner(attackPlayer);
-        defendingCountry.setObservableArmy(remainingArmyNbr);
+        defendingCountry.setObservableArmyWhenOwnerChanged(attackPlayer, remainingArmyNbr);
+//        defendingCountry.setObservableArmy(remainingArmyNbr);
         defendingCountry.notifyObservers("Conquered a country");
         attackingCountry.reduceFromCountryArmyNumber(remainingArmyNbr);
 
