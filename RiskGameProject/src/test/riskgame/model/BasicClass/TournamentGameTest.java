@@ -52,7 +52,8 @@ public void testGameStart() throws Exception {
     tournamentGameTester.run();
     System.out.println("test winner: " + tournamentGameTester.getGameWinner());
 
-} 
+
+}
 
 
 /** 

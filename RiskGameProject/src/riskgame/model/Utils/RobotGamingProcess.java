@@ -51,7 +51,7 @@ public class RobotGamingProcess {
 
         }
 
-        executorPool.shutdown();
+        //executorPool.shutdown();
         try {
             executorPool.awaitTermination(2, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
@@ -59,6 +59,8 @@ public class RobotGamingProcess {
         }
 
         System.out.println("\n\n\n\n\n-------------FINAL RESULT:--------------");
+        System.out.println(gameResultQueue);
+
         processAllGamesResult(gameResultQueue, completionService, threadCount);
     }
 
