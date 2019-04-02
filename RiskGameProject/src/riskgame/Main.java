@@ -27,7 +27,6 @@ public class Main extends Application {
      * Static arraylist of players for storing all player objects
      */
     public static ArrayList<Player> playersList = new ArrayList<>();
-    public static ArrayList<Player> robotPlayerList = new ArrayList<>();
 
     /**
      * Indicating the index of current player in gaming
@@ -59,7 +58,7 @@ public class Main extends Application {
 
     /**
      * @param primaryStage default start page
-     * @throws Exception startview.fxml not found
+     * @throws Exception startView.fxml not found
      */
     @Override
     public void start(Stage primaryStage) throws Exception {

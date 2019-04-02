@@ -176,7 +176,7 @@ public class UtilMethods {
      */
     public static void endReinforcement(Player player) {
         //If single game mode
-        if (robotPlayerList.isEmpty()){
+        if (!playersList.isEmpty()){
             if (StartViewController.reinforceInitCounter > 1) {
                 notifyReinforcementEnd(false, player);
                 StartViewController.reinforceInitCounter--;
@@ -215,7 +215,7 @@ public class UtilMethods {
      */
     public static void endFortification(Player player) {
         //If single game mode
-        if (robotPlayerList.isEmpty()) {
+        if (!playersList.isEmpty()) {
             if (firstRoundCounter > 0) {
                 firstRoundCounter--;
                 if (firstRoundCounter == 0) {
@@ -256,7 +256,7 @@ public class UtilMethods {
      */
     public static void endAttack(Player player) {
         //If single game mode
-        if (robotPlayerList.isEmpty()) {
+        if (!playersList.isEmpty()) {
             notifyAttackEnd(player);
             //if not robot phase, method does nothing
             callNextRobotPhase();
