@@ -12,6 +12,7 @@ import riskgame.model.BasicClass.GraphNode;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static riskgame.Main.graphSingleton;
 import static riskgame.Main.playersList;
@@ -43,16 +44,44 @@ public class LoadGame{
      */
     @FXML
     public void clickConfirmLoadMap(String saveFilePath) throws IOException {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
         //saveChecker.checkCorrectness(saveFilePath);
 
-        //if (saveChecker.errorMsg.toString().isEmpty()) {
+        // if (saveChecker.errorMsg.toString().isEmpty()) {
         // build the map structure to the game
         buildWorldMapGraph(saveFilePath, graphSingleton, worldContinentMap);
         //if(){
+        //}
+    }
 
-        //}
-        //}
+    public static void printGraph(LinkedHashMap<String, GraphNode> worldHashMap) {
+        for (Map.Entry<String, GraphNode> entry : worldHashMap.entrySet()) {
+            String countryName = entry.getKey();
+            GraphNode node = entry.getValue();
+
+            System.out.println(">>>>>>>>>>>> country: " + countryName + ", continent: " + node.getCountry().getContinentName()
+                    + "<<<<<<<<<<<<<<<");
+            printGraphNode(node);
+        }
+    }
+
+    private static void printGraphNode(GraphNode node) {
+        for (Country country : node.getAdjacentCountryList()) {
+            String countryName = country.getCountryName();
+            String curPlayerName;
+
+            System.out.printf("[%s] : %d\n", countryName, country.getOwnerIndex());
+        }
+        System.out.println("\n");
+    }
+
+    private static void printContinent(LinkedHashMap<String, Continent> continentLinkedHashMap) {
+        for (Map.Entry<String, Continent> entry : continentLinkedHashMap.entrySet()) {
+            Continent curContinent = entry.getValue();
+            String curContinentName = entry.getKey();
+
+            System.out.println("\n---[" + curContinentName + "]---");
+            System.out.println(curContinent);
+        }
     }
 
     public static void LoadGame(String path, LinkedHashMap<String, GraphNode> linkedHashMap,
@@ -122,8 +151,8 @@ public class LoadGame{
                 }
             }
         }
-       //printGraph(linkedHashMap);
-        //printContinent(continentLinkedHashMap);
+        printGraph(linkedHashMap);
+        printContinent(continentLinkedHashMap);
         bufferedReader.close();
     }
 }
