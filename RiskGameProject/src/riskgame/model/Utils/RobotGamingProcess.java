@@ -76,11 +76,6 @@ public class RobotGamingProcess {
     private static void initRobotFinalView(BlockingQueue<Future<GameRunningResult>> gameResultQueue, int gamesValue, int gameRoundValue) {
         Stage resultStage = new Stage();
         FXMLLoader loader = new FXMLLoader(RobotGamingProcess.class.getResource("../../view/TournamentResultView.fxml"));
-        TournamentModeResultController controller = loader.getController();
-
-        controller.setGamesValue(gamesValue);
-        controller.setGameRoundValue(gameRoundValue);
-        controller.setResultBlockingQueue(gameResultQueue);
 
         Pane resultPane = null;
 
@@ -89,6 +84,11 @@ public class RobotGamingProcess {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        TournamentModeResultController controller = loader.getController();
+        controller.setGamesValue(gamesValue);
+        controller.setGameRoundValue(gameRoundValue);
+        controller.setResultBlockingQueue(gameResultQueue);
 
         Scene resultScene = new Scene(resultPane, 600, 600);
         resultStage.setScene(resultScene);
