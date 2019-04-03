@@ -38,12 +38,15 @@ public class TournamentModeResultViewController implements Initializable {
 
     private void generateFullGripPane(int gamesValue, int gameRoundValue) {
 
-        grp_gameResult.add(new TextField("good"), 3, 4);
+        grp_gameResult.setHgap(20);
+        grp_gameResult.setVgap(20);
 
         for (int row = 1; row <= gamesValue; row++) {
             for (int column = 1; column <= gameRoundValue; column++) {
 
-                grp_gameResult.add(new Label("T"), column, row);
+                Label label = new Label("good");
+                label.setText("alksdj");
+                grp_gameResult.add(new TextField("haha"), column, row);
             }
         }
     }
