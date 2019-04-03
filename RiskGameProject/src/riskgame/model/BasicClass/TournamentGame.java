@@ -89,9 +89,9 @@ public class TournamentGame implements Runnable {
 
                         System.out.println("Tournament game winner: " + gameWinner);
 
+                    } else {
+                        curRobot.executeFortification();
                     }
-
-                    curRobot.executeFortification();
 
                     System.out.println("robot " + playerIndex + ": regular gaming!  Round left: " + gameRoundLeft);
                 }
