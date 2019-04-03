@@ -1,0 +1,5 @@
+.label {
+    -fx-font-size: 14;
+    -fx-font-weight: BOLD;
+    -fx-border-style: solid;
+}

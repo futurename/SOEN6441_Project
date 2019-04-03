@@ -27,13 +27,16 @@ public class RobotGamingProcess {
 
         BlockingQueue<Future<GameRunningResult>> gameResultQueue = new LinkedBlockingQueue<>(threadCount);
 
-        CompletionService<GameRunningResult> completionService = new ExecutorCompletionService<>(executorPool, gameResultQueue);
+        //CompletionService<GameRunningResult> completionService = new ExecutorCompletionService<>(executorPool, gameResultQueue);
 
-        for (String fileName : mapFileList) {
+        for (int mapIndex = 0; mapIndex < mapFileList.size(); mapIndex++) {
             for (int gameIndex = 0; gameIndex < gamesValue; gameIndex++) {
-
+                String fileName = mapFileList.get(mapIndex);
                 String mapFileName = fileName;
                 String gameName = "Game " + gameIndex;
+
+                int finalGameIndex = gameIndex;
+                int finalMapIndex = mapIndex;
 
                 Future<GameRunningResult> future = executorPool.submit(new Callable<GameRunningResult>() {
                     @Override
@@ -42,7 +45,8 @@ public class RobotGamingProcess {
                         oneTournamentGame.run();
 
                         String winnerName = oneTournamentGame.getGameWinner();
-                        GameRunningResult curGameResult = new GameRunningResult(fileName, gameName, winnerName);
+
+                        GameRunningResult curGameResult = new GameRunningResult(fileName, finalMapIndex, gameName, finalGameIndex, winnerName);
 
                         System.out.println("\n\n>>>>>>>cur game result object: " + curGameResult + "<<<<<<\n\n");
 
@@ -66,33 +70,33 @@ public class RobotGamingProcess {
 
         System.out.println("\n\n\n\n\n-------------FINAL RESULT:--------------");
 
-        processAllGamesResult(gameResultQueue, completionService, threadCount);
+        initRobotFinalView(gameResultQueue, gamesValue, gameRoundValue, mapFileList);
+        //processAllGamesResult(gameResultQueue, completionService, threadCount);
 
-        executorPool.shutdown();
+        //executorPool.shutdown();
 
-        initRobotFinalView(gameResultQueue, gamesValue, gameRoundValue);
+
     }
 
-    private static void initRobotFinalView(BlockingQueue<Future<GameRunningResult>> gameResultQueue, int gamesValue, int gameRoundValue) {
+    private static void initRobotFinalView(BlockingQueue<Future<GameRunningResult>> gameResultQueue, int gamesValue, int gameRoundValue, ArrayList<String> mapFileList) {
         Stage resultStage = new Stage();
         FXMLLoader loader = new FXMLLoader(RobotGamingProcess.class.getResource("../../view/TournamentResultView.fxml"));
+        TournamentModeResultViewController controller = new TournamentModeResultViewController(gameResultQueue, gamesValue, gameRoundValue);
+        loader.setController(controller);
+        controller.setMapFileList(mapFileList);
 
         Pane resultPane = null;
-
         try {
             resultPane = loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        TournamentModeResultViewController controller = loader.getController();
-        controller.setGamesValue(gamesValue);
-        controller.setGameRoundValue(gameRoundValue);
-        controller.setResultBlockingQueue(gameResultQueue);
-
         Scene resultScene = new Scene(resultPane, 600, 600);
         resultStage.setScene(resultScene);
+
         resultStage.show();
+
     }
 
     private static void processAllGamesResult(BlockingQueue<Future<GameRunningResult>> gameResultQueue, CompletionService<GameRunningResult> completionService, int threadCount) {

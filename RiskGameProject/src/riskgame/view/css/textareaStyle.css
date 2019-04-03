@@ -7,10 +7,8 @@
     -fx-background-color: transparent, white, transparent, white;
 }
 
-.text-area:focused {
-    -fx-background-color: transparent, white, transparent, white;
-}
 
 .text-area *.text {
     -fx-text-alignment: center;
+    -fx-font-size: 15;
 }

@@ -8,12 +8,16 @@ package riskgame.model.BasicClass;
 
 public class GameRunningResult {
     private String mapFileName;
+    private int mapIndex;
     private String gameName;
+    private int gameValue;
     private String winnerName;
 
-    public GameRunningResult(String mapFileName, String gameName, String winnerName) {
+    public GameRunningResult(String mapFileName, int mapIndex, String gameName, int gameValue, String winnerName) {
         this.mapFileName = mapFileName;
+        this.mapIndex = mapIndex;
         this.gameName = gameName;
+        this.gameValue = gameValue;
         this.winnerName = winnerName;
     }
 
@@ -21,8 +25,16 @@ public class GameRunningResult {
         return mapFileName;
     }
 
+    public int getMapIndex() {
+        return mapIndex;
+    }
+
     public String getGameName() {
         return gameName;
+    }
+
+    public int getGameValue() {
+        return gameValue;
     }
 
     public String getWinnerName() {
@@ -33,7 +45,9 @@ public class GameRunningResult {
     public String toString() {
         return "GameRunningResult{" +
                 "mapFileName='" + mapFileName + '\'' +
+                ", mapIndex=" + mapIndex +
                 ", gameName='" + gameName + '\'' +
+                ", gameValue=" + gameValue +
                 ", winnerName='" + winnerName + '\'' +
                 '}';
     }
