@@ -17,7 +17,7 @@
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="btn_nextStep" layoutX="1018.0" layoutY="737.0" mnemonicParsing="false" onAction="#clickNextStep" prefHeight="35.0" prefWidth="127.0" text="NEXT" textFill="#fc0303" underline="true" visible="false" AnchorPane.bottomAnchor="112.0" AnchorPane.rightAnchor="55.0">
+        <Button fx:id="btn_nextStep" layoutX="1018.0" layoutY="737.0" mnemonicParsing="false" onAction="#clickNextStep" prefHeight="35.0" prefWidth="127.0" text="NEXT" textFill="#fc0303" underline="true" visible="false">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>
@@ -73,5 +73,17 @@
             </Label>
          </children>
       </AnchorPane>
+        <Button fx:id = "btn_saveGame" layoutX = "995.0" layoutY = "822.0" mnemonicParsing = "false" onAction = "#clickSaveGame" prefHeight = "51.0"
+                prefWidth = "77.0" text = "Save" textFill = "#fc0303" underline = "true">
+            <font>
+                <Font name = "System Bold" size = "20.0"/>
+            </font>
+        </Button>
+        <Button fx:id = "btn_loadGame" layoutX = "1095.0" layoutY = "822.0" mnemonicParsing = "false" onAction = "#clickLoadGame" prefHeight = "51.0"
+                prefWidth = "77.0" text = "Load" textFill = "#fc0303" underline = "true">
+         <font>
+             <Font name = "System Bold" size = "20.0"/>
+         </font>
+      </Button>
     </children>
 </AnchorPane>

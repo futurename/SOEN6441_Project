@@ -13,9 +13,9 @@ public class Country extends Observable{
     private String continentName;
     private String coordinateX;
     private String coordinateY;
-    private int countryOwnerIndex;
+//    private int countryOwnerIndex;
+    private Player owner;
     private int countryArmyNumber;
-//    private int formerOwner;
 
     /**
      * constructor for class Country
@@ -27,7 +27,8 @@ public class Country extends Observable{
         this.continentName = null;
         this.coordinateX = "";
         this.coordinateY = "";
-        this.countryOwnerIndex = -1;
+//        this.countryOwnerIndex = -1;
+        this.owner = null;
         this.countryArmyNumber = 1;
     }
 
@@ -81,22 +82,41 @@ public class Country extends Observable{
      *
      * @return player index of the country owner
      */
-    public int getCountryOwnerIndex() {
-        return countryOwnerIndex;
+    public int getOwnerIndex() {
+        return owner.getPlayerIndex();
+    }
+
+    public Player getOwner() {
+        return owner;
     }
 
     /**
      * setter
      *
-     * @param countryOwnerIndex player index of the country owner
+     * @param newOwner player index of the country owner
      */
-    public void setCountryOwnerIndex(int countryOwnerIndex) {
-        this.countryOwnerIndex = countryOwnerIndex;
+//    public void setCountryOwnerIndex(int countryOwnerIndex) {
+//        this.countryOwnerIndex = countryOwnerIndex;
+//    }
+
+    public void setCountryOwner(Player newOwner) {
+        this.owner = newOwner;
     }
 
-    public void setObservableOwner(int countryOwnerIndex){
-//        formerOwner = this.countryOwnerIndex;
-        this.countryOwnerIndex = countryOwnerIndex;
+//    public void setObservableOwner(int countryOwnerIndex){
+//        this.countryOwnerIndex = countryOwnerIndex;
+//        setChanged();
+//    }
+
+    /**
+     * Call when owner changed
+     * Call in attack process only, which needs to notify player
+     * @param newOwner new player
+     * @param army new move-in army(by attacker)
+     */
+    public void setObservableArmyWhenOwnerChanged(Player newOwner, int army){
+        this.owner = newOwner;
+        this.countryArmyNumber = army;
         setChanged();
     }
 
@@ -141,14 +161,18 @@ public class Country extends Observable{
 
 
     /**
-     * Setter
-     *
+     * Setter. Only be called in testing
+     * Do Not Call!
      * @param countryArmyNumber army number to be set to the country
      */
     public void setCountryArmyNumber(int countryArmyNumber) {
         this.countryArmyNumber = countryArmyNumber;
     }
 
+    /**
+     * Call in attack process, which needs to notify player
+     * @param countryArmyNumber army
+     */
     public void setObservableArmy(int countryArmyNumber) {
         this.countryArmyNumber = countryArmyNumber;
         setChanged();

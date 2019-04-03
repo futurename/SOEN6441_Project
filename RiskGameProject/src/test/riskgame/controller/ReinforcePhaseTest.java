@@ -9,6 +9,7 @@ import org.junit.Test;
 import riskgame.controllers.ReinforceViewController;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
+import riskgame.model.Utils.InfoRetriver;
 
 /**
  * ReinforcePhase Tester.
@@ -35,14 +36,14 @@ public class ReinforcePhaseTest {
      */
     @Test
     public void testGetStandardReinforceArmyNum() {
-        Assert.assertEquals(3, ReinforceViewController.getStandardReinforceArmyNum(9));
-        Assert.assertEquals(3, ReinforceViewController.getStandardReinforceArmyNum(10));
-        Assert.assertEquals(3, ReinforceViewController.getStandardReinforceArmyNum(11));
-        Assert.assertEquals(4, ReinforceViewController.getStandardReinforceArmyNum(12));
+        Assert.assertEquals(3, InfoRetriver.getStandardReinforceArmyNum(9));
+        Assert.assertEquals(3, InfoRetriver.getStandardReinforceArmyNum(10));
+        Assert.assertEquals(3, InfoRetriver.getStandardReinforceArmyNum(11));
+        Assert.assertEquals(4, InfoRetriver.getStandardReinforceArmyNum(12));
 
-        Assert.assertEquals(3, ReinforceViewController.getStandardReinforceArmyNum(8));
-        Assert.assertEquals(3, ReinforceViewController.getStandardReinforceArmyNum(0));
-        Assert.assertEquals(3, ReinforceViewController.getStandardReinforceArmyNum(-1));
+        Assert.assertEquals(3, InfoRetriver.getStandardReinforceArmyNum(8));
+        Assert.assertEquals(3, InfoRetriver.getStandardReinforceArmyNum(0));
+        Assert.assertEquals(3, InfoRetriver.getStandardReinforceArmyNum(-1));
     }
 
     @Test

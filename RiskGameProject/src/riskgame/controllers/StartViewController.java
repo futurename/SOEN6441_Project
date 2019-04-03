@@ -2,35 +2,42 @@ package riskgame.controllers;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import mapeditor.model.MapObject;
 import riskgame.Main;
 import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphSingleton;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.BasicClass.StrategyPattern.Strategy;
+import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
+import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.InitPlayers;
 import riskgame.model.Utils.ListviewRenderer;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import static riskgame.Main.*;
 import static riskgame.model.Utils.InitWorldMap.buildWorldMapGraph;
@@ -41,7 +48,7 @@ import static riskgame.model.Utils.InitWorldMap.buildWorldMapGraph;
  * @author Zhanfan, WW
  * @since build1
  **/
-public class StartViewController {
+public class StartViewController implements Initializable {
     /**
      * default number of players
      */
@@ -66,6 +73,7 @@ public class StartViewController {
      * reinforce round counter
      */
     public static int reinforceInitCounter;
+    private static ArrayList<Strategy> playerStrategyList;
     @FXML
     private TextField txf_mapPath;
     @FXML
@@ -88,6 +96,21 @@ public class StartViewController {
     private TextField txf_mapPromptInfo;
     @FXML
     private Button btn_infoSwitcher;
+    @FXML
+    private ToggleButton rbn_singleMode;
+    @FXML
+    private ToggleButton rbn_tournamentMode;
+    @FXML
+    private Button btn_loadGame;
+    @FXML
+    private Button btn_saveGame;
+    @FXML
+    private Label lbl_disNumOfPlayer;
+    @FXML
+    private Label lbl_disMapPath;
+    @FXML
+    private Button btn_reset;
+
     /**
      * variable for storing map file path
      */
@@ -117,10 +140,18 @@ public class StartViewController {
         graphSingleton = GraphSingleton.INSTANCE.getInstance();
     }
 
+    public static void setStrategyTypeList(ArrayList<Strategy> strategyArrayList) {
+        playerStrategyList = strategyArrayList;
+    }
+
     /**
      * set default map path, default number of players and its range, constrain the range of number of player with UI controls
      */
-    public void initialize() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setUIStatus(false);
+
+        initToggleButtons();
 
         txf_playerNumbers.setText(Integer.toString(DEFAULT_NUM_OF_PLAYERS));
 
@@ -132,6 +163,72 @@ public class StartViewController {
         if (numOfPlayersProperty.get() >= MAX_NUM_OF_PLAYERS) {
             btn_plusPlayerNumber.setVisible(false);
         }
+    }
+
+    private void setUIStatus(boolean visibility) {
+        lbl_disNumOfPlayer.setVisible(visibility);
+        btn_reducePlayerNumber.setVisible(visibility);
+        btn_plusPlayerNumber.setVisible(visibility);
+        txf_playerNumbers.setVisible(visibility);
+        btn_confirmPlayerNum.setVisible(visibility);
+        lbl_disMapPath.setVisible(visibility);
+        txf_mapPath.setVisible(visibility);
+        btn_loadFile.setVisible(visibility);
+        btn_confirmLoadFile.setVisible(visibility);
+    }
+
+    private void initToggleButtons() {
+        ToggleGroup toggleGroup = new ToggleGroup();
+        rbn_singleMode.setUserData(0);
+        rbn_singleMode.setToggleGroup(toggleGroup);
+        rbn_tournamentMode.setUserData(1);
+        rbn_tournamentMode.setToggleGroup(toggleGroup);
+        toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+
+                int selectedToggleIndex = (int) newValue.getUserData();
+
+                System.out.println("\ntoggle user data: " + newValue.getUserData() + "\n");
+
+                if (selectedToggleIndex == 0) {
+
+                    System.out.println("\nsingle mode selected");
+
+                    setUIStatus(true);
+                    rbn_tournamentMode.setVisible(false);
+                }
+                if (selectedToggleIndex == 1) {
+                    setUIStatus(false);
+                    rbn_singleMode.setVisible(false);
+
+                    Stage mainStage = (Stage) rbn_tournamentMode.getScene().getWindow();
+                    Stage curStage = new Stage();
+                    try {
+                        Pane tournamentModePane = new FXMLLoader(getClass().getResource("../view/TournamentModeView.fxml")).load();
+
+                        Scene tournamentScene = new Scene(tournamentModePane, 800, 400);
+                        curStage.setScene(tournamentScene);
+                        curStage.initOwner(mainStage);
+                        curStage.initModality(Modality.WINDOW_MODAL);
+                        curStage.setResizable(false);
+                        curStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                            @Override
+                            public void handle(WindowEvent event) {
+                                event.consume();
+                            }
+                        });
+                        curStage.show();
+
+                        btn_reset.setVisible(false);
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
     }
 
     /**
@@ -200,7 +297,7 @@ public class StartViewController {
         }
 
         if (mapChecker.errorMsg.toString().isEmpty()) {
-            buildWorldMapGraph(mapPath, graphSingleton);
+            buildWorldMapGraph(mapPath, graphSingleton, worldContinentMap);
 
             btn_confirmLoadFile.setVisible(false);
             btn_loadFile.setVisible(false);
@@ -214,13 +311,10 @@ public class StartViewController {
                 btn_nextStep.setVisible(true);
 
                 if (Main.playersList.isEmpty()) {
-                    InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton);
+                    InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton, worldContinentMap, playerStrategyList, playersList);
                 }
             }
         }
-
-        //System.out.println(txf_mapPath.getText() + ", " + mapChecker.checkCorrectness(mapPath));
-
         inputCounter--;
     }
 
@@ -232,7 +326,7 @@ public class StartViewController {
      */
     private void displayWorldMap(String path) throws IOException {
         if (graphSingleton.isEmpty()) {
-            buildWorldMapGraph(path, graphSingleton);
+            buildWorldMapGraph(path, graphSingleton, worldContinentMap);
         }
 
         hbx_infoDisplayHbox.getChildren().clear();
@@ -265,27 +359,27 @@ public class StartViewController {
      * onClick event for moving to reinforce phase view
      *
      * @param actionEvent proceed to reinforcement phase
-     * @throws IOException reinforcview.fxml not found
      */
     @FXML
-    public void clickNextToReinforcePhase(ActionEvent actionEvent) throws IOException {
-        setPhaseViewObservable();
-        initContinentsOwner();
-        setPlayerWorldDominationView();
-
+    public void clickNextToReinforcePhase(ActionEvent actionEvent) {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
-        Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
-        curStage.setScene(reinforceScene);
+        //if continent is conquered at the beginning
+        initContinentsOwner();
+        //allocate memory for all players
+        initPlayerDominationObserver();
+        notifyPhaseChanged();
+        UtilMethods.callNextRobotPhase();
+        Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
+        curStage.setScene(scene);
         curStage.show();
     }
 
     /**
-     * set player domination view for reinforce phase for displaying corresponding information
+     * Allocate memory for all players.
+     * Set player domination view for reinforce phase for displaying corresponding information.
      */
-    private void setPlayerWorldDominationView() {
+    private void initPlayerDominationObserver() {
         playerDomiViewObserver.resetObservable(totalNumOfPlayers);
-
     }
 
     /**
@@ -300,7 +394,7 @@ public class StartViewController {
                 int count = 0;
                 int max = continent.getContinentCountryGraph().values().size();
                 for (Country country : continent.getContinentCountryGraph().values()) {
-                    if (country.getCountryOwnerIndex() != playerIndex) {
+                    if (country.getOwnerIndex() != playerIndex) {
                         break;
                     }
                     count++;
@@ -316,7 +410,6 @@ public class StartViewController {
                 continent.setContinentOwnerIndex(owner);
                 Player curPlayer = playersList.get(owner);
                 curPlayer.addContinentBonus(continent.getContinentBonusValue());
-
             }
         }
     }
@@ -324,12 +417,10 @@ public class StartViewController {
     /**
      * set phase view observable params for reinforce phase for displaying corresponding information
      */
-    private void setPhaseViewObservable() {
-        String nextPhaseName = "Reinforcement Phase";
+    private void notifyPhaseChanged() {
         int nextPlayerIndex = curRoundPlayerIndex;
-
         phaseViewObservable.resetObservable();
-        phaseViewObservable.setAllParam(nextPhaseName, nextPlayerIndex, "Reinforcement Action");
+        phaseViewObservable.setAllParam("Reinforcement Phase", nextPlayerIndex, "Reinforcement Action");
         phaseViewObservable.notifyObservers("from startView to reinforceView");
     }
 
@@ -339,7 +430,7 @@ public class StartViewController {
      * @param actionEvent confirm the number of players
      */
     @FXML
-    public void clickConfirmPlayerNum(ActionEvent actionEvent) {
+    public void clickConfirmPlayerNum(ActionEvent actionEvent) throws IOException {
         totalNumOfPlayers = Integer.parseInt(txf_playerNumbers.getText());
         firstRoundCounter = totalNumOfPlayers - 1;
         reinforceInitCounter = totalNumOfPlayers;
@@ -354,6 +445,41 @@ public class StartViewController {
             displayPlayerInfo();
             btn_nextStep.setVisible(true);
         }
+        /*//set strategies for every player
+        for (int playerIndex = 0; playerIndex < Main.totalNumOfPlayers; playerIndex++) {
+            playerStrategyList.add(new StrategyHuman());
+        }
+        playerStrategyList.set(1, new StrategyRandom());*/
+
+        loadPlayerTypeSelectionView();
+
+    }
+
+    private void loadPlayerTypeSelectionView() throws IOException {
+
+        Stage mainStage = (Stage) btn_confirmPlayerNum.getScene().getWindow();
+        Stage curStage = new Stage();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/PlayerTypeSelection.fxml"));
+        Pane playerSelectionPane = loader.load();
+        Scene playerSelectionScene = new Scene(playerSelectionPane, 400, 600);
+        curStage.setScene(playerSelectionScene);
+        curStage.initOwner(mainStage);
+        curStage.initModality(Modality.WINDOW_MODAL);
+        curStage.setResizable(false);
+        curStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                event.consume();
+            }
+        });
+
+        PlayerTypeSelectionController playerTypeSelectionController = loader.getController();
+
+        playerTypeSelectionController.setNumOfPlayers(totalNumOfPlayers);
+        playerTypeSelectionController.InitViewSettings();
+
+        curStage.show();
     }
 
     /**
@@ -362,7 +488,7 @@ public class StartViewController {
     private void displayPlayerInfo() {
         isMapInfoOn = false;
         if (playersList.isEmpty()) {
-            InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton);
+            InitPlayers.initPlayers(totalNumOfPlayers, graphSingleton, worldContinentMap, playerStrategyList, playersList);
         }
         txf_mapPromptInfo.setText("Players Info");
 
@@ -375,7 +501,7 @@ public class StartViewController {
 
         for (int playerIndex = 0; playerIndex < Main.totalNumOfPlayers; playerIndex++) {
             Player curPlayer = Main.playersList.get(playerIndex);
-            String playerString = "Player : " + playerIndex;
+            String playerString = curPlayer.getPlayerName();
 
             ObservableList<String> datalist = FXCollections.observableArrayList();
             datalist.add(playerString);
@@ -437,17 +563,19 @@ public class StartViewController {
      * @throws IOException map file not found
      */
     public void clickLoadMap(ActionEvent actionEvent) throws IOException {
-        Stage fileStage = null;
-
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select map file");
-
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Map files(*.map)", "*.map");
-        fileChooser.getExtensionFilters().add(extFilter);
-        File file = fileChooser.showOpenDialog(fileStage);
+        String titleString = "Select Map File:";
+        File file = InfoRetriver.showFileChooser(titleString);
         txf_mapPath.setText(file.getAbsolutePath());
     }
 
+    public void clickLoadGame(ActionEvent actionEvent) {
+        String titleString = "Select Saved Map File:";
+        InfoRetriver.showFileChooser(titleString);
+    }
+
+    public void clickSaveGame(ActionEvent actionEvent) {
+        String titleString = "Select Location to Save Game:";
+        InfoRetriver.showFileChooser(titleString);
+    }
 
 }

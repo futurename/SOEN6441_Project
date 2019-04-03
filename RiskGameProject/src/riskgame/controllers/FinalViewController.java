@@ -2,7 +2,7 @@ package riskgame.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
-import riskgame.model.Utils.AttackProcess;
+import riskgame.model.BasicClass.Player;
 
 /**
  * created on 2019/03/17_23:04
@@ -13,15 +13,23 @@ public class FinalViewController {
     @FXML
     private TextArea txa_gameOverInfo;
 
+    private Player winner;
+
     public void initialize(){
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append("GAME OVER!")
                 .append("\n\n\n")
                 .append("Player <")
-                .append(AttackProcess.winnerPlayerIndex)
+                .append(winner.getPlayerIndex())
+                .append(", Name: ")
+                .append(winner.getPlayerName())
                 .append("> WINS!");
 
         txa_gameOverInfo.setText(stringBuilder.toString());
+    }
+
+    public void setWinner(Player winner) {
+        this.winner = winner;
     }
 }

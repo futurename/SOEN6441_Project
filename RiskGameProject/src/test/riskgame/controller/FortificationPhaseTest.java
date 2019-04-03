@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
+import riskgame.model.BasicClass.Player;
 import test.util.GraphTester;
 
 import java.util.ArrayList;
@@ -20,10 +21,16 @@ import java.util.LinkedHashMap;
 
 public class FortificationPhaseTest {
     private GraphTester graphTester;
+    private Player player0;
+    private Player player1;
+    private Player player2;
 
     @Before
     public void before() throws Exception {
         graphTester = new GraphTester();
+        player0 = new Player(0);
+        player1 = new Player(1);
+        player2 = new Player(2);
     }
 
     @After
@@ -39,7 +46,7 @@ public class FortificationPhaseTest {
         LinkedHashMap<String, GraphNode> worldGraph = graphTester.getDemoGraph();
         Country uralCountry = graphTester.getDemoGraph().get("Ural").getCountry();
         ArrayList<Country> playerZeroCountryListFromUral = new ArrayList<>();
-        worldGraph.get("Ural").getReachableCountryListBFS(0, uralCountry, playerZeroCountryListFromUral);
+        worldGraph.get("Ural").getReachableCountryListBFS(player0, uralCountry, playerZeroCountryListFromUral);
 
         ArrayList<String> countryNameList = new ArrayList<>();
         for (Country country : playerZeroCountryListFromUral) {
@@ -59,7 +66,7 @@ public class FortificationPhaseTest {
         LinkedHashMap<String, GraphNode> worldGraph = graphTester.getDemoGraph();
         Country chinaCountry = graphTester.getDemoGraph().get("China").getCountry();
         ArrayList<Country> playerOneCountryListFromChina = new ArrayList<>();
-        worldGraph.get("China").getReachableCountryListBFS(1, chinaCountry, playerOneCountryListFromChina);
+        worldGraph.get("China").getReachableCountryListBFS(player1, chinaCountry, playerOneCountryListFromChina);
 
         ArrayList<String> countryNameList = new ArrayList<>();
         for (Country country : playerOneCountryListFromChina) {
@@ -79,7 +86,7 @@ public class FortificationPhaseTest {
         LinkedHashMap<String, GraphNode> worldGraph = graphTester.getDemoGraph();
         Country indonesiaCountry = graphTester.getDemoGraph().get("Indonesia").getCountry();
         ArrayList<Country> playerTwoCountryListFromIndonesia = new ArrayList<>();
-        worldGraph.get("Indonesia").getReachableCountryListBFS(2, indonesiaCountry, playerTwoCountryListFromIndonesia);
+        worldGraph.get("Indonesia").getReachableCountryListBFS(player2, indonesiaCountry, playerTwoCountryListFromIndonesia);
 
         ArrayList<String> countryNameList = new ArrayList<>();
         for (Country country : playerTwoCountryListFromIndonesia) {

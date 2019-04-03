@@ -13,8 +13,11 @@ import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
 
+import java.util.ArrayList;
+
 /**
  * This class includes methods for rendering itmes displayed in ListViews
+ *
  * @author WW
  * @since build1
  **/
@@ -36,13 +39,55 @@ public class ListviewRenderer {
                 if (item != null) {
                     String countryName = item.getCountryName();
                     int armyNumber = item.getCountryArmyNumber();
-                    int playerIndex = item.getCountryOwnerIndex();
-
-                    //System.out.println(">>>in renderer, player:  " + playerIndex + ", countryname: " + countryName + ", army: " + armyNumber);
+                    int playerIndex = item.getOwnerIndex();
 
                     Color curPlayerColor = Main.playersList.get(playerIndex).getPlayerColor();
 
                     text = new Text(item.getCountryName() + " : " + armyNumber);
+                    text.setFill(curPlayerColor);
+                    setGraphic(text);
+                }
+                if (empty) {
+                    setText(null);
+                    setGraphic(null);
+                }
+            }
+        });
+    }
+
+    public static void renderReachableCountryItems(ListView<Country> lsv_reachableCountry) {
+        lsv_reachableCountry.setCellFactory(cell -> new ListCell<Country>() {
+            private Text text;
+
+            @Override
+            protected void updateItem(Country item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (item != null) {
+                    String countryName = item.getCountryName();
+                    int armyNumber = item.getCountryArmyNumber();
+//                    Player player = Main.playersList.get(item.getCountryOwnerIndex());
+                    Player player = item.getOwner();
+                    Color curPlayerColor = player.getPlayerColor();
+
+                    text = new Text();
+
+                    ArrayList<Country> emptyList = InfoRetriver.getAdjacentEnemy(player, item);
+                    int totalEmptyArmyNbr = 0;
+
+                    if (!emptyList.isEmpty()) {
+
+                        for (Country country : emptyList) {
+                            totalEmptyArmyNbr += country.getCountryArmyNumber();
+                        }
+                    }
+
+                    String textContent = item.getCountryName() + " : " + armyNumber;
+                    if (totalEmptyArmyNbr != 0) {
+                        textContent += " (Empty: " + totalEmptyArmyNbr + ")";
+                    }
+                    text = new Text(textContent);
+
                     text.setFill(curPlayerColor);
                     setGraphic(text);
                 }
@@ -84,7 +129,7 @@ public class ListviewRenderer {
                                 String curCountryName = text.toString().split("\"")[1];
 
                                 Country curCountry = Main.graphSingleton.get(curCountryName).getCountry();
-                                int curCountryOwnerIndex = curCountry.getCountryOwnerIndex();
+                                int curCountryOwnerIndex = curCountry.getOwnerIndex();
 
                                 Color curCountryColor = Main.playersList.get(curCountryOwnerIndex).getPlayerColor();
                                 text.setFill(curCountryColor);
@@ -138,4 +183,6 @@ public class ListviewRenderer {
             }
         });
     }
+
+
 }

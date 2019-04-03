@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
 import riskgame.model.Utils.AttackProcess;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
@@ -23,6 +24,8 @@ import riskgame.model.Utils.ListviewRenderer;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static riskgame.Main.phaseViewObserver;
 
 /**
  * controller class for AttackView.fxml
@@ -80,6 +83,9 @@ public class AttackViewController implements Initializable {
     private TextArea txa_attackInfoDisplay;
     @FXML
     private VBox vbx_worldDomiView;
+    @FXML
+    private Button btn_saveGame;
+
     /**
      * curent player index
      */
@@ -111,7 +117,7 @@ public class AttackViewController implements Initializable {
      * valide whether there exists attackable country
      */
     private void validateExistAttackableCountry() {
-        boolean isOneCountryCanAttack = InfoRetriver.validateAttackerStatus(curPlayerIndex, lsv_ownedCountries.getItems());
+        boolean isOneCountryCanAttack = InfoRetriver.validateAttackerStatus(curPlayer, lsv_ownedCountries.getItems());
         if (!isOneCountryCanAttack) {
             setPhaseFinish();
         }
@@ -174,10 +180,10 @@ public class AttackViewController implements Initializable {
 
         int selectedArmyNbr = selectedCountry.getCountryArmyNumber();
 
-        System.out.println("\nAttack phase, player: " + selectedCountry.getCountryOwnerIndex() + ", selected country: "
+        System.out.println("\nAttack phase, player: " + selectedCountry.getOwnerIndex() + ", selected country: "
                 + selectedCountry.getCountryName() + ", army nbr: " + selectedArmyNbr);
 
-        ObservableList<Country> datalist = InfoRetriver.getAttackableAdjacentCountryList(this.curPlayerIndex, selectedCountry);
+        ObservableList<Country> datalist = InfoRetriver.getAttackableAdjacentCountryList(curPlayer, selectedCountry);
 
         lsv_adjacentCountries.setItems(datalist);
         ListviewRenderer.renderCountryItems(lsv_adjacentCountries);
@@ -224,7 +230,8 @@ public class AttackViewController implements Initializable {
     public void selectDefendingCountry(MouseEvent mouseEvent) {
         if (!isSelectedItemEmpty(lsv_adjacentCountries)) {
             Country selectedDefenderCountry = (Country) lsv_adjacentCountries.getSelectionModel().getSelectedItem();
-            Player defenderPlayer = Main.playersList.get(selectedDefenderCountry.getCountryOwnerIndex());
+//            Player defenderPlayer = Main.playersList.get(selectedDefenderCountry.getCountryOwnerIndex());
+            Player defenderPlayer = selectedDefenderCountry.getOwner();
             Color defenderColor = defenderPlayer.getPlayerColor();
 
             lbl_defenderMaxArmyPrompt.setVisible(true);
@@ -282,16 +289,9 @@ public class AttackViewController implements Initializable {
      * onClick event for moving to fortification phase of the game
      *
      * @param actionEvent button is clicked
-     * @throws IOException FotificationView.fxml is not found
      */
-    public void clickNextStep(ActionEvent actionEvent) throws IOException {
-        notifyGamePhaseChanged();
-        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        Pane fortificationPane = new FXMLLoader(getClass().getResource("../view/FortificationView.fxml")).load();
-        Scene fortificationScene = new Scene(fortificationPane, 1200, 900);
-
-        curStage.setScene(fortificationScene);
-        curStage.show();
+    public void clickNextStep(ActionEvent actionEvent) {
+        callFinalViewOrNextPhase();
     }
 
     /**
@@ -305,7 +305,6 @@ public class AttackViewController implements Initializable {
             Country attackingCountry = (Country) lsv_ownedCountries
                     .getSelectionModel()
                     .getSelectedItem();
-
             Country defendingCountry = (Country) lsv_adjacentCountries
                     .getSelectionModel()
                     .getSelectedItem();
@@ -313,13 +312,14 @@ public class AttackViewController implements Initializable {
             int attackArmyNbr = Integer.parseInt(lbl_attackerArmyNbr.getText());
             int defendArmyNbr = Integer.parseInt(lbl_defenderArmyNbr.getText());
 
-            curPlayer.attackCountry(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, txa_attackInfoDisplay);
+            String battleReport = curPlayer.executeAttack(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, false);
+            txa_attackInfoDisplay.setText(battleReport);
 
             refreshListView(attackingCountry);
             InfoRetriver.updateDominationView("from attack view attack", vbx_worldDomiView);
 
-            if (AttackProcess.winnerPlayerIndex != -1) {
-                callGameOverView();
+            if (curPlayer.isFinalWinner()) {
+                callFinalViewOrNextPhase();
             } else {
                 validateExistAttackableCountry();
             }
@@ -348,8 +348,7 @@ public class AttackViewController implements Initializable {
     private void refreshListView(Country attackingCountry) {
         lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
         lsv_ownedCountries.refresh();
-        lsv_adjacentCountries
-                .setItems(InfoRetriver.getAttackableAdjacentCountryList(curPlayerIndex, attackingCountry));
+        lsv_adjacentCountries.setItems(InfoRetriver.getAttackableAdjacentCountryList(curPlayer, attackingCountry));
         lsv_adjacentCountries.refresh();
 
         resetArmyAdjustment();
@@ -368,16 +367,6 @@ public class AttackViewController implements Initializable {
     }
 
     /**
-     * notify phaserview observers
-     */
-    private void notifyGamePhaseChanged() {
-        Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "Fortification Action");
-        Main.phaseViewObservable.notifyObservers(Main.phaseViewObservable);
-
-        System.out.printf("player %s finished attack, player %s's turn\n", curPlayerIndex, curPlayerIndex);
-    }
-
-    /**
      * Use all-out mode for attacking, it will result in either attacker wins or defender wins
      *
      * @param actionEvent mouse click
@@ -388,36 +377,29 @@ public class AttackViewController implements Initializable {
             Country selectedAttackerCountry = (Country) lsv_ownedCountries.getSelectionModel().getSelectedItem();
             Country selectedDefenderCountry = (Country) lsv_adjacentCountries.getSelectionModel().getSelectedItem();
 
-            int avaliableForAttackNbr = selectedAttackerCountry.getCountryArmyNumber() - 1;
-            int avaliableForDefendNbr = selectedDefenderCountry.getCountryArmyNumber();
+            int availableForAttackNbr = selectedAttackerCountry.getCountryArmyNumber() - 1;
+            int availableForDefendNbr = selectedDefenderCountry.getCountryArmyNumber();
 
-            curPlayer.alloutModeAttack(selectedAttackerCountry, selectedDefenderCountry, avaliableForAttackNbr, avaliableForDefendNbr, txa_attackInfoDisplay);
-
+            String battleReport = curPlayer.executeAttack(selectedAttackerCountry, selectedDefenderCountry, availableForAttackNbr, availableForDefendNbr, true);
+            txa_attackInfoDisplay.setText(battleReport);
             refreshListView(selectedAttackerCountry);
             InfoRetriver.updateDominationView("from attack all out mode", vbx_worldDomiView);
 
-            if (AttackProcess.winnerPlayerIndex != -1) {
-                callGameOverView();
+            if (curPlayer.isFinalWinner()) {
+                callFinalViewOrNextPhase();
             } else {
                 validateExistAttackableCountry();
             }
         }
     }
 
-    /**
-     * call game over view
-     *
-     * @throws IOException FinalView.fxml not found
-     */
-    private void callGameOverView() throws IOException {
+    private void callFinalViewOrNextPhase() {
         Stage curStage = (Stage) txa_attackInfoDisplay.getScene().getWindow();
-
-        Pane finalPane = new FXMLLoader(getClass().getResource("../view/FinalView.fxml")).load();
-        Scene finalScene = new Scene(finalPane, 1200, 900);
+        UtilMethods.endAttack(curPlayer);
+        Scene finalScene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(finalScene);
         curStage.show();
     }
-
 
     /**
      * check whether both attacking and defending countries are selected
@@ -443,4 +425,13 @@ public class AttackViewController implements Initializable {
     }
 
 
+    public void clickSaveGame(ActionEvent actionEvent) {
+        String titleString = "Select Location to Save Game:";
+        InfoRetriver.showFileChooser(titleString);
+    }
+
+    public void clickLoadGame(ActionEvent actionEvent) {
+        String titleString = "Select Saved Map File:";
+        InfoRetriver.showFileChooser(titleString);
+    }
 }

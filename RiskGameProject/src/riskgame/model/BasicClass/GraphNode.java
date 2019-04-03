@@ -3,7 +3,6 @@ package riskgame.model.BasicClass;
 import riskgame.Main;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 /**
  * This class represents a node in world map graph data structure, including a country object, its adjacent country objects and an
@@ -60,7 +59,7 @@ public class GraphNode {
      *
      * @param visited true for visited and false for not visited
      */
-    void setVisited(boolean visited) {
+    public void setVisited(boolean visited) {
         isVisited = visited;
     }
 
@@ -85,19 +84,20 @@ public class GraphNode {
     /**
      * Breath first search for getting all reachable countries the player owns from the selected country
      *
-     * @param playerIndex current player index
+     * @param player    current player
      * @param curCountry  selected country starting for traverse
      * @param list        countries that are reachable from selected country
      */
-    public void getReachableCountryListBFS(int playerIndex, Country curCountry, ArrayList<Country> list) {
+    public void getReachableCountryListBFS(Player player, Country curCountry, ArrayList<Country> list) {
+        int playerIndex = player.getPlayerIndex();
         String curCountryName = curCountry.getCountryName();
-        GraphNode curGraphNode = Main.graphSingleton.get(curCountryName);
+        GraphNode curGraphNode = player.getWorldMapInstance().get(curCountryName);
         ArrayList<Country> adjacentList = curGraphNode.getAdjacentCountryList();
         curGraphNode.setVisited(true);
         ArrayList<Country> queue = new ArrayList<>();
         for (Country country : adjacentList) {
-            GraphNode graphNode = Main.graphSingleton.get(country.getCountryName());
-            if (graphNode.getCountry().getCountryOwnerIndex() == playerIndex && !graphNode.isVisited) {
+            GraphNode graphNode = player.getWorldMapInstance().get(country.getCountryName());
+            if (graphNode.getCountry().getOwnerIndex() == playerIndex && !graphNode.isVisited) {
                 list.add(graphNode.getCountry());
                 graphNode.setVisited(true);
                 queue.add(country);
@@ -105,7 +105,7 @@ public class GraphNode {
         }
 
         while (!queue.isEmpty()) {
-            getReachableCountryListBFS(playerIndex, queue.remove(0), list);
+            getReachableCountryListBFS(player, queue.remove(0), list);
         }
     }
 
@@ -125,13 +125,14 @@ public class GraphNode {
 
         for (Country country : adjacentList) {
             GraphNode graphNode = Main.graphSingleton.get(country.getCountryName());
-            if (graphNode.getCountry().getCountryOwnerIndex() == playerIndex && !graphNode.isVisited) {
+            if (graphNode.getCountry().getOwnerIndex() == playerIndex && !graphNode.isVisited) {
                 list.add(graphNode.getCountry());
                 graphNode.setVisited(true);
                 getReachableCountryListDFS(playerIndex, country, list);
             }
         }
     }
+
 
 
 }

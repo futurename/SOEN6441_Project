@@ -1,4 +1,4 @@
-package riskgame.model.Utils;
+package test.riskgame.model.Utils;
 
 import javafx.collections.ObservableList;
 import org.junit.After;
@@ -9,6 +9,7 @@ import riskgame.Main;
 import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.Utils.InfoRetriver;
 import test.util.GraphTester;
 
 import java.util.Collections;
@@ -57,10 +58,11 @@ public class InfoRetriverTest {
     public void testGetAttackableAdjacentCountryList() {
         int playerIndex = 2;
         int selectedCountryIndex = 0;
-        String selectedCountryName = Main.playersList.get(playerIndex).getOwnedCountryNameList().get(selectedCountryIndex);
+        Player player = Main.playersList.get(playerIndex);
+        String selectedCountryName = player.getOwnedCountryNameList().get(selectedCountryIndex);
         Country selectedCountry = graphTester.getDemoGraph().get(selectedCountryName).getCountry();
 
-        ObservableList<Country> acturalList = InfoRetriver.getAttackableAdjacentCountryList(playerIndex, selectedCountry);
+        ObservableList<Country> acturalList = InfoRetriver.getAttackableAdjacentCountryList(player, selectedCountry);
         Collections.sort(acturalList, (o1, o2) -> o1.getCountryName().compareTo(o2.getCountryName()));
 
         ObservableList<Country> expectedList = graphTester.getAttackableAdjacentCountryListFromPlayerTwoCountryZero();
@@ -74,9 +76,10 @@ public class InfoRetriverTest {
     public void testGetReachableCountryObservableList() {
         int playerIndex = 0;
         int selectedCountryIndex = 3;
-        String selectedCountryName = Main.playersList.get(playerIndex).getOwnedCountryNameList().get(selectedCountryIndex);
+        Player player = Main.playersList.get(playerIndex);
+        String selectedCountryName = player.getOwnedCountryNameList().get(selectedCountryIndex);
 
-        ObservableList<Country> acturalList = InfoRetriver.getReachableCountryObservableList(playerIndex, selectedCountryName);
+        ObservableList<Country> acturalList = InfoRetriver.getReachableCountryObservableList(player, selectedCountryName);
         Collections.sort(acturalList, (o1, o2) -> o1.getCountryName().compareTo(o2.getCountryName()));
 
         ObservableList<Country> expectedList = graphTester.getReachableCountryObservableListFromPlayerZeroCountryThree();

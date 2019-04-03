@@ -1,0 +1,52 @@
+[Map]
+author=Zworg2
+warn=yes
+image=london.bmp
+wrap=no
+scroll=horizontal
+
+[Continents]
+South Central London=3
+North Central London=5
+North Outer London=4
+South Outer London=3
+East Outer London=3
+
+[Territories]
+Hillingdon,138,183,North Outer London,Harrow,Ealing,Hounslow
+Harrow,216,135,North Outer London,Hillingdon,Ealing,Brent,Barnet
+Ealing,224,234,North Outer London,Hillingdon,Harrow,Brent,Hammersmith,Hounslow
+Brent,273,185,North Outer London,Harrow,Ealing,Barnet,Camden,West Minster,Kensington & Chelsea,Hammersmith
+Barnet,326,106,North Outer London,Enfield,Haringey,Camden,Brent,Harrow
+Enfield,424,60,North Outer London,Wakham Forest,Haringey,Barnet
+Wakham Forest,480,146,North Outer London,Enfield,Haringey,Hackney,Newham,Redbridge
+
+Hounslow,195,302,South Outer London,Hillingdon,Ealing,Hammersmith,Richmond
+Richmond,245,334,South Outer London,Hounslow,Hammersmith,Wandsworth,Kingston
+Kingston,274,396,South Outer London,Richmond,Wandsworth,Merton,Sutton
+Merton,335,372,South Outer London,Kingston,Wandsworth,Croydon,Sutton,Lambeth
+Sutton,361,434,South Outer London,Kingston,Merton,Croydon
+Croydon,439,431,South Outer London,Sutton,Merton,Lambeth,Bromley
+
+Bromley,543,417,East Outer London,Croydon,Lambeth,Southwark,Lewisham,Greenwich,Bexley
+Bexley,612,307,East Outer London,Bromley,Greenwich,Havering,Barking
+Greenwich,538,294,East Outer London,Bromley,Bexley,Barking,Newham,Tower Hamlets,Lewisham
+Havering,679,162,East Outer London,Bexley,Barking,Redbridge
+Barking,600,207,East Outer London,Bexley,Greenwich,Havering,Redbridge,Newham
+Redbridge,550,148,East Outer London,Havering,Barking,Newham,Wakham Forest
+
+West Minster,368,239,North Central London,Brent,Camden,City Centre,Lambeth,Wandsworth,Kensington & Chelsea
+Camden,365,191,North Central London,Barnet,Brent,West Minster,City Centre,Islington,Haringey
+Islington,407,196,North Central London,Haringey,Camden,City Centre,Hackney
+Haringey,407,140,North Central London,Barnet,Enfield,Wakham Forest,Hackney,Islington,Camden
+Hackney,446,187,North Central London,Haringey,Wakham Forest,Newham,Tower Hamlets,Islington,City Centre
+Tower Hamlets,467,231,North Central London,Hackney,Newham,Greenwich,Lewisham,Southwark,City Centre
+Newham,524,221,North Central London,Wakham Forest,Redbridge,Barking,Greenwich,Tower Hamlets,Hackney
+City Centre,424,238,North Central London,Islington,Hackney,Tower Hamlets,Southwark,Lambeth,West Minster,Camden
+
+Kensington & Chelsea,337,258,South Central London,Brent,West Minster,Wandsworth,Hammersmith
+Hammersmith,317,267,South Central London,Kensington & Chelsea,Brent,Ealing,Hounslow,Richmond,Wandsworth
+Wandsworth,357,323,South Central London,Kensington & Chelsea,Hammersmith,Richmond,Kingston,Merton,Lambeth,West Minster
+Lambeth,399,315,South Central London,Bromley,Croydon,Merton,Wandsworth,West Minster,City Centre,Southwark
+Southwark,438,288,South Central London,Bromley,Lambeth,City Centre,Tower Hamlets,Lewisham
+Lewisham,485,327,South Central London,Bromley,Greenwich,Southwark,Tower Hamlets

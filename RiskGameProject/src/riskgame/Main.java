@@ -43,6 +43,9 @@ public class Main extends Application {
      */
     public static LinkedHashMap<String, Continent> worldContinentMap = new LinkedHashMap<>();
 
+
+    public static int winnerPlayerIndex = -1;
+
     /**
      * Singleton world map organized in graph data structure
      */
@@ -58,7 +61,7 @@ public class Main extends Application {
 
     /**
      * @param primaryStage default start page
-     * @throws Exception startview.fxml not found
+     * @throws Exception startView.fxml not found
      */
     @Override
     public void start(Stage primaryStage) throws Exception {

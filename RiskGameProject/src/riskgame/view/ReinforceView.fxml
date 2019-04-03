@@ -84,5 +84,17 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
+        <Button fx:id = "btn_saveGame" layoutX = "980.0" layoutY = "817.0" mnemonicParsing = "false" onAction = "#clickSaveGame" prefHeight = "51.0"
+                prefWidth = "81.0" text = "Save" textFill = "#fc0303" underline = "true">
+            <font>
+                <Font name = "System Bold" size = "20.0"/>
+            </font>
+        </Button>
+        <Button fx:id = "btn_loadGame" layoutX = "1081.0" layoutY = "817.0" mnemonicParsing = "false" onAction = "#clickLoadGame" prefHeight = "51.0"
+                prefWidth = "81.0" text = "Load" textFill = "#fc0303" underline = "true">
+         <font>
+             <Font name = "System Bold" size = "20.0"/>
+         </font>
+      </Button>
     </children>
 </AnchorPane>

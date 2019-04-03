@@ -3,22 +3,24 @@ package riskgame.controllers;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import static riskgame.Main.*;
 import static riskgame.controllers.StartViewController.firstRoundCounter;
@@ -29,7 +31,7 @@ import static riskgame.controllers.StartViewController.firstRoundCounter;
  * @author WW
  * @since build1
  **/
-public class FortificationViewController {
+public class FortificationViewController implements Initializable {
 
     /**
      * default minimum army number in a country
@@ -52,6 +54,8 @@ public class FortificationViewController {
     @FXML
     private Button btn_skipFortification;
     @FXML
+    private Button btn_saveGame;
+    @FXML
     private Label lbl_phaseViewName;
     @FXML
     private Label lbl_rechanble_countries;
@@ -65,6 +69,7 @@ public class FortificationViewController {
     private Label lbl_deployCountPrompt;
     @FXML
     private Label lbl_actionString;
+
     /**
      * fortification move counter
      */
@@ -106,7 +111,8 @@ public class FortificationViewController {
     /**
      * init method for fortification phase view
      */
-    public void initialize() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         initPhaseView();
 
         lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
@@ -131,7 +137,7 @@ public class FortificationViewController {
         for (Country country : countryObservableList) {
             int armyNbr = country.getCountryArmyNumber();
             if (armyNbr > 1) {
-                ObservableList<Country> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayerIndex,
+                ObservableList<Country> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayer,
                         country.getCountryName());
                 if (!reachableCountryList.isEmpty()) {
                     result = true;
@@ -206,7 +212,7 @@ public class FortificationViewController {
                 alert.setContentText("No enough army for fortification!");
                 alert.showAndWait();
             } else {
-                ObservableList<Country> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayer.getPlayerIndex(),
+                ObservableList<Country> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayer,
                         selectedCountryName);
                 if (reachableCountryList.isEmpty()) {
                     btn_confirmMoveArmy.setVisible(false);
@@ -218,7 +224,7 @@ public class FortificationViewController {
                     btn_confirmMoveArmy.setVisible(true);
                     btn_skipFortification.setVisible(true);
                     lsv_reachableCountry.setItems(reachableCountryList);
-                    ListviewRenderer.renderCountryItems(lsv_reachableCountry);
+                    ListviewRenderer.renderReachableCountryItems(lsv_reachableCountry);
                     updateDeploymentInfo(selectedCountry);
                     scb_armyNbrAdjustment.valueProperty()
                             .addListener((observable, oldValue, newValue) -> lbl_deployArmyNumber.setText(Integer.toString(newValue.intValue())));
@@ -257,7 +263,7 @@ public class FortificationViewController {
             GraphNode curGraphNode = graphSingleton.get(countryName);
             Country curCountry = curGraphNode.getCountry();
             ArrayList<Country> tempCountryList = new ArrayList<>();
-            curGraphNode.getReachableCountryListBFS(playerIndex, curCountry, tempCountryList);
+            curGraphNode.getReachableCountryListBFS(curPlayer, curCountry, tempCountryList);
             if (!tempCountryList.isEmpty()) {
                 result = false;
                 break;
@@ -274,52 +280,24 @@ public class FortificationViewController {
      */
     @FXML
     public void clickNextStep(ActionEvent actionEvent) throws IOException {
-
+        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         System.out.println("\n\nfirst round counter: " + firstRoundCounter + "\n\n");
 
-        if (firstRoundCounter > 0) {
-            firstRoundCounter--;
+//        if (firstRoundCounter > 0) {
+//            firstRoundCounter--;
+//            if (firstRoundCounter == 0) {
+//                curRoundPlayerIndex = -1;
+//            }
+//            UtilMethods.notifyFortificationEnd(true, curPlayer);
+//        } else {
+//            UtilMethods.notifyFortificationEnd(false, curPlayer);
+//        }
+//        UtilMethods.callNextRobotPhase();
 
-            if (firstRoundCounter == 0) {
-                curRoundPlayerIndex = -1;
-            }
-            int nextPlayerIndex = (curPlayerIndex + 1) % totalNumOfPlayers;
-            notifyGameStageChanged("Attack Phase", nextPlayerIndex, "Attack Action");
-            Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Pane attackPane = new FXMLLoader(getClass().getResource("../view/AttackView.fxml")).load();
-            Scene attackScene = new Scene(attackPane, 1200, 900);
-            curStage.setScene(attackScene);
-            curStage.show();
-        } else {
-            curRoundPlayerIndex = getNextActivePlayer();
-            notifyGameStageChanged("Reinforce Phase", curRoundPlayerIndex, "Reinforcement Action");
-
-            Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Pane reinforcePane = new FXMLLoader(getClass().getResource("../view/ReinforceView.fxml")).load();
-            Scene reinforceScene = new Scene(reinforcePane, 1200, 900);
-            curStage.setScene(reinforceScene);
-            curStage.show();
-        }
-    }
-
-    /**
-     * check next player is still in the game and return index of next valid player
-     *
-     * @return valid player index
-     */
-    private int getNextActivePlayer() {
-        int tempIndex = curRoundPlayerIndex;
-        while (true) {
-            tempIndex = (tempIndex + 1) % totalNumOfPlayers;
-            Player tempPlayer = playersList.get(tempIndex);
-            if (tempPlayer.getActiveStatus()) {
-                break;
-            }
-        }
-
-        System.out.println("\n\n\nnext valid player: " + tempIndex + "\n\n\n");
-
-        return tempIndex;
+        UtilMethods.endFortification(curPlayer);
+        Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
+        curStage.setScene(scene);
+        curStage.show();
     }
 
     /**
@@ -350,20 +328,21 @@ public class FortificationViewController {
             Country selectedCountry = graphSingleton.get(selectedCountryName).getCountry();
 
             String selectedTargetCountryName = adjacentCountryObservableList.get(selectedReachableCountryIndex).getCountryName();
-            Country selecctedTargetCountry = graphSingleton.get(selectedTargetCountryName).getCountry();
+            Country selectedTargetCountry = graphSingleton.get(selectedTargetCountryName).getCountry();
 
             System.out.println("before move, selected: " + selectedCountryName + ": " + selectedCountry.getCountryArmyNumber() + ", target: "
-                    + selectedTargetCountryName + ": " + selecctedTargetCountry.getCountryArmyNumber());
+                    + selectedTargetCountryName + ": " + selectedTargetCountry.getCountryArmyNumber());
 
             int deployArmyNumber = Integer.parseInt(lbl_deployArmyNumber.getText());
 
             System.out.println("deploy number: " + deployArmyNumber);
 
-            selectedCountry.reduceFromCountryArmyNumber(deployArmyNumber);
-            selecctedTargetCountry.addToCountryArmyNumber(deployArmyNumber);
+            curPlayer.executeFortification(selectedCountry, selectedTargetCountry, deployArmyNumber);
+//            selectedCountry.reduceFromCountryArmyNumber(deployArmyNumber);
+//            selectedTargetCountry.addToCountryArmyNumber(deployArmyNumber);
 
             System.out.println("after move, selected: " + selectedCountryName + ": " + selectedCountry.getCountryArmyNumber() + ", target: "
-                    + selectedTargetCountryName + ": " + selecctedTargetCountry.getCountryArmyNumber());
+                    + selectedTargetCountryName + ": " + selectedTargetCountry.getCountryArmyNumber());
 
             lsv_ownedCountries.refresh();
             lsv_reachableCountry.refresh();
@@ -409,16 +388,13 @@ public class FortificationViewController {
         btn_nextStep.setVisible(true);
     }
 
-    /**
-     * phaseview observable notify its observers.
-     *
-     * @param phase           phase name string
-     * @param nextPlayerIndex next valid player index
-     * @param actionType      action string
-     */
-    private void notifyGameStageChanged(String phase, int nextPlayerIndex, String actionType) {
-        phaseViewObservable.setAllParam(phase, nextPlayerIndex, actionType);
-        phaseViewObservable.notifyObservers("from fortification view");
-        System.out.printf("player %s finished fortification, player %s's turn\n", curPlayerIndex, nextPlayerIndex);
+    public void clickSaveGame(ActionEvent actionEvent) {
+        String titleString = "Select Location to Save Game:";
+        InfoRetriver.showFileChooser(titleString);
+    }
+
+    public void clickLoadGame(ActionEvent actionEvent) {
+        String titleString = "Select Saved Map File:";
+        InfoRetriver.showFileChooser(titleString);
     }
 }
