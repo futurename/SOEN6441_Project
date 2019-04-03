@@ -8,6 +8,7 @@ import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 
+import java.io.UTFDataFormatException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -34,7 +35,8 @@ public class StrategyCheater implements Strategy {
 
     @Override
     public void doAttack(Player player) {
-
+        evillyConquer(player);
+        UtilMethods.endAttack(player);
     }
 
     private void evillyConquer(Player player){
@@ -42,15 +44,26 @@ public class StrategyCheater implements Strategy {
         for (Country country: countries){
             ArrayList<Country> enemyCountries = InfoRetriver.getAdjacentEnemy(player, country);
             for (Country enemy: enemyCountries){
-//                enemy.setObservableArmyWhenOwnerChanged();
+                enemy.setObservableArmyWhenOwnerChanged(player, enemy.getCountryArmyNumber());
             }
         }
-
     }
 
     @Override
     public void doFortification(Player player) {
+        evillyFortify(player);
+        UtilMethods.endFortification(player);
+    }
 
+    private void evillyFortify(Player player){
+        ArrayList<Country> countries = InfoRetriver.getCountryList(player);
+        for (Country country: countries){
+            ArrayList<Country> enemyCountries = InfoRetriver.getAdjacentEnemy(player, country);
+            if (!enemyCountries.isEmpty()){
+                int baseArmy = country.getCountryArmyNumber();
+                country.addToCountryArmyNumber(baseArmy);
+            }
+        }
     }
 
     @Override
