@@ -309,7 +309,7 @@ public class UtilMethods {
             Pane nextPane;
             FXMLLoader loader = new FXMLLoader(controller.getClass().getResource(resourceLocation));
 
-            if (resourceLocation.equals("Final Phase")) {
+            if ("Final Phase".equals(phase)) {
                 FinalViewController finalViewController = loader.getController();
 
                 Field playerField = controller.getClass().getField("Player");
