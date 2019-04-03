@@ -318,7 +318,7 @@ public class AttackViewController implements Initializable {
             refreshListView(attackingCountry);
             InfoRetriver.updateDominationView("from attack view attack", vbx_worldDomiView);
 
-            if (AttackProcess.winnerPlayerIndex != -1) {
+            if (curPlayer.isFinalWinner()) {
                 callFinalViewOrNextPhase();
             } else {
                 validateExistAttackableCountry();
@@ -385,7 +385,7 @@ public class AttackViewController implements Initializable {
             refreshListView(selectedAttackerCountry);
             InfoRetriver.updateDominationView("from attack all out mode", vbx_worldDomiView);
 
-            if (AttackProcess.winnerPlayerIndex != -1) {
+            if (curPlayer.isFinalWinner()) {
                 callFinalViewOrNextPhase();
             } else {
                 validateExistAttackableCountry();
