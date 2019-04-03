@@ -1,16 +1,13 @@
 package riskgame.model.Utils;
 
-import mapeditor.model.MapObject;
 import riskgame.Main;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
-import riskgame.model.BasicClass.Player;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class SaveProgress {
 

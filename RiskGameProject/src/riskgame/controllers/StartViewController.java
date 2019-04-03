@@ -209,8 +209,8 @@ public class StartViewController implements Initializable {
 
                         Scene tournamentScene = new Scene(tournamentModePane, 800, 400);
                         curStage.setScene(tournamentScene);
-                        curStage.initOwner(mainStage);
-                        curStage.initModality(Modality.WINDOW_MODAL);
+                        //curStage.initOwner(mainStage);
+                        //curStage.initModality(Modality.WINDOW_MODAL);
                         curStage.setResizable(false);
                         curStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                             @Override
@@ -219,8 +219,8 @@ public class StartViewController implements Initializable {
                             }
                         });
                         curStage.show();
+                        mainStage.close();
 
-                        btn_reset.setVisible(false);
 
                     } catch (IOException e) {
                         e.printStackTrace();

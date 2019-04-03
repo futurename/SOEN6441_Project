@@ -75,7 +75,7 @@ public class StrategyRandom implements Strategy {
     private void randomlyAttack(Player player) {
         //pick a country that can attack
         ArrayList<Country> attackable = InfoRetriver.getAttackableCountry(player);
-        if (!attackable.isEmpty() && !player.isFinalWinner()) {
+        if (!attackable.isEmpty()) {
             Country attacker = randomlyPickCountryFrom(attackable);
             //pick an enemy
             ArrayList<Country> enemies = InfoRetriver.getAdjacentEnemy(player, attacker);

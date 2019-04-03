@@ -40,8 +40,6 @@ public class PlayerTypeSelectionController {
 
     public void initialize() {
         strategySelectionList = new ArrayList<>();
-        Strategy human = new StrategyHuman();
-        // strategySelectionList.add(human);
     }
 
     public void InitViewSettings() {
@@ -97,11 +95,11 @@ public class PlayerTypeSelectionController {
     public void clickConfirmSelection(ActionEvent actionEvent) {
         if (isAllComboboxSelected()) {
             StartViewController.setStrategyTypeList(strategySelectionList);
-
             Stage curStage = (Stage) btn_confirmSelection.getScene().getWindow();
             curStage.close();
 
             System.out.println(strategySelectionList);
+
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("All comboboxes need be selected!");

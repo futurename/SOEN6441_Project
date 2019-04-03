@@ -55,25 +55,28 @@ public class TournamentModeViewController {
     private CheckBox ckb_cheaterPlayer;
 
 
-    private static ObservableList<String> mapFileNameList;
+    private static ObservableList<String> mapShortNameList;
     private final String DEFAULT_MAPS_FOLDER_PATH = "maps/TournamentModeMaps/";
     private final int MAX_GAMES_TO_BE_PLAYED = 5;
     private final int MIN_GAME_ROUND = 10;
     private final int MAX_GAME_ROUND = 50;
     private ArrayList<Strategy> robotPlayerList = new ArrayList<>();
-    private ArrayList<String> mapFileList;
+    private ArrayList<String> mapFullFileList;
     private int gamesValue;
     private int gameRoundValue;
     private ArrayList<String> selectedMapList;
 
     public void initialize() {
-        mapFileList = getMapFiles(DEFAULT_MAPS_FOLDER_PATH);
-        mapFileNameList = getShortFileNameList(mapFileList);
-        setOnlyFirstComboxVisible(mapFileNameList);
+        mapFullFileList = getMapFiles(DEFAULT_MAPS_FOLDER_PATH);
+        mapShortNameList = getShortFileNameList(mapFullFileList);
+        setOnlyFirstComboxVisible(mapShortNameList);
         initGamesCombobox(MAX_GAMES_TO_BE_PLAYED);
         initMaxGameRoundCombobox(MIN_GAME_ROUND, MAX_GAME_ROUND);
         selectedMapList = new ArrayList<>();
 
+
+        System.out.println("mapfile: " + mapFullFileList);
+        System.out.println("short map files: " + mapShortNameList);
     }
 
     private void initMaxGameRoundCombobox(int min_game_round, int max_game_round) {
@@ -193,8 +196,11 @@ public class TournamentModeViewController {
             cbx_mapFileTwo.setVisible(true);
 
             int mapFileIndex = cbx_mapFileOne.getSelectionModel().getSelectedIndex();
-            String selectMapFullPath = mapFileList.get(mapFileIndex);
-            selectedMapList.add(selectMapFullPath);
+            String selectMapPath = comboboxOneList.get(mapFileIndex);
+            String mapFullPath = getMapFullName(selectedFileName);
+            selectedMapList.add(mapFullPath);
+
+            System.out.println(selectMapPath);
         }
     }
 
@@ -209,8 +215,11 @@ public class TournamentModeViewController {
             cbx_mapFileThree.setVisible(true);
 
             int mapFileIndex = cbx_mapFileTwo.getSelectionModel().getSelectedIndex();
-            String selectMapFullPath = mapFileList.get(mapFileIndex);
-            selectedMapList.add(selectMapFullPath);
+            String selectMapPath = comboboxTwoList.get(mapFileIndex);
+            String mapFullPath = getMapFullName(selectedFileName);
+            selectedMapList.add(mapFullPath);
+
+            System.out.println(selectMapPath);
         }
     }
 
@@ -225,10 +234,14 @@ public class TournamentModeViewController {
             cbx_mapFileFour.setVisible(true);
 
             int mapFileIndex = cbx_mapFileThree.getSelectionModel().getSelectedIndex();
-            String selectMapFullPath = mapFileList.get(mapFileIndex);
-            selectedMapList.add(selectMapFullPath);
+            String selectMapPath = comboboxThreeList.get(mapFileIndex);
+            String mapFullPath = getMapFullName(selectedFileName);
+            selectedMapList.add(mapFullPath);
+
+            System.out.println(selectMapPath);
         }
     }
+
 
     public void selectMapFileFour(ActionEvent actionEvent) {
         String selectedFileName = (String) cbx_mapFileFour.getSelectionModel().getSelectedItem();
@@ -237,21 +250,38 @@ public class TournamentModeViewController {
             ObservableList<String> comboboxFiveList = FXCollections.observableArrayList(comboboxFourList);
             comboboxFiveList.remove(selectedFileName);
             cbx_mapFileFour.setMouseTransparent(true);
-            cbx_mapFileFive.setItems(comboboxFourList);
+            cbx_mapFileFive.setItems(comboboxFiveList);
             cbx_mapFileFive.setVisible(true);
 
             int mapFileIndex = cbx_mapFileFour.getSelectionModel().getSelectedIndex();
-            String selectMapFullPath = mapFileList.get(mapFileIndex);
-            selectedMapList.add(selectMapFullPath);
+            String selectMapPath = comboboxFourList.get(mapFileIndex);
+            String mapFullPath = getMapFullName(selectedFileName);
+            selectedMapList.add(mapFullPath);
+
+            System.out.println(selectMapPath);
         }
     }
+
 
     public void selectMapFileFive(ActionEvent actionEvent) {
         cbx_mapFileFive.setMouseTransparent(true);
 
-        int mapFileIndex = cbx_mapFileFive.getSelectionModel().getSelectedIndex();
-        String selectMapFullPath = mapFileList.get(mapFileIndex);
-        selectedMapList.add(selectMapFullPath);
+        String selectMapPath = (String) cbx_mapFileFive.getSelectionModel().getSelectedItem();
+        String mapFullPath = getMapFullName(selectMapPath);
+        selectedMapList.add(mapFullPath);
+
+        System.out.println(selectMapPath);
+    }
+
+
+    private String getMapFullName(String selectedFileName) {
+        String result = null;
+        for (String fullName : mapFullFileList) {
+            if (fullName.contains(selectedFileName)) {
+                result = fullName;
+            }
+        }
+        return result;
     }
 
     public void selectAggressivePlayer(ActionEvent actionEvent) {
@@ -300,6 +330,8 @@ public class TournamentModeViewController {
 
         cbb_gameMaxRounds.getSelectionModel().clearSelection();
         cbb_gamesCount.getSelectionModel().clearSelection();
+
+        selectedMapList.clear();
 
     }
 }

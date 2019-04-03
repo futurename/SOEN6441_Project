@@ -43,10 +43,10 @@ public class StrategyAggressive implements Strategy {
         int max = 0;
         ArrayList<Country> evenCountries = new ArrayList<>();
         for (Country country: from){
-            if (country.getCountryArmyNumber()>max){
+            if (country.getCountryArmyNumber() > max){
                 evenCountries.clear();
                 evenCountries.add(country);
-            }else if (country.getCountryArmyNumber()==max){
+            }else if (country.getCountryArmyNumber() == max){
                 evenCountries.add(country);
             }
         }

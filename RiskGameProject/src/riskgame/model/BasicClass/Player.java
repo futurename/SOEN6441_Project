@@ -46,6 +46,7 @@ public class Player extends Observable implements Observer {
 
     /**
      * class constructor, player takes human strategy by default
+     *
      * @param playerIndex index of current player
      */
     public Player(int playerIndex) {
@@ -100,7 +101,7 @@ public class Player extends Observable implements Observer {
      * @return remaining army number of the attacker
      */
     public static int getOneAttackResult(Country attackingCountry, Country defendingCountry, int attackableArmyNbr, int defendableArmyNbr,
-                                          StringBuilder stringBuilder) {
+                                         StringBuilder stringBuilder) {
         stringBuilder.append("Attacker: [ ")
                 .append(attackingCountry.getCountryName())
                 .append(" ], Defender: [ ")
@@ -139,8 +140,8 @@ public class Player extends Observable implements Observer {
             if (bestAttackerDice > bestDefenderDice) {
                 defendingCountry.reduceFromCountryArmyNumber(1);
 
-                System.out.println("Round: " + i + ", >>>Attacker win! attacker: " + attackingCountry.getCountryArmyNumber()
-                        + ", defender: " + defendingCountry.getCountryArmyNumber() + "\n");
+                System.out.println("Round: " + i + ", >>>" + attackingCountry.getOwner() + "(" + attackingCountry.getCountryArmyNumber()
+                        + ") WIN : "+defendingCountry.getOwner() + "(" + defendingCountry.getCountryArmyNumber() + ")\n");
 
                 defendArmyCount--;
 
@@ -165,8 +166,8 @@ public class Player extends Observable implements Observer {
             } else {
                 attackingCountry.reduceFromCountryArmyNumber(1);
 
-                System.out.println("Round: " + i + ", >>>Defender win! attacker: " + attackingCountry.getCountryArmyNumber()
-                        + ", defender: " + defendingCountry.getCountryArmyNumber() + "\n");
+                System.out.println("Round: " + i + ", >>>Defender:" + defendingCountry.getOwner() + "(" + defendingCountry.getCountryArmyNumber()
+                        +") win: " + attackingCountry.getOwner() + "(" + attackingCountry + ")\n");
 
                 attackArmyCount--;
 
@@ -368,14 +369,15 @@ public class Player extends Observable implements Observer {
     /**
      * Util method for recursive attacks
      * allout attack mode, which results in either attacker wins or defender wins.
-     * @param attackingCountry      attacking country
-     * @param defendingCountry      defending country
-     * @param attackArmyNbr         army number of attacking country
-     * @param defendArmyNbr         army number of defending country
+     *
+     * @param attackingCountry attacking country
+     * @param defendingCountry defending country
+     * @param attackArmyNbr    army number of attacking country
+     * @param defendArmyNbr    army number of defending country
      * @return battle info
      */
     public String alloutAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr,
-                                        int defendArmyNbr, boolean UIOption) {
+                                       int defendArmyNbr, boolean UIOption) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Attacker: [ ")
                 .append(attackingCountry.getCountryName())
@@ -425,10 +427,10 @@ public class Player extends Observable implements Observer {
     /**
      * this functions calculates that how many armies defender or attacker have after the attack
      *
-     * @param attackingCountry      attacking country
-     * @param defendingCountry      defending country
-     * @param attackArmyNbr         army number of attacking country
-     * @param defendArmyNbr         army number of defending country
+     * @param attackingCountry attacking country
+     * @param defendingCountry defending country
+     * @param attackArmyNbr    army number of attacking country
+     * @param defendArmyNbr    army number of defending country
      * @return battle info
      */
     public StringBuilder oneAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr) {
@@ -444,7 +446,7 @@ public class Player extends Observable implements Observer {
         return battleReport;
     }
 
-    public void executeAttack(){
+    public void executeAttack() {
         this.strategy.doAttack(this);
     }
 
@@ -458,17 +460,17 @@ public class Player extends Observable implements Observer {
      * deduct army number from the losing side
      * </p>
      *
-     * @param attackingCountry      attacking country
-     * @param defendingCountry      defending country
-     * @param attackArmyNbr         army number of attacking country
-     * @param defendArmyNbr         army number of defending country
+     * @param attackingCountry attacking country
+     * @param defendingCountry defending country
+     * @param attackArmyNbr    army number of attacking country
+     * @param defendArmyNbr    army number of defending country
      * @return battle info
      */
     public String executeAttack(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr, boolean isAllout) {
         return this.strategy.doAttack(this, attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, isAllout);
     }
 
-    public void executeReinforcement(PhaseViewObservable observable){
+    public void executeReinforcement(PhaseViewObservable observable) {
         this.strategy.doReinforcement(this, observable);
     }
 
@@ -478,24 +480,26 @@ public class Player extends Observable implements Observer {
      * 1. Add army to country.
      * 2. Add army to player.
      * 3. Subtract undeployed army from player.
+     *
      * @param country deploying country
-     * @param army army count
+     * @param army    army count
      */
-    public void executeReinforcement(Country country, int army){
+    public void executeReinforcement(Country country, int army) {
         this.strategy.doReinforcement(this, country, army);
     }
 
-    public void executeFortification(){
+    public void executeFortification() {
         this.strategy.doFortification(this);
     }
 
-    public void executeFortification(Country from, Country to, int army){
+    public void executeFortification(Country from, Country to, int army) {
         this.strategy.doFortification(from, to, army);
     }
 
     /**
      * public method for setting observable objects value.
      * Adding a new card to player
+     *
      * @param newCard card
      */
     public void setObservableCard(Card newCard) {
