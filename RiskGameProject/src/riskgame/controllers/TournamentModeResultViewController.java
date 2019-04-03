@@ -1,11 +1,15 @@
 package riskgame.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import riskgame.model.BasicClass.GameRunningResult;
+import riskgame.model.BasicClass.StrategyPattern.Strategy;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,11 +30,14 @@ public class TournamentModeResultViewController implements Initializable {
     private TextArea txa_gameInitInfo;
     @FXML
     private GridPane grp_gameResult;
+    @FXML
+    private Button btn_end;
 
     private BlockingQueue<Future<GameRunningResult>> resultBlockingQueue;
     private int gamesValue;
     private int gameRoundValue;
     private ArrayList<String> mapFileList;
+    private ArrayList<Strategy> strategyArrayList;
 
     @FXML
     @Override
@@ -46,8 +53,11 @@ public class TournamentModeResultViewController implements Initializable {
 
     private void generateFullGripPane(int gamesValue, int gameRoundValue) {
 
-        grp_gameResult.setHgap(40);
-        grp_gameResult.setVgap(40);
+        generateTitleInfo(gamesValue, gameRoundValue);
+
+
+        grp_gameResult.setHgap(30);
+        grp_gameResult.setVgap(30);
 
         ArrayList<String> shortMapFileNameList = new ArrayList<>();
         for (String mapFullName : mapFileList) {
@@ -63,9 +73,34 @@ public class TournamentModeResultViewController implements Initializable {
 
         generateGridFramework(shortMapFileNameList, gameValueList);
 
+        generateResultOnPane();
 
-        System.out.println("in final view: " + getResultBlockingQueue());
 
+    }
+
+    private void generateTitleInfo(int gamesValue, int gameRoundValue) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("M: ");
+
+        for (int mapIndex = 0; mapIndex < mapFileList.size(); mapIndex++) {
+            stringBuilder.append("<").append(mapIndex)
+                    .append("> ").append(mapFileList.get(mapIndex))
+                    .append(" ");
+        }
+
+        stringBuilder.append("\nP: ");
+
+        for (int index = 0; index < strategyArrayList.size(); index++) {
+            stringBuilder.append(strategyArrayList.get(index)).append(" ");
+        }
+
+        stringBuilder.append("\nG: ").append(gamesValue);
+        stringBuilder.append("\nD: ").append(gameRoundValue);
+
+        txa_gameInitInfo.setText(stringBuilder.toString());
+    }
+
+    private void generateResultOnPane() {
         for (Future<GameRunningResult> future : resultBlockingQueue) {
             GameRunningResult curResult = null;
             try {
@@ -85,17 +120,16 @@ public class TournamentModeResultViewController implements Initializable {
             int curGameValue = curResult.getGameValue();
 
             Label curLabel = new Label(curWinnerName);
-            //grp_gameResult.add(curLabel, curMapIndex, curGameValue);
+
+            grp_gameResult.add(curLabel, curGameValue + 1, curMapIndex + 1);
         }
-
-
     }
 
     private void generateGridFramework(ArrayList<String> shortMapFileNameList, ArrayList<String> gameValueList) {
         for (int mapIndex = 0; mapIndex < shortMapFileNameList.size(); mapIndex++) {
             String oneMapName = shortMapFileNameList.get(mapIndex);
             Label oneMapLabel = new Label(oneMapName);
-            oneMapLabel.setStyle("../view/css/labelfortitle.css");
+
             grp_gameResult.add(oneMapLabel, 0, mapIndex + 1);
         }
 
@@ -143,5 +177,16 @@ public class TournamentModeResultViewController implements Initializable {
 
     public void setMapFileList(ArrayList<String> mapFileList) {
         this.mapFileList = mapFileList;
+    }
+
+    public void setStrategyArrayList(ArrayList<Strategy> strategyArrayList) {
+        this.strategyArrayList = strategyArrayList;
+    }
+
+    @FXML
+    public void clickEnd(ActionEvent actionEvent) {
+        Stage curStage = (Stage) btn_end.getScene().getWindow();
+        curStage.close();
+        System.exit(0);
     }
 }

@@ -50,9 +50,11 @@ public class InitWorldMap {
      * @param linkedHashMap world map graph singleton
      * @throws IOException map file not found
      */
-    public static void buildWorldMapGraph(String path, LinkedHashMap<String, GraphNode> linkedHashMap, LinkedHashMap<String, Continent> continentLinkedHashMap
+    public static void buildWorldMapGraph(String path, LinkedHashMap<String, GraphNode> linkedHashMap,
+                                          LinkedHashMap<String, Continent> continentLinkedHashMap
     ) throws IOException {
         System.out.println(new File(path).getAbsolutePath());
+
 
         BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
         String curLine;
@@ -117,8 +119,7 @@ public class InitWorldMap {
                 }
             }
         }
-        //printGraph(linkedHashMap);
-        // printContinent(continentLinkedHashMap);
+
         bufferedReader.close();
 
     }
@@ -166,6 +167,7 @@ public class InitWorldMap {
     /**
      * this method prints information of selected graph node
      * TODO playerArrayList
+     *
      * @param node selected graph node
      */
     private static void printGraphNode(GraphNode node, ArrayList<Player> playerArrayList) {

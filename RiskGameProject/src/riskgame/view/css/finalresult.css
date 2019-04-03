@@ -1,0 +1,12 @@
+.label {
+    -fx-font-size: 14;
+    -fx-font-weight: BOLD;
+    -fx-alignment: center;
+}
+
+.gridpane {
+    -fx-background-fill: black, white;
+    -fx-background-insets: 0, 1;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
