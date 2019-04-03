@@ -88,7 +88,7 @@ public class ReinforceViewController implements Initializable {
     private String curActionString;
     private String curPlayerName;
     private Player curPlayer;
-    private String defaltPath = "./";
+    private String defaultPath = "./";
     private CardExchangeViewObserver cardExchangeViewObserver;
     private ArrayList<Card> playerCards;
 
@@ -390,7 +390,7 @@ public class ReinforceViewController implements Initializable {
             filePath = file.getPath();
         }
         else{
-            filePath = defaltPath;
+            filePath = defaultPath;
         }
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         String fileNameCurTime = dateFormat.format(new Date());

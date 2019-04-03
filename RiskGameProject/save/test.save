@@ -57,7 +57,7 @@ Southwark,438,288,South Central London,Player_1,1,Bromley,Lambeth,City Centre,To
 Lewisham,485,327,South Central London,Player_1,1,Bromley,Greenwich,Southwark,Tower Hamlets
 
 [Phase]
-phaseName,currentPlayer
+phaseName(Initial,Reinforcement,Attack,Fortification),currentPlayer
 
 [R]
 undeployedarmy

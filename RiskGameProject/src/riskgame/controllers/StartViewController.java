@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -30,14 +31,13 @@ import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.InitPlayers;
 import riskgame.model.Utils.ListviewRenderer;
+import riskgame.model.Utils.SaveProgress;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import static riskgame.Main.*;
 import static riskgame.model.Utils.InitWorldMap.buildWorldMapGraph;
@@ -73,6 +73,7 @@ public class StartViewController implements Initializable {
      * reinforce round counter
      */
     public static int reinforceInitCounter;
+    private String defaultPath = "./";
     private static ArrayList<Strategy> playerStrategyList;
     @FXML
     private TextField txf_mapPath;
@@ -152,7 +153,8 @@ public class StartViewController implements Initializable {
         setUIStatus(false);
 
         initToggleButtons();
-
+        btn_loadGame.setVisible(true);
+        btn_saveGame.setVisible(false);
         txf_playerNumbers.setText(Integer.toString(DEFAULT_NUM_OF_PLAYERS));
 
         numOfPlayersProperty = new SimpleIntegerProperty(DEFAULT_NUM_OF_PLAYERS);
@@ -332,6 +334,8 @@ public class StartViewController implements Initializable {
         hbx_infoDisplayHbox.getChildren().clear();
         txf_mapPromptInfo.setText("World Map");
         txf_mapPromptInfo.setVisible(true);
+        btn_saveGame.setVisible(true);
+        btn_loadGame.setVisible(false);
 
         ArrayList<ListView<String>> mapListviews = new ArrayList<>();
 
@@ -574,8 +578,28 @@ public class StartViewController implements Initializable {
     }
 
     public void clickSaveGame(ActionEvent actionEvent) {
-        String titleString = "Select Location to Save Game:";
-        InfoRetriver.showFileChooser(titleString);
+        Stage fileStage = null;
+        String filePath = "";
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Select map file");
+        directoryChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+
+        File file = directoryChooser.showDialog(fileStage);
+        if(file.getPath()!=null) {
+            filePath = file.getPath();
+        }
+        else{
+            filePath = defaultPath;
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        String fileNameCurTime = dateFormat.format(new Date());
+        System.out.println(fileNameCurTime);
+        SaveProgress saveProgress = new SaveProgress();
+        try {
+            saveProgress.SaveFile("Initial",-1,filePath,fileNameCurTime,true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

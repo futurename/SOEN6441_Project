@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
@@ -16,10 +17,14 @@ import riskgame.model.BasicClass.Player;
 import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
+import riskgame.model.Utils.SaveProgress;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import static riskgame.Main.*;
@@ -102,6 +107,7 @@ public class FortificationViewController implements Initializable {
      * current player object
      */
     private Player curPlayer;
+    private String defaultPath = "./";
 
     /**
      * warning alert used for notification
@@ -389,8 +395,29 @@ public class FortificationViewController implements Initializable {
     }
 
     public void clickSaveGame(ActionEvent actionEvent) {
-        String titleString = "Select Location to Save Game:";
-        InfoRetriver.showFileChooser(titleString);
+        Stage fileStage = null;
+        String filePath = "";
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Select map file");
+        directoryChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+
+        File file = directoryChooser.showDialog(fileStage);
+        if(file.getPath()!=null) {
+            filePath = file.getPath();
+        }
+        else{
+            filePath = defaultPath;
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        String fileNameCurTime = dateFormat.format(new Date());
+        System.out.println(fileNameCurTime);
+        SaveProgress saveProgress = new SaveProgress();
+
+        try {
+            saveProgress.SaveFile("Attack",curPlayer.getPlayerIndex(),filePath,fileNameCurTime,btn_confirmMoveArmy.isVisible());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void clickLoadGame(ActionEvent actionEvent) {
