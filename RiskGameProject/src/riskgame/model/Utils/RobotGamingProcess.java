@@ -4,7 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import riskgame.controllers.TournamentModeResultController;
+import riskgame.controllers.TournamentModeResultViewController;
 import riskgame.model.BasicClass.GameRunningResult;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
 import riskgame.model.BasicClass.TournamentGame;
@@ -85,7 +85,7 @@ public class RobotGamingProcess {
             e.printStackTrace();
         }
 
-        TournamentModeResultController controller = loader.getController();
+        TournamentModeResultViewController controller = loader.getController();
         controller.setGamesValue(gamesValue);
         controller.setGameRoundValue(gameRoundValue);
         controller.setResultBlockingQueue(gameResultQueue);

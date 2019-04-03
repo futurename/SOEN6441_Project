@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import riskgame.model.BasicClass.GameRunningResult;
 
@@ -18,7 +19,7 @@ import java.util.concurrent.Future;
  * @since 2019/04/02
  **/
 
-public class TournamentModeResultController implements Initializable {
+public class TournamentModeResultViewController implements Initializable {
 
     @FXML
     private TextArea txa_gameInitInfo;
@@ -36,10 +37,13 @@ public class TournamentModeResultController implements Initializable {
     }
 
     private void generateFullGripPane(int gamesValue, int gameRoundValue) {
-        for (int row = 0; row < gamesValue; row++) {
-            for (int column = 0; column < gameRoundValue; column++) {
-                Label curLabel = new Label();
-                grp_gameResult.add(curLabel, column, row);
+
+        grp_gameResult.add(new TextField("good"), 3, 4);
+
+        for (int row = 1; row <= gamesValue; row++) {
+            for (int column = 1; column <= gameRoundValue; column++) {
+
+                grp_gameResult.add(new Label("T"), column, row);
             }
         }
     }
