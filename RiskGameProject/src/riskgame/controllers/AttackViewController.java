@@ -3,13 +3,10 @@ package riskgame.controllers;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -17,7 +14,6 @@ import riskgame.Main;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
-import riskgame.model.Utils.AttackProcess;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
 
@@ -90,7 +86,7 @@ public class AttackViewController implements Initializable {
      * curent player index
      */
     private int curPlayerIndex;
-    private Player curPlayer;
+    public Player curPlayer;
     private String curGamePhase;
     private String curPlayerName;
     private String curActionString;

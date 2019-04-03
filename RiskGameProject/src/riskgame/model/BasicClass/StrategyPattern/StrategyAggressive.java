@@ -75,6 +75,9 @@ public class StrategyAggressive implements Strategy {
                     int attackArmy = attacker.getCountryArmyNumber() - 1;
                     int defenceArmy = enemy.getCountryArmyNumber();
                     player.alloutAttackSimulate(attacker, enemy, attackArmy, defenceArmy, false);
+                    if (player.isFinalWinner()) {
+                        break;
+                    }
                 }
             }
         }
