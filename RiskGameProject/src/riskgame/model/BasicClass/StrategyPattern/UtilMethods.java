@@ -263,7 +263,7 @@ public class UtilMethods {
     public static void endAttack(Player player) {
         //If single game mode
         if (!playersList.isEmpty()) {
-            if (AttackProcess.winnerPlayerIndex == player.getPlayerIndex()){
+            if (player.isFinalWinner()){
                 notifyAttackEnd(true, player);
             }else {
                 notifyAttackEnd(false, player);
