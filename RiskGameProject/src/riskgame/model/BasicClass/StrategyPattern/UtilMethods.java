@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.controllers.StartViewController;
 import riskgame.controllers.TournamentModeViewController;
@@ -13,6 +14,7 @@ import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.BasicClass.TournamentGame;
+import riskgame.model.Utils.AttackProcess;
 import riskgame.model.Utils.InfoRetriver;
 
 import java.io.IOException;
@@ -151,6 +153,9 @@ public class UtilMethods {
         return player.getUndeployedArmy();
     }
 
+    /**
+     * Method does nothing unless next player is robot
+     */
     public static void callNextRobotPhase() {
         Player nextPlayer = playersList.get(Main.phaseViewObserver.getPlayerIndex());
         String nextPhase = Main.phaseViewObserver.getPhaseName();
@@ -258,20 +263,30 @@ public class UtilMethods {
     public static void endAttack(Player player) {
         //If single game mode
         if (!playersList.isEmpty()) {
-            notifyAttackEnd(player);
-            //if not robot phase, method does nothing
-            callNextRobotPhase();
+            if (AttackProcess.winnerPlayerIndex == player.getPlayerIndex()){
+                notifyAttackEnd(true, player);
+            }else {
+                notifyAttackEnd(false, player);
+                //if not robot phase, method does nothing
+                callNextRobotPhase();
+            }
         }
     }
 
     /**
      * notify phase view observers
      */
-    private static void notifyAttackEnd(Player player) {
-        int curPlayerIndex = player.getPlayerIndex();
-        Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "Fortification Action");
-        Main.phaseViewObservable.notifyObservers("From attack to fortification");
-        System.out.printf("player %s finished attack, player %s's turn.\n", curPlayerIndex, curPlayerIndex);
+    private static void notifyAttackEnd(boolean isFinalView, Player player) {
+        if (isFinalView){
+            Main.phaseViewObservable.setAllParam("Final Phase", player.getPlayerIndex(), "Game Over");
+            Main.phaseViewObservable.notifyObservers("From attack to final");
+            System.out.printf("player %s wins.\n", player.getPlayerName());
+        }else {
+            int curPlayerIndex = player.getPlayerIndex();
+            Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "Fortification Action");
+            Main.phaseViewObservable.notifyObservers("From attack to fortification");
+            System.out.printf("player %s finished attack, player %s's turn.\n", curPlayerIndex, curPlayerIndex);
+        }
     }
 
     public static <T extends Initializable> Scene startView(String phase, T controller){
@@ -286,6 +301,9 @@ public class UtilMethods {
             case "Fortification Phase":
                 resourceLocation = "../view/FortificationView.fxml";
                 break;
+            case "Final Phase":
+                resourceLocation = "../view/FinalView.fxml";
+                break;
             default:
                 resourceLocation = "";
         }
@@ -298,4 +316,5 @@ public class UtilMethods {
         }
         return null;
     }
+
 }

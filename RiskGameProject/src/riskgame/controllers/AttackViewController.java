@@ -17,6 +17,7 @@ import riskgame.Main;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
+import riskgame.model.Utils.AttackProcess;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.ListviewRenderer;
 
@@ -290,11 +291,7 @@ public class AttackViewController implements Initializable {
      * @param actionEvent button is clicked
      */
     public void clickNextStep(ActionEvent actionEvent) {
-        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        UtilMethods.endAttack(curPlayer);
-        Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
-        curStage.setScene(scene);
-        curStage.show();
+        callFinalViewOrNextPhase();
     }
 
     /**
@@ -321,8 +318,8 @@ public class AttackViewController implements Initializable {
             refreshListView(attackingCountry);
             InfoRetriver.updateDominationView("from attack view attack", vbx_worldDomiView);
 
-            if (curPlayer.isFinalWinner()) {
-                callGameOverView(curPlayer);
+            if (AttackProcess.winnerPlayerIndex != -1) {
+                callFinalViewOrNextPhase();
             } else {
                 validateExistAttackableCountry();
             }
@@ -388,33 +385,21 @@ public class AttackViewController implements Initializable {
             refreshListView(selectedAttackerCountry);
             InfoRetriver.updateDominationView("from attack all out mode", vbx_worldDomiView);
 
-            if (curPlayer.isFinalWinner()) {
-
-                callGameOverView(curPlayer);
+            if (AttackProcess.winnerPlayerIndex != -1) {
+                callFinalViewOrNextPhase();
             } else {
                 validateExistAttackableCountry();
             }
         }
     }
 
-    /**
-     * call game over view
-     *
-     * @throws IOException FinalView.fxml not found
-     * @param curPlayer
-     */
-    private void callGameOverView(Player curPlayer) throws IOException {
+    private void callFinalViewOrNextPhase() {
         Stage curStage = (Stage) txa_attackInfoDisplay.getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/FinalView.fxml"));
-        Pane finalPane = loader.load();
-        FinalViewController controller = loader.getController();
-        controller.setWinner(curPlayer);
-
-        Scene finalScene = new Scene(finalPane, 1200, 900);
+        UtilMethods.endAttack(curPlayer);
+        Scene finalScene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(finalScene);
         curStage.show();
     }
-
 
     /**
      * check whether both attacking and defending countries are selected
