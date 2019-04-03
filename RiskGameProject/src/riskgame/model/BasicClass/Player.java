@@ -42,6 +42,7 @@ public class Player extends Observable implements Observer {
     private Strategy strategy;
     private LinkedHashMap<String, GraphNode> worldMapInstance;
     private LinkedHashMap<String, Continent> continentMapInstance;
+    private boolean isFinalWinner;
 
     /**
      * class constructor, player takes human strategy by default
@@ -62,6 +63,7 @@ public class Player extends Observable implements Observer {
         this.strategy = new StrategyHuman();
         this.worldMapInstance = Main.graphSingleton;
         this.continentMapInstance = Main.worldContinentMap;
+        this.isFinalWinner = false;
 
         System.out.println("\nPlayer constructor, player name: " + playerName + "\n\n");
 
@@ -353,6 +355,14 @@ public class Player extends Observable implements Observer {
      */
     public void addToOwnedCountryNameList(String countryName) {
         this.ownedCountryNameList.add(countryName);
+    }
+
+    public boolean isFinalWinner() {
+        return isFinalWinner;
+    }
+
+    public void setFinalWinner(boolean finalWinner) {
+        isFinalWinner = finalWinner;
     }
 
     /**

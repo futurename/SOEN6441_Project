@@ -21,10 +21,6 @@ import java.util.stream.IntStream;
  * @since build2
  */
 public class AttackProcess {
-
-    public static int winnerPlayerIndex = -1;
-
-
     /**
      * overall attack process result and it checks if country ,continent or whole map is conquered
      * @param attackingCountry attacking country
@@ -126,11 +122,12 @@ public class AttackProcess {
                 updateWorldOwner(attacker);
             }else {
                 if (isWorldConquered(attacker)){
-                    winnerPlayerIndex = attackerIndex;
+                    attacker.setFinalWinner(true);
                 }
             }
         }
     }
+
 
     /**
      * If successfully conquered, defending country will notify players for changes
@@ -273,6 +270,8 @@ public class AttackProcess {
         boolean result = isWorldConquered(player);
         if (result) {
             try {
+                player.setFinalWinner(true);
+
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("Game Over!");
                 alert.setContentText("Player [" + player.getPlayerIndex() + "] conquers the world! Game Over!");
@@ -280,7 +279,6 @@ public class AttackProcess {
             }catch (Error e){
                 System.out.println("Mute alter in updateWorldOwner");
             }
-            winnerPlayerIndex = player.getPlayerIndex();
         }
     }
 

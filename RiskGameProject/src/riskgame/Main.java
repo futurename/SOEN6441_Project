@@ -43,6 +43,9 @@ public class Main extends Application {
      */
     public static LinkedHashMap<String, Continent> worldContinentMap = new LinkedHashMap<>();
 
+
+    public static int winnerPlayerIndex = -1;
+
     /**
      * Singleton world map organized in graph data structure
      */

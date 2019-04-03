@@ -35,7 +35,7 @@ public void before() {
     mapFileList.add("maps/World.map");
 
     gamesValue = 3;
-    gameRoundValue = 50;
+    gameRoundValue = 40;
 } 
 
 @After
@@ -50,27 +50,7 @@ public void after() throws Exception {
 @Test
 public void testInitRobotGaming() throws Exception {
     RobotGamingProcess.initRobotGaming(mapFileList, strategyArrayList, gamesValue, gameRoundValue);
-} 
+}
 
-
-/** 
-* 
-* Method: startAllGames() 
-* 
-*/ 
-@Test
-public void testStartAllGames() throws Exception { 
-//TODO: Test goes here... 
-/* 
-try { 
-   Method method = RobotGamingProcess.getClass().getMethod("startAllGames");
-   method.setAccessible(true); 
-   method.invoke(<Object>, <Parameters>); 
-} catch(NoSuchMethodException e) { 
-} catch(IllegalAccessException e) { 
-} catch(InvocationTargetException e) { 
-} 
-*/ 
-} 
 
 } 

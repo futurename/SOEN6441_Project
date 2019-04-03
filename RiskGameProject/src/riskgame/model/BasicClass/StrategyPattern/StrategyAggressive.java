@@ -61,7 +61,7 @@ public class StrategyAggressive implements Strategy {
 
     private void aggressivelyAttack(Player player) {
         ArrayList<Country> attackable = InfoRetriver.getAttackableCountry(player);
-        if (!attackable.isEmpty()) {
+        if (!attackable.isEmpty() && !player.isFinalWinner()) {
             //The list should contain a country base on aggressive rule
             for (Country attacker: attackable){
                 ArrayList<Country> enemies = InfoRetriver.getAdjacentEnemy(player, attacker);

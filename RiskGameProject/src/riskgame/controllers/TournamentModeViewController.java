@@ -143,10 +143,6 @@ public class TournamentModeViewController {
     public void clickConfirmSetting(ActionEvent actionEvent) {
         if (isEnoughPlayerTypes() && isMapSelected() && isGamesSelected() && isRoundNumberSelected()) {
             Stage curStage = (Stage) btn_confirmSetting.getScene().getWindow();
-/*
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(""))
-            TournamentGame controller = loader.<TournamentGame>getController();
-            */
 
             curStage.close();
             RobotGamingProcess.initRobotGaming(selectedMapList, robotPlayerList, gamesValue, gameRoundValue);
