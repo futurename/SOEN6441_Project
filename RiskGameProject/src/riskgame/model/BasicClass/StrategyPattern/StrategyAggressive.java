@@ -14,6 +14,7 @@ import java.util.Random;
 public class StrategyAggressive implements Strategy {
     @Override
     public void doReinforcement(Player player, PhaseViewObservable observable) {
+        System.out.printf("Player %s %s strategy. alive: %s, has army: %s in reinforcement.\n", player.getPlayerIndex(), player, player.getActiveStatus(), player.getArmyNbr());
         aggressivelyExchangeCard(player, observable);
         aggressivelyDeployArmy(player);
         UtilMethods.endReinforcement(player);
@@ -34,6 +35,7 @@ public class StrategyAggressive implements Strategy {
         UtilMethods.getNewArmyPerRound(player);
         int availableArmy = player.getUndeployedArmy();
         ArrayList<Country> countries = InfoRetriver.getCountryList(player);
+        System.out.printf("AGGRESSIVE PLAYER countries: %s", player.getOwnedCountryNameList());
         aggressivelyPickCountryFrom(countries).addToCountryArmyNumber(availableArmy);
         player.addArmy(availableArmy);
         player.addUndeployedArmy(-player.getUndeployedArmy());
@@ -55,6 +57,7 @@ public class StrategyAggressive implements Strategy {
 
     @Override
     public void doAttack(Player player) {
+        System.out.printf("Player %s %s strategy. alive: %s, has army: %s in attack.\n", player.getPlayerIndex(), player, player.getActiveStatus(), player.getArmyNbr());
         aggressivelyAttack(player);
         UtilMethods.endAttack(player);
     }
@@ -88,6 +91,7 @@ public class StrategyAggressive implements Strategy {
 
     @Override
     public void doFortification(Player player) {
+        System.out.printf("Player %s %s strategy. alive: %s, has army: %s in fortification.\n", player.getPlayerIndex(), player, player.getActiveStatus(), player.getArmyNbr());
         aggressivelyFortify();
         UtilMethods.endFortification(player);
     }

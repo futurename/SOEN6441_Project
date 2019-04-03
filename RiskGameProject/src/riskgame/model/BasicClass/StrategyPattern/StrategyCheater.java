@@ -16,6 +16,7 @@ import java.util.LinkedHashMap;
 public class StrategyCheater implements Strategy {
     @Override
     public void doReinforcement(Player player, PhaseViewObservable observable) {
+        System.out.printf("Player %s %s strategy. alive: %s, has army: %s in reinforcement.\n", player.getPlayerIndex(), player, player.getActiveStatus(), player.getArmyNbr());
         evillyExchangeCard();
         evillyDeployArmy(player);
         UtilMethods.endReinforcement(player);
@@ -36,6 +37,7 @@ public class StrategyCheater implements Strategy {
 
     @Override
     public void doAttack(Player player) {
+        System.out.printf("Player %s %s strategy. alive: %s, has army: %s in attack.\n", player.getPlayerIndex(), player, player.getActiveStatus(), player.getArmyNbr());
         evillyConquer(player);
         UtilMethods.endAttack(player);
     }
@@ -57,6 +59,7 @@ public class StrategyCheater implements Strategy {
 
     @Override
     public void doFortification(Player player) {
+        System.out.printf("Player %s %s strategy. alive: %s, has army: %s in fortification.\n", player.getPlayerIndex(), player, player.getActiveStatus(), player.getArmyNbr());
         evillyFortify(player);
         UtilMethods.endFortification(player);
     }

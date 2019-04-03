@@ -20,6 +20,8 @@ public class StrategyRandom implements Strategy {
 
     @Override
     public void doReinforcement(Player player, PhaseViewObservable observable) {
+        System.out.printf("Player %s %s strategy. alive: %s, has army: %s in reinforcement.\n",
+                player.getPlayerIndex(), player, player.getActiveStatus(), player.getArmyNbr());
         randomlyExchangeCard(player, observable);
         randomlyDeployArmy(player);
         UtilMethods.endReinforcement(player);
@@ -36,8 +38,6 @@ public class StrategyRandom implements Strategy {
             availableArmy -= randomArmy;
         }
         player.addUndeployedArmy(player.getUndeployedArmy());
-
-        System.out.println("Random robot randomly deploy army\n");
     }
 
     private Country randomlyPickCountryFrom(ArrayList<Country> from){
@@ -68,6 +68,8 @@ public class StrategyRandom implements Strategy {
 
     @Override
     public void doAttack(Player player) {
+        System.out.printf("Player %s %s strategy. alive: %s, has army: %s in attack.\n",
+                player.getPlayerIndex(), player, player.getActiveStatus(), player.getArmyNbr());
         randomlyAttack(player);
         UtilMethods.endAttack(player);
     }
@@ -100,6 +102,7 @@ public class StrategyRandom implements Strategy {
 
     @Override
     public void doFortification(Player player) {
+        System.out.printf("Player %s %s strategy. alive: %s, has army: %s in fortification.\n", player.getPlayerIndex(), player, player.getActiveStatus(), player.getArmyNbr());
         randomlyFortify(player);
         UtilMethods.endFortification(player);
     }

@@ -170,7 +170,7 @@ public class AttackProcess {
     public static boolean isPlayerHasCountry(Player player) {
         int ownedCountryNbr = player.getOwnedCountryNameList().size();
 
-        System.out.println("\nPlayer: " + player.getPlayerIndex() + " has country num: " + ownedCountryNbr);
+        System.out.println("\nPlayer: " + player.getPlayerIndex() + " has country " + player.getOwnedCountryNameList());
 
         return ownedCountryNbr > 0;
     }
