@@ -11,8 +11,9 @@ import java.io.IOException;
 
 public class SaveProgress {
 
-    public void SaveFile(String phase,String curPlayer,String path,String mapName,boolean AorF) throws IOException {
+    public void SaveFile(String phase,int curPlayer,String path,String mapName,boolean AorF) throws IOException {
         File writename = new File(path+"\\"+mapName+".map");
+        System.out.println(writename);
         writename.createNewFile();
         BufferedWriter out = new BufferedWriter(new FileWriter(writename));
         out.write("[Map]\r\n");
@@ -48,9 +49,11 @@ public class SaveProgress {
                 int curPlayerIndex = Main.worldContinentMap.get(continentName).getContinentCountryGraph().get(countryName).getOwnerIndex();
                 int curArmyNumber = Main.worldContinentMap.get(continentName).getContinentCountryGraph().get(countryName).getCountryArmyNumber();
                 String neighbor = "";
-                for(Country neighborCountry : Main.graphSingleton.get(Main.worldContinentMap.get(continentName).getContinentCountryGraph().get(countryName)).getAdjacentCountryList()){
+
+                for(Country neighborCountry : Main.graphSingleton.get(countryName).getAdjacentCountryList()){
                     neighbor = neighbor+","+neighborCountry.getCountryName();
                 }
+
                 out.write(curCountryName+",0,0,"+curContinentName+","+curPlayerIndex+","+curArmyNumber+neighbor+"\r\n");
             }
             out.write("\r\n");
@@ -63,7 +66,7 @@ public class SaveProgress {
         if(phase.equals("Reinforcement")) {
             out.write("[R]\r\n");
             for (int k = 0; k < Main.playersList.size(); k++) {
-                if (curPlayer.equals(Main.playersList.get(k).getPlayerName())) {
+                if (curPlayer==Main.playersList.get(k).getPlayerIndex()) {
                     out.write(Main.playersList.get(k).getUndeployedArmy() + "\r\n");
                     break;
                 }
@@ -78,6 +81,8 @@ public class SaveProgress {
             out.write(AorF+"");
         }
 
+    out.flush();
+    out.close();
     }
 
 }
