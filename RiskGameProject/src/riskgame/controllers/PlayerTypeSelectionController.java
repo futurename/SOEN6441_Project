@@ -40,8 +40,6 @@ public class PlayerTypeSelectionController {
 
     public void initialize() {
         strategySelectionList = new ArrayList<>();
-        Strategy human = new StrategyHuman();
-        // strategySelectionList.add(human);
     }
 
     public void InitViewSettings() {

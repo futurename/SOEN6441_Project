@@ -1,16 +1,13 @@
 package riskgame.model.Utils;
 
-import mapeditor.model.MapObject;
 import riskgame.Main;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
-import riskgame.model.BasicClass.Player;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class SaveProgress {
 
@@ -48,7 +45,7 @@ public class SaveProgress {
             for(String countryName:Main.worldContinentMap.get(continentName).getContinentCountryGraph().keySet()){
                 String curCountryName = Main.worldContinentMap.get(continentName).getContinentCountryGraph().get(countryName).getCountryName();
                 String curContinentName = Main.worldContinentMap.get(continentName).getContinentCountryGraph().get(countryName).getContinentName();
-                int curPlayerIndex = Main.worldContinentMap.get(continentName).getContinentCountryGraph().get(countryName).getCountryOwnerIndex();
+                int curPlayerIndex = Main.worldContinentMap.get(continentName).getContinentCountryGraph().get(countryName).getOwnerIndex();
                 int curArmyNumber = Main.worldContinentMap.get(continentName).getContinentCountryGraph().get(countryName).getCountryArmyNumber();
                 String neighbor = "";
                 for(Country neighborCountry : Main.graphSingleton.get(Main.worldContinentMap.get(continentName).getContinentCountryGraph().get(countryName)).getAdjacentCountryList()){
