@@ -79,12 +79,14 @@ public class TournamentModeResultViewController implements Initializable {
     }
 
     private void generateTitleInfo(int gamesValue, int gameRoundValue) {
+        ArrayList<String> shortFileNameList = getShortFileNameList(mapFileList);
+
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("M: ");
 
-        for (int mapIndex = 0; mapIndex < mapFileList.size(); mapIndex++) {
+        for (int mapIndex = 0; mapIndex < shortFileNameList.size(); mapIndex++) {
             stringBuilder.append("<").append(mapIndex)
-                    .append("> ").append(mapFileList.get(mapIndex))
+                    .append("> ").append(shortFileNameList.get(mapIndex))
                     .append(" ");
         }
 
@@ -188,5 +190,15 @@ public class TournamentModeResultViewController implements Initializable {
         Stage curStage = (Stage) btn_end.getScene().getWindow();
         curStage.close();
         System.exit(0);
+    }
+
+    private ArrayList<String> getShortFileNameList(ArrayList<String> mapFileList) {
+        ArrayList<String> shortNameList = new ArrayList<>();
+        for (String fileName : mapFileList) {
+            String[] splitStrings = fileName.split("\\\\");
+            String shortFileName = splitStrings[splitStrings.length - 1];
+            shortNameList.add(shortFileName);
+        }
+        return shortNameList;
     }
 }

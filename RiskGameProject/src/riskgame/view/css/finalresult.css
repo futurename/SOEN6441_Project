@@ -10,3 +10,8 @@
     -fx-alignment: center;
     -fx-text-alignment: center;
 }
+
+.text-area {
+    -fx-alignment: center-left;
+    -fx-text-alignment: center-left;
+}
