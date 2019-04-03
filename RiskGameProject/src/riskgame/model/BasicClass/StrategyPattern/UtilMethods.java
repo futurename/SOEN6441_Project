@@ -11,6 +11,7 @@ import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.Utils.AttackProcess;
 import riskgame.model.Utils.InfoRetriver;
 
 import java.io.IOException;
@@ -147,6 +148,16 @@ public class UtilMethods {
     public static int addUndeployedArmyAfterExchanging(Player player, int exchangedArmyNbr) {
         player.addUndeployedArmy(exchangedArmyNbr);
         return player.getUndeployedArmy();
+    }
+
+    /**
+     * is called in cheater attack logic which does not actually attack.
+     */
+    public static void checkDefenderAlive(Player defender){
+        if (!AttackProcess.isPlayerHasCountry(defender)){
+            defender.setActiveStatus(false);
+        }
+        System.out.printf("Defender %s is eliminated!", defender.getPlayerName());
     }
 
     /**
