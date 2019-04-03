@@ -6,6 +6,7 @@ import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.Utils.AttackProcess;
 import riskgame.model.Utils.InfoRetriver;
 
 import java.io.UTFDataFormatException;
@@ -46,6 +47,10 @@ public class StrategyCheater implements Strategy {
             for (Country enemy: enemyCountries){
                 enemy.setObservableArmyWhenOwnerChanged(player, enemy.getCountryArmyNumber());
             }
+        }
+        //
+        if (AttackProcess.isWorldConquered(player)){
+            player.setFinalWinner(true);
         }
     }
 
