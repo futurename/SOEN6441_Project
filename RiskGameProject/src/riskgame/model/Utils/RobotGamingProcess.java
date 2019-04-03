@@ -28,7 +28,7 @@ public class RobotGamingProcess {
                 String mapFileName = fileName;
                 String gameName = "Game" + gameIndex;
 
-                executorPool.submit(new Callable<GameRunningResult>() {
+                Future<GameRunningResult> future = executorPool.submit(new Callable<GameRunningResult>() {
                     @Override
                     public GameRunningResult call() throws Exception {
                         TournamentGame oneTournamentGame = new TournamentGame(fileName, robotPlayerList, gameRoundValue);
@@ -37,13 +37,28 @@ public class RobotGamingProcess {
                         String winnerName = oneTournamentGame.getGameWinner();
                         GameRunningResult curGameResult = new GameRunningResult(fileName, gameName, winnerName);
 
-                        //System.out.println("\n" + curGameResult + "\n");
+                        System.out.println("\n\n>>>>>>>cur game result object: " + curGameResult + "<<<<<<\n\n");
 
                         return curGameResult;
                     }
                 });
+
+                gameResultQueue.add(future);
+
+                System.out.println("\nmap:" + mapFileName + ", gameSeq: " + gameIndex + "\n");
             }
+
+
         }
+
+        //executorPool.shutdown();
+        try {
+            executorPool.awaitTermination(2, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("\n\n\n\n\n-------------FINAL RESULT:--------------");
 
         processAllGamesResult(gameResultQueue, completionService, threadCount);
     }
@@ -53,6 +68,7 @@ public class RobotGamingProcess {
             Future<GameRunningResult> future = null;
             try {
                 future = completionService.take();
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

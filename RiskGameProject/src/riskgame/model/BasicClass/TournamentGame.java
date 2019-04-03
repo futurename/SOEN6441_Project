@@ -51,6 +51,10 @@ public class TournamentGame implements Runnable {
 
         doRegularGaming(gameRoundLeft);
 
+        System.out.println("\n\n\nOne Tournament END:\n");
+
+        InitWorldMap.printGraph(worldMapInstance, robotPlayerList);
+
         System.out.println("\n>>>>> Final winner: " + gameWinner + ", map: " + mapFile + "\n\n");
     }
 
@@ -67,19 +71,27 @@ public class TournamentGame implements Runnable {
         System.out.println("gameRoundValue: " + gameRoundValue);
         System.out.println("playerlist: " + robotPlayerList + "\n\n");
 
-        //InitWorldMap.printGraph(worldMapInstance, robotPlayerList);
+        InitWorldMap.printGraph(worldMapInstance, robotPlayerList);
 
     }
 
 
     private void doRegularGaming(int gameRoundLeft) {
-        while (gameRoundLeft > 0 || gameWinner != -1) {
+        while (gameRoundLeft > 0 && gameWinner == -1) {
             for (int playerIndex = 0; playerIndex < robotPlayerList.size(); playerIndex++) {
                 Player curRobot = robotPlayerList.get(playerIndex);
                 if (curRobot.getActiveStatus()) {
                     curRobot.executeReinforcement(tournamentObservable);
                     curRobot.executeAttack();
-                    curRobot.executeFortification();
+
+                    if (curRobot.isFinalWinner()) {
+                        gameWinner = curRobot.getPlayerIndex();
+
+                        System.out.println("Tournament game winner: " + gameWinner);
+
+                    } else {
+                        curRobot.executeFortification();
+                    }
 
                     System.out.println("robot " + playerIndex + ": regular gaming!  Round left: " + gameRoundLeft);
                 }
@@ -93,9 +105,17 @@ public class TournamentGame implements Runnable {
             Player curRobot = robotPlayerList.get(playerIndex);
             if (curRobot.getActiveStatus()) {
                 curRobot.executeAttack();
-                curRobot.executeFortification();
-
                 System.out.println("robot " + playerIndex + ": doAllPlayerAttackAndFortification");
+
+                if (curRobot.isFinalWinner()) {
+                    gameWinner = curRobot.getPlayerIndex();
+
+                    System.out.println("Tournament game winner: " + gameWinner);
+
+                } else {
+                    curRobot.executeFortification();
+                }
+
             }
         }
     }
@@ -113,7 +133,7 @@ public class TournamentGame implements Runnable {
     public void run() {
         try {
 
-            System.out.println("\n\n!!!!!!!!!!!!!!!tournamentGame instance start!!!");
+            System.out.println("\n\n!!!!!!!!tournamentGame instance start!!! map: " + mapFile + "\n\n");
 
             mainGamingLogic();
 

@@ -42,6 +42,7 @@ public class Player extends Observable implements Observer {
     private Strategy strategy;
     private LinkedHashMap<String, GraphNode> worldMapInstance;
     private LinkedHashMap<String, Continent> continentMapInstance;
+    private boolean isFinalWinner;
 
     /**
      * class constructor, player takes human strategy by default
@@ -62,6 +63,7 @@ public class Player extends Observable implements Observer {
         this.strategy = new StrategyHuman();
         this.worldMapInstance = Main.graphSingleton;
         this.continentMapInstance = Main.worldContinentMap;
+        this.isFinalWinner = false;
 
         System.out.println("\nPlayer constructor, player name: " + playerName + "\n\n");
 
@@ -191,6 +193,10 @@ public class Player extends Observable implements Observer {
         result = attackArmyCount;
 
         return result;
+    }
+
+    public LinkedHashMap<String, Continent> getContinentMapInstance() {
+        return continentMapInstance;
     }
 
     public Strategy getStrategy() {
@@ -351,6 +357,14 @@ public class Player extends Observable implements Observer {
         this.ownedCountryNameList.add(countryName);
     }
 
+    public boolean isFinalWinner() {
+        return isFinalWinner;
+    }
+
+    public void setFinalWinner(boolean finalWinner) {
+        isFinalWinner = finalWinner;
+    }
+
     /**
      * Util method for recursive attacks
      * allout attack mode, which results in either attacker wins or defender wins.
@@ -360,7 +374,7 @@ public class Player extends Observable implements Observer {
      * @param defendArmyNbr         army number of defending country
      * @return battle info
      */
-    public String alloutAttackSimulate(Country attackingCountry, Player attacker, Country defendingCountry, Player defender, int attackArmyNbr,
+    public String alloutAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr,
                                         int defendArmyNbr, boolean UIOption) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Attacker: [ ")
@@ -375,10 +389,10 @@ public class Player extends Observable implements Observer {
             int nondeployedAttackerArmyNbr = attackingCountry.getCountryArmyNumber() - 1;
 
             String continentName = defendingCountry.getContinentName();
-            Continent curContinent = Main.worldContinentMap.get(continentName);
+            Continent curContinent = attackingCountry.getOwner().getContinentMapInstance().get(continentName);
 
-            AttackProcess.updateConqueredCountry(attackingCountry, defendingCountry, nondeployedAttackerArmyNbr, attacker, defender, UIOption);
-            AttackProcess.updateContinentAndWorldStatus(attacker, defender, curContinent, UIOption);
+            AttackProcess.updateConqueredCountry(attackingCountry, defendingCountry, nondeployedAttackerArmyNbr, UIOption);
+            AttackProcess.updateContinentAndWorldStatus(attackingCountry.getOwner(), defendingCountry.getOwner(), curContinent, UIOption);
         }
         return stringBuilder.toString();
     }
@@ -417,7 +431,7 @@ public class Player extends Observable implements Observer {
      * @param defendArmyNbr         army number of defending country
      * @return battle info
      */
-    public StringBuilder oneAttackSimulate(Country attackingCountry, Player attacker, Country defendingCountry, Player defender, int attackArmyNbr, int defendArmyNbr) {
+    public StringBuilder oneAttackSimulate(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr) {
         int avaliableForAttackNbr = attackArmyNbr > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : attackArmyNbr;
         int avaliableForDefendNbr = defendArmyNbr > MAX_DEFENDING_ARMY_NUMBER ? MAX_DEFENDING_ARMY_NUMBER : defendArmyNbr;
 
@@ -425,7 +439,7 @@ public class Player extends Observable implements Observer {
 
         int attackerRemainArmyNbr = getOneAttackResult(attackingCountry, defendingCountry, avaliableForAttackNbr, avaliableForDefendNbr, battleReport);
 
-        AttackProcess.attackResultProcess(attackingCountry, attacker, defendingCountry, defender, attackerRemainArmyNbr);
+        AttackProcess.attackResultProcess(attackingCountry, defendingCountry, attackerRemainArmyNbr);
 
         return battleReport;
     }
@@ -450,10 +464,8 @@ public class Player extends Observable implements Observer {
      * @param defendArmyNbr         army number of defending country
      * @return battle info
      */
-    public String executeAttack(Country attackingCountry, Player attacker, Country defendingCountry, Player defender,
-                                int attackArmyNbr, int defendArmyNbr, boolean isAllout) {
-        return this.strategy.doAttack(this, attackingCountry, attacker, defendingCountry, defender,
-                attackArmyNbr, defendArmyNbr, isAllout);
+    public String executeAttack(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr, boolean isAllout) {
+        return this.strategy.doAttack(this, attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, isAllout);
     }
 
     public void executeReinforcement(PhaseViewObservable observable){
@@ -529,7 +541,7 @@ public class Player extends Observable implements Observer {
     public void update(Observable o, Object arg) {
         if (o instanceof Country) {
             Player formerOwner = this;
-            Player newOwner = Main.playersList.get(((Country) o).getCountryOwnerIndex());
+            Player newOwner = ((Country) o).getOwner();
             System.out.println("former: " + formerOwner.playerIndex);
             System.out.println("now: " + newOwner.playerIndex);
             System.out.printf("player %d obs awake\n", this.playerIndex);

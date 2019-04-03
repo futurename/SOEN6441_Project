@@ -3,18 +3,39 @@ package test.riskgame.model.Utils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import riskgame.model.BasicClass.StrategyPattern.Strategy;
+import riskgame.model.BasicClass.StrategyPattern.StrategyAggressive;
+import riskgame.model.BasicClass.StrategyPattern.StrategyRandom;
+import riskgame.model.Utils.RobotGamingProcess;
+
+import java.util.ArrayList;
 
 /**
  * RobotGamingProcess Tester.
-* 
-* @author <Authors name> 
+*
+ * @author <WW>
 * @since <pre>Mar 30, 2019</pre> 
 * @version 1.0 
 */
 public class RobotGamingProcessTest {
+    private ArrayList<Strategy> strategyArrayList;
+    private ArrayList<String> mapFileList;
+    private int gamesValue;
+    private int gameRoundValue;
 
 @Before
-public void before() throws Exception { 
+public void before() {
+    strategyArrayList = new ArrayList<>();
+    strategyArrayList.add(new StrategyAggressive());
+    strategyArrayList.add(new StrategyRandom());
+
+    mapFileList = new ArrayList<>();
+    mapFileList.add("maps/USA.map");
+    mapFileList.add("maps/Alberta.map");
+    mapFileList.add("maps/World.map");
+
+    gamesValue = 3;
+    gameRoundValue = 200;
 } 
 
 @After
@@ -27,29 +48,9 @@ public void after() throws Exception {
 * 
 */ 
 @Test
-public void testInitRobotGaming() throws Exception { 
-//TODO: Test goes here... 
-} 
+public void testInitRobotGaming() throws Exception {
+    RobotGamingProcess.initRobotGaming(mapFileList, strategyArrayList, gamesValue, gameRoundValue);
+}
 
-
-/** 
-* 
-* Method: startAllGames() 
-* 
-*/ 
-@Test
-public void testStartAllGames() throws Exception { 
-//TODO: Test goes here... 
-/* 
-try { 
-   Method method = RobotGamingProcess.getClass().getMethod("startAllGames");
-   method.setAccessible(true); 
-   method.invoke(<Object>, <Parameters>); 
-} catch(NoSuchMethodException e) { 
-} catch(IllegalAccessException e) { 
-} catch(InvocationTargetException e) { 
-} 
-*/ 
-} 
 
 } 

@@ -2,7 +2,6 @@ package riskgame.model.BasicClass.StrategyPattern;
 
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
-import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.Player;
@@ -10,7 +9,6 @@ import riskgame.model.Utils.AttackProcess;
 import riskgame.model.Utils.InfoRetriver;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.Random;
 
 import static riskgame.controllers.AttackViewController.MAX_ATTACKING_ARMY_NUMBER;
@@ -77,7 +75,7 @@ public class StrategyRandom implements Strategy {
     private void randomlyAttack(Player player) {
         //pick a country that can attack
         ArrayList<Country> attackable = InfoRetriver.getAttackableCountry(player);
-        if (!attackable.isEmpty()) {
+        if (!attackable.isEmpty() && !player.isFinalWinner()) {
             Country attacker = randomlyPickCountryFrom(attackable);
             //pick an enemy
             ArrayList<Country> enemies = InfoRetriver.getAdjacentEnemy(player, attacker);
@@ -91,9 +89,11 @@ public class StrategyRandom implements Strategy {
                 int actualArmy = randomArmy > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : randomArmy;
                 //Attack
                 int armyLeft = getOneAttackResult(attacker, enemy, actualArmy, defenceArmy, new StringBuilder());
-                //TODO
-//                AttackProcess.autoResultProcess(attacker, enemy, armyLeft);
+                AttackProcess.autoResultProcess(attacker, enemy, armyLeft);
                 randomAttackTime = attacker.getCountryArmyNumber() - 1;
+                if (player.isFinalWinner()) {
+                    break;
+                }
             }
         }
     }

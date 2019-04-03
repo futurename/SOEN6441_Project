@@ -394,7 +394,7 @@ public class StartViewController implements Initializable {
                 int count = 0;
                 int max = continent.getContinentCountryGraph().values().size();
                 for (Country country : continent.getContinentCountryGraph().values()) {
-                    if (country.getCountryOwnerIndex() != playerIndex) {
+                    if (country.getOwnerIndex() != playerIndex) {
                         break;
                     }
                     count++;

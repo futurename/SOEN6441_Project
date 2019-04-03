@@ -14,8 +14,8 @@ public interface Strategy {
     default void doAttack(Player player) {
     }
 
-    default String doAttack(Player humanPlayer, Country attackingCountry, Player attacker, Country defendingCountry,
-                            Player defender, int attackArmy, int defendArmy, boolean isAllout) {
+    default String doAttack(Player humanPlayer, Country attackingCountry, Country defendingCountry,
+                            int attackArmy, int defendArmy, boolean isAllout) {
         return "";
     }
 

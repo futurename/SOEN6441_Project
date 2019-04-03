@@ -1,6 +1,5 @@
 package riskgame.model.Utils;
 
-import riskgame.Main;
 import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
@@ -67,7 +66,7 @@ public class InitWorldMap {
 
                     //Initialize a new Continent object
                     Continent oneContinent = new Continent(curContinentName, curContinentBonusValue);
-                    Main.worldContinentMap.put(curContinentName, oneContinent);
+                    continentLinkedHashMap.put(curContinentName, oneContinent);
                 }
             }
 
@@ -96,7 +95,7 @@ public class InitWorldMap {
 
                         String curContinentName = curLineSplitArray[CONTINENT_POSITION];
                         curCountry.setContinentName(curContinentName);
-                        Main.worldContinentMap.get(curContinentName).getContinentCountryGraph().put(curCountryName, curCountry);
+                        continentLinkedHashMap.get(curContinentName).getContinentCountryGraph().put(curCountryName, curCountry);
 
                         for (int i = CONTINENT_POSITION + 1; i < curLineSplitArray.length; i++) {
                             Country oneCountry;
@@ -118,8 +117,8 @@ public class InitWorldMap {
                 }
             }
         }
-        printGraph(linkedHashMap);
-        printContinent(continentLinkedHashMap);
+        //printGraph(linkedHashMap);
+        // printContinent(continentLinkedHashMap);
         bufferedReader.close();
 
     }
@@ -144,7 +143,7 @@ public class InitWorldMap {
         for (Map.Entry<String, GraphNode> entry : worldHashMap.entrySet()) {
             String countryName = entry.getKey();
             GraphNode node = entry.getValue();
-            int ownerIndex = entry.getValue().getCountry().getCountryOwnerIndex();
+            int ownerIndex = entry.getValue().getCountry().getOwnerIndex();
             Player owner = playerArrayList.get(ownerIndex);
 
             System.out.println(">>>>>>>>>>>> country: " + countryName + ", continent: " + node.getCountry().getContinentName()
@@ -165,8 +164,8 @@ public class InitWorldMap {
     }
 
     /**
-     * this method prints informaton of selected graph node
-     *
+     * this method prints information of selected graph node
+     * TODO playerArrayList
      * @param node selected graph node
      */
     private static void printGraphNode(GraphNode node, ArrayList<Player> playerArrayList) {
@@ -176,7 +175,7 @@ public class InitWorldMap {
             if (playerArrayList.isEmpty()) {
                 curPlayerName = "None";
             } else {
-                Player curPlayer = playerArrayList.get(country.getCountryOwnerIndex());
+                Player curPlayer = playerArrayList.get(country.getOwnerIndex());
                 curPlayerName = curPlayer.getPlayerName();
             }
             System.out.printf("[%s] : %s\n", countryName, curPlayerName);
@@ -189,7 +188,7 @@ public class InitWorldMap {
             String countryName = country.getCountryName();
             String curPlayerName;
 
-            System.out.printf("[%s] : %d\n", countryName, country.getCountryOwnerIndex());
+            System.out.printf("[%s] : %d\n", countryName, country.getOwnerIndex());
         }
         System.out.println("\n");
     }
