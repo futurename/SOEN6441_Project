@@ -60,8 +60,9 @@ public class StrategyAggressive implements Strategy {
     }
 
     private void aggressivelyAttack(Player player) {
+        //attackable: army>1 & has enemy neighbors
         ArrayList<Country> attackable = InfoRetriver.getAttackableCountry(player);
-        if (!attackable.isEmpty() && !player.isFinalWinner()) {
+        if (!attackable.isEmpty()) {
             //The list should contain a country base on aggressive rule
             for (Country attacker: attackable){
                 ArrayList<Country> enemies = InfoRetriver.getAdjacentEnemy(player, attacker);
@@ -74,7 +75,9 @@ public class StrategyAggressive implements Strategy {
                     }
                     int attackArmy = attacker.getCountryArmyNumber() - 1;
                     int defenceArmy = enemy.getCountryArmyNumber();
+                    //all-out mode attack
                     player.alloutAttackSimulate(attacker, enemy, attackArmy, defenceArmy, false);
+                    //only when the for loop for attackable reaches the last one. player can be the winner.
                     if (player.isFinalWinner()) {
                         break;
                     }

@@ -10,7 +10,7 @@
 <AnchorPane maxHeight = "-Infinity" maxWidth = "-Infinity" minHeight = "-Infinity" minWidth = "-Infinity" prefHeight = "600.0" prefWidth = "800.0"
             xmlns = "http://javafx.com/javafx/8" xmlns:fx = "http://javafx.com/fxml/1">
     <children>
-        <TextArea fx:id = "txa_gameInitInfo" editable = "false" layoutX = "78.0" layoutY = "14.0" prefHeight = "108.0" prefWidth = "645.0"
+        <TextArea fx:id = "txa_gameInitInfo" editable = "false" layoutX = "63.0" layoutY = "14.0" prefHeight = "108.0" prefWidth = "689.0"
                   promptText = "Info" stylesheets = "@css/textareaStyle.css" wrapText = "true">
             <font>
                 <Font name = "System Bold" size = "13.0"/>
