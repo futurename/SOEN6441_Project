@@ -291,11 +291,7 @@ public class AttackViewController implements Initializable {
      * @param actionEvent button is clicked
      */
     public void clickNextStep(ActionEvent actionEvent) {
-        Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        UtilMethods.endAttack(curPlayer);
-        Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
-        curStage.setScene(scene);
-        curStage.show();
+        callFinalViewOrNextPhase();
     }
 
     /**
@@ -323,7 +319,7 @@ public class AttackViewController implements Initializable {
             InfoRetriver.updateDominationView("from attack view attack", vbx_worldDomiView);
 
             if (AttackProcess.winnerPlayerIndex != -1) {
-                callGameOverView();
+                callFinalViewOrNextPhase();
             } else {
                 validateExistAttackableCountry();
             }
@@ -390,27 +386,20 @@ public class AttackViewController implements Initializable {
             InfoRetriver.updateDominationView("from attack all out mode", vbx_worldDomiView);
 
             if (AttackProcess.winnerPlayerIndex != -1) {
-                callGameOverView();
+                callFinalViewOrNextPhase();
             } else {
                 validateExistAttackableCountry();
             }
         }
     }
 
-    /**
-     * call game over view
-     *
-     * @throws IOException FinalView.fxml not found
-     */
-    private void callGameOverView() throws IOException {
+    private void callFinalViewOrNextPhase() {
         Stage curStage = (Stage) txa_attackInfoDisplay.getScene().getWindow();
-
-        Pane finalPane = new FXMLLoader(getClass().getResource("../view/FinalView.fxml")).load();
-        Scene finalScene = new Scene(finalPane, 1200, 900);
+        UtilMethods.endAttack(curPlayer);
+        Scene finalScene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(finalScene);
         curStage.show();
     }
-
 
     /**
      * check whether both attacking and defending countries are selected
