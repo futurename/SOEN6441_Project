@@ -111,6 +111,7 @@ public class FortificationViewController implements Initializable {
     /**
      * init method for fortification phase view
      */
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
         initPhaseView();
 

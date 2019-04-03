@@ -51,6 +51,10 @@ public class TournamentGame implements Runnable {
 
         doRegularGaming(gameRoundLeft);
 
+        System.out.println("\n\n\nOne Tournament END:\n");
+
+        InitWorldMap.printGraph(worldMapInstance, robotPlayerList);
+
         System.out.println("\n>>>>> Final winner: " + gameWinner + ", map: " + mapFile + "\n\n");
     }
 
@@ -67,7 +71,7 @@ public class TournamentGame implements Runnable {
         System.out.println("gameRoundValue: " + gameRoundValue);
         System.out.println("playerlist: " + robotPlayerList + "\n\n");
 
-        //InitWorldMap.printGraph(worldMapInstance, robotPlayerList);
+        InitWorldMap.printGraph(worldMapInstance, robotPlayerList);
 
     }
 
@@ -79,6 +83,14 @@ public class TournamentGame implements Runnable {
                 if (curRobot.getActiveStatus()) {
                     curRobot.executeReinforcement(tournamentObservable);
                     curRobot.executeAttack();
+
+                    if (curRobot.isFinalWinner()) {
+                        gameWinner = curRobot.getPlayerIndex();
+
+                        System.out.println("Tournament game winner: " + gameWinner);
+
+                    }
+
                     curRobot.executeFortification();
 
                     System.out.println("robot " + playerIndex + ": regular gaming!  Round left: " + gameRoundLeft);
@@ -93,9 +105,17 @@ public class TournamentGame implements Runnable {
             Player curRobot = robotPlayerList.get(playerIndex);
             if (curRobot.getActiveStatus()) {
                 curRobot.executeAttack();
-                curRobot.executeFortification();
-
                 System.out.println("robot " + playerIndex + ": doAllPlayerAttackAndFortification");
+
+                if (curRobot.isFinalWinner()) {
+                    gameWinner = curRobot.getPlayerIndex();
+
+                    System.out.println("Tournament game winner: " + gameWinner);
+
+                } else {
+                    curRobot.executeFortification();
+                }
+
             }
         }
     }

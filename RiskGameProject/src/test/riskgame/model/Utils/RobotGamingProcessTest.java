@@ -35,7 +35,7 @@ public void before() {
     mapFileList.add("maps/World.map");
 
     gamesValue = 3;
-    gameRoundValue = 50;
+    gameRoundValue = 40;
 } 
 
 @After

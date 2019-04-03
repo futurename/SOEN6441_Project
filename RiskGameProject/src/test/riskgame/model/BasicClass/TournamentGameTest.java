@@ -34,7 +34,7 @@ public void before() throws Exception {
     strategyArrayList.add(new StrategyAggressive());
 
     gamesvalue = 3;
-    gameRoundValue = 10;
+    gameRoundValue = 30;
 } 
 
 @After
