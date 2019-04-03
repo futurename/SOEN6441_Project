@@ -5,20 +5,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import riskgame.Main;
+import riskgame.controllers.FinalViewController;
 import riskgame.controllers.StartViewController;
-import riskgame.controllers.TournamentModeViewController;
 import riskgame.model.BasicClass.Card;
-import riskgame.model.BasicClass.GraphNode;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.Player;
-import riskgame.model.BasicClass.TournamentGame;
 import riskgame.model.Utils.InfoRetriver;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 
 import static riskgame.Main.*;
 import static riskgame.controllers.StartViewController.firstRoundCounter;
@@ -151,6 +149,9 @@ public class UtilMethods {
         return player.getUndeployedArmy();
     }
 
+    /**
+     * Method does nothing unless next player is robot
+     */
     public static void callNextRobotPhase() {
         Player nextPlayer = playersList.get(Main.phaseViewObserver.getPlayerIndex());
         String nextPhase = Main.phaseViewObserver.getPhaseName();
@@ -258,20 +259,30 @@ public class UtilMethods {
     public static void endAttack(Player player) {
         //If single game mode
         if (!playersList.isEmpty()) {
-            notifyAttackEnd(player);
-            //if not robot phase, method does nothing
-            callNextRobotPhase();
+            if (player.isFinalWinner()){
+                notifyAttackEnd(true, player);
+            }else {
+                notifyAttackEnd(false, player);
+                //if not robot phase, method does nothing
+                callNextRobotPhase();
+            }
         }
     }
 
     /**
      * notify phase view observers
      */
-    private static void notifyAttackEnd(Player player) {
-        int curPlayerIndex = player.getPlayerIndex();
-        Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "Fortification Action");
-        Main.phaseViewObservable.notifyObservers("From attack to fortification");
-        System.out.printf("player %s finished attack, player %s's turn.\n", curPlayerIndex, curPlayerIndex);
+    private static void notifyAttackEnd(boolean isFinalView, Player player) {
+        if (isFinalView){
+            Main.phaseViewObservable.setAllParam("Final Phase", player.getPlayerIndex(), "Game Over");
+            Main.phaseViewObservable.notifyObservers("From attack to final");
+            System.out.printf("player %s wins.\n", player.getPlayerName());
+        }else {
+            int curPlayerIndex = player.getPlayerIndex();
+            Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "Fortification Action");
+            Main.phaseViewObservable.notifyObservers("From attack to fortification");
+            System.out.printf("player %s finished attack, player %s's turn.\n", curPlayerIndex, curPlayerIndex);
+        }
     }
 
     public static <T extends Initializable> Scene startView(String phase, T controller){
@@ -286,16 +297,35 @@ public class UtilMethods {
             case "Fortification Phase":
                 resourceLocation = "../view/FortificationView.fxml";
                 break;
+            case "Final Phase":
+                resourceLocation = "../view/FinalView.fxml";
+                break;
             default:
                 resourceLocation = "";
         }
         try {
             System.out.println("LOADING......"+phase);
-            Pane nextPane = new FXMLLoader(controller.getClass().getResource(resourceLocation)).load();
+
+            Pane nextPane;
+            FXMLLoader loader = new FXMLLoader(controller.getClass().getResource(resourceLocation));
+
+            if (resourceLocation.equals("Final Phase")) {
+                FinalViewController finalViewController = loader.getController();
+
+                Field playerField = controller.getClass().getField("Player");
+
+                finalViewController.setWinner((Player) playerField.get(controller));
+            }
+            nextPane = loader.load();
             return new Scene(nextPane, 1200, 900);
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
         return null;
     }
+
 }

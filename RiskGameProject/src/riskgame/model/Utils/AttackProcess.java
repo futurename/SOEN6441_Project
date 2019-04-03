@@ -21,10 +21,6 @@ import java.util.stream.IntStream;
  * @since build2
  */
 public class AttackProcess {
-
-    public static int winnerPlayerIndex = -1;
-
-
     /**
      * overall attack process result and it checks if country ,continent or whole map is conquered
      * @param attackingCountry attacking country
@@ -34,7 +30,7 @@ public class AttackProcess {
     public static void attackResultProcess(Country attackingCountry, Country defendingCountry, int remainingArmyNbr) {
 
         String continentName = defendingCountry.getContinentName();
-        Continent curContinent = Main.worldContinentMap.get(continentName);
+        Continent curContinent = attackingCountry.getOwner().getContinentMapInstance().get(continentName);
 
         if (isCountryConquered(defendingCountry)) {
             updateConqueredCountry(attackingCountry, defendingCountry, remainingArmyNbr, true);
@@ -77,7 +73,7 @@ public class AttackProcess {
     public static void autoResultProcess(Country attackingCountry, Country defendingCountry, int remainingArmyNbr){
 
         String continentName = defendingCountry.getContinentName();
-        Continent curContinent = Main.worldContinentMap.get(continentName);
+        Continent curContinent = attackingCountry.getOwner().getContinentMapInstance().get(continentName);
 
         if (isCountryConquered(defendingCountry)) {
             updateConqueredCountry(attackingCountry, defendingCountry, remainingArmyNbr, false);
@@ -123,14 +119,15 @@ public class AttackProcess {
 
             if (UIOption){
                 popupContinentConqueredAlert(attackerIndex, continentName, curContinent);
-                updateWorldOwner(attackerIndex);
+                updateWorldOwner(attacker);
             }else {
-                if (isWorldConquered(attackerIndex)){
-                    winnerPlayerIndex = attackerIndex;
+                if (isWorldConquered(attacker)){
+                    attacker.setFinalWinner(true);
                 }
             }
         }
     }
+
 
     /**
      * If successfully conquered, defending country will notify players for changes
@@ -269,26 +266,27 @@ public class AttackProcess {
         }
     }
 
-    private static void updateWorldOwner(int playerIndex) {
-        boolean result = isWorldConquered(playerIndex);
+    private static void updateWorldOwner(Player player) {
+        boolean result = isWorldConquered(player);
         if (result) {
             try {
+                player.setFinalWinner(true);
+
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("Game Over!");
-                alert.setContentText("Player [" + playerIndex + "] conquers the world! Game Over!");
+                alert.setContentText("Player [" + player.getPlayerIndex() + "] conquers the world! Game Over!");
                 alert.showAndWait();
             }catch (Error e){
                 System.out.println("Mute alter in updateWorldOwner");
             }
-            winnerPlayerIndex = playerIndex;
         }
     }
 
-    public static boolean isWorldConquered(int playerIndex) {
+    public static boolean isWorldConquered(Player player) {
         boolean result = true;
-        for (Map.Entry<String, Continent> entry : Main.worldContinentMap.entrySet()) {
+        for (Map.Entry<String, Continent> entry : player.getContinentMapInstance().entrySet()) {
             int curOwnerIndex = entry.getValue().getContinentOwnerIndex();
-            if (curOwnerIndex != playerIndex) {
+            if (curOwnerIndex != player.getPlayerIndex()) {
                 result = false;
                 break;
             }

@@ -5,7 +5,7 @@
 <?import javafx.scene.text.*?>
 <AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="riskgame.controllers.ReinforceViewController">
     <children>
-        <Button fx:id="btn_nextStep" layoutX="1008.0" layoutY="727.0" mnemonicParsing="false" onAction="#clickNextStep" prefHeight="35.0" prefWidth="127.0" text="NEXT" textFill="#fc0303" underline="true" visible="false" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="57.0">
+        <Button fx:id="btn_nextStep" layoutX="1008.0" layoutY="727.0" mnemonicParsing="false" onAction="#clickNextStep" prefHeight="35.0" prefWidth="127.0" text="NEXT" textFill="#fc0303" underline="true" visible="false" AnchorPane.bottomAnchor="128.0">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>
@@ -48,8 +48,8 @@
                 <Font name="System Bold" size="16.0" />
             </font>
         </Button>
-      <VBox fx:id="vbx_worldDomiView" layoutX="30.0" layoutY="219.0" prefHeight="496.0" prefWidth="467.0" AnchorPane.leftAnchor="30.0" />
-      <AnchorPane fx:id="acp_phaseView" layoutX="14.0" layoutY="33.0" prefHeight="185.0" prefWidth="507.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="33.0">
+      <VBox fx:id="vbx_worldDomiView" layoutX="34.0" layoutY="353.0" prefHeight="496.0" prefWidth="467.0" AnchorPane.leftAnchor="34.0" />
+      <AnchorPane fx:id="acp_phaseView" layoutX="14.0" layoutY="33.0" prefHeight="296.0" prefWidth="507.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="33.0">
          <children>
             <Label fx:id="lbl_phaseViewName" alignment="CENTER" layoutX="28.0" prefHeight="40.0" prefWidth="262.0" textFill="#1d04ff" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="0.0">
                <font>
@@ -61,7 +61,7 @@
                   <Font name="System Bold" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="lbl_actionString" layoutX="14.0" layoutY="40.0" prefHeight="130.0" prefWidth="479.0" textFill="#070707" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
+            <Label fx:id="lbl_actionString" layoutX="14.0" layoutY="40.0" prefHeight="238.0" prefWidth="479.0" textFill="#070707" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -74,14 +74,26 @@
          </font>
       </Label>
       <ListView fx:id="lsv_cardsListView" layoutX="530.0" layoutY="219.0" prefHeight="496.0" prefWidth="140.0" stylesheets="@css/listviewStyle.css" />
-      <Button fx:id="btn_confirmExchangeCards" layoutX="552.0" layoutY="732.0" mnemonicParsing="false" onAction="#clickExchangeCards" prefHeight="40.0" prefWidth="97.0" text="Exchange" textFill="#ff05b4" wrapText="true" AnchorPane.bottomAnchor="128.0" AnchorPane.topAnchor="732.0">
+      <Button fx:id="btn_confirmExchangeCards" layoutX="552.0" layoutY="732.0" mnemonicParsing="false" onAction="#clickExchangeCards" prefHeight="40.0" prefWidth="97.0" text="Exchange" textFill="#ff05b4" wrapText="true" AnchorPane.bottomAnchor="128.0" AnchorPane.rightAnchor="551.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="btn_skipCardsExchange" layoutX="552.0" layoutY="797.0" mnemonicParsing="false" onAction="#clickSkipCardsExchange" prefHeight="40.0" prefWidth="97.0" text="Skip" textFill="#ff05b4" wrapText="true">
+      <Button fx:id="btn_skipCardsExchange" layoutX="552.0" layoutY="802.0" mnemonicParsing="false" onAction="#clickSkipCardsExchange" prefHeight="40.0" prefWidth="97.0" text="Skip" textFill="#ff05b4" wrapText="true" AnchorPane.bottomAnchor="58.0" AnchorPane.rightAnchor="551.0">
          <font>
             <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+        <Button fx:id = "btn_saveGame" layoutX = "980.0" layoutY = "817.0" mnemonicParsing = "false" onAction = "#clickSaveGame" prefHeight = "51.0"
+                prefWidth = "81.0" text = "Save" textFill = "#fc0303" underline = "true">
+            <font>
+                <Font name = "System Bold" size = "20.0"/>
+            </font>
+        </Button>
+        <Button fx:id = "btn_loadGame" layoutX = "1081.0" layoutY = "817.0" mnemonicParsing = "false" onAction = "#clickLoadGame" prefHeight = "51.0"
+                prefWidth = "81.0" text = "Load" textFill = "#fc0303" underline = "true">
+         <font>
+             <Font name = "System Bold" size = "20.0"/>
          </font>
       </Button>
     </children>

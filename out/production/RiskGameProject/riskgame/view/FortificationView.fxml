@@ -73,5 +73,17 @@
             </Label>
          </children>
       </AnchorPane>
+        <Button fx:id = "btn_saveGame" layoutX = "995.0" layoutY = "822.0" mnemonicParsing = "false" onAction = "#clickSaveGame" prefHeight = "51.0"
+                prefWidth = "77.0" text = "Save" textFill = "#fc0303" underline = "true">
+            <font>
+                <Font name = "System Bold" size = "20.0"/>
+            </font>
+        </Button>
+        <Button fx:id = "btn_loadGame" layoutX = "1095.0" layoutY = "822.0" mnemonicParsing = "false" onAction = "#clickLoadGame" prefHeight = "51.0"
+                prefWidth = "77.0" text = "Load" textFill = "#fc0303" underline = "true">
+         <font>
+             <Font name = "System Bold" size = "20.0"/>
+         </font>
+      </Button>
     </children>
 </AnchorPane>

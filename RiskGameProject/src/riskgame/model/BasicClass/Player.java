@@ -42,6 +42,7 @@ public class Player extends Observable implements Observer {
     private Strategy strategy;
     private LinkedHashMap<String, GraphNode> worldMapInstance;
     private LinkedHashMap<String, Continent> continentMapInstance;
+    private boolean isFinalWinner;
 
     /**
      * class constructor, player takes human strategy by default
@@ -62,6 +63,7 @@ public class Player extends Observable implements Observer {
         this.strategy = new StrategyHuman();
         this.worldMapInstance = Main.graphSingleton;
         this.continentMapInstance = Main.worldContinentMap;
+        this.isFinalWinner = false;
 
         System.out.println("\nPlayer constructor, player name: " + playerName + "\n\n");
 
@@ -191,6 +193,10 @@ public class Player extends Observable implements Observer {
         result = attackArmyCount;
 
         return result;
+    }
+
+    public LinkedHashMap<String, Continent> getContinentMapInstance() {
+        return continentMapInstance;
     }
 
     public Strategy getStrategy() {
@@ -351,6 +357,14 @@ public class Player extends Observable implements Observer {
         this.ownedCountryNameList.add(countryName);
     }
 
+    public boolean isFinalWinner() {
+        return isFinalWinner;
+    }
+
+    public void setFinalWinner(boolean finalWinner) {
+        isFinalWinner = finalWinner;
+    }
+
     /**
      * Util method for recursive attacks
      * allout attack mode, which results in either attacker wins or defender wins.
@@ -375,7 +389,7 @@ public class Player extends Observable implements Observer {
             int nondeployedAttackerArmyNbr = attackingCountry.getCountryArmyNumber() - 1;
 
             String continentName = defendingCountry.getContinentName();
-            Continent curContinent = Main.worldContinentMap.get(continentName);
+            Continent curContinent = attackingCountry.getOwner().getContinentMapInstance().get(continentName);
 
             AttackProcess.updateConqueredCountry(attackingCountry, defendingCountry, nondeployedAttackerArmyNbr, UIOption);
             AttackProcess.updateContinentAndWorldStatus(attackingCountry.getOwner(), defendingCountry.getOwner(), curContinent, UIOption);

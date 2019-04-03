@@ -1,6 +1,5 @@
 package riskgame.model.Utils;
 
-import riskgame.Main;
 import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
@@ -67,7 +66,7 @@ public class InitWorldMap {
 
                     //Initialize a new Continent object
                     Continent oneContinent = new Continent(curContinentName, curContinentBonusValue);
-                    Main.worldContinentMap.put(curContinentName, oneContinent);
+                    continentLinkedHashMap.put(curContinentName, oneContinent);
                 }
             }
 
@@ -96,7 +95,7 @@ public class InitWorldMap {
 
                         String curContinentName = curLineSplitArray[CONTINENT_POSITION];
                         curCountry.setContinentName(curContinentName);
-                        Main.worldContinentMap.get(curContinentName).getContinentCountryGraph().put(curCountryName, curCountry);
+                        continentLinkedHashMap.get(curContinentName).getContinentCountryGraph().put(curCountryName, curCountry);
 
                         for (int i = CONTINENT_POSITION + 1; i < curLineSplitArray.length; i++) {
                             Country oneCountry;
@@ -119,7 +118,7 @@ public class InitWorldMap {
             }
         }
         //printGraph(linkedHashMap);
-        //printContinent(continentLinkedHashMap);
+        // printContinent(continentLinkedHashMap);
         bufferedReader.close();
 
     }

@@ -61,7 +61,7 @@ public class StrategyAggressive implements Strategy {
 
     private void aggressivelyAttack(Player player) {
         ArrayList<Country> attackable = InfoRetriver.getAttackableCountry(player);
-        if (!attackable.isEmpty()) {
+        if (!attackable.isEmpty() && !player.isFinalWinner()) {
             //The list should contain a country base on aggressive rule
             for (Country attacker: attackable){
                 ArrayList<Country> enemies = InfoRetriver.getAdjacentEnemy(player, attacker);
@@ -75,6 +75,9 @@ public class StrategyAggressive implements Strategy {
                     int attackArmy = attacker.getCountryArmyNumber() - 1;
                     int defenceArmy = enemy.getCountryArmyNumber();
                     player.alloutAttackSimulate(attacker, enemy, attackArmy, defenceArmy, false);
+                    if (player.isFinalWinner()) {
+                        break;
+                    }
                 }
             }
         }
