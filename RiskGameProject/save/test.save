@@ -6,9 +6,9 @@ wrap=no
 scroll=horizontal
 
 [Players]
-Player_0,player_type,card1,card2,card3
-Player_0,player_type,card1,card2,card3
-Player_0,player_type,card1,card2,card3
+Player_index,player_type,player_color,continentBonus,card1,card2,card3
+Player_index,player_type,player_color,continentBonus,card1,card2,card3
+Player_index,player_type,player_color,continentBonus,card1,card2,card3
 
 [Continents]
 South Central London=3
@@ -57,9 +57,13 @@ Southwark,438,288,South Central London,Player_1,1,Bromley,Lambeth,City Centre,To
 Lewisham,485,327,South Central London,Player_1,1,Bromley,Greenwich,Southwark,Tower Hamlets
 
 [Phase]
+phaseName,currentPlayer
 
 [R]
+undeployedarmy
 
 [A]
+whethercanattack(true/flase)
 
 [F]
+alreaydoneornot(true/flase)
