@@ -305,24 +305,17 @@ public class UtilMethods {
         }
         try {
             System.out.println("LOADING......"+phase);
-
-            Pane nextPane;
             FXMLLoader loader = new FXMLLoader(controller.getClass().getResource(resourceLocation));
 
-            if (resourceLocation.equals("Final Phase")) {
+            if (phase.equals("Final Phase")) {
                 FinalViewController finalViewController = loader.getController();
 
                 Field playerField = controller.getClass().getField("Player");
 
                 finalViewController.setWinner((Player) playerField.get(controller));
             }
-            nextPane = loader.load();
-            return new Scene(nextPane, 1200, 900);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+            return new Scene(loader.load(), 1200, 900);
+        } catch (IOException | NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
         return null;
