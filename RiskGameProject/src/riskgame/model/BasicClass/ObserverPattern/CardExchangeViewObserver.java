@@ -38,7 +38,7 @@ public class CardExchangeViewObserver implements Observer {
             playersCards.put(key, ((Player)o).getCardsList());
             playerCards = ((Player)o).getCardsList();
         }
-        System.out.printf("card observer updated: %s\n", arg);
+//        System.out.printf("card observer updated: %s\n", arg);
     }
 
     public ArrayList<Card> getCardsByPlayerIndex(int playerIndex){

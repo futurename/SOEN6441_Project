@@ -141,14 +141,14 @@ public class AttackProcess {
     public static void updateConqueredCountry(Country attackingCountry, Country defendingCountry, int remainingArmyNbr, boolean UIOption) {
         Player attacker = attackingCountry.getOwner();
         Player defender = defendingCountry.getOwner();
-        System.out.printf("Before battle: attacker owned %d countries\n", attacker.getOwnedCountryNameList().size());
+        System.out.printf("%s(using %s) conquered %s(%s).\n", attacker, attackingCountry.getCountryName(), defender, defendingCountry.getCountryName());
 //        defendingCountry.setObservableOwner(attackerIndex);
         defendingCountry.setObservableArmyWhenOwnerChanged(attacker, remainingArmyNbr);
 //        defendingCountry.setObservableArmy(remainingArmyNbr);
         defendingCountry.notifyObservers("Conquered a country");
         attackingCountry.reduceFromCountryArmyNumber(remainingArmyNbr);
 
-        System.out.println("\n>>>>>>>>>>defender owned countries: " + defender.getOwnedCountryNameList() + "\n");
+        System.out.printf("Defender owned country %s?: %s\n", defendingCountry.getCountryName(), defender.getOwnedCountryNameList().contains(defendingCountry.getCountryName()));
 
         if (!isPlayerHasCountry(defender)) {
             if (UIOption){
@@ -160,21 +160,15 @@ public class AttackProcess {
                     System.out.println("Mute Alert");
                 }
             }
-            System.out.println("Player: " + defender.getPlayerIndex() + " fails, QUIT!");
+            System.out.println("Player: " + defender.getPlayerIndex() + " LOSE, QUIT!");
             defender.setActiveStatus(false);
         }
-        System.out.printf("After battle: attacker owned %d countries\n", attacker.getOwnedCountryNameList().size());
     }
-
 
     public static boolean isPlayerHasCountry(Player player) {
         int ownedCountryNbr = player.getOwnedCountryNameList().size();
-
-        System.out.println("\nPlayer: " + player.getPlayerIndex() + " has country " + player.getOwnedCountryNameList());
-
         return ownedCountryNbr > 0;
     }
-
 
     /**
      * get the random dice result list
@@ -190,16 +184,12 @@ public class AttackProcess {
         return result;
     }
 
-
     public static boolean isCountryConquered(Country country) {
         boolean result = false;
         int remainingArmyNbr = country.getCountryArmyNumber();
         if (remainingArmyNbr == 0) {
             result = true;
         }
-
-        System.out.println("country conquered: " + result);
-
         return result;
     }
 

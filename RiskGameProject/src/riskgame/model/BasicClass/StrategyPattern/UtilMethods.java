@@ -155,7 +155,7 @@ public class UtilMethods {
     public static void checkDefenderAlive(Player defender){
         if (!AttackProcess.isPlayerHasCountry(defender)){
             defender.setActiveStatus(false);
-            System.out.printf("Defender %s is eliminated!", defender.getPlayerName());
+            System.out.println("Player: " + defender.getPlayerIndex() + " LOSE, QUIT! cheater did it");
         }
     }
 

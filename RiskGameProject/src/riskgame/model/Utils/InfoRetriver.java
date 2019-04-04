@@ -61,7 +61,6 @@ public class InfoRetriver {
         ObservableList<Country> result;
         ArrayList<Country> attackableAdjacentCountryList = getAdjacentEnemy(player, selectedCountry);
         result = FXCollections.observableArrayList(attackableAdjacentCountryList);
-
         return result;
     }
 
@@ -215,10 +214,9 @@ public class InfoRetriver {
             if(country.getCountryArmyNumber() > 1){
                 ObservableList<Country> attackableCountryList = InfoRetriver.getAttackableAdjacentCountryList(player, country);
 
-                System.out.println("\nattackable country list: " + attackableCountryList + "\n");
-
                 if(!attackableCountryList.isEmpty()){
                     isOneCountryHasAttackableCountry = true;
+                    System.out.println(player.getPlayerName()+"NO attackable country!");
                     break;
                 }
             }
