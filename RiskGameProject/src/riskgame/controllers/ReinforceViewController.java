@@ -303,6 +303,8 @@ public class ReinforceViewController implements Initializable {
                 lbl_undeployArmyPrompt.setVisible(false);
                 btn_nextStep.setVisible(true);
                 lsv_ownedCountries.getSelectionModel().select(-1);
+                lsv_ownedCountries.setMouseTransparent(true);
+                lsv_adjacentCountries.setMouseTransparent(true);
             } else {
                 scb_armyNbrAdjustment.setMax(remainUndeployedArmyCount);
                 scb_armyNbrAdjustment.adjustValue(remainUndeployedArmyCount);

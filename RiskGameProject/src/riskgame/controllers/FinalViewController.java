@@ -6,6 +6,7 @@ import riskgame.model.BasicClass.Player;
 
 /**
  * created on 2019/03/17_23:04
+ *
  * @author WW
  * @since build2
  **/
@@ -15,16 +16,22 @@ public class FinalViewController {
 
     private Player winner;
 
-    public void initialize(){
+    public void initialize() {
         StringBuilder stringBuilder = new StringBuilder();
+
 
         stringBuilder.append("GAME OVER!")
                 .append("\n\n\n")
                 .append("Player <")
                 .append(winner.getPlayerIndex())
-                .append(", Name: ")
+                .append(">, Name: <")
                 .append(winner.getPlayerName())
                 .append("> WINS!");
+
+/*stringBuilder.append("GAME OVER!")
+        .append("\n\n\n")
+        .append(winner)
+        .append(" WINS!");*/
 
         txa_gameOverInfo.setText(stringBuilder.toString());
     }

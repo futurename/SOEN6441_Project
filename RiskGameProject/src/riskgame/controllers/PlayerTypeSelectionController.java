@@ -37,6 +37,7 @@ public class PlayerTypeSelectionController {
 
     private int numOfPlayers;
     private ArrayList<Strategy> strategySelectionList;
+    ArrayList<ComboBox> comboBoxArrayList;
 
     public void initialize() {
         strategySelectionList = new ArrayList<>();
@@ -47,8 +48,10 @@ public class PlayerTypeSelectionController {
 
         ObservableList<Strategy> strategyArrayList = getStrategyPlayerList();
 
+        comboBoxArrayList = generateComboboxList(numOfPlayers);
+
         for (int index = 0; index < numOfPlayers; index++) {
-            ComboBox comboBox = new ComboBox();
+            ComboBox comboBox = comboBoxArrayList.get(index);
             comboBox.setItems(strategyArrayList);
             comboBox.setMinWidth(240);
             comboBox.getStylesheets().add(getClass().getResource("../view/css/combobox.css").toExternalForm());
@@ -59,11 +62,21 @@ public class PlayerTypeSelectionController {
                     System.out.println(newValue);
 
                     strategySelectionList.add((Strategy) newValue);
+                    comboBox.setMouseTransparent(true);
                 }
             });
 
             grp_playerTypeSelection.add(comboBox, 0, index);
         }
+    }
+
+    private ArrayList<ComboBox> generateComboboxList(int numOfPlayers) {
+        ArrayList<ComboBox> result = new ArrayList<>();
+        for (int i = 0; i < numOfPlayers; i++) {
+            ComboBox comboBox = new ComboBox();
+            result.add(comboBox);
+        }
+        return result;
     }
 
     private ObservableList<Strategy> getStrategyPlayerList() {
@@ -120,13 +133,19 @@ public class PlayerTypeSelectionController {
         return result;
     }
 
-    public void clickResetSelection(ActionEvent actionEvent) {
+    public void clickResetSelection(ActionEvent actionEvent) throws NoSuchFieldException, IllegalAccessException {
         for (Node node : grp_playerTypeSelection.getChildren()) {
             ((ComboBox) node).getSelectionModel().select(-1);
         }
         strategySelectionList.clear();
-    }
 
+        for (int i = 0; i < numOfPlayers; i++) {
+            ComboBox curCombobox = comboBoxArrayList.get(i);
+            curCombobox.getSelectionModel().select(-1);
+            curCombobox.setMouseTransparent(false);
+        }
+
+    }
 
 
 }

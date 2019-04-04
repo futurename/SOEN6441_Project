@@ -27,11 +27,12 @@ public class UtilMethods {
      * init a cardObserver for this player to get "exchange time" and player card list
      * Although card list can be get directly from player, doing this is to unify the usage
      * Observer will be deleted before next phase.
+     *
+     * @param player player who will attach to the observer/ongoing player
      * @see CardExchangeViewObserver
      * @see UtilMethods#deregisterCardObserver(Player, PhaseViewObservable, CardExchangeViewObserver)
-     * @param player player who will attach to the observer/ongoing player
      */
-    public static CardExchangeViewObserver initCardObserver(Player player, PhaseViewObservable observable){
+    public static CardExchangeViewObserver initCardObserver(Player player, PhaseViewObservable observable) {
         CardExchangeViewObserver cardObserver = new CardExchangeViewObserver();
         player.addObserver(cardObserver);
         //init cards if player already had some
@@ -47,7 +48,8 @@ public class UtilMethods {
 
     /**
      * cardObserver deleted from two observable
-     * @param player current player
+     *
+     * @param player       current player
      * @param cardObserver observer been removed
      */
     public static void deregisterCardObserver(Player player, PhaseViewObservable observable, CardExchangeViewObserver cardObserver) {
@@ -60,23 +62,24 @@ public class UtilMethods {
      * Then notify the observable to update exchange time.
      * The armies obtained through exchanging is set to player.undeployedArmy first.
      * Then added to army only when they are deployed.
+     *
      * @param player player
-     * @param code combo type
+     * @param code   combo type
      */
     public static void exchangeCard(Player player, int code, int exchangeTime) {
         int newArmy = getExchangedArmy(exchangeTime);
-        if (code == -1){
+        if (code == -1) {
             ArrayList<Card> removes = new ArrayList<>();
             removes.add(Card.ARTILLERY);
             removes.add(Card.CAVALRY);
             removes.add(Card.INFANTRY);
             player.removeObservableCards(removes);
-        }else if(code == Card.INFANTRY.ordinal()){
-            player.removeObservableCards(new ArrayList<>(Collections.nCopies(3,Card.INFANTRY)));
-        }else if (code == Card.CAVALRY.ordinal()){
-            player.removeObservableCards(new ArrayList<>(Collections.nCopies(3,Card.CAVALRY)));
-        }else if (code == Card.ARTILLERY.ordinal()){
-            player.removeObservableCards(new ArrayList<>(Collections.nCopies(3,Card.ARTILLERY)));
+        } else if (code == Card.INFANTRY.ordinal()) {
+            player.removeObservableCards(new ArrayList<>(Collections.nCopies(3, Card.INFANTRY)));
+        } else if (code == Card.CAVALRY.ordinal()) {
+            player.removeObservableCards(new ArrayList<>(Collections.nCopies(3, Card.CAVALRY)));
+        } else if (code == Card.ARTILLERY.ordinal()) {
+            player.removeObservableCards(new ArrayList<>(Collections.nCopies(3, Card.ARTILLERY)));
         }
         UtilMethods.addUndeployedArmyAfterExchanging(player, newArmy);
         phaseViewObservable.addOneExchangeTime();
@@ -95,15 +98,16 @@ public class UtilMethods {
 
     /**
      * Automatically looking for available combo to exchange
+     *
      * @param cards cards list with size that > 2 (do not required)
      * @return an integer that stands for a possible combo
      */
-    public static int availableCombo(ArrayList<Card> cards){
+    public static int availableCombo(ArrayList<Card> cards) {
         int cavalry = 0;
         int infantry = 0;
         int artillery = 0;
-        for (Card card: cards){
-            switch (card){
+        for (Card card : cards) {
+            switch (card) {
                 case CAVALRY:
                     cavalry += 1;
                     break;
@@ -114,21 +118,22 @@ public class UtilMethods {
                     artillery += 1;
             }
         }
-        if (cavalry >= 3){
+        if (cavalry >= 3) {
             return Card.CAVALRY.ordinal();
-        }else if (infantry >= 3){
+        } else if (infantry >= 3) {
             return Card.INFANTRY.ordinal();
-        }else if (artillery >= 3){
+        } else if (artillery >= 3) {
             return Card.ARTILLERY.ordinal();
-        }else if (cavalry>0 && infantry>0 && artillery>0){
+        } else if (cavalry > 0 && infantry > 0 && artillery > 0) {
             return -1;
-        }else return -2;
+        } else return -2;
     }
 
     /**
      * New army will be added to player's undeployed army.
      * Same logic as exchanging card for new Army.
      * Never add new army directly.
+     *
      * @param player current player
      */
     public static void getNewArmyPerRound(Player player) {
@@ -142,6 +147,7 @@ public class UtilMethods {
      * The armies obtained through exchanging is set to player.undeployedArmy first.
      * Same logic as getting new army per round.
      * Never add new army directly.
+     *
      * @param exchangedArmyNbr army number exchanged to be added to the player
      */
     public static int addUndeployedArmyAfterExchanging(Player player, int exchangedArmyNbr) {
@@ -152,8 +158,8 @@ public class UtilMethods {
     /**
      * is called in cheater attack logic which does not actually attack.
      */
-    public static void checkDefenderAlive(Player defender){
-        if (!AttackProcess.isPlayerHasCountry(defender)){
+    public static void checkDefenderAlive(Player defender) {
+        if (!AttackProcess.isPlayerHasCountry(defender)) {
             defender.setActiveStatus(false);
             System.out.println("Player: " + defender.getPlayerIndex() + " LOSE, QUIT! cheater did it");
         }
@@ -184,11 +190,12 @@ public class UtilMethods {
      * Must be Called at end of reinforcement phase.
      * Work out a proper phase to go.
      * Notify observer and auto call robots move until a human's turn.
+     *
      * @param player current player
      */
     public static void endReinforcement(Player player) {
         //If single game mode
-        if (!playersList.isEmpty()){
+        if (!playersList.isEmpty()) {
             if (StartViewController.reinforceInitCounter > 1) {
                 notifyReinforcementEnd(false, player);
                 StartViewController.reinforceInitCounter--;
@@ -206,7 +213,7 @@ public class UtilMethods {
      *
      * @param isAttackPhase true for going to attack phase otherwise, next player's turn
      */
-    private static void notifyReinforcementEnd(boolean isAttackPhase, Player player){
+    private static void notifyReinforcementEnd(boolean isAttackPhase, Player player) {
         if (isAttackPhase) {
             phaseViewObservable.setAllParam("Attack Phase", curRoundPlayerIndex, "Attack Action");
             phaseViewObservable.notifyObservers("From ReinforceView to AttackView");
@@ -223,6 +230,7 @@ public class UtilMethods {
      * Must be Called at end of fortification phase.
      * Work out a proper phase to go.
      * Notify observer and auto call robots move until a human's turn.
+     *
      * @param player current player
      */
     public static void endFortification(Player player) {
@@ -244,15 +252,16 @@ public class UtilMethods {
 
     /**
      * Call phase view observable notify its observers.
+     *
      * @param player current player
      */
     private static void notifyFortificationEnd(boolean isAttackView, Player player) {
-        if (isAttackView){
-            int nextPlayerIndex = (player.getPlayerIndex()+1) % totalNumOfPlayers;
+        if (isAttackView) {
+            int nextPlayerIndex = (player.getPlayerIndex() + 1) % totalNumOfPlayers;
             phaseViewObservable.setAllParam("Attack Phase", nextPlayerIndex, "Attack Action");
             phaseViewObservable.notifyObservers("From fortification to attack");
             System.out.printf("%s player finished fortification, player %s's turn.\n", player.getPlayerIndex(), nextPlayerIndex);
-        } else{
+        } else {
             curRoundPlayerIndex = InfoRetriver.getNextActivePlayer(player.getPlayerIndex());
             phaseViewObservable.setAllParam("Reinforcement Phase", curRoundPlayerIndex, "Reinforcement Action");
             phaseViewObservable.notifyObservers("From fortification to reinforcement");
@@ -264,14 +273,15 @@ public class UtilMethods {
      * Must be Called at end of attack phase.
      * Work out a proper phase to go
      * Notify observer and auto call robots move until a human's turn.
+     *
      * @param player current player
      */
     public static void endAttack(Player player) {
         //If single game mode
         if (!playersList.isEmpty()) {
-            if (player.isFinalWinner()){
+            if (player.isFinalWinner()) {
                 notifyAttackEnd(true, player);
-            }else {
+            } else {
                 notifyAttackEnd(false, player);
                 //if not robot phase, method does nothing
                 callNextRobotPhase();
@@ -283,11 +293,11 @@ public class UtilMethods {
      * notify phase view observers
      */
     private static void notifyAttackEnd(boolean isFinalView, Player player) {
-        if (isFinalView){
+        if (isFinalView) {
             Main.phaseViewObservable.setAllParam("Final Phase", player.getPlayerIndex(), "Game Over");
             Main.phaseViewObservable.notifyObservers("From attack to final");
             System.out.printf("player %s wins.\n", player.getPlayerName());
-        }else {
+        } else {
             int curPlayerIndex = player.getPlayerIndex();
             Main.phaseViewObservable.setAllParam("Fortification Phase", curPlayerIndex, "Fortification Action");
             Main.phaseViewObservable.notifyObservers("From attack to fortification");
@@ -295,9 +305,9 @@ public class UtilMethods {
         }
     }
 
-    public static <T extends Initializable> Scene startView(String phase, T controller){
+    public static <T extends Initializable> Scene startView(String phase, T controller) {
         String resourceLocation;
-        switch (phase){
+        switch (phase) {
             case "Reinforcement Phase":
                 resourceLocation = "../view/ReinforceView.fxml";
                 break;
@@ -314,18 +324,25 @@ public class UtilMethods {
                 resourceLocation = "";
         }
         try {
-            System.out.println("LOADING......"+phase);
+            System.out.println("LOADING......" + phase);
             FXMLLoader loader = new FXMLLoader(controller.getClass().getResource(resourceLocation));
 
             if (phase.equals("Final Phase")) {
-                FinalViewController finalViewController = loader.getController();
+                FinalViewController finalViewController = new FinalViewController();
+                loader.setController(finalViewController);
 
-                Field playerField = controller.getClass().getField("Player");
+                Field playerField = controller.getClass().getDeclaredField("curPlayer");
+                playerField.setAccessible(true);
+                Object playerVlaue = playerField.get(controller);
 
-                finalViewController.setWinner((Player) playerField.get(controller));
+                finalViewController.setWinner((Player) playerVlaue);
             }
             return new Scene(loader.load(), 1200, 900);
-        } catch (IOException | NoSuchFieldException | IllegalAccessException e) {
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
         return null;
