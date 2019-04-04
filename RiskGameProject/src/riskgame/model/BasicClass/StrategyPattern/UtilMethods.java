@@ -14,7 +14,6 @@ import riskgame.model.Utils.AttackProcess;
 import riskgame.model.Utils.InfoRetriver;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -281,6 +280,10 @@ public class UtilMethods {
         if (!playersList.isEmpty()) {
             if (player.isFinalWinner()) {
                 notifyAttackEnd(true, player);
+                String finalPhaseString = "Final Phase";
+
+
+                startView(finalPhaseString, new FinalViewController(player));
             } else {
                 notifyAttackEnd(false, player);
                 //if not robot phase, method does nothing
@@ -327,7 +330,7 @@ public class UtilMethods {
             System.out.println("LOADING......" + phase);
             FXMLLoader loader = new FXMLLoader(controller.getClass().getResource(resourceLocation));
 
-            if (phase.equals("Final Phase")) {
+            /*if (phase.equals("Final Phase")) {
                 FinalViewController finalViewController = new FinalViewController();
                 loader.setController(finalViewController);
 
@@ -336,13 +339,9 @@ public class UtilMethods {
                 Object playerVlaue = playerField.get(controller);
 
                 finalViewController.setWinner((Player) playerVlaue);
-            }
+            }*/
             return new Scene(loader.load(), 1200, 900);
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
         return null;

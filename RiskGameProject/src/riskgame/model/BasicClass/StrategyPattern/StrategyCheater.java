@@ -1,14 +1,13 @@
 package riskgame.model.BasicClass.StrategyPattern;
 
-import riskgame.model.BasicClass.*;
-import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
+import riskgame.model.BasicClass.Continent;
+import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
+import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.AttackProcess;
 import riskgame.model.Utils.InfoRetriver;
 
-import java.io.UTFDataFormatException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 public class StrategyCheater implements Strategy {
     @Override
@@ -57,6 +56,14 @@ public class StrategyCheater implements Strategy {
                 String continentName = enemy.getContinentName();
                 Continent curContinent = country.getOwner().getContinentMapInstance().get(continentName);
                 AttackProcess.updateContinentAndWorldStatus(player, formerOwner, curContinent, false);
+
+                if (player.isFinalWinner()) {
+                    break;
+                }
+            }
+
+            if (player.isFinalWinner()) {
+                break;
             }
         }
     }

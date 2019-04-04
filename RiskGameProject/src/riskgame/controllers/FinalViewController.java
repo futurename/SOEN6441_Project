@@ -1,8 +1,12 @@
 package riskgame.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import riskgame.model.BasicClass.Player;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * created on 2019/03/17_23:04
@@ -10,11 +14,15 @@ import riskgame.model.BasicClass.Player;
  * @author WW
  * @since build2
  **/
-public class FinalViewController {
+public class FinalViewController implements Initializable {
     @FXML
     private TextArea txa_gameOverInfo;
 
     private Player winner;
+
+    public FinalViewController(Player player) {
+        winner = player;
+    }
 
     public void initialize() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -38,5 +46,10 @@ public class FinalViewController {
 
     public void setWinner(Player winner) {
         this.winner = winner;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }

@@ -40,7 +40,7 @@ public class StrategyRandom implements Strategy {
         player.addUndeployedArmy(-player.getUndeployedArmy());
     }
 
-    private Country randomlyPickCountryFrom(ArrayList<Country> from){
+    private Country randomlyPickCountryFrom(ArrayList<Country> from) {
         int randomIndex = r.nextInt(from.size());
         return from.get(randomIndex);
     }
@@ -97,7 +97,9 @@ public class StrategyRandom implements Strategy {
                     break;
                 }
             }
+
         }
+
     }
 
     @Override
@@ -119,7 +121,7 @@ public class StrategyRandom implements Strategy {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Random";
     }
 }

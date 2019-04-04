@@ -85,6 +85,10 @@ public class StrategyAggressive implements Strategy {
                         break;
                     }
                 }
+
+                if (player.isFinalWinner()) {
+                    break;
+                }
             }
         }
     }
