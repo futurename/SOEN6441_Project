@@ -30,9 +30,9 @@ public void before() {
     strategyArrayList.add(new StrategyRandom());
 
     mapFileList = new ArrayList<>();
-    mapFileList.add("maps/test_map.map");
-    mapFileList.add("maps/London.map");
-    mapFileList.add("maps/World.map");
+    mapFileList.add("maps/TournamentModeMaps/test_map.map");
+    mapFileList.add("maps/TournamentModeMaps/London.map");
+    mapFileList.add("maps/TournamentModeMaps/World.map");
 
     gamesValue = 3;
     gameRoundValue = 200;

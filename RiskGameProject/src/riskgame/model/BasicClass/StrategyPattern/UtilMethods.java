@@ -3,7 +3,6 @@ package riskgame.model.BasicClass.StrategyPattern;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import riskgame.Main;
 import riskgame.controllers.FinalViewController;
 import riskgame.controllers.StartViewController;
