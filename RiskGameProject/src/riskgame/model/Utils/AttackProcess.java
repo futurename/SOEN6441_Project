@@ -21,6 +21,7 @@ import java.util.stream.IntStream;
  * @since build2
  */
 public class AttackProcess {
+
     /**
      * overall attack process result and it checks if country ,continent or whole map is conquered
      * @param attackingCountry attacking country
@@ -28,7 +29,6 @@ public class AttackProcess {
      * @param remainingArmyNbr army number ramained after attacking
      */
     public static void attackResultProcess(Country attackingCountry, Country defendingCountry, int remainingArmyNbr) {
-
         String continentName = defendingCountry.getContinentName();
         Continent curContinent = attackingCountry.getOwner().getContinentMapInstance().get(continentName);
 
@@ -71,7 +71,6 @@ public class AttackProcess {
      * @see AttackProcess#attackResultProcess
      */
     public static void autoResultProcess(Country attackingCountry, Country defendingCountry, int remainingArmyNbr){
-
         String continentName = defendingCountry.getContinentName();
         Continent curContinent = attackingCountry.getOwner().getContinentMapInstance().get(continentName);
 
@@ -80,6 +79,7 @@ public class AttackProcess {
 
             int attackCountryArmyNbr = attackingCountry.getCountryArmyNumber();
 
+            //robot tends to move all available army to its conquered country
             if (attackCountryArmyNbr > 1) {
                 attackingCountry.reduceFromCountryArmyNumber(attackCountryArmyNbr-1);
                 defendingCountry.addToCountryArmyNumber(attackCountryArmyNbr-1);
@@ -127,7 +127,6 @@ public class AttackProcess {
             }
         }
     }
-
 
     /**
      * If successfully conquered, defending country will notify players for changes

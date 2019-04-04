@@ -1,11 +1,8 @@
 package riskgame.model.BasicClass.StrategyPattern;
 
-import riskgame.model.BasicClass.Card;
-import riskgame.model.BasicClass.Country;
-import riskgame.model.BasicClass.GraphNode;
+import riskgame.model.BasicClass.*;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
-import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.AttackProcess;
 import riskgame.model.Utils.InfoRetriver;
 
@@ -46,17 +43,21 @@ public class StrategyCheater implements Strategy {
         ArrayList<Country> countries = InfoRetriver.getCountryList(player);
         for (Country country: countries){
             ArrayList<Country> enemyCountries = InfoRetriver.getAdjacentEnemy(player, country);
+            //For every enemies:
             for (Country enemy: enemyCountries){
                 Player formerOwner = enemy.getOwner();
                 System.out.printf("%s(using %s) conquered %s(%s).\n", player, country.getCountryName(), formerOwner, enemy.getCountryName());
+                //Conquer it anyway
                 enemy.setObservableArmyWhenOwnerChanged(player, enemy.getCountryArmyNumber());
                 enemy.notifyObservers("Conquered a country");
+                //if player eliminated?
                 UtilMethods.checkDefenderAlive(formerOwner);
-                System.out.printf("Defender owned country %s?: %s", enemy.getCountryName(), formerOwner.getOwnedCountryNameList().contains(enemy.getCountryName()));
+                System.out.printf("Defender owned country %s?: %s\n", enemy.getCountryName(), formerOwner.getOwnedCountryNameList().contains(enemy.getCountryName()));
+                //Take over continent? or world?
+                String continentName = enemy.getContinentName();
+                Continent curContinent = country.getOwner().getContinentMapInstance().get(continentName);
+                AttackProcess.updateContinentAndWorldStatus(player, formerOwner, curContinent, false);
             }
-        }
-        if (AttackProcess.isWorldConquered(player)){
-            player.setFinalWinner(true);
         }
     }
 
