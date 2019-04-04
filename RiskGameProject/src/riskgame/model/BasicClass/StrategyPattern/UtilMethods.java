@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import riskgame.Main;
+import riskgame.controllers.FinalViewController;
 import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
@@ -324,25 +325,18 @@ public class UtilMethods {
             default:
                 resourceLocation = "";
         }
+
+        FXMLLoader loader = new FXMLLoader(controller.getClass().getResource(resourceLocation));
+        if (phase.equals("Final Phase")) {
+            FinalViewController finalViewController = new FinalViewController();
+            loader.setController(finalViewController);
+        }
         try {
-            System.out.println("LOADING......" + phase);
-            FXMLLoader loader = new FXMLLoader(controller.getClass().getResource(resourceLocation));
-
-        /*    if (phase.equals("Final Phase")) {
-                FinalViewController finalViewController = new FinalViewController();
-                loader.setController(finalViewController);
-
-                Field playerField = controller.getClass().getDeclaredField("curPlayer");
-                playerField.setAccessible(true);
-                Object playerVlaue = playerField.get(controller);
-
-                finalViewController.setWinner((Player) playerVlaue);
-            }*/
             return new Scene(loader.load(), 1200, 900);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
-    }
 
+    }
 }
