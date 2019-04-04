@@ -3,6 +3,7 @@ package riskgame.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
+import riskgame.Main;
 import riskgame.model.BasicClass.Player;
 
 import java.net.URL;
@@ -41,12 +42,13 @@ public class FinalViewController implements Initializable {
         txa_gameOverInfo.setText(stringBuilder.toString());
     }
 
-    public void setWinner(Player winner) {
+    private void setWinner(Player winner) {
         this.winner = winner;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        initialize();
+        setWinner(Main.playersList.get(Main.phaseViewObserver.getPlayerIndex()));
     }
 }
