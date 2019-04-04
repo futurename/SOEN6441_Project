@@ -56,7 +56,7 @@ public class StrategyCheater implements Strategy {
                 String continentName = enemy.getContinentName();
                 Continent curContinent = country.getOwner().getContinentMapInstance().get(continentName);
                 AttackProcess.updateContinentAndWorldStatus(player, formerOwner, curContinent, false);
-
+                System.out.println("CHEATER A WINNER??: "+ player.isFinalWinner());
                 if (player.isFinalWinner()) {
                     break;
                 }
