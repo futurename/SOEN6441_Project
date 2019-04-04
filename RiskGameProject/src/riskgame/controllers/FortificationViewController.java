@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -74,6 +75,8 @@ public class FortificationViewController implements Initializable {
     private Label lbl_deployCountPrompt;
     @FXML
     private Label lbl_actionString;
+    @FXML
+    private PieChart pct_countryDomiChart;
 
     /**
      * fortification move counter
@@ -123,6 +126,7 @@ public class FortificationViewController implements Initializable {
 
         lsv_ownedCountries.setItems(InfoRetriver.getObservableCountryList(curPlayer));
         ListviewRenderer.renderCountryItems(lsv_ownedCountries);
+        InfoRetriver.updatePiechart(pct_countryDomiChart);
 
         boolean isOneCountryCanFortificate = isExistFortificationCountry(lsv_ownedCountries.getItems());
         if (!isOneCountryCanFortificate) {

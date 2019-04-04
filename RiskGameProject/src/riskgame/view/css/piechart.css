@@ -1,13 +1,18 @@
-.chart
-{
-    -fx-pie-label-visible: true;
-    -fx-label-line-length: 10;
-    -fx-start-angle: 90;
-}
 
 .chart-pie
 {
     -fx-border-color: white;
     -fx-background-insets: 2;
     -fx-font-size: 8px;
+
 }
+
+.data0.chart-pie { -fx-pie-color: green; }
+.data1.chart-pie { -fx-pie-color: red; }
+.data2.chart-pie { -fx-pie-color: blue; }
+.data3.chart-pie { -fx-pie-color: brown; }
+.data4.chart-pie { -fx-pie-color: turquoise; }
+.data5.chart-pie { -fx-pie-color: orange; }
+.data6.chart-pie { -fx-pie-color: slateblue; }
+.data7.chart-pie { -fx-pie-color: crimson; }
+

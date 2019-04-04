@@ -1,115 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="riskgame.controllers.AttackViewController">
+<AnchorPane prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="riskgame.controllers.AttackViewController" stylesheets="@css/piechart.css">
     <children>
-        <Label fx:id="lbl_adjacentCountries" alignment="CENTER" layoutX="954.0" layoutY="36.0" prefHeight="25.0" prefWidth="172.0" text="Adjacent Countries">
+        <Label fx:id="lbl_adjacentCountries" alignment="CENTER" layoutX="954.0" layoutY="36.0" prefHeight="25.0"
+               prefWidth="172.0" text="Adjacent Countries">
             <font>
-                <Font name="System Bold" size="18.0" />
+                <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
-        <Label fx:id="lbl_countries" alignment="CENTER" layoutX="609.0" layoutY="36.0" prefHeight="25.0" prefWidth="172.0" text="Countries">
+        <Label fx:id="lbl_countries" alignment="CENTER" layoutX="609.0" layoutY="36.0" prefHeight="25.0"
+               prefWidth="172.0" text="Countries">
             <font>
-                <Font name="System Bold" size="18.0" />
+                <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
-        <Button fx:id="btn_nextStep" layoutX="1037.0" layoutY="711.0" mnemonicParsing="false" onAction="#clickNextStep" prefHeight="35.0" prefWidth="127.0" text="NEXT" textFill="#fc0303" underline="true" AnchorPane.bottomAnchor="138.0" AnchorPane.rightAnchor="36.0">
+        <Button fx:id="btn_nextStep" layoutX="1037.0" layoutY="711.0" mnemonicParsing="false" onAction="#clickNextStep"
+                prefHeight="35.0" prefWidth="127.0" text="NEXT" textFill="#fc0303" underline="true"
+                AnchorPane.bottomAnchor="138.0" AnchorPane.rightAnchor="36.0">
             <font>
-                <Font name="System Bold" size="24.0" />
+                <Font name="System Bold" size="24.0"/>
             </font>
         </Button>
-        <Button fx:id="btn_confirmAttack" layoutX="843.0" layoutY="218.0" mnemonicParsing="false" onAction="#clickAttack" prefHeight="37.0" prefWidth="72.0" text="Attack" textAlignment="CENTER" textFill="#f80505">
+        <Button fx:id="btn_confirmAttack" layoutX="857.0" layoutY="218.0" mnemonicParsing="false"
+                onAction="#clickAttack" prefHeight="37.0" prefWidth="72.0" text="Attack" textAlignment="CENTER"
+                textFill="#f80505">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="System Bold" size="16.0"/>
             </font>
         </Button>
-        <Label fx:id="lbl_attackerMaxArmyNbrPrompt" alignment="CENTER" focusTraversable="false" layoutX="857.0" layoutY="534.0" prefHeight="27.0" prefWidth="141.0" text="Attacker max:" textFill="#f707c7">
+        <Label fx:id="lbl_attackerMaxArmyNbrPrompt" alignment="CENTER" focusTraversable="false" layoutX="857.0"
+               layoutY="534.0" prefHeight="27.0" prefWidth="141.0" text="Attacker max:" textFill="#f707c7">
             <font>
-                <Font name="System Bold" size="18.0" />
+                <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
-        <Label fx:id="lbl_attackerMaxArmyNbr" alignment="CENTER" focusTraversable="false" layoutX="1002.0" layoutY="522.0" prefHeight="51.0" prefWidth="53.0" text="0" textFill="#f707c7">
+        <Label fx:id="lbl_attackerMaxArmyNbr" alignment="CENTER" focusTraversable="false" layoutX="1002.0"
+               layoutY="522.0" prefHeight="51.0" prefWidth="53.0" text="0" textFill="#f707c7">
             <font>
-                <Font name="System Bold" size="24.0" />
+                <Font name="System Bold" size="24.0"/>
             </font>
         </Label>
-        <Label fx:id="lbl_attackerArmyNbr" alignment="CENTER" focusTraversable="false" layoutX="1002.0" layoutY="559.0" prefHeight="51.0" prefWidth="53.0" text="0" textFill="#fc0303">
+        <Label fx:id="lbl_attackerArmyNbr" alignment="CENTER" focusTraversable="false" layoutX="1002.0" layoutY="559.0"
+               prefHeight="51.0" prefWidth="53.0" text="0" textFill="#fc0303">
             <font>
-                <Font name="System Bold" size="24.0" />
+                <Font name="System Bold" size="24.0"/>
             </font>
         </Label>
-        <Label fx:id="lbl_attackerArmyPrompt" alignment="CENTER" focusTraversable="false" layoutX="857.0" layoutY="571.0" prefHeight="27.0" prefWidth="141.0" text="Attacker army:">
+        <Label fx:id="lbl_attackerArmyPrompt" alignment="CENTER" focusTraversable="false" layoutX="857.0"
+               layoutY="571.0" prefHeight="27.0" prefWidth="141.0" text="Attacker army:">
             <font>
-                <Font name="System Bold" size="18.0" />
+                <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
-        <ScrollBar fx:id="scb_attackerArmyAdjust" layoutX="1075.0" layoutY="532.0" max="0.0" orientation="VERTICAL" prefHeight="58.0" prefWidth="14.0" />
-        <ListView fx:id="lsv_adjacentCountries" layoutX="927.0" layoutY="84.0" onMouseClicked="#selectDefendingCountry" prefHeight="438.0" prefWidth="245.0" stylesheets="@css/listviewStyle.css" />
-        <ListView fx:id="lsv_ownedCountries" focusTraversable="false" layoutX="574.0" layoutY="84.0" onMouseClicked="#selectAttackingCountry" prefHeight="627.0" prefWidth="262.0" stylesheets="@css/listviewStyle.css" />
-        <Button fx:id="btn_alloutMode" layoutX="841.0" layoutY="319.0" mnemonicParsing="false" onAction="#clickAllOutMode" prefHeight="37.0" prefWidth="81.0" text="All-Out" textAlignment="CENTER" textFill="#f50707">
+        <ScrollBar fx:id="scb_attackerArmyAdjust" layoutX="1075.0" layoutY="532.0" max="0.0" orientation="VERTICAL"
+                   prefHeight="58.0" prefWidth="14.0"/>
+        <ListView fx:id="lsv_adjacentCountries" layoutX="940.0" layoutY="84.0" onMouseClicked="#selectDefendingCountry"
+                  prefHeight="438.0" prefWidth="245.0" stylesheets="@css/listviewStyle.css"/>
+        <ListView fx:id="lsv_ownedCountries" focusTraversable="false" layoutX="591.0" layoutY="84.0"
+                  onMouseClicked="#selectAttackingCountry" prefHeight="627.0" prefWidth="255.0"
+                  stylesheets="@css/listviewStyle.css"/>
+        <Button fx:id="btn_alloutMode" layoutX="855.0" layoutY="319.0" mnemonicParsing="false"
+                onAction="#clickAllOutMode" prefHeight="37.0" prefWidth="81.0" text="All-Out" textAlignment="CENTER"
+                textFill="#f50707">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="System Bold" size="16.0"/>
             </font>
         </Button>
         <AnchorPane fx:id="acp_phaseView" layoutX="24.0" layoutY="43.0" prefHeight="308.0" prefWidth="507.0">
             <children>
-                <Label fx:id="lbl_phaseViewName" alignment="CENTER" layoutX="28.0" prefHeight="40.0" prefWidth="262.0" textFill="#1d04ff" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="0.0">
+                <Label fx:id="lbl_phaseViewName" alignment="CENTER" layoutX="28.0" prefHeight="40.0" prefWidth="262.0"
+                       textFill="#1d04ff" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="0.0">
                     <font>
-                        <Font name="System Bold" size="22.0" />
+                        <Font name="System Bold" size="22.0"/>
                     </font>
                 </Label>
-                <Label fx:id="lbl_playerName" layoutX="333.0" prefHeight="40.0" prefWidth="186.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <Label fx:id="lbl_playerName" layoutX="333.0" prefHeight="40.0" prefWidth="186.0"
+                       AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <font>
-                        <Font name="System Bold" size="22.0" />
+                        <Font name="System Bold" size="22.0"/>
                     </font>
                 </Label>
-                <Label fx:id="lbl_actionString" focusTraversable="false" layoutX="10.0" layoutY="40.0" prefHeight="239.0" prefWidth="488.0" textFill="#070707" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="9.0">
+                <Label fx:id="lbl_actionString" focusTraversable="false" layoutX="10.0" layoutY="40.0"
+                       prefHeight="239.0" prefWidth="488.0" textFill="#070707" AnchorPane.bottomAnchor="-3.0"
+                       AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="9.0">
                     <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="System Bold" size="15.0"/>
                     </font>
                 </Label>
             </children>
         </AnchorPane>
-        <VBox fx:id="vbx_worldDomiView" layoutX="24.0" layoutY="345.0" prefHeight="491.0" prefWidth="526.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="345.0" />
-        <ScrollBar fx:id="scb_defenderArmyAdjust" focusTraversable="false" layoutX="1075.0" layoutY="620.0" max="0.0" orientation="VERTICAL" prefHeight="58.0" prefWidth="14.0" />
-        <Label fx:id="lbl_defenderArmyPrompt" alignment="CENTER" focusTraversable="false" layoutX="857.0" layoutY="659.0" prefHeight="27.0" prefWidth="141.0" text="Defender army:">
+        <VBox fx:id="vbx_worldDomiView" layoutX="14.0" layoutY="337.0" prefHeight="546.0" prefWidth="310.0"
+              AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="337.0"/>
+        <ScrollBar fx:id="scb_defenderArmyAdjust" focusTraversable="false" layoutX="1075.0" layoutY="620.0" max="0.0"
+                   orientation="VERTICAL" prefHeight="58.0" prefWidth="14.0"/>
+        <Label fx:id="lbl_defenderArmyPrompt" alignment="CENTER" focusTraversable="false" layoutX="857.0"
+               layoutY="659.0" prefHeight="27.0" prefWidth="141.0" text="Defender army:">
             <font>
-                <Font name="System Bold" size="18.0" />
+                <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
-        <Label fx:id="lbl_defenderArmyNbr" alignment="CENTER" focusTraversable="false" layoutX="1002.0" layoutY="647.0" prefHeight="51.0" prefWidth="53.0" text="0" textFill="#fc0303">
+        <Label fx:id="lbl_defenderArmyNbr" alignment="CENTER" focusTraversable="false" layoutX="1002.0" layoutY="647.0"
+               prefHeight="51.0" prefWidth="53.0" text="0" textFill="#fc0303">
             <font>
-                <Font name="System Bold" size="24.0" />
+                <Font name="System Bold" size="24.0"/>
             </font>
         </Label>
-        <Label fx:id="lbl_defenderMaxArmyNbr" alignment="CENTER" focusTraversable="false" layoutX="1002.0" layoutY="610.0" prefHeight="51.0" prefWidth="53.0" text="0" textFill="#f707c7">
+        <Label fx:id="lbl_defenderMaxArmyNbr" alignment="CENTER" focusTraversable="false" layoutX="1002.0"
+               layoutY="610.0" prefHeight="51.0" prefWidth="53.0" text="0" textFill="#f707c7">
             <font>
-                <Font name="System Bold" size="24.0" />
+                <Font name="System Bold" size="24.0"/>
             </font>
         </Label>
-        <Label fx:id="lbl_defenderMaxArmyPrompt" alignment="CENTER" focusTraversable="false" layoutX="857.0" layoutY="622.0" prefHeight="27.0" prefWidth="141.0" text="Defender Max:" textFill="#f707c7">
+        <Label fx:id="lbl_defenderMaxArmyPrompt" alignment="CENTER" focusTraversable="false" layoutX="857.0"
+               layoutY="622.0" prefHeight="27.0" prefWidth="141.0" text="Defender Max:" textFill="#f707c7">
             <font>
-                <Font name="System Bold" size="18.0" />
+                <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
-      <TextArea fx:id="txa_attackInfoDisplay" layoutX="574.0" layoutY="713.0" prefHeight="176.0" prefWidth="423.0" promptText="attack info">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </TextArea>
-        <Button fx:id = "btn_saveGame" layoutX = "1016.0" layoutY = "811.0" mnemonicParsing = "false" onAction = "#clickSaveGame" prefHeight = "51.0"
-                prefWidth = "72.0" text = "Save" textFill = "#fc0303" underline = "true">
+        <TextArea fx:id="txa_attackInfoDisplay" layoutX="590.0" layoutY="713.0" prefHeight="176.0" prefWidth="407.0"
+                  promptText="attack info">
             <font>
-                <Font name = "System Bold" size = "20.0"/>
+                <Font name="System Bold" size="13.0"/>
+            </font>
+        </TextArea>
+        <Button fx:id="btn_saveGame" layoutX="1016.0" layoutY="811.0" mnemonicParsing="false" onAction="#clickSaveGame"
+                prefHeight="51.0" prefWidth="72.0" text="Save" textFill="#fc0303" underline="true">
+            <font>
+                <Font name="System Bold" size="20.0"/>
             </font>
         </Button>
-        <Button fx:id = "btn_loadGame" layoutX = "1104.0" layoutY = "811.0" mnemonicParsing = "false" onAction = "#clickLoadGame" prefHeight = "51.0"
-                prefWidth = "81.0" text = "Load" textFill = "#fc0303" underline = "true">
-         <font>
-             <Font name = "System Bold" size = "20.0"/>
-         </font>
-      </Button>
+        <Button fx:id="btn_loadGame" layoutX="1104.0" layoutY="811.0" mnemonicParsing="false" onAction="#clickLoadGame"
+                prefHeight="51.0" prefWidth="81.0" text="Load" textFill="#fc0303" underline="true">
+            <font>
+                <Font name="System Bold" size="20.0"/>
+            </font>
+        </Button>
+        <PieChart fx:id="pct_countryDomiChart" layoutX="324.0" layoutY="351.0" prefHeight="308.0" prefWidth="262.0"/>
     </children>
 </AnchorPane>
