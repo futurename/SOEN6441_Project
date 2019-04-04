@@ -27,7 +27,7 @@ public class RobotGamingProcess {
 
         BlockingQueue<Future<GameRunningResult>> gameResultQueue = new LinkedBlockingQueue<>(threadCount);
 
-        //CompletionService<GameRunningResult> completionService = new ExecutorCompletionService<>(executorPool, gameResultQueue);
+        CompletionService<GameRunningResult> completionService = new ExecutorCompletionService<>(executorPool, gameResultQueue);
 
         for (int mapIndex = 0; mapIndex < mapFileList.size(); mapIndex++) {
             for (int gameIndex = 0; gameIndex < gamesValue; gameIndex++) {
@@ -68,9 +68,9 @@ public class RobotGamingProcess {
 
         System.out.println("\n\n\n\n\n-------------FINAL RESULT:--------------");
 
-        initRobotFinalView(gameResultQueue, gamesValue, gameRoundValue, mapFileList, robotPlayerList);
-        //processAllGamesResult(gameResultQueue, completionService, threadCount);
 
+        processAllGamesResult(gameResultQueue, completionService, threadCount);
+        initRobotFinalView(gameResultQueue, gamesValue, gameRoundValue, mapFileList, robotPlayerList);
         //executorPool.shutdown();
 
 

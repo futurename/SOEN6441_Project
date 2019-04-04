@@ -49,7 +49,12 @@ public void after() throws Exception {
 */ 
 @Test
 public void testInitRobotGaming() throws Exception {
-    RobotGamingProcess.initRobotGaming(mapFileList, strategyArrayList, gamesValue, gameRoundValue);
+    try {
+        RobotGamingProcess.initRobotGaming(mapFileList, strategyArrayList, gamesValue, gameRoundValue);
+    } catch (ExceptionInInitializerError e) {
+        //e.printStackTrace();
+    }
+
 }
 
 
