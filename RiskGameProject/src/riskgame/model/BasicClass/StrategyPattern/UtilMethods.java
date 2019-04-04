@@ -255,7 +255,8 @@ public class UtilMethods {
      */
     private static void notifyFortificationEnd(boolean isAttackView, Player player) {
         if (isAttackView) {
-            int nextPlayerIndex = (player.getPlayerIndex() + 1) % totalNumOfPlayers;
+//            int nextPlayerIndex = (player.getPlayerIndex() + 1) % totalNumOfPlayers;
+            int nextPlayerIndex = InfoRetriver.getNextActivePlayer(player.getPlayerIndex());
             phaseViewObservable.setAllParam("Attack Phase", nextPlayerIndex, "Attack Action");
             phaseViewObservable.notifyObservers("From fortification to attack");
             System.out.printf("%s player finished fortification, player %s's turn.\n", player.getPlayerIndex(), nextPlayerIndex);
