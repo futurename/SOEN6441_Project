@@ -67,7 +67,7 @@ public class StrategyAggressive implements Strategy {
         UtilMethods.endAttack(player);
     }
 
-    private void aggressivelyAttack(Player player) {
+    public void aggressivelyAttack(Player player) {
         //Remember to turn on card getting permission starting attack phase. otherwise the player will no getting card
         player.setCardPermission(true);
         //attackable: army>1 & has enemy neighbors
