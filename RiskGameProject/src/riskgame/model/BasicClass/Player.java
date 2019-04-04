@@ -502,7 +502,7 @@ public class Player extends Observable implements Observer {
      *
      * @param newCard card
      */
-    public void setObservableCard(Card newCard) {
+    private void setObservableCard(Card newCard) {
         cardsList.add(newCard);
         setChanged();
     }
