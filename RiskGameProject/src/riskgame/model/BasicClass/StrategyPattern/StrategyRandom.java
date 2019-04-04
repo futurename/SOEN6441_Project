@@ -31,12 +31,14 @@ public class StrategyRandom implements Strategy {
         UtilMethods.getNewArmyPerRound(player);
         int availableArmy = player.getUndeployedArmy();
         ArrayList<Country> countries = InfoRetriver.getCountryList(player);
+        //Adding army to the selected; adding army to player
         while (availableArmy > 0) {
             int randomArmy = r.nextInt(availableArmy) + 1;
             randomlyPickCountryFrom(countries).addToCountryArmyNumber(randomArmy);
             player.addArmy(randomArmy);
             availableArmy -= randomArmy;
         }
+        ;//Finally, subtracting army from undeployed army.
         player.addUndeployedArmy(-player.getUndeployedArmy());
     }
 
@@ -75,6 +77,8 @@ public class StrategyRandom implements Strategy {
     }
 
     private void randomlyAttack(Player player) {
+        //Remember to turn on card getting permission starting attack phase. otherwise the player will no getting card
+        player.setCardPermission(true);
         //pick a country that can attack
         ArrayList<Country> attackable = InfoRetriver.getAttackableCountry(player);
         if (!attackable.isEmpty()) {
@@ -114,7 +118,8 @@ public class StrategyRandom implements Strategy {
         ArrayList<Country> reachableCountries = InfoRetriver.getReachableCountry(player, from.getCountryName());
         if (!reachableCountries.isEmpty()) {
             Country target = randomlyPickCountryFrom(reachableCountries);
-            int army = from.getCountryArmyNumber();
+            //at least 1 army left
+            int army = from.getCountryArmyNumber()-1;
             from.reduceFromCountryArmyNumber(army);
             target.addToCountryArmyNumber(army);
         }

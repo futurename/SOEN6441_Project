@@ -35,12 +35,17 @@ public class StrategyAggressive implements Strategy {
         UtilMethods.getNewArmyPerRound(player);
         int availableArmy = player.getUndeployedArmy();
         ArrayList<Country> countries = InfoRetriver.getCountryList(player);
-        System.out.printf("AGGRESSIVE PLAYER countries: %s", player.getOwnedCountryNameList());
+        //Adding army to the selected; adding army to player; subtracting army from undeployed army.
         aggressivelyPickCountryFrom(countries).addToCountryArmyNumber(availableArmy);
         player.addArmy(availableArmy);
         player.addUndeployedArmy(-player.getUndeployedArmy());
     }
 
+    /**
+     * Pick the strongest country among countries, if even powerful countries exist, randomly pick one
+     * @param from owned countries
+     * @return selected one
+     */
     private Country aggressivelyPickCountryFrom(ArrayList<Country> from){
         int max = 0;
         ArrayList<Country> evenCountries = new ArrayList<>();
@@ -63,6 +68,8 @@ public class StrategyAggressive implements Strategy {
     }
 
     private void aggressivelyAttack(Player player) {
+        //Remember to turn on card getting permission starting attack phase. otherwise the player will no getting card
+        player.setCardPermission(true);
         //attackable: army>1 & has enemy neighbors
         ArrayList<Country> attackable = InfoRetriver.getAttackableCountry(player);
         if (!attackable.isEmpty()) {
