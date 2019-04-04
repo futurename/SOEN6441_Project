@@ -48,7 +48,7 @@ public class FinalViewController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        initialize();
         setWinner(Main.playersList.get(Main.phaseViewObserver.getPlayerIndex()));
+        initialize();
     }
 }
