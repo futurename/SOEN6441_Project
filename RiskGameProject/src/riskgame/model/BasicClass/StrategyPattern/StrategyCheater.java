@@ -47,9 +47,11 @@ public class StrategyCheater implements Strategy {
         for (Country country: countries){
             ArrayList<Country> enemyCountries = InfoRetriver.getAdjacentEnemy(player, country);
             for (Country enemy: enemyCountries){
+                Player formerOwner = enemy.getOwner();
                 enemy.setObservableArmyWhenOwnerChanged(player, enemy.getCountryArmyNumber());
                 enemy.notifyObservers("Conquered a country");
-                UtilMethods.checkDefenderAlive(enemy.getOwner());
+                UtilMethods.checkDefenderAlive(formerOwner);
+                System.out.println("DEFENDER attacked by cheater.attacking: "+enemy.getCountryName());
             }
         }
         if (AttackProcess.isWorldConquered(player)){

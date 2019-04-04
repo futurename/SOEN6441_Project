@@ -546,9 +546,9 @@ public class Player extends Observable implements Observer {
         if (o instanceof Country) {
             Player formerOwner = this;
             Player newOwner = ((Country) o).getOwner();
-            System.out.println("former: " + formerOwner.playerIndex);
-            System.out.println("now: " + newOwner.playerIndex);
-            System.out.printf("player %d obs awake\n", this.playerIndex);
+//            System.out.println("former: " + formerOwner.playerIndex);
+//            System.out.println("now: " + newOwner.playerIndex);
+//            System.out.printf("player %d obs awake\n", this.playerIndex);
             formerOwner.ownedCountryNameList.remove(((Country) o).getCountryName());
             formerOwner.updateArmyNbr();
             o.deleteObserver(this);
@@ -559,7 +559,7 @@ public class Player extends Observable implements Observer {
                 newOwner.setCardPermission(true);
             }
             o.addObserver(newOwner);
-            System.out.printf("Player observer update: %s\n", arg);
+//            System.out.printf("Player observer update: %s\n", arg);
         }
     }
 
