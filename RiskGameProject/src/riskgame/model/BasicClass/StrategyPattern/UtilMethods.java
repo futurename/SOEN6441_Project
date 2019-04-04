@@ -279,6 +279,8 @@ public class UtilMethods {
         if (!playersList.isEmpty()) {
             if (player.isFinalWinner()) {
                 notifyAttackEnd(true, player);
+
+
             } else {
                 notifyAttackEnd(false, player);
                 //if not robot phase, method does nothing

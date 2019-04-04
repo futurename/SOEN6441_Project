@@ -34,10 +34,6 @@ public class FinalViewController implements Initializable {
                 .append(winner.getPlayerName())
                 .append("> WINS!");
 
-/*stringBuilder.append("GAME OVER!")
-        .append("\n\n\n")
-        .append(winner)
-        .append(" WINS!");*/
 
         txa_gameOverInfo.setText(stringBuilder.toString());
     }
