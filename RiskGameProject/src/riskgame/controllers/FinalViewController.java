@@ -20,9 +20,6 @@ public class FinalViewController implements Initializable {
 
     private Player winner;
 
-    public FinalViewController(Player player) {
-        winner = player;
-    }
 
     public void initialize() {
         StringBuilder stringBuilder = new StringBuilder();
