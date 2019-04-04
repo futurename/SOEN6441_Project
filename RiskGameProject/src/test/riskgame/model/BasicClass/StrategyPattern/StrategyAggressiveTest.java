@@ -9,6 +9,8 @@ import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.BasicClass.StrategyPattern.StrategyAggressive;
 
+import java.util.ArrayList;
+
 /** 
 * StrategyAggressive Tester. 
 * 
@@ -41,25 +43,40 @@ public void after() throws Exception {
 * 
 */ 
 @Test
-public void testDoReinforcement() throws Exception {
+
+
+public void testDoReinforcement() throws Exception
+{
     initGameSimulator();
-    StrategyAggressive aggressiveStrategy=new StrategyAggressive();
-    Player player=new Player(0);
+    StrategyAggressive aggressiveStrategy = new StrategyAggressive();
+    Player player = new Player(0);
     curPlayer.setCardPermission(true);
     curPlayer.setActiveStatus(true);
     curPlayer.setFinalWinner(true);
-    int curPlayerArmyNbr=curPlayer.getArmyNbr();
-    try{
-        aggressiveStrategy.doReinforcement(curPlayer,curObserver);
-    }
-    catch (Error e) {
+    int curPlayerArmyNbr = curPlayer.getArmyNbr();
+    curPlayerArmyNbr = 3;
+    try {
+        aggressiveStrategy.doReinforcement(curPlayer, curObserver);
+    } catch (Error e) {
         System.out.println("ignore alert window");
-    }finally {
-       // Assert.assertTrue(player.getPlayerIndex()==0, player, player.getActiveStatus()==true, curPlayerArmyNbr == player.getArmyNbr());
+    } finally {
+        // Assert.assertEquals((player.getPlayerIndex()==0, player, player.getActiveStatus()==true, curPlayerArmyNbr == player.getArmyNbr()),(player.getPlayerIndex(),player.getActiveStatus(),curPlayerArmyNbr));
+
     }
+}
+    public void testaggressivelyExchangeCard() throws Exception
+   {
 
     }
 
+    public void aggressivelyDeployArmy()
+    {
+
+    }
+    public void aggressivelyPickCountryFrom()
+    {
+
+    }
 /** 
 * 
 * Method: doAttack(Player player) 
