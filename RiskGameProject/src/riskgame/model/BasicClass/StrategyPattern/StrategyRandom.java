@@ -37,7 +37,7 @@ public class StrategyRandom implements Strategy {
             player.addArmy(randomArmy);
             availableArmy -= randomArmy;
         }
-        player.addUndeployedArmy(player.getUndeployedArmy());
+        player.addUndeployedArmy(-player.getUndeployedArmy());
     }
 
     private Country randomlyPickCountryFrom(ArrayList<Country> from){

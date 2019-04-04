@@ -88,12 +88,11 @@ public class TournamentModeResultViewController implements Initializable {
             stringBuilder.append("<").append(shortFileNameList.get(mapIndex)).append("> ");
         }
 
-        stringBuilder.append("\nP: <");
+        stringBuilder.append("\nP: ");
 
         for (int index = 0; index < strategyArrayList.size(); index++) {
-            stringBuilder.append(strategyArrayList.get(index)).append("< ");
+            stringBuilder.append("<").append(strategyArrayList.get(index)).append(">  ");
         }
-        stringBuilder.append(">");
 
         stringBuilder.append("\nG: ").append(gamesValue);
         stringBuilder.append("\nD: ").append(gameRoundValue);
