@@ -53,12 +53,15 @@ Lewisham,485,327,South Central London,Player_1,1,Bromley,Greenwich,Southwark,Tow
 
 [Players]
 3
-Player_index,player_strategy,player_color,continentBonus,army_nbr,card1,card2,card3
+Player_index,status,player_strategy,player_color,continentBonus,army_nbr,card1,card2,card3
 country1,country2,country3
-Player_index,player_strategy,player_color,continentBonus,army_nbr,card1,card2,card3
+controlContinents
+Player_index,status,player_strategy,player_color,continentBonus,army_nbr,card1,card2,card3
 country1,country2,country3
-Player_index,player_strategy,player_color,continentBonus,army_nbr,card1,card2,card3
+controlContinents
+Player_index,status,player_strategy,player_color,continentBonus,army_nbr,card1,card2,card3
 country1,country2,country3
+controlContinents
 
 [Phase]
 phaseName(Initial,Reinforcement,Attack,Fortification),currentPlayer,(undeployedarmy/whethercanattack(true/flase),whethergetcard(true/false)/alreaydoneornot(true/flase))

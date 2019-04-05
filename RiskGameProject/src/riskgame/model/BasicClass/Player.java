@@ -291,6 +291,12 @@ public class Player extends Observable implements Observer {
     }
 
     /**
+     * get controlledContinents
+     * @return
+     */
+    public ArrayList<String> getControlledContinents(){return controlledContinents;}
+
+    /**
      * getter
      *
      * @return color the player is preassigned
