@@ -64,11 +64,6 @@ public class SaveProgress {
             playerOwnCountry = playerOwnCountry.replaceAll("\\]","");
             playerOwnCountry = playerOwnCountry.replaceAll(", ",",");
             out.write(playerOwnCountry+"\r\n");
-            String playerOwnContinent = Main.playersList.get(i).getControlledContinents().toString();
-//            playerOwnContinent = playerOwnContinent.replaceAll("\\[","");
-//            playerOwnContinent = playerOwnContinent.replaceAll("\\]","");
-//            playerOwnContinent = playerOwnContinent.replaceAll(", ",",");
-            out.write(playerOwnContinent+"\r\n");
         }
         out.write("\r\n");
 
