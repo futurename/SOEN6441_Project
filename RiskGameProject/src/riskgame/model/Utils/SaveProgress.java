@@ -58,7 +58,7 @@ public class SaveProgress {
             for(Card card: Main.playersList.get(i).getCardsList()){
                 cardInfor = cardInfor+card+";";
             }
-            out.write(Main.playersList.get(i).getPlayerIndex()+","+Main.playersList.get(i).getPlayerName()+","+Main.playersList.get(i).getPlayerColor()+","+Main.playersList.get(i).getContinentBonus()+","+cardInfor+"\r\n");
+            out.write(Main.playersList.get(i).getPlayerIndex()+","+Main.playersList.get(i).getPlayerName()+","+Main.playersList.get(i).getPlayerColor()+","+Main.playersList.get(i).getContinentBonus()+","+Main.playersList.get(i).getArmyNbr()+","+cardInfor+"\r\n");
             String playerOwnCountry = Main.playersList.get(i).getOwnedCountryNameList().toString();
             playerOwnCountry = playerOwnCountry.replaceAll("\\[","");
             playerOwnCountry = playerOwnCountry.replaceAll("\\]","");
