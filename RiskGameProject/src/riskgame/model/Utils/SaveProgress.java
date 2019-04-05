@@ -26,6 +26,7 @@ public class SaveProgress {
 
         out.write("[Players]\r\n");
         int numberOfPlayers = Main.totalNumOfPlayers;
+        out.write(numberOfPlayers+"\r\n");
         for(int i=0;i<numberOfPlayers;i++){
             String cardInfor = "";
             for(Card card: Main.playersList.get(i).getCardsList()){
