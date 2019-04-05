@@ -60,11 +60,9 @@ public class SaveProgress {
         }
 
         out.write("[Phase]\r\n");
-        out.write(phase+","+curPlayer+"\r\n");
-        out.write("\r\n");
+        out.write(phase+","+curPlayer+",");
 
         if(phase.equals("Reinforcement")) {
-            out.write("[R]\r\n");
             for (int k = 0; k < Main.playersList.size(); k++) {
                 if (curPlayer==Main.playersList.get(k).getPlayerIndex()) {
                     out.write(Main.playersList.get(k).getUndeployedArmy() + "\r\n");
@@ -73,11 +71,9 @@ public class SaveProgress {
             }
         }
         else if(phase.equals("Attack")){
-            out.write("[A]\r\n");
             out.write(AorF+"");
         }
         else if(phase.equals("Fortification")){
-            out.write("[F]\r\n");
             out.write(AorF+"");
         }
 

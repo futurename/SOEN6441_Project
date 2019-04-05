@@ -424,8 +424,4 @@ public class FortificationViewController implements Initializable {
         }
     }
 
-    public void clickLoadGame(ActionEvent actionEvent) {
-        String titleString = "Select Saved Map File:";
-        InfoRetriver.showFileChooser(titleString);
-    }
 }
