@@ -314,6 +314,12 @@ public class Player extends Observable implements Observer {
     }
 
     /**
+     * get cardObtained
+     * @return
+     */
+    public boolean getCardObtained(){ return cardObtained;}
+
+    /**
      * getter
      *
      * @return the army number of player

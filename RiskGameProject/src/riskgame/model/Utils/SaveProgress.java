@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class SaveProgress {
 
-    public void SaveFile(String phase,int curPlayer,String path,String mapName,boolean AorF) throws IOException {
+    public void SaveFile(String phase,int curPlayer,String path,String mapName,boolean AorF,boolean AOC) throws IOException {
         File writename = new File(path+"\\"+mapName+".map");
         System.out.println(writename);
         writename.createNewFile();
@@ -24,17 +24,7 @@ public class SaveProgress {
         out.write("warn=yes\r\n");
         out.write("\r\n");
 
-        out.write("[Players]\r\n");
-        int numberOfPlayers = Main.totalNumOfPlayers;
-        out.write(numberOfPlayers+"\r\n");
-        for(int i=0;i<numberOfPlayers;i++){
-            String cardInfor = "";
-            for(Card card: Main.playersList.get(i).getCardsList()){
-                cardInfor = cardInfor+card+";";
-            }
-            out.write(Main.playersList.get(i).getPlayerIndex()+","+Main.playersList.get(i).getPlayerName()+","+Main.playersList.get(i).getPlayerColor()+","+Main.playersList.get(i).getContinentBonus()+","+cardInfor+"\r\n");
-        }
-        out.write("\r\n");
+
 
         out.write("[Continents]\r\n");
         for(String continentName:Main.worldContinentMap.keySet()){
@@ -60,6 +50,23 @@ public class SaveProgress {
             out.write("\r\n");
         }
 
+        out.write("[Players]\r\n");
+        int numberOfPlayers = Main.totalNumOfPlayers;
+        out.write(numberOfPlayers+"\r\n");
+        for(int i=0;i<numberOfPlayers;i++){
+            String cardInfor = "";
+            for(Card card: Main.playersList.get(i).getCardsList()){
+                cardInfor = cardInfor+card+";";
+            }
+            out.write(Main.playersList.get(i).getPlayerIndex()+","+Main.playersList.get(i).getPlayerName()+","+Main.playersList.get(i).getPlayerColor()+","+Main.playersList.get(i).getContinentBonus()+","+cardInfor+"\r\n");
+            String playerOwnCountry = Main.playersList.get(i).getOwnedCountryNameList().toString();
+            playerOwnCountry = playerOwnCountry.replaceAll("\\[","");
+            playerOwnCountry = playerOwnCountry.replaceAll("\\]","");
+            playerOwnCountry = playerOwnCountry.replaceAll(", ",",");
+            out.write(playerOwnCountry+"\r\n");
+        }
+        out.write("\r\n");
+
         out.write("[Phase]\r\n");
         out.write(phase+","+curPlayer+",");
 
@@ -72,7 +79,7 @@ public class SaveProgress {
             }
         }
         else if(phase.equals("Attack")){
-            out.write(AorF+"");
+            out.write(AorF+","+AOC);
         }
         else if(phase.equals("Fortification")){
             out.write(AorF+"");

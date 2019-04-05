@@ -596,7 +596,7 @@ public class StartViewController implements Initializable {
         System.out.println(fileNameCurTime);
         SaveProgress saveProgress = new SaveProgress();
         try {
-            saveProgress.SaveFile("Initial",-1,filePath,fileNameCurTime,true);
+            saveProgress.SaveFile("Initial",-1,filePath,fileNameCurTime,true,true);
         } catch (IOException e) {
             e.printStackTrace();
         }

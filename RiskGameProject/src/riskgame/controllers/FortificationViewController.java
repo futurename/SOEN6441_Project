@@ -418,7 +418,7 @@ public class FortificationViewController implements Initializable {
         SaveProgress saveProgress = new SaveProgress();
 
         try {
-            saveProgress.SaveFile("Attack",curPlayer.getPlayerIndex(),filePath,fileNameCurTime,btn_confirmMoveArmy.isVisible());
+            saveProgress.SaveFile("Attack",curPlayer.getPlayerIndex(),filePath,fileNameCurTime,btn_confirmMoveArmy.isVisible(),true);
         } catch (IOException e) {
             e.printStackTrace();
         }
