@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -86,6 +87,8 @@ public class AttackViewController implements Initializable {
     private VBox vbx_worldDomiView;
     @FXML
     private Button btn_saveGame;
+    @FXML
+    private PieChart pct_countryDomiChart;
 
     /**
      * curent player index
@@ -113,6 +116,7 @@ public class AttackViewController implements Initializable {
         InfoRetriver.updateDominationView("From attackView init", vbx_worldDomiView);
         initCountryListviewDisplay(curPlayer);
         validateExistAttackableCountry();
+        InfoRetriver.updatePiechart(pct_countryDomiChart);
     }
 
     /**
@@ -201,7 +205,6 @@ public class AttackViewController implements Initializable {
             btn_confirmAttack.setVisible(true);
             btn_alloutMode.setVisible(true);
         }
-
     }
 
     /**
@@ -319,6 +322,7 @@ public class AttackViewController implements Initializable {
 
             refreshListView(attackingCountry);
             InfoRetriver.updateDominationView("from attack view attack", vbx_worldDomiView);
+            InfoRetriver.updatePiechart(pct_countryDomiChart);
 
             if (curPlayer.isFinalWinner()) {
                 callFinalViewOrNextPhase();
@@ -386,6 +390,7 @@ public class AttackViewController implements Initializable {
             txa_attackInfoDisplay.setText(battleReport);
             refreshListView(selectedAttackerCountry);
             InfoRetriver.updateDominationView("from attack all out mode", vbx_worldDomiView);
+            InfoRetriver.updatePiechart(pct_countryDomiChart);
 
             if (curPlayer.isFinalWinner()) {
                 callFinalViewOrNextPhase();
@@ -394,6 +399,8 @@ public class AttackViewController implements Initializable {
             }
         }
     }
+
+
 
     private void callFinalViewOrNextPhase() {
         Stage curStage = (Stage) txa_attackInfoDisplay.getScene().getWindow();
@@ -453,8 +460,4 @@ public class AttackViewController implements Initializable {
         }
     }
 
-    public void clickLoadGame(ActionEvent actionEvent) {
-        String titleString = "Select Saved Map File:";
-        InfoRetriver.showFileChooser(titleString);
-    }
 }

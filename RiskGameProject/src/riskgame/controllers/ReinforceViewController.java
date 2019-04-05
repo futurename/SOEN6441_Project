@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
@@ -80,6 +81,9 @@ public class ReinforceViewController implements Initializable {
     private Button btn_confirmExchangeCards;
     @FXML
     private Button btn_saveGame;
+    @FXML
+    private PieChart pct_countryDomiChart;
+
     /**
      * current player in this phase
      */
@@ -136,6 +140,7 @@ public class ReinforceViewController implements Initializable {
         initCurPlayerCardListView();
         UtilMethods.getNewArmyPerRound(curPlayer);
         InfoRetriver.updateDominationView("From reinforcement initial", vbx_worldDomiView);
+        InfoRetriver.updatePiechart(pct_countryDomiChart);
     }
 
     /**
@@ -229,10 +234,11 @@ public class ReinforceViewController implements Initializable {
 
     /**
      * onClick event for moving to next player if reinforcement phase is not finished or attack view from the first player
-     *
+     * <p>
      * Removing the cardExchangeViewObserver first,
      * if not, phaseViewObservable will keep adding new cardObserver without removing the old one!
      * cardObserver is not a static observer.
+     *
      * @param actionEvent next player's turn or proceed to attackView if all players finish reinforcement
      */
     @FXML
@@ -353,7 +359,6 @@ public class ReinforceViewController implements Initializable {
 
             phaseViewObservable.addOneExchangeTime();
             phaseViewObservable.notifyObservers("Add Exchange Time");
-
         } else {
             alert.setContentText("Wrong cards combination, please try again!");
             alert.showAndWait();
@@ -388,10 +393,9 @@ public class ReinforceViewController implements Initializable {
         directoryChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
 
         File file = directoryChooser.showDialog(fileStage);
-        if(file.getPath()!=null) {
+        if (file.getPath() != null) {
             filePath = file.getPath();
-        }
-        else{
+        } else {
             filePath = defaultPath;
         }
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
@@ -399,15 +403,12 @@ public class ReinforceViewController implements Initializable {
         System.out.println(fileNameCurTime);
         SaveProgress saveProgress = new SaveProgress();
         try {
-            saveProgress.SaveFile("Reinforcement",curPlayer.getPlayerIndex(),filePath,fileNameCurTime,true);
+            saveProgress.SaveFile("Reinforcement", curPlayer.getPlayerIndex(), filePath, fileNameCurTime, true);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void clickLoadGame(ActionEvent actionEvent) {
-        String titleString = "Select Saved Map File:";
-        InfoRetriver.showFileChooser(titleString);
-    }
+
 }
 

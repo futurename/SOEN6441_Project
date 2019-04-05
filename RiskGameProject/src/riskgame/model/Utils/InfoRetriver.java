@@ -2,6 +2,7 @@ package riskgame.model.Utils;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -10,7 +11,10 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import riskgame.Main;
-import riskgame.model.BasicClass.*;
+import riskgame.model.BasicClass.Continent;
+import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.GraphNode;
+import riskgame.model.BasicClass.Player;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -176,18 +180,20 @@ public class InfoRetriver {
         }
 
         for (int playerIndex = 0; playerIndex < totalNumOfPlayers; playerIndex++) {
-            Color curPlayerColor = playersList.get(playerIndex).getPlayerColor();
+            Player curPlayer = playersList.get(playerIndex);
+            Color curPlayerColor = curPlayer.getPlayerColor();
             Label oneLabel = new Label();
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Player:  ").append(playerIndex)
-                    .append("\nControl countries:  ")
-                    .append(playerDomiViewObserver.getControlledCountryNbrList().get(playerIndex))
+            stringBuilder.append("Player: ").append(playerIndex)
+                    .append(" [").append(curPlayer.getPlayerName()).append("]")
                     .append("\nControl ratio:  ")
                     .append(String.format("%,.2f%%",(playerDomiViewObserver.getControlRatioList().get(playerIndex)*100)))
-                    .append("\nControlled continents:  ")
-                    .append(playerDomiViewObserver.getControlledContinentNbrList().get(playerIndex))
+                    .append("\nControl countries:  ")
+                    .append(playerDomiViewObserver.getControlledCountryNbrList().get(playerIndex))
                     .append("\nTotal army:  ")
                     .append(playerDomiViewObserver.getTotalArmyNbrList().get(playerIndex))
+                    .append("\nControlled continents:  ")
+                    .append(playerDomiViewObserver.getControlledContinentNbrList().get(playerIndex))
                     .append("\nContinent bonus:  ")
                     .append(playerDomiViewObserver.getContinentBonusList().get(playerIndex))
                     .append("\n\n");
@@ -276,6 +282,21 @@ public class InfoRetriver {
     public static int getStandardReinforceArmyNum(int countryNum) {
         int calResult = countryNum / DEFAULT_DIVISION_FACTOR;
         return calResult > DEFAULT_MIN_REINFORCE_ARMY_NBR ? calResult : DEFAULT_MIN_REINFORCE_ARMY_NBR;
+    }
+
+    public static void updatePiechart(PieChart pct_countryDomiChart) {
+        ObservableList<PieChart.Data> dataList = FXCollections.observableArrayList();
+        for(int i = 0; i < playersList.size(); i++){
+            Player curPlayer = playersList.get(i);
+            String curPlayerName = curPlayer.getPlayerName();
+            float curRatio = playerDomiViewObserver.getControlRatioList().get(i);
+            dataList.add(new PieChart.Data(curPlayerName,curRatio));
+
+            System.out.println("name:" + curPlayerName + ", ratio: " + curRatio);
+        }
+        pct_countryDomiChart.setData(dataList);
+        pct_countryDomiChart.setLabelsVisible(false);
+
     }
 }
 

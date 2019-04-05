@@ -1,8 +1,15 @@
 package test.riskgame.model.BasicClass.StrategyPattern; 
 
-import org.junit.Test; 
+import org.junit.Assert;
+import org.junit.Test;
 import org.junit.Before; 
-import org.junit.After; 
+import org.junit.After;
+import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
+import riskgame.model.BasicClass.Player;
+import riskgame.model.BasicClass.StrategyPattern.StrategyAggressive;
+
+import java.util.ArrayList;
 
 /** 
 * StrategyAggressive Tester. 
@@ -11,10 +18,19 @@ import org.junit.After;
 * @since <pre>Apr 2, 2019</pre> 
 * @version 1.0 
 */ 
-public class StrategyAggressiveTest { 
+public class StrategyAggressiveTest {
+    private Player curPlayer;
+    private Country attackingCountry;
+    private PhaseViewObservable curObserver;
 
 @Before
-public void before() throws Exception { 
+public void before() throws Exception {
+    initGameSimulator();
+}
+    private void initGameSimulator(){
+    curPlayer = new Player(0);
+    attackingCountry.setCountryOwner(curPlayer);
+
 } 
 
 @After
@@ -27,18 +43,51 @@ public void after() throws Exception {
 * 
 */ 
 @Test
-public void testDoReinforcement() throws Exception { 
-//TODO: Test goes here... 
-} 
 
+
+public void testDoReinforcement() throws Exception
+{
+    initGameSimulator();
+    StrategyAggressive aggressiveStrategy = new StrategyAggressive();
+    Player player = new Player(0);
+    curPlayer.setCardPermission(true);
+    curPlayer.setActiveStatus(true);
+    curPlayer.setFinalWinner(true);
+    int curPlayerArmyNbr = curPlayer.getArmyNbr();
+    curPlayerArmyNbr = 3;
+    try {
+        aggressiveStrategy.doReinforcement(curPlayer, curObserver);
+    } catch (Error e) {
+        System.out.println("ignore alert window");
+    } finally {
+        // Assert.assertEquals((player.getPlayerIndex()==0, player, player.getActiveStatus()==true, curPlayerArmyNbr == player.getArmyNbr()),(player.getPlayerIndex(),player.getActiveStatus(),curPlayerArmyNbr));
+
+    }
+}
+    public void testaggressivelyExchangeCard() throws Exception
+   {
+
+    }
+
+    public void aggressivelyDeployArmy()
+    {
+
+    }
+    public void aggressivelyPickCountryFrom()
+    {
+
+    }
 /** 
 * 
 * Method: doAttack(Player player) 
 * 
 */ 
 @Test
-public void testDoAttack() throws Exception { 
-//TODO: Test goes here... 
+public void testDoAttack() throws Exception {
+
+
+
+
 } 
 
 /** 
