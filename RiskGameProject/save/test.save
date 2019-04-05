@@ -5,11 +5,6 @@ image=london.bmp
 wrap=no
 scroll=horizontal
 
-[Players]
-Player_index,player_type,player_color,continentBonus,card1,card2,card3
-Player_index,player_type,player_color,continentBonus,card1,card2,card3
-Player_index,player_type,player_color,continentBonus,card1,card2,card3
-
 [Continents]
 South Central London=3
 North Central London=5
@@ -56,14 +51,14 @@ Lambeth,399,315,South Central London,Player_1,3,Bromley,Croydon,Merton,Wandswort
 Southwark,438,288,South Central London,Player_1,1,Bromley,Lambeth,City Centre,Tower Hamlets,Lewisham
 Lewisham,485,327,South Central London,Player_1,1,Bromley,Greenwich,Southwark,Tower Hamlets
 
+[Players]
+3
+Player_index,player_strategy,player_color,continentBonus,card1,card2,card3
+country1,country2,country3
+Player_index,player_strategy,player_color,continentBonus,card1,card2,card3
+
+Player_index,player_strategy,player_color,continentBonus,card1,card2,card3
+
+
 [Phase]
-phaseName(Initial,Reinforcement,Attack,Fortification),currentPlayer
-
-[R]
-undeployedarmy
-
-[A]
-whethercanattack(true/flase)
-
-[F]
-alreaydoneornot(true/flase)
+phaseName(Initial,Reinforcement,Attack,Fortification),currentPlayer,(undeployedarmy/whethercanattack(true/flase)/alreaydoneornot(true/flase))
