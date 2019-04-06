@@ -67,6 +67,16 @@ public class SaveProgress {
         }
         out.write("\r\n");
 
+        out.write("[Connection]\r\n");
+        for(int i=0;i<numberOfPlayers;i++){
+            String playerOwnCountry = Main.playersList.get(i).getOwnedCountryNameList().toString();
+            playerOwnCountry = playerOwnCountry.replaceAll("\\[","");
+            playerOwnCountry = playerOwnCountry.replaceAll("\\]","");
+            playerOwnCountry = playerOwnCountry.replaceAll(", ",",");
+            out.write(Main.playersList.get(i).getPlayerIndex()+","+playerOwnCountry+"\r\n");
+        }
+        out.write("\r\n");
+
         out.write("[Phase]\r\n");
         out.write(phase+","+curPlayer+",");
 

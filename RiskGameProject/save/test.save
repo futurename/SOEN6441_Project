@@ -60,5 +60,10 @@ country1,country2,country3
 Player_index,status,player_strategy,player_color,continentBonus,army_nbr,card1,card2,card3
 country1,country2,country3
 
+[Connection]
+Player_index,country1,country2,country3
+Player_index,country1,country2,country3
+Player_index,country1,country2,country3
+
 [Phase]
 phaseName(Initial,Reinforcement,Attack,Fortification),currentPlayer,(undeployedarmy/whethercanattack(true/flase),whethergetcard(true/false)/alreaydoneornot(true/flase))
