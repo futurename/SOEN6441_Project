@@ -83,7 +83,7 @@ public class StrategyRandom implements Strategy {
         //Remember to turn on card getting permission starting attack phase. otherwise the player will no getting card
         player.setCardPermission(false);
         //pick a country that can attack
-        ArrayList<Country> attackable = InfoRetriver.getAttackableCountry(player);
+        ArrayList<Country> attackable = InfoRetriver.getOwnedAttackerList(player);
         if (!attackable.isEmpty()) {
             Country attacker = randomlyPickCountryFrom(attackable);
             //pick an enemy
@@ -122,7 +122,7 @@ public class StrategyRandom implements Strategy {
         if (!reachableCountries.isEmpty()) {
             Country target = randomlyPickCountryFrom(reachableCountries);
             //at least 1 army left
-            int army = from.getCountryArmyNumber()-1;
+            int army = from.getCountryArmyNumber() - 1;
             from.reduceFromCountryArmyNumber(army);
             target.addToCountryArmyNumber(army);
         }

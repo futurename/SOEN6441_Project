@@ -230,17 +230,17 @@ public class InfoRetriver {
         return isOneCountryHasAttackableCountry;
     }
 
-    public static ArrayList<Country> getAttackableCountry(Player player) {
-        ArrayList<Country> attackable = new ArrayList<>();
+    public static ArrayList<Country> getOwnedAttackerList(Player player) {
+        ArrayList<Country> attackerList = new ArrayList<>();
         ArrayList<Country> owned = InfoRetriver.getCountryList(player);
         for(Country country: owned){
             if(country.getCountryArmyNumber() > 1){
                 if (!InfoRetriver.getAdjacentEnemy(player, country).isEmpty()){
-                    attackable.add(country);
+                    attackerList.add(country);
                 }
             }
         }
-        return attackable;
+        return attackerList;
     }
 
     /**

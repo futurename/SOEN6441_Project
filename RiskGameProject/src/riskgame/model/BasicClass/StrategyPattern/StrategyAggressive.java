@@ -74,7 +74,7 @@ public class StrategyAggressive implements Strategy {
         //Remember to turn on card getting permission starting attack phase. otherwise the player will no getting card
         player.setCardPermission(false);
         //attackable: army>1 & has enemy neighbors
-        ArrayList<Country> attackable = InfoRetriver.getAttackableCountry(player);
+        ArrayList<Country> attackable = InfoRetriver.getOwnedAttackerList(player);
         if (!attackable.isEmpty()) {
             //The list should contain a country base on aggressive rule
             for (Country attacker: attackable){
