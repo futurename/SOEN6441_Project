@@ -18,6 +18,7 @@ import riskgame.model.BasicClass.Player;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -25,6 +26,7 @@ import static riskgame.Main.*;
 
 /**
  * This class includes methods for processing and organizing different type of data required for display in ListView
+ *
  * @author WW
  **/
 public class InfoRetriver {
@@ -42,8 +44,8 @@ public class InfoRetriver {
     /**
      * acquire adjacent country list for a selected country and player
      *
-     * @param curPlayerIndex player index number
-     * @param selectedCountryIndex   the index of a selected country name from the listview
+     * @param curPlayerIndex       player index number
+     * @param selectedCountryIndex the index of a selected country name from the listview
      * @return a formatted ObservableList of adjacent country names and their army numbers
      */
     public static ObservableList<Country> getAdjacentCountryObservablelist(int curPlayerIndex, int selectedCountryIndex) {
@@ -57,11 +59,12 @@ public class InfoRetriver {
 
     /**
      * Acquire all adjacent enemy countries of the selected country
-     * @param player index of current player
+     *
+     * @param player          index of current player
      * @param selectedCountry selected country by the user
      * @return Observablelist of enemy country list
      */
-    public static ObservableList<Country> getAttackableAdjacentCountryList(Player player, Country selectedCountry){
+    public static ObservableList<Country> getAttackableAdjacentCountryList(Player player, Country selectedCountry) {
         ObservableList<Country> result;
         ArrayList<Country> attackableAdjacentCountryList = getAdjacentEnemy(player, selectedCountry);
         result = FXCollections.observableArrayList(attackableAdjacentCountryList);
@@ -74,8 +77,8 @@ public class InfoRetriver {
         ArrayList<Country> adjacentCountryList = player.getWorldMapInstance().get(selectedCountryName).getAdjacentCountryList();
 
         ArrayList<Country> attackableAdjacentCountryList = new ArrayList<>();
-        for(Country country: adjacentCountryList){
-            if(country.getOwnerIndex() != curPlayerIndex){
+        for (Country country : adjacentCountryList) {
+            if (country.getOwnerIndex() != curPlayerIndex) {
                 attackableAdjacentCountryList.add(country);
             }
         }
@@ -85,7 +88,7 @@ public class InfoRetriver {
     /**
      * acquire ObservableList of all reachable countries from a selected country and player
      *
-     * @param player         current player index
+     * @param player              current player index
      * @param selectedCountryName selected country name
      * @return ObservableList of all reachable countries
      */
@@ -99,7 +102,7 @@ public class InfoRetriver {
     /**
      * acquire ObservableList of all reachable countries from a selected country and player
      *
-     * @param player         current player
+     * @param player              current player
      * @param selectedCountryName selected country name
      * @return ObservableList of all reachable countries
      */
@@ -115,7 +118,7 @@ public class InfoRetriver {
 
     private static void resetCountryVisitFlag(Player player) {
         LinkedHashMap<String, GraphNode> worldHashMap = player.getWorldMapInstance();
-        for(Map.Entry<String, GraphNode> node: worldHashMap.entrySet()){
+        for (Map.Entry<String, GraphNode> node : worldHashMap.entrySet()) {
             node.getValue().setVisited(false);
         }
     }
@@ -146,15 +149,16 @@ public class InfoRetriver {
 
     /**
      * get count of conquered continents by the specified player
+     *
      * @param curPlayer current player
      * @return number of conquered continents
      */
     public static int getConqueredContinentNbr(Player curPlayer) {
         int playerIndex = curPlayer.getPlayerIndex();
         int result = 0;
-        for(Map.Entry<String, Continent> entry: Main.worldContinentMap.entrySet()){
+        for (Map.Entry<String, Continent> entry : Main.worldContinentMap.entrySet()) {
             Continent curContinent = entry.getValue();
-            if(curContinent.getContinentOwnerIndex() == playerIndex){
+            if (curContinent.getContinentOwnerIndex() == playerIndex) {
                 result++;
             }
         }
@@ -162,14 +166,14 @@ public class InfoRetriver {
     }
 
     /**
-     Set contents to player domination the pane
+     * Set contents to player domination the pane
      * method called when updating or initialization
      *
-     * @param arg notification message
+     * @param arg  notification message
      * @param view domination view
-     * @param <V> Vbox UI control
+     * @param <V>  Vbox UI control
      */
-    public static <V extends VBox> void updateDominationView(String arg, V view){
+    public static <V extends VBox> void updateDominationView(String arg, V view) {
         playerDomiViewObservable.updateObservable();
         playerDomiViewObservable.notifyObservers(arg);
         ArrayList<Label> labelList = new ArrayList<>();
@@ -187,7 +191,7 @@ public class InfoRetriver {
             stringBuilder.append("Player: ").append(playerIndex)
                     .append(" [").append(curPlayer.getPlayerName()).append("]")
                     .append("\nControl ratio:  ")
-                    .append(String.format("%,.2f%%",(playerDomiViewObserver.getControlRatioList().get(playerIndex)*100)))
+                    .append(String.format("%,.2f%%", (playerDomiViewObserver.getControlRatioList().get(playerIndex) * 100)))
                     .append("\nControl countries:  ")
                     .append(playerDomiViewObserver.getControlledCountryNbrList().get(playerIndex))
                     .append("\nTotal army:  ")
@@ -208,7 +212,8 @@ public class InfoRetriver {
 
     /**
      * valid whether the attacker has an attackable country, if not, move to next phase.
-     * @param player index of current player
+     *
+     * @param player           index of current player
      * @param ownedCountryList country object list
      * @return true for valid, false for none
      */
@@ -216,13 +221,13 @@ public class InfoRetriver {
 
         boolean isOneCountryHasAttackableCountry = false;
 
-        for(Country country: ownedCountryList){
-            if(country.getCountryArmyNumber() > 1){
+        for (Country country : ownedCountryList) {
+            if (country.getCountryArmyNumber() > 1) {
                 ObservableList<Country> attackableCountryList = InfoRetriver.getAttackableAdjacentCountryList(player, country);
 
-                if(!attackableCountryList.isEmpty()){
+                if (!attackableCountryList.isEmpty()) {
                     isOneCountryHasAttackableCountry = true;
-                    System.out.println(player.getPlayerName()+"NO attackable country!");
+                    System.out.println(player.getPlayerName() + "NO attackable country!");
                     break;
                 }
             }
@@ -233,14 +238,33 @@ public class InfoRetriver {
     public static ArrayList<Country> getOwnedAttackerList(Player player) {
         ArrayList<Country> attackerList = new ArrayList<>();
         ArrayList<Country> owned = InfoRetriver.getCountryList(player);
-        for(Country country: owned){
-            if(country.getCountryArmyNumber() > 1){
-                if (!InfoRetriver.getAdjacentEnemy(player, country).isEmpty()){
+        for (Country country : owned) {
+            if (country.getCountryArmyNumber() > 1) {
+                if (!InfoRetriver.getAdjacentEnemy(player, country).isEmpty()) {
                     attackerList.add(country);
                 }
             }
         }
         return attackerList;
+    }
+
+    public static Country getOwnedStrongestCountry(Player player) {
+        Country result = null;
+        ArrayList<Country> ownedCountryList = getOwnedAttackerList(player);
+        if (!ownedCountryList.isEmpty()) {
+
+            System.out.println("get strongest country, list: " + ownedCountryList);
+
+            ownedCountryList.sort(new Comparator<Country>() {
+                @Override
+                public int compare(Country o1, Country o2) {
+                    return o2.getCountryArmyNumber() - o1.getCountryArmyNumber();
+                }
+            });
+            result = ownedCountryList.get(0).getCountryArmyNumber() > 1 ? ownedCountryList.get(0) : null;
+            System.out.println("\n\n\n\nfirst: " + ownedCountryList.get(0).getCountryArmyNumber() + ", last: " + ownedCountryList.get(ownedCountryList.size() - 1).getCountryArmyNumber() + "\n\n\n\n");
+        }
+        return result;
     }
 
     /**
@@ -286,17 +310,28 @@ public class InfoRetriver {
 
     public static void updatePiechart(PieChart pct_countryDomiChart) {
         ObservableList<PieChart.Data> dataList = FXCollections.observableArrayList();
-        for(int i = 0; i < playersList.size(); i++){
+        for (int i = 0; i < playersList.size(); i++) {
             Player curPlayer = playersList.get(i);
             String curPlayerName = curPlayer.getPlayerName();
             float curRatio = playerDomiViewObserver.getControlRatioList().get(i);
-            dataList.add(new PieChart.Data(curPlayerName,curRatio));
+            dataList.add(new PieChart.Data(curPlayerName, curRatio));
 
             System.out.println("name:" + curPlayerName + ", ratio: " + curRatio);
         }
         pct_countryDomiChart.setData(dataList);
         pct_countryDomiChart.setLabelsVisible(false);
 
+    }
+
+    public static ArrayList<Country> getSortedCountryListByArmyNbr(Player player) {
+        ArrayList<Country> ownedCountryList = getCountryList(player);
+        ownedCountryList.sort(new Comparator<Country>() {
+            @Override
+            public int compare(Country o1, Country o2) {
+                return o2.getCountryArmyNumber() - o1.getCountryArmyNumber();
+            }
+        });
+        return ownedCountryList;
     }
 }
 

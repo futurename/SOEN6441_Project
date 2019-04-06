@@ -1,16 +1,13 @@
 package riskgame.model.BasicClass.StrategyPattern;
 
 import riskgame.model.BasicClass.Card;
-import riskgame.model.BasicClass.Continent;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.Player;
-import riskgame.model.Utils.AttackProcess;
 import riskgame.model.Utils.InfoRetriver;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class StrategyCheater implements Strategy {
     @Override
@@ -52,25 +49,19 @@ public class StrategyCheater implements Strategy {
     }
 
     private void evillyConquer(Player player){
-        player.setCardPermission(false);
-        ArrayList<Country> attackableCountryList = InfoRetriver.getOwnedAttackerList(player);
-
-
-        if (!attackableCountryList.isEmpty()) {
-            //The list should contain a country base on aggressive rule
-            for (Country attacker : attackable) {
-                ArrayList<Country> enemies = InfoRetriver.getAdjacentEnemy(player, attacker);
-                Collections.shuffle(enemies);
-                //keep attacking util all armies are fucked up
-                for (Country enemy : enemies) {
-                    //cannot attack any more
-                    if (attacker.getCountryArmyNumber() < 2) {
+        player.setCardPermission(true);
+        ArrayList<Country> ownedAttackerList = InfoRetriver.getOwnedAttackerList(player);
+        while (!ownedAttackerList.isEmpty()) {
+            for (Country attackerCountry : ownedAttackerList) {
+                ArrayList<Country> adjacentEnemyList = InfoRetriver.getAdjacentEnemy(player, attackerCountry);
+                for (Country enemyCountry : adjacentEnemyList) {
+                    if (attackerCountry.getCountryArmyNumber() < 2) {
                         break;
                     }
-                    int attackArmy = attacker.getCountryArmyNumber() - 1;
-                    int defenceArmy = enemy.getCountryArmyNumber();
+                    int attackArmy = attackerCountry.getCountryArmyNumber() - 1;
+                    int defenceArmy = enemyCountry.getCountryArmyNumber();
                     //all-out mode attack
-                    player.alloutAttackSimulate(attacker, enemy, attackArmy, defenceArmy, false);
+                    player.alloutAttackSimulate(attackerCountry, enemyCountry, attackArmy, defenceArmy, false);
                     //only when the for loop for attackable reaches the last one. player can be the winner.
                     if (player.isFinalWinner()) {
                         break;
@@ -81,35 +72,9 @@ public class StrategyCheater implements Strategy {
                     break;
                 }
             }
+            ownedAttackerList = InfoRetriver.getOwnedAttackerList(player);
         }
 
-
-        for (Country country: countries){
-            ArrayList<Country> enemyCountries = InfoRetriver.getAdjacentEnemy(player, country);
-            //For every enemies:
-            for (Country enemy: enemyCountries){
-                Player formerOwner = enemy.getOwner();
-                System.out.printf("%s(using %s) conquered %s(%s).\n", player, country.getCountryName(), formerOwner, enemy.getCountryName());
-                //Conquer it anyway
-                enemy.setObservableArmyWhenOwnerChanged(player, enemy.getCountryArmyNumber());
-                enemy.notifyObservers("Conquered a country");
-                //if player eliminated?
-                UtilMethods.checkDefenderAlive(formerOwner);
-                System.out.printf("Defender owned country %s?: %s\n", enemy.getCountryName(), formerOwner.getOwnedCountryNameList().contains(enemy.getCountryName()));
-                //Take over continent? or world?
-                String continentName = enemy.getContinentName();
-                Continent curContinent = country.getOwner().getContinentMapInstance().get(continentName);
-                AttackProcess.updateContinentAndWorldStatus(player, formerOwner, curContinent, false);
-                System.out.println("CHEATER A WINNER??: "+ player.isFinalWinner());
-                if (player.isFinalWinner()) {
-                    break;
-                }
-            }
-
-            if (player.isFinalWinner()) {
-                break;
-            }
-        }
     }
 
     @Override

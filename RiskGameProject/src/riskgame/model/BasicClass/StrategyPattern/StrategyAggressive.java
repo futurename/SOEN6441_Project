@@ -20,7 +20,7 @@ public class StrategyAggressive implements Strategy {
         UtilMethods.endReinforcement(player);
     }
 
-    public void aggressivelyExchangeCard(Player player, PhaseViewObservable observable){
+    public void aggressivelyExchangeCard(Player player, PhaseViewObservable observable) {
         CardExchangeViewObserver cardObserver = UtilMethods.initCardObserver(player, observable);
         int curExchangeTime = cardObserver.getExchangeTime();
         ArrayList<Card> cards = cardObserver.getPlayerCards();
@@ -28,7 +28,7 @@ public class StrategyAggressive implements Strategy {
         System.out.println("\n\n\n\nAggressive player cards: " + cards + "\n\n\n\n");
 
         int code = UtilMethods.availableCombo(cards);
-        if (code != -2){
+        if (code != -2) {
             UtilMethods.exchangeCard(player, code, curExchangeTime);
         }
         UtilMethods.deregisterCardObserver(player, observable, cardObserver);
@@ -46,17 +46,18 @@ public class StrategyAggressive implements Strategy {
 
     /**
      * Pick the strongest country among countries, if even powerful countries exist, randomly pick one
+     *
      * @param from owned countries
      * @return selected one
      */
-    public Country aggressivelyPickCountryFrom(ArrayList<Country> from){
+    public Country aggressivelyPickCountryFrom(ArrayList<Country> from) {
         int max = 0;
         ArrayList<Country> evenCountries = new ArrayList<>();
-        for (Country country: from){
-            if (country.getCountryArmyNumber() > max){
+        for (Country country : from) {
+            if (country.getCountryArmyNumber() > max) {
                 evenCountries.clear();
                 evenCountries.add(country);
-            }else if (country.getCountryArmyNumber() == max){
+            } else if (country.getCountryArmyNumber() == max) {
                 evenCountries.add(country);
             }
         }
@@ -71,51 +72,52 @@ public class StrategyAggressive implements Strategy {
     }
 
     public void aggressivelyAttack(Player player) {
-        //Remember to turn on card getting permission starting attack phase. otherwise the player will no getting card
         player.setCardPermission(false);
-        //attackable: army>1 & has enemy neighbors
-        ArrayList<Country> attackable = InfoRetriver.getOwnedAttackerList(player);
-        if (!attackable.isEmpty()) {
-            //The list should contain a country base on aggressive rule
-            for (Country attacker: attackable){
-                ArrayList<Country> enemies = InfoRetriver.getAdjacentEnemy(player, attacker);
-                Collections.shuffle(enemies);
-                //keep attacking util all armies are fucked up
-                for (Country enemy: enemies){
-                    //cannot attack any more
-                    if (attacker.getCountryArmyNumber() < 2){
-                        break;
-                    }
-                    int attackArmy = attacker.getCountryArmyNumber() - 1;
-                    int defenceArmy = enemy.getCountryArmyNumber();
-                    //all-out mode attack
-                    player.alloutAttackSimulate(attacker, enemy, attackArmy, defenceArmy, false);
-                    //only when the for loop for attackable reaches the last one. player can be the winner.
-                    if (player.isFinalWinner()) {
-                        break;
-                    }
-                }
+        Country ownedStrongestCountry = InfoRetriver.getOwnedStrongestCountry(player);
+        while (ownedStrongestCountry != null) {
+            ArrayList<Country> enemyCountryList = InfoRetriver.getAdjacentEnemy(player, ownedStrongestCountry);
+            if (!enemyCountryList.isEmpty()) {
+                Collections.shuffle(enemyCountryList);
+                Country enemyCountry = enemyCountryList.get(0);
+                int attackArmy = ownedStrongestCountry.getCountryArmyNumber() - 1;
+                int defenceArmy = enemyCountry.getCountryArmyNumber();
+                //all-out mode attack
+                player.alloutAttackSimulate(ownedStrongestCountry, enemyCountry, attackArmy, defenceArmy, false);
+                //only when the for loop for attackable reaches the last one. player can be the winner.
 
                 if (player.isFinalWinner()) {
                     break;
                 }
+                ownedStrongestCountry = InfoRetriver.getOwnedStrongestCountry(player);
+            } else {
+                break;
+            }
+        }
+    }
+
+
+    @Override
+    public void doFortification(Player player) {
+        System.out.printf("Player %s %s strategy. alive: %s, has army: %s in fortification.\n", player.getPlayerIndex(), player, player.getActiveStatus(), player.getArmyNbr());
+        aggressivelyFortify(player);
+        UtilMethods.endFortification(player);
+    }
+
+    private void aggressivelyFortify(Player player) {
+        ArrayList<Country> sortedOwnedCountryList = InfoRetriver.getSortedCountryListByArmyNbr(player);
+        for (int i = 0; i < sortedOwnedCountryList.size() - 1; i++) {
+            Country strongestCountry = sortedOwnedCountryList.get(i);
+            Country subStrongestCountry = sortedOwnedCountryList.get(i + 1);
+            if (InfoRetriver.getAdjacentEnemy(player, strongestCountry).size() != 0) {
+                int transferArmyNbr = subStrongestCountry.getCountryArmyNumber() - 1;
+                strongestCountry.addToCountryArmyNumber(transferArmyNbr);
+                subStrongestCountry.reduceFromCountryArmyNumber(transferArmyNbr);
             }
         }
     }
 
     @Override
-    public void doFortification(Player player) {
-        System.out.printf("Player %s %s strategy. alive: %s, has army: %s in fortification.\n", player.getPlayerIndex(), player, player.getActiveStatus(), player.getArmyNbr());
-        aggressivelyFortify();
-        UtilMethods.endFortification(player);
-    }
-
-    private void aggressivelyFortify() {
-        //do nothing
-    }
-
-    @Override
-    public String toString(){
+    public String toString() {
         return "Aggressive";
     }
 }
