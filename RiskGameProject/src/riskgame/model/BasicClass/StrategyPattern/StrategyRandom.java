@@ -38,7 +38,7 @@ public class StrategyRandom implements Strategy {
             player.addArmy(randomArmy);
             availableArmy -= randomArmy;
         }
-        ;//Finally, subtracting army from undeployed army.
+        //Finally, subtracting army from undeployed army.
         player.addUndeployedArmy(-player.getUndeployedArmy());
     }
 
@@ -51,6 +51,9 @@ public class StrategyRandom implements Strategy {
         CardExchangeViewObserver cardObserver = UtilMethods.initCardObserver(player, observable);
         int curExchangeTime = cardObserver.getExchangeTime();
         ArrayList<Card> cards = cardObserver.getPlayerCards();
+
+        System.out.println("\n\n\n\nRandom player cards: " + cards + "\n\n\n\n");
+
         if (cards.size() >= 5) {
             int code = UtilMethods.availableCombo(cards);
             UtilMethods.exchangeCard(player, code, curExchangeTime);
@@ -78,7 +81,7 @@ public class StrategyRandom implements Strategy {
 
     private void randomlyAttack(Player player) {
         //Remember to turn on card getting permission starting attack phase. otherwise the player will no getting card
-        player.setCardPermission(true);
+        player.setCardPermission(false);
         //pick a country that can attack
         ArrayList<Country> attackable = InfoRetriver.getAttackableCountry(player);
         if (!attackable.isEmpty()) {

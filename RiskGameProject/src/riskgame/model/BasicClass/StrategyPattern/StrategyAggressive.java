@@ -24,6 +24,9 @@ public class StrategyAggressive implements Strategy {
         CardExchangeViewObserver cardObserver = UtilMethods.initCardObserver(player, observable);
         int curExchangeTime = cardObserver.getExchangeTime();
         ArrayList<Card> cards = cardObserver.getPlayerCards();
+
+        System.out.println("\n\n\n\nAggressive player cards: " + cards + "\n\n\n\n");
+
         int code = UtilMethods.availableCombo(cards);
         if (code != -2){
             UtilMethods.exchangeCard(player, code, curExchangeTime);
@@ -69,7 +72,7 @@ public class StrategyAggressive implements Strategy {
 
     public void aggressivelyAttack(Player player) {
         //Remember to turn on card getting permission starting attack phase. otherwise the player will no getting card
-        player.setCardPermission(true);
+        player.setCardPermission(false);
         //attackable: army>1 & has enemy neighbors
         ArrayList<Country> attackable = InfoRetriver.getAttackableCountry(player);
         if (!attackable.isEmpty()) {

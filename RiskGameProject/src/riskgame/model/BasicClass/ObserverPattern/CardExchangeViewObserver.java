@@ -1,6 +1,5 @@
 package riskgame.model.BasicClass.ObserverPattern;
 
-import riskgame.Main;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Player;
 
@@ -20,14 +19,6 @@ public class CardExchangeViewObserver implements Observer {
     private HashMap<String, ArrayList<Card>> playersCards = new HashMap<>();
     private ArrayList<Card> playerCards;
     private int exchangeTime = 1;
-
-//    public CardExchangeViewObserver() {
-//        playersCards = new HashMap<>();
-//        for (int i=0; i< Main.totalNumOfPlayers; i++){
-//            playersCards.put(String.valueOf(i), new ArrayList<>());
-//        }
-//        System.out.println(playersCards.get("0").toString());
-//    }
 
     @Override
     public void update(Observable o, Object arg) {
