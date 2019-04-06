@@ -61,6 +61,7 @@ Player_index,status,player_strategy,player_color,continentBonus,army_nbr,card1,c
 country1,country2,country3
 
 [Connection]
+3
 Player_index,country1,country2,country3
 Player_index,country1,country2,country3
 Player_index,country1,country2,country3

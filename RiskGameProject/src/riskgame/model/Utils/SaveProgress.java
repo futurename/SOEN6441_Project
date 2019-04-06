@@ -68,6 +68,7 @@ public class SaveProgress {
         out.write("\r\n");
 
         out.write("[Connection]\r\n");
+        out.write(numberOfPlayers+"\r\n");
         for(int i=0;i<numberOfPlayers;i++){
             String playerOwnCountry = Main.playersList.get(i).getOwnedCountryNameList().toString();
             playerOwnCountry = playerOwnCountry.replaceAll("\\[","");
