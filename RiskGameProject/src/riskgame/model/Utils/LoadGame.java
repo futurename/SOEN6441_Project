@@ -3,11 +3,12 @@ package riskgame.model.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.paint.Color;
 import mapeditor.model.MapObject;
 import riskgame.Main;
-import riskgame.model.BasicClass.Continent;
-import riskgame.model.BasicClass.Country;
-import riskgame.model.BasicClass.GraphNode;
+import riskgame.controllers.StartViewController;
+import riskgame.model.BasicClass.*;
+import riskgame.model.BasicClass.StrategyPattern.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -92,6 +93,68 @@ public class LoadGame{
         String curLine;
 
         while ((curLine = bufferedReader.readLine()) != null) {
+            if (curLine.contains("[Player]")) {
+                int playerNumber = Integer.parseInt(curLine);
+                for(int i=0; i< playerNumber; i++){
+                    // Basic player info
+                    String[] curLineSplitPlayerInfo = curLine.split(",");
+
+                    int playerIndex = Integer.parseInt(curLineSplitPlayerInfo[0]);
+
+                    boolean status = Boolean.parseBoolean(curLineSplitPlayerInfo[1]);
+
+                    Color playerColor = Color.valueOf(curLineSplitPlayerInfo[3]);
+
+                    int continentBonus = Integer.parseInt(curLineSplitPlayerInfo[4]);
+
+                    int armyNbr = Integer.parseInt(curLineSplitPlayerInfo[5]);
+
+                    String cards = curLineSplitPlayerInfo[5];
+                    String[] cardsArray = cards.split(";");
+
+                    ArrayList<Card> playerCards = new ArrayList<>();
+                    for(int j=0; j< cardsArray.length; j++){
+                        if(cardsArray[j].equals("Infantry")) {
+                            Card newCard = Card.INFANTRY;
+                            playerCards.add(newCard);
+                        }else if(cardsArray[j].equals("Cavalry")){
+                            Card newCard = Card.CAVALRY;
+                            playerCards.add(newCard);
+                        }else if(cardsArray[j].equals("Artillery")){
+                            Card newCard = Card.ARTILLERY;
+                            playerCards.add(newCard);
+                        }
+                    }
+
+                    // Owned countries
+                    ArrayList<String> countryNameList = new ArrayList<>();
+                    curLine = bufferedReader.readLine();
+                    String[] curLineSplitCountryInfo = curLine.split(",");
+                    for(int j=0;j<curLineSplitCountryInfo.length; j++){
+                        countryNameList.add(curLineSplitCountryInfo[j]);
+                    }
+
+                    Strategy curStrategy = null;
+                    if(curLineSplitCountryInfo[2].equals("Human")) {
+                        curStrategy = new StrategyHuman();
+                    }else if(curLineSplitCountryInfo[2].equals("Aggressive")){
+                        curStrategy = new StrategyAggressive();
+                    }else if(curLineSplitCountryInfo[2].equals("Benevolent")){
+                        curStrategy = new StrategyBenevolent();
+                    }else if(curLineSplitCountryInfo[2].equals("Cheater")){
+                        curStrategy = new StrategyCheater();
+                    }else if(curLineSplitCountryInfo[2].equals("Random")){
+                        curStrategy = new StrategyRandom();
+                    }
+
+                    Player onePlayer = new Player(playerIndex, curStrategy,armyNbr,playerCards,countryNameList,playerColor,
+                            continentBonus,status,graphSingleton, worldContinentMap);
+
+                    System.out.println("init player: " + playerIndex + ", army nbr: " + onePlayer.getArmyNbr());
+
+                }
+            }
+
             if (curLine.contains("[Continents]")) {
                 while ((curLine = bufferedReader.readLine()).length() != 0) {
                     String[] curLineSplitArray = curLine.split("=");
@@ -131,7 +194,10 @@ public class LoadGame{
                         curCountry.setContinentName(curContinentName);
                         Main.worldContinentMap.get(curContinentName).getContinentCountryGraph().put(curCountryName, curCountry);
 
-                        for (int i = CONTINENT_POSITION + 1; i < curLineSplitArray.length; i++) {
+                        int armyNbr = Integer.parseInt(curLineSplitArray[CONTINENT_POSITION+2]);
+                        curCountry.setArmy(armyNbr);
+
+                        for (int i = CONTINENT_POSITION + 3; i < curLineSplitArray.length; i++) {
                             Country oneCountry;
                             GraphNode oneGraphNode;
                             String adjacentCountryName = curLineSplitArray[i];
@@ -147,6 +213,41 @@ public class LoadGame{
                             curGraphNode.addAdjacentCountry(oneCountry);
                             linkedHashMap.put(adjacentCountryName, oneGraphNode);
                         }
+                    }
+                }
+            }
+
+            // Add country owner
+            if (curLine.contains("[Connection]")) {
+                int n = Integer.parseInt(curLine = bufferedReader.readLine());
+                for(int j=0;j<n;j++){
+                    curLine = bufferedReader.readLine();
+                    String[] reader = curLine.split(",");
+                    Player p1 = playersList.get(Integer.parseInt(reader[0]));
+                    GraphNode curGraphNode;
+                    for(int k =1 ; k< reader.length;k++){
+                        String ownerCountryName = reader[k];
+                        curGraphNode = linkedHashMap.get(ownerCountryName);
+                        Country curCountry = curGraphNode.getCountry();
+                        curCountry.setCountryOwner(p1);
+                        curGraphNode.replaceCountry(curCountry);
+                        linkedHashMap.replace("ownerCountryName",curGraphNode);
+                    }
+                }
+            }
+
+            // jump to the correct page and set the game data
+            if (curLine.contains("[Phase]")) {
+                while ((curLine = bufferedReader.readLine()) != null) {
+
+                    if(curLine.contains("Initial")){
+
+                    }else if(curLine.contains("Reinforcement")){
+
+                    }else if(curLine.contains("Attack")){
+
+                    }else if(curLine.contains("Fortification")){
+
                     }
                 }
             }
