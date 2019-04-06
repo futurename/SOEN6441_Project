@@ -76,6 +76,7 @@ public class StrategyAggressive implements Strategy {
         Country ownedStrongestCountry = InfoRetriver.getOwnedStrongestCountry(player);
         while (ownedStrongestCountry != null) {
             ArrayList<Country> enemyCountryList = InfoRetriver.getAdjacentEnemy(player, ownedStrongestCountry);
+            Collections.shuffle(enemyCountryList);
             if (!enemyCountryList.isEmpty()) {
                 Collections.shuffle(enemyCountryList);
                 Country enemyCountry = enemyCountryList.get(0);

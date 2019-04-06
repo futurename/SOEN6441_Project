@@ -33,7 +33,7 @@ public class TournamentModeViewController {
     private final String DEFAULT_MAPS_FOLDER_PATH = "maps/TournamentModeMaps/";
     private final int MAX_GAMES_TO_BE_PLAYED = 5;
     private final int MIN_GAME_ROUND = 10;
-    private final int MAX_GAME_ROUND = 50;
+    private final int MAX_GAME_ROUND = 500;
     @FXML
     private ComboBox cbb_gamesCount;
     @FXML
@@ -333,6 +333,7 @@ public class TournamentModeViewController {
 
 
         selectedMapList.clear();
+        robotPlayerList.clear();
 
     }
 }
