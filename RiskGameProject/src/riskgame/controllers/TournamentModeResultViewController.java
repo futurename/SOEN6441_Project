@@ -14,7 +14,6 @@ import riskgame.model.BasicClass.StrategyPattern.Strategy;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -33,11 +32,16 @@ public class TournamentModeResultViewController implements Initializable {
     @FXML
     private Button btn_end;
 
-    private BlockingQueue<Future<GameRunningResult>> resultBlockingQueue;
+    //private BlockingQueue<Future<GameRunningResult>> resultBlockingQueue;
     private int gamesValue;
     private int gameRoundValue;
     private ArrayList<String> mapFileList;
     private ArrayList<Strategy> strategyArrayList;
+
+    public TournamentModeResultViewController(int gamesValue, int gameRoundValue) {
+        this.gamesValue = gamesValue;
+        this.gameRoundValue = gameRoundValue;
+    }
 
     @FXML
     @Override
@@ -45,16 +49,8 @@ public class TournamentModeResultViewController implements Initializable {
         generateFullGripPane(gamesValue, gameRoundValue);
     }
 
-    public TournamentModeResultViewController(BlockingQueue<Future<GameRunningResult>> resultBlockingQueue, int gamesValue, int gameRoundValue) {
-        this.resultBlockingQueue = resultBlockingQueue;
-        this.gamesValue = gamesValue;
-        this.gameRoundValue = gameRoundValue;
-    }
-
     private void generateFullGripPane(int gamesValue, int gameRoundValue) {
-
         generateTitleInfo(gamesValue, gameRoundValue);
-
 
         grp_gameResult.setHgap(30);
         grp_gameResult.setVgap(30);
@@ -72,10 +68,6 @@ public class TournamentModeResultViewController implements Initializable {
         }
 
         generateGridFramework(shortMapFileNameList, gameValueList);
-
-        generateResultOnPane();
-
-
     }
 
     private void generateTitleInfo(int gamesValue, int gameRoundValue) {
@@ -100,29 +92,21 @@ public class TournamentModeResultViewController implements Initializable {
         txa_gameInitInfo.setText(stringBuilder.toString());
     }
 
-    private void generateResultOnPane() {
-        for (Future<GameRunningResult> future : resultBlockingQueue) {
-            GameRunningResult curResult = null;
-            try {
-                curResult = future.get();
-
-                System.out.println(curResult);
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-            String curMapFileName = curResult.getMapFileName();
-            int curMapIndex = curResult.getMapIndex();
-            String curGameName = getShortMapName(curResult.getGameName());
-            String curWinnerName = curResult.getWinnerName();
-            int curGameValue = curResult.getGameValue();
-
-            Label curLabel = new Label(curWinnerName);
-
-            grp_gameResult.add(curLabel, curGameValue + 1, curMapIndex + 1);
+    public void setOneGameResult(Future<GameRunningResult> oneGameResult) {
+        GameRunningResult curResult = null;
+        try {
+            curResult = oneGameResult.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
         }
+
+        int curMapIndex = curResult.getMapIndex();
+        int curGameValue = curResult.getGameValue();
+        String curWinner = curResult.getWinnerName();
+        Label curLabel = new Label(curWinner);
+        grp_gameResult.add(curLabel, curGameValue + 1, curMapIndex + 1);
     }
 
     private void generateGridFramework(ArrayList<String> shortMapFileNameList, ArrayList<String> gameValueList) {
@@ -138,6 +122,8 @@ public class TournamentModeResultViewController implements Initializable {
             Label oneGameValueLabel = new Label(oneGameName);
             grp_gameResult.add(oneGameValueLabel, gameIndex + 1, 0);
         }
+
+
     }
 
     private String getShortMapName(String gameName) {
@@ -147,40 +133,8 @@ public class TournamentModeResultViewController implements Initializable {
     }
 
 
-    public BlockingQueue<Future<GameRunningResult>> getResultBlockingQueue() {
-        return resultBlockingQueue;
-    }
-
-    public void setResultBlockingQueue(BlockingQueue<Future<GameRunningResult>> resultBlockingQueue) {
-        this.resultBlockingQueue = resultBlockingQueue;
-    }
-
-    public int getGamesValue() {
-        return gamesValue;
-    }
-
-    public void setGamesValue(int gamesValue) {
-        this.gamesValue = gamesValue;
-    }
-
-    public int getGameRoundValue() {
-        return gameRoundValue;
-    }
-
-    public void setGameRoundValue(int gameRoundValue) {
-        this.gameRoundValue = gameRoundValue;
-    }
-
     public ArrayList<String> getMapFileList() {
         return mapFileList;
-    }
-
-    public void setMapFileList(ArrayList<String> mapFileList) {
-        this.mapFileList = mapFileList;
-    }
-
-    public void setStrategyArrayList(ArrayList<Strategy> strategyArrayList) {
-        this.strategyArrayList = strategyArrayList;
     }
 
     @FXML
@@ -198,5 +152,13 @@ public class TournamentModeResultViewController implements Initializable {
             shortNameList.add(shortFileName);
         }
         return shortNameList;
+    }
+
+    public void setMapFileList(ArrayList<String> mapFileList) {
+        this.mapFileList = mapFileList;
+    }
+
+    public void setStrategyArrayList(ArrayList<Strategy> strategyArrayList) {
+        this.strategyArrayList = strategyArrayList;
     }
 }

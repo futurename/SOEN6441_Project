@@ -72,7 +72,6 @@ public class TournamentGame implements Runnable {
         System.out.println("playerlist: " + robotPlayerList + "\n\n");
 
         InitWorldMap.printGraph(worldMapInstance, robotPlayerList);
-
     }
 
 
