@@ -1,6 +1,7 @@
 package test.riskgame.model.BasicClass;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
@@ -63,8 +64,15 @@ public void testGameStart() throws Exception {
 */ 
 @Test
 public void testInitMapAndPlayers() throws Exception { 
-//TODO: Test goes here... 
-/* 
+//TODO: Test goes here...
+    String mapFile=" ";
+    ArrayList<Strategy> playerStrategyList=new ArrayList<>();
+    int gameRoundValue=0;
+    TournamentGame games=new TournamentGame(mapFile, playerStrategyList,gameRoundValue);
+    String result = "Draw";
+    String actualResult=games.getGameWinner();
+    Assert.assertEquals(actualResult,result);
+/*
 try { 
    Method method = TournamentGame.getClass().getMethod("initMapAndPlayers"); 
    method.setAccessible(true); 
@@ -73,7 +81,7 @@ try {
 } catch(IllegalAccessException e) { 
 } catch(InvocationTargetException e) { 
 } 
-*/ 
+*/
 } 
 
 } 
