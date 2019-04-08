@@ -310,6 +310,7 @@ public class StartViewController implements Initializable {
                 btn_nextStep.setVisible(true);
 
                 if (Main.playersList.isEmpty()) {
+                    loadPlayerTypeSelectionView();
                     InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton, worldContinentMap, playerStrategyList, playersList);
                 }
             }
@@ -481,12 +482,11 @@ public class StartViewController implements Initializable {
         if (!btn_confirmLoadFile.isVisible()) {
             btn_infoSwitcher.setVisible(true);
             btn_infoSwitcher.setText("Map Info");
-            displayPlayerInfo();
+            //displayPlayerInfo();
             btn_nextStep.setVisible(true);
         }
 
         loadPlayerTypeSelectionView();
-
     }
 
     private void loadPlayerTypeSelectionView() throws IOException {

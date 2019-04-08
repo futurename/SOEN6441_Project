@@ -27,7 +27,7 @@ public class TournamentGame implements Runnable {
     private ArrayList<Player> robotPlayerList;
     private int gameWinner;
     private PhaseViewObservable tournamentObservable;
-    private final int MAX_GAME_ROUND = 30;
+    private final int MAX_GAME_ROUND = 5;
     private Player winnerPlayer;
 
     private final int DEFAULTWINNERINDEX = 8;
