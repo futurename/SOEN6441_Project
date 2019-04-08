@@ -184,4 +184,8 @@ public class TournamentGame implements Runnable {
     public Player getWinnerPlayer() {
         return winnerPlayer;
     }
+
+    public ArrayList<Player> getRobotPlayerList() {
+        return robotPlayerList;
+    }
 }

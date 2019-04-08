@@ -373,6 +373,7 @@ public class StartViewController implements Initializable {
             curStage.close();
             tournamentGame.singleModeRun();
             Player winner = tournamentGame.getWinnerPlayer();
+            ArrayList<Player> robotList = tournamentGame.getRobotPlayerList();
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/FinalView.fxml"));
 
@@ -381,6 +382,7 @@ public class StartViewController implements Initializable {
 
             FinalViewController finalViewController = new FinalViewController();
             finalViewController.setWinner(winner);
+            finalViewController.setPlayerArrayList(robotList);
             loader.setController(finalViewController);
 
             Pane pane = loader.load();

@@ -26,20 +26,24 @@ public class FinalViewController implements Initializable {
 
     public void display() {
         StringBuilder stringBuilder = new StringBuilder();
-
-
-        stringBuilder.append("GAME OVER!")
-                .append("\n\n\n")
-                .append("Player <")
-                .append(winner.getPlayerIndex())
-                .append(">, Name: <")
-                .append(winner.getPlayerName())
-                .append("> WINS!");
-
-
+        if (winner.getPlayerIndex() >= playerArrayList.size()) {
+            stringBuilder.append("GAME OVER!")
+                    .append("\n\n\n")
+                    .append("<")
+                    .append(winner.getPlayerName())
+                    .append("> WINS!");
+        } else {
+            stringBuilder.append("GAME OVER!")
+                    .append("\n\n\n")
+                    .append("Player <")
+                    .append(winner.getPlayerIndex())
+                    .append(">, Name: <")
+                    .append(winner.getPlayerName())
+                    .append("> WINS!");
+        }
         txa_gameOverInfo.setText(stringBuilder.toString());
 
-        System.out.println("\n\nfollwoing graph is in finalviewcontroller: " + winner.getPlayerName() + " in Main.playerslist!\n\n");
+        System.out.println("\n\nfollwoing graph is in finalviewcontroller: " + winner.getPlayerName() + " in PlayerList" + playerArrayList + "\n\n");
 
         InitWorldMap.printGraph(winner.getWorldMapInstance(), playerArrayList);
     }
