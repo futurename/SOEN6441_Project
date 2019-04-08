@@ -22,6 +22,7 @@ public class FinalViewController implements Initializable {
 
     private Player winner;
     private ArrayList<Player> playerArrayList;
+    private int totalRounds;
 
 
     public void display() {
@@ -29,6 +30,9 @@ public class FinalViewController implements Initializable {
         if (winner.getPlayerIndex() >= playerArrayList.size()) {
             stringBuilder.append("GAME OVER!")
                     .append("\n\n\n")
+                    .append(("Total Rounds: <"))
+                    .append(totalRounds)
+                    .append(">\n\n")
                     .append("<")
                     .append(winner.getPlayerName())
                     .append("> WINS!");
@@ -62,5 +66,9 @@ public class FinalViewController implements Initializable {
 
     public void setPlayerArrayList(ArrayList<Player> playerArrayList) {
         this.playerArrayList = playerArrayList;
+    }
+
+    public void setTotalRounds(int totalRounds) {
+        this.totalRounds = totalRounds;
     }
 }

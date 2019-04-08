@@ -27,7 +27,7 @@ public class TournamentGame implements Runnable {
     private ArrayList<Player> robotPlayerList;
     private int gameWinner;
     private PhaseViewObservable tournamentObservable;
-    private final int MAX_GAME_ROUND = 2000;
+    private final int MAX_GAME_ROUND = 1000;
     private Player winnerPlayer;
 
     private final int DEFAULTWINNERINDEX = 8;
@@ -189,5 +189,9 @@ public class TournamentGame implements Runnable {
 
     public ArrayList<Player> getRobotPlayerList() {
         return robotPlayerList;
+    }
+
+    public int getMAX_GAME_ROUND() {
+        return MAX_GAME_ROUND;
     }
 }
