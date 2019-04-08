@@ -367,7 +367,7 @@ public class StartViewController implements Initializable {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         if (isAllPlayerRobots()) {
 
-            System.out.println("\n\n\n" + playerStrategyList + "\n\n\n\n");
+            System.out.println("\n\n\nClickNextToReinforcePhase:" + playerStrategyList + "\nmap:" + mapPath +"\n\n\n");
 
             TournamentGame tournamentGame = new TournamentGame(mapPath, playerStrategyList);
             curStage.close();

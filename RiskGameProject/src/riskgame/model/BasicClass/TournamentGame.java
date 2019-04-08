@@ -27,7 +27,7 @@ public class TournamentGame implements Runnable {
     private ArrayList<Player> robotPlayerList;
     private int gameWinner;
     private PhaseViewObservable tournamentObservable;
-    private final int MAX_GAME_ROUND = 10;
+    private final int MAX_GAME_ROUND = 2000;
     private Player winnerPlayer;
 
     private final int DEFAULTWINNERINDEX = 8;
@@ -37,7 +37,7 @@ public class TournamentGame implements Runnable {
         this.playerStrategyList = playerStrategyList;
         this.gameRoundValue = gameRoundValue;
         this.worldMapInstance = new LinkedHashMap<>();
-        this.continentLinkedHashMap = new LinkedHashMap<>();
+        //this.continentLinkedHashMap = new LinkedHashMap<>();
         this.gameWinner = DEFAULTWINNERINDEX;
         this.robotPlayerList = new ArrayList<>();
         this.tournamentObservable = new PhaseViewObservable();
@@ -49,7 +49,7 @@ public class TournamentGame implements Runnable {
         this.playerStrategyList = playerStrategyList;
         this.gameRoundValue = MAX_GAME_ROUND;
         this.robotPlayerList = new ArrayList<>();
-        this.continentLinkedHashMap = new LinkedHashMap<>();
+        //this.continentLinkedHashMap = new LinkedHashMap<>();
         this.gameWinner = DEFAULTWINNERINDEX;
         this.tournamentObservable = new PhaseViewObservable();
         this.worldMapInstance = new LinkedHashMap<>();
@@ -90,7 +90,7 @@ public class TournamentGame implements Runnable {
         int numOfplayers = playerStrategyList.size();
         InitPlayers.initPlayers(numOfplayers, worldMapInstance, continentLinkedHashMap, playerStrategyList, robotPlayerList);
 
-        System.out.println("map: " + mapFile);
+        System.out.println("\n\nmap: " + mapFile);
         System.out.println("gameRoundValue: " + gameRoundValue);
         System.out.println("playerlist: " + robotPlayerList + "\n\n");
 
@@ -105,6 +105,10 @@ public class TournamentGame implements Runnable {
                 if (curRobot.getActiveStatus()) {
                     curRobot.executeReinforcement(tournamentObservable);
                     curRobot.executeAttack();
+
+                    System.out.println("\n\n!!!!!!!robot " + playerIndex + ", " + curRobot.getPlayerName()
+                            + ": regular gaming!  Round left: " + gameRoundLeft + "\n\n");
+
                     if (curRobot.isFinalWinner()) {
                         gameWinner = curRobot.getPlayerIndex();
 
@@ -113,8 +117,6 @@ public class TournamentGame implements Runnable {
                     } else {
                         curRobot.executeFortification();
                     }
-
-                    System.out.println("\n\n!!!!!!!robot " + playerIndex + ", " + curRobot.getPlayerName() + ": regular gaming!  Round left: " + gameRoundLeft + "\n\n");
                 }
             }
             gameRoundLeft--;
@@ -126,7 +128,7 @@ public class TournamentGame implements Runnable {
             Player curRobot = robotPlayerList.get(playerIndex);
             if (curRobot.getActiveStatus()) {
                 curRobot.executeAttack();
-                System.out.println("robot " + playerIndex + ": doAllPlayerAttackAndFortification");
+                System.out.println("\n\n\nrobot " + playerIndex + ": doAllPlayerAttackAndFortification\n\n");
 
                 if (curRobot.isFinalWinner()) {
                     gameWinner = curRobot.getPlayerIndex();
@@ -146,7 +148,7 @@ public class TournamentGame implements Runnable {
             Player curRobot = robotPlayerList.get(playerIndex);
             curRobot.executeReinforcement(tournamentObservable);
 
-            System.out.println("robot " + playerIndex + ": doAllPlayerReinforcement");
+            System.out.println("\n\nrobot " + playerIndex + ": doAllPlayerReinforcement\n\n");
         }
     }
 
