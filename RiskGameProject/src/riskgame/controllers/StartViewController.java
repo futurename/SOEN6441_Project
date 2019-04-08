@@ -310,7 +310,7 @@ public class StartViewController implements Initializable {
                 btn_nextStep.setVisible(true);
 
                 if (Main.playersList.isEmpty()) {
-                    loadPlayerTypeSelectionView();
+                    //loadPlayerTypeSelectionView();
                     InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton, worldContinentMap, playerStrategyList, playersList);
                 }
             }
@@ -378,6 +378,7 @@ public class StartViewController implements Initializable {
 
             System.out.println("single mode winner: " + winner + ", index: " + winner.getPlayerIndex());
 
+
             FinalViewController finalViewController = new FinalViewController();
             finalViewController.setWinner(winner);
             loader.setController(finalViewController);
@@ -385,7 +386,6 @@ public class StartViewController implements Initializable {
             Pane pane = loader.load();
             Scene scene = new Scene(pane,1200,900);
             curStage.setScene(scene);
-
 
             curStage.show();
 

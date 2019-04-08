@@ -329,7 +329,10 @@ public class UtilMethods {
         FXMLLoader loader = new FXMLLoader(controller.getClass().getResource(resourceLocation));
         if (phase.equals("Final Phase")) {
             FinalViewController finalViewController = new FinalViewController();
+            finalViewController.setWinner(Main.playersList.get(Main.phaseViewObserver.getPlayerIndex()));
+            finalViewController.setPlayerArrayList(playersList);
             loader.setController(finalViewController);
+
         }
         try {
             return new Scene(loader.load(), 1200, 900);

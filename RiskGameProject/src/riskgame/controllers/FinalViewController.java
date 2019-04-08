@@ -3,11 +3,11 @@ package riskgame.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
-import riskgame.Main;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InitWorldMap;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -21,6 +21,7 @@ public class FinalViewController implements Initializable {
     private TextArea txa_gameOverInfo;
 
     private Player winner;
+    private ArrayList<Player> playerArrayList;
 
 
     public void display() {
@@ -38,7 +39,9 @@ public class FinalViewController implements Initializable {
 
         txa_gameOverInfo.setText(stringBuilder.toString());
 
-        InitWorldMap.printGraph(winner.getWorldMapInstance(), Main.playersList);
+        System.out.println("\n\nfollwoing graph is in finalviewcontroller: " + winner.getPlayerName() + " in Main.playerslist!\n\n");
+
+        InitWorldMap.printGraph(winner.getWorldMapInstance(), playerArrayList);
     }
 
     public void setWinner(Player winner) {
@@ -47,11 +50,13 @@ public class FinalViewController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setWinner(Main.playersList.get(Main.phaseViewObserver.getPlayerIndex()));
 
         System.out.println("final winner in final phase: " + winner.getPlayerName());
         display();
     }
 
 
+    public void setPlayerArrayList(ArrayList<Player> playerArrayList) {
+        this.playerArrayList = playerArrayList;
+    }
 }

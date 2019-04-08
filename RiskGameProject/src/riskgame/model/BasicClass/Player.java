@@ -625,6 +625,14 @@ public class Player extends Observable implements Observer {
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
+
+    public void setWorldMapInstance(LinkedHashMap<String, GraphNode> worldMapInstance) {
+        this.worldMapInstance = worldMapInstance;
+    }
+
+    public void setContinentMapInstance(LinkedHashMap<String, Continent> continentMapInstance) {
+        this.continentMapInstance = continentMapInstance;
+    }
 }
 
 
