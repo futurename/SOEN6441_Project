@@ -457,7 +457,7 @@ public class Player extends Observable implements Observer {
             attackArmyNbr = attackingCountry.getCountryArmyNumber() - 1;
             defendArmyNbr = defendingCountry.getCountryArmyNumber();
 
-            if (!attackingCountry.getOwner().getStrategy().equals("Human") && !defendingCountry.getOwner().getStrategy().equals("Human")) {
+            if (!attackingCountry.getOwner().getStrategy().toString().equals("Human") && !defendingCountry.getOwner().getStrategy().toString().equals("Human")) {
                 stringBuilder.setLength(0);
             } else {
                 stringBuilder.append("\n");
