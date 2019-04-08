@@ -296,6 +296,17 @@ public class InfoRetriver {
         return fileChooser.showOpenDialog(fileStage);
     }
 
+    public static File showSavedFileChooser(String titleString) {
+        Stage fileStage = null;
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle(titleString);
+
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Map files(*.save)", "*.save");
+        fileChooser.getExtensionFilters().add(extFilter);
+        return fileChooser.showOpenDialog(fileStage);
+    }
 
     /**
      * calculate army number for reinforcement with default value

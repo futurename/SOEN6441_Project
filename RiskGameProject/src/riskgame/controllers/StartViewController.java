@@ -41,6 +41,7 @@ import java.util.*;
 
 import static riskgame.Main.*;
 import static riskgame.model.Utils.InitWorldMap.buildWorldMapGraph;
+import static riskgame.model.Utils.LoadGame.loadGame;
 
 /**
  * controller class for StartView.fxml
@@ -573,8 +574,13 @@ public class StartViewController implements Initializable {
     }
 
     public void clickLoadGame(ActionEvent actionEvent) {
-        String titleString = "Select Saved Map File:";
-        InfoRetriver.showFileChooser(titleString);
+        String titleString = "Select Saved Game File:";
+        File file = InfoRetriver.showSavedFileChooser(titleString);
+        try {
+            loadGame(file.getAbsolutePath(), graphSingleton, worldContinentMap);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void clickSaveGame(ActionEvent actionEvent) {
