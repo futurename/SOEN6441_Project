@@ -1,5 +1,10 @@
 package riskgame.model.BasicClass;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import riskgame.Main;
 import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
 import riskgame.model.Utils.InitPlayers;
@@ -27,6 +32,7 @@ public class TournamentGame implements Runnable {
     private ArrayList<Player> robotPlayerList;
     private int gameWinner;
     private PhaseViewObservable tournamentObservable;
+    private final int MAX_GAME_ROUND = 9999;
 
     public TournamentGame(String mapFile, ArrayList<Strategy> playerStrategyList, int gameRoundValue) {
         this.mapFile = mapFile;
@@ -37,7 +43,17 @@ public class TournamentGame implements Runnable {
         this.gameWinner = -1;
         this.robotPlayerList = new ArrayList<>();
         this.tournamentObservable = new PhaseViewObservable();
+    }
 
+    public TournamentGame(String mapFile, ArrayList<Strategy> playerStrategyList) {
+        this.mapFile = mapFile;
+        this.playerStrategyList = playerStrategyList;
+        this.gameRoundValue = MAX_GAME_ROUND;
+        this.robotPlayerList = new ArrayList<>();
+        this.continentLinkedHashMap = new LinkedHashMap<>();
+        this.gameWinner = -1;
+        this.tournamentObservable = new PhaseViewObservable();
+        this.worldMapInstance = new LinkedHashMap<>();
     }
 
     private void mainGamingLogic() throws IOException {
@@ -149,5 +165,24 @@ public class TournamentGame implements Runnable {
             result = robotPlayerList.get(gameWinner).getPlayerName();
         }
         return result;
+    }
+
+    public void singleModeRun() throws IOException {
+        mainGamingLogic();
+        Player player;
+        if(gameWinner == -1){
+            int lastIndex = Main.playersList.size();
+            player = new Player(lastIndex);
+            player.setPlayerName("NOBODY");
+            player.setPlayerIndex(-1);
+            gameWinner = lastIndex;
+        }
+        Main.phaseViewObserver.setPlayerIndex(gameWinner);
+        Stage stage = new Stage();
+        Pane pane = new FXMLLoader(getClass().getResource("../../view/FinalView.fxml")).load();
+        Scene scene = new Scene(pane,1200,900);
+        stage.setScene(scene);
+        stage.show();
+
     }
 }

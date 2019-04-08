@@ -36,4 +36,8 @@ public class PhaseViewObserver implements Observer {
         System.out.println("phase observer updated to:");
         System.out.printf("%s, player %s. \nExecuting: %s\n",phaseName, playerIndex, arg);
     }
+
+    public void setPlayerIndex(int playerIndex) {
+        this.playerIndex = playerIndex;
+    }
 }

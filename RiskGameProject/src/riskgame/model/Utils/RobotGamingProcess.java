@@ -69,7 +69,7 @@ public class RobotGamingProcess {
         System.out.println("\n\n\n\n\n-------------FINAL RESULT:--------------");
 
 
-        processAllGamesResult(gameResultQueue, completionService, threadCount);
+        //processAllGamesResult(gameResultQueue, completionService, threadCount);
         initRobotFinalView(gameResultQueue, gamesValue, gameRoundValue, mapFileList, robotPlayerList);
         //executorPool.shutdown();
 

@@ -37,7 +37,7 @@ public class PlayerTypeSelectionController {
 
     private int numOfPlayers;
     private ArrayList<Strategy> strategySelectionList;
-    ArrayList<ComboBox> comboBoxArrayList;
+    private ArrayList<ComboBox> comboBoxArrayList;
 
     public void initialize() {
         strategySelectionList = new ArrayList<>();
@@ -107,11 +107,12 @@ public class PlayerTypeSelectionController {
 
     public void clickConfirmSelection(ActionEvent actionEvent) {
         if (isAllComboboxSelected()) {
+
             StartViewController.setStrategyTypeList(strategySelectionList);
             Stage curStage = (Stage) btn_confirmSelection.getScene().getWindow();
             curStage.close();
 
-            System.out.println(strategySelectionList);
+            System.out.println("\n\nselected player types: " + strategySelectionList + "\n\n");
 
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -144,8 +145,6 @@ public class PlayerTypeSelectionController {
             curCombobox.getSelectionModel().select(-1);
             curCombobox.setMouseTransparent(false);
         }
-
     }
-
 
 }

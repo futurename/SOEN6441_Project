@@ -22,10 +22,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import mapeditor.model.MapObject;
 import riskgame.Main;
-import riskgame.model.BasicClass.Continent;
-import riskgame.model.BasicClass.Country;
-import riskgame.model.BasicClass.GraphSingleton;
-import riskgame.model.BasicClass.Player;
+import riskgame.model.BasicClass.*;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
 import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
 import riskgame.model.Utils.InfoRetriver;
@@ -365,17 +362,39 @@ public class StartViewController implements Initializable {
      * @param actionEvent proceed to reinforcement phase
      */
     @FXML
-    public void clickNextToReinforcePhase(ActionEvent actionEvent) {
+    public void clickNextToReinforcePhase(ActionEvent actionEvent) throws IOException {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        //if continent is conquered at the beginning
-        initContinentsOwner();
-        //allocate memory for all players
-        initPlayerDominationObserver();
-        notifyPhaseChanged();
-        UtilMethods.callNextRobotPhase();
-        Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
-        curStage.setScene(scene);
-        curStage.show();
+        if (isAllPlayerRobots()) {
+
+
+            System.out.println("\n\n\n" + playerStrategyList + "\n\n\n\n");
+
+            TournamentGame tournamentGame = new TournamentGame(mapPath, playerStrategyList);
+            tournamentGame.singleModeRun();
+            curStage.close();
+
+        } else {
+            //if continent is conquered at the beginning
+            initContinentsOwner();
+            //allocate memory for all players
+            initPlayerDominationObserver();
+            notifyPhaseChanged();
+            UtilMethods.callNextRobotPhase();
+            Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
+            curStage.setScene(scene);
+            curStage.show();
+        }
+    }
+
+
+    private boolean isAllPlayerRobots() {
+        boolean result = true;
+        for (Strategy strategy : playerStrategyList) {
+            if (strategy.toString().equals("Human")) {
+                result = false;
+            }
+        }
+        return result;
     }
 
     /**
@@ -449,11 +468,6 @@ public class StartViewController implements Initializable {
             displayPlayerInfo();
             btn_nextStep.setVisible(true);
         }
-        /*//set strategies for every player
-        for (int playerIndex = 0; playerIndex < Main.totalNumOfPlayers; playerIndex++) {
-            playerStrategyList.add(new StrategyHuman());
-        }
-        playerStrategyList.set(1, new StrategyRandom());*/
 
         loadPlayerTypeSelectionView();
 
@@ -466,6 +480,7 @@ public class StartViewController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/PlayerTypeSelection.fxml"));
         Pane playerSelectionPane = loader.load();
+
         Scene playerSelectionScene = new Scene(playerSelectionPane, 400, 600);
         curStage.setScene(playerSelectionScene);
         curStage.initOwner(mainStage);
@@ -585,10 +600,9 @@ public class StartViewController implements Initializable {
         directoryChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
 
         File file = directoryChooser.showDialog(fileStage);
-        if(file.getPath()!=null) {
+        if (file.getPath() != null) {
             filePath = file.getPath();
-        }
-        else{
+        } else {
             filePath = defaultPath;
         }
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
@@ -596,7 +610,7 @@ public class StartViewController implements Initializable {
         System.out.println(fileNameCurTime);
         SaveProgress saveProgress = new SaveProgress();
         try {
-            saveProgress.SaveFile("Initial",-1,filePath,fileNameCurTime,true);
+            saveProgress.SaveFile("Initial", -1, filePath, fileNameCurTime, true);
         } catch (IOException e) {
             e.printStackTrace();
         }
