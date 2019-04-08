@@ -1,6 +1,5 @@
 package riskgame.model.BasicClass;
 
-import riskgame.Main;
 import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
 import riskgame.model.Utils.InitPlayers;
@@ -28,7 +27,10 @@ public class TournamentGame implements Runnable {
     private ArrayList<Player> robotPlayerList;
     private int gameWinner;
     private PhaseViewObservable tournamentObservable;
-    private final int MAX_GAME_ROUND = 60;
+    private final int MAX_GAME_ROUND = 30;
+    private Player winnerPlayer;
+
+    private final int DEFAULTWINNERINDEX = 8;
 
     public TournamentGame(String mapFile, ArrayList<Strategy> playerStrategyList, int gameRoundValue) {
         this.mapFile = mapFile;
@@ -36,9 +38,11 @@ public class TournamentGame implements Runnable {
         this.gameRoundValue = gameRoundValue;
         this.worldMapInstance = new LinkedHashMap<>();
         this.continentLinkedHashMap = new LinkedHashMap<>();
-        this.gameWinner = -1;
+        this.gameWinner = DEFAULTWINNERINDEX;
         this.robotPlayerList = new ArrayList<>();
         this.tournamentObservable = new PhaseViewObservable();
+        this.winnerPlayer = new Player(DEFAULTWINNERINDEX);
+        this.winnerPlayer.setPlayerName("No Player");
     }
 
     public TournamentGame(String mapFile, ArrayList<Strategy> playerStrategyList) {
@@ -47,9 +51,11 @@ public class TournamentGame implements Runnable {
         this.gameRoundValue = MAX_GAME_ROUND;
         this.robotPlayerList = new ArrayList<>();
         this.continentLinkedHashMap = new LinkedHashMap<>();
-        this.gameWinner = -1;
+        this.gameWinner = DEFAULTWINNERINDEX;
         this.tournamentObservable = new PhaseViewObservable();
         this.worldMapInstance = new LinkedHashMap<>();
+        this.winnerPlayer = new Player(DEFAULTWINNERINDEX);
+        this.winnerPlayer.setPlayerName("No Player");
     }
 
     private void mainGamingLogic() throws IOException {
@@ -88,7 +94,7 @@ public class TournamentGame implements Runnable {
 
 
     private void doRegularGaming(int gameRoundLeft) {
-        while (gameRoundLeft > 0 && gameWinner == -1) {
+        while (gameRoundLeft > 0 && gameWinner == DEFAULTWINNERINDEX) {
             for (int playerIndex = 0; playerIndex < robotPlayerList.size(); playerIndex++) {
                 Player curRobot = robotPlayerList.get(playerIndex);
                 if (curRobot.getActiveStatus()) {
@@ -156,7 +162,7 @@ public class TournamentGame implements Runnable {
     public String getGameWinner() {
         String result = "Draw";
 
-        if (gameWinner != -1) {
+        if (gameWinner != DEFAULTWINNERINDEX) {
             result = robotPlayerList.get(gameWinner).getPlayerName();
         }
         return result;
@@ -164,15 +170,14 @@ public class TournamentGame implements Runnable {
 
     public void singleModeRun() throws IOException {
         mainGamingLogic();
-        Player player;
-        if(gameWinner == -1){
-            int lastIndex = Main.playersList.size();
-            player = new Player(lastIndex);
-            Main.playersList.add(player);
-            player.setPlayerName("NOBODY");
-            //player.setPlayerIndex(-1);
-            //gameWinner = 0;
+
+        if (gameWinner != DEFAULTWINNERINDEX) {
+            winnerPlayer = robotPlayerList.get(gameWinner);
         }
 
+    }
+
+    public Player getWinnerPlayer() {
+        return winnerPlayer;
     }
 }

@@ -41,7 +41,7 @@ public class FinalViewController implements Initializable {
         InitWorldMap.printGraph(winner.getWorldMapInstance(), Main.playersList);
     }
 
-    private void setWinner(Player winner) {
+    public void setWinner(Player winner) {
         this.winner = winner;
     }
 
@@ -52,4 +52,6 @@ public class FinalViewController implements Initializable {
         System.out.println("final winner in final phase: " + winner.getPlayerName());
         display();
     }
+
+
 }

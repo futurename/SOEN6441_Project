@@ -371,12 +371,21 @@ public class StartViewController implements Initializable {
             TournamentGame tournamentGame = new TournamentGame(mapPath, playerStrategyList);
             curStage.close();
             tournamentGame.singleModeRun();
+            Player winner = tournamentGame.getWinnerPlayer();
 
-            Main.phaseViewObserver.setPlayerIndex(playersList.size() - 1);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/FinalView.fxml"));
 
-            Pane pane = new FXMLLoader(getClass().getResource("../view/FinalView.fxml")).load();
+            System.out.println("single mode winner: " + winner + ", index: " + winner.getPlayerIndex());
+
+            FinalViewController finalViewController = new FinalViewController();
+            finalViewController.setWinner(winner);
+            loader.setController(finalViewController);
+
+            Pane pane = loader.load();
             Scene scene = new Scene(pane,1200,900);
             curStage.setScene(scene);
+
+
             curStage.show();
 
 
