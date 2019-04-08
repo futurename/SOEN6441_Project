@@ -403,15 +403,12 @@ public class ReinforceViewController implements Initializable {
         System.out.println(fileNameCurTime);
         SaveProgress saveProgress = new SaveProgress();
         try {
-            saveProgress.SaveFile("Reinforcement", curPlayer.getPlayerIndex(), filePath, fileNameCurTime, true);
+            saveProgress.SaveFile("Reinforcement", curPlayer.getPlayerIndex(), filePath, fileNameCurTime, true,true);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void clickLoadGame(ActionEvent actionEvent) {
-        String titleString = "Select Saved Map File:";
-        InfoRetriver.showFileChooser(titleString);
-    }
+
 }
 

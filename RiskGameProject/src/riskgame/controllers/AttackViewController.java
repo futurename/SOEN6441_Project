@@ -454,14 +454,10 @@ public class AttackViewController implements Initializable {
         SaveProgress saveProgress = new SaveProgress();
 
         try {
-            saveProgress.SaveFile("Attack",curPlayer.getPlayerIndex(),filePath,fileNameCurTime,btn_confirmAttack.isVisible());
+            saveProgress.SaveFile("Attack",curPlayer.getPlayerIndex(),filePath,fileNameCurTime,btn_confirmAttack.isVisible(),curPlayer.getCardObtained());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void clickLoadGame(ActionEvent actionEvent) {
-        String titleString = "Select Saved Map File:";
-        InfoRetriver.showFileChooser(titleString);
-    }
 }

@@ -29,6 +29,11 @@ import java.util.stream.IntStream;
 public class TournamentModeViewController {
 
 
+    private static ObservableList<String> mapShortNameList;
+    private final String DEFAULT_MAPS_FOLDER_PATH = "maps/TournamentModeMaps/";
+    private final int MAX_GAMES_TO_BE_PLAYED = 5;
+    private final int MIN_GAME_ROUND = 10;
+    private final int MAX_GAME_ROUND = 100;
     @FXML
     private ComboBox cbb_gamesCount;
     @FXML
@@ -53,13 +58,6 @@ public class TournamentModeViewController {
     private CheckBox ckb_randomPlayer;
     @FXML
     private CheckBox ckb_cheaterPlayer;
-
-
-    private static ObservableList<String> mapShortNameList;
-    private final String DEFAULT_MAPS_FOLDER_PATH = "maps/TournamentModeMaps/";
-    private final int MAX_GAMES_TO_BE_PLAYED = 5;
-    private final int MIN_GAME_ROUND = 10;
-    private final int MAX_GAME_ROUND = 50;
     private ArrayList<Strategy> robotPlayerList = new ArrayList<>();
     private ArrayList<String> mapFullFileList;
     private int gamesValue;
@@ -308,11 +306,16 @@ public class TournamentModeViewController {
     }
 
     public void clickResetSetting(ActionEvent actionEvent) {
+
         cbx_mapFileOne.getSelectionModel().clearSelection();
         cbx_mapFileTwo.getSelectionModel().clearSelection();
         cbx_mapFileThree.getSelectionModel().clearSelection();
         cbx_mapFileFour.getSelectionModel().clearSelection();
         cbx_mapFileFive.getSelectionModel().clearSelection();
+
+        cbb_gameMaxRounds.getSelectionModel().clearSelection();
+        cbb_gamesCount.getSelectionModel().clearSelection();
+
         cbx_mapFileOne.setMouseTransparent(false);
         cbx_mapFileTwo.setMouseTransparent(false);
         cbx_mapFileThree.setMouseTransparent(false);
@@ -328,10 +331,9 @@ public class TournamentModeViewController {
         ckb_benevolentPlayer.setSelected(false);
         ckb_aggressivePlayer.setSelected(false);
 
-        cbb_gameMaxRounds.getSelectionModel().clearSelection();
-        cbb_gamesCount.getSelectionModel().clearSelection();
 
         selectedMapList.clear();
+        robotPlayerList.clear();
 
     }
 }

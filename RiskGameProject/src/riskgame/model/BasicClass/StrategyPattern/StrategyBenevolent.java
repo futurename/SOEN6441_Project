@@ -6,7 +6,7 @@ import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Comparator;
 
 public class StrategyBenevolent implements Strategy {
     @Override
@@ -30,17 +30,29 @@ public class StrategyBenevolent implements Strategy {
     }
 
     private Country pickWeakestCountry(ArrayList<Country> countries) {
+        countries.sort(new Comparator<Country>() {
+            @Override
+            public int compare(Country o1, Country o2) {
+                return o1.getCountryArmyNumber() - o2.getCountryArmyNumber();
+            }
+        });
+
+        return countries.get(0);
+
+     /*   int selection = 0;
         int min = 998;
         ArrayList<Country> evenCountries = new ArrayList<>();
         for (Country country: countries){
             if (country.getCountryArmyNumber() < min){
+                min= country.getCountryArmyNumber();
                 evenCountries.clear();
                 evenCountries.add(country);
             }else if (country.getCountryArmyNumber() == min){
                 evenCountries.add(country);
             }
         }
-        return evenCountries.get(new Random().nextInt(evenCountries.size()));
+        selection = evenCountries.size() > 1 ? evenCountries.size() : 1;
+        return evenCountries.get(new Random().nextInt(selection));*/
     }
 
     @Override

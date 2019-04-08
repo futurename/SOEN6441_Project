@@ -90,6 +90,26 @@ public class Player extends Observable implements Observer {
         System.out.println("\nPlayer constructor, player name: " + playerName + "\n\n");
     }
 
+    public Player(int playerIndex, Strategy type, int armyNbr, ArrayList<Card> card, ArrayList<String> countryNameList,
+                  Color color, int continentBonus, boolean status, LinkedHashMap<String, GraphNode> worldMapInstance,
+                  LinkedHashMap<String, Continent> continentMapInstance) {
+        this.playerIndex = playerIndex;
+        this.playerName = type.toString();
+        this.armyNbr = armyNbr;
+        this.cardsList = card;
+        this.ownedCountryNameList = countryNameList;
+        this.playerColor = color;
+        this.continentBonus = continentBonus;
+        this.activeStatus = status;
+        this.cardObtained = false;
+        this.undeployedArmy = 0;
+        this.strategy = type;
+        this.worldMapInstance = worldMapInstance;
+        this.continentMapInstance = continentMapInstance;
+
+        System.out.println("\nPlayer constructor, player name: " + playerName + "\n\n");
+    }
+
     /**
      * this functions calculates the result for every single attack and returns the attacker's army number
      *
@@ -141,7 +161,7 @@ public class Player extends Observable implements Observer {
                 defendingCountry.reduceFromCountryArmyNumber(1);
 
                 System.out.println("Round: " + i + ", >>>" + attackingCountry.getOwner() + "(" + attackingCountry.getCountryArmyNumber()
-                        + ") WIN : "+defendingCountry.getOwner() + "(" + defendingCountry.getCountryArmyNumber() + ")\n");
+                        + ") WIN : " + defendingCountry.getOwner() + "(" + defendingCountry.getCountryArmyNumber() + ")\n");
 
                 defendArmyCount--;
 
@@ -167,7 +187,7 @@ public class Player extends Observable implements Observer {
                 attackingCountry.reduceFromCountryArmyNumber(1);
 
                 System.out.println("Round: " + i + ", >>>Defender:" + defendingCountry.getOwner() + "(" + defendingCountry.getCountryArmyNumber()
-                        +") win: " + attackingCountry.getOwner() + "(" + attackingCountry + ")\n");
+                        + ") win: " + attackingCountry.getOwner() + "(" + attackingCountry + ")\n");
 
                 attackArmyCount--;
 
@@ -291,6 +311,15 @@ public class Player extends Observable implements Observer {
     }
 
     /**
+     * get controlledContinents
+     *
+     * @return
+     */
+    public ArrayList<String> getControlledContinents() {
+        return controlledContinents;
+    }
+
+    /**
      * getter
      *
      * @return color the player is preassigned
@@ -311,6 +340,15 @@ public class Player extends Observable implements Observer {
 
     public String getPlayerName() {
         return playerName;
+    }
+
+    /**
+     * get cardObtained
+     *
+     * @return
+     */
+    public boolean getCardObtained() {
+        return cardObtained;
     }
 
     /**
@@ -410,7 +448,23 @@ public class Player extends Observable implements Observer {
      * @param stringBuilder    String builder for storing attacking information
      */
     private void recursiveAttack(Country attackingCountry, Country defendingCountry, int attackArmyNbr, int defendArmyNbr, StringBuilder stringBuilder) {
-        if (attackArmyNbr == 0 || defendArmyNbr == 0) {
+        while (attackArmyNbr != 0 && defendArmyNbr != 0) {
+            int avaliableForAttackNbr = attackArmyNbr > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : attackArmyNbr;
+            int avaliableForDefendNbr = defendArmyNbr > MAX_DEFENDING_ARMY_NUMBER ? MAX_DEFENDING_ARMY_NUMBER : defendArmyNbr;
+
+            getOneAttackResult(attackingCountry, defendingCountry, avaliableForAttackNbr, avaliableForDefendNbr, stringBuilder);
+
+            attackArmyNbr = attackingCountry.getCountryArmyNumber() - 1;
+            defendArmyNbr = defendingCountry.getCountryArmyNumber();
+
+            if (!attackingCountry.getOwner().getStrategy().toString().equals("Human") && !defendingCountry.getOwner().getStrategy().toString().equals("Human")) {
+                stringBuilder.setLength(0);
+            } else {
+                stringBuilder.append("\n");
+            }
+        }
+
+        /*if (attackArmyNbr == 0 || defendArmyNbr == 0) {
             return;
         }
         int avaliableForAttackNbr = attackArmyNbr > MAX_ATTACKING_ARMY_NUMBER ? MAX_ATTACKING_ARMY_NUMBER : attackArmyNbr;
@@ -421,7 +475,7 @@ public class Player extends Observable implements Observer {
         attackArmyNbr = attackingCountry.getCountryArmyNumber() - 1;
         defendArmyNbr = defendingCountry.getCountryArmyNumber();
         stringBuilder.append("\n");
-        recursiveAttack(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, stringBuilder);
+        recursiveAttack(attackingCountry, defendingCountry, attackArmyNbr, defendArmyNbr, stringBuilder);*/
     }
 
     /**

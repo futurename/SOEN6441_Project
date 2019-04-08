@@ -90,23 +90,9 @@ public class Country extends Observable{
         return owner;
     }
 
-    /**
-     * setter
-     *
-     * @param newOwner player index of the country owner
-     */
-//    public void setCountryOwnerIndex(int countryOwnerIndex) {
-//        this.countryOwnerIndex = countryOwnerIndex;
-//    }
-
     public void setCountryOwner(Player newOwner) {
         this.owner = newOwner;
     }
-
-//    public void setObservableOwner(int countryOwnerIndex){
-//        this.countryOwnerIndex = countryOwnerIndex;
-//        setChanged();
-//    }
 
     /**
      * Call when owner changed
@@ -176,6 +162,14 @@ public class Country extends Observable{
     public void setObservableArmy(int countryArmyNumber) {
         this.countryArmyNumber = countryArmyNumber;
         setChanged();
+    }
+
+    /**
+     * Call in load map
+     * @param countryArmyNumber army
+     */
+    public void setArmy(int countryArmyNumber) {
+        this.countryArmyNumber = countryArmyNumber;
     }
 
     /**
