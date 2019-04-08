@@ -165,6 +165,14 @@ public class Country extends Observable{
     }
 
     /**
+     * Call in load map
+     * @param countryArmyNumber army
+     */
+    public void setArmy(int countryArmyNumber) {
+        this.countryArmyNumber = countryArmyNumber;
+    }
+
+    /**
      * string of country name and its army number
      *
      * @return combination of country name and army number

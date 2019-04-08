@@ -41,6 +41,25 @@ public class InitPlayers {
     }
 
     /**
+     * This method allocates countries to the player by record
+     *
+     * @param curPlayer      current player
+     * @param countryNameList unallocated country names
+     * @param graphSingleton world map singleton
+     */
+    private static void setCountryNameList(Player curPlayer, ArrayList<String> countryNameList, LinkedHashMap<String,
+            GraphNode> graphSingleton, ArrayList<Player> playerArrayList) {
+
+        for(int i=0; i<countryNameList.size();i++) {
+            String oneCountryName = countryNameList.remove(i);
+            graphSingleton.get(oneCountryName).getCountry().setCountryOwner(curPlayer);
+            graphSingleton.get(oneCountryName).getCountry().addObserver(curPlayer);
+            curPlayer.addToOwnedCountryNameList(oneCountryName);
+            playerArrayList.add(curPlayer);
+        }
+    }
+
+    /**
      * this method acquires all unallocated country names
      *
      * @param worldHashMap

@@ -133,6 +133,8 @@ public class GraphNode {
         }
     }
 
-
+    public void replaceCountry(Country country) {
+        this.country = country;
+    }
 
 }

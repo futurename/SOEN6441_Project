@@ -20,7 +20,7 @@ public class StrategyAggressive implements Strategy {
         UtilMethods.endReinforcement(player);
     }
 
-    public void aggressivelyExchangeCard(Player player, PhaseViewObservable observable) {
+    private void aggressivelyExchangeCard(Player player, PhaseViewObservable observable) {
         CardExchangeViewObserver cardObserver = UtilMethods.initCardObserver(player, observable);
         int curExchangeTime = cardObserver.getExchangeTime();
         ArrayList<Card> cards = cardObserver.getPlayerCards();
@@ -34,7 +34,7 @@ public class StrategyAggressive implements Strategy {
         UtilMethods.deregisterCardObserver(player, observable, cardObserver);
     }
 
-    public void aggressivelyDeployArmy(Player player) {
+    private void aggressivelyDeployArmy(Player player) {
         UtilMethods.getNewArmyPerRound(player);
         int availableArmy = player.getUndeployedArmy();
         ArrayList<Country> countries = InfoRetriver.getCountryList(player);
@@ -43,14 +43,13 @@ public class StrategyAggressive implements Strategy {
         player.addArmy(availableArmy);
         player.addUndeployedArmy(-player.getUndeployedArmy());
     }
-
     /**
      * Pick the strongest country among countries, if even powerful countries exist, randomly pick one
      *
      * @param from owned countries
      * @return selected one
      */
-    public Country aggressivelyPickCountryFrom(ArrayList<Country> from) {
+    private Country aggressivelyPickCountryFrom(ArrayList<Country> from) {
         int max = 0;
         ArrayList<Country> evenCountries = new ArrayList<>();
         for (Country country : from) {

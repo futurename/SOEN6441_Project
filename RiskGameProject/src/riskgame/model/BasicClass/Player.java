@@ -90,6 +90,26 @@ public class Player extends Observable implements Observer {
         System.out.println("\nPlayer constructor, player name: " + playerName + "\n\n");
     }
 
+    public Player(int playerIndex, Strategy type, int armyNbr, ArrayList<Card> card, ArrayList<String> countryNameList,
+                  Color color,int continentBonus,boolean status, LinkedHashMap<String, GraphNode> worldMapInstance,
+                  LinkedHashMap<String, Continent> continentMapInstance) {
+        this.playerIndex = playerIndex;
+        this.playerName = type.toString();
+        this.armyNbr = armyNbr;
+        this.cardsList = card;
+        this.ownedCountryNameList = countryNameList;
+        this.playerColor = color;
+        this.continentBonus = continentBonus;
+        this.activeStatus = status;
+        this.cardObtained = false;
+        this.undeployedArmy = 0;
+        this.strategy = type;
+        this.worldMapInstance = worldMapInstance;
+        this.continentMapInstance = continentMapInstance;
+
+        System.out.println("\nPlayer constructor, player name: " + playerName + "\n\n");
+    }
+
     /**
      * this functions calculates the result for every single attack and returns the attacker's army number
      *

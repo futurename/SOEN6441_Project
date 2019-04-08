@@ -4,12 +4,17 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
+import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.BasicClass.StrategyPattern.StrategyAggressive;
+import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
+import riskgame.model.Utils.InfoRetriver;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /** 
 * StrategyAggressive Tester. 
@@ -19,19 +24,11 @@ import java.util.ArrayList;
 * @version 1.0 
 */ 
 public class StrategyAggressiveTest {
-    private Player curPlayer;
-    private Country attackingCountry;
-    private PhaseViewObservable curObserver;
 
 @Before
 public void before() throws Exception {
-    initGameSimulator();
-}
-    private void initGameSimulator(){
-    curPlayer = new Player(0);
-    attackingCountry.setCountryOwner(curPlayer);
 
-} 
+}
 
 @After
 public void after() throws Exception { 
@@ -44,39 +41,31 @@ public void after() throws Exception {
 */ 
 @Test
 
+    /**
+     * Pick the strongest country among countries, if even powerful countries exist, randomly pick one
+     *
+     * @param from owned countries
+     * @return selected one
+     */
+    private Country aggressivelyPickCountryFrom(ArrayList<Country> from) {
+        int max = 0;
+        ArrayList<Country> evenCountries = new ArrayList<>();
+        for (Country country : from) {
+            if (country.getCountryArmyNumber() > max) {
+                evenCountries.clear();
+                evenCountries.add(country);
+            } else if (country.getCountryArmyNumber() == max) {
+                evenCountries.add(country);
+            }
+        }
+        return evenCountries.get(new Random().nextInt(evenCountries.size()));
+    }
+
 
 public void testDoReinforcement() throws Exception
 {
-    initGameSimulator();
-    StrategyAggressive aggressiveStrategy = new StrategyAggressive();
-    Player player = new Player(0);
-    curPlayer.setCardPermission(true);
-    curPlayer.setActiveStatus(true);
-    curPlayer.setFinalWinner(true);
-    int curPlayerArmyNbr = curPlayer.getArmyNbr();
-    curPlayerArmyNbr = 3;
-    try {
-        aggressiveStrategy.doReinforcement(curPlayer, curObserver);
-    } catch (Error e) {
-        System.out.println("ignore alert window");
-    } finally {
-        // Assert.assertEquals((player.getPlayerIndex()==0, player, player.getActiveStatus()==true, curPlayerArmyNbr == player.getArmyNbr()),(player.getPlayerIndex(),player.getActiveStatus(),curPlayerArmyNbr));
 
-    }
 }
-    public void testaggressivelyExchangeCard() throws Exception
-   {
-
-    }
-
-    public void aggressivelyDeployArmy()
-    {
-
-    }
-    public void aggressivelyPickCountryFrom()
-    {
-
-    }
 /** 
 * 
 * Method: doAttack(Player player) 
@@ -118,7 +107,7 @@ public void testToString() throws Exception {
 */ 
 @Test
 public void testAggressivelyExchangeCard() throws Exception { 
-//TODO: Test goes here... 
+
 /* 
 try { 
    Method method = StrategyAggressive.getClass().getMethod("aggressivelyExchangeCard", Player.class, PhaseViewObservable.class); 
