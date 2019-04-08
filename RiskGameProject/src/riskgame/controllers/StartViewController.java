@@ -366,12 +366,19 @@ public class StartViewController implements Initializable {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         if (isAllPlayerRobots()) {
 
-
             System.out.println("\n\n\n" + playerStrategyList + "\n\n\n\n");
 
             TournamentGame tournamentGame = new TournamentGame(mapPath, playerStrategyList);
-            tournamentGame.singleModeRun();
             curStage.close();
+            tournamentGame.singleModeRun();
+
+            Main.phaseViewObserver.setPlayerIndex(playersList.size() - 1);
+
+            Pane pane = new FXMLLoader(getClass().getResource("../view/FinalView.fxml")).load();
+            Scene scene = new Scene(pane,1200,900);
+            curStage.setScene(scene);
+            curStage.show();
+
 
         } else {
             //if continent is conquered at the beginning
@@ -609,11 +616,11 @@ public class StartViewController implements Initializable {
         String fileNameCurTime = dateFormat.format(new Date());
         System.out.println(fileNameCurTime);
         SaveProgress saveProgress = new SaveProgress();
-        try {
-            saveProgress.SaveFile("Initial", -1, filePath, fileNameCurTime, true);
+        /*try {
+            //saveProgress.SaveFile("Initial", -1, filePath, fileNameCurTime, true);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
 }

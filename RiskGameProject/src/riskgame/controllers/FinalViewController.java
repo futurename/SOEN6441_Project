@@ -23,7 +23,7 @@ public class FinalViewController implements Initializable {
     private Player winner;
 
 
-    public void initialize() {
+    public void display() {
         StringBuilder stringBuilder = new StringBuilder();
 
 
@@ -49,7 +49,7 @@ public class FinalViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         setWinner(Main.playersList.get(Main.phaseViewObserver.getPlayerIndex()));
 
-        System.out.println("final winner in final phase: " + winner);
-        initialize();
+        System.out.println("final winner in final phase: " + winner.getPlayerName());
+        display();
     }
 }

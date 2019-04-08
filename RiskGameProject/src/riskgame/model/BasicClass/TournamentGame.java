@@ -1,9 +1,5 @@
 package riskgame.model.BasicClass;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
@@ -32,7 +28,7 @@ public class TournamentGame implements Runnable {
     private ArrayList<Player> robotPlayerList;
     private int gameWinner;
     private PhaseViewObservable tournamentObservable;
-    private final int MAX_GAME_ROUND = 9999;
+    private final int MAX_GAME_ROUND = 60;
 
     public TournamentGame(String mapFile, ArrayList<Strategy> playerStrategyList, int gameRoundValue) {
         this.mapFile = mapFile;
@@ -172,16 +168,11 @@ public class TournamentGame implements Runnable {
         if(gameWinner == -1){
             int lastIndex = Main.playersList.size();
             player = new Player(lastIndex);
+            Main.playersList.add(player);
             player.setPlayerName("NOBODY");
-            player.setPlayerIndex(-1);
-            gameWinner = lastIndex;
+            //player.setPlayerIndex(-1);
+            //gameWinner = 0;
         }
-        Main.phaseViewObserver.setPlayerIndex(gameWinner);
-        Stage stage = new Stage();
-        Pane pane = new FXMLLoader(getClass().getResource("../../view/FinalView.fxml")).load();
-        Scene scene = new Scene(pane,1200,900);
-        stage.setScene(scene);
-        stage.show();
 
     }
 }
