@@ -12,7 +12,7 @@ import java.io.IOException;
 public class SaveProgress {
 
     public void SaveFile(String phase,int curPlayer,String path,String mapName,boolean AorF,boolean AOC) throws IOException {
-        File writename = new File(path+"\\"+mapName+".map");
+        File writename = new File(path+"\\"+mapName+".save");
         System.out.println(writename);
         writename.createNewFile();
         BufferedWriter out = new BufferedWriter(new FileWriter(writename));
