@@ -107,6 +107,8 @@ public class PlayerTypeSelectionController {
 
     public void clickConfirmSelection(ActionEvent actionEvent) {
         if (isAllComboboxSelected()) {
+
+
             StartViewController.setStrategyTypeList(strategySelectionList);
             Stage curStage = (Stage) btn_confirmSelection.getScene().getWindow();
             curStage.close();
