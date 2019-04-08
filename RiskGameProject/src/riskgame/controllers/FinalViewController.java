@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import riskgame.Main;
 import riskgame.model.BasicClass.Player;
+import riskgame.model.Utils.InitWorldMap;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,6 +37,8 @@ public class FinalViewController implements Initializable {
 
 
         txa_gameOverInfo.setText(stringBuilder.toString());
+
+        InitWorldMap.printGraph(winner.getWorldMapInstance(), Main.playersList);
     }
 
     private void setWinner(Player winner) {

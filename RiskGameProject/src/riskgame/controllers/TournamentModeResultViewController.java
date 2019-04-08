@@ -3,6 +3,7 @@ package riskgame.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -54,6 +55,9 @@ public class TournamentModeResultViewController implements Initializable {
 
         grp_gameResult.setHgap(30);
         grp_gameResult.setVgap(30);
+        //grp_gameResult.setPadding(new Insets(10, 10, 10, 10));
+        GridPane.setMargin(grp_gameResult, new Insets(10, 10, 10, 10));
+
 
         ArrayList<String> shortMapFileNameList = new ArrayList<>();
         for (String mapFullName : mapFileList) {

@@ -4,12 +4,20 @@
     -fx-alignment: center;
 }
 
+/*
 .gridpane {
     -fx-background-fill: black, white;
     -fx-background-insets: 0, 1;
+    -fx-padding: 10;
     -fx-alignment: center;
     -fx-text-alignment: center;
+    -fx-border-color: blue;
+    -fx-border-style: solid inside;
+    -fx-border-width: 2;
+    -fx-border-insets: 5;
+    -fx-border-radius: 5;
 }
+*/
 
 .text-area {
     -fx-alignment: center-left;
