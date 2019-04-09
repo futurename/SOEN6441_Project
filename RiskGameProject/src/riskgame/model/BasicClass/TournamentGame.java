@@ -28,7 +28,7 @@ public class TournamentGame implements Runnable {
 
     private int gameWinner;
     private PhaseViewObservable tournamentObservable;
-    private final int MAX_GAME_ROUND = 1000;
+    private final int MAX_GAME_ROUND = 10000;
     private Player winnerPlayer;
 
     private final int DEFAULTWINNERINDEX = 8;

@@ -380,7 +380,6 @@ public class StartViewController implements Initializable {
 
             System.out.println("single mode winner: " + winner + ", index: " + winner.getPlayerIndex());
 
-
             FinalViewController finalViewController = new FinalViewController();
             finalViewController.setWinner(winner);
             finalViewController.setPlayerArrayList(robotList);
