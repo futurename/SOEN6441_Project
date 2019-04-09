@@ -2,7 +2,6 @@ package test.riskgame.model.Utils;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import riskgame.model.Utils.SaveProgress;
 
 /**
  * Suite test for util classes
@@ -17,7 +16,7 @@ import riskgame.model.Utils.SaveProgress;
         MapCheckerTest.class,
         InfoRetriverTest.class,
         RobotGamingProcessTest.class,
-        SaveProgress.class
+        //SaveProgress.class
 })
 public class UtilSuiteTest {
 }
