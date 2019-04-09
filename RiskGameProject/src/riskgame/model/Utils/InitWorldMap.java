@@ -148,7 +148,7 @@ public class InitWorldMap {
             Player owner = playerArrayList.get(ownerIndex);
 
             System.out.println(">>>>>>>>>>>> country: " + countryName + ", continent: " + node.getCountry().getContinentName()
-                    + ", Owner: " + owner.getPlayerName() + "<<<<<<<<<<<<<<<");
+                    + ", Owner: " + owner.getPlayerName() + ", index:[" + ownerIndex + "] <<<<<<<<<<<<<<<");
             printGraphNode(node, playerArrayList);
         }
     }

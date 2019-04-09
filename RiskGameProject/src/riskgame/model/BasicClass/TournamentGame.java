@@ -27,6 +27,10 @@ public class TournamentGame implements Runnable {
     private ArrayList<Player> robotPlayerList;
     private int gameWinner;
     private PhaseViewObservable tournamentObservable;
+    private final int MAX_GAME_ROUND = 1000;
+    private Player winnerPlayer;
+
+    private final int DEFAULTWINNERINDEX = 8;
 
     public TournamentGame(){}
     public TournamentGame(String mapFile, ArrayList<Strategy> playerStrategyList, int gameRoundValue) {
@@ -34,11 +38,30 @@ public class TournamentGame implements Runnable {
         this.playerStrategyList = playerStrategyList;
         this.gameRoundValue = gameRoundValue;
         this.worldMapInstance = new LinkedHashMap<>();
-        this.continentLinkedHashMap = new LinkedHashMap<>();
-        this.gameWinner = -1;
+        //this.continentLinkedHashMap = new LinkedHashMap<>();
+        this.gameWinner = DEFAULTWINNERINDEX;
         this.robotPlayerList = new ArrayList<>();
         this.tournamentObservable = new PhaseViewObservable();
+        initDefaultWinner();
+    }
 
+    public TournamentGame(String mapFile, ArrayList<Strategy> playerStrategyList) {
+        this.mapFile = mapFile;
+        this.playerStrategyList = playerStrategyList;
+        this.gameRoundValue = MAX_GAME_ROUND;
+        this.robotPlayerList = new ArrayList<>();
+        //this.continentLinkedHashMap = new LinkedHashMap<>();
+        this.gameWinner = DEFAULTWINNERINDEX;
+        this.tournamentObservable = new PhaseViewObservable();
+        this.worldMapInstance = new LinkedHashMap<>();
+        initDefaultWinner();
+    }
+
+    private void initDefaultWinner() {
+        this.winnerPlayer = new Player(DEFAULTWINNERINDEX);
+        this.winnerPlayer.setPlayerName("No Player");
+        this.winnerPlayer.setWorldMapInstance(worldMapInstance);
+        this.winnerPlayer.setContinentMapInstance(continentLinkedHashMap);
     }
 
     private void mainGamingLogic() throws IOException {
@@ -56,7 +79,7 @@ public class TournamentGame implements Runnable {
 
         InitWorldMap.printGraph(worldMapInstance, robotPlayerList);
 
-        System.out.println("\n>>>>> Final winner: " + gameWinner + ", map: " + mapFile + "\n\n");
+        System.out.println("\n>>>>> Final winner in doRegular() method: " + gameWinner + ", map: " + mapFile + "\n\n");
     }
 
     private void initMapAndPlayers() throws IOException {
@@ -68,7 +91,7 @@ public class TournamentGame implements Runnable {
         int numOfplayers = playerStrategyList.size();
         InitPlayers.initPlayers(numOfplayers, worldMapInstance, continentLinkedHashMap, playerStrategyList, robotPlayerList);
 
-        System.out.println("map: " + mapFile);
+        System.out.println("\n\nmap: " + mapFile);
         System.out.println("gameRoundValue: " + gameRoundValue);
         System.out.println("playerlist: " + robotPlayerList + "\n\n");
 
@@ -77,12 +100,15 @@ public class TournamentGame implements Runnable {
 
 
     private void doRegularGaming(int gameRoundLeft) {
-        while (gameRoundLeft > 0 && gameWinner == -1) {
+        while (gameRoundLeft > 0 && gameWinner == DEFAULTWINNERINDEX) {
             for (int playerIndex = 0; playerIndex < robotPlayerList.size(); playerIndex++) {
                 Player curRobot = robotPlayerList.get(playerIndex);
                 if (curRobot.getActiveStatus()) {
                     curRobot.executeReinforcement(tournamentObservable);
                     curRobot.executeAttack();
+
+                    System.out.println("\n\n!!!!!!!robot " + playerIndex + ", " + curRobot.getPlayerName()
+                            + ": regular gaming!  Round left: " + gameRoundLeft + "\n\n");
 
                     if (curRobot.isFinalWinner()) {
                         gameWinner = curRobot.getPlayerIndex();
@@ -92,8 +118,6 @@ public class TournamentGame implements Runnable {
                     } else {
                         curRobot.executeFortification();
                     }
-
-                    System.out.println("robot " + playerIndex + ": regular gaming!  Round left: " + gameRoundLeft);
                 }
             }
             gameRoundLeft--;
@@ -105,7 +129,7 @@ public class TournamentGame implements Runnable {
             Player curRobot = robotPlayerList.get(playerIndex);
             if (curRobot.getActiveStatus()) {
                 curRobot.executeAttack();
-                System.out.println("robot " + playerIndex + ": doAllPlayerAttackAndFortification");
+                System.out.println("\n\n\nrobot " + playerIndex + ": doAllPlayerAttackAndFortification\n\n");
 
                 if (curRobot.isFinalWinner()) {
                     gameWinner = curRobot.getPlayerIndex();
@@ -125,7 +149,7 @@ public class TournamentGame implements Runnable {
             Player curRobot = robotPlayerList.get(playerIndex);
             curRobot.executeReinforcement(tournamentObservable);
 
-            System.out.println("robot " + playerIndex + ": doAllPlayerReinforcement");
+            System.out.println("\n\nrobot " + playerIndex + ": doAllPlayerReinforcement\n\n");
         }
     }
 
@@ -145,9 +169,30 @@ public class TournamentGame implements Runnable {
     public String getGameWinner() {
         String result = "Draw";
 
-        if (gameWinner != -1) {
+        if (gameWinner != DEFAULTWINNERINDEX) {
             result = robotPlayerList.get(gameWinner).getPlayerName();
         }
         return result;
+    }
+
+    public void singleModeRun() throws IOException {
+        mainGamingLogic();
+
+        if (gameWinner != DEFAULTWINNERINDEX) {
+            this.winnerPlayer = robotPlayerList.get(gameWinner);
+        }
+
+    }
+
+    public Player getWinnerPlayer() {
+        return winnerPlayer;
+    }
+
+    public ArrayList<Player> getRobotPlayerList() {
+        return robotPlayerList;
+    }
+
+    public int getMAX_GAME_ROUND() {
+        return MAX_GAME_ROUND;
     }
 }

@@ -1,23 +1,20 @@
 package riskgame.model.Utils;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
-import mapeditor.model.MapObject;
 import riskgame.Main;
-import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.*;
 import riskgame.model.BasicClass.StrategyPattern.*;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static riskgame.Main.graphSingleton;
-import static riskgame.Main.playersList;
-import static riskgame.Main.worldContinentMap;
+import static riskgame.Main.*;
 import static riskgame.model.Utils.InitWorldMap.buildWorldMapGraph;
 
 

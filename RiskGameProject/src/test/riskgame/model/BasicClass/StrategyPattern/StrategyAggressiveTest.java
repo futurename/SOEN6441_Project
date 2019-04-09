@@ -1,17 +1,9 @@
-package test.riskgame.model.BasicClass.StrategyPattern; 
+package test.riskgame.model.BasicClass.StrategyPattern;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.Before; 
 import org.junit.After;
-import riskgame.model.BasicClass.Card;
+import org.junit.Before;
+import org.junit.Test;
 import riskgame.model.BasicClass.Country;
-import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
-import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
-import riskgame.model.BasicClass.Player;
-import riskgame.model.BasicClass.StrategyPattern.StrategyAggressive;
-import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
-import riskgame.model.Utils.InfoRetriver;
 
 import java.util.ArrayList;
 import java.util.Random;

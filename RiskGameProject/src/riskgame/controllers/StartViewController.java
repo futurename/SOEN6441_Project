@@ -310,6 +310,7 @@ public class StartViewController implements Initializable {
                 btn_nextStep.setVisible(true);
 
                 if (Main.playersList.isEmpty()) {
+                    //loadPlayerTypeSelectionView();
                     InitPlayers.initPlayers(Main.totalNumOfPlayers, graphSingleton, worldContinentMap, playerStrategyList, playersList);
                 }
             }
@@ -362,60 +363,59 @@ public class StartViewController implements Initializable {
      * @param actionEvent proceed to reinforcement phase
      */
     @FXML
-    public void clickNextToReinforcePhase(ActionEvent actionEvent) {
+    public void clickNextToReinforcePhase(ActionEvent actionEvent) throws IOException {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        //if continent is conquered at the beginning
-        initContinentsOwner();
-        //allocate memory for all players
-        initPlayerDominationObserver();
-        notifyPhaseChanged();
-        if (isHumanEngaged()) {
+        if (isAllPlayerRobots()) {
+
+            System.out.println("\n\n\nClickNextToReinforcePhase:" + playerStrategyList + "\nmap:" + mapPath +"\n\n\n");
+
+            TournamentGame tournamentGame = new TournamentGame(mapPath, playerStrategyList);
+            curStage.close();
+            tournamentGame.singleModeRun();
+            Player winner = tournamentGame.getWinnerPlayer();
+            ArrayList<Player> robotList = tournamentGame.getRobotPlayerList();
+            int totalRounds = tournamentGame.getMAX_GAME_ROUND();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/FinalView.fxml"));
+
+            System.out.println("single mode winner: " + winner + ", index: " + winner.getPlayerIndex());
+
+
+            FinalViewController finalViewController = new FinalViewController();
+            finalViewController.setWinner(winner);
+            finalViewController.setPlayerArrayList(robotList);
+            finalViewController.setTotalRounds(totalRounds);
+            loader.setController(finalViewController);
+
+            Pane pane = loader.load();
+            Scene scene = new Scene(pane,1200,900);
+            curStage.setScene(scene);
+
+            curStage.show();
+
+
+        } else {
+            //if continent is conquered at the beginning
+            initContinentsOwner();
+            //allocate memory for all players
+            initPlayerDominationObserver();
+            notifyPhaseChanged();
             UtilMethods.callNextRobotPhase();
-        }else {
-            startRobotGame();
-        }
-        Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
-        curStage.setScene(scene);
-        curStage.show();
-    }
-
-    private void startRobotGame() {
-        ArrayList<Player> robotsList = new ArrayList<>();
-        robotsList.addAll(playersList);
-        playersList.clear();
-        TournamentGame tg = new TournamentGame();
-        tg.doAllPlayerReinforcement(robotsList, phaseViewObservable);
-        tg.doAllPlayerAttackAndFortification(robotsList);
-        int gameRoundLeft = 300;
-        int gameWinner = -1;
-        while (gameRoundLeft > 0 && gameWinner == -1) {
-            for (int playerIndex = 0; playerIndex < robotsList.size(); playerIndex++) {
-                Player curRobot = robotsList.get(playerIndex);
-                if (curRobot.getActiveStatus()) {
-                    curRobot.executeReinforcement(phaseViewObservable);
-                    curRobot.executeAttack();
-                    if (curRobot.isFinalWinner()) {
-                        gameWinner = curRobot.getPlayerIndex();
-                        Main.phaseViewObservable.setAllParam("Final Phase", curRobot.getPlayerIndex(), "Game Over");
-                        Main.phaseViewObservable.notifyObservers("From startView to final");
-                        System.out.printf("player %s wins.\n", curRobot.getPlayerName());
-                    } else {
-                        curRobot.executeFortification();
-                    }
-                }
-            }
-            gameRoundLeft--;
+            Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
+            curStage.setScene(scene);
+            curStage.show();
         }
     }
 
-    private boolean isHumanEngaged(){
-        boolean status = false;
-        for (Player player: playersList){
-            if (player.getStrategy().toString().equals("Human")){
-                status = true;
+
+    private boolean isAllPlayerRobots() {
+        boolean result = true;
+        for (Strategy strategy : playerStrategyList) {
+            if (strategy.toString().equals("Human")) {
+                result = false;
             }
         }
-        return status;
+        return result;
     }
 
     /**
@@ -486,17 +486,11 @@ public class StartViewController implements Initializable {
         if (!btn_confirmLoadFile.isVisible()) {
             btn_infoSwitcher.setVisible(true);
             btn_infoSwitcher.setText("Map Info");
-            displayPlayerInfo();
+            //displayPlayerInfo();
             btn_nextStep.setVisible(true);
         }
-        /*//set strategies for every player
-        for (int playerIndex = 0; playerIndex < Main.totalNumOfPlayers; playerIndex++) {
-            playerStrategyList.add(new StrategyHuman());
-        }
-        playerStrategyList.set(1, new StrategyRandom());*/
 
         loadPlayerTypeSelectionView();
-
     }
 
     private void loadPlayerTypeSelectionView() throws IOException {
@@ -506,6 +500,7 @@ public class StartViewController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/PlayerTypeSelection.fxml"));
         Pane playerSelectionPane = loader.load();
+
         Scene playerSelectionScene = new Scene(playerSelectionPane, 400, 600);
         curStage.setScene(playerSelectionScene);
         curStage.initOwner(mainStage);
@@ -625,21 +620,20 @@ public class StartViewController implements Initializable {
         directoryChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
 
         File file = directoryChooser.showDialog(fileStage);
-        if(file.getPath()!=null) {
+        if (file.getPath() != null) {
             filePath = file.getPath();
-        }
-        else{
+        } else {
             filePath = defaultPath;
         }
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         String fileNameCurTime = dateFormat.format(new Date());
         System.out.println(fileNameCurTime);
         SaveProgress saveProgress = new SaveProgress();
-        try {
-            saveProgress.SaveFile("Initial",-1,filePath,fileNameCurTime,true,true);
+        /*try {
+            //saveProgress.SaveFile("Initial", -1, filePath, fileNameCurTime, true);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
 }

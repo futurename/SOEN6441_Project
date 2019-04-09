@@ -294,6 +294,9 @@ public class ReinforceViewController implements Initializable {
         } else {
             int deployArmyCount = Integer.parseInt(lbl_deployArmyCount.getText());
             curPlayer.executeReinforcement(selectedCountry, deployArmyCount);
+
+            System.out.println("curPlay: " + curPlayer.getPlayerName() + ", undeployedArmy: " + curPlayer.getUndeployedArmy());
+
             int remainUndeployedArmyCount = curPlayer.getUndeployedArmy();
 
             lbl_undeployedArmy.setText(Integer.toString(remainUndeployedArmyCount));

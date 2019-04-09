@@ -27,8 +27,8 @@ import static riskgame.controllers.AttackViewController.MAX_DEFENDING_ARMY_NUMBE
 public class Player extends Observable implements Observer {
     private static final int DEFAULT_DIVISION_FACTOR = 3;
 
-    private final int playerIndex;
-    private final String playerName;
+    private int playerIndex;
+    private String playerName;
     private int armyNbr;
     private ArrayList<Card> cardsList;
     private ArrayList<String> ownedCountryNameList;
@@ -616,6 +616,22 @@ public class Player extends Observable implements Observer {
     @Override
     public String toString() {
         return this.getPlayerName();
+    }
+
+    public void setPlayerIndex(int playerIndex) {
+        this.playerIndex = playerIndex;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public void setWorldMapInstance(LinkedHashMap<String, GraphNode> worldMapInstance) {
+        this.worldMapInstance = worldMapInstance;
+    }
+
+    public void setContinentMapInstance(LinkedHashMap<String, Continent> continentMapInstance) {
+        this.continentMapInstance = continentMapInstance;
     }
 }
 
