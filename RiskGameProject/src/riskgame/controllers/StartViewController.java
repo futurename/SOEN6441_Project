@@ -404,6 +404,7 @@ public class StartViewController implements Initializable {
             UtilMethods.callNextRobotPhase();
 
         }
+        System.out.println(phaseViewObserver.getPhaseName()+"=======================");
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
         curStage.show();
@@ -417,18 +418,19 @@ public class StartViewController implements Initializable {
         tg.doAllPlayerReinforcement(robotsList, phaseViewObservable);
         tg.doAllPlayerAttackAndFortification(robotsList);
         int gameRoundLeft = 300;
-        int gameWinner = -1;
-        while (gameRoundLeft > 0 && gameWinner == -1) {
+        Player gameWinner;
+        while (gameRoundLeft > 0) {
             for (int playerIndex = 0; playerIndex < robotsList.size(); playerIndex++) {
                 Player curRobot = robotsList.get(playerIndex);
                 if (curRobot.getActiveStatus()) {
                     curRobot.executeReinforcement(phaseViewObservable);
                     curRobot.executeAttack();
                     if (curRobot.isFinalWinner()) {
-                        gameWinner = curRobot.getPlayerIndex();
-                        Main.phaseViewObservable.setAllParam("Final Phase", curRobot.getPlayerIndex(), "Game Over");
+                        gameWinner = curRobot;
+                        Main.phaseViewObservable.setAllParam("Final Phase", gameWinner.getPlayerIndex(), "Game Over");
                         Main.phaseViewObservable.notifyObservers("From startView to final");
                         System.out.printf("player %s wins.\n", curRobot.getPlayerName());
+                        return;
                     } else {
                         curRobot.executeFortification();
                     }
@@ -436,6 +438,11 @@ public class StartViewController implements Initializable {
             }
             gameRoundLeft--;
         }
+        gameWinner = new Player(0);
+        gameWinner.setPlayerName("DRAW!");
+        playersList.add(gameWinner);
+        Main.phaseViewObservable.setAllParam("Final Phase", 0, "Game Over");
+        Main.phaseViewObservable.notifyObservers("From startView to final");
     }
 
     private boolean isHumanEngaged(){

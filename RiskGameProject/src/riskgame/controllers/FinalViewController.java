@@ -3,6 +3,7 @@ package riskgame.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
+import riskgame.Main;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InitWorldMap;
 
@@ -57,7 +58,15 @@ public class FinalViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         System.out.println("final winner in final phase: " + winner.getPlayerName());
-        display();
+//        display();
+        int pi = Main.phaseViewObserver.getPlayerIndex();
+        System.out.println("======================="+pi);
+        if (pi == -1){
+            txa_gameOverInfo.setText("DRAW!!");
+        }else {
+            txa_gameOverInfo.setText(Main.playersList.get(pi).getPlayerName());
+        }
+
     }
 
 
