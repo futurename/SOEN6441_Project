@@ -23,6 +23,8 @@ import javafx.stage.WindowEvent;
 import mapeditor.model.MapObject;
 import riskgame.Main;
 import riskgame.model.BasicClass.*;
+import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
 import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
 import riskgame.model.Utils.InfoRetriver;
@@ -689,8 +691,13 @@ public class StartViewController implements Initializable {
         String fileNameCurTime = dateFormat.format(new Date());
         System.out.println(fileNameCurTime);
         SaveProgress saveProgress = new SaveProgress();
+
+        CardExchangeViewObserver cardExchangeViewObserver = new CardExchangeViewObserver();
+        phaseViewObservable.addObserver(cardExchangeViewObserver);
+        phaseViewObservable.initObservableExchangeTime();
+        phaseViewObservable.notifyObservers();
         try {
-            saveProgress.SaveFile("Initial", -1, filePath, fileNameCurTime, true, true);
+            saveProgress.SaveFile("Initial", -1, filePath, fileNameCurTime, true, true,cardExchangeViewObserver.getExchangeTime());
         } catch (IOException e) {
             e.printStackTrace();
         }

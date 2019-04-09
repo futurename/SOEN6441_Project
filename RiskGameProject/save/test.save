@@ -67,4 +67,4 @@ Player_index,country1,country2,country3
 Player_index,country1,country2,country3
 
 [Phase]
-phaseName(Initial,Reinforcement,Attack,Fortification),currentPlayer,(undeployedarmy/whethercanattack(true/flase),whethergetcard(true/false)/alreaydoneornot(true/flase))
+reinforceRoundCounter,firstRoundCounter,curRoundPlayerIndex,exchangeTime,phaseName(Initial,Reinforcement,Attack,Fortification),currentPlayer,(undeployedarmy/whethercanattack(true/flase),whethergetcard(true/false)/alreaydoneornot(true/flase))

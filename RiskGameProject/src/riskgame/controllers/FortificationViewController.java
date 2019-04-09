@@ -14,6 +14,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.GraphNode;
+import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
 import riskgame.model.Utils.InfoRetriver;
@@ -421,8 +422,12 @@ public class FortificationViewController implements Initializable {
         System.out.println(fileNameCurTime);
         SaveProgress saveProgress = new SaveProgress();
 
+        CardExchangeViewObserver cardExchangeViewObserver = new CardExchangeViewObserver();
+        phaseViewObservable.addObserver(cardExchangeViewObserver);
+        phaseViewObservable.initObservableExchangeTime();
+        phaseViewObservable.notifyObservers();
         try {
-            saveProgress.SaveFile("Attack",curPlayer.getPlayerIndex(),filePath,fileNameCurTime,btn_confirmMoveArmy.isVisible(),true);
+            saveProgress.SaveFile("Attack",curPlayer.getPlayerIndex(),filePath,fileNameCurTime,btn_confirmMoveArmy.isVisible(),true,cardExchangeViewObserver.getExchangeTime());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -409,8 +409,13 @@ public class ReinforceViewController implements Initializable {
         String fileNameCurTime = dateFormat.format(new Date());
         System.out.println(fileNameCurTime);
         SaveProgress saveProgress = new SaveProgress();
+
+        CardExchangeViewObserver cardExchangeViewObserver = new CardExchangeViewObserver();
+        phaseViewObservable.addObserver(cardExchangeViewObserver);
+        phaseViewObservable.initObservableExchangeTime();
+        phaseViewObservable.notifyObservers();
         try {
-            saveProgress.SaveFile("Reinforcement", curPlayer.getPlayerIndex(), filePath, fileNameCurTime, true,true);
+            saveProgress.SaveFile("Reinforcement", curPlayer.getPlayerIndex(), filePath, fileNameCurTime, true,true,cardExchangeViewObserver.getExchangeTime());
         } catch (IOException e) {
             e.printStackTrace();
         }

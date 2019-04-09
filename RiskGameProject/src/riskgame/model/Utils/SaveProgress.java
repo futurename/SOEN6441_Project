@@ -1,8 +1,10 @@
 package riskgame.model.Utils;
 
 import riskgame.Main;
+import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,7 +28,7 @@ public class SaveProgress {
      * @param AOC Attack parameter whether player has got card in this attack phase
      * @throws IOException
      */
-    public void SaveFile(String phase,int curPlayer,String path,String mapName,boolean AorF,boolean AOC) throws IOException {
+    public void SaveFile(String phase,int curPlayer,String path,String mapName,boolean AorF,boolean AOC,int exchangetime) throws IOException {
         File writename = new File(path+"\\"+mapName+".save");
         System.out.println(writename);
         writename.createNewFile();
@@ -94,7 +96,8 @@ public class SaveProgress {
         out.write("\r\n");
 
         out.write("[Phase]\r\n");
-        out.write(phase+" Phase,"+curPlayer+",");
+        out.write( StartViewController.reinforceInitCounter+","+StartViewController.firstRoundCounter+","+Main.curRoundPlayerIndex+","+exchangetime+","+phase+" Phase,"+curPlayer+",");
+
 
         if(phase.equals("Reinforcement")) {
             for (int k = 0; k < Main.playersList.size(); k++) {
