@@ -427,7 +427,7 @@ public class FortificationViewController implements Initializable {
         phaseViewObservable.initObservableExchangeTime();
         phaseViewObservable.notifyObservers();
         try {
-            saveProgress.SaveFile("Attack",curPlayer.getPlayerIndex(),filePath,fileNameCurTime,btn_confirmMoveArmy.isVisible(),true,cardExchangeViewObserver.getExchangeTime());
+            saveProgress.SaveFile("Attack",curPlayer.getPlayerIndex(),filePath,fileNameCurTime,btn_confirmMoveArmy.isVisible(),true,cardExchangeViewObserver.getExchangeTime(),-1);
         } catch (IOException e) {
             e.printStackTrace();
         }

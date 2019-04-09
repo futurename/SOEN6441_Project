@@ -26,9 +26,11 @@ public class SaveProgress {
      * @param mapName name
      * @param AorF Attack and Fortification parameter if attack means whether can attack or not,if fortification is whether player has done fortification or not
      * @param AOC Attack parameter whether player has got card in this attack phase
+     * @param exchangetime count card exchange time
+     * @param allocateArmyNumber allocateArmyNumber
      * @throws IOException
      */
-    public void SaveFile(String phase,int curPlayer,String path,String mapName,boolean AorF,boolean AOC,int exchangetime) throws IOException {
+    public void SaveFile(String phase,int curPlayer,String path,String mapName,boolean AorF,boolean AOC,int exchangetime,int allocateArmyNumber) throws IOException {
         File writename = new File(path+"\\"+mapName+".save");
         System.out.println(writename);
         writename.createNewFile();
@@ -102,7 +104,8 @@ public class SaveProgress {
         if(phase.equals("Reinforcement")) {
             for (int k = 0; k < Main.playersList.size(); k++) {
                 if (curPlayer==Main.playersList.get(k).getPlayerIndex()) {
-                    out.write(Main.playersList.get(k).getUndeployedArmy() + "\r\n");
+                    int undeployedArmyMinusAllocateArmy = Main.playersList.get(k).getUndeployedArmy()-allocateArmyNumber;
+                    out.write( undeployedArmyMinusAllocateArmy + "\r\n");
                     break;
                 }
             }
