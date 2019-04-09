@@ -25,6 +25,7 @@ public class TournamentGame implements Runnable {
     private LinkedHashMap<String, GraphNode> worldMapInstance;
     private LinkedHashMap<String, Continent> continentLinkedHashMap;
     private ArrayList<Player> robotPlayerList;
+
     private int gameWinner;
     private PhaseViewObservable tournamentObservable;
     private final int MAX_GAME_ROUND = 1000;
