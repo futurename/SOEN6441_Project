@@ -8,10 +8,13 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.controllers.FinalViewController;
+import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.*;
+import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.StrategyPattern.*;
 
 import java.io.*;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -92,7 +95,6 @@ public class LoadGame{
 
         BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
         String curLine;
-        System.out.println("check++++++++++++++++++++++++++");
         while ((curLine = bufferedReader.readLine())!=null) {
 
             if (curLine.contains("[Continents]")) {
@@ -215,7 +217,6 @@ public class LoadGame{
 
                     Player onePlayer = new Player(playerIndex, curStrategy, armyNbr, playerCards, countryNameList, playerColor,
                             continentBonus, status, graphSingleton, worldContinentMap);
-                    System.out.println("add+++++++++");
                     playersList.add(onePlayer);
                 }
                 totalNumOfPlayers = playerNumber;
@@ -236,7 +237,6 @@ public class LoadGame{
                         Country curCountry = curGraphNode.getCountry();
                         curCountry.setCountryOwner(p1);
                         curGraphNode.replaceCountry(curCountry);
-                        //linkedHashMap.replace("ownerCountryName", curGraphNode);
                     }
                 }
             }
@@ -245,7 +245,34 @@ public class LoadGame{
             if (curLine.contains("[Phase]")) {
                 while ((curLine = bufferedReader.readLine()) != null) {
                     String[] info = curLine.split(",");
-                    return UtilMethods.startView(info[0], controller);
+                    String[] hh = info[4].split(" ");
+                    String newString = hh[0].concat(" Action");
+                    //
+                    StartViewController.reinforceInitCounter = Integer.parseInt(info[0]);
+                    //
+                    StartViewController.firstRoundCounter = Integer.parseInt(info[1]);
+                    //
+                    Main.curRoundPlayerIndex = Integer.parseInt(info[2]);
+                    //
+                    for(int h=0; h<Integer.parseInt(info[3]); h++){
+                        phaseViewObservable.addOneExchangeTime();
+                    }
+
+                    if(info[4].contains("Initial")){
+
+                    }else if(info[4].contains("Reinforcement")){
+                        Player p1 = playersList.get(Integer.parseInt(info[5]));
+                        p1.addUndeployedArmy(Integer.parseInt(info[6]));
+
+                    }else if(info[4].contains("Attack")){
+
+                    }else if(info[4].contains("Fortification")){
+
+                    }
+
+                    phaseViewObservable.setAllParam(info[4], Integer.parseInt(info[5]), newString);
+                    phaseViewObservable.notifyObservers("From Load to " + info[4]);
+                    return UtilMethods.startView(info[4], controller);
                 }
             }
         }
