@@ -49,9 +49,6 @@ public void after() throws Exception {
 */ 
 @Test
 public void testGameStart() throws Exception {
-    TournamentGame tournamentGameTester = new TournamentGame(mapPath, strategyArrayList, gameRoundValue);
-    tournamentGameTester.run();
-    System.out.println("test winner: " + tournamentGameTester.getGameWinner());
 
 
 }
