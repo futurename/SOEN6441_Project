@@ -245,7 +245,7 @@ public class UtilMethods {
                 notifyFortificationEnd(false, player);
             }
             //if not robot phase, method does nothing
-            //callNextRobotPhase();
+            callNextRobotPhase();
         }
     }
 
