@@ -14,6 +14,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import riskgame.Main;
 import riskgame.model.BasicClass.Country;
+import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
 import riskgame.model.Utils.InfoRetriver;
@@ -27,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import static riskgame.Main.phaseViewObservable;
 import static riskgame.Main.phaseViewObserver;
 
 /**
@@ -457,8 +459,12 @@ public class AttackViewController implements Initializable {
         System.out.println(fileNameCurTime);
         SaveProgress saveProgress = new SaveProgress();
 
+        CardExchangeViewObserver cardExchangeViewObserver = new CardExchangeViewObserver();
+        phaseViewObservable.addObserver(cardExchangeViewObserver);
+        phaseViewObservable.initObservableExchangeTime();
+        phaseViewObservable.notifyObservers();
         try {
-            saveProgress.SaveFile("Attack",curPlayer.getPlayerIndex(),filePath,fileNameCurTime,btn_confirmAttack.isVisible(),curPlayer.getCardObtained());
+            saveProgress.SaveFile("Attack",curPlayer.getPlayerIndex(),filePath,fileNameCurTime,btn_confirmAttack.isVisible(),curPlayer.getCardObtained(),cardExchangeViewObserver.getExchangeTime());
         } catch (IOException e) {
             e.printStackTrace();
         }

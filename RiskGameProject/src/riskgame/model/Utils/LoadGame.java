@@ -180,13 +180,13 @@ public class LoadGame{
                         String cards = curLineSplitPlayerInfo[6];
                         String[] cardsArray = cards.split(";");
                         for (int j = 0; j < cardsArray.length; j++) {
-                            if (cardsArray[j].equals("Infantry")) {
+                            if (cardsArray[j].equals("INFANTRY")) {
                                 Card newCard = Card.INFANTRY;
                                 playerCards.add(newCard);
-                            } else if (cardsArray[j].equals("Cavalry")) {
+                            } else if (cardsArray[j].equals("CAVALRY")) {
                                 Card newCard = Card.CAVALRY;
                                 playerCards.add(newCard);
-                            } else if (cardsArray[j].equals("Artillery")) {
+                            } else if (cardsArray[j].equals("ARTILLERY")) {
                                 Card newCard = Card.ARTILLERY;
                                 playerCards.add(newCard);
                             }

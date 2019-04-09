@@ -4,7 +4,10 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
+import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.Utils.SaveProgress;
+
+import static riskgame.Main.phaseViewObservable;
 
 /** 
 * SaveProgress Tester. 
@@ -34,8 +37,12 @@ public void testSaveFile() throws Exception {
     int remainingArmyNbr = 5;
     SaveProgress save = new SaveProgress();
     String saved = "yes";
+    CardExchangeViewObserver cardExchangeViewObserver = new CardExchangeViewObserver();
+    phaseViewObservable.addObserver(cardExchangeViewObserver);
+    phaseViewObservable.initObservableExchangeTime();
+    phaseViewObservable.notifyObservers();
     try {
-        save.SaveFile("", 1, "", "", true, false);
+        save.SaveFile("", 1, "", "", true, false,cardExchangeViewObserver.getExchangeTime());
     } catch (Error e) {
         System.out.println("ignore alert window");
     } finally {
