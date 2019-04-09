@@ -58,15 +58,7 @@ public class FinalViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         System.out.println("final winner in final phase: " + winner.getPlayerName());
-//        display();
-        int pi = Main.phaseViewObserver.getPlayerIndex();
-        System.out.println("======================="+pi);
-        if (pi == -1){
-            txa_gameOverInfo.setText("DRAW!!");
-        }else {
-            txa_gameOverInfo.setText(Main.playersList.get(pi).getPlayerName());
-        }
-
+        display();
     }
 
 

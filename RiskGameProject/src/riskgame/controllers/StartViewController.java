@@ -406,7 +406,6 @@ public class StartViewController implements Initializable {
             UtilMethods.callNextRobotPhase();
 
         }
-        System.out.println(phaseViewObserver.getPhaseName()+"=======================");
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
         curStage.show();
@@ -429,6 +428,7 @@ public class StartViewController implements Initializable {
                     curRobot.executeAttack();
                     if (curRobot.isFinalWinner()) {
                         gameWinner = curRobot;
+                        playersList.addAll(robotsList);
                         Main.phaseViewObservable.setAllParam("Final Phase", gameWinner.getPlayerIndex(), "Game Over");
                         Main.phaseViewObservable.notifyObservers("From startView to final");
                         System.out.printf("player %s wins.\n", curRobot.getPlayerName());
@@ -440,10 +440,11 @@ public class StartViewController implements Initializable {
             }
             gameRoundLeft--;
         }
-        gameWinner = new Player(0);
-        gameWinner.setPlayerName("DRAW!");
+        gameWinner = new Player(totalNumOfPlayers);
+        gameWinner.setPlayerName("NO PLAYER ");
+        playersList.addAll(robotsList);
         playersList.add(gameWinner);
-        Main.phaseViewObservable.setAllParam("Final Phase", 0, "Game Over");
+        Main.phaseViewObservable.setAllParam("Final Phase", gameWinner.getPlayerIndex(), "Game Over");
         Main.phaseViewObservable.notifyObservers("From startView to final");
     }
 
