@@ -160,7 +160,6 @@ public class LoadGame{
             }
 
             if (curLine.contains("[Players]")) {
-                System.out.println("how many times?");
                 int playerNumber = Integer.parseInt(curLine = bufferedReader.readLine());
                 for (int i = 0; i < playerNumber; i++) {
                     curLine = bufferedReader.readLine();
@@ -237,6 +236,7 @@ public class LoadGame{
                         Country curCountry = curGraphNode.getCountry();
                         curCountry.setCountryOwner(p1);
                         curGraphNode.replaceCountry(curCountry);
+                        curCountry.addObserver(p1);
                     }
                 }
             }
