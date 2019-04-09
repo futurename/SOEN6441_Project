@@ -9,8 +9,23 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * save game class
+ *
+ * @author YW
+ */
 public class SaveProgress {
 
+    /**
+     * save file method
+     * @param phase current phase name
+     * @param curPlayer current player
+     * @param path file path
+     * @param mapName name
+     * @param AorF Attack and Fortification parameter if attack means whether can attack or not,if fortification is whether player has done fortification or not
+     * @param AOC Attack parameter whether player has got card in this attack phase
+     * @throws IOException
+     */
     public void SaveFile(String phase,int curPlayer,String path,String mapName,boolean AorF,boolean AOC) throws IOException {
         File writename = new File(path+"\\"+mapName+".save");
         System.out.println(writename);
@@ -79,7 +94,7 @@ public class SaveProgress {
         out.write("\r\n");
 
         out.write("[Phase]\r\n");
-        out.write(phase+","+curPlayer+",");
+        out.write(phase+" Phase,"+curPlayer+",");
 
         if(phase.equals("Reinforcement")) {
             for (int k = 0; k < Main.playersList.size(); k++) {

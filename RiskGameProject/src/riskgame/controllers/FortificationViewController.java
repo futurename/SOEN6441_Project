@@ -398,6 +398,10 @@ public class FortificationViewController implements Initializable {
         btn_nextStep.setVisible(true);
     }
 
+    /**
+     * save game
+     * @param actionEvent
+     */
     public void clickSaveGame(ActionEvent actionEvent) {
         Stage fileStage = null;
         String filePath = "";

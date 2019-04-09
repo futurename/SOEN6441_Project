@@ -434,6 +434,10 @@ public class AttackViewController implements Initializable {
     }
 
 
+    /**
+     * save game
+     * @param actionEvent
+     */
     public void clickSaveGame(ActionEvent actionEvent) {
         Stage fileStage = null;
         String filePath = "";

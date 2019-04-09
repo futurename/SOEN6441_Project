@@ -388,6 +388,10 @@ public class ReinforceViewController implements Initializable {
         btn_confirmDeployment.setVisible(true);
     }
 
+    /**
+     * save game
+     * @param actionEvent
+     */
     public void clickSaveGame(ActionEvent actionEvent) {
         Stage fileStage = null;
         String filePath = "";

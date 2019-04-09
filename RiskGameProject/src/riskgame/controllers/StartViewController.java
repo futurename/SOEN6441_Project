@@ -700,11 +700,11 @@ public class StartViewController implements Initializable {
         String fileNameCurTime = dateFormat.format(new Date());
         System.out.println(fileNameCurTime);
         SaveProgress saveProgress = new SaveProgress();
-        /*try {
-            //saveProgress.SaveFile("Initial", -1, filePath, fileNameCurTime, true);
+        try {
+            saveProgress.SaveFile("Initial", -1, filePath, fileNameCurTime, true, true);
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
 }
