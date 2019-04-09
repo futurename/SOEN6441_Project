@@ -365,33 +365,33 @@ public class StartViewController implements Initializable {
     @FXML
     public void clickNextToReinforcePhase(ActionEvent actionEvent) throws IOException {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        if (isAllPlayerRobots()) {
-
-            System.out.println("\n\n\nClickNextToReinforcePhase:" + playerStrategyList + "\nmap:" + mapPath +"\n\n\n");
-
-            TournamentGame tournamentGame = new TournamentGame(mapPath, playerStrategyList);
-            curStage.close();
-            tournamentGame.singleModeRun();
-            Player winner = tournamentGame.getWinnerPlayer();
-            ArrayList<Player> robotList = tournamentGame.getRobotPlayerList();
-            int totalRounds = tournamentGame.getMAX_GAME_ROUND();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/FinalView.fxml"));
-
-            System.out.println("single mode winner: " + winner + ", index: " + winner.getPlayerIndex());
-
-
-            FinalViewController finalViewController = new FinalViewController();
-            finalViewController.setWinner(winner);
-            finalViewController.setPlayerArrayList(robotList);
-            finalViewController.setTotalRounds(totalRounds);
-            loader.setController(finalViewController);
-
-            Pane pane = loader.load();
-            Scene scene = new Scene(pane,1200,900);
-            curStage.setScene(scene);
-
-            curStage.show();
+        if (!isHumanEngaged()) {
+            startRobotGame();
+//            System.out.println("\n\n\nClickNextToReinforcePhase:" + playerStrategyList + "\nmap:" + mapPath +"\n\n\n");
+//
+//            TournamentGame tournamentGame = new TournamentGame(mapPath, playerStrategyList);
+//            curStage.close();
+//            tournamentGame.singleModeRun();
+//            Player winner = tournamentGame.getWinnerPlayer();
+//            ArrayList<Player> robotList = tournamentGame.getRobotPlayerList();
+//            int totalRounds = tournamentGame.getMAX_GAME_ROUND();
+//
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/FinalView.fxml"));
+//
+//            System.out.println("single mode winner: " + winner + ", index: " + winner.getPlayerIndex());
+//
+//
+//            FinalViewController finalViewController = new FinalViewController();
+//            finalViewController.setWinner(winner);
+//            finalViewController.setPlayerArrayList(robotList);
+//            finalViewController.setTotalRounds(totalRounds);
+//            loader.setController(finalViewController);
+//
+//            Pane pane = loader.load();
+//            Scene scene = new Scene(pane,1200,900);
+//            curStage.setScene(scene);
+//
+//            curStage.show();
 
 
         } else {
@@ -407,44 +407,44 @@ public class StartViewController implements Initializable {
         }
     }
 
-//    private void startRobotGame() {
-//        ArrayList<Player> robotsList = new ArrayList<>();
-//        robotsList.addAll(playersList);
-//        playersList.clear();
-//        TournamentGame tg = new TournamentGame();
-//        tg.doAllPlayerReinforcement(robotsList, phaseViewObservable);
-//        tg.doAllPlayerAttackAndFortification(robotsList);
-//        int gameRoundLeft = 300;
-//        int gameWinner = -1;
-//        while (gameRoundLeft > 0 && gameWinner == -1) {
-//            for (int playerIndex = 0; playerIndex < robotsList.size(); playerIndex++) {
-//                Player curRobot = robotsList.get(playerIndex);
-//                if (curRobot.getActiveStatus()) {
-//                    curRobot.executeReinforcement(phaseViewObservable);
-//                    curRobot.executeAttack();
-//                    if (curRobot.isFinalWinner()) {
-//                        gameWinner = curRobot.getPlayerIndex();
-//                        Main.phaseViewObservable.setAllParam("Final Phase", curRobot.getPlayerIndex(), "Game Over");
-//                        Main.phaseViewObservable.notifyObservers("From startView to final");
-//                        System.out.printf("player %s wins.\n", curRobot.getPlayerName());
-//                    } else {
-//                        curRobot.executeFortification();
-//                    }
-//                }
-//            }
-//            gameRoundLeft--;
-//        }
-//    }
-//
-//    private boolean isHumanEngaged(){
-//        boolean status = false;
-//        for (Player player: playersList){
-//            if (player.getStrategy().toString().equals("Human")){
-//                status = true;
-//            }
-//        }
-//        return status;
-//    }
+    private void startRobotGame() {
+        ArrayList<Player> robotsList = new ArrayList<>();
+        robotsList.addAll(playersList);
+        playersList.clear();
+        TournamentGame tg = new TournamentGame();
+        tg.doAllPlayerReinforcement(robotsList, phaseViewObservable);
+        tg.doAllPlayerAttackAndFortification(robotsList);
+        int gameRoundLeft = 300;
+        int gameWinner = -1;
+        while (gameRoundLeft > 0 && gameWinner == -1) {
+            for (int playerIndex = 0; playerIndex < robotsList.size(); playerIndex++) {
+                Player curRobot = robotsList.get(playerIndex);
+                if (curRobot.getActiveStatus()) {
+                    curRobot.executeReinforcement(phaseViewObservable);
+                    curRobot.executeAttack();
+                    if (curRobot.isFinalWinner()) {
+                        gameWinner = curRobot.getPlayerIndex();
+                        Main.phaseViewObservable.setAllParam("Final Phase", curRobot.getPlayerIndex(), "Game Over");
+                        Main.phaseViewObservable.notifyObservers("From startView to final");
+                        System.out.printf("player %s wins.\n", curRobot.getPlayerName());
+                    } else {
+                        curRobot.executeFortification();
+                    }
+                }
+            }
+            gameRoundLeft--;
+        }
+    }
+
+    private boolean isHumanEngaged(){
+        boolean status = false;
+        for (Player player: playersList){
+            if (player.getStrategy().toString().equals("Human")){
+                status = true;
+            }
+        }
+        return status;
+    }
 
     private boolean isAllPlayerRobots() {
         boolean result = true;
