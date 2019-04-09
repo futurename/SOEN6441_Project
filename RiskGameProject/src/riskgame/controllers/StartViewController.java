@@ -500,7 +500,6 @@ public class StartViewController implements Initializable {
                 }
             }
             if (isSameOwner) {
-                playersList.get(owner).addControlledContinent(continent.getContinentName());
                 continent.setContinentOwnerIndex(owner);
                 Player curPlayer = playersList.get(owner);
                 curPlayer.addContinentBonus(continent.getContinentBonusValue());

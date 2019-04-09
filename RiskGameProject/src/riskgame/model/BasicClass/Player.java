@@ -35,7 +35,6 @@ public class Player extends Observable implements Observer {
     private Color playerColor;
     //private int ownedCountryNbr;
     private int continentBonus;
-    private ArrayList<String> controlledContinents;
     private boolean activeStatus;
     private boolean cardObtained;
     private int undeployedArmy;
@@ -57,7 +56,6 @@ public class Player extends Observable implements Observer {
         this.ownedCountryNameList = new ArrayList<>();
         this.playerColor = PlayerColor.values()[playerIndex].colorValue;
         this.continentBonus = 0;
-        this.controlledContinents = new ArrayList<>();
         this.activeStatus = true;
         this.cardObtained = false;
         this.undeployedArmy = 0;
@@ -79,7 +77,6 @@ public class Player extends Observable implements Observer {
         this.ownedCountryNameList = new ArrayList<>();
         this.playerColor = PlayerColor.values()[playerIndex].colorValue;
         this.continentBonus = 0;
-        this.controlledContinents = new ArrayList<>();
         this.activeStatus = true;
         this.cardObtained = false;
         this.undeployedArmy = 0;
@@ -263,12 +260,6 @@ public class Player extends Observable implements Observer {
         this.continentBonus -= bonus;
     }
 
-    public void addControlledContinent(String continent) {
-        if (!controlledContinents.contains(continent)) {
-            controlledContinents.add(continent);
-        }
-    }
-
     /**
      * get whether this player is still in the game
      *
@@ -308,15 +299,6 @@ public class Player extends Observable implements Observer {
      */
     public void addArmy(int newArmy) {
         this.armyNbr += newArmy;
-    }
-
-    /**
-     * get controlledContinents
-     *
-     * @return
-     */
-    public ArrayList<String> getControlledContinents() {
-        return controlledContinents;
     }
 
     /**
