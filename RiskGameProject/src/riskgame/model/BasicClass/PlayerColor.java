@@ -15,7 +15,8 @@ public enum PlayerColor {
     PINK(Color.TURQUOISE),
     ORANGE(Color.ORANGE),
     GREY(Color.SLATEBLUE),
-    BROWN(Color.CRIMSON);
+    BROWN(Color.CRIMSON),
+    DRAWPLAYER(Color.BLACK);
 
     public final Color colorValue;
 
