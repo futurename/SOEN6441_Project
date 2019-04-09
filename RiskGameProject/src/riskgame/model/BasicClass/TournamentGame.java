@@ -28,6 +28,7 @@ public class TournamentGame implements Runnable {
     private int gameWinner;
     private PhaseViewObservable tournamentObservable;
 
+    public TournamentGame(){}
     public TournamentGame(String mapFile, ArrayList<Strategy> playerStrategyList, int gameRoundValue) {
         this.mapFile = mapFile;
         this.playerStrategyList = playerStrategyList;
@@ -99,7 +100,7 @@ public class TournamentGame implements Runnable {
         }
     }
 
-    private void doAllPlayerAttackAndFortification(ArrayList<Player> robotPlayerList) {
+    public void doAllPlayerAttackAndFortification(ArrayList<Player> robotPlayerList) {
         for (int playerIndex = 0; playerIndex < robotPlayerList.size(); playerIndex++) {
             Player curRobot = robotPlayerList.get(playerIndex);
             if (curRobot.getActiveStatus()) {
@@ -119,7 +120,7 @@ public class TournamentGame implements Runnable {
         }
     }
 
-    private void doAllPlayerReinforcement(ArrayList<Player> robotPlayerList, PhaseViewObservable tournamentObservable) {
+    public void doAllPlayerReinforcement(ArrayList<Player> robotPlayerList, PhaseViewObservable tournamentObservable) {
         for (int playerIndex = 0; playerIndex < robotPlayerList.size(); playerIndex++) {
             Player curRobot = robotPlayerList.get(playerIndex);
             curRobot.executeReinforcement(tournamentObservable);
