@@ -500,7 +500,6 @@ public class StartViewController implements Initializable {
                 }
             }
             if (isSameOwner) {
-                playersList.get(owner).addControlledContinent(continent.getContinentName());
                 continent.setContinentOwnerIndex(owner);
                 Player curPlayer = playersList.get(owner);
                 curPlayer.addContinentBonus(continent.getContinentBonusValue());
@@ -705,7 +704,7 @@ public class StartViewController implements Initializable {
         phaseViewObservable.initObservableExchangeTime();
         phaseViewObservable.notifyObservers();
         try {
-            saveProgress.SaveFile("Initial", -1, filePath, fileNameCurTime, true, true,cardExchangeViewObserver.getExchangeTime());
+            saveProgress.SaveFile("Initial", -1, filePath, fileNameCurTime, true, true,cardExchangeViewObserver.getExchangeTime(),-1);
         } catch (IOException e) {
             e.printStackTrace();
         }
