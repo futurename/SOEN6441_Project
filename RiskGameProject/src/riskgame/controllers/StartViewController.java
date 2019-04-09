@@ -656,17 +656,7 @@ public class StartViewController implements Initializable {
             //loadGame(file.getAbsolutePath(), graphSingleton, worldContinentMap, this);
             //curStage.setScene(finalScene);
             //curStage.show();
-            /*
-            btn_confirmLoadFile.setVisible(false);
-            btn_loadFile.setVisible(false);
-            txf_mapPath.setEditable(false);
 
-            displayWorldMap(mapPath);
-                btn_infoSwitcher.setVisible(true);
-                btn_infoSwitcher.setText("Players Info");
-                btn_nextStep.setVisible(true);
-                */
-            //displayPlayerInfo();
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
 
@@ -674,7 +664,6 @@ public class StartViewController implements Initializable {
             initContinentsOwner();
             notifyPhaseChanged();
             UtilMethods.callNextRobotPhase();
-            //Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
             curStage.setScene(scene);
             curStage.show();
 
