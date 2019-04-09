@@ -407,6 +407,44 @@ public class StartViewController implements Initializable {
         }
     }
 
+//    private void startRobotGame() {
+//        ArrayList<Player> robotsList = new ArrayList<>();
+//        robotsList.addAll(playersList);
+//        playersList.clear();
+//        TournamentGame tg = new TournamentGame();
+//        tg.doAllPlayerReinforcement(robotsList, phaseViewObservable);
+//        tg.doAllPlayerAttackAndFortification(robotsList);
+//        int gameRoundLeft = 300;
+//        int gameWinner = -1;
+//        while (gameRoundLeft > 0 && gameWinner == -1) {
+//            for (int playerIndex = 0; playerIndex < robotsList.size(); playerIndex++) {
+//                Player curRobot = robotsList.get(playerIndex);
+//                if (curRobot.getActiveStatus()) {
+//                    curRobot.executeReinforcement(phaseViewObservable);
+//                    curRobot.executeAttack();
+//                    if (curRobot.isFinalWinner()) {
+//                        gameWinner = curRobot.getPlayerIndex();
+//                        Main.phaseViewObservable.setAllParam("Final Phase", curRobot.getPlayerIndex(), "Game Over");
+//                        Main.phaseViewObservable.notifyObservers("From startView to final");
+//                        System.out.printf("player %s wins.\n", curRobot.getPlayerName());
+//                    } else {
+//                        curRobot.executeFortification();
+//                    }
+//                }
+//            }
+//            gameRoundLeft--;
+//        }
+//    }
+//
+//    private boolean isHumanEngaged(){
+//        boolean status = false;
+//        for (Player player: playersList){
+//            if (player.getStrategy().toString().equals("Human")){
+//                status = true;
+//            }
+//        }
+//        return status;
+//    }
 
     private boolean isAllPlayerRobots() {
         boolean result = true;
