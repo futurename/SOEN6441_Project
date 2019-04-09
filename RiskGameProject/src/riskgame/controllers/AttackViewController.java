@@ -464,7 +464,7 @@ public class AttackViewController implements Initializable {
         phaseViewObservable.initObservableExchangeTime();
         phaseViewObservable.notifyObservers();
         try {
-            saveProgress.SaveFile("Attack",curPlayer.getPlayerIndex(),filePath,fileNameCurTime,btn_confirmAttack.isVisible(),curPlayer.getCardObtained(),cardExchangeViewObserver.getExchangeTime(),-1);
+            saveProgress.SaveFile("Attack",curPlayer.getPlayerIndex(),filePath,fileNameCurTime,curPlayer.getCardObtained(),cardExchangeViewObserver.getExchangeTime(),-1);
         } catch (IOException e) {
             e.printStackTrace();
         }
