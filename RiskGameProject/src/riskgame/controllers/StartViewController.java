@@ -401,10 +401,11 @@ public class StartViewController implements Initializable {
             initPlayerDominationObserver();
             notifyPhaseChanged();
             UtilMethods.callNextRobotPhase();
-            Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
-            curStage.setScene(scene);
-            curStage.show();
+
         }
+        Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
+        curStage.setScene(scene);
+        curStage.show();
     }
 
     private void startRobotGame() {
