@@ -332,7 +332,6 @@ public class UtilMethods {
             finalViewController.setWinner(Main.playersList.get(Main.phaseViewObserver.getPlayerIndex()));
             finalViewController.setPlayerArrayList(playersList);
             loader.setController(finalViewController);
-
         }
         try {
             return new Scene(loader.load(), 1200, 900);
