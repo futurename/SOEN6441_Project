@@ -14,7 +14,9 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
         AttackProcessTest.class,
         MapCheckerTest.class,
-        InfoRetriverTest.class
+        InfoRetriverTest.class,
+        RobotGamingProcessTest.class,
+        //SaveProgress.class
 })
 public class UtilSuiteTest {
 }

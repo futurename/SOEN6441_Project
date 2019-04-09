@@ -1,6 +1,10 @@
 import mapeditor.Test.MapEditorTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import test.riskgame.controller.ControllerSuiteTest;
+import test.riskgame.model.BasicClass.BasicClassSuiteTest;
+import test.riskgame.model.BasicClass.StrategyPattern.StragegyPatternSuiteTest;
+import test.riskgame.model.Utils.UtilSuiteTest;
 
 
 /**
@@ -11,9 +15,11 @@ import org.junit.runners.Suite;
  **/
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-
-        test.riskgame.controller.ControllerSuiteTest.class,
-        MapEditorTest.class
+        ControllerSuiteTest.class,
+        MapEditorTest.class,
+        StragegyPatternSuiteTest.class,
+        BasicClassSuiteTest.class,
+        UtilSuiteTest.class
 })
 public class GameSuiteTest {
 }

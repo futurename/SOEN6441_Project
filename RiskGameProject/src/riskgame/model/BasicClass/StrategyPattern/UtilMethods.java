@@ -308,6 +308,9 @@ public class UtilMethods {
     public static <T extends Initializable> Scene startView(String phase, T controller) {
         String resourceLocation;
         switch (phase) {
+            case "Initial Phase":
+                resourceLocation = "../view/StartView.fxml";
+                break;
             case "Reinforcement Phase":
                 resourceLocation = "../view/ReinforceView.fxml";
                 break;
@@ -337,6 +340,5 @@ public class UtilMethods {
             e.printStackTrace();
         }
         return null;
-
     }
 }

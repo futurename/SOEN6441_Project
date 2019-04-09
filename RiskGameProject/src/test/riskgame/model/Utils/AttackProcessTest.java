@@ -188,17 +188,19 @@ public class AttackProcessTest {
     public void testIsContinentConquered(){
         initGameSimulator();
 
-        Player player = new Player(1);
+        Player player = new Player(4);
         Main.playersList.add(player);
         String continentName = "demo continent";
         Continent continent = new Continent(continentName, 2);
         Main.worldContinentMap.put(continentName, continent);
-        continent.setContinentOwnerIndex(player.getPlayerIndex());
+
         Country country = new Country("demoCountry");
         continent.getContinentCountryGraph().put("demoCountry", country);
 
-        Assert.assertFalse(AttackProcess.isContinentConquered(player, continent));
-        continent.setContinentOwnerIndex(player.getPlayerIndex());
+        System.out.println("continent size: " + continent.getContinentCountryGraph().entrySet().size());
+
+        System.out.println(continent.toString());
+
         country.setCountryOwner(player);
         Assert.assertTrue(AttackProcess.isContinentConquered(player, continent));
         StartViewController.resetStaticVariables();
