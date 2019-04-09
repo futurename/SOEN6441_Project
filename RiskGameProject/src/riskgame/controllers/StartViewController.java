@@ -612,7 +612,33 @@ public class StartViewController implements Initializable {
         String titleString = "Select Saved Game File:";
         File file = InfoRetriver.showSavedFileChooser(titleString);
         try {
-            loadGame(file.getAbsolutePath(), graphSingleton, worldContinentMap);
+            //Stage curStage = (Stage) btn_confirmLoadFile.getScene().getWindow();
+            //Scene finalScene = loadGame(file.getAbsolutePath(), graphSingleton, worldContinentMap, this);
+            //loadGame(file.getAbsolutePath(), graphSingleton, worldContinentMap, this);
+            //curStage.setScene(finalScene);
+            //curStage.show();
+            /*
+            btn_confirmLoadFile.setVisible(false);
+            btn_loadFile.setVisible(false);
+            txf_mapPath.setEditable(false);
+
+            displayWorldMap(mapPath);
+                btn_infoSwitcher.setVisible(true);
+                btn_infoSwitcher.setText("Players Info");
+                btn_nextStep.setVisible(true);
+                */
+            //displayPlayerInfo();
+            Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+
+            Scene scene = loadGame(file.getAbsolutePath(), graphSingleton, worldContinentMap, this);
+            initContinentsOwner();
+            notifyPhaseChanged();
+            UtilMethods.callNextRobotPhase();
+            //Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
+            curStage.setScene(scene);
+            curStage.show();
+
         }catch(IOException e){
             e.printStackTrace();
         }

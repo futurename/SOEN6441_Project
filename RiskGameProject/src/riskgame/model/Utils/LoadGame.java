@@ -1,23 +1,22 @@
 package riskgame.model.Utils;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.paint.Color;
-import mapeditor.model.MapObject;
+import javafx.stage.Stage;
 import riskgame.Main;
-import riskgame.controllers.StartViewController;
+import riskgame.controllers.FinalViewController;
 import riskgame.model.BasicClass.*;
 import riskgame.model.BasicClass.StrategyPattern.*;
 
 import java.io.*;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static riskgame.Main.*;
-import static riskgame.Main.phaseViewObservable;
 import static riskgame.model.Utils.InitWorldMap.buildWorldMapGraph;
 
 
@@ -88,14 +87,13 @@ public class LoadGame{
         }
     }
 
-    public static void loadGame(String path, LinkedHashMap<String, GraphNode> linkedHashMap,
-                                LinkedHashMap<String, Continent> continentLinkedHashMap) throws IOException {
-        System.out.println(new File(path).getAbsolutePath());
+    public static <T extends Initializable> Scene loadGame(String path, LinkedHashMap<String, GraphNode> linkedHashMap,
+                                                        LinkedHashMap<String, Continent> continentLinkedHashMap, T controller) throws IOException {
 
         BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
         String curLine;
-
-        while ((curLine = bufferedReader.readLine()) != null) {
+        System.out.println("check++++++++++++++++++++++++++");
+        while ((curLine = bufferedReader.readLine())!=null) {
 
             if (curLine.contains("[Continents]")) {
                 while ((curLine = bufferedReader.readLine()).length() != 0) {
@@ -160,8 +158,9 @@ public class LoadGame{
             }
 
             if (curLine.contains("[Players]")) {
+                System.out.println("how many times?");
                 int playerNumber = Integer.parseInt(curLine = bufferedReader.readLine());
-                for(int i=0; i< playerNumber; i++){
+                for (int i = 0; i < playerNumber; i++) {
                     curLine = bufferedReader.readLine();
                     // Basic player info
                     String[] curLineSplitPlayerInfo = curLine.split(",");
@@ -177,7 +176,7 @@ public class LoadGame{
                     int armyNbr = Integer.parseInt(curLineSplitPlayerInfo[5]);
 
                     ArrayList<Card> playerCards = new ArrayList<>();
-                    if(curLineSplitPlayerInfo.length>6) {
+                    if (curLineSplitPlayerInfo.length > 6) {
                         String cards = curLineSplitPlayerInfo[6];
                         String[] cardsArray = cards.split(";");
                         for (int j = 0; j < cardsArray.length; j++) {
@@ -194,46 +193,50 @@ public class LoadGame{
                         }
                     }
 
-                    if(curLineSplitPlayerInfo[2].equals("Human")) {
+                    if (curLineSplitPlayerInfo[2].equals("Human")) {
                         curStrategy = new StrategyHuman();
-                    }else if(curLineSplitPlayerInfo[2].equals("Aggressive")){
+                    } else if (curLineSplitPlayerInfo[2].equals("Aggressive")) {
                         curStrategy = new StrategyAggressive();
-                    }else if(curLineSplitPlayerInfo[2].equals("Benevolent")){
+                    } else if (curLineSplitPlayerInfo[2].equals("Benevolent")) {
                         curStrategy = new StrategyBenevolent();
-                    }else if(curLineSplitPlayerInfo[2].equals("Cheater")){
+                    } else if (curLineSplitPlayerInfo[2].equals("Cheater")) {
                         curStrategy = new StrategyCheater();
-                    }else if(curLineSplitPlayerInfo[2].equals("Random")){
+                    } else if (curLineSplitPlayerInfo[2].equals("Random")) {
                         curStrategy = new StrategyRandom();
                     }
                     // Owned countries
                     ArrayList<String> countryNameList = new ArrayList<>();
                     curLine = bufferedReader.readLine();
                     String[] curLineSplitCountryInfo = curLine.split(",");
-                    for(int j=0;j<curLineSplitCountryInfo.length; j++){
+
+                    for (int j = 0; j < curLineSplitCountryInfo.length; j++) {
                         countryNameList.add(curLineSplitCountryInfo[j]);
                     }
 
-                    Player onePlayer = new Player(playerIndex, curStrategy,armyNbr,playerCards,countryNameList,playerColor,
-                            continentBonus,status,graphSingleton, worldContinentMap);
+                    Player onePlayer = new Player(playerIndex, curStrategy, armyNbr, playerCards, countryNameList, playerColor,
+                            continentBonus, status, graphSingleton, worldContinentMap);
+                    System.out.println("add+++++++++");
                     playersList.add(onePlayer);
                 }
+                totalNumOfPlayers = playerNumber;
+                playerDomiViewObserver.resetObservable(totalNumOfPlayers);
             }
 
             // Add country owner
             if (curLine.contains("[Connection]")) {
                 int n = Integer.parseInt(curLine = bufferedReader.readLine());
-                for(int j=0;j<n;j++){
+                for (int j = 0; j < n; j++) {
                     curLine = bufferedReader.readLine();
                     String[] reader = curLine.split(",");
-                    Player p1 = playersList.get(Integer.parseInt(reader[0]));
+                    Player p1 = Main.playersList.get(Integer.parseInt(reader[0]));
                     GraphNode curGraphNode;
-                    for(int k =1 ; k< reader.length;k++){
+                    for (int k = 1; k < reader.length; k++) {
                         String ownerCountryName = reader[k];
                         curGraphNode = linkedHashMap.get(ownerCountryName);
                         Country curCountry = curGraphNode.getCountry();
                         curCountry.setCountryOwner(p1);
                         curGraphNode.replaceCountry(curCountry);
-                        linkedHashMap.replace("ownerCountryName",curGraphNode);
+                        //linkedHashMap.replace("ownerCountryName", curGraphNode);
                     }
                 }
             }
@@ -242,33 +245,13 @@ public class LoadGame{
             if (curLine.contains("[Phase]")) {
                 while ((curLine = bufferedReader.readLine()) != null) {
                     String[] info = curLine.split(",");
-                    if(curLine.contains("Initial")){
-                        int nextPlayerIndex = curRoundPlayerIndex;
-                        phaseViewObservable.resetObservable();
-                        phaseViewObservable.setAllParam("Reinforcement Phase", Integer.parseInt(info[1]), "Reinforcement Action");
-                        phaseViewObservable.notifyObservers("from load game to reinforceView");
-                    }else if(curLine.contains("Reinforcement")){
-                        int nextPlayerIndex = curRoundPlayerIndex;
-                        phaseViewObservable.resetObservable();
-                        phaseViewObservable.setAllParam("Reinforcement Phase", Integer.parseInt(info[1]), "Reinforcement Action");
-                        phaseViewObservable.notifyObservers("from load game to reinforceView");
-                    }else if(curLine.contains("Attack")){
-                        System.out.println("jump to attack phase");
-                        int nextPlayerIndex = curRoundPlayerIndex;
-                        phaseViewObservable.resetObservable();
-                        phaseViewObservable.setAllParam("Attack Phase", Integer.parseInt(info[1]), "Attack Action");
-                        phaseViewObservable.notifyObservers("from load game to Attack");
-                    }else if(curLine.contains("Fortification")){
-                        int nextPlayerIndex = curRoundPlayerIndex;
-                        phaseViewObservable.resetObservable();
-                        phaseViewObservable.setAllParam("Fortification Phase", Integer.parseInt(info[1]), "Fortification Action");
-                        phaseViewObservable.notifyObservers("from load game to Fortification");
-                    }
+                    return UtilMethods.startView(info[0], controller);
                 }
             }
         }
         printGraph(linkedHashMap);
         printContinent(continentLinkedHashMap);
         bufferedReader.close();
+        return null;
     }
 }
