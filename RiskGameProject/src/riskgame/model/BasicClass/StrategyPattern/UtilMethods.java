@@ -202,7 +202,7 @@ public class UtilMethods {
                 notifyReinforcementEnd(true, player);
             }
             //if not robot phase, method does nothing
-            //callNextRobotPhase();
+            callNextRobotPhase();
         }
     }
 
@@ -286,7 +286,7 @@ public class UtilMethods {
             } else {
                 notifyAttackEnd(false, player);
                 //if not robot phase, method does nothing
-                //callNextRobotPhase();
+                callNextRobotPhase();
             }
         }
     }

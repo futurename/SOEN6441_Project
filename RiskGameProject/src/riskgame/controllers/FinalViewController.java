@@ -19,20 +19,17 @@ import java.util.ResourceBundle;
 public class FinalViewController implements Initializable {
     @FXML
     private TextArea txa_gameOverInfo;
+    private ArrayList<Player> playerArrayList;
 
     private Player winner;
-    private ArrayList<Player> playerArrayList;
-    private int totalRounds;
+
 
 
     public void display() {
         StringBuilder stringBuilder = new StringBuilder();
-        if (winner.getPlayerIndex() >= playerArrayList.size()) {
+        if (winner.getPlayerIndex() == -1) {
             stringBuilder.append("GAME OVER!")
                     .append("\n\n\n")
-                    .append(("Total Rounds: <"))
-                    .append(totalRounds)
-                    .append(">\n\n")
                     .append("<")
                     .append(winner.getPlayerName())
                     .append("> WINS!");
@@ -68,7 +65,5 @@ public class FinalViewController implements Initializable {
         this.playerArrayList = playerArrayList;
     }
 
-    public void setTotalRounds(int totalRounds) {
-        this.totalRounds = totalRounds;
-    }
+
 }
