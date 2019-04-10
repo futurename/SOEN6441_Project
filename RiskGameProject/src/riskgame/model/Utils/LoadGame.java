@@ -22,7 +22,12 @@ import java.util.Map;
 import static riskgame.Main.*;
 import static riskgame.model.Utils.InitWorldMap.buildWorldMapGraph;
 
-
+/**
+ * This class handles load game logic.
+ * Reading a game file, then rendering a continuing game.
+ * @author tx
+ * @since build3
+ */
 public class LoadGame{
     /**
      * default position index for coordinate x in map file
@@ -59,6 +64,10 @@ public class LoadGame{
         //}
     }
 
+    /**
+     * internal print function, displaying info
+     * @param worldHashMap world map
+     */
     public static void printGraph(LinkedHashMap<String, GraphNode> worldHashMap) {
         for (Map.Entry<String, GraphNode> entry : worldHashMap.entrySet()) {
             String countryName = entry.getKey();
@@ -70,6 +79,10 @@ public class LoadGame{
         }
     }
 
+    /**
+     * internal print function, displaying info
+     * @param node Graph node object from continent map
+     */
     private static void printGraphNode(GraphNode node) {
         for (Country country : node.getAdjacentCountryList()) {
             String countryName = country.getCountryName();
@@ -80,6 +93,10 @@ public class LoadGame{
         System.out.println("\n");
     }
 
+    /**
+     * internal print function, displaying info
+     * @param continentLinkedHashMap continent map
+     */
     private static void printContinent(LinkedHashMap<String, Continent> continentLinkedHashMap) {
         for (Map.Entry<String, Continent> entry : continentLinkedHashMap.entrySet()) {
             Continent curContinent = entry.getValue();
@@ -90,6 +107,16 @@ public class LoadGame{
         }
     }
 
+    /**
+     *
+     * @param path game file path
+     * @param linkedHashMap world map
+     * @param continentLinkedHashMap continent map
+     * @param controller controller that used for switching scene
+     * @param <T> has to be a javafx controller that implements Initializable
+     * @return a proper scene to continue game
+     * @throws IOException if game file not found
+     */
     public static <T extends Initializable> Scene loadGame(String path, LinkedHashMap<String, GraphNode> linkedHashMap,
                                                         LinkedHashMap<String, Continent> continentLinkedHashMap, T controller) throws IOException {
 
