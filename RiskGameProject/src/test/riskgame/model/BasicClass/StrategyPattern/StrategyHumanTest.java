@@ -7,7 +7,7 @@ import org.junit.After;
 /** 
 * StrategyHuman Tester. 
 * 
-* @author <Authors name> 
+* @author  Karamveer
 * @since <pre>Apr 2, 2019</pre> 
 * @version 1.0 
 */ 

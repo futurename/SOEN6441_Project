@@ -7,7 +7,7 @@ import org.junit.After;
 /** 
 * StrategyRandom Tester. 
 * 
-* @author <Authors name> 
+* @author Karamveer
 * @since <pre>Apr 2, 2019</pre> 
 * @version 1.0 
 */ 
@@ -82,11 +82,7 @@ try {
 */ 
 } 
 
-/** 
-* 
-* Method: randomlyPickCountryFrom(ArrayList<Country> from) 
-* 
-*/ 
+
 @Test
 public void testRandomlyPickCountryFrom() throws Exception { 
 //TODO: Test goes here... 

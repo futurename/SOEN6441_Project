@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /** 
 * TournamentGame Tester. 
 * 
-* @author <Authors name> 
+* @author Karamveer
 * @since <pre>Mar 30, 2019</pre> 
 * @version 1.0 
 */ 

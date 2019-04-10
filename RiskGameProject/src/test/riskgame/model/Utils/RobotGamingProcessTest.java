@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * RobotGamingProcess Tester.
 *
- * @author <WW>
+ * @author WW
 * @since <pre>Mar 30, 2019</pre> 
 * @version 1.0 
 */
@@ -40,14 +40,13 @@ public void before() {
 
 @After
 public void after() throws Exception { 
-} 
+}
 
-/** 
-* 
-* Method: initRobotGaming(ArrayList<String> mapFileList, ArrayList<Strategy> robotPlayerList, int gamesValue, int gameRoundValue) 
-* 
-*/ 
-@Test
+    /**
+     * test robot init gaming
+     * @throws Exception map file not found
+     */
+    @Test
 public void testInitRobotGaming() throws Exception {
     try {
         RobotGamingProcess.initRobotGaming(mapFileList, strategyArrayList, gamesValue, gameRoundValue);
