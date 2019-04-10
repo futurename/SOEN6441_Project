@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>120</x>
+      <y>0</y>
+      <w>860</w>
+      <h>980</h>
+    </coordinates>
+    <panel_attributes>Risk game src</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>160</x>
+      <y>60</y>
+      <w>340</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>Map editor</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>570</x>
+      <y>60</y>
+      <w>360</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>Risk game</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>170</x>
+      <y>100</y>
+      <w>320</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>map editor controller</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>170</x>
+      <y>200</y>
+      <w>320</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>map editor view</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>170</x>
+      <y>300</y>
+      <w>320</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>map editor model	</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>590</x>
+      <y>100</y>
+      <w>320</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>risk game controller</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>590</x>
+      <y>200</y>
+      <w>320</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>risk game view</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>590</x>
+      <y>300</y>
+      <w>320</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>risk game model	</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>740</x>
+      <y>1170</y>
+      <w>140</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>risk game model</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>10</x>
+      <y>1390</y>
+      <w>190</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>map editor model
+--
+MapObject
+MECheckMapCorrectness
+MEContinent
+MECountry
+MapErrorMsg
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>510</x>
+      <y>1240</y>
+      <w>190</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>risk game controller
+--
+AttackViewController
+FortificationViewController
+ReinforceViewController
+StartViewController
+PlayerTypeSelectionController
+FinalViewController
+PlayerTypeSelectionController
+TournamentModeResultViewController
+TournamentModeViewController
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>720</x>
+      <y>1000</y>
+      <w>170</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>risk game view
+--
+AttackView
+Fortification
+ReinforceView
+StartView
+FinalView
+PlayerTypeSelection
+TournamentModeView
+TournamentResultView
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>220</x>
+      <y>1210</y>
+      <w>240</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>map editor controller
+--
+MapEditorAddContinentController
+MapEditorAddCountryController
+MapEditorDeleteContinentController
+MapEditorDeleteCountryController
+MapEditorEditController
+MapEditorEditPageController
+MapEditorHomePageController
+MapEditorSaveFileController
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>1040</y>
+      <w>210</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>map editor view
+--
+MapEditorAddContinentView
+MapEditorAddCountryView
+MapEditorDeleteContinentView
+MapEditorDeleteCountryView
+MapEditorEditView
+MapEditorEditPageView
+MapEditorHomePageView
+MapEditorSaveFileView
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>440</x>
+      <y>1100</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>risk game</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>1120</y>
+      <w>30</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>1260</y>
+      <w>80</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>60.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>200</x>
+      <y>1100</y>
+      <w>200</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+update</panel_attributes>
+    <additional_attributes>10.0;20.0;180.0;20.0;180.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>190</x>
+      <y>1360</y>
+      <w>180</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+uses</panel_attributes>
+    <additional_attributes>10.0;80.0;160.0;80.0;160.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>1090</y>
+      <w>90</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+update</panel_attributes>
+    <additional_attributes>70.0;20.0;10.0;20.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>1220</y>
+      <w>120</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+uses</panel_attributes>
+    <additional_attributes>70.0;10.0;70.0;80.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>930</x>
+      <y>1170</y>
+      <w>150</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>BasicClass
+--
+Card
+Continent
+Country
+GraphNode
+GraphSingleton
+Player
+PlayerColor
+Dice
+GameRunningResult
+GraphNormal
+TournamentGame
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>740</x>
+      <y>1330</y>
+      <w>160</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>utils
+--
+InfoRetriver
+InitWorldMap
+InitPlayers
+ListviewRenderer
+MapChecker
+AttackProcess
+LoadGame
+SaveProgress
+RobotGamingProcess
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>1220</y>
+      <w>30</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>870</x>
+      <y>1200</y>
+      <w>80</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>570</x>
+      <y>420</y>
+      <w>320</w>
+      <h>460</h>
+    </coordinates>
+    <panel_attributes>test
+--
+GameSuiteTest
+--
+&lt;controller&gt;
+ControllerSuiteTest
+FortificationPhaseTest
+PlayerTest
+ReinforcePhaseTest
+--
+&lt;model.Utils&gt;
+UtilSuiteTest
+AttackProcessTest
+InforRetriverTest
+MapCheckerTest
+RobotGamingProcessTest
+SaveProgressTest
+LoadGameTest
+StragegyPatternSuiteTest
+StrategyHumanTest
+StratergyRandomTest
+BasicClassSuiteTest
+TournamentGameTest
+--
+&lt;util&gt;
+GraphTester
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>160</x>
+      <y>450</y>
+      <w>320</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>test
+--
+MapEditorTest</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1120</x>
+      <y>1180</y>
+      <w>200</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>ObserverPattern
+--
+CardExchangeViewObserver
+PhaseViewObservable
+PhaserViewObserver
+PlayerDomiViewObservable
+PlayerDomiViewObserver
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1070</x>
+      <y>1250</y>
+      <w>70</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1120</x>
+      <y>1360</y>
+      <w>200</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>StrategyPattern
+--
+Strategy
+StrategyAggressive
+StrategyBenevolent
+StrategyCheater
+StrategyHuman
+StrategyRandom
+UtilMethods
+halign=left</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1070</x>
+      <y>1370</y>
+      <w>70</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+</diagram>
