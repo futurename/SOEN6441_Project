@@ -239,6 +239,7 @@ public class FortificationViewController implements Initializable {
                     lbl_maxArmyNumber.setText("0");
                 } else {
                     btn_nextStep.setVisible(false);
+                    confirmMoveArmy = true;
                     btn_confirmMoveArmy.setVisible(confirmMoveArmy);
                     btn_skipFortification.setVisible(confirmMoveArmy);
                     lsv_reachableCountry.setItems(reachableCountryList);
@@ -316,6 +317,8 @@ public class FortificationViewController implements Initializable {
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
         curStage.setScene(scene);
         curStage.show();
+        initCount = 1;
+        confirmMoveArmy = true;
     }
 
     /**
