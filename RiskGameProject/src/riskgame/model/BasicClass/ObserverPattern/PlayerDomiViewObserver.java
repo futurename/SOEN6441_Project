@@ -17,7 +17,7 @@ import java.util.Observer;
  **/
 public class PlayerDomiViewObserver implements Observer {
     private ArrayList<Integer> controlledCountryNbrList;
-    private ArrayList<Float> controlRatioList;
+    private ArrayList<Double> controlRatioList;
     private ArrayList<Integer> controlledContinentNbrList;
     private ArrayList<Integer> totalArmyNbrList;
     private ArrayList<Integer> continentBonusList;
@@ -26,7 +26,7 @@ public class PlayerDomiViewObserver implements Observer {
         return controlledCountryNbrList;
     }
 
-    public ArrayList<Float> getControlRatioList() {
+    public ArrayList<Double> getControlRatioList() {
         return controlRatioList;
     }
 
@@ -56,7 +56,7 @@ public class PlayerDomiViewObserver implements Observer {
             int controlledCountryNbr = curPlayer.getOwnedCountryNameList().size();
             controlledCountryNbrList.set(playerIndex, controlledCountryNbr);
 
-            float curControlRatio = (float)ownedCountryNbr / totalCountryNbr;
+            double curControlRatio = (double)ownedCountryNbr / totalCountryNbr;
             controlRatioList.set(playerIndex, curControlRatio);
 
             int curControlContinentNbr = InfoRetriver.getConqueredContinentNbr(curPlayer);

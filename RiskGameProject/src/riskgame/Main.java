@@ -48,6 +48,8 @@ public class Main extends Application {
 
     public static boolean confirmMoveArmy = true;
 
+    public static int initCount = 1;
+
     /**
      * Singleton world map organized in graph data structure
      */

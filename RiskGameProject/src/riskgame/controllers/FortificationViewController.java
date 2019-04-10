@@ -82,7 +82,7 @@ public class FortificationViewController implements Initializable {
     /**
      * fortification move counter
      */
-    private int counter = 1;
+    private int counter = initCount;
 
     /**
      * current player in this phase
@@ -132,9 +132,12 @@ public class FortificationViewController implements Initializable {
         boolean isOneCountryCanFortificate = isExistFortificationCountry(lsv_ownedCountries.getItems());
         if (!isOneCountryCanFortificate) {
             btn_nextStep.setVisible(true);
-            confirmMoveArmy = false;
-            btn_confirmMoveArmy.setVisible(confirmMoveArmy);
+            btn_confirmMoveArmy.setVisible(false);
             btn_skipFortification.setVisible(false);
+        }else{
+            btn_nextStep.setVisible(!confirmMoveArmy);
+            btn_confirmMoveArmy.setVisible(confirmMoveArmy);
+            btn_skipFortification.setVisible(confirmMoveArmy);
         }
     }
 
@@ -237,7 +240,7 @@ public class FortificationViewController implements Initializable {
                 } else {
                     btn_nextStep.setVisible(false);
                     btn_confirmMoveArmy.setVisible(confirmMoveArmy);
-                    btn_skipFortification.setVisible(true);
+                    btn_skipFortification.setVisible(confirmMoveArmy);
                     lsv_reachableCountry.setItems(reachableCountryList);
                     ListviewRenderer.renderReachableCountryItems(lsv_reachableCountry);
                     updateDeploymentInfo(selectedCountry);
@@ -370,12 +373,10 @@ public class FortificationViewController implements Initializable {
      * set fortification realted UI controllers invisible and visibalize Next button
      */
     private void setUIControllers() {
-        confirmMoveArmy = false;
-        btn_confirmMoveArmy.setVisible(confirmMoveArmy);
+        btn_confirmMoveArmy.setVisible(false);
         btn_skipFortification.setVisible(false);
         btn_nextStep.setVisible(true);
         scb_armyNbrAdjustment.setVisible(false);
-
     }
 
     /**
@@ -399,8 +400,7 @@ public class FortificationViewController implements Initializable {
      * @param actionEvent skip button is pressed
      */
     public void clickSkipFortification(ActionEvent actionEvent) {
-        confirmMoveArmy = false;
-        btn_confirmMoveArmy.setVisible(confirmMoveArmy);
+        btn_confirmMoveArmy.setVisible(false);
         btn_skipFortification.setVisible(false);
         btn_nextStep.setVisible(true);
     }
