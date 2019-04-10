@@ -12,7 +12,7 @@ import static riskgame.Main.phaseViewObservable;
 /** 
 * SaveProgress Tester. 
 * 
-* @author <Authors name> 
+* @author Karamveer
 * @since <pre>Apr 8, 2019</pre> 
 * @version 1.0 
 */ 

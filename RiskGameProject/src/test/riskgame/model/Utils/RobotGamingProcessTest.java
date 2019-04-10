@@ -1,6 +1,7 @@
 package test.riskgame.model.Utils;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 /**
  * RobotGamingProcess Tester.
 *
- * @author <WW>
+ * @author WW
 * @since <pre>Mar 30, 2019</pre> 
 * @version 1.0 
 */
@@ -40,21 +41,21 @@ public void before() {
 
 @After
 public void after() throws Exception { 
-} 
+}
 
-/** 
-* 
-* Method: initRobotGaming(ArrayList<String> mapFileList, ArrayList<Strategy> robotPlayerList, int gamesValue, int gameRoundValue) 
-* 
-*/ 
-@Test
+    /**
+     * test robot init gaming
+     * @throws Exception map file not found
+     */
+    @Test
 public void testInitRobotGaming() throws Exception {
     try {
         RobotGamingProcess.initRobotGaming(mapFileList, strategyArrayList, gamesValue, gameRoundValue);
     } catch (ExceptionInInitializerError e) {
         //e.printStackTrace();
     }
-
+        Assert.assertTrue(strategyArrayList.get(0).toString().equals("Aggressive"));
+        Assert.assertTrue(strategyArrayList.get(1).toString().equals("Random"));
 }
 
 

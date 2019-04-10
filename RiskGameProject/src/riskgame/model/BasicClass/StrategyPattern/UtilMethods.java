@@ -98,7 +98,7 @@ public class UtilMethods {
     /**
      * Automatically looking for available combo to exchange
      *
-     * @param cards cards list with size that > 2 (do not required)
+     * @param cards cards list with size that is greater 2 (do not required)
      * @return an integer that stands for a possible combo
      */
     public static int availableCombo(ArrayList<Card> cards) {

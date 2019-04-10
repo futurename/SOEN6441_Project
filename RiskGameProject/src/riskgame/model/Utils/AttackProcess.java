@@ -136,6 +136,7 @@ public class AttackProcess {
      * @param attackingCountry attacking country
      * @param defendingCountry defending country
      * @param remainingArmyNbr remaining army number of the attacker after attack
+     * @param UIOption whether UI will display
      */
     public static void updateConqueredCountry(Country attackingCountry, Country defendingCountry, int remainingArmyNbr, boolean UIOption) {
         Player attacker = attackingCountry.getOwner();
@@ -192,6 +193,12 @@ public class AttackProcess {
         return result;
     }
 
+    /**
+     * validate whether the continent is conquered by the player
+     * @param player one player object
+     * @param curContinent continent to be validated
+     * @return true for conquered, false for not
+     */
     public static boolean isContinentConquered(Player player, Continent curContinent) {
         boolean result = true;
         int playerIndex = player.getPlayerIndex();
@@ -210,6 +217,12 @@ public class AttackProcess {
         return result;
     }
 
+    /**
+     * popup alter information
+     * @param playerIndex player index
+     * @param continentName continent name
+     * @param curContinent continent object
+     */
     private static void popupContinentConqueredAlert(int playerIndex, String continentName, Continent curContinent) {
         try{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -224,6 +237,12 @@ public class AttackProcess {
                 + " current player continent bonus: " + Main.playersList.get(playerIndex).getContinentBonus());
     }
 
+    /**
+     * update continent owner information
+     * @param player player instance
+     * @param curContinent continent in playing
+     * @param UIOption whether alter will display
+     */
     private static void updateContinentOwner(Player player, Continent curContinent, boolean UIOption) {
         boolean result = true;
         int playerIndex = player.getPlayerIndex();
@@ -255,6 +274,10 @@ public class AttackProcess {
         }
     }
 
+    /**
+     * update world owner
+     * @param player the player who conquers the world
+     */
     private static void updateWorldOwner(Player player) {
         boolean result = isWorldConquered(player);
         if (result) {
@@ -271,6 +294,11 @@ public class AttackProcess {
         }
     }
 
+    /**
+     * validate whether the world is conqureed
+     * @param player the attacking player
+     * @return ture for conquered, false for not
+     */
     public static boolean isWorldConquered(Player player) {
         boolean result = true;
         for (Map.Entry<String, Continent> entry : player.getContinentMapInstance().entrySet()) {

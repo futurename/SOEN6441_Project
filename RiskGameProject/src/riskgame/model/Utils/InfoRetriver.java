@@ -116,6 +116,10 @@ public class InfoRetriver {
         return countryList;
     }
 
+    /**
+     * reset country traversiving boolean flags
+     * @param player player in playing
+     */
     private static void resetCountryVisitFlag(Player player) {
         LinkedHashMap<String, GraphNode> worldHashMap = player.getWorldMapInstance();
         for (Map.Entry<String, GraphNode> node : worldHashMap.entrySet()) {
@@ -136,6 +140,11 @@ public class InfoRetriver {
         return result;
     }
 
+    /**
+     * get coutry list of a plyaer
+     * @param player player in playing
+     * @return arraylist of country objects
+     */
     public static ArrayList<Country> getCountryList(Player player) {
         ArrayList<String> ownedCountryNameList = player.getOwnedCountryNameList();
         ArrayList<Country> countryList = new ArrayList<>();
@@ -235,6 +244,11 @@ public class InfoRetriver {
         return isOneCountryHasAttackableCountry;
     }
 
+    /**
+     * get owned countris which has more than two army
+     * @param player player in playing
+     * @return a new arraylist of countries
+     */
     public static ArrayList<Country> getOwnedAttackerList(Player player) {
         ArrayList<Country> attackerList = new ArrayList<>();
         ArrayList<Country> owned = InfoRetriver.getCountryList(player);
@@ -248,6 +262,11 @@ public class InfoRetriver {
         return attackerList;
     }
 
+    /**
+     * get the country which has the most armies
+     * @param player player in playing
+     * @return country object
+     */
     public static Country getOwnedStrongestCountry(Player player) {
         Country result = null;
         ArrayList<Country> ownedCountryList = getOwnedAttackerList(player);
@@ -284,6 +303,11 @@ public class InfoRetriver {
         return tempIndex;
     }
 
+    /**
+     * show file chooser
+     * @param titleString title string displying in file choose
+     * @return  a file object
+     */
     public static File showFileChooser(String titleString) {
         Stage fileStage = null;
 
@@ -296,6 +320,11 @@ public class InfoRetriver {
         return fileChooser.showOpenDialog(fileStage);
     }
 
+    /**
+     * show file choose for saving staus
+     * @param titleString title string
+     * @return a file object
+     */
     public static File showSavedFileChooser(String titleString) {
         Stage fileStage = null;
 
@@ -319,6 +348,10 @@ public class InfoRetriver {
         return calResult > DEFAULT_MIN_REINFORCE_ARMY_NBR ? calResult : DEFAULT_MIN_REINFORCE_ARMY_NBR;
     }
 
+    /**
+     * update pie chart information
+     * @param pct_countryDomiChart pie chart for displaying
+     */
     public static void updatePiechart(PieChart pct_countryDomiChart) {
         ObservableList<PieChart.Data> dataList = FXCollections.observableArrayList();
         for (int i = 0; i < playersList.size(); i++) {
@@ -334,6 +367,11 @@ public class InfoRetriver {
 
     }
 
+    /**
+     * get sorted country list by army numbers
+     * @param player player in playing
+     * @return a new arraylist of countries
+     */
     public static ArrayList<Country> getSortedCountryListByArmyNbr(Player player) {
         ArrayList<Country> ownedCountryList = getCountryList(player);
         ownedCountryList.sort(new Comparator<Country>() {

@@ -27,7 +27,7 @@ public class SaveProgress {
      * @param AorF Attack and Fortification parameter if attack means whether current player get card or not,if fortification is whether player has done fortification or not
      * @param exchangetime count card exchange time
      * @param allocateArmyNumber allocateArmyNumber
-     * @throws IOException
+     * @throws IOException file not found
      */
     public void SaveFile(String phase,int curPlayer,String path,String mapName,boolean AorF,int exchangetime,int allocateArmyNumber) throws IOException {
         File writename = new File(path+"\\"+mapName+".save");
