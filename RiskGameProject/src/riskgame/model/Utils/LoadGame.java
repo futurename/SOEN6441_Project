@@ -269,6 +269,11 @@ public class LoadGame{
                         p1.setCardPermission(Boolean.parseBoolean(info[6]));
                     }else if(info[4].contains("Fortification")){
                         confirmMoveArmy = Boolean.parseBoolean(info[6]);
+                        if(!confirmMoveArmy){
+                            initCount = 0;
+                        }
+                        playerDomiViewObservable.updateObservable();
+                        playerDomiViewObservable.notifyObservers("update piechart");
                     }
 
                     phaseViewObservable.setAllParam(info[4], Integer.parseInt(info[5]), newString);
