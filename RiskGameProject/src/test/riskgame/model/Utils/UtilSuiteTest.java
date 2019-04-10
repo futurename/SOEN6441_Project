@@ -16,7 +16,8 @@ import org.junit.runners.Suite;
         MapCheckerTest.class,
         InfoRetriverTest.class,
         RobotGamingProcessTest.class,
-        //SaveProgress.class
+        LoadGameTest.class,
+        SaveProgressTest.class
 })
 public class UtilSuiteTest {
 }

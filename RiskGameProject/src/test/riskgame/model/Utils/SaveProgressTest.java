@@ -4,8 +4,15 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
+import riskgame.Main;
+import riskgame.controllers.StartViewController;
+import riskgame.model.BasicClass.*;
 import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.Utils.SaveProgress;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 
 import static riskgame.Main.phaseViewObservable;
 
@@ -16,39 +23,42 @@ import static riskgame.Main.phaseViewObservable;
 * @since <pre>Apr 8, 2019</pre> 
 * @version 1.0 
 */ 
-public class SaveProgressTest { 
+public class SaveProgressTest {
 
-@Before
-public void before() throws Exception { 
-} 
+    /**
+    *
+    * Method: SaveFile(String phase, int curPlayer, String path, String mapName, boolean AorF, boolean AOC)
+    *
+    */
+    @Test
+    public void testSaveFile() throws Exception {
+        File writename = new File("./saveTest.save");
+        System.out.println(writename);
+        writename.createNewFile();
+        BufferedWriter out = new BufferedWriter(new FileWriter(writename));
+        out.write("[Map]\r\n");
+        out.write("author=author\r\n");
+        out.write("image=world.bmp\r\n");
+        out.write("wrap=no\r\n");
+        out.write("scroll=horizontal\r\n");
+        out.write("warn=yes\r\n");
+        out.write("\r\n");
 
-@After
-public void after() throws Exception { 
-}
+        out.write("[Continents]\r\n");
+        out.write("Asia"+"="+"3"+"\r\n");
+        out.write("\r\n");
 
-/** 
-* 
-* Method: SaveFile(String phase, int curPlayer, String path, String mapName, boolean AorF, boolean AOC) 
-* 
-*/ 
-@Test
-public void testSaveFile() throws Exception { 
-//TODO: Test goes here...
-    int remainingArmyNbr = 5;
-    SaveProgress save = new SaveProgress();
-    String saved = "yes";
-    CardExchangeViewObserver cardExchangeViewObserver = new CardExchangeViewObserver();
-    phaseViewObservable.addObserver(cardExchangeViewObserver);
-    phaseViewObservable.initObservableExchangeTime();
-    phaseViewObservable.notifyObservers();
-    try {
-        save.SaveFile("", 1, "", "", true,cardExchangeViewObserver.getExchangeTime(),-1);
-    } catch (Error e) {
-        System.out.println("ignore alert window");
-    } finally {
-        Assert.assertTrue(saved == "yes");
+        out.write("[Territories]\r\n");
+        out.write("Japan"+",0,0,"+"Asia"+","+"0"+","+"2"+"China"+"\r\n");
+        out.write("\r\n");
+
+        out.write("[Players]\r\n");
+        out.write("3"+"\r\n");
+
+        out.write("Japan"+"Canada"+"\r\n");
+        out.write("\r\n");
+
+        out.flush();
+        out.close();
     }
-} 
-
-
 } 
