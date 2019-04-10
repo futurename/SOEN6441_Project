@@ -46,24 +46,6 @@ public class LoadGame{
 
     private static Strategy curStrategy;
 
-
-    /**
-     * onClick event for confirming load map file from selected path
-     *
-     * @param saveFilePath load map directory
-     * @throws IOException file reading fails
-     */
-    @FXML
-    public void clickConfirmLoadMap(String saveFilePath) throws IOException {
-        //saveChecker.checkCorrectness(saveFilePath);
-
-        // if (saveChecker.errorMsg.toString().isEmpty()) {
-        // build the map structure to the game
-        buildWorldMapGraph(saveFilePath, graphSingleton, worldContinentMap);
-        //if(){
-        //}
-    }
-
     /**
      * internal print function, displaying info
      * @param worldHashMap world map
