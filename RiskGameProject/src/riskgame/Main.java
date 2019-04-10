@@ -46,6 +46,8 @@ public class Main extends Application {
 
     public static int winnerPlayerIndex = -1;
 
+    public static boolean confirmMoveArmy = true;
+
     /**
      * Singleton world map organized in graph data structure
      */

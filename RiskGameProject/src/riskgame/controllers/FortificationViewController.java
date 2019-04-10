@@ -132,7 +132,8 @@ public class FortificationViewController implements Initializable {
         boolean isOneCountryCanFortificate = isExistFortificationCountry(lsv_ownedCountries.getItems());
         if (!isOneCountryCanFortificate) {
             btn_nextStep.setVisible(true);
-            btn_confirmMoveArmy.setVisible(false);
+            confirmMoveArmy = false;
+            btn_confirmMoveArmy.setVisible(confirmMoveArmy);
             btn_skipFortification.setVisible(false);
         }
     }
@@ -208,7 +209,8 @@ public class FortificationViewController implements Initializable {
     public void selectOneCountry(MouseEvent mouseEvent) {
         if (counter == 0) {
             btn_skipFortification.setVisible(false);
-            btn_confirmMoveArmy.setVisible(false);
+            confirmMoveArmy = false;
+            btn_confirmMoveArmy.setVisible(confirmMoveArmy);
             btn_nextStep.setVisible(true);
             setListViewsTransparent();
         } else {
@@ -219,20 +221,22 @@ public class FortificationViewController implements Initializable {
             System.out.println("selected country name: " + selectedCountryName + ", army: " + selectedCountry.getCountryArmyNumber());
 
             if (selectedCountry.getCountryArmyNumber() <= MIN_ARMY_NUMBER_IN_COUNTRY) {
-                btn_confirmMoveArmy.setVisible(false);
+                confirmMoveArmy = false;
+                btn_confirmMoveArmy.setVisible(confirmMoveArmy);
                 alert.setContentText("No enough army for fortification!");
                 alert.showAndWait();
             } else {
                 ObservableList<Country> reachableCountryList = InfoRetriver.getReachableCountryObservableList(curPlayer,
                         selectedCountryName);
                 if (reachableCountryList.isEmpty()) {
-                    btn_confirmMoveArmy.setVisible(false);
+                    confirmMoveArmy = false;
+                    btn_confirmMoveArmy.setVisible(confirmMoveArmy);
                     lsv_reachableCountry.setItems(null);
                     lbl_deployArmyNumber.setText("0");
                     lbl_maxArmyNumber.setText("0");
                 } else {
                     btn_nextStep.setVisible(false);
-                    btn_confirmMoveArmy.setVisible(true);
+                    btn_confirmMoveArmy.setVisible(confirmMoveArmy);
                     btn_skipFortification.setVisible(true);
                     lsv_reachableCountry.setItems(reachableCountryList);
                     ListviewRenderer.renderReachableCountryItems(lsv_reachableCountry);
@@ -366,7 +370,8 @@ public class FortificationViewController implements Initializable {
      * set fortification realted UI controllers invisible and visibalize Next button
      */
     private void setUIControllers() {
-        btn_confirmMoveArmy.setVisible(false);
+        confirmMoveArmy = false;
+        btn_confirmMoveArmy.setVisible(confirmMoveArmy);
         btn_skipFortification.setVisible(false);
         btn_nextStep.setVisible(true);
         scb_armyNbrAdjustment.setVisible(false);
@@ -394,7 +399,8 @@ public class FortificationViewController implements Initializable {
      * @param actionEvent skip button is pressed
      */
     public void clickSkipFortification(ActionEvent actionEvent) {
-        btn_confirmMoveArmy.setVisible(false);
+        confirmMoveArmy = false;
+        btn_confirmMoveArmy.setVisible(confirmMoveArmy);
         btn_skipFortification.setVisible(false);
         btn_nextStep.setVisible(true);
     }
@@ -427,7 +433,7 @@ public class FortificationViewController implements Initializable {
         phaseViewObservable.initObservableExchangeTime();
         phaseViewObservable.notifyObservers();
         try {
-            saveProgress.SaveFile("Attack",curPlayer.getPlayerIndex(),filePath,fileNameCurTime,btn_confirmMoveArmy.isVisible(),true,cardExchangeViewObserver.getExchangeTime(),-1);
+            saveProgress.SaveFile("Fortification",curPlayer.getPlayerIndex(),filePath,fileNameCurTime,btn_confirmMoveArmy.isVisible(),cardExchangeViewObserver.getExchangeTime(),-1);
         } catch (IOException e) {
             e.printStackTrace();
         }

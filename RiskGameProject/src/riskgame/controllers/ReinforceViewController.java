@@ -417,7 +417,7 @@ public class ReinforceViewController implements Initializable {
         int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
         int newArmyPerRound = InfoRetriver.getStandardReinforceArmyNum(ownedCountryNum) + curPlayer.getContinentBonus();
         try {
-            saveProgress.SaveFile("Reinforcement", curPlayer.getPlayerIndex(), filePath, fileNameCurTime, true,true,cardExchangeViewObserver.getExchangeTime(),newArmyPerRound);
+            saveProgress.SaveFile("Reinforcement", curPlayer.getPlayerIndex(), filePath, fileNameCurTime, true,cardExchangeViewObserver.getExchangeTime(),newArmyPerRound);
         } catch (IOException e) {
             e.printStackTrace();
         }

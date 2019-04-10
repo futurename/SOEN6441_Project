@@ -265,9 +265,10 @@ public class LoadGame{
                         p1.addUndeployedArmy(Integer.parseInt(info[6]));
 
                     }else if(info[4].contains("Attack")){
-
+                        Player p1 = playersList.get(Integer.parseInt(info[5]));
+                        p1.setCardPermission(Boolean.parseBoolean(info[6]));
                     }else if(info[4].contains("Fortification")){
-
+                        confirmMoveArmy = Boolean.parseBoolean(info[6]);
                     }
 
                     phaseViewObservable.setAllParam(info[4], Integer.parseInt(info[5]), newString);

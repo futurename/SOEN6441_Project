@@ -12,7 +12,7 @@ import static riskgame.Main.phaseViewObservable;
 /** 
 * SaveProgress Tester. 
 * 
-* @author <Authors name> 
+* @author Karamveer
 * @since <pre>Apr 8, 2019</pre> 
 * @version 1.0 
 */ 
@@ -42,7 +42,7 @@ public void testSaveFile() throws Exception {
     phaseViewObservable.initObservableExchangeTime();
     phaseViewObservable.notifyObservers();
     try {
-        save.SaveFile("", 1, "", "", true, false,cardExchangeViewObserver.getExchangeTime(),-1);
+        save.SaveFile("", 1, "", "", true,cardExchangeViewObserver.getExchangeTime(),-1);
     } catch (Error e) {
         System.out.println("ignore alert window");
     } finally {

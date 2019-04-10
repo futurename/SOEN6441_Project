@@ -704,7 +704,7 @@ public class StartViewController implements Initializable {
         phaseViewObservable.initObservableExchangeTime();
         phaseViewObservable.notifyObservers();
         try {
-            saveProgress.SaveFile("Initial", -1, filePath, fileNameCurTime, true, true,cardExchangeViewObserver.getExchangeTime(),-1);
+            saveProgress.SaveFile("Initial", -1, filePath, fileNameCurTime, true,cardExchangeViewObserver.getExchangeTime(),-1);
         } catch (IOException e) {
             e.printStackTrace();
         }

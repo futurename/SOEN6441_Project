@@ -15,10 +15,19 @@ import java.util.concurrent.*;
 
 
 /**
+ * This class process multithreading of tournament mode games.
+ *
  * Created on 2019-03-30 030
  */
 public class RobotGamingProcess {
 
+    /**
+     * init robot game parameters
+     * @param mapFileList map path string
+     * @param robotPlayerList robot player list
+     * @param gamesValue game values
+     * @param gameRoundValue maximum round of each game
+     */
     public static void initRobotGaming(ArrayList<String> mapFileList, ArrayList<Strategy> robotPlayerList, int gamesValue, int gameRoundValue) {
         TournamentModeResultViewController tournamentModeResultViewController = initRobotFinalView(gamesValue, gameRoundValue, mapFileList, robotPlayerList);
 
@@ -69,6 +78,14 @@ public class RobotGamingProcess {
         processAllGamesResult(gameResultQueue, completionService, threadCount);
     }
 
+    /**
+     * display final tournament mode results
+     * @param gamesValue game value
+     * @param gameRoundValue maximum round of each game
+     * @param mapFileList map path string
+     * @param robotPlayerList robot player list
+     * @return
+     */
     private static TournamentModeResultViewController initRobotFinalView(int gamesValue, int gameRoundValue, ArrayList<String> mapFileList, ArrayList<Strategy> robotPlayerList) {
         Stage resultStage = new Stage();
         FXMLLoader loader = new FXMLLoader(RobotGamingProcess.class.getResource("../../view/TournamentResultView.fxml"));
@@ -92,6 +109,12 @@ public class RobotGamingProcess {
         return controller;
     }
 
+    /**
+     * process games result
+     * @param gameResultQueue a queue for storing games result
+     * @param completionService competion service
+     * @param threadCount total game threads
+     */
     private static void processAllGamesResult(BlockingQueue<Future<GameRunningResult>> gameResultQueue, CompletionService<GameRunningResult> completionService, int threadCount) {
         for (int i = 0; i < threadCount; i++) {
             Future<GameRunningResult> future = null;

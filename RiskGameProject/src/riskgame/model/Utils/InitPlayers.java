@@ -16,11 +16,14 @@ import java.util.Random;
  * @author WW
  **/
 public class InitPlayers {
+
     /**
      * create and initialize all the player instances
-     *
-     * @param numOfPlayers  number of players this round
+     * @param numOfPlayers player numbers
      * @param worldHashMap world map
+     * @param continentMapInstance continent map
+     * @param strategyList strategy list
+     * @param playerArrayList player list
      */
     public static void initPlayers(int numOfPlayers, LinkedHashMap<String, GraphNode> worldHashMap,
                                    LinkedHashMap<String, Continent> continentMapInstance, ArrayList<Strategy> strategyList, ArrayList<Player> playerArrayList) {
