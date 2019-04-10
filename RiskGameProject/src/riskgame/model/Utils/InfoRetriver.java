@@ -357,7 +357,7 @@ public class InfoRetriver {
         for (int i = 0; i < playersList.size(); i++) {
             Player curPlayer = playersList.get(i);
             String curPlayerName = curPlayer.getPlayerName();
-            double curRatio = playerDomiViewObserver.getControlRatioList().get(i);
+            float curRatio = playerDomiViewObserver.getControlRatioList().get(i);
             dataList.add(new PieChart.Data(curPlayerName, curRatio));
 
             System.out.println("name:" + curPlayerName + ", ratio: " + curRatio);

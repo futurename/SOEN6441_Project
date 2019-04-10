@@ -1,6 +1,7 @@
 package test.riskgame.model.Utils;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
@@ -53,7 +54,8 @@ public void testInitRobotGaming() throws Exception {
     } catch (ExceptionInInitializerError e) {
         //e.printStackTrace();
     }
-
+        Assert.assertTrue(strategyArrayList.get(0).toString().equals("Aggressive"));
+        Assert.assertTrue(strategyArrayList.get(1).toString().equals("Random"));
 }
 
 
