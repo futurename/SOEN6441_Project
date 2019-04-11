@@ -173,7 +173,8 @@ public class UtilMethods {
     private static boolean checkHumanStatus(){
         for (Player player: playersList){
             if (player.getStrategy().toString().equals("Human")){
-                return true;
+                if (player.getActiveStatus())
+                    return true;
             }
         }
         return false;
