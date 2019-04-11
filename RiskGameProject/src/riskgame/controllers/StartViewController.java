@@ -656,15 +656,14 @@ public class StartViewController implements Initializable {
         txf_mapPath.setText(file.getAbsolutePath());
     }
 
+    /**
+     * load game
+     * @param actionEvent
+     */
     public void clickLoadGame(ActionEvent actionEvent) {
         String titleString = "Select Saved Game File:";
         File file = InfoRetriver.showSavedFileChooser(titleString);
         try {
-            //Stage curStage = (Stage) btn_confirmLoadFile.getScene().getWindow();
-            //Scene finalScene = loadGame(file.getAbsolutePath(), graphSingleton, worldContinentMap, this);
-            //loadGame(file.getAbsolutePath(), graphSingleton, worldContinentMap, this);
-            //curStage.setScene(finalScene);
-            //curStage.show();
 
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
@@ -681,33 +680,6 @@ public class StartViewController implements Initializable {
         }
     }
 
-    public void clickSaveGame(ActionEvent actionEvent) {
-        Stage fileStage = null;
-        String filePath = "";
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-        directoryChooser.setTitle("Select map file");
-        directoryChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
 
-        File file = directoryChooser.showDialog(fileStage);
-        if (file.getPath() != null) {
-            filePath = file.getPath();
-        } else {
-            filePath = defaultPath;
-        }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-        String fileNameCurTime = dateFormat.format(new Date());
-        System.out.println(fileNameCurTime);
-        SaveProgress saveProgress = new SaveProgress();
-
-        CardExchangeViewObserver cardExchangeViewObserver = new CardExchangeViewObserver();
-        phaseViewObservable.addObserver(cardExchangeViewObserver);
-        phaseViewObservable.initObservableExchangeTime();
-        phaseViewObservable.notifyObservers();
-        try {
-            saveProgress.SaveFile("Initial", -1, filePath, fileNameCurTime, true,cardExchangeViewObserver.getExchangeTime(),-1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 }
