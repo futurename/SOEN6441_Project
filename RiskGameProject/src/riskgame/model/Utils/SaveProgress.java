@@ -6,10 +6,8 @@ import riskgame.model.BasicClass.Card;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 
 /**
  * save game class
@@ -120,4 +118,63 @@ public class SaveProgress {
     out.close();
     }
 
+    /**
+     * check save progress
+     * @param mapPath map path
+     * @return
+     */
+    public boolean CheckSave(String mapPath){
+
+        boolean checkresult;
+        boolean checkresult1 = false;
+        boolean checkresult2 = false;
+        boolean checkresult3 = false;
+        boolean checkresult4 = false;
+        boolean checkresult5 = false;
+        boolean checkresult6 = false;
+
+        ArrayList<String> fileRead = new ArrayList<String>();
+        try {
+            File file=new File(mapPath);
+            if(file.isFile()&&file.exists()){
+                InputStreamReader read = new InputStreamReader(new FileInputStream(file));
+                BufferedReader bufferedReader=new BufferedReader(read);
+                String lineTxt;
+                while((lineTxt=bufferedReader.readLine())!=null){
+                    fileRead.add(lineTxt);
+                }
+                read.close();
+            }else{
+                System.out.println("cannot find file");
+            }
+        } catch (Exception e){
+            System.out.println("wrong");
+            e.printStackTrace();
+        }
+        for(int i = 0;i<fileRead.size();i++){
+            if(fileRead.get(i).contains("[Save]")){
+                checkresult1 = true;
+            }
+            if(fileRead.get(i).contains("[Continents]")){
+                checkresult2 = true;
+            }
+            if(fileRead.get(i).contains("[Territories]")) {
+                checkresult3 = true;
+            }
+            if(fileRead.get(i).contains("[Players]")) {
+                checkresult4 = true;
+            }
+            if(fileRead.get(i).contains("[Connection]")) {
+                checkresult5 = true;
+            }
+            if(fileRead.get(i).contains("[Phase]")) {
+                checkresult6 = true;
+            }
+
+
+        }
+        checkresult = checkresult1&&checkresult2&&checkresult3&&checkresult4&&checkresult5&&checkresult6;
+        return checkresult;
+
+    }
 }

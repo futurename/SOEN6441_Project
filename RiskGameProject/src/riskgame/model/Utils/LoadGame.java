@@ -296,4 +296,35 @@ public class LoadGame{
         bufferedReader.close();
         return null;
     }
+
+    /**
+     * check whether the save file is empty or not
+     * @param savePath file path
+     * @return
+     */
+    public boolean checkloadfile(String savePath){
+        ArrayList<String> fileRead = new ArrayList<String>();
+        try {
+            File file=new File(savePath);
+            if(file.isFile()&&file.exists()){
+                InputStreamReader read = new InputStreamReader(new FileInputStream(file));
+                BufferedReader bufferedReader=new BufferedReader(read);
+                String lineTxt;
+                while((lineTxt=bufferedReader.readLine())!=null){
+                    fileRead.add(lineTxt);
+                }
+                read.close();
+            }else{
+                System.out.println("cannot find file");
+            }
+        } catch (Exception e){
+            System.out.println("wrong");
+            e.printStackTrace();
+        }
+        if(fileRead.size()==0){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }
