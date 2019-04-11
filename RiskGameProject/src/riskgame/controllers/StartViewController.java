@@ -104,8 +104,6 @@ public class StartViewController implements Initializable {
     @FXML
     private Button btn_loadGame;
     @FXML
-    private Button btn_saveGame;
-    @FXML
     private Label lbl_disNumOfPlayer;
     @FXML
     private Label lbl_disMapPath;
@@ -154,7 +152,6 @@ public class StartViewController implements Initializable {
 
         initToggleButtons();
         btn_loadGame.setVisible(true);
-        btn_saveGame.setVisible(false);
         txf_playerNumbers.setText(Integer.toString(DEFAULT_NUM_OF_PLAYERS));
 
         numOfPlayersProperty = new SimpleIntegerProperty(DEFAULT_NUM_OF_PLAYERS);
@@ -335,7 +332,6 @@ public class StartViewController implements Initializable {
         hbx_infoDisplayHbox.getChildren().clear();
         txf_mapPromptInfo.setText("World Map");
         txf_mapPromptInfo.setVisible(true);
-        btn_saveGame.setVisible(true);
         btn_loadGame.setVisible(false);
 
         ArrayList<ListView<String>> mapListviews = new ArrayList<>();
