@@ -4,6 +4,7 @@ import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
+import sun.reflect.misc.ConstructorUtil;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -73,7 +74,37 @@ public class StrategyBenevolent implements Strategy {
 
     private void benevolentlyFortify(Player player) {
         ArrayList<Country> countries = InfoRetriver.getCountryList(player);
-        //TODO then fortifies in order to move armies to weaker countries????
+        //fortifies in order to move armies to weaker countries
+        countries.sort(new Comparator<Country>() {
+            @Override
+            public int compare(Country o1, Country o2) {
+                int total_1 = 0;
+                int total_2 = 0;
+                for (Country e1: InfoRetriver.getAdjacentEnemy(player, o1)){
+                    total_1 += e1.getCountryArmyNumber();
+                }
+                for (Country e2: InfoRetriver.getAdjacentEnemy(player, o2)){
+                    total_2 += e2.getCountryArmyNumber();
+                }
+                if (total_1 == total_2){
+                    return o1.getCountryArmyNumber() - o2.getCountryArmyNumber();
+                }
+                return total_2 - total_1;
+            }
+        });
+        Country weakest = countries.get(0);
+        countries.sort(new Comparator<Country>() {
+            @Override
+            public int compare(Country o1, Country o2) {
+                int a1 = o1.getCountryArmyNumber();
+                int a2 = o2.getCountryArmyNumber();
+                return a2 - a1;
+            }
+        });
+        Country strongest = countries.get(0);
+        int transferArmyNbr = strongest.getCountryArmyNumber() - 1;
+        weakest.addToCountryArmyNumber(transferArmyNbr);
+        strongest.reduceFromCountryArmyNumber(transferArmyNbr);
     }
 
     @Override

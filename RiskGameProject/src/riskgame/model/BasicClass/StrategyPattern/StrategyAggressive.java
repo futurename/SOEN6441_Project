@@ -56,6 +56,7 @@ public class StrategyAggressive implements Strategy {
             if (country.getCountryArmyNumber() > max) {
                 evenCountries.clear();
                 evenCountries.add(country);
+                max = country.getCountryArmyNumber();
             } else if (country.getCountryArmyNumber() == max) {
                 evenCountries.add(country);
             }

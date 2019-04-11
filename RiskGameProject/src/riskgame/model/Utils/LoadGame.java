@@ -101,6 +101,9 @@ public class LoadGame{
      */
     public static <T extends Initializable> Scene loadGame(String path, LinkedHashMap<String, GraphNode> linkedHashMap,
                                                         LinkedHashMap<String, Continent> continentLinkedHashMap, T controller) throws IOException {
+        if(!checkLoadFile(path)){
+            return null;
+        }
 
         BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
         String curLine;
@@ -267,12 +270,9 @@ public class LoadGame{
                         phaseViewObservable.addOneExchangeTime();
                     }
 
-                    if(info[4].contains("Initial")){
-
-                    }else if(info[4].contains("Reinforcement")){
+                    if(info[4].contains("Reinforcement")){
                         Player p1 = playersList.get(Integer.parseInt(info[5]));
                         p1.addUndeployedArmy(Integer.parseInt(info[6]));
-
                     }else if(info[4].contains("Attack")){
                         Player p1 = playersList.get(Integer.parseInt(info[5]));
                         p1.setCardPermission(Boolean.parseBoolean(info[6]));
@@ -302,7 +302,7 @@ public class LoadGame{
      * @param savePath file path
      * @return
      */
-    public boolean checkloadfile(String savePath){
+    public static boolean checkLoadFile(String savePath){
         ArrayList<String> fileRead = new ArrayList<String>();
         try {
             File file=new File(savePath);

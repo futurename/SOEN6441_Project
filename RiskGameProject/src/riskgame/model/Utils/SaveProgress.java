@@ -27,12 +27,13 @@ public class SaveProgress {
      * @param allocateArmyNumber allocateArmyNumber
      * @throws IOException file not found
      */
-    public void SaveFile(String phase,int curPlayer,String path,String mapName,boolean AorF,int exchangetime,int allocateArmyNumber) throws IOException {
+    public void SaveFile(String phase,int curPlayer,String path,String mapName,boolean AorF,int exchangetime,
+                         int allocateArmyNumber) throws IOException {
         File writename = new File(path+"\\"+mapName+".save");
         System.out.println(writename);
         writename.createNewFile();
         BufferedWriter out = new BufferedWriter(new FileWriter(writename));
-        out.write("[Map]\r\n");
+        out.write("[Save]\r\n");
         out.write("author=author\r\n");
         out.write("image=world.bmp\r\n");
         out.write("wrap=no\r\n");
