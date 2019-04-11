@@ -165,6 +165,21 @@ public class UtilMethods {
     }
 
     /**
+     * called before robot endAttack
+     * check is there human player alive in single mode game,
+     * if is not, go to final view
+     * @return false: if no human left; otherwise, true
+     */
+    private static boolean checkHumanStatus(){
+        for (Player player: playersList){
+            if (player.getStrategy().toString().equals("Human")){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Method does nothing unless next player is robot
      */
     public static void callNextRobotPhase() {
@@ -282,9 +297,17 @@ public class UtilMethods {
             if (player.isFinalWinner()) {
                 notifyAttackEnd(true, player);
             } else {
-                notifyAttackEnd(false, player);
-                //if not robot phase, method does nothing
-                callNextRobotPhase();
+                if (checkHumanStatus()){
+                    //human player exists
+                    notifyAttackEnd(false, player);
+                    //if not robot phase, method does nothing
+                    callNextRobotPhase();
+                }else {
+                    Player fakePlayer = new Player(totalNumOfPlayers);
+                    fakePlayer.setPlayerName("THE ROBOT ");
+                    playersList.add(fakePlayer);
+                    notifyAttackEnd(true, fakePlayer);
+                }
             }
         }
     }

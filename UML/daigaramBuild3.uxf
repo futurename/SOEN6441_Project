@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>6</zoom_level>
+  <zoom_level>10</zoom_level>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>486</x>
+      <x>120</x>
       <y>0</y>
-      <w>516</w>
-      <h>588</h>
+      <w>860</w>
+      <h>980</h>
     </coordinates>
     <panel_attributes>Risk game src</panel_attributes>
     <additional_attributes/>
@@ -15,10 +15,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>510</x>
-      <y>36</y>
-      <w>204</w>
-      <h>216</h>
+      <x>160</x>
+      <y>60</y>
+      <w>340</w>
+      <h>360</h>
     </coordinates>
     <panel_attributes>Map editor</panel_attributes>
     <additional_attributes/>
@@ -26,10 +26,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>756</x>
-      <y>36</y>
-      <w>216</w>
-      <h>216</h>
+      <x>570</x>
+      <y>60</y>
+      <w>360</w>
+      <h>360</h>
     </coordinates>
     <panel_attributes>Risk game</panel_attributes>
     <additional_attributes/>
@@ -37,10 +37,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>516</x>
-      <y>60</y>
-      <w>192</w>
-      <h>54</h>
+      <x>170</x>
+      <y>100</y>
+      <w>320</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>map editor controller</panel_attributes>
     <additional_attributes/>
@@ -48,10 +48,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>516</x>
-      <y>120</y>
-      <w>192</w>
-      <h>54</h>
+      <x>170</x>
+      <y>200</y>
+      <w>320</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>map editor view</panel_attributes>
     <additional_attributes/>
@@ -59,10 +59,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>516</x>
-      <y>180</y>
-      <w>192</w>
-      <h>54</h>
+      <x>170</x>
+      <y>300</y>
+      <w>320</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>map editor model	</panel_attributes>
     <additional_attributes/>
@@ -70,10 +70,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>768</x>
-      <y>60</y>
-      <w>192</w>
-      <h>54</h>
+      <x>590</x>
+      <y>100</y>
+      <w>320</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>risk game controller</panel_attributes>
     <additional_attributes/>
@@ -81,10 +81,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>768</x>
-      <y>120</y>
-      <w>192</w>
-      <h>54</h>
+      <x>590</x>
+      <y>200</y>
+      <w>320</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>risk game view</panel_attributes>
     <additional_attributes/>
@@ -92,10 +92,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>768</x>
-      <y>180</y>
-      <w>192</w>
-      <h>54</h>
+      <x>590</x>
+      <y>300</y>
+      <w>320</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>risk game model	</panel_attributes>
     <additional_attributes/>
@@ -103,10 +103,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>858</x>
-      <y>702</y>
-      <w>84</w>
-      <h>36</h>
+      <x>740</x>
+      <y>1170</y>
+      <w>140</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>risk game model</panel_attributes>
     <additional_attributes/>
@@ -114,10 +114,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>420</x>
-      <y>834</y>
-      <w>114</w>
-      <h>72</h>
+      <x>10</x>
+      <y>1390</y>
+      <w>190</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>map editor model
 --
@@ -132,10 +132,10 @@ halign=left</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>720</x>
-      <y>744</y>
-      <w>114</w>
-      <h>114</h>
+      <x>510</x>
+      <y>1240</y>
+      <w>190</w>
+      <h>190</h>
     </coordinates>
     <panel_attributes>risk game controller
 --
@@ -154,10 +154,10 @@ halign=left</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>846</x>
-      <y>600</y>
-      <w>102</w>
-      <h>96</h>
+      <x>720</x>
+      <y>1000</y>
+      <w>170</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>risk game view
 --
@@ -175,10 +175,10 @@ halign=left</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>546</x>
-      <y>726</y>
-      <w>144</w>
-      <h>96</h>
+      <x>220</x>
+      <y>1210</y>
+      <w>240</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>map editor controller
 --
@@ -196,10 +196,10 @@ halign=left</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>414</x>
-      <y>624</y>
-      <w>126</w>
-      <h>102</h>
+      <x>0</x>
+      <y>1040</y>
+      <w>210</w>
+      <h>170</h>
     </coordinates>
     <panel_attributes>map editor view
 --
@@ -217,10 +217,10 @@ halign=left</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>678</x>
-      <y>660</y>
-      <w>60</w>
-      <h>18</h>
+      <x>440</x>
+      <y>1100</y>
+      <w>100</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>risk game</panel_attributes>
     <additional_attributes/>
@@ -228,10 +228,10 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>702</x>
-      <y>672</y>
-      <w>18</w>
-      <h>108</h>
+      <x>480</x>
+      <y>1120</y>
+      <w>30</w>
+      <h>180</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
@@ -239,10 +239,10 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>684</x>
-      <y>756</y>
-      <w>48</w>
-      <h>24</h>
+      <x>450</x>
+      <y>1260</y>
+      <w>80</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>60.0;20.0;10.0;20.0</additional_attributes>
@@ -250,10 +250,10 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>534</x>
-      <y>660</y>
-      <w>120</w>
-      <h>90</h>
+      <x>200</x>
+      <y>1100</y>
+      <w>200</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 update</panel_attributes>
@@ -262,10 +262,10 @@ update</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>528</x>
-      <y>816</y>
-      <w>108</w>
-      <h>60</h>
+      <x>190</x>
+      <y>1360</y>
+      <w>180</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 uses</panel_attributes>
@@ -274,10 +274,10 @@ uses</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>804</x>
-      <y>654</y>
-      <w>54</w>
-      <h>114</h>
+      <x>650</x>
+      <y>1090</y>
+      <w>90</w>
+      <h>190</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 update</panel_attributes>
@@ -286,10 +286,10 @@ update</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>828</x>
-      <y>732</y>
-      <w>72</w>
-      <h>60</h>
+      <x>690</x>
+      <y>1220</y>
+      <w>120</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 uses</panel_attributes>
@@ -298,10 +298,10 @@ uses</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>972</x>
-      <y>702</y>
-      <w>90</w>
-      <h>138</h>
+      <x>930</x>
+      <y>1170</y>
+      <w>150</w>
+      <h>230</h>
     </coordinates>
     <panel_attributes>BasicClass
 --
@@ -322,10 +322,10 @@ halign=left</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>858</x>
-      <y>798</y>
-      <w>96</w>
-      <h>102</h>
+      <x>740</x>
+      <y>1330</y>
+      <w>160</w>
+      <h>170</h>
     </coordinates>
     <panel_attributes>utils
 --
@@ -344,10 +344,10 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>732</y>
-      <w>18</w>
-      <h>90</h>
+      <x>810</x>
+      <y>1220</y>
+      <w>30</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
@@ -355,10 +355,10 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>936</x>
-      <y>720</y>
-      <w>48</w>
-      <h>18</h>
+      <x>870</x>
+      <y>1200</y>
+      <w>80</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
@@ -366,10 +366,10 @@ halign=left</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>756</x>
-      <y>252</y>
-      <w>192</w>
-      <h>276</h>
+      <x>570</x>
+      <y>420</y>
+      <w>320</w>
+      <h>460</h>
     </coordinates>
     <panel_attributes>test
 --
@@ -403,10 +403,10 @@ halign=left</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>510</x>
-      <y>270</y>
-      <w>192</w>
-      <h>54</h>
+      <x>160</x>
+      <y>450</y>
+      <w>320</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>test
 --
@@ -416,10 +416,10 @@ MapEditorTest</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1086</x>
-      <y>708</y>
-      <w>120</w>
-      <h>72</h>
+      <x>1120</x>
+      <y>1180</y>
+      <w>200</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>ObserverPattern
 --
@@ -434,10 +434,10 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1056</x>
-      <y>750</y>
-      <w>42</w>
-      <h>18</h>
+      <x>1070</x>
+      <y>1250</y>
+      <w>70</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
@@ -445,10 +445,10 @@ halign=left</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1086</x>
-      <y>816</y>
-      <w>120</w>
-      <h>90</h>
+      <x>1120</x>
+      <y>1360</y>
+      <w>200</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>StrategyPattern
 --
@@ -465,10 +465,10 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1056</x>
-      <y>822</y>
-      <w>42</w>
-      <h>18</h>
+      <x>1070</x>
+      <y>1370</y>
+      <w>70</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
