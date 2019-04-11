@@ -1,0 +1,22 @@
+[Save]
+author=author
+image=world.bmp
+wrap=no
+scroll=horizontal
+warn=yes
+
+[Continents]
+DemoContinent=4
+
+[Territories]
+attacking country,0,0,DemoContinent,0,11
+defending country,0,0,DemoContinent,1,5
+
+[Players]
+-1
+
+[Connection]
+-1
+
+[Phase]
+0,0,0,0,Attack Phase,0,true

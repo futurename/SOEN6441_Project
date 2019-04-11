@@ -2,19 +2,11 @@ package test.riskgame.model.Utils;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.Before; 
-import org.junit.After;
+import org.junit.Before;
 import riskgame.Main;
 import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.*;
-import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
 import riskgame.model.Utils.SaveProgress;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-
-import static riskgame.Main.phaseViewObservable;
 
 /** 
 * SaveProgress Tester. 
@@ -25,6 +17,45 @@ import static riskgame.Main.phaseViewObservable;
 */ 
 public class SaveProgressTest {
 
+    @Before
+    public void before() throws Exception {
+        GameSimulator();
+    }
+
+    private void GameSimulator() {
+        StartViewController.resetStaticVariables();
+
+        Country defendingCountry = new Country("defending country");
+        Country attackingCountry = new Country("attacking country");
+        Player playerAttacker = new Player(0);
+        Player playerDefender = new Player(1);
+
+        defendingCountry.setCountryOwner(playerDefender);
+        attackingCountry.setCountryOwner(playerAttacker);
+
+        String demoContinentName = "DemoContinent";
+        Continent demoContinent = new Continent(demoContinentName, 4);
+        demoContinent.getContinentCountryGraph().put(attackingCountry.getCountryName(), attackingCountry);
+        demoContinent.getContinentCountryGraph().put(defendingCountry.getCountryName(), defendingCountry);
+        Main.worldContinentMap.put(demoContinentName, demoContinent);
+
+        defendingCountry.setContinentName(demoContinent.getContinentName());
+        attackingCountry.setContinentName(demoContinent.getContinentName());
+        attackingCountry.addToCountryArmyNumber(10);
+        defendingCountry.addToCountryArmyNumber(4);
+
+        playerAttacker.addToOwnedCountryNameList("attacking country");
+        playerDefender.addToOwnedCountryNameList("defending country");
+        defendingCountry.addObserver(playerDefender);
+        attackingCountry.addObserver(playerAttacker);
+        Main.playersList.add(playerAttacker);
+        Main.playersList.add(playerDefender);
+        GraphNode atkGraphNode = new GraphNode(attackingCountry);
+        GraphNode defGraphNode = new GraphNode(defendingCountry);
+        Main.graphSingleton.put("defending country", defGraphNode);
+        Main.graphSingleton.put("attacking country", atkGraphNode);
+    }
+
     /**
     *
     * Method: SaveFile(String phase, int curPlayer, String path, String mapName, boolean AorF, boolean AOC)
@@ -32,33 +63,9 @@ public class SaveProgressTest {
     */
     @Test
     public void testSaveFile() throws Exception {
-        File writename = new File("./saveTest.save");
-        System.out.println(writename);
-        writename.createNewFile();
-        BufferedWriter out = new BufferedWriter(new FileWriter(writename));
-        out.write("[Map]\r\n");
-        out.write("author=author\r\n");
-        out.write("image=world.bmp\r\n");
-        out.write("wrap=no\r\n");
-        out.write("scroll=horizontal\r\n");
-        out.write("warn=yes\r\n");
-        out.write("\r\n");
-
-        out.write("[Continents]\r\n");
-        out.write("Asia"+"="+"3"+"\r\n");
-        out.write("\r\n");
-
-        out.write("[Territories]\r\n");
-        out.write("Japan"+",0,0,"+"Asia"+","+"0"+","+"2"+"China"+"\r\n");
-        out.write("\r\n");
-
-        out.write("[Players]\r\n");
-        out.write("3"+"\r\n");
-
-        out.write("Japan"+"Canada"+"\r\n");
-        out.write("\r\n");
-
-        out.flush();
-        out.close();
+        SaveProgress sp = new SaveProgress();
+        sp.SaveFile("Attack",0,"./","saveProgressTest",true,
+                0,0);
+        Assert.assertTrue(sp.CheckSave("./saveProgressTest.save"));
     }
 } 
