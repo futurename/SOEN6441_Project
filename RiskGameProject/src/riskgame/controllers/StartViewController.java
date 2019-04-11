@@ -16,27 +16,25 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import mapeditor.model.MapObject;
 import riskgame.Main;
 import riskgame.model.BasicClass.*;
-import riskgame.model.BasicClass.ObserverPattern.CardExchangeViewObserver;
-import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.StrategyPattern.Strategy;
 import riskgame.model.BasicClass.StrategyPattern.UtilMethods;
 import riskgame.model.Utils.InfoRetriver;
 import riskgame.model.Utils.InitPlayers;
 import riskgame.model.Utils.ListviewRenderer;
-import riskgame.model.Utils.SaveProgress;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 import static riskgame.Main.*;
 import static riskgame.model.Utils.InitWorldMap.buildWorldMapGraph;
@@ -366,33 +364,6 @@ public class StartViewController implements Initializable {
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         if (!isHumanEngaged()) {
             startRobotGame();
-//            System.out.println("\n\n\nClickNextToReinforcePhase:" + playerStrategyList + "\nmap:" + mapPath +"\n\n\n");
-//
-//            TournamentGame tournamentGame = new TournamentGame(mapPath, playerStrategyList);
-//            curStage.close();
-//            tournamentGame.singleModeRun();
-//            Player winner = tournamentGame.getWinnerPlayer();
-//            ArrayList<Player> robotList = tournamentGame.getRobotPlayerList();
-//            int totalRounds = tournamentGame.getMAX_GAME_ROUND();
-//
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/FinalView.fxml"));
-//
-//            System.out.println("single mode winner: " + winner + ", index: " + winner.getPlayerIndex());
-//
-//
-//            FinalViewController finalViewController = new FinalViewController();
-//            finalViewController.setWinner(winner);
-//            finalViewController.setPlayerArrayList(robotList);
-//            finalViewController.setTotalRounds(totalRounds);
-//            loader.setController(finalViewController);
-//
-//            Pane pane = loader.load();
-//            Scene scene = new Scene(pane,1200,900);
-//            curStage.setScene(scene);
-//
-//            curStage.show();
-
-
         } else {
             //if continent is conquered at the beginning
             initContinentsOwner();
@@ -444,10 +415,10 @@ public class StartViewController implements Initializable {
         Main.phaseViewObservable.notifyObservers("From startView to final");
     }
 
-    private boolean isHumanEngaged(){
+    private boolean isHumanEngaged() {
         boolean status = false;
-        for (Player player: playersList){
-            if (player.getStrategy().toString().equals("Human")){
+        for (Player player : playersList) {
+            if (player.getStrategy().toString().equals("Human")) {
                 status = true;
             }
         }
@@ -654,6 +625,7 @@ public class StartViewController implements Initializable {
 
     /**
      * load game
+     *
      * @param actionEvent
      */
     public void clickLoadGame(ActionEvent actionEvent) {
@@ -666,16 +638,14 @@ public class StartViewController implements Initializable {
 
             Scene scene = loadGame(file.getAbsolutePath(), graphSingleton, worldContinentMap, this);
             initContinentsOwner();
-            notifyPhaseChanged();
-            UtilMethods.callNextRobotPhase();
+
             curStage.setScene(scene);
             curStage.show();
 
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
 
 }

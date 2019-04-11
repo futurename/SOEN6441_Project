@@ -1,26 +1,19 @@
 package riskgame.model.Utils;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import riskgame.Main;
-import riskgame.controllers.FinalViewController;
 import riskgame.controllers.StartViewController;
 import riskgame.model.BasicClass.*;
-import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.StrategyPattern.*;
 
 import java.io.*;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static riskgame.Main.*;
-import static riskgame.model.Utils.InitWorldMap.buildWorldMapGraph;
 
 /**
  * This class handles load game logic.
@@ -255,7 +248,7 @@ public class LoadGame{
 
             // jump to the correct page and set the game data
             if (curLine.contains("[Phase]")) {
-                while ((curLine = bufferedReader.readLine()) != null) {
+                if ((curLine = bufferedReader.readLine()) != null) {
                     String[] info = curLine.split(",");
                     String[] hh = info[4].split(" ");
                     String newString = hh[0].concat(" Action");
@@ -321,10 +314,6 @@ public class LoadGame{
             System.out.println("wrong");
             e.printStackTrace();
         }
-        if(fileRead.size()==0){
-            return false;
-        }else{
-            return true;
-        }
+        return fileRead.size() != 0;
     }
 }

@@ -178,7 +178,27 @@ public class ReinforceViewController implements Initializable {
         scb_armyNbrAdjustment.adjustValue(undeployed);
         lbl_deployArmyCount.setText(Integer.toString(undeployed));
 
-        scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue) -> lbl_deployArmyCount.setText(Integer.toString(newValue.intValue())));
+        scb_armyNbrAdjustment.valueProperty().addListener((observable, oldValue, newValue)
+                -> lbl_deployArmyCount.setText(Integer.toString(newValue.intValue())));
+
+        validateUndeployArmy(undeployed);
+    }
+
+    private void validateUndeployArmy(int undeployed) {
+        if (undeployed == 0) {
+            setUndeploymentUI(false);
+            btn_nextStep.setVisible(true);
+        }
+    }
+
+    private void setUndeploymentUI(boolean b) {
+        scb_armyNbrAdjustment.setVisible(b);
+        lbl_deployArmyCount.setVisible(b);
+        lbl_deployCountPrompt.setVisible(b);
+        lbl_undeployArmyPrompt.setVisible(b);
+        lbl_undeployedArmy.setVisible(b);
+        btn_confirmDeployment.setVisible(b);
+
     }
 
     /**
@@ -245,15 +265,8 @@ public class ReinforceViewController implements Initializable {
     public void clickNextStep(ActionEvent actionEvent) {
         UtilMethods.deregisterCardObserver(curPlayer, phaseViewObservable, cardExchangeViewObserver);
         Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        System.out.println("\n???????????????????????????" + reinforceInitCounter);
 
-//        if (reinforceInitCounter > 1) {
-//            UtilMethods.notifyReinforcementEnd(false, curPlayer);
-//            reinforceInitCounter--;
-//        } else {
-//            UtilMethods.notifyReinforcementEnd(true, curPlayer);
-//        }
-//        UtilMethods.callNextRobotPhase();
+        System.out.println("\n???????????????????????????" + reinforceInitCounter);
 
         UtilMethods.endReinforcement(curPlayer);
         Scene scene = UtilMethods.startView(phaseViewObserver.getPhaseName(), this);
@@ -390,6 +403,7 @@ public class ReinforceViewController implements Initializable {
 
     /**
      * save game
+     *
      * @param actionEvent
      */
     public void clickSaveGame(ActionEvent actionEvent) {
@@ -417,7 +431,7 @@ public class ReinforceViewController implements Initializable {
         int ownedCountryNum = curPlayer.getOwnedCountryNameList().size();
         int newArmyPerRound = InfoRetriver.getStandardReinforceArmyNum(ownedCountryNum) + curPlayer.getContinentBonus();
         try {
-            saveProgress.SaveFile("Reinforcement", curPlayer.getPlayerIndex(), filePath, fileNameCurTime, true,cardExchangeViewObserver.getExchangeTime(),newArmyPerRound);
+            saveProgress.SaveFile("Reinforcement", curPlayer.getPlayerIndex(), filePath, fileNameCurTime, true, cardExchangeViewObserver.getExchangeTime(), newArmyPerRound);
         } catch (IOException e) {
             e.printStackTrace();
         }
