@@ -73,6 +73,7 @@ public class UtilMethods {
      */
     public static void exchangeCard(Player player, int code, int exchangeTime, PhaseViewObservable addTimeObs) {
         int newArmy = getExchangedArmy(exchangeTime);
+        System.out.println(player.getPlayerName()+" Got new army: "+newArmy);
         if (code == -1) {
             ArrayList<Card> removes = new ArrayList<>();
             removes.add(Card.ARTILLERY);
