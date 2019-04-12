@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="txt_saveFiletitle" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mapeditor.controller.MapEditorSaveFileController">
+   <children>
+      <Text layoutX="133.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SaveFile">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Text>
+      <Text fx:id="txt_filePath" layoutX="405.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="path">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txf_filePath" layoutX="520.0" layoutY="303.0" promptText=".\" />
+      <Button fx:id="btn_save" layoutX="579.0" layoutY="539.0" mnemonicParsing="false" onAction="#generateMap" text="save" />
+      <Text fx:id="txt_checkResult" layoutX="458.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Haven't check" wrappingWidth="479.70361328125">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Text>
+      <Button fx:id="btn_check" layoutX="361.0" layoutY="539.0" mnemonicParsing="false" onAction="#clickToCheck" text="check" />
+      <Button fx:id="btn_return" layoutX="682.0" layoutY="539.0" mnemonicParsing="false" onAction="#clickToReturn" text="back" />
+      <Button fx:id="btn_selectPath" layoutX="458.0" layoutY="539.0" mnemonicParsing="false" onAction="#selectPath" text="Select Path" />
+      <Text fx:id="txt_fileName" layoutX="405.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="name">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txf_fileName" layoutX="520.0" layoutY="349.0" promptText="newMap" />
+      <Text fx:id="txt_dotmap" layoutX="727.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text=".map">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

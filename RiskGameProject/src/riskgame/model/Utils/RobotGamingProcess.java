@@ -61,7 +61,9 @@ public class RobotGamingProcess {
                         return curGameResult;
                     }
                 });
-                tournamentModeResultViewController.setOneGameResult(future);
+                synchronized (gameResultQueue) {
+                    tournamentModeResultViewController.setOneGameResult(future);
+                }
                 gameResultQueue.add(future);
 
                 System.out.println("\nmap:" + mapFileName + ", gameSeq: " + gameIndex + "\n");

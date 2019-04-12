@@ -1,0 +1,14 @@
+.text-area{
+    -fx-background-insets: 0;
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-area .content {
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+
+.text-area *.text {
+    -fx-text-alignment: center;
+    -fx-font-size: 15;
+}

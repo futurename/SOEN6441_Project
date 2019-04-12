@@ -1,0 +1,16 @@
+
+mapeditor
+mapeditor.Test
+mapeditor.controller
+mapeditor.model
+riskgame
+riskgame.controllers
+riskgame.model.BasicClass
+riskgame.model.BasicClass.ObserverPattern
+riskgame.model.BasicClass.StrategyPattern
+riskgame.model.Utils
+test.riskgame.controller
+test.riskgame.model.BasicClass
+test.riskgame.model.BasicClass.StrategyPattern
+test.riskgame.model.Utils
+test.util
