@@ -9,6 +9,9 @@ import riskgame.model.Utils.InfoRetriver;
 
 import java.util.ArrayList;
 
+/**
+ * @author Zhanfan
+ */
 public class StrategyCheater implements Strategy {
     @Override
     public void doReinforcement(Player player, PhaseViewObservable observable) {

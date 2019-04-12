@@ -4,6 +4,9 @@ import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.Player;
 
+/**
+ * @author Zhanfan
+ */
 public interface Strategy {
     default void doReinforcement(Player player, PhaseViewObservable observable) {
     }

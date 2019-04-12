@@ -15,6 +15,9 @@ import static riskgame.controllers.AttackViewController.MAX_ATTACKING_ARMY_NUMBE
 import static riskgame.controllers.AttackViewController.MAX_DEFENDING_ARMY_NUMBER;
 import static riskgame.model.BasicClass.Player.getOneAttackResult;
 
+/**
+ * @author Karamveer
+ */
 public class StrategyRandom implements Strategy {
     private Random r = new Random();
 

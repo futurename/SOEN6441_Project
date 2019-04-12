@@ -3,6 +3,9 @@ package riskgame.model.BasicClass.StrategyPattern;
 import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.Player;
 
+/**
+ * @author Zhanfan
+ */
 public class StrategyHuman implements Strategy {
     @Override
     public String doAttack(Player humanPlayer, Country attackingCountry, Country defendingCountry,

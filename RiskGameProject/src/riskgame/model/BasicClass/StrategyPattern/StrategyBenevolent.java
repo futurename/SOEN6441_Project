@@ -4,11 +4,13 @@ import riskgame.model.BasicClass.Country;
 import riskgame.model.BasicClass.ObserverPattern.PhaseViewObservable;
 import riskgame.model.BasicClass.Player;
 import riskgame.model.Utils.InfoRetriver;
-import sun.reflect.misc.ConstructorUtil;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/**
+ * @author Zhanfan
+ */
 public class StrategyBenevolent implements Strategy {
     @Override
     public void doReinforcement(Player player, PhaseViewObservable observable) {

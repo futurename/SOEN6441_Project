@@ -20,6 +20,9 @@ import java.util.Collections;
 import static riskgame.Main.*;
 import static riskgame.controllers.StartViewController.firstRoundCounter;
 
+/**
+ * @author Zhanfan
+ */
 public class UtilMethods {
 
     /**

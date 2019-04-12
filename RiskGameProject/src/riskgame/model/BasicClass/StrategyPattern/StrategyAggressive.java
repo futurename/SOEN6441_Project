@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+/**
+ * @author Zhanfan
+ */
 public class StrategyAggressive implements Strategy {
     @Override
     public void doReinforcement(Player player, PhaseViewObservable observable) {
