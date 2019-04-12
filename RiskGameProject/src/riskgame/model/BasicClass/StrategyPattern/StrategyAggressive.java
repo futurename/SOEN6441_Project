@@ -27,12 +27,11 @@ public class StrategyAggressive implements Strategy {
         CardExchangeViewObserver cardObserver = UtilMethods.initCardObserver(player, observable);
         int curExchangeTime = cardObserver.getExchangeTime();
         ArrayList<Card> cards = cardObserver.getPlayerCards();
+        int code = UtilMethods.availableCombo(cards);
 
         System.out.println("\n\n\n\nAggressive player cards: " + cards + "\n\n\n\n");
-
-        int code = UtilMethods.availableCombo(cards);
         if (code != -2) {
-            UtilMethods.exchangeCard(player, code, curExchangeTime);
+            UtilMethods.exchangeCard(player, code, curExchangeTime, observable);
         }
         UtilMethods.deregisterCardObserver(player, observable, cardObserver);
     }
@@ -74,7 +73,7 @@ public class StrategyAggressive implements Strategy {
         UtilMethods.endAttack(player);
     }
 
-    public void aggressivelyAttack(Player player) {
+    private void aggressivelyAttack(Player player) {
         player.setCardPermission(false);
         Country ownedStrongestCountry = InfoRetriver.getOwnedStrongestCountry(player);
         while (ownedStrongestCountry != null) {

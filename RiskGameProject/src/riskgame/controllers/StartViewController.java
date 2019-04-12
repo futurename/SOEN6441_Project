@@ -626,19 +626,14 @@ public class StartViewController implements Initializable {
     /**
      * load game
      *
-     * @param actionEvent
+     * @param actionEvent default param
      */
     public void clickLoadGame(ActionEvent actionEvent) {
         String titleString = "Select Saved Game File:";
         File file = InfoRetriver.showSavedFileChooser(titleString);
         try {
-
             Stage curStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
-
             Scene scene = loadGame(file.getAbsolutePath(), graphSingleton, worldContinentMap, this);
-            initContinentsOwner();
-
             curStage.setScene(scene);
             curStage.show();
 

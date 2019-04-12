@@ -59,13 +59,13 @@ public class StrategyRandom implements Strategy {
 
         if (cards.size() >= 5) {
             int code = UtilMethods.availableCombo(cards);
-            UtilMethods.exchangeCard(player, code, curExchangeTime);
+            UtilMethods.exchangeCard(player, code, curExchangeTime, observable);
         } else if (cards.size() >= 3) {
             int code = UtilMethods.availableCombo(cards);
             if (code != -2) {
                 //50% probability
                 if (r.nextInt(2) == 0) {
-                    UtilMethods.exchangeCard(player, code, curExchangeTime);
+                    UtilMethods.exchangeCard(player, code, curExchangeTime, observable);
                 }
             }
         }

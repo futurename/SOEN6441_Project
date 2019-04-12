@@ -30,7 +30,7 @@ public class StrategyCheater implements Strategy {
 
         int code = UtilMethods.availableCombo(cards);
         if (code != -2) {
-            UtilMethods.exchangeCard(player, code, curExchangeTime);
+            UtilMethods.exchangeCard(player, code, curExchangeTime, observable);
         }
         UtilMethods.deregisterCardObserver(player, observable, cardObserver);
     }

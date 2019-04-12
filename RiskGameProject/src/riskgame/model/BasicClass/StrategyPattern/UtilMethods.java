@@ -16,6 +16,7 @@ import riskgame.model.Utils.InfoRetriver;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Observable;
 
 import static riskgame.Main.*;
 import static riskgame.controllers.StartViewController.firstRoundCounter;
@@ -67,8 +68,10 @@ public class UtilMethods {
      *
      * @param player player
      * @param code   combo type
+     * @param exchangeTime current exchange time obtaining from observer.
+     * @param addTimeObs Observable to update exchange time.
      */
-    public static void exchangeCard(Player player, int code, int exchangeTime) {
+    public static void exchangeCard(Player player, int code, int exchangeTime, PhaseViewObservable addTimeObs) {
         int newArmy = getExchangedArmy(exchangeTime);
         if (code == -1) {
             ArrayList<Card> removes = new ArrayList<>();
@@ -84,8 +87,8 @@ public class UtilMethods {
             player.removeObservableCards(new ArrayList<>(Collections.nCopies(3, Card.ARTILLERY)));
         }
         UtilMethods.addUndeployedArmyAfterExchanging(player, newArmy);
-        phaseViewObservable.addOneExchangeTime();
-        phaseViewObservable.notifyObservers("Add Exchange Time");
+        addTimeObs.addOneExchangeTime();
+        addTimeObs.notifyObservers("Add Exchange Time");
     }
 
     /**
